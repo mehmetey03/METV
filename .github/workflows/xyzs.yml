@@ -1,4 +1,4 @@
-name: XYZ Sports M3U
+name: XYZ Sports M3U (Tokensiz)
 
 on:
   schedule:
@@ -28,16 +28,6 @@ jobs:
       - name: Scripti çalıştır
         run: python xyzsports.py
 
-      # 5. Değişiklik varsa commit ve push et
-      - name: Repo'ya commit et (sadece değişiklik varsa)
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          git config user.name "github-actions"
-          git config user.email "github-actions@github.com"
-          git add xyzvt.m3u
-          if ! git diff --cached --quiet; then
-            git commit -m "Update xyzvt.m3u"
-            git push https://x-access-token:${GITHUB_TOKEN}@github.com/mehmetey03/METV.git
-          else
-            echo "Değişiklik yok, commit atılmadı."
+      # 5. (Opsiyonel) log mesajı
+      - name: Çalışma tamamlandı
+        run: echo "XYZ Sports scripti çalıştırıldı. Push yapılmadı çünkü token yok."
