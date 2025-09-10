@@ -42,14 +42,15 @@ class JustSportHDManager:
     def generate_m3u(self):
         html, referer_url = self.find_working_domain()
         if not html or not referer_url:
+            print("❌ Domain bulunamadı, m3u oluşturulamadı.")
             return ""
 
         stream_base_url = self.find_stream_domain(html)
         if not stream_base_url:
-            print("JustSportHD: Yayın domaini (streamnet) bulunamadı.")
+            print("❌ Yayın domaini (streamnet) bulunamadı.")
             return ""
 
-        print(f"JustSportHD: Yayın domaini bulundu -> {stream_base_url}")
+        print(f"✅ Yayın domaini bulundu -> {stream_base_url}")
 
         m3u = ['#EXTM3U x-tvg-url=""\n']
         for channel in self.CHANNELS:
@@ -67,7 +68,7 @@ class JustSportHDManager:
         try:
             with open("justsporthd.m3u", "w", encoding="utf-8") as f:
                 f.write(content if content.strip() else '#EXTM3U\n')
-            print(f"✅ justsporthd.m3u dosyası başarıyla oluşturuldu! İçerik uzunluğu: {len(content)}")
+            print(f"✅ justsporthd.m3u başarıyla oluşturuldu! İçerik uzunluğu: {len(content)}")
         except Exception as e:
             print(f"❌ Dosya yazma hatası: {e}")
 
