@@ -91,7 +91,7 @@ for country in country_names:
 
 # Dosyaya yaz
 try:
-    with open('global_radio.m3u', 'w', encoding='utf-8') as f:
+    with open('dinle.m3u', 'w', encoding='utf-8') as f:
         f.write(m3u_output)
 
     print("✅ M3U dosyası başarıyla oluşturuldu!")
