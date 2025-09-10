@@ -58,7 +58,7 @@ for station in stations:
             'votes': station.get('votes', 0)
         })
 
-    except Exception as e:
+    except Exception:
         continue
 
 print("📝 M3U dosyası oluşturuluyor...")
@@ -91,10 +91,10 @@ for country in country_names:
 
 # Dosyaya yaz
 try:
-    with open('dinle.m3u', 'w', encoding='utf-8') as f:
+    with open('fm.m3u', 'w', encoding='utf-8') as f:
         f.write(m3u_output)
 
-    print("✅ M3U dosyası başarıyla oluşturuldu!")
+    print("✅ fm.m3u dosyası başarıyla oluşturuldu!")
     print(f"📊 Toplam {len(countries)} ülke, {sum(len(stations) for stations in countries.values())} istasyon")
 
 except Exception as e:
