@@ -30,6 +30,6 @@ jobs:
       run: |
         git config --local user.email "github-actions[bot]@users.noreply.github.com"
         git config --local user.name "github-actions[bot]"
-        git add global_radio.m3u
+        git add fm.m3u
         git diff --cached --quiet || git commit -m "🤖 Auto-update radio list"
         git push
