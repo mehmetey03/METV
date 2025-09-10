@@ -1,0 +1,41 @@
+name: 🎯 Update SalamisTV M3U
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * *'
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+    - name: 📥 Checkout code
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: 🐍 Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.10'
+
+    - name: 📡 Generate SalamisTV M3U
+      run: python salamistv.py
+
+    - name: ✅ Commit M3U file
+      run: |
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
+
+        if [ -f salamistv.m3u ]; then
+          git add salamistv.m3u
+          git diff --cached --quiet || git commit -m "✅ Auto-update SalamisTV list ($(date +'%Y-%m-%d %H:%M:%S'))"
+          git push
+        else
+          echo "❌ salamistv.m3u dosyası bulunamadı, commit atlanıyor."
+        fi
