@@ -1,38 +1,40 @@
-name: XYZ 
+name: 📺 Update XYZsports M3U
 
 on:
-  schedule:
-    - cron: '*/15 * * * *'
   workflow_dispatch:
+  schedule:
+    - cron: '*/15 * * * *'  # Her 15 dakikada bir
+
+permissions:
+  contents: write
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
 
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
+    - name: 🛠️ Checkout repository
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
+    - name: 🐍 Setup Python environment
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
 
-      - name: Install dependencies
-        run: pip install httpx
+    - name: 🔗 Generate XYZsports M3U
+      run: python xyzsports.py
 
-      - name: Run Python script
-        run: python xyzsports.py
+    - name: 💾 Commit and push M3U
+      run: |
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
 
-      - name: Commit & Push changes
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          git config user.name "github-actions"
-          git config user.email "github-actions@github.com"
+        if [ -f xyzvt.m3u ]; then
           git add xyzvt.m3u
-          if ! git diff --cached --quiet; then
-            git commit -m "Update xyzvt.m3u"
-            git push https://x-access-token:${GITHUB_TOKEN}@github.com/mehmetey03/METV.git
-          else
-            echo "No changes to commit."
+          git diff --cached --quiet || git commit -m "💾 Auto-update XYZsports list ($(date +'%Y-%m-%d %H:%M:%S'))"
+          git push
+        else
+          echo "⚠️ xyzvt.m3u not found, skipping commit."
