@@ -2,34 +2,29 @@ name: XYZ
 
 on:
   schedule:
-    - cron: '*/15 * * * *'   # Her 15 dakikada bir (UTC)
-  workflow_dispatch:          # Manuel tetikleme
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Repo'yu çek
-      - name: Kodları al
+      - name: Checkout repo
         uses: actions/checkout@v4
 
-      # 2. Python kur
-      - name: Python kur
+      - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
-      # 3. Gerekli kütüphaneleri yükle
-      - name: Gerekli kütüphaneler
+      - name: Install dependencies
         run: pip install httpx
 
-      # 4. Python scripti çalıştır
-      - name: Scripti çalıştır
+      - name: Run Python script
         run: python xyzsports.py
 
-      # 5. Değişiklik varsa commit ve push et
-      - name: Repo'ya commit et (sadece değişiklik varsa)
+      - name: Commit & Push changes
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -40,4 +35,4 @@ jobs:
             git commit -m "Update xyzvt.m3u"
             git push https://x-access-token:${GITHUB_TOKEN}@github.com/mehmetey03/METV.git
           else
-            echo "Değişiklik yok, commit atılmadı."
+            echo "No changes to commit."
