@@ -1,9 +1,9 @@
-name: 📺 Update XYZsports M3U
+name: 🔥 XYZ Sports M3U Update
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: '*/15 * * * *'  # Her 15 dakikada bir
+    - cron: '*/15 * * * *'  # Her 15 dakikada bir (UTC)
 
 permissions:
   contents: write
@@ -11,10 +11,10 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
 
     steps:
-      - name: 🛠️ Checkout repository
+      - name: 📥 Checkout repository
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -24,23 +24,19 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: 🔧 Upgrade pip and install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install httpx
+      - name: 📡 Install dependencies
+        run: pip install --upgrade pip httpx
 
-      - name: 🔗 Generate XYZsports M3U
+      - name: ⚡ Run XYZ Sports script
         run: python xyzsports.py
 
-      - name: 💾 Commit and push M3U
+      - name: ✅ Commit & Push M3U file
         run: |
-          set -e
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-
           if [ -f xyzvt.m3u ]; then
+            git config --local user.email "github-actions[bot]@users.noreply.github.com"
+            git config --local user.name "github-actions[bot]"
             git add xyzvt.m3u
-            git diff --cached --quiet || git commit -m "💾 Auto-update XYZsports list ($(date +'%Y-%m-%d %H:%M:%S'))"
-            git push https://x-access-token:${GITHUB_TOKEN}@github.com/mehmetey03/METV.git
+            git diff --cached --quiet || git commit -m "🔥 Auto-update XYZ Sports ($(date +'%Y-%m-%d %H:%M:%S'))"
+            git push https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git
           else
-            echo "⚠️ xyzvt.m3u not found, skipping commit."
+            echo "❌ xyzvt.m3u bulunamadı, commit atlanıyor."
