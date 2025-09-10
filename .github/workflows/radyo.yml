@@ -24,7 +24,7 @@ jobs:
         python-version: '3.10'
         
     - name: 📻 Generate Radio M3U
-      run: python generate_radio.py
+      run: python fm.py
         
     - name: ✅ Commit M3U file
       run: |
