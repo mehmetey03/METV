@@ -3,7 +3,7 @@ name: 🎶 Update Radio M3U
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 0 * * *'  # Her gece 00:00'da çalışır
+    - cron: '0 0 * * *'
 
 permissions:
   contents: write
@@ -24,18 +24,12 @@ jobs:
         python-version: '3.10'
         
     - name: 📻 Generate Radio M3U
-      run: python fm.py
+      run: python generate_radio.py
         
     - name: ✅ Commit M3U file
       run: |
         git config --local user.email "github-actions[bot]@users.noreply.github.com"
         git config --local user.name "github-actions[bot]"
-        
-        # Dosya varsa commit et, yoksa atla
-        if [ -f global_radio.m3u ]; then
-          git add global_radio.m3u
-          git diff --cached --quiet || git commit -m "🤖 Auto-update radio list ($(date +'%Y-%m-%d %H:%M:%S'))"
-          git push
-        else
-          echo "❌ global_radio.m3u dosyası bulunamadı, commit atlanıyor."
-        fi
+        git add global_radio.m3u
+        git diff --cached --quiet || git commit -m "🤖 Auto-update radio list"
+        git push
