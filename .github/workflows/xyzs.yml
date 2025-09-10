@@ -3,7 +3,7 @@ name: 📺 Update XYZsports M3U
 on:
   workflow_dispatch:
   schedule:
-    - cron: '*/15 * * * *'
+    - cron: '*/15 * * * *'  # Her 15 dakikada bir
 
 permissions:
   contents: write
@@ -41,6 +41,6 @@ jobs:
           if [ -f xyzvt.m3u ]; then
             git add xyzvt.m3u
             git diff --cached --quiet || git commit -m "💾 Auto-update XYZsports list ($(date +'%Y-%m-%d %H:%M:%S'))"
-            git push
+            git push https://x-access-token:${GITHUB_TOKEN}@github.com/mehmetey03/METV.git
           else
             echo "⚠️ xyzvt.m3u not found, skipping commit."
