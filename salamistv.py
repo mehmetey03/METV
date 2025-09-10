@@ -3,6 +3,7 @@ class SalamisTVManager:
         self.referer_url = "https://salamistv15.online/"
         self.base_stream_url = "https://macarenatv4.com"
         self.logo_url = "https://i.hizliresim.com/b6xqz10.jpg"
+        self.user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"
         self.channels = [
             {"name": "BEIN Sport 1", "id": "701"}, {"name": "BEIN Sport 2", "id": "702"},
             {"name": "BEIN Sport 3", "id": "703"}, {"name": "BEIN Sport 4", "id": "704"},
@@ -19,6 +20,7 @@ class SalamisTVManager:
             stream_url = f"{self.base_stream_url}/{channel['id']}/mono.m3u8"
             m3u.append(f'#EXTINF:-1 tvg-id="spor" tvg-logo="{self.logo_url}" group-title="SalamisTV",{channel["name"]}')
             m3u.append(f'#EXTVLCOPT:http-referer={self.referer_url}')
+            m3u.append(f'#EXTVLCOPT:http-user-agent={self.user_agent}')
             m3u.append(stream_url)
 
         content = "\n".join(m3u)
