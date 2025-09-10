@@ -3,7 +3,7 @@ name: 🎶 Update Radio M3U
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 0 * * *'
+    - cron: '0 0 * * *'   # her gece 00:00'da çalışır
 
 permissions:
   contents: write
@@ -31,5 +31,5 @@ jobs:
         git config --local user.email "github-actions[bot]@users.noreply.github.com"
         git config --local user.name "github-actions[bot]"
         git add fm.m3u
-        git diff --cached --quiet || git commit -m "🤖 Auto-update radio list"
+        git diff --cached --quiet || git commit -m "🤖 Auto-update radio list ($(date +'%Y-%m-%d %H:%M:%S'))"
         git push
