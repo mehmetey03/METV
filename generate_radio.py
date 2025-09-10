@@ -58,7 +58,7 @@ for station in stations:
             'votes': station.get('votes', 0)
         })
 
-    except Exception:
+    except Exception as e:
         continue
 
 print("📝 M3U dosyası oluşturuluyor...")
@@ -89,12 +89,12 @@ for country in country_names:
         m3u_output += '#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"\n'
         m3u_output += f'{station["url"]}\n\n'
 
-# Dosyaya yaz (global_radio.m3u)
+# Dosyaya yaz
 try:
     with open('global_radio.m3u', 'w', encoding='utf-8') as f:
         f.write(m3u_output)
 
-    print("✅ global_radio.m3u dosyası başarıyla oluşturuldu!")
+    print("✅ M3U dosyası başarıyla oluşturuldu!")
     print(f"📊 Toplam {len(countries)} ülke, {sum(len(stations) for stations in countries.values())} istasyon")
 
 except Exception as e:
