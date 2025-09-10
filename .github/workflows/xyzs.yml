@@ -14,32 +14,33 @@ jobs:
     timeout-minutes: 15
 
     steps:
-    - name: 🛠️ Checkout repository
-      uses: actions/checkout@v4
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
+      - name: 🛠️ Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: 🐍 Setup Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.11'
+      - name: 🐍 Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
 
-    - name: 🔧 Upgrade pip and install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install httpx
+      - name: 🔧 Upgrade pip and install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install httpx
 
-    - name: 🔗 Generate XYZsports M3U
-      run: python xyzsports.py
+      - name: 🔗 Generate XYZsports M3U
+        run: python xyzsports.py
 
-    - name: 💾 Commit and push M3U
-      run: |
-        git config --local user.email "github-actions[bot]@users.noreply.github.com"
-        git config --local user.name "github-actions[bot]"
+      - name: 💾 Commit and push M3U
+        run: |
+          set -e
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
 
-        if [ -f xyzvt.m3u ]; then
-          git add xyzvt.m3u
-          git diff --cached --quiet || git commit -m "💾 Auto-update XYZsports list ($(date +'%Y-%m-%d %H:%M:%S'))"
-          git push
-        else
-          echo "⚠️ xyzvt.m3u not found, skipping commit."
+          if [ -f xyzvt.m3u ]; then
+            git add xyzvt.m3u
+            git diff --cached --quiet || git commit -m "💾 Auto-update XYZsports list ($(date +'%Y-%m-%d %H:%M:%S'))"
+            git push
+          else
+            echo "⚠️ xyzvt.m3u not found, skipping commit."
