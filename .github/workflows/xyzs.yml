@@ -1,42 +1,42 @@
-name: 🔥 XYZ Sports M3U Update
+name: XYZ Sports M3U
 
 on:
-  workflow_dispatch:
   schedule:
-    - cron: '*/15 * * * *'  # Her 15 dakikada bir (UTC)
-
-permissions:
-  contents: write
+    - cron: '*/15 * * * *'   # Her 15 dakikada bir (UTC)
+  workflow_dispatch:          # Manuel tetikleme
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
-
     steps:
-      - name: 📥 Checkout repository
+      - name: Kodları al
         uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: 🐍 Setup Python
+      - name: Python kur
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: "3.11"
 
-      - name: 📡 Install dependencies
-        run: pip install --upgrade pip httpx
+      - name: Gerekli kütüphaneler
+        run: pip install httpx
 
-      - name: ⚡ Run XYZ Sports script
+      - name: Scripti çalıştır
         run: python xyzsports.py
 
-      - name: ✅ Commit & Push M3U file
+      - name: Repo'ya commit et (sadece değişiklik varsa)
         run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+
           if [ -f xyzvt.m3u ]; then
-            git config --local user.email "github-actions[bot]@users.noreply.github.com"
-            git config --local user.name "github-actions[bot]"
             git add xyzvt.m3u
-            git diff --cached --quiet || git commit -m "🔥 Auto-update XYZ Sports ($(date +'%Y-%m-%d %H:%M:%S'))"
-            git push https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git
+            if ! git diff --cached --quiet; then
+              git commit -m "Update xyzvt.m3u"
+              git push
+            else
+              echo "Değişiklik yok, commit atılmadı."
+            fi
           else
-            echo "❌ xyzvt.m3u bulunamadı, commit atlanıyor."
+            echo "xyzvt.m3u dosyası bulunamadı, commit atlanıyor."
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
