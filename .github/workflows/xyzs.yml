@@ -26,13 +26,12 @@ jobs:
       - name: Repo'ya commit et (sadece değişiklik varsa)
         run: |
           git config user.name "github-actions"
-          git config user.email "github-actions@github.com"
+          git config user.email "github-actions@users.noreply.github.com"
           git add xyzvt.m3u
           if ! git diff --cached --quiet; then
             git commit -m "Update xyzvt.m3u"
-            git push
+            git push https://x-access-token:${GITHUB_TOKEN}@github.com/mehmetey03/METV.git HEAD:main
           else
             echo "Değişiklik yok, commit atılmadı."
-          fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
