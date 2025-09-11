@@ -13,20 +13,34 @@ class XYZsportsManager:
             "trt-spor", "trt-spor-2", "aspor", "s-sport",
             "s-sport-2", "s-sport-plus-1", "s-sport-plus-2"
         ]
-        # Sabit çalışan domain (eski çalışan domain)
-        self.fixed_domain = "https://www.xyzsports248.xyz/"
 
-    def find_working_domain(self):
+    def find_working_domain(self, start=248, end=350):
         headers = {"User-Agent": "Mozilla/5.0"}
+
+        # Öncelikle sabit domain dene
+        fixed_domain = 248
+        fixed_url = f"https://www.xyzsports{fixed_domain}.xyz/"
         try:
-            r = self.httpx.get(self.fixed_domain, headers=headers)
-            print(f"Öncelikle sabit domain deneniyor: {self.fixed_domain} | Durum: {r.status_code}")
+            r = self.httpx.get(fixed_url, headers=headers)
+            print(f"Öncelikle sabit domain deneniyor: {fixed_url} | Durum: {r.status_code}")
             if r.status_code == 200 and "uxsyplayer" in r.text:
-                return r.text, self.fixed_domain
+                return r.text, fixed_url
         except Exception as e:
             print(f"Sabit domain hatası: {e}")
 
-        print("Sabit domain çalışmıyor, fallback yapılamıyor. Script duruyor.")
+        # Dinamik arama
+        for i in range(start, end + 1):
+            url = f"https://www.xyzsports{i}.xyz/"
+            try:
+                r = self.httpx.get(url, headers=headers)
+                if r.status_code == 200 and "uxsyplayer" in r.text:
+                    print(f"Çalışan domain bulundu: {url}")
+                    return r.text, url
+                else:
+                    print(f"Denenen domain: {url} | Durum: {r.status_code}")
+            except Exception as e:
+                print(f"Hata ({url}): {e}")
+                continue
         return None, None
 
     def find_dynamic_player_domain(self, html):
@@ -41,7 +55,7 @@ class XYZsportsManager:
         m3u = ["#EXTM3U"]
         for cid in self.channel_ids:
             channel_name = cid.replace("-", " ").title()
-            m3u.append(f'#EXTINF:-1 group-title="Umitmod",{channel_name}')
+            m3u.append(f'#EXTINF:-1 group-title="XYZSports",{channel_name}')
             m3u.append('#EXTVLCOPT:http-user-agent=Mozilla/5.0')
             m3u.append(f'#EXTVLCOPT:http-referrer={referer_url}')
             m3u.append(f'{base_stream_url}{cid}/playlist.m3u8')
@@ -50,35 +64,27 @@ class XYZsportsManager:
     def calistir(self):
         html, referer_url = self.find_working_domain()
         if not html:
-            print("Çalışan domain bulunamadı, M3U oluşturulamadı!")
-            sys.exit(1)
+            raise RuntimeError("Çalışan domain bulunamadı!")
 
         player_domain = self.find_dynamic_player_domain(html)
         if not player_domain:
-            player_domain = self.fixed_domain  # fallback: sabit domaini kullan
+            raise RuntimeError("Player domain bulunamadı!")
 
-        try:
-            r = self.httpx.get(f"{player_domain}/index.php?id={self.channel_ids[0]}", headers={
-                "User-Agent": "Mozilla/5.0",
-                "Referer": referer_url
-            })
-            base_url = self.extract_base_stream_url(r.text)
-            if not base_url:
-                # fallback: player domaini base olarak kullan
-                base_url = f"{player_domain}/stream/"
-                print(f"Base stream URL bulunamadı, fallback ile kullanılıyor: {base_url}")
+        r = self.httpx.get(f"{player_domain}/index.php?id={self.channel_ids[0]}", headers={
+            "User-Agent": "Mozilla/5.0",
+            "Referer": referer_url
+        })
+        base_url = self.extract_base_stream_url(r.text)
+        if not base_url:
+            raise RuntimeError("Base stream URL bulunamadı!")
 
-            m3u_icerik = self.build_m3u8_content(base_url, referer_url)
-            with open(self.cikti_dosyasi, "w", encoding="utf-8") as f:
-                f.write(m3u_icerik)
+        m3u_icerik = self.build_m3u8_content(base_url, referer_url)
 
-            print(f"M3U dosyası oluşturuldu: {self.cikti_dosyasi}")
-            print(f"Toplam kanal sayısı: {len(self.channel_ids)}")
+        with open(self.cikti_dosyasi, "w", encoding="utf-8") as f:
+            f.write(m3u_icerik)
 
-        except Exception as e:
-            print(f"Stream URL alınırken hata oluştu: {e}")
-            sys.exit(1)
-
+        print(f"M3U dosyası oluşturuldu: {self.cikti_dosyasi}")
+        print(f"Toplam kanal sayısı: {len(self.channel_ids)}")
 
 if __name__ == "__main__":
     try:
