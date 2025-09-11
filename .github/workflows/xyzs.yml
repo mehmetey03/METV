@@ -27,16 +27,12 @@ jobs:
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
-
-          if [ -f xyzvt.m3u ]; then
-            git add xyzvt.m3u
-            if ! git diff --cached --quiet; then
-              git commit -m "Update xyzvt.m3u"
-              git push
-            else
-              echo "Değişiklik yok, commit atılmadı."
-            fi
+          git add xyzvt.m3u
+          if ! git diff --cached --quiet; then
+            git commit -m "Update xyzvt.m3u"
+            git push
           else
-            echo "xyzvt.m3u dosyası bulunamadı, commit atlanıyor."
+            echo "Değişiklik yok, commit atılmadı."
+          fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
