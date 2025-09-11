@@ -17,7 +17,6 @@ class XYZsportsManager:
     def find_working_domain(self, start=248, end=350):
         headers = {"User-Agent": "Mozilla/5.0"}
 
-        # Öncelikle sabit domain dene
         fixed_domain = 248
         fixed_url = f"https://www.xyzsports{fixed_domain}.xyz/"
         try:
@@ -28,7 +27,6 @@ class XYZsportsManager:
         except Exception as e:
             print(f"Sabit domain hatası: {e}")
 
-        # Dinamik arama
         for i in range(start, end + 1):
             url = f"https://www.xyzsports{i}.xyz/"
             try:
@@ -55,7 +53,7 @@ class XYZsportsManager:
         m3u = ["#EXTM3U"]
         for cid in self.channel_ids:
             channel_name = cid.replace("-", " ").title()
-            m3u.append(f'#EXTINF:-1 group-title="XYZSports",{channel_name}')
+            m3u.append(f'#EXTINF:-1 group-title="Umitmod",{channel_name}')
             m3u.append('#EXTVLCOPT:http-user-agent=Mozilla/5.0')
             m3u.append(f'#EXTVLCOPT:http-referrer={referer_url}')
             m3u.append(f'{base_stream_url}{cid}/playlist.m3u8')
