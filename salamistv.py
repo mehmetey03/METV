@@ -26,9 +26,9 @@ class SalamisTVManager:
         content = "\n".join(m3u)
 
         try:
-            with open("salamistv.m3u", "w", encoding="utf-8") as f:
+            with open("salamistv1.m3u", "w", encoding="utf-8") as f:
                 f.write(content if content.strip() else '#EXTM3U\n')
-            print(f"✅ salamistv.m3u başarıyla oluşturuldu! İçerik uzunluğu: {len(content)}")
+            print(f"✅ salamistv1.m3u başarıyla oluşturuldu! İçerik uzunluğu: {len(content)}")
         except Exception as e:
             print(f"❌ Dosya yazma hatası: {e}")
 
