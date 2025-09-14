@@ -76,6 +76,4 @@ def get_canli_tv_m3u():
 
 if __name__ == "__main__":
     get_canli_tv_m3u()    Run python kablo.py
-  
-📡 CanliTV API'den veri alınıyor...
-❌ Hata: HTTPSConnectionPool(host='core-api.kablowebtv.com', port=443): Read timed out. (read timeout=30)
+
