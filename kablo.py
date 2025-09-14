@@ -1,111 +1,114 @@
 import requests
 import json
-import socketio
-import logging
-from datetime import datetime
+import time
+import urllib3
+from urllib3.exceptions import InsecureRequestWarning
 
-# Logging ayarı
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
+# SSL uyarılarını gizle
+urllib3.disable_warnings(InsecureRequestWarning)
 
-def get_canli_tv_m3u_socketio():
-    """Yeni Socket.io endpoint'ini kullanarak kanal verilerini al"""
-    
-    # Token ve endpoint bilgileri
-    token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbnYiOiJMSVZFIiwiaXBiIjoiMCIsImNnZCI6IjA5M2Q3MjBhLTUwMmMtNDFlZC1hODBmLTJiODE2OTg0ZmI5NSIsImNzaCI6IlRSS1NUIiwiZGN0IjoiM0VGNzUiLCJkaSI6IjJhYmM4OTI3LTkwOGMtNDNhZi1iZjg0LTE3ODg5YjYyNGIxZSIsInNnZCI6ImViODc3NDRjLTk4NDItNDUwNy05YjBhLTQ0N2RmYjg2NjJhZCIsInNwZ2QiOiJhMDkwODc4NC1kMTI4LTQ2MWYtYjc2Yi1hNTdkZWIxYjgwY2MiLCJpY2giOiIwIiwiaWRtIjoiMCIsImlhIjoiOjpmZmZmOjEwLjAuMC41IiwiYXB2IjoiMS4wLjAiLCJhYm4iOiIxMDAwIiwibmJmIjoxNzU3ODYyODQ0LCJleHAiOjE3NTc4NjI5MDQsImlhdCI6MTc1Nzg2Mjg0NH0.flmV7l1T-wcuFnvSNBDQCp3z5LVdHwg_Es98gemRMek"
-    socketio_url = "https://turksat.midgard.io:4000"
-    
-    try:
-        print("🔌 Socket.io bağlantısı kuruluyor...")
-        
-        # Socket.io client oluştur
-        sio = socketio.Client()
-        
-        # Event handler'lar
-        @sio.event
-        def connect():
-            print("✅ Socket.io bağlantısı başarılı")
-            # Kanal listesi isteği gönder
-            sio.emit('get_channels', {'token': token})
-        
-        @sio.event
-        def channels_list(data):
-            print(f"📡 {len(data.get('channels', []))} kanal alındı")
-            
-            # M3U dosyasını oluştur
-            create_m3u_file(data.get('channels', []))
-            
-            # Bağlantıyı kapat
-            sio.disconnect()
-        
-        @sio.event
-        def disconnect():
-            print("🔌 Socket.io bağlantısı kesildi")
-        
-        # Bağlan
-        sio.connect(socketio_url, transports=['websocket'], auth={'token': token})
-        sio.wait()
-        
-        return True
-        
-    except Exception as e:
-        print(f"❌ Socket.io hatası: {e}")
-        return False
-
-def get_canli_tv_m3u_http():
-    """HTTP polling yöntemi ile veri al (fallback)"""
+def get_canli_tv_m3u():
+    """Yeni endpoint'ten HTTP ile veri al"""
     
     token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbnYiOiJMSVZFIiwiaXBiIjoiMCIsImNnZCI6IjA5M2Q3MjBhLTUwMmMtNDFlZC1hODBmLTJiODE2OTg0ZmI5NSIsImNzaCI6IlRSS1NUIiwiZGN0IjoiM0VGNzUiLCJkaSI6IjJhYmM4OTI3LTkwOGMtNDNhZi1iZjg0LTE3ODg5YjYyNGIxZSIsInNnZCI6ImViODc3NDRjLTk4NDItNDUwNy05YjBhLTQ0N2RmYjg2NjJhZCIsInNwZ2QiOiJhMDkwODc4NC1kMTI4LTQ2MWYtYjc2Yi1hNTdkZWIxYjgwY2MiLCJpY2giOiIwIiwiaWRtIjoiMCIsImlhIjoiOjpmZmZmOjEwLjAuMC41IiwiYXB2IjoiMS4wLjAiLCJhYm4iOiIxMDAwIiwibmJmIjoxNzU3ODYyODQ0LCJleHAiOjE3NTc4NjI5MDQsImlhdCI6MTc1Nzg2Mjg0NH0.flmV7l1T-wcuFnvSNBDQCp3z5LVdHwg_Es98gemRMek"
-    polling_url = f"https://turksat.midgard.io:4000/socket.io/?token={token}&EIO=4&transport=polling"
+    
+    # 1. Önce handshake yap
+    handshake_url = f"https://turksat.midgard.io:4000/socket.io/?EIO=4&transport=polling&token={token}"
+    
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+        "Accept": "*/*",
+        "Accept-Encoding": "gzip, deflate, br",
+        "Connection": "keep-alive",
+        "Origin": "https://tvheryerde.com",
+        "Referer": "https://tvheryerde.com/"
+    }
     
     try:
-        print("📡 HTTP polling ile veri alınıyor...")
+        print("🔌 Yeni endpoint'e bağlanılıyor...")
         
-        headers = {
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
-            "Accept": "*/*",
-            "Origin": "https://tvheryerde.com",
-            "Referer": "https://tvheryerde.com/"
-        }
-        
-        response = requests.get(polling_url, headers=headers, timeout=30)
+        # 1. Handshake
+        response = requests.get(handshake_url, headers=headers, timeout=30, verify=False)
         response.raise_for_status()
         
-        # Socket.io polling formatını parse et
-        # Format genellikle: "0{"sid":"...","upgrades":[],"pingInterval":25000,"pingTimeout":5000}"
-        data = response.text
-        if data.startswith('0'):
+        print(f"✅ Handshake başarılı. Status: {response.status_code}")
+        print(f"Response: {response.text[:100]}...")
+        
+        # Handshake response'unu parse et
+        if response.text.startswith('0'):
             try:
-                # JSON kısmını al
-                json_str = data[1:]
-                handshake_data = json.loads(json_str)
-                print("✅ Handshake başarılı")
-                print(f"Session ID: {handshake_data.get('sid')}")
+                json_data = json.loads(response.text[1:])
+                sid = json_data.get('sid')
+                print(f"📋 Session ID: {sid}")
                 
-                # Şimdi kanal verilerini almak için POST isteği yap
-                post_url = f"https://turksat.midgard.io:4000/socket.io/?token={token}&EIO=4&transport=polling&sid={handshake_data['sid']}"
+                if not sid:
+                    print("❌ Session ID alınamadı")
+                    return False
+                
+                # 2. Kanal verilerini iste
+                post_url = f"https://turksat.midgard.io:4000/socket.io/?EIO=4&transport=polling&token={token}&sid={sid}"
                 post_data = '42["get_channels",{"token":"' + token + '"}]'
                 
-                post_response = requests.post(post_url, data=post_data, headers=headers, timeout=30)
-                if post_response.status_code == 200:
-                    print("✅ Kanal verisi isteği gönderildi")
-                    # Cevabı oku
-                    print("Response:", post_response.text)
-                    
-                    # Cevabı parse etmek için bir sonraki GET isteği
-                    get_response = requests.get(post_url, headers=headers, timeout=30)
-                    print("Kanal verisi:", get_response.text)
-                    
-                    return True
-                    
+                post_headers = headers.copy()
+                post_headers["Content-Type"] = "text/plain; charset=UTF-8"
+                
+                print("📡 Kanal verileri isteniyor...")
+                post_response = requests.post(post_url, data=post_data, headers=post_headers, timeout=30, verify=False)
+                print(f"📨 POST Response: {post_response.status_code}")
+                
+                # 3. Yanıtı al
+                time.sleep(2)  # Sunucunun yanıt hazırlaması için bekle
+                get_response = requests.get(post_url, headers=headers, timeout=30, verify=False)
+                
+                print(f"📥 GET Response: {get_response.status_code}")
+                print(f"📊 Veri: {get_response.text[:200]}...")
+                
+                # Yanıtı parse etmeye çalış
+                if get_response.text:
+                    # Socket.io formatında veri: "42["channels_list",{...}]"
+                    if get_response.text.startswith('42["channels_list"'):
+                        try:
+                            # JSON kısmını ayıkla
+                            json_str = get_response.text[2:]  # "42"yi kaldır
+                            data = json.loads(json_str)
+                            
+                            if isinstance(data, list) and len(data) >= 2 and data[0] == "channels_list":
+                                channels = data[1].get('channels', [])
+                                print(f"✅ {len(channels)} kanal bulundu!")
+                                
+                                # M3U dosyasını oluştur
+                                return create_m3u_file(channels)
+                            else:
+                                print("❌ Beklenen format dışında veri")
+                                return False
+                                
+                        except json.JSONDecodeError as e:
+                            print(f"❌ JSON parse hatası: {e}")
+                            print(f"Raw response: {get_response.text}")
+                            return False
+                    else:
+                        print("❌ Beklenen channels_list event'i gelmedi")
+                        print(f"Gelen veri: {get_response.text}")
+                        return False
+                else:
+                    print("❌ Boş yanıt alındı")
+                    return False
+                
             except json.JSONDecodeError as e:
-                print(f"❌ JSON parse hatası: {e}")
+                print(f"❌ Handshake JSON hatası: {e}")
                 return False
-        
+        else:
+            print("❌ Beklenen handshake formatı dışında")
+            return False
+            
+    except requests.exceptions.Timeout:
+        print("❌ Timeout hatası: Sunucu yanıt vermedi")
         return False
-        
+    except requests.exceptions.RequestException as e:
+        print(f"❌ Ağ hatası: {e}")
+        return False
     except Exception as e:
-        print(f"❌ HTTP polling hatası: {e}")
+        print(f"❌ Beklenmeyen hata: {e}")
         return False
 
 def create_m3u_file(channels):
@@ -118,25 +121,30 @@ def create_m3u_file(channels):
         with open("yeni_socketio.m3u", "w", encoding="utf-8") as f:
             f.write("#EXTM3U\n")
             
+            kanal_sayisi = 0
             for index, channel in enumerate(channels, 1):
-                name = channel.get('Name', channel.get('name', f'Kanal {index}'))
-                stream_url = channel.get('StreamUrl', channel.get('stream_url', ''))
-                logo = channel.get('Logo', channel.get('logo', ''))
-                group = channel.get('Category', channel.get('category', 'Genel'))
+                # Farklı formatlar için esneklik
+                name = channel.get('Name') or channel.get('name') or f'Kanal {index}'
+                stream_url = channel.get('StreamUrl') or channel.get('stream_url') or channel.get('url') or ''
+                logo = channel.get('Logo') or channel.get('logo') or channel.get('image') or ''
                 
-                if stream_url:
-                    f.write(f'#EXTINF:-1 tvg-id="{index}" tvg-logo="{logo}" group-title="{group}",{name}\n')
+                # Kategori/grup bilgisi
+                category = channel.get('Category') or channel.get('category') or channel.get('group') or 'Genel'
+                
+                if stream_url and name:
+                    f.write(f'#EXTINF:-1 tvg-id="{index}" tvg-logo="{logo}" group-title="{category}",{name}\n')
                     f.write(f'{stream_url}\n')
+                    kanal_sayisi += 1
         
-        print(f"📺 yeni_socketio.m3u dosyası oluşturuldu! ({len(channels)} kanal)")
+        print(f"📺 yeni_socketio.m3u dosyası oluşturuldu! ({kanal_sayisi} kanal)")
         return True
         
     except Exception as e:
         print(f"❌ M3U oluşturma hatası: {e}")
         return False
 
-def test_simple_http():
-    """Basit HTTP testi"""
+def test_connection():
+    """Basit bağlantı testi"""
     try:
         test_url = "https://turksat.midgard.io:4000/"
         response = requests.get(test_url, timeout=10, verify=False)
@@ -147,16 +155,15 @@ def test_simple_http():
         return False
 
 if __name__ == "__main__":
-    print("🔍 Yeni endpoint test ediliyor...")
+    print("🚀 Yeni CanliTV M3U Oluşturucu")
+    print("=" * 50)
     
-    # Önce basit bir test yap
-    if test_simple_http():
-        # Önce Socket.io deneyelim
-        print("\n1. Socket.io yöntemi deneniyor...")
-        if not get_canli_tv_m3u_socketio():
-            # Socket.io başarısız olursa HTTP polling deneyelim
-            print("\n2. HTTP polling yöntemi deneniyor...")
-            if not get_canli_tv_m3u_http():
-                print("\n❌ Her iki yöntem de başarısız oldu")
+    if test_connection():
+        print("\n🔗 Bağlantı testi başarılı, veri alınıyor...")
+        success = get_canli_tv_m3u()
+        if success:
+            print("\n🎉 İşlem başarıyla tamamlandı!")
+        else:
+            print("\n❌ Veri alınamadı, token süresi dolmuş olabilir")
     else:
-        print("❌ Sunucuya erişim yok")
+        print("\n❌ Sunucuya erişim sağlanamadı")
