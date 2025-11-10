@@ -1,34 +1,34 @@
-name: BOSS Sports M3U Generator
+name: Generate BOSS IPTV M3U
 
 on:
+  workflow_dispatch:  # Manuel tetikleme
   schedule:
-    - cron: '0 12 * * *'  # Her gün saat 12:00 UTC
-  workflow_dispatch:      # Manuel tetikleme için
+    - cron: '0 12 * * *'  # Her gün saat 12:00'de çalışacak (UTC)
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+    - name: Checkout repository
+      uses: actions/checkout@v3
 
-      - name: Setup Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.11'
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
 
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install requests
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install requests
 
-      - name: Run BOSS Sports M3U script
-        run: |
-          python boss.py
+    - name: Run boss.py
+      run: |
+        python boss.py
 
-      - name: Upload generated M3U
-        uses: actions/upload-artifact@v4
-        with:
-          name: boss-m3u
-          path: boss.m3u
+    - name: Upload M3U artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: boss-m3u
+        path: boss-iptv.m3u
