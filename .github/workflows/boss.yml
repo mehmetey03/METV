@@ -1,8 +1,8 @@
-name: Update BOSS IPTV M3U
+name: Update M3U Playlist
 
 on:
   schedule:
-    - cron: '0 */3 * * *'  # Her 3 saatte bir
+    - cron: '*/15 * * * *'
   workflow_dispatch:
 
 jobs:
@@ -10,32 +10,29 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-
+    
     steps:
-    - name: Depoyu klonla
-      uses: actions/checkout@v4
-
-    - name: Python 3.11 kurulumu
-      uses: actions/setup-python@v5
+    - name: Checkout repository
+      uses: actions/checkout@v3
       with:
-        python-version: 3.11
-
-    - name: Gerekli Python kütüphaneleri
-      run: pip install -U requests
-
-    - name: boss.py çalıştır
-      run: python boss.py
-
-    - name: Değişiklik kontrolü
-      id: degisiklik
+        token: ${{ secrets.GITHUB_TOKEN }}
+        
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+        
+    - name: Install dependencies
       run: |
-        git diff --quiet . || echo "degisiklik=true" >> $GITHUB_OUTPUT
-
-    - name: Değişiklikleri commit ve push et
-      if: steps.degisiklik.outputs.degisiklik == 'true'
+        pip install requests urllib3
+        
+    - name: Run M3U Generator
+      run: python "boss.py"
+      
+    - name: Commit and push
       run: |
-        git config user.name "github-actions[bot]"
-        git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-        git add boss-iptv.m3u
-        git commit -m "🔄 BOSS IPTV M3U güncellendi - $GITHUB_SHA"
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add -A
+        git commit -m "Update M3U playlist - $(date +'%Y-%m-%d %H:%M:%S')" || exit 0
         git push
