@@ -7,7 +7,7 @@ class NexaTVManager:
         self.proxy_prefix = "https://api.codetabs.com/v1/proxy/?quest="
         self.base_stream_url = "https://andro.okan9gote10sokan.cfd/checklist/"
         self.logo_url = "https://i.hizliresim.com/8xzjgqv.jpg"
-        self.group_title = "NexaTV"
+        self.group_title = "andros"
         self.channels = [
             {"name": "TR:beIN Sport 1 HD", "path": "androstreamlivebs1.m3u8"},
             {"name": "TR:beIN Sport 2 HD", "path": "androstreamlivebs2.m3u8"},
@@ -47,7 +47,7 @@ class NexaTVManager:
         ]
 
     def calistir(self):
-        """NexaTV kanallarından oluşan M3U içeriğini döndürür."""
+        """Andros kanallarından oluşan M3U içeriğini döndürür."""
         m3u = ["#EXTM3U"]
         for channel in self.channels:
             real_url = f"{self.base_stream_url}{channel['path']}"
@@ -67,7 +67,7 @@ def gorevi_calistir():
     print(f"--- NexaTV Görevi Başlatıldı ({datetime.now().strftime('%Y-%m-%d %H:%M:%S')}) ---")
     manager = NexaTVManager()
     m3u_content = manager.calistir()
-    file_name = "NexaTV.m3u"
+    file_name = "andros.m3u"
 
     try:
         with open(file_name, "w", encoding="utf-8") as f:
@@ -81,3 +81,4 @@ def gorevi_calistir():
 
 if __name__ == "__main__":
     gorevi_calistir()
+
