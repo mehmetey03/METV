@@ -69,7 +69,7 @@ def create_m3u(domain, iframe_src):
     
     return m3u_content
 
-def save_file(content, filename="DeaTHLesss-boss-iptv.m3u"):
+def save_file(content, filename="boss-iptv.m3u"):
     try:
         with open(filename, 'w', encoding='utf-8') as f:
             f.write(content)
