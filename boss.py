@@ -69,7 +69,7 @@ def create_m3u(domain, iframe_src):
     
     return m3u_content
 
-def save_file(content, filename="boss-iptv.m3u"):
+def save_file(content, filename="bossh.m3u"):
     try:
         with open(filename, 'w', encoding='utf-8') as f:
             f.write(content)
@@ -100,4 +100,5 @@ def main():
         print("Dosya kaydedilemedi")
 
 if __name__ == "__main__":
+
     main()
