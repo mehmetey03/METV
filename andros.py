@@ -1,8 +1,8 @@
 import os
 from datetime import datetime
 
-# ---------------- NexaTVManager ----------------
-class NexaTVManager:
+# ---------------- AndrosManager ----------------
+class AndrosManager:
     def __init__(self):
         self.proxy_prefix = "https://api.codetabs.com/v1/proxy/?quest="
         self.base_stream_url = "https://andro.okan9gote10sokan.cfd/checklist/"
@@ -81,4 +81,5 @@ def gorevi_calistir():
 
 if __name__ == "__main__":
     gorevi_calistir()
+
 
