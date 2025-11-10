@@ -1,0 +1,39 @@
+name: NexaTV M3U Generator
+
+on:
+  schedule:
+    - cron: "0 3 * * *"  # Her gün sabah 03:00 UTC'de çalışır
+  workflow_dispatch:      # Manuel olarak da tetiklenebilir
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write  # Çıktı dosyasını repo'ya yazmak için gerekli
+
+    steps:
+      - name: Kaynak kodu çek
+        uses: actions/checkout@v4
+
+      - name: Python kurulumu
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Gerekli kütüphaneleri yükle
+        run: |
+          python -m pip install --upgrade pip
+          # NexaTVManager bağımsız olduğu için özel kütüphane gerekmez,
+          # ama ileride gerekirse buraya ekleyebilirsin.
+
+      - name: NexaTV.py dosyasını çalıştır
+        run: |
+          python NexaTV.py
+
+      - name: Oluşturulan M3U dosyasını commit et
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add NexaTV.m3u
+          git commit -m "🔁 NexaTV.m3u otomatik güncelleme ($(date +'%Y-%m-%d %H:%M'))" || echo "Değişiklik yok"
+          git push
