@@ -5,74 +5,123 @@ import subprocess
 import os
 
 def links_dosyasini_oku():
+    """links.txt dosyasını oku ve kanal listesini döndür"""
     kanallar = []
+    
     try:
-        with open('links.txt', 'r', encoding='utf-8') as f:
-            satirlar = f.read().splitlines()
+        with open('links.txt', 'r', encoding='utf-8') as dosya:
+            icerik = dosya.read()
+            print("✅ links.txt dosyası okundu")
     except FileNotFoundError:
-        print("❌ links.txt bulunamadı!")
+        print("❌ links.txt dosyası bulunamadı!")
         return kanallar
-
-    mevcut = {}
+    
+    satirlar = icerik.split('\n')
+    mevcut_kanal = {}
+    
     for satir in satirlar:
         satir = satir.strip()
         if not satir:
-            if mevcut:
-                kanallar.append(mevcut)
-                mevcut = {}
+            if mevcut_kanal:
+                kanallar.append(mevcut_kanal)
+                mevcut_kanal = {}
             continue
+        
         if satir.startswith('isim='):
-            mevcut['isim'] = satir[5:]
+            mevcut_kanal['isim'] = satir[5:]
         elif satir.startswith('içerik='):
-            mevcut['icerik'] = satir[7:]
+            mevcut_kanal['icerik'] = satir[7:]
         elif satir.startswith('logo='):
-            mevcut['logo'] = satir[5:]
-    if mevcut:
-        kanallar.append(mevcut)
+            mevcut_kanal['logo'] = satir[5:]
+    
+    if mevcut_kanal:
+        kanallar.append(mevcut_kanal)
+    
     print(f"📊 {len(kanallar)} kanal bulundu")
     return kanallar
 
-def get_hls_with_ytdlp(url):
+def get_hls_url_direct(youtube_url):
+    """yt-dlp kullanarak HLS URL'sini al"""
     try:
-        result = subprocess.run(['yt-dlp', '-g', url], capture_output=True, text=True, timeout=30)
+        result = subprocess.run(
+            ['yt-dlp', '-g', youtube_url],
+            capture_output=True,
+            text=True,
+            timeout=30
+        )
         hls_url = result.stdout.strip()
         if hls_url:
             return hls_url
-        else:
-            return None
+        return None
     except Exception as e:
-        print(f"⚠️ yt-dlp hatası: {e}")
+        print(f"   ❌ HLS URL alınamadı: {e}")
         return None
 
 def m3u_dosyasi_olustur(kanallar):
+    """M3U dosyasını oluştur"""
     m3u_icerik = "#EXTM3U\n"
-    basarili = 0
+    basarili_kanallar = 0
+    
     for kanal in kanallar:
-        hls_url = kanal.get('hls_url')
-        if hls_url:
+        if 'hls_url' in kanal and kanal['hls_url']:
             m3u_icerik += f'#EXTINF:-1 tvg-id="{kanal["isim"]}" tvg-name="{kanal["isim"]}" tvg-logo="{kanal["logo"]}" group-title="YouTube",{kanal["isim"]}\n'
-            m3u_icerik += f'{hls_url}\n'
-            basarili += 1
-            print(f"✅ {kanal['isim']} eklendi")
-    with open('youtube.m3u', 'w', encoding='utf-8') as f:
-        f.write(m3u_icerik)
-    print(f"✅ youtube.m3u oluşturuldu ({basarili} kanal)")
+            m3u_icerik += f'{kanal["hls_url"]}\n'
+            basarili_kanallar += 1
+            print(f"   ✅ {kanal['isim']} - HLS URL eklendi")
+    
+    try:
+        with open('youtube.m3u', 'w', encoding='utf-8') as dosya:
+            dosya.write(m3u_icerik)
+        print(f"✅ youtube.m3u dosyası oluşturuldu ({basarili_kanallar} kanal)")
+        return basarili_kanallar
+    except Exception as e:
+        print(f"❌ M3U dosyası yazılamadı: {e}")
+        return 0
 
 def main():
+    print("=" * 60)
+    print("🚀 YENİ YOUTUBE M3U GENERATOR - BAŞLIYOR")
+    print("=" * 60)
+    
     kanallar = links_dosyasini_oku()
     if not kanallar:
+        print("❌ İşlem iptal edildi: Kanallar bulunamadı")
         return
-
-    for kanal in kanallar:
-        print(f"\n🎬 Kanal: {kanal['isim']}")
-        print(f"   🔗 URL: {kanal['icerik']}")
-        kanal['hls_url'] = get_hls_with_ytdlp(kanal['icerik'])
-        if kanal['hls_url']:
-            print(f"   ✅ HLS URL alındı")
-        else:
-            print(f"   ❌ HLS URL alınamadı")
     
-    m3u_dosyasi_olustur(kanallar)
+    print("\n" + "=" * 60)
+    print("📡 HLS URL'LERİ ALINIYOR...")
+    print("=" * 60)
+    
+    for kanal in kanallar:
+        print(f"\n🎬 KANAL: {kanal['isim']}")
+        print(f"   🔗 URL: {kanal['icerik']}")
+        
+        hls_url = get_hls_url_direct(kanal['icerik'])
+        
+        if hls_url:
+            kanal['hls_url'] = hls_url
+            print(f"   ✅ BAŞARILI - HLS URL: {hls_url[:100]}...")
+        else:
+            print(f"   ❌ BAŞARISIZ - HLS URL bulunamadı")
+    
+    print("\n" + "=" * 60)
+    print("📝 M3U DOSYASI OLUŞTURULUYOR...")
+    print("=" * 60)
+    
+    basarili_sayisi = m3u_dosyasi_olustur(kanallar)
+    
+    print("\n" + "=" * 60)
+    print("🎉 SONUÇLAR")
+    print("=" * 60)
+    print(f"📊 Toplam Kanal: {len(kanallar)}")
+    print(f"✅ Başarılı: {basarili_sayisi}")
+    print(f"❌ Başarısız: {len(kanallar) - basarili_sayisi}")
+    
+    if basarili_sayisi > 0:
+        print("\n🎉 YOUTUBE.M3U DOSYASI BAŞARIYLA OLUŞTURULDU!")
+        print("📁 'youtube.m3u' dosyasını kontrol edin")
+    else:
+        print("\n⚠️ HİÇBİR KANAL İÇİN HLS URL'Sİ BULUNAMADI!")
 
 if __name__ == "__main__":
     main()
