@@ -4,7 +4,7 @@ name: Update YouTube M3U
 on:
   schedule:
     - cron: '0 */3 * * *'  # Her 3 saatte bir
-  workflow_dispatch:         # Manuel çalıştırma aktif
+  workflow_dispatch:        # Manuel çalıştırma aktif
 
 jobs:
   update-m3u:
@@ -26,19 +26,20 @@ jobs:
         run: |
           pip install requests
         
-      # YouTube M3U scriptini çalıştır
+      # YouTube M3U scriptini çalıştır (METV2 dizini içinde)
       - name: YouTube M3U scriptini çalıştır
-        run: python youtube_m3u_generator.py
+        run: |
+          cd METV2
+          python youtube_m3u_generator.py
       
-      # Değişiklikleri kaydet ve push et
+      # Değişiklikleri kaydet ve push et (METV2 dizini içinde)
       - name: Değişiklikleri kaydet ve gönder
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          cd METV2
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add youtube.m3u
-          # Sadece değişiklik varsa commit yap
           git diff --staged --quiet || git commit -m "YouTube M3U güncellendi - $(date +'%Y-%m-%d %H:%M') # FIX"
-          # Push işlemi GITHUB_TOKEN ile
           git push https://x-access-token:${GITHUB_TOKEN}@github.com/mehmetey03/METV2.git HEAD:main
