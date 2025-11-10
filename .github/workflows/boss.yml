@@ -1,34 +1,41 @@
-name: Generate BOSS IPTV M3U
+name: Update BOSS IPTV M3U
 
 on:
-  workflow_dispatch:  # Manuel tetikleme
   schedule:
-    - cron: '0 12 * * *'  # Her gün saat 12:00'de çalışacak (UTC)
+    - cron: '0 */3 * * *'  # Her 3 saatte bir
+  workflow_dispatch:
 
 jobs:
-  build:
+  update-m3u:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
+    - name: Depoyu klonla
+      uses: actions/checkout@v4
 
-    - name: Setup Python
-      uses: actions/setup-python@v4
+    - name: Python 3.11 kurulumu
+      uses: actions/setup-python@v5
       with:
-        python-version: '3.x'
+        python-version: 3.11
 
-    - name: Install dependencies
+    - name: Gerekli Python kütüphaneleri
+      run: pip install -U requests
+
+    - name: boss.py çalıştır
+      run: python boss.py
+
+    - name: Değişiklik kontrolü
+      id: degisiklik
       run: |
-        python -m pip install --upgrade pip
-        pip install requests
+        git diff --quiet . || echo "degisiklik=true" >> $GITHUB_OUTPUT
 
-    - name: Run boss.py
+    - name: Değişiklikleri commit ve push et
+      if: steps.degisiklik.outputs.degisiklik == 'true'
       run: |
-        python boss.py
-
-    - name: Upload M3U artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: boss-m3u
-        path: boss-iptv.m3u
+        git config user.name "github-actions[bot]"
+        git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        git add boss-iptv.m3u
+        git commit -m "🔄 BOSS IPTV M3U güncellendi - $GITHUB_SHA"
+        git push
