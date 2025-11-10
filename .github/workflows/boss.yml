@@ -2,9 +2,8 @@ name: BOSS Sports M3U Generator
 
 on:
   schedule:
-    # Her gün saat 12:00 UTC çalıştır
-    - cron: '0 12 * * *'
-  workflow_dispatch: # Manuel tetikleme için
+    - cron: '0 12 * * *'  # Her gün saat 12:00 UTC
+  workflow_dispatch:      # Manuel tetikleme için
 
 jobs:
   build:
@@ -29,7 +28,7 @@ jobs:
           python boss.py
 
       - name: Upload generated M3U
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: boss-iptv
-          path: boss-iptv.m3u
+          name: boss-m3u
+          path: boss.m3u
