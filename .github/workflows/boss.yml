@@ -34,5 +34,5 @@ jobs:
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         git add -A
-        git commit -m "Update M3U playlist - $(date +'%Y-%m-%d %H:%M:%S')" || exit 0
+        git commit -m "🔄Boss M3U playlist - $(date +'%Y-%m-%d %H:%M:%S')" || exit 0
         git push
