@@ -1,34 +1,44 @@
 name: Update YouTube M3U
 
+# Schedule ve manuel tetikleme
 on:
   schedule:
     - cron: '0 */3 * * *'  # Her 3 saatte bir
-  workflow_dispatch:         # ✅ MANUEL ÇALIŞTIRMA AKTİF
+  workflow_dispatch:         # Manuel çalıştırma aktif
 
 jobs:
   update-m3u:
     runs-on: ubuntu-latest
     
     steps:
-    - name: Repository'yi indir
-      uses: actions/checkout@v4
+      # Repo'yu indir
+      - name: Repository'yi indir
+        uses: actions/checkout@v4
       
-    - name: Python kurulumu
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.10'
+      # Python kurulumu
+      - name: Python kurulumu
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
         
-    - name: Gerekli kütüphaneleri yükle
-      run: |
-        pip install requests
+      # Gerekli kütüphaneleri yükle
+      - name: Gerekli kütüphaneleri yükle
+        run: |
+          pip install requests
         
-    - name: YouTube M3U scriptini çalıştır
-      run: python youtube_m3u_generator.py
+      # YouTube M3U scriptini çalıştır
+      - name: YouTube M3U scriptini çalıştır
+        run: python youtube_m3u_generator.py
       
-    - name: Değişiklikleri kaydet ve gönder
-      run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git add youtube.m3u
-        git diff --staged --quiet || git commit -m "YouTube M3U güncellendi - $(date +'%Y-%m-%d %H:%M') # FIX"
-        git push
+      # Değişiklikleri kaydet ve push et
+      - name: Değişiklikleri kaydet ve gönder
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add youtube.m3u
+          # Sadece değişiklik varsa commit yap
+          git diff --staged --quiet || git commit -m "YouTube M3U güncellendi - $(date +'%Y-%m-%d %H:%M') # FIX"
+          # Push işlemi GITHUB_TOKEN ile
+          git push https://x-access-token:${GITHUB_TOKEN}@github.com/mehmetey03/METV2.git HEAD:main
