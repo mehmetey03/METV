@@ -34,4 +34,4 @@ jobs:
           git config --local user.name "GitHub Action"
           git add youtube.m3u
           git diff --staged --quiet || git commit -m "YouTube M3U güncellendi - $(date +'%Y-%m-%d %H:%M') # FIX"
-          git push https://x-access-token:${GITHUB_TOKEN}@github.com/mehmetey03/METV2.git HEAD:main
+          git push https://x-access-token:${GITHUB_TOKEN}@github.com/mehmetey03/METV2.git HEAD:main.
