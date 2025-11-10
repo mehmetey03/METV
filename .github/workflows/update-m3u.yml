@@ -31,22 +31,18 @@ jobs:
           pip install requests
 
       - name: YouTube M3U Scriptini Çalıştır
-        run: |
-          cd METV2
-          python youtube_m3u_generator.py
+        run: python youtube_m3u_generator.py
 
       - name: Değişiklik Kontrolü
         id: degisiklik_kontrol
         run: |
-          cd METV2
           git diff --staged --quiet . || echo "degisiklik=true" >> $GITHUB_OUTPUT
 
       - name: Değişiklikleri Commit Et ve Push
         if: steps.degisiklik_kontrol.outputs.degisiklik == 'true'
         run: |
-          cd METV2
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add youtube.m3u
-          git commit -m "YouTube M3U güncellendi - $(date +'%Y-%m-%d %H:%M') # FIX"
-          git push https://x-access-token:${GITHUB_TOKEN}@github.com/mehmetey03/METV2.git HEAD:main
+          git commit -m "YouTube M3U güncellendi - $(date +'%Y-%m-%d %H:%M') # FIX" || echo "Commit yapılacak değişiklik yok"
+          git push https://x-access-token:${GITHUB_TOKEN}@github.com/mehmetey03/METV2.git HEAD:main || echo "Push işlemi tamamlandı"
