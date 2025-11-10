@@ -1,39 +1,31 @@
 name: Update YouTube M3U
 
-# Schedule ve manuel tetikleme
 on:
   schedule:
-    - cron: '0 */3 * * *'  # Her 3 saatte bir
-  workflow_dispatch:        # Manuel çalıştırma aktif
+    - cron: '0 */3 * * *'
+  workflow_dispatch:
 
 jobs:
   update-m3u:
     runs-on: ubuntu-latest
-    
     steps:
-      # Repo'yu indir
-      - name: Repository'yi indir
+      - name: Checkout repo
         uses: actions/checkout@v4
-      
-      # Python kurulumu
-      - name: Python kurulumu
+
+      - name: Setup Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.10'
-        
-      # Gerekli kütüphaneleri yükle
-      - name: Gerekli kütüphaneleri yükle
-        run: |
-          pip install requests
-        
-      # YouTube M3U scriptini çalıştır (METV2 dizini içinde)
-      - name: YouTube M3U scriptini çalıştır
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run YouTube M3U script
         run: |
           cd METV2
           python youtube_m3u_generator.py
-      
-      # Değişiklikleri kaydet ve push et (METV2 dizini içinde)
-      - name: Değişiklikleri kaydet ve gönder
+
+      - name: Commit & Push changes
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
