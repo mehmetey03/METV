@@ -57,6 +57,7 @@ def get_youtube_page(url):
     proxy_servers = [
         f"https://api.codetabs.com/v1/proxy/?quest={url}",
         f"https://corsproxy.io/?{url}",
+        f"https://seep.eu.org/{url}",
         f"https://api.allorigins.win/raw?url={requests.utils.quote(url)}",
         url  # Son çare olarak direkt erişim
     ]
