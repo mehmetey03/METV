@@ -55,7 +55,7 @@ def get_youtube_page(url):
     
     # Farklı proxy servislerini dene
     proxy_servers = [
-        f"http://yielding-meeting.surge.sh/?url={url}",
+        f"http://188.132.232.194:8080/{url}",
         f"https://seep.eu.org/{url}",
         f"https://api.codetabs.com/v1/proxy/?quest={url}",
         f"https://api.allorigins.win/raw?url={requests.utils.quote(url)}",
