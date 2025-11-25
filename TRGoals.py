@@ -38,7 +38,11 @@ class TRGoals:
             konsol.log("[yellow][!] GitHub domain okunamadı!")
             return None
 
-        satir = r.text.strip()
+        # BOM temizliği ve guncel_domain= varsa ayıklama
+        satir = r.text.encode("utf-8").decode("utf-8-sig").strip()
+        if satir.startswith("guncel_domain="):
+            satir = satir.split("=", 1)[1].strip()
+
         if satir.startswith("http"):
             konsol.log(f"[green][+] GitHub domain bulundu: {satir}")
             return satir.rstrip("/")
@@ -96,12 +100,10 @@ class TRGoals:
 
     def yeni_domaini_al(self, mevcut_domain):
         """Öncelik GitHub — olmazsa normal mekanizma"""
-        # 1) GitHub domain kontrolü
         github_domain = self.github_domaini_al()
         if github_domain:
             return github_domain
 
-        # 2) Redirect üzerinden çöz
         try:
             return self.redirect_gec(mevcut_domain)
         except:
@@ -112,7 +114,6 @@ class TRGoals:
             except:
                 konsol.log("[yellow][!] Giriş domainleri de çözülemedi, otomatik +1'e geçiliyor...")
 
-                # trgoals1464.xyz → trgoals1465.xyz
                 try:
                     sayi = int(re.search(r"trgoals(\d+)", mevcut_domain).group(1))
                     yeni = f"https://trgoals{sayi+1}.xyz"
