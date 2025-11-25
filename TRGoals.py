@@ -16,7 +16,7 @@ def guvenli_get(client, url, max_retry=5):
             konsol.log(f"[yellow][!] Timeout, tekrar deneniyor... ({i+1}/{max_retry})")
         except Exception as e:
             konsol.log(f"[red][!] Beklenmeyen hata: {e}")
-        time.sleep(2)
+        time.sleep(1)
     return None
 
 
@@ -58,8 +58,39 @@ class TRGoals:
 
     # ----------------------------------------------------------------------
 
+    def trgoals_domain_tara(self, baslangic=1464, bitis=1999):
+        """1464 → 1999 arası tüm domainleri dene"""
+        konsol.log(f"[cyan][~] TRGoals domain taraması başlatıldı ({baslangic}-{bitis})")
+
+        for num in range(baslangic, bitis + 1):
+            domain = f"https://trgoals{num}.xyz"
+            test_url = f"{domain}/channel.html?id=yayin1"
+
+            konsol.log(f"[yellow][~] Domain deneniyor: {domain}")
+
+            response = guvenli_get(self.httpx, test_url)
+            if not response:
+                konsol.log(f"[gray]• DNS / yanıt yok → {domain}")
+                continue
+
+            if response.status_code != 200:
+                konsol.log(f"[gray]• HTTP {response.status_code} → {domain}")
+                continue
+
+            # BaseURL içeriyor mu?
+            if re.search(r'(?:var|let|const)\s+baseurl\s*=\s*"(https?://[^"]+)"', response.text):
+                konsol.log(f"[green][✓] ÇALIŞAN DOMAIN BULUNDU → {domain}")
+                return domain
+
+            konsol.log(f"[gray]• BaseURL bulunamadı → {domain}")
+
+        konsol.log("[red][!] 1464–1999 arasında çalışan domain bulunamadı!")
+        return None
+
+    # ----------------------------------------------------------------------
+
     def trgoals_domaini_al(self):
-        """Ana giriş domainlerini çöz: trgoalsgiris.xyz → bit.ly → t.co → gerçek domain"""
+        """Ana giriş domainlerini çöz: trgoalsgiris.xyz → t.co"""
         kaynaklar = [
             "https://trgoalsgiris.xyz/",
             "https://t.co/fJuteAyTF1"
@@ -71,12 +102,13 @@ class TRGoals:
             except:
                 pass
 
-        raise ValueError("Hiçbir giriş domaini çözülemedi!")
+        # Eğer hiçbir giriş domaini çalışmazsa → tarayıcıya geç
+        return self.trgoals_domain_tara()
 
     # ----------------------------------------------------------------------
 
     def yeni_domaini_al(self, mevcut_domain):
-        """Mevcut domain çökerse otomatik olarak +1 artır ve yeni domain üret"""
+        """Mevcut domain çökerse alternatif çözüm üret"""
         try:
             return self.redirect_gec(mevcut_domain)
         except:
@@ -85,9 +117,14 @@ class TRGoals:
             try:
                 return self.trgoals_domaini_al()
             except:
-                konsol.log("[yellow][!] Giriş domainleri de çözülemedi, otomatik +1'e geçiliyor...")
+                konsol.log("[yellow][!] Tüm giriş domainleri çöktü, otomatik tarayıcıya geçiliyor...")
 
-                # trgoals1464.xyz → trgoals1465.xyz gibi
+                # 1464–1999 arası ara
+                aktif = self.trgoals_domain_tara()
+                if aktif:
+                    return aktif
+
+                # son çare +1 yükselt
                 try:
                     sayi = int(re.search(r"trgoals(\d+)", mevcut_domain).group(1))
                     yeni = f"https://trgoals{sayi+1}.xyz"
@@ -126,7 +163,10 @@ class TRGoals:
             konsol.log("[red][!] Yayın sayfası alınamadı, eski yayın kullanılacak.")
             yayin_url = eski_yayin_url
         else:
-            yayin_ara = re.search(r'(?:var|let|const)\s+baseurl\s*=\s*"(https?://[^"]+)"', response.text)
+            yayin_ara = re.search(
+                r'(?:var|let|const)\s+baseurl\s*=\s*"(https?://[^"]+)"',
+                response.text
+            )
 
             if yayin_ara:
                 yayin_url = yayin_ara[1]
