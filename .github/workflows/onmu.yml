@@ -3,13 +3,13 @@ name: onTV M3U Generator
 on:
   schedule:
     - cron: "0 3 * * *"  # Her gün sabah 03:00 UTC'de çalışır
-  workflow_dispatch:      # Manuel olarak da tetiklenebilir
+  workflow_dispatch:
 
 jobs:
   generate:
     runs-on: ubuntu-latest
     permissions:
-      contents: write  # Çıktı dosyasını repo'ya yazmak için gerekli
+      contents: write
 
     steps:
       - name: Kaynak kodu çek
@@ -23,12 +23,10 @@ jobs:
       - name: Gerekli kütüphaneleri yükle
         run: |
           python -m pip install --upgrade pip
-          # onTVManager bağımsız olduğu için özel kütüphane gerekmez,
-          # ama ileride gerekirse buraya ekleyebilirsin.
+          pip install requests
 
       - name: onmu.py dosyasını çalıştır
-        run: |
-          python onmu.py
+        run: python onmu.py
 
       - name: Oluşturulan M3U dosyasını commit et
         run: |
