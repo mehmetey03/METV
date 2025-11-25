@@ -28,7 +28,7 @@ jobs:
 
       - name: onmu.py dosyasını çalıştır
         run: |
-          python NexaTV.py
+          python onmu.py
 
       - name: Oluşturulan M3U dosyasını commit et
         run: |
