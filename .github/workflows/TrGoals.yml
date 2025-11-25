@@ -28,7 +28,7 @@ jobs:
           pip install -U setuptools wheel Kekik httpx parsel requests
           
       - name: TRGoals.py Çalıştır
-        run: python TRGoals.py
+        run: python TRGoal.py
 
       - name: TRGoal.py Çalıştır
         run: python trgoal.py
