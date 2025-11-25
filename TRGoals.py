@@ -21,7 +21,7 @@ class TRGoals:
             raise ValueError("M3U dosyasında 'trgoals' içeren referer domain bulunamadı!")
 
     def trgoals_domaini_al(self):
-        redirect_url = "https://bit.ly/m/taraftarium24w"
+        redirect_url = "https://trgoalsgiris.xyz/"
         deneme = 0
         while "bit.ly" in redirect_url and deneme < 5:
             try:
@@ -34,7 +34,7 @@ class TRGoals:
         if "bit.ly" in redirect_url or "error" in redirect_url:
             konsol.log("[yellow][!] 5 denemeden sonra bit.ly çözülemedi, yedek linke geçiliyor...")
             try:
-                redirect_url = self.redirect_gec("https://t.co/aOAO1eIsqE")
+                redirect_url = self.redirect_gec("https://t.co/fJuteAyTF1")
             except Exception as e:
                 raise ValueError(f"Yedek linkten de domain alınamadı: {e}")
 
