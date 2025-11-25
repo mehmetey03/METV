@@ -75,9 +75,9 @@ class TRGoals:
                 konsol.log("[red][!] `trgoals_domaini_al` fonksiyonunda hata oluştu.")
                 try:
                     
-                    yeni_domain = check_domain(self.redirect_gec("https://t.co/MTLoNVkGQN"))
+                    yeni_domain = check_domain(self.redirect_gec("https://t.co/fJuteAyTF1"))
                 except Exception:
-                    konsol.log("[red][!] `redirect_gec('https://t.co/MTLoNVkGQN')` fonksiyonunda hata oluştu.")
+                    konsol.log("[red][!] `redirect_gec('https://t.co/fJuteAyTF1')` fonksiyonunda hata oluştu.")
                     
                     rakam = int(eldeki_domain.split("trgoals")[1].split(".")[0]) + 1
                     yeni_domain = f"https://trgoals{rakam}.xyz"
