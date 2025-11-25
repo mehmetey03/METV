@@ -1,5 +1,3 @@
-
-
 from Kekik.cli import konsol
 from httpx     import Client
 from parsel    import Selector
@@ -10,6 +8,9 @@ class TRGoals:
         self.m3u_dosyasi = m3u_dosyasi
         self.httpx       = Client(timeout=10, verify=False)
 
+    # ----------------------------------------------------------------------
+    # 1) M3U içindeki referer domaini bul
+    # ----------------------------------------------------------------------
     def referer_domainini_al(self):
         referer_deseni = r'#EXTVLCOPT:http-referrer=(https?://[^/]*trgoals[^/]*\.[^\s/]+)'
         with open(self.m3u_dosyasi, "r") as dosya:
@@ -20,110 +21,102 @@ class TRGoals:
         else:
             raise ValueError("M3U dosyasında 'trgoals' içeren referer domain bulunamadı!")
 
-    def trgoals_domaini_al(self):
-        redirect_url = "https://trgoalsgiris.xyz/"
-        deneme = 0
-        while "bit.ly" in redirect_url and deneme < 5:
-            try:
-                redirect_url = self.redirect_gec(redirect_url)
-            except Exception as e:
-                konsol.log(f"[red][!] redirect_gec hata: {e}")
-                break
-            deneme += 1
-
-        if "bit.ly" in redirect_url or "error" in redirect_url:
-            konsol.log("[yellow][!] 5 denemeden sonra bit.ly çözülemedi, yedek linke geçiliyor...")
-            try:
-                redirect_url = self.redirect_gec("https://t.co/fJuteAyTF1")
-            except Exception as e:
-                raise ValueError(f"Yedek linkten de domain alınamadı: {e}")
-
-        return redirect_url
-
-    def redirect_gec(self, redirect_url: str):
-        konsol.log(f"[cyan][~] redirect_gec çağrıldı: {redirect_url}")
+    # ----------------------------------------------------------------------
+    # 2) Redirect çözme (true linki bulur)
+    # ----------------------------------------------------------------------
+    def redirect_gec(self, url: str):
+        konsol.log(f"[cyan][~] redirect_gec: {url}")
         try:
-            response = self.httpx.get(redirect_url, follow_redirects=True)
+            response = self.httpx.get(url, follow_redirects=True)
         except Exception as e:
-            raise ValueError(f"Redirect sırasında hata oluştu: {e}")
+            raise ValueError(f"Redirect hatası: {e}")
 
-        
         tum_url_listesi = [str(r.url) for r in response.history] + [str(response.url)]
 
-        
         for url in tum_url_listesi[::-1]:  
             if "trgoals" in url:
                 return url.strip("/")
 
-        raise ValueError("Redirect zincirinde 'trgoals' içeren bir link bulunamadı!")
+        raise ValueError("Redirect zincirinde 'trgoals' içeren link bulunamadı!")
 
-    def yeni_domaini_al(self, eldeki_domain: str) -> str:
-        def check_domain(domain: str) -> str:
-            if domain == "https://trgoalsgiris.xyz":
-                raise ValueError("Yeni domain alınamadı")
-            return domain
+    # ----------------------------------------------------------------------
+    # 3) 3 farklı kaynak kullanarak yeni domain bul
+    # ----------------------------------------------------------------------
+    def yeni_domaini_al(self, eldeki_domain):
 
-        try:
-            
-            yeni_domain = check_domain(self.redirect_gec(eldeki_domain))
-        except Exception:
-            konsol.log("[red][!] `redirect_gec(eldeki_domain)` fonksiyonunda hata oluştu.")
+        kaynaklar = [
+            eldeki_domain,                         # 1) M3U içindeki mevcut domain
+            "https://trgoalsgiris.xyz/",           # 2) Resmi giriş
+            "https://t.co/fJuteAyTF1",             # 3) Twitter kısa link
+            "https://trgoals1464.xyz/"             # 4) Senin verdiğin sabit fallback
+        ]
+
+        for kaynak in kaynaklar:
             try:
-                
-                yeni_domain = check_domain(self.trgoals_domaini_al())
+                konsol.log(f"[yellow][~] Domain deneniyor: {kaynak}")
+                d = self.redirect_gec(kaynak)
+                konsol.log(f"[green][+] Çalışan domain bulundu: {d}")
+                return d
             except Exception:
-                konsol.log("[red][!] `trgoals_domaini_al` fonksiyonunda hata oluştu.")
-                try:
-                    
-                    yeni_domain = check_domain(self.redirect_gec("https://t.co/fJuteAyTF1"))
-                except Exception:
-                    konsol.log("[red][!] `redirect_gec('https://t.co/fJuteAyTF1')` fonksiyonunda hata oluştu.")
-                    
-                    rakam = int(eldeki_domain.split("trgoals")[1].split(".")[0]) + 1
-                    yeni_domain = f"https://trgoals{rakam}.xyz"
+                konsol.log(f"[red]× Kullanılamadı: {kaynak}")
 
-        return yeni_domain
+        # Hepsi bozulmuşsa → sıradaki rakamı artır
+        try:
+            rakam = int(eldeki_domain.split("trgoals")[1].split(".")[0]) + 1
+            return f"https://trgoals{rakam}.xyz"
+        except:
+            return "https://trgoals1464.xyz"
 
+    # ----------------------------------------------------------------------
+    # 4) M3U güncelle
+    # ----------------------------------------------------------------------
     def m3u_guncelle(self):
         eldeki_domain = self.referer_domainini_al()
-        konsol.log(f"[yellow][~] Bilinen Domain : {eldeki_domain}")
+        konsol.log(f"[yellow][~] Eski Domain : {eldeki_domain}")
 
         yeni_domain = self.yeni_domaini_al(eldeki_domain)
-        konsol.log(f"[green][+] Yeni Domain    : {yeni_domain}")
+        konsol.log(f"[green][+] Yeni Domain : {yeni_domain}")
 
-        kontrol_url = f"{yeni_domain}/channel.html?id=yayin1"
+        test_url = f"{yeni_domain}/channel.html?id=yayin1"
 
         with open(self.m3u_dosyasi, "r") as dosya:
             m3u_icerik = dosya.read()
 
-        if not (eski_yayin_url := re.search(r'https?:\/\/[^\/]+\.(shop|click|lat)\/?', m3u_icerik)):
+        # Eski baseurl bul
+        eski_yayin_eslesme = re.search(r'https?:\/\/[^\/]+\.(shop|click|lat)\/?', m3u_icerik)
+        if not eski_yayin_eslesme:
             raise ValueError("M3U dosyasında eski yayın URL'si bulunamadı!")
 
-        eski_yayin_url = eski_yayin_url[0]
+        eski_yayin_url = eski_yayin_eslesme[0]
         konsol.log(f"[yellow][~] Eski Yayın URL : {eski_yayin_url}")
 
-        
-        response = self.httpx.get(kontrol_url, follow_redirects=True)
+        # Yeni baseurl çek
+        response = self.httpx.get(test_url, follow_redirects=True)
 
-        if not (yayin_ara := re.search(r'(?:var|let|const)\s+baseurl\s*=\s*"(https?://[^"]+)"', response.text)):
+        yayin_ara = re.search(r'(?:var|let|const)\s+baseurl\s*=\s*"(https?://[^"]+)"', response.text)
+
+        if not yayin_ara:
             secici = Selector(response.text)
-            baslik = secici.xpath("//title/text()").get()
-            if baslik == "404 Not Found":
-                yeni_domain = eldeki_domain
-                yayin_ara   = [None, eski_yayin_url]
+            if secici.xpath("//title/text()").get() == "404 Not Found":
+                yeni_yayin_url = eski_yayin_url
             else:
-                konsol.print(response.text)
-                raise ValueError("Base URL bulunamadı!")
+                raise ValueError("Yeni yayın URL bulunamadı!")
+        else:
+            yeni_yayin_url = yayin_ara[1]
 
-        yayin_url = yayin_ara[1]
-        konsol.log(f"[green][+] Yeni Yayın URL : {yayin_url}")
+        konsol.log(f"[green][+] Yeni Yayın URL : {yeni_yayin_url}")
 
-        yeni_m3u_icerik = m3u_icerik.replace(eski_yayin_url, yayin_url)
-        yeni_m3u_icerik = yeni_m3u_icerik.replace(eldeki_domain, yeni_domain)
+        # M3U içerik güncelle
+        yeni_m3u = m3u_icerik.replace(eski_yayin_url, yeni_yayin_url)
+        yeni_m3u = yeni_m3u.replace(eldeki_domain, yeni_domain)
 
         with open(self.m3u_dosyasi, "w") as dosya:
-            dosya.write(yeni_m3u_icerik)
+            dosya.write(yeni_m3u)
 
+        konsol.log("[green][✓] M3U başarıyla güncellendi.")
+
+
+# ----------------------------------------------------------------------
 if __name__ == "__main__":
-    guncelleyici = TRGoals("1.m3u")
-    guncelleyici.m3u_guncelle()
+    g = TRGoals("1.m3u")
+    g.m3u_guncelle()
