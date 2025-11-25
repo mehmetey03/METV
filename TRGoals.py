@@ -5,8 +5,10 @@ from httpx import Client, ConnectError, ReadTimeout
 from Kekik.cli import konsol
 
 
+GITHUB_DOMAIN_URL = "https://raw.githubusercontent.com/mehmetey03/goal/refs/heads/main/domain.txt"
+
+
 def guvenli_get(client, url, max_retry=5):
-    """DNS / timeout hatalarında script kırılmasın diye güvenli GET"""
     for i in range(max_retry):
         try:
             return client.get(url, follow_redirects=True, timeout=10.0)
@@ -27,6 +29,25 @@ class TRGoals:
 
     # ----------------------------------------------------------------------
 
+    def github_domaini_al(self):
+        """GitHub domain.txt dosyasından güncel domaini al"""
+        konsol.log("[cyan][~] GitHub domain.txt kontrol ediliyor...")
+
+        r = guvenli_get(self.httpx, GITHUB_DOMAIN_URL)
+        if not r or r.status_code != 200:
+            konsol.log("[yellow][!] GitHub domain okunamadı!")
+            return None
+
+        satir = r.text.strip()
+        if satir.startswith("http"):
+            konsol.log(f"[green][+] GitHub domain bulundu: {satir}")
+            return satir.rstrip("/")
+
+        konsol.log("[yellow][!] domain.txt içeriği hatalı!")
+        return None
+
+    # ----------------------------------------------------------------------
+
     def referer_domainini_al(self):
         """M3U dosyasındaki referer satırından domain oku"""
         referer_deseni = r'#EXTVLCOPT:http-referrer=(https?://[^/]*trgoals[^/]*\.[^\s/]+)'
@@ -41,7 +62,6 @@ class TRGoals:
     # ----------------------------------------------------------------------
 
     def redirect_gec(self, url):
-        """Her türlü redirect zincirini çöz, DNS hatasında çökmeden"""
         konsol.log(f"[cyan][~] redirect_gec çağrıldı: {url}")
 
         response = guvenli_get(self.httpx, url)
@@ -59,7 +79,6 @@ class TRGoals:
     # ----------------------------------------------------------------------
 
     def trgoals_domaini_al(self):
-        """Ana giriş domainlerini çöz: trgoalsgiris.xyz → bit.ly → t.co → gerçek domain"""
         kaynaklar = [
             "https://trgoalsgiris.xyz/",
             "https://t.co/fJuteAyTF1"
@@ -76,7 +95,13 @@ class TRGoals:
     # ----------------------------------------------------------------------
 
     def yeni_domaini_al(self, mevcut_domain):
-        """Mevcut domain çökerse otomatik olarak +1 artır ve yeni domain üret"""
+        """Öncelik GitHub — olmazsa normal mekanizma"""
+        # 1) GitHub domain kontrolü
+        github_domain = self.github_domaini_al()
+        if github_domain:
+            return github_domain
+
+        # 2) Redirect üzerinden çöz
         try:
             return self.redirect_gec(mevcut_domain)
         except:
@@ -87,7 +112,7 @@ class TRGoals:
             except:
                 konsol.log("[yellow][!] Giriş domainleri de çözülemedi, otomatik +1'e geçiliyor...")
 
-                # trgoals1464.xyz → trgoals1465.xyz gibi
+                # trgoals1464.xyz → trgoals1465.xyz
                 try:
                     sayi = int(re.search(r"trgoals(\d+)", mevcut_domain).group(1))
                     yeni = f"https://trgoals{sayi+1}.xyz"
@@ -112,7 +137,6 @@ class TRGoals:
         with open(self.m3u_dosyasi, "r") as dosya:
             m3u_icerik = dosya.read()
 
-        # shop / click / lat yayın domainini bul
         eski_yayin = re.search(r'https?:\/\/[^\/]+\.(shop|click|lat)\/?', m3u_icerik)
         if not eski_yayin:
             raise ValueError("M3U dosyasında eski yayın URL'si bulunamadı!")
@@ -120,7 +144,6 @@ class TRGoals:
         eski_yayin_url = eski_yayin[0]
         konsol.log(f"[yellow][~] Eski Yayın URL : {eski_yayin_url}")
 
-        # Yeni yayın URL'si
         response = guvenli_get(self.httpx, kontrol_url)
         if not response:
             konsol.log("[red][!] Yayın sayfası alınamadı, eski yayın kullanılacak.")
