@@ -2,13 +2,24 @@ import requests
 
 # Sabit AJAX URL
 ajax_url = "https://3salamistv.online/ajax?method=channel_stream&stream=s-sport"
-
-# Headers
 headers = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
     "Referer": "https://3salamistv.online/",
     "X-Requested-With": "XMLHttpRequest"
 }
+
+# Sabit stream çekiyoruz (S Spor kanalı için)
+response = requests.get(ajax_url, headers=headers, timeout=10)
+data = response.json()
+if data.get("ok") and "stream" in data:
+    stream_sample = data["stream"].replace("\\/", "/")
+    print(f"✔ Örnek stream bulundu: {stream_sample}")
+    
+    # Domain ve dosya kısmını ayırıyoruz
+    domain = stream_sample.rsplit('/', 2)[0]  # https://savatv16.com
+else:
+    print("❌ Stream alınamadı.")
+    exit()
 
 # Kanal listesi
 channels = [
@@ -22,24 +33,20 @@ channels = [
     {"name": "SKYF1", "id": "skyf1"},
 ]
 
-# Sabit stream URL al
-response = requests.get(ajax_url, headers=headers, timeout=10)
-data = response.json()
-if data.get("ok") and "stream" in data:
-    stream_url = data["stream"].replace("\\/", "/")
-    print(f"✔ Stream bulundu: {stream_url}")
-else:
-    print("❌ Stream alınamadı.")
-    exit()
-
-# M3U içeriği oluştur
+# M3U oluşturma
 m3u_lines = ['#EXTM3U x-tvg-url=""']
 
 for ch in channels:
     m3u_lines.append(f'#EXTINF:-1 tvg-id="spor" tvg-logo="https://i.hizliresim.com/b6xqz10.jpg" group-title="SalamisTV",{ch["name"]}')
     m3u_lines.append(f'#EXTVLCOPT:http-referer=https://3salamistv.online/')
     m3u_lines.append(f'#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36')
-    m3u_lines.append(stream_url)  # Her kanal için aynı savatv16.com linki
+    
+    # Eğer ID sayısalsa domain + ID + mono.m3u8 yapıyoruz
+    if ch["id"].isdigit():
+        url = f'{domain}/{ch["id"]}/mono.m3u8'
+    else:
+        url = stream_sample  # sayısal değilse (nba, skyf1) örnek stream
+    m3u_lines.append(url)
 
 # Dosyaya yaz
 with open("salamistv.m3u", "w", encoding="utf-8") as f:
