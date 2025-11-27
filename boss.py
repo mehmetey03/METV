@@ -3,7 +3,7 @@ import re
 import os
 
 def get_active_domain():
-    for i in range(226, 1000):
+    for i in range(216, 1000):
         domain = f"https://bosssports{i}.com"
         try:
             response = requests.get(domain, timeout=5)
