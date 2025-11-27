@@ -19,11 +19,7 @@ class SalamisTVManager:
         ]
 
     def fetch_stream_url(self, channel_id):
-        """
-        Ajax üzerinden gerçek stream URL’sini alır.
-        Örnek JSON:
-        {"ok":true,"stream":"https:\/\/savatv16.com\/705\/mono.m3u8"}
-        """
+        print(f"\n👉 {channel_id} için stream URL alınıyor...")
 
         try:
             r = requests.get(
@@ -40,44 +36,45 @@ class SalamisTVManager:
                 timeout=10
             )
 
+            print(f"🔹 HTTP {r.status_code} – Cevap: {r.text[:200]}")
+
             data = r.json()
             if data.get("ok") and "stream" in data:
-                return data["stream"].replace("\\/", "/")
+                url = data["stream"].replace("\\/", "/")
+                print(f"✔ Stream bulundu: {url}")
+                return url
 
         except Exception as e:
-            print(f"Stream çekme hatası ({channel_id}): {e}")
+            print(f"❌ HATA ({channel_id}): {e}")
 
+        print(f"❌ Stream bulunamadı ({channel_id})")
         return None
 
     def generate_m3u(self):
-        m3u = ['#EXTM3U x-tvg-url=""\n']
+        m3u = ['#EXTM3U\n']
 
         for ch in self.channels:
-            real_stream_url = self.fetch_stream_url(ch["id"])
-
-            if not real_stream_url:
-                print(f"❌ {ch['name']} için stream bulunamadı!")
+            url = self.fetch_stream_url(ch["id"])
+            if not url:
                 continue
 
-            m3u.append(f'#EXTINF:-1 tvg-id="spor" tvg-logo="{self.logo_url}" group-title="SalamisTV",{ch["name"]}')
+            m3u.append(f'#EXTINF:-1 tvg-logo="{self.logo_url}" group-title="SalamisTV",{ch["name"]}')
             m3u.append(f'#EXTVLCOPT:http-referer={self.referer_url}')
             m3u.append(f'#EXTVLCOPT:http-user-agent={self.user_agent}')
-            m3u.append(real_stream_url)
-
-            print(f"✔ {ch['name']} stream eklendi → {real_stream_url}")
+            m3u.append(url)
 
         content = "\n".join(m3u)
 
+        print("\n🔍 OLUŞAN M3U İÇERİĞİ:")
+        print(content)
+
         try:
-            with open("salamistv1.m3u", "w", encoding="utf-8") as f:
+            with open("salamistv.m3u", "w", encoding="utf-8") as f:
                 f.write(content)
-            print("\n✅ salamistv1.m3u başarıyla oluşturuldu!")
+            print("\n✅ salamistv.m3u başarıyla oluşturuldu!")
         except Exception as e:
             print(f"❌ Dosya yazma hatası: {e}")
 
-        return content
-
 
 if __name__ == "__main__":
-    manager = SalamisTVManager()
-    manager.generate_m3u()
+    SalamisTVManager().generate_m3u()
