@@ -1,4 +1,5 @@
 import requests
+import json
 
 class SalamisTVManager:
     def __init__(self):
@@ -10,7 +11,7 @@ class SalamisTVManager:
         self.channels = [
             {"name": "BEIN Sport 1", "id": "701"}, {"name": "BEIN Sport 2", "id": "702"},
             {"name": "BEIN Sport 3", "id": "703"}, {"name": "BEIN Sport 4", "id": "704"},
-            {"name": "S Spor", "id": "705"}, {"name": "S Spor 2", "id": "730"},
+            {"name": "S Spor", "id": "s-sport"}, {"name": "S Spor 2", "id": "730"},
             {"name": "Tivibu Spor 1", "id": "706"}, {"name": "Tivibu Spor 2", "id": "711"},
             {"name": "Tivibu Spor 3", "id": "712"}, {"name": "Tivibu Spor 4", "id": "713"},
             {"name": "Spor Smart 1", "id": "707"}, {"name": "Spor Smart 2", "id": "708"},
@@ -39,6 +40,7 @@ class SalamisTVManager:
             print(f"🔹 HTTP {r.status_code} – Cevap: {r.text[:200]}")
 
             data = r.json()
+
             if data.get("ok") and "stream" in data:
                 url = data["stream"].replace("\\/", "/")
                 print(f"✔ Stream bulundu: {url}")
