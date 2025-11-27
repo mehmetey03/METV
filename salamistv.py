@@ -1,5 +1,4 @@
 import requests
-import json
 
 class SalamisTVManager:
     def __init__(self):
@@ -8,15 +7,19 @@ class SalamisTVManager:
         self.logo_url = "https://i.hizliresim.com/t6e66bt.png"
         self.user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"
 
+        # ✔ DOĞRU STREAM ANAHTARLARI
         self.channels = [
-            {"name": "BEIN Sport 1", "id": "701"}, {"name": "BEIN Sport 2", "id": "702"},
-            {"name": "BEIN Sport 3", "id": "703"}, {"name": "BEIN Sport 4", "id": "704"},
-            {"name": "S Spor", "id": "s-sport"}, {"name": "S Spor 2", "id": "730"},
-            {"name": "Tivibu Spor 1", "id": "706"}, {"name": "Tivibu Spor 2", "id": "711"},
-            {"name": "Tivibu Spor 3", "id": "712"}, {"name": "Tivibu Spor 4", "id": "713"},
-            {"name": "Spor Smart 1", "id": "707"}, {"name": "Spor Smart 2", "id": "708"},
-            {"name": "A Spor", "id": "709"}, {"name": "NBA", "id": "nba"},
-            {"name": "SKYF1", "id": "skyf1"},
+            {"name": "S Spor", "id": "s-sport"},
+            {"name": "S Spor 2", "id": "s-sport2"},
+            {"name": "Tivibu Spor 1", "id": "t-sport1"},
+            {"name": "Tivibu Spor 2", "id": "t-sport2"},
+            {"name": "Tivibu Spor 3", "id": "t-sport3"},
+            {"name": "Tivibu Spor 4", "id": "t-sport4"},
+            {"name": "Spor Smart 1", "id": "spor-smart1"},
+            {"name": "Spor Smart 2", "id": "spor-smart2"},
+            {"name": "A Spor", "id": "a-spor"},
+            {"name": "NBA", "id": "nba"},
+            {"name": "Sky F1", "id": "skyf1"},
         ]
 
     def fetch_stream_url(self, channel_id):
@@ -40,7 +43,6 @@ class SalamisTVManager:
             print(f"🔹 HTTP {r.status_code} – Cevap: {r.text[:200]}")
 
             data = r.json()
-
             if data.get("ok") and "stream" in data:
                 url = data["stream"].replace("\\/", "/")
                 print(f"✔ Stream bulundu: {url}")
