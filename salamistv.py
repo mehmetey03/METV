@@ -1,8 +1,8 @@
 class SalamisTVManager:
     def __init__(self):
-        self.referer_url = "https://salamistv15.online/"
+        self.referer_url = "https://3salamistv.online/"
         self.base_stream_url = "https://macarenatv4.com"
-        self.logo_url = "https://i.hizliresim.com/b6xqz10.jpg"
+        self.logo_url = "https://i.hizliresim.com/t6e66bt.png"
         self.user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"
         self.channels = [
             {"name": "BEIN Sport 1", "id": "701"}, {"name": "BEIN Sport 2", "id": "702"},
