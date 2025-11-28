@@ -1,0 +1,47 @@
+name: JustinTV Links
+
+on:
+  schedule:
+    - cron: '*/5 * * * *' # Her 5 dakikada bir çalıştırır
+  workflow_dispatch:
+
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install Python dependencies
+        run: |
+          pip install playwright
+
+      - name: Install Playwright browsers
+        run: |
+          playwright install chromium
+
+      # --- DEĞİŞİKLİK 1: Script adını düzelt ve ilk script'i çalıştır ---
+      - name: Run tvjustin.py to get raw M3U8
+        run: python tvjustin.py # Dosya adını buna göre ayarlayın
+
+      # --- DEĞİŞİKLİK YOK: Commit adımı her iki script'ten sonra ---
+      - name: Commit and Push changes
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git add . # Tüm değişiklikleri ekle (hem _raw.m3u8 hem de son .m3u8)
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            # Commit mesajını güncelleyebiliriz
+            git commit -m "Auto-update cleaned JustinTV m3u8 file"
+            git push
+          fi
