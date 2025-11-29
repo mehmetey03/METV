@@ -33,7 +33,7 @@ for a in channels:
     m3u += f'{url}\n'
 
 # 6️⃣ Dosyaya yaz
-with open("selcuk.m3u", "w", encoding="utf-8") as f:
+with open("selcukk.m3u", "w", encoding="utf-8") as f:
     f.write(m3u)
 
 print("M3U dosyası oluşturuldu.")
