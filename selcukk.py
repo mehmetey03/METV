@@ -3,6 +3,22 @@ import os
 from urllib.request import urlopen, Request
 from bs4 import BeautifulSoup
 
+# Türkçe karakterleri dönüştür
+def normalize_tvg_id(name):
+    replacements = {
+        'ç': 'c', 'Ç': 'C',
+        'ş': 's', 'Ş': 'S',
+        'ı': 'i', 'İ': 'I',
+        'ğ': 'g', 'Ğ': 'G',
+        'ü': 'u', 'Ü': 'U',
+        'ö': 'o', 'Ö': 'O',
+        ' ': '-', ':': '-', '.': '-', '/': '-', ',': '-'
+    }
+    for old, new in replacements.items():
+        name = name.replace(old, new)
+    name = re.sub(r'[^a-zA-Z0-9\-]+', '', name)  # Kalan özel karakterleri temizle
+    return name.lower()
+
 def find_working_selcuksportshd(start=1825, end=1850):
     print("🧭 Selcuksportshd domainleri taranıyor...")
     headers = {"User-Agent": "Mozilla/5.0"}
@@ -34,7 +50,7 @@ def parse_channel_list_html(html):
 def write_m3u_file(channels, filename="selcukk.m3u", referer=""):
     lines = ["#EXTM3U"]
     for ch in channels:
-        tvg_id = re.sub(r'[^a-z0-9]+', '-', ch['name'].lower())
+        tvg_id = normalize_tvg_id(ch['name'])
         lines.append(f'#EXTINF:-1 tvg-id="{tvg_id}" tvg-name="{ch["name"]}" tvg-logo="https://example.com/default-logo.png" group-title="Spor",{ch["name"]}')
         lines.append(f"#EXTVLCOPT:http-referrer={referer}")
         lines.append(ch['url'])
