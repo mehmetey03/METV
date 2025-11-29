@@ -1,51 +1,60 @@
-name: Selcukk spr
+name: Selcuk M3U8
 
-concurrency:
-  group: ${{ github.workflow }}-${{ github.event_name }}-${{ github.ref }}
-  cancel-in-progress: true
+permissions:
+  contents: write  # <<--- Push izni çok önemli
 
 on:
-  workflow_dispatch:
   schedule:
-    - cron: '*/10 * * * *'  
+    - cron: '0 * * * *'  # Her saat başı çalışır
+  workflow_dispatch:     # Manuel tetikleme
 
 jobs:
-  BirlesikGuncelleme:
+  update-files:
     runs-on: ubuntu-latest
-    env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    permissions:
-      contents: write
+
     steps:
-      - name: Depoyu Klonla
-        uses: actions/checkout@v4.2.2
-        
-      - name: Python 3.11.8 Yükle
-        uses: actions/setup-python@v5.3.0
+      # 1️⃣ Repo’yu checkout et
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # 2️⃣ Python kurulumu
+      - name: Set up Python
+        uses: actions/setup-python@v4
         with:
-          python-version: 3.11.8
-          
-      - name: Gereksinimleri Kur
+          python-version: '3.x'
+
+      # 3️⃣ Playwright kurulumu (Gerekirse)
+      - name: Install Playwright
         run: |
           python -m pip install --upgrade pip
-          pip install requests beautifulsoup4
-          
-      - name: selcukk.py Çalıştır
+          python -m pip install playwright
+          python -m playwright install
+
+      # 4️⃣ Git ayarları
+      - name: Set up Git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      # 5️⃣ Python scriptini çalıştır
+      - name: Run selcukk.py
         run: python selcukk.py
 
-      - name: Değişiklik Kontrolü
-        id: degisiklik_kontrol
+      # 6️⃣ Değişiklikleri commit et
+      - name: Commit changes
         run: |
-          git diff --quiet . || echo "degisiklik=true" >> $GITHUB_OUTPUT
-          
-      - name: Değişiklikleri Commit Et
-        if: steps.degisiklik_kontrol.outputs.degisiklik == 'true'
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add .
-          git commit -m "🔄 Selcuk güncellendi
+          git add . 
+          git commit -m "Auto-update m3u8 files" || echo "No changes to commit"
 
-📺 Domain kontrolü ve M3U güncellemeleri tamamlandı
-🕒 Otomatik işlem - $GITHUB_SHA"
-          git push
+      # 7️⃣ Remote değişiklikleri al ve rebase yap
+      - name: Pull remote changes safely
+        run: |
+          git fetch origin main
+          git rebase origin/main || git rebase --abort
+
+      # 8️⃣ Push değişiklikleri
+      - name: Push changes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git push https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }} main
