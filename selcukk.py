@@ -1,57 +1,83 @@
-import requests
 import re
-from urllib.parse import urlparse
+import os
+from urllib.request import urlopen, Request
+from bs4 import BeautifulSoup
 
-# 1️⃣ Github txt’den hedef URL al
-source_url = "https://raw.githubusercontent.com/mehmetey03/METV2/refs/heads/main/selcuk.txt"
-r = requests.get(source_url)
-target_url = r.text.strip()
-print("Target URL:", target_url)
+def find_working_selcuksportshd(start=1825, end=1850):
+    print("🧭 Selcuksportshd domainleri taranıyor...")
+    headers = {"User-Agent": "Mozilla/5.0"}
+    for i in range(start, end+1):
+        url = f"https://www.selcuksportshd{i}.xyz/"
+        print(f"🔍 Taranıyor: {url}")
+        try:
+            req = Request(url, headers=headers)
+            html = urlopen(req, timeout=5).read().decode('utf-8')
+            if "uxsyplayer" in html:
+                print(f"✅ Aktif domain bulundu: {url}")
+                return html, url
+        except:
+            continue
+    print("❌ Aktif domain bulunamadı.")
+    return None, None
 
-# Referrer
-parsed_url = urlparse(target_url)
-referrer = f"{parsed_url.scheme}://{parsed_url.netloc}/"
-print("Referrer:", referrer)
+def find_dynamic_player_domain(html):
+    m = re.search(r'https?://(main\.uxsyplayer[0-9a-zA-Z\-]+\.click)', html)
+    if m:
+        return "https://" + m.group(1)
+    return None
 
-headers = {"User-Agent": "Mozilla/5.0", "Referer": referrer}
+def extract_m3u8_from_player(player_domain, first_id, referer):
+    headers = {"User-Agent": "Mozilla/5.0", "Referer": referer}
+    try:
+        req = Request(f"{player_domain}/index.php?id={first_id}", headers=headers)
+        resp = urlopen(req, timeout=5).read().decode('utf-8')
+        m = re.search(r'https://.*?\.click/live/.*?/playlist\.m3u8', resp)
+        if m:
+            return m.group(0)
+    except:
+        pass
+    return None
 
-# 2️⃣ Target URL aç ve player domaini bul
-r2 = requests.get(target_url, headers=headers, timeout=20)
-html = r2.text
+def parse_channel_list_html(html):
+    channels = []
+    soup = BeautifulSoup(html, "html.parser")
+    div = soup.find("div", class_="channel-list")
+    if div:
+        for a in div.find_all("a", attrs={"data-url": True}):
+            name = a.text.strip()
+            url = a["data-url"].split("#")[0]
+            channels.append({"name": name, "url": url})
+    return channels
 
-# Dynamic player domain
-player_match = re.search(r'https?://main\.uxsyplayer[0-9a-zA-Z\-]+\.click', html)
-if not player_match:
-    print("❌ Player domain bulunamadı!")
-    exit(1)
+def write_m3u_file(channels, filename="selcukk.m3u", referer=""):
+    lines = ["#EXTM3U"]
+    for ch in channels:
+        tvg_id = ch['name'].lower().replace(" ", "-")
+        lines.append(f'#EXTINF:-1 tvg-id="{tvg_id}" tvg-name="{ch["name"]}" tvg-logo="https://example.com/default-logo.png" group-title="Spor",{ch["name"]}')
+        lines.append(f"#EXTVLCOPT:http-referrer={referer}")
+        lines.append(ch['url'])
+    with open(filename, "w", encoding="utf-8") as f:
+        f.write("\n".join(lines))
+    print(f"✅ M3U dosyası oluşturuldu: {filename}")
 
-player_domain = player_match.group(0)
-print("Player domain:", player_domain)
+# -------- Ana işlem --------
+html, referer_url = find_working_selcuksportshd()
+channels = []
 
-# 3️⃣ Player sayfasını aç ve M3U8 linkini çek
-# Örnek olarak ilk kanal: selcukbeinsports1
-first_id = "selcukbeinsports1"
-player_url = f"{player_domain}/index.php?id={first_id}"
+if html:
+    player_domain = find_dynamic_player_domain(html)
+    if player_domain:
+        first_id = "selcukbeinsports1"
+        m3u8 = extract_m3u8_from_player(player_domain, first_id, referer_url)
+        if m3u8:
+            channels.append({"name": "Selcuksport", "url": m3u8})
 
-r3 = requests.get(player_url, headers=headers, timeout=20)
-player_html = r3.text
+        # div.channel-list içinden kanalları ekle
+        extra_channels = parse_channel_list_html(html)
+        channels.extend(extra_channels)
 
-m3u8_match = re.search(r'https://.*?\.click/live/.*?/playlist\.m3u8', player_html)
-if not m3u8_match:
-    print("❌ M3U8 URL bulunamadı!")
-    exit(1)
-
-m3u8_url = m3u8_match.group(0)
-print("Bulunan M3U8 URL:", m3u8_url)
-
-# 4️⃣ selcukk.m3u dosyası oluştur
-m3u_content = f"""#EXTM3U
-#EXTINF:-1 tvg-id="selcukk" tvg-name="Selcuksport" tvg-logo="https://example.com/default-logo.png" group-title="Spor",Selcuksport
-#EXTVLCOPT:http-referrer={referrer}
-{m3u8_url}
-"""
-
-with open("selcukk.m3u", "w", encoding="utf-8") as f:
-    f.write(m3u_content)
-
-print("✅ M3U dosyası oluşturuldu: selcukk.m3u")
+        write_m3u_file(channels, "selcukk.m3u", referer_url)
+    else:
+        print("❌ Player domain bulunamadı.")
+else:
+    print("⛔ Hiçbir domain çalışmıyor.")
