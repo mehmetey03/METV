@@ -23,30 +23,36 @@ REQUEST_BODY = {
 
 def fetch_and_save_json():
     logging.info("API isteği başlatılıyor...")
+
     try:
         response = requests.post(URL, headers=HEADERS, data=REQUEST_BODY, timeout=15)
         logging.info(f"Durum Kodu: {response.status_code}")
-        
-        if response.status_code != 200:
-            logging.error("API yanıtı başarısız!")
+
+        # Yanıtı debug için kaydedelim
+        raw_preview = response.text[:500]
+        logging.info(f"Yanıt (ilk 500 karakter):\n{raw_preview}")
+
+        # JSON olmayan yanıtı kaydet
+        if not response.text.strip().startswith('{'):
+            with open("response_raw.txt", "w", encoding="utf-8") as f:
+                f.write(response.text)
+            logging.error("Yanıt JSON formatında değil! --> response_raw.txt'e kaydedildi.")
             return
-        
+
         try:
             data = response.json()
             logging.info("JSON başarıyla ayrıştırıldı.")
         except json.JSONDecodeError:
-            logging.error("Yanıt JSON formatında değil!")
+            logging.error("Yanıt JSON olarak ayrıştırılamadı!")
             return
-        
-       
-        filename = f"trgoals_data.json"
-        
-        # JSON'u dosyaya kaydet
+
+        filename = "trgoals_data.json"
+
         with open(filename, 'w', encoding='utf-8') as f:
             json.dump(data, f, indent=4, ensure_ascii=False)
-        
+
         logging.info(f"JSON verisi '{filename}' dosyasına kaydedildi.")
-    
+
     except requests.exceptions.RequestException as e:
         logging.error(f"İstek sırasında hata oluştu: {e}")
 
