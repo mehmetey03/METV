@@ -76,7 +76,7 @@ def get_matches(domain):
 
         # PHP id çek
         m = re.search(r"id=([^&]+)", href)
-        kanal_id = m.group(1).replace("yayin", "").strip() if m else ""
+        kanal_id = m.group(1).strip() if m else ""
 
         if not kanal_id:
             continue
