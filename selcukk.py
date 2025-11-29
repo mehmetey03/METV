@@ -41,7 +41,8 @@ for a in channels:
     if match:
         m3u8_url = match.group(0)
     else:
-        m3u8_url = player_url  # Eğer bulunamazsa player URL’sini bırak
+        # Eğer bulunamazsa player linkini bırak
+        m3u8_url = player_url
 
     # 7️⃣ M3U satırları oluştur
     m3u += f'#EXTINF:-1 tvg-id="{id}" tvg-name="{name}" tvg-logo="{logo}" group-title="Spor",{name}\n'
