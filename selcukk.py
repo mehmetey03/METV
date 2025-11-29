@@ -1,47 +1,29 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-
 import requests
-from bs4 import BeautifulSoup
+import re
 
 HEADERS = {"User-Agent": "Mozilla/5.0"}
 
 def fetch_target_url(txt_url="https://metvmetvmetv7.serv00.net/selcuk.txt"):
-    try:
-        r = requests.get(txt_url, headers=HEADERS, timeout=5)
-        if r.status_code == 200:
-            return r.text.strip()
-    except:
-        pass
-    return None
+    r = requests.get(txt_url, headers=HEADERS)
+    return r.text.strip() if r.status_code == 200 else None
 
 def fetch_html(url):
-    try:
-        r = requests.get(url, headers=HEADERS, timeout=5)
-        if r.status_code == 200:
-            return r.text
-    except:
-        pass
-    return None
+    r = requests.get(url, headers=HEADERS)
+    return r.text if r.status_code == 200 else None
 
 def parse_channels(html):
-    soup = BeautifulSoup(html, "html.parser")
-    channel_list = []
-
-    # <a data-url="..."> olan tüm kanalları bul
-    for a in soup.select("div.channel-list a[data-url]"):
-        name = a.get_text(strip=True)
-        url = a.get("data-url")
-        logo = a.get("data-logo", "")
-        group = a.get("data-group", "Spor")
-        if url:
-            channel_list.append({
-                "name": name,
-                "url": url,
-                "logo": logo,
-                "group": group
-            })
-    return channel_list
+    # a data-url="URL">Kanal Adı</a>
+    pattern = r'<a[^>]+data-url="([^"]+)"[^>]*>([^<]+)</a>'
+    matches = re.findall(pattern, html)
+    channels = []
+    for url, name in matches:
+        channels.append({
+            "name": name.strip(),
+            "url": url.strip(),
+            "logo": "",
+            "group": "Spor"
+        })
+    return channels
 
 def write_m3u(channels, filename="selcukk.m3u", referer=""):
     lines = ["#EXTM3U"]
@@ -58,17 +40,14 @@ def main():
     if not target_url:
         print("Selcuk.txt URL'sinden yönlendirme alınamadı.")
         return
-
     html = fetch_html(target_url)
     if not html:
         print("Hedef HTML alınamadı.")
         return
-
     channels = parse_channels(html)
     if not channels:
         print("Kanal listesi bulunamadı.")
         return
-
     write_m3u(channels, referer=target_url)
 
 if __name__ == "__main__":
