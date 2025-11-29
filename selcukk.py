@@ -17,11 +17,11 @@ def find_active_domain(start=1825, end=1850):
             continue
     return None, None
 
-# 🔹 2️⃣ Channel-list içindeki player linklerini al
+# 🔹 2️⃣ Channel-list içindeki player linklerini al (sadece id="tab1")
 def get_player_links(html):
     soup = BeautifulSoup(html, "html.parser")
     links = []
-    div = soup.find("div", class_="channel-list")
+    div = soup.find("div", id="tab1", class_="channel-list")
     if div:
         for a in div.find_all("a", attrs={"data-url": True}):
             links.append(a['data-url'].split("#")[0])
@@ -60,8 +60,11 @@ def create_m3u(filename="selcukk.m3u"):
 
     referer = domain
     players = get_player_links(html)
-    m3u_lines = ["#EXTM3U"]
+    if not players:
+        print("❌ Tab1 içinde player linki bulunamadı")
+        return
 
+    m3u_lines = ["#EXTM3U"]
     for player in players:
         m3u8_url = get_m3u8_url(player, referer)
         if m3u8_url:
