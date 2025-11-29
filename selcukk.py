@@ -18,22 +18,22 @@ referrer = f"{parsed_url.scheme}://{parsed_url.netloc}/"
 
 # 4️⃣ HTML parse
 soup = BeautifulSoup(html, "html.parser")
-channels = soup.select("div.channel-list a[data-url]")
+channels = soup.select("div.channel-list a[data-url]")  # <- burası önemli
 
 # 5️⃣ M3U oluştur
 m3u = "#EXTM3U\n"
 
 for a in channels:
     name = a.text.strip()
-    id = a.get("data-id") or name.replace(" ", "").lower()
+    channel_id = a.get("data-id") or name.replace(" ", "").lower()
     logo = a.get("data-logo") or "https://example.com/default-logo.png"
-    player_url = a.get("data-url").split("#")[0]
+    player_url = a.get("data-url").split("#")[0]  # #poster parametresini kırp
 
-    # Eğer relative URL ise mutlak hâle getir
+    # Mutlak URL hâline getir
     player_url = urljoin(referrer, player_url)
 
     # 6️⃣ Player sayfasını aç ve gerçek M3U8 linkini al
-    r3 = requests.get(player_url, headers={"User-Agent": "Mozilla/5.0"})
+    r3 = requests.get(player_url, headers={"User-Agent": "Mozilla/5.0", "Referer": referrer})
     page_html = r3.text
 
     # Regex ile gerçek m3u8 linki bul
@@ -41,11 +41,11 @@ for a in channels:
     if match:
         m3u8_url = match.group(0)
     else:
-        # Eğer bulunamazsa player linkini bırak
+        # Bulunamazsa player URL'i bırak
         m3u8_url = player_url
 
     # 7️⃣ M3U satırları oluştur
-    m3u += f'#EXTINF:-1 tvg-id="{id}" tvg-name="{name}" tvg-logo="{logo}" group-title="Spor",{name}\n'
+    m3u += f'#EXTINF:-1 tvg-id="{channel_id}" tvg-name="{name}" tvg-logo="{logo}" group-title="Spor",{name}\n'
     m3u += f'#EXTVLCOPT:http-referrer={referrer}\n'
     m3u += f'{m3u8_url}\n'
 
@@ -53,4 +53,4 @@ for a in channels:
 with open("selcukk.m3u", "w", encoding="utf-8") as f:
     f.write(m3u)
 
-print("M3U dosyası oluşturuldu.")
+print("✅ M3U dosyası oluşturuldu.")
