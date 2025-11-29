@@ -1,0 +1,37 @@
+name: Data Bot
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-json:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Repo'yu checkout et
+        uses: actions/checkout@v4
+
+      - name: Python kurulumu
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Gerekli paketleri yükle
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests
+
+      - name: TRGoals botu çalıştır
+        run: python data.py
+
+      - name: Yeni JSON dosyasını depoya gönder (Commit & Push)
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "BOT: Yeni TRGoals kanal verisi güncellendi."
+          file_pattern: "*.json"
+          branch: main
