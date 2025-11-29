@@ -12,6 +12,7 @@ trgoals_ref = "https://trgoals1472.xyz"  # artık gerçek domain buradan alınab
 
 
 def get_active_domain():
+    """ GitHub domain.txt → guncel_domain çek """
     r = requests.get(DOMAIN_TXT_URL, timeout=10)
     if r.status_code != 200:
         raise Exception("domain.txt okunamadı!")
@@ -22,33 +23,35 @@ def get_active_domain():
     return m.group(1).strip()
 
 
-def get_channel_m3u8(channel_url):
-    """ Kanal sayfasından sadece gerçek TRGOALS m3u8 linkini çek """
-    headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
-    }
+def get_channel_m3u8(channel_id):
+    """
+    PHP mantığını kullanarak:
+    1. channel.html?id=yayinzirve sayfasını çek
+    2. Base URL'yi bul
+    3. Kanal ID ile birleştir ve doğru m3u8 linki döndür
+    """
     try:
-        r = requests.get(channel_url, headers=headers, timeout=10)
+        base_page_url = f"{trgoals_ref}/channel.html?id=yayinzirve"
+        headers = {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+        }
+
+        r = requests.get(base_page_url, headers=headers, timeout=10)
         if r.status_code != 200:
             return ""
+
         html = r.text
 
-        # Sayfadaki tüm m3u8 linklerini bul
-        matches = re.findall(r'https?://[^\s\'"]+\.m3u8', html)
+        # PHP kodundan aynı mantıkla baseurl çek
+        m = re.search(r'baseurl\s*=\s*"(.*?)"', html)
+        if not m:
+            return ""
 
-        # Sadece TRGOALS altyapısına ait linkleri filtrele
-        trgoals_links = [l for l in matches if "sbs" in l or "trgoals" in l]
+        baseurl = m.group(1).strip()
 
-        if not trgoals_links:
-            return ""  # geçerli link yok
-
-        # Öncelik: 'yayin' içeren linkler
-        for l in trgoals_links:
-            if "yayin" in l:
-                return l
-
-        # Yoksa ilk TRGOALS linkini döndür
-        return trgoals_links[0]
+        # ID ile birleştir
+        final_url = f"{baseurl}{channel_id}.m3u8"
+        return final_url
 
     except:
         return ""
@@ -65,7 +68,7 @@ def get_matches(domain):
 
     maclar = []
 
-    for item in soup.select("a.channel-item"):  # mevcut listede sorun yok
+    for item in soup.select("a.channel-item"):
         name = item.select_one(".channel-name")
         status = item.select_one(".channel-status")
         live = True if item.select_one(".live-badge") else False
@@ -75,19 +78,19 @@ def get_matches(domain):
         m = re.search(r"id=([^&]+)", href)
         kanal_id = m.group(1).replace("yayin", "").strip() if m else ""
 
-        # Gerçek kanal sayfası linki
-        kanal_page = trgoals_ref + "/" + href.lstrip("/")
+        if not kanal_id:
+            continue
 
-        # Gerçek m3u8 linki
-        m3u8_link = get_channel_m3u8(kanal_page)
+        # Gerçek m3u8 linkini PHP mantığıyla al
+        m3u8_link = get_channel_m3u8(kanal_id)
         if not m3u8_link:
-            continue  # geçersiz linkleri atla
+            continue
 
         maclar.append({
             "saat": status.get_text(strip=True) if status else "",
             "takimlar": name.get_text(strip=True) if name else "",
             "canli": live,
-            "dosya": m3u8_link,  # artık dosya değil direkt m3u8 linki
+            "dosya": m3u8_link,
             "kanal_adi": (status.get_text(strip=True) + " - " + name.get_text(strip=True)).strip(),
             "tvg_id": kanal_id
         })
@@ -101,7 +104,7 @@ def create_m3u(maclar):
         for kanal in maclar:
             f.write(f'#EXTINF:-1 tvg-id="{kanal["tvg_id"]}" group-title="TrGoals",{kanal["kanal_adi"]}\n')
             f.write(f'#EXTVLCOPT:http-referrer={trgoals_ref}\n')
-            f.write(kanal["dosya"] + "\n")  # artık direkt gerçek m3u8 linki
+            f.write(kanal["dosya"] + "\n")
 
     print(f"✔ M3U dosyası oluşturuldu: {OUTPUT_FILE}")
 
