@@ -120,7 +120,7 @@ def get_m3u8_url(player_url, referer, player_domain):
             r'baseStreamUrl\s*:\s*[\'"]([^\'"]+)',
             r'streamUrl\s*:\s*[\'"]([^\'"]+)',
             r'var\s+baseStreamUrl\s*=\s*[\'"]([^\'"]+)',
-            r'player\.setup\([^)]*["\']streamUrl["\']\s*:\s*["\']([^"\'']+)',
+            r'player\.setup\([^)]*streamUrl\s*:\s*["\']([^"\'']+)["\']',
             r'source\s*:\s*["\']([^"\'']+\.m3u8[^"\'']*)["\']'
         ]
         
