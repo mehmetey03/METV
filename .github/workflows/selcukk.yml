@@ -1,58 +1,49 @@
-name: Selcuk M3U8
+name: Selcukk M3U8
 
 permissions:
-  contents: write  # <<--- Push izni çok önemli
+  contents: write
 
 on:
   schedule:
-    - cron: '0 * * * *'  # Her saat başı çalışır
-  workflow_dispatch:     # Manuel tetikleme
+    - cron: '0 * * * *'
+  workflow_dispatch:
 
 jobs:
   update-files:
     runs-on: ubuntu-latest
 
     steps:
-      # 1️⃣ Repo’yu checkout et
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # 2️⃣ Python kurulumu
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.x'
 
-      # 3️⃣ Playwright kurulumu (Gerekirse)
-      - name: Install Playwright
+      - name: Install Python packages
         run: |
           python -m pip install --upgrade pip
-          python -m pip install playwright
-          python -m playwright install
+          python -m pip install requests beautifulsoup4
 
-      # 4️⃣ Git ayarları
       - name: Set up Git
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-      # 5️⃣ Python scriptini çalıştır
       - name: Run selcukk.py
         run: python selcukk.py
 
-      # 6️⃣ Değişiklikleri commit et
       - name: Commit changes
         run: |
-          git add . 
+          git add .
           git commit -m "Auto-update m3u8 files" || echo "No changes to commit"
 
-      # 7️⃣ Remote değişiklikleri al ve rebase yap
       - name: Pull remote changes safely
         run: |
           git fetch origin main
           git rebase origin/main || git rebase --abort
 
-      # 8️⃣ Push değişiklikleri
       - name: Push changes
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
