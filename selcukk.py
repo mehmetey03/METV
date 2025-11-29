@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 
 headers = {"User-Agent": "Mozilla/5.0"}
 
+# 🔹 1️⃣ Aktif Selcuksportshd domainini bul
 def find_active_domain(start=1825, end=1850):
     for i in range(start, end+1):
         url = f"https://www.selcuksportshd{i}.xyz/"
@@ -16,6 +17,7 @@ def find_active_domain(start=1825, end=1850):
             continue
     return None, None
 
+# 🔹 2️⃣ Channel-list içindeki player linklerini al
 def get_player_links(html):
     soup = BeautifulSoup(html, "html.parser")
     links = []
@@ -25,6 +27,7 @@ def get_player_links(html):
             links.append(a['data-url'].split("#")[0])
     return links
 
+# 🔹 3️⃣ Player sayfasından gerçek .m3u8 URL’sini al
 def get_m3u8_url(player_url, referer):
     try:
         req = Request(player_url, headers={"User-Agent": headers["User-Agent"], "Referer": referer})
@@ -32,7 +35,6 @@ def get_m3u8_url(player_url, referer):
         m = re.search(r'this\.baseStreamUrl\s*=\s*[\'"]([^\'"]+)', html)
         if m:
             base = m.group(1)
-            # id parametreyi al
             id_match = re.search(r'id=([a-z0-9]+)', player_url)
             if id_match:
                 return f"{base}{id_match.group(1)}/playlist.m3u8"
@@ -40,6 +42,7 @@ def get_m3u8_url(player_url, referer):
         return None
     return None
 
+# 🔹 4️⃣ TVG ID normalize et
 def normalize_tvg_id(name):
     replacements = {'ç':'c','Ç':'C','ş':'s','Ş':'S','ı':'i','İ':'I','ğ':'g','Ğ':'G','ü':'u','Ü':'U','ö':'o','Ö':'O',' ':'-',
                     ':':'-','.':'-','/':'-'}
@@ -48,6 +51,7 @@ def normalize_tvg_id(name):
     name = re.sub(r'[^a-zA-Z0-9\-]+', '', name)
     return name.lower()
 
+# 🔹 5️⃣ M3U dosyasını oluştur
 def create_m3u(filename="selcukk.m3u"):
     domain, html = find_active_domain()
     if not html:
@@ -61,7 +65,6 @@ def create_m3u(filename="selcukk.m3u"):
     for player in players:
         m3u8_url = get_m3u8_url(player, referer)
         if m3u8_url:
-            # name için id parametreden basit bir isim alabiliriz
             name = player.split("id=")[-1]
             tvg_id = normalize_tvg_id(name)
             m3u_lines.append(f'#EXTINF:-1 tvg-id="{tvg_id}" tvg-name="{name}" tvg-logo="https://example.com/default-logo.png" group-title="Spor",{name}')
@@ -72,5 +75,5 @@ def create_m3u(filename="selcukk.m3u"):
         f.write("\n".join(m3u_lines))
     print(f"✅ M3U8 dosyası oluşturuldu: {filename}")
 
-# Çalıştır
+# 🔹 6️⃣ Çalıştır
 create_m3u()
