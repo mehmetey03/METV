@@ -8,11 +8,10 @@ OUTPUT_FILE = "trgoalss.m3u"
 GREEN = "\033[92m"
 RESET = "\033[0m"
 
-trgoals_ref = "https://trgoals1472.xyz"  # gerçek domain
+trgoals_ref = "https://trgoals1472.xyz"  # artık gerçek domain buradan alınabilir
 
 
 def get_active_domain():
-    """ GitHub domain.txt → guncel_domain çek """
     r = requests.get(DOMAIN_TXT_URL, timeout=10)
     if r.status_code != 200:
         raise Exception("domain.txt okunamadı!")
@@ -36,15 +35,16 @@ def get_channel_m3u8(channel_url):
 
         # Sayfadaki tüm m3u8 linklerini bul
         matches = re.findall(r'https?://[^\s\'"]+\.m3u8', html)
-        # Sadece TRGOALS altyapısına ait linkler
-        trgoals_links = [l for l in matches if ("sbs" in l or "trgoals" in l)]
+
+        # Sadece TRGOALS altyapısına ait linkleri filtrele
+        trgoals_links = [l for l in matches if "sbs" in l or "trgoals" in l]
 
         if not trgoals_links:
             return ""  # geçerli link yok
 
-        # Öncelik: 'yayinzirve' varsa onu al
+        # Öncelik: 'yayin' içeren linkler
         for l in trgoals_links:
-            if "yayinzirve" in l:
+            if "yayin" in l:
                 return l
 
         # Yoksa ilk TRGOALS linkini döndür
@@ -55,7 +55,6 @@ def get_channel_m3u8(channel_url):
 
 
 def get_matches(domain):
-    """ Güncel domain → maçları al """
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
     }
@@ -76,7 +75,7 @@ def get_matches(domain):
         m = re.search(r"id=([^&]+)", href)
         kanal_id = m.group(1).replace("yayin", "").strip() if m else ""
 
-        # Kanal sayfası
+        # Gerçek kanal sayfası linki
         kanal_page = trgoals_ref + "/" + href.lstrip("/")
 
         # Gerçek m3u8 linki
@@ -88,7 +87,7 @@ def get_matches(domain):
             "saat": status.get_text(strip=True) if status else "",
             "takimlar": name.get_text(strip=True) if name else "",
             "canli": live,
-            "dosya": m3u8_link,
+            "dosya": m3u8_link,  # artık dosya değil direkt m3u8 linki
             "kanal_adi": (status.get_text(strip=True) + " - " + name.get_text(strip=True)).strip(),
             "tvg_id": kanal_id
         })
@@ -97,13 +96,12 @@ def get_matches(domain):
 
 
 def create_m3u(maclar):
-    """ M3U dosyasını oluştur """
     with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
         f.write("#EXTM3U\n")
         for kanal in maclar:
             f.write(f'#EXTINF:-1 tvg-id="{kanal["tvg_id"]}" group-title="TrGoals",{kanal["kanal_adi"]}\n')
             f.write(f'#EXTVLCOPT:http-referrer={trgoals_ref}\n')
-            f.write(kanal["dosya"] + "\n")
+            f.write(kanal["dosya"] + "\n")  # artık direkt gerçek m3u8 linki
 
     print(f"✔ M3U dosyası oluşturuldu: {OUTPUT_FILE}")
 
