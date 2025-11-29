@@ -1,72 +1,76 @@
 import re
-import os
-from urllib.request import urlopen, Request
+from urllib.request import Request, urlopen
 from bs4 import BeautifulSoup
 
-# Türkçe karakterleri dönüştür
-def normalize_tvg_id(name):
-    replacements = {
-        'ç': 'c', 'Ç': 'C',
-        'ş': 's', 'Ş': 'S',
-        'ı': 'i', 'İ': 'I',
-        'ğ': 'g', 'Ğ': 'G',
-        'ü': 'u', 'Ü': 'U',
-        'ö': 'o', 'Ö': 'O',
-        ' ': '-', ':': '-', '.': '-', '/': '-', ',': '-'
-    }
-    for old, new in replacements.items():
-        name = name.replace(old, new)
-    name = re.sub(r'[^a-zA-Z0-9\-]+', '', name)  # Kalan özel karakterleri temizle
-    return name.lower()
+headers = {"User-Agent": "Mozilla/5.0"}
 
-def find_working_selcuksportshd(start=1825, end=1850):
-    print("🧭 Selcuksportshd domainleri taranıyor...")
-    headers = {"User-Agent": "Mozilla/5.0"}
+def find_active_domain(start=1825, end=1850):
     for i in range(start, end+1):
         url = f"https://www.selcuksportshd{i}.xyz/"
-        print(f"🔍 Taranıyor: {url}")
         try:
             req = Request(url, headers=headers)
-            html = urlopen(req, timeout=5).read().decode('utf-8')
+            html = urlopen(req, timeout=5).read().decode()
             if "uxsyplayer" in html:
-                print(f"✅ Aktif domain bulundu: {url}")
-                return html, url
+                return url, html
         except:
             continue
-    print("❌ Aktif domain bulunamadı.")
     return None, None
 
-def parse_channel_list_html(html):
-    channels = []
+def get_player_links(html):
     soup = BeautifulSoup(html, "html.parser")
+    links = []
     div = soup.find("div", class_="channel-list")
     if div:
         for a in div.find_all("a", attrs={"data-url": True}):
-            name = a.text.strip()
-            url = a["data-url"].split("#")[0]  # #poster parametresi kırpıldı
-            channels.append({"name": name, "url": url})
-    return channels
+            links.append(a['data-url'].split("#")[0])
+    return links
 
-def write_m3u_file(channels, filename="selcukk.m3u", referer=""):
-    lines = ["#EXTM3U"]
-    for ch in channels:
-        tvg_id = normalize_tvg_id(ch['name'])
-        lines.append(f'#EXTINF:-1 tvg-id="{tvg_id}" tvg-name="{ch["name"]}" tvg-logo="https://example.com/default-logo.png" group-title="Spor",{ch["name"]}')
-        lines.append(f"#EXTVLCOPT:http-referrer={referer}")
-        lines.append(ch['url'])
-    with open(filename, "w", encoding="utf-8") as f:
-        f.write("\n".join(lines))
-    print(f"✅ M3U dosyası oluşturuldu: {filename}")
+def get_m3u8_url(player_url, referer):
+    try:
+        req = Request(player_url, headers={"User-Agent": headers["User-Agent"], "Referer": referer})
+        html = urlopen(req, timeout=5).read().decode()
+        m = re.search(r'this\.baseStreamUrl\s*=\s*[\'"]([^\'"]+)', html)
+        if m:
+            base = m.group(1)
+            # id parametreyi al
+            id_match = re.search(r'id=([a-z0-9]+)', player_url)
+            if id_match:
+                return f"{base}{id_match.group(1)}/playlist.m3u8"
+    except:
+        return None
+    return None
 
-# -------- Ana işlem --------
-html, referer_url = find_working_selcuksportshd()
-channels = []
+def normalize_tvg_id(name):
+    replacements = {'ç':'c','Ç':'C','ş':'s','Ş':'S','ı':'i','İ':'I','ğ':'g','Ğ':'G','ü':'u','Ü':'U','ö':'o','Ö':'O',' ':'-',
+                    ':':'-','.':'-','/':'-'}
+    for k,v in replacements.items():
+        name = name.replace(k,v)
+    name = re.sub(r'[^a-zA-Z0-9\-]+', '', name)
+    return name.lower()
 
-if html:
-    channels = parse_channel_list_html(html)
-    if channels:
-        write_m3u_file(channels, "selcukk.m3u", referer_url)
-    else:
-        print("❌ Kanal listesi bulunamadı.")
-else:
-    print("⛔ Hiçbir domain çalışmıyor.")
+def create_m3u(filename="selcukk.m3u"):
+    domain, html = find_active_domain()
+    if not html:
+        print("❌ Aktif domain bulunamadı")
+        return
+
+    referer = domain
+    players = get_player_links(html)
+    m3u_lines = ["#EXTM3U"]
+
+    for player in players:
+        m3u8_url = get_m3u8_url(player, referer)
+        if m3u8_url:
+            # name için id parametreden basit bir isim alabiliriz
+            name = player.split("id=")[-1]
+            tvg_id = normalize_tvg_id(name)
+            m3u_lines.append(f'#EXTINF:-1 tvg-id="{tvg_id}" tvg-name="{name}" tvg-logo="https://example.com/default-logo.png" group-title="Spor",{name}')
+            m3u_lines.append(f"#EXTVLCOPT:http-referrer={referer}")
+            m3u_lines.append(m3u8_url)
+
+    with open(filename,"w",encoding="utf-8") as f:
+        f.write("\n".join(m3u_lines))
+    print(f"✅ M3U8 dosyası oluşturuldu: {filename}")
+
+# Çalıştır
+create_m3u()
