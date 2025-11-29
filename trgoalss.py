@@ -34,13 +34,22 @@ def get_channel_m3u8(channel_url):
             return ""
         html = r.text
 
-        # Tüm m3u8 linklerini bul
+        # Sayfadaki tüm m3u8 linklerini bul
         matches = re.findall(r'https?://[^\s\'"]+\.m3u8', html)
-        for link in matches:
-            # Sadece TRGOALS altyapısı (ör. .sbs, trgoals) linkleri
-            if "sbs" in link or "trgoals" in link:
-                return link
-        return ""
+        # Sadece TRGOALS altyapısına ait linkler
+        trgoals_links = [l for l in matches if ("sbs" in l or "trgoals" in l)]
+
+        if not trgoals_links:
+            return ""  # geçerli link yok
+
+        # Öncelik: 'yayinzirve' varsa onu al
+        for l in trgoals_links:
+            if "yayinzirve" in l:
+                return l
+
+        # Yoksa ilk TRGOALS linkini döndür
+        return trgoals_links[0]
+
     except:
         return ""
 
@@ -57,7 +66,7 @@ def get_matches(domain):
 
     maclar = []
 
-    for item in soup.select("a.channel-item"):
+    for item in soup.select("a.channel-item"):  # mevcut listede sorun yok
         name = item.select_one(".channel-name")
         status = item.select_one(".channel-status")
         live = True if item.select_one(".live-badge") else False
@@ -79,7 +88,7 @@ def get_matches(domain):
             "saat": status.get_text(strip=True) if status else "",
             "takimlar": name.get_text(strip=True) if name else "",
             "canli": live,
-            "dosya": m3u8_link,  # artık gerçek link
+            "dosya": m3u8_link,
             "kanal_adi": (status.get_text(strip=True) + " - " + name.get_text(strip=True)).strip(),
             "tvg_id": kanal_id
         })
