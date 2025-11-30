@@ -1,154 +1,119 @@
 import requests
-import yaml
-import time
-from bs4 import BeautifulSoup
 from tqdm import tqdm
+from bs4 import BeautifulSoup
+from urllib.parse import urljoin
+import json
+import yaml
+import os
 
-BASE_URL = "https://puhutv.com"
-API_URL = "https://puhutv.com/api/assets/{}"
-HEADERS = {
-    "User-Agent": "Mozilla/5.0"
-}
+main_url = "https://puhutv.com/"
+diziler_url = "https://puhutv.com/dizi"
+m3u_file = "puhutv.m3u"
+yml_file = "puhutv.yml"
 
-# ---------------------------------------------------
-# Güvenli İstek Fonksiyonu (Script ASLA Durmasın)
-# ---------------------------------------------------
-def safe_get(url):
-    try:
-        r = requests.get(url, headers=HEADERS, timeout=10)
-        if r.status_code == 200:
-            return r.text
-        return None
-    except:
-        return None
+def get_series_details(series_id):
+    url = f"https://appservice.puhutv.com/service/serie/getSerieInformations?id={series_id}"
+    headers = {"User-Agent": "Mozilla/5.0"}
+    r = requests.get(url, headers=headers)
+    if r.status_code == 200:
+        return r.json()[0]
+    return {"title": "", "seasons": []}
 
-# ---------------------------------------------------
-# API JSON Çekme (Hatalı İçerik Scripti Durduramaz)
-# ---------------------------------------------------
-def safe_json(url):
-    try:
-        r = requests.get(url, headers=HEADERS, timeout=10)
-        return r.json()
-    except:
-        return None
-
-# ---------------------------------------------------
-# Tüm içerikleri listele
-# ---------------------------------------------------
-def get_all_series():
-    html = safe_get(BASE_URL)
-    if not html:
+def get_stream_urls(season_slug):
+    url = urljoin(main_url, season_slug)
+    r = requests.get(url)
+    if r.status_code != 200:
         return []
 
-    soup = BeautifulSoup(html, "html.parser")
-    links = soup.select("a[href*='-detay']")
-
-    result = []
-    for a in links:
-        href = a.get("href")
-        if href and "-detay" in href:
-            result.append(BASE_URL + href)
-
-    return list(set(result))
-
-
-# ---------------------------------------------------
-# Serie içeriğini al
-# ---------------------------------------------------
-def fetch_series(url):
-    html = safe_get(url)
-    if not html:
-        print(f"[WARN] Sayfa açılamadı: {url}")
-        return None
-
-    # asset ID yakalama
+    soup = BeautifulSoup(r.content, "html.parser")
     try:
-        asset_id = html.split('"assetId":')[1].split(",")[0].strip()
+        content = json.loads(soup.find("script", {"id": "__NEXT_DATA__"}).string)["props"]["pageProps"]["episodes"]["data"]
     except:
-        print(f"[WARN] assetId alınamadı: {url}")
-        return None
+        return []
 
-    json_data = safe_json(API_URL.format(asset_id))
+    episodes = []
+    for ep in content["episodes"]:
+        episodes.append({
+            "id": ep["id"],
+            "name": ep["name"],  # bölüm adı
+            "img": ep["image"],
+            "url": urljoin(main_url, ep["slug"]),
+            "stream_url": f"https://dygvideo.dygdigital.com/api/redirect?PublisherId=29&ReferenceId={ep['video_id']}&SecretKey=NtvApiSecret2014*&.m3u8"
+        })
+    return episodes
 
-    if not json_data or "contentData" not in json_data:
-        print(f"[WARN] contentData bulunamadı: {url}")
-        return None
+def get_all_content():
+    r = requests.get(diziler_url)
+    if r.status_code != 200:
+        return []
 
-    # contentData içinde "serie" olmayabilir → Atla!
-    serie = json_data["contentData"].get("serie")
-    if not serie:
-        print(f"[WARN] contentData/serie bulunamadı: {url}")
-        return None
+    soup = BeautifulSoup(r.content, "html.parser")
+    try:
+        container_items = json.loads(soup.find("script", {"id": "__NEXT_DATA__"}).string)["props"]["pageProps"]["data"]["data"]["container_items"]
+    except:
+        return []
 
-    episodes = serie.get("episodes", [])
-    if not episodes:
-        print(f"[WARN] bölüm verisi yok: {url}")
-        return None
+    series_list = []
+    for item in container_items:
+        for content in item["items"]:
+            series_list.append(content)
 
-    final_items = []
+    all_series = []
+    for series in tqdm(series_list, desc="Processing Series"):
+        series_id = series["id"]
+        series_name = series["name"]
+        series_slug = series["meta"]["slug"]
+        series_img = series["image"]
 
-    for ep in episodes:
-        try:
-            title = ep.get("title", "Bilinmiyor")
-            playback = ep["playback"]["url"]
-            final_items.append({
-                "title": title,
-                "url": playback
-            })
-        except:
+        series_details = get_series_details(series_id)
+        if not series_details["seasons"]:
             continue
 
-    return final_items
+        temp_series = {
+            "name": series_name,
+            "img": series_img,
+            "url": urljoin(main_url, series_slug),
+            "episodes": []
+        }
 
+        for season in series_details["seasons"]:
+            season_slug = season["slug"]
+            season_name = season["name"]
+            episodes = get_stream_urls(season_slug)
+            for ep in episodes:
+                # Burada dizinin adı + sezon + bölüm birleştirildi
+                temp_name = f"{season_name} - {ep['name']}"
+                # Boşlukları kaldırıyoruz: "1. Sezon - 1. Bölüm" -> "1.Sezon 1.Bölüm"
+                temp_name = temp_name.replace(". ", ".").replace(" - ", " ")
+                ep["full_name"] = f"{series_name} {temp_name}"
+                temp_series["episodes"].append(ep)
 
-# ---------------------------------------------------
-# YAML ve M3U oluştur
-# ---------------------------------------------------
-def save_outputs(data):
-    # YAML Kaydet
-    with open("puhutv.yml", "w", encoding="utf-8") as f:
-        yaml.dump(data, f, allow_unicode=True, sort_keys=False)
+        all_series.append(temp_series)
 
-    # M3U Kaydet
-    with open("puhutv.m3u", "w", encoding="utf-8") as f:
+    return all_series
+
+def create_m3u_file(data):
+    with open(m3u_file, "w", encoding="utf-8") as f:
         f.write("#EXTM3U\n")
-        for ch in data:
-            f.write(f'#EXTINF:-1,{ch["title"]}\n')
-            f.write(ch["url"] + "\n")
+        for series in data:
+            for ep in series["episodes"]:
+                line = f'#EXTINF:-1 tvg-id="vod.tr" tvg-name="TR: {ep["full_name"]}" tvg-logo="{ep["img"]}" group-title="PUHUTV DİZİLER",TR: {ep["full_name"]}\n{ep["stream_url"]}\n'
+                f.write(line)
+    print(f"{m3u_file} başarıyla güncellendi!")
 
-    print("\n✅ puhutv.yml ve puhutv.m3u başarıyla oluşturuldu!\n")
+def create_yaml_file(data):
+    if os.path.exists(yml_file):
+        # Eğer yml zaten varsa dokunma
+        print(f"{yml_file} zaten mevcut, oluşturulmadı.")
+        return
+    with open(yml_file, "w", encoding="utf-8") as f:
+        yaml.dump(data, f, allow_unicode=True)
+    print(f"{yml_file} başarıyla oluşturuldu!")
 
-
-# ---------------------------------------------------
-# ANA PROGRAM
-# ---------------------------------------------------
 def main():
-    print("🔍 Tüm diziler alınıyor...")
-    series_list = get_all_series()
+    data = get_all_content()
+    create_m3u_file(data)
+    create_yaml_file(data)
 
-    if not series_list:
-        print("[FATAL] Hiç içerik listelenemedi!")
-        return
-
-    print(f"📌 Toplam {len(series_list)} içerik bulundu.\n")
-
-    all_items = []
-
-    for url in tqdm(series_list, desc="Processing Series"):
-        data = fetch_series(url)
-        if data:
-            all_items.extend(data)
-        # hata olsa bile script devam eder
-        time.sleep(0.3)
-
-    if not all_items:
-        print("[WARN] Hiç veri işlenemedi ama dosyalar YİNE DE oluşturulacak!")
-        save_outputs([])
-        return
-
-    save_outputs(all_items)
-
-
-# ---------------------------------------------------
 if __name__ == "__main__":
     main()
