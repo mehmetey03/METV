@@ -16,10 +16,13 @@ jobs:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     permissions:
       contents: write
+
     steps:
       - name: Depoyu Klonla
         uses: actions/checkout@v4.2.2
-        
+        with:
+          fetch-depth: 0
+
       - name: Python 3.11 Kur
         uses: actions/setup-python@v5.3.0
         with:
@@ -38,11 +41,11 @@ jobs:
         run: |
           git diff --quiet . || echo "degisiklik=true" >> $GITHUB_OUTPUT
           
-      - name: Değişiklikleri Commit Et
+      - name: Değişiklikleri Commit Et ve Pushla
         if: steps.degisiklik_kontrol.outputs.degisiklik == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add .
           git commit -m "🔄 PuhuTV güncellendi" -m "📺 M3U ve YAML güncellendi" -m "🕒 Otomatik işlem - $GITHUB_SHA"
-          git push
+          git push --force
