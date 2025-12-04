@@ -138,9 +138,7 @@ def get_all_possible_channels():
         
         # HABER
         ("cnn-turk", "CNN TÜRK"),
-        ("ntv", "NTV"),
-        ("haberturk", "HABERTÜRK"),
-        ("tgrthaber", "TGRT HABER"),
+,
     ]
     
     for channel_id, name in tv_channels:
@@ -154,34 +152,7 @@ def get_all_possible_channels():
     football_patterns = [
         # Premier League takımları
         ("arsenal", "Arsenal"),
-        ("manchester-united", "Manchester United"),
-        ("manchester-city", "Manchester City"),
-        ("chelsea", "Chelsea"),
-        ("liverpool", "Liverpool"),
-        ("tottenham", "Tottenham"),
-        ("west-ham", "West Ham"),
-        
-        # La Liga takımları
-        ("real-madrid", "Real Madrid"),
-        ("barcelona", "Barcelona"),
-        ("atletico-madrid", "Atletico Madrid"),
-        
-        # Serie A takımları
-        ("juventus", "Juventus"),
-        ("inter-milan", "Inter Milan"),
-        ("ac-milan", "AC Milan"),
-        ("roma", "Roma"),
-        ("napoli", "Napoli"),
-        
-        # Bundesliga takımları
-        ("bayern-munich", "Bayern Munich"),
-        ("borussia-dortmund", "Borussia Dortmund"),
-        
-        # Süper Lig takımları
-        ("fenerbahce", "Fenerbahçe"),
-        ("galatasaray", "Galatasaray"),
-        ("besiktas", "Beşiktaş"),
-        ("trabzonspor", "Trabzonspor"),
+
     ]
     
     # Futbol maçları için farklı kombinasyonlar
@@ -207,14 +178,7 @@ def get_all_possible_channels():
     # 3. BASKETBOL
     basketball_teams = [
         ("anadolu-efes", "Anadolu Efes"),
-        ("fenerbahce-beko", "Fenerbahçe Beko"),
-        ("galatasaray", "Galatasaray"),
-        ("besiktas", "Beşiktaş"),
-        ("real-madrid", "Real Madrid"),
-        ("barcelona", "Barcelona"),
-        ("olympiakos", "Olympiakos"),
-        ("zalgiris-kaunas", "Zalgiris Kaunas"),
-        ("maccabi-tel-aviv", "Maccabi Tel Aviv"),
+
     ]
     
     # Basketbol maçları
