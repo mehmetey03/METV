@@ -1,207 +1,245 @@
 {
-  "generated": "2025-12-04T14:39:36.681942",
+  "generated": "2025-12-04T14:46:00.430301",
   "domain": "https://www.sporcafe15.xyz/",
-  "stream_domain": "https://main.uxsyplayer7b7d56fc37.click",
-  "total_channels": 33,
-  "successful_channels": 33,
+  "channels_count": 34,
   "channels": [
     {
       "id": "saspor",
       "name": "A Spor",
       "url": "https://dga1op10s1u3leo.b2101e1ff539c5.click/live/saspor/playlist.m3u8",
-      "group": "SPOR"
+      "tvg_id": "aspor",
+      "logo": "https://www.sporcafe15.xyz/assets/images/channels/aspor.png"
     },
     {
       "id": "sbeinsports-1",
-      "name": "beIN Sports 1",
+      "name": "BeIN Sports 1",
       "url": "https://dga1op10s1u3leo.b2101e1ff539c5.click/live/sbeinsports-1/playlist.m3u8",
-      "group": "BEIN SPORTS"
+      "tvg_id": "bein1",
+      "logo": "https://www.sporcafe15.xyz/assets/images/channels/beinsports1.png"
     },
     {
       "id": "sbeinsports-2",
-      "name": "beIN Sports 2",
+      "name": "BeIN Sports 2",
       "url": "https://dga1op10s1u3leo.b2101e1ff539c5.click/live/sbeinsports-2/playlist.m3u8",
-      "group": "BEIN SPORTS"
+      "tvg_id": "bein2",
+      "logo": "https://www.sporcafe15.xyz/assets/images/channels/beinsports2.png"
     },
     {
       "id": "sbeinsports-3",
-      "name": "beIN Sports 3",
+      "name": "BeIN Sports 3",
       "url": "https://dga1op10s1u3leo.b2101e1ff539c5.click/live/sbeinsports-3/playlist.m3u8",
-      "group": "BEIN SPORTS"
+      "tvg_id": "bein3",
+      "logo": "https://www.sporcafe15.xyz/assets/images/channels/beinsports3.png"
     },
     {
       "id": "sbeinsports-4",
-      "name": "beIN Sports 4",
+      "name": "BeIN Sports 4",
       "url": "https://dga1op10s1u3leo.b2101e1ff539c5.click/live/sbeinsports-4/playlist.m3u8",
-      "group": "BEIN SPORTS"
+      "tvg_id": "bein4",
+      "logo": "https://www.sporcafe15.xyz/assets/images/channels/beinsports4.png"
+    },
+    {
+      "id": "sbeinsports-5",
+      "name": "BeIN Sports 5",
+      "url": "https://dga1op10s1u3leo.b2101e1ff539c5.click/live/sbeinsports-5/playlist.m3u8",
+      "tvg_id": "bein5",
+      "logo": "https://www.sporcafe15.xyz/assets/images/channels/beinsports5.png"
     },
     {
       "id": "sbeinsportshaber",
-      "name": "beIN Sports Haber",
+      "name": "BeIN Sports Haber",
       "url": "https://dga1op10s1u3leo.b2101e1ff539c5.click/live/sbeinsportshaber/playlist.m3u8",
-      "group": "BEIN SPORTS"
+      "tvg_id": "beinhd",
+      "logo": "https://www.sporcafe15.xyz/assets/images/channels/beinsportshaber.png"
     },
     {
       "id": "sdazn1",
       "name": "DAZN 1",
       "url": "https://dga1op10s1u3leo.b2101e1ff539c5.click/live/sdazn1/playlist.m3u8",
-      "group": "DAZN"
+      "tvg_id": "dazn1",
+      "logo": "https://www.sporcafe15.xyz/assets/images/channels/dazn1.jpg"
     },
     {
       "id": "sdazn2",
       "name": "DAZN 2",
       "url": "https://dga1op10s1u3leo.b2101e1ff539c5.click/live/sdazn2/playlist.m3u8",
-      "group": "DAZN"
+      "tvg_id": "dazn2",
+      "logo": "https://www.sporcafe15.xyz/assets/images/channels/dazn2.png"
     },
     {
       "id": "sexxen-1",
       "name": "Exxen Spor 1",
       "url": "https://dga1op10s1u3leo.b2101e1ff539c5.click/live/sexxen-1/playlist.m3u8",
-      "group": "SPOR"
+      "tvg_id": "exxen1",
+      "logo": "https://www.sporcafe15.xyz/assets/images/channels/exxen.png"
     },
     {
       "id": "sexxen-2",
       "name": "Exxen Spor 2",
       "url": "https://dga1op10s1u3leo.b2101e1ff539c5.click/live/sexxen-2/playlist.m3u8",
-      "group": "SPOR"
+      "tvg_id": "exxen2",
+      "logo": "https://www.sporcafe15.xyz/assets/images/channels/exxen.png"
     },
     {
       "id": "sexxen-3",
       "name": "Exxen Spor 3",
       "url": "https://dga1op10s1u3leo.b2101e1ff539c5.click/live/sexxen-3/playlist.m3u8",
-      "group": "SPOR"
+      "tvg_id": "exxen3",
+      "logo": "https://www.sporcafe15.xyz/assets/images/channels/exxen.png"
     },
     {
       "id": "sexxen-4",
       "name": "Exxen Spor 4",
       "url": "https://dga1op10s1u3leo.b2101e1ff539c5.click/live/sexxen-4/playlist.m3u8",
-      "group": "SPOR"
+      "tvg_id": "exxen4",
+      "logo": "https://www.sporcafe15.xyz/assets/images/channels/exxen.png"
     },
     {
       "id": "sexxen-5",
       "name": "Exxen Spor 5",
       "url": "https://dga1op10s1u3leo.b2101e1ff539c5.click/live/sexxen-5/playlist.m3u8",
-      "group": "SPOR"
+      "tvg_id": "exxen5",
+      "logo": "https://www.sporcafe15.xyz/assets/images/channels/exxen.png"
     },
     {
       "id": "sexxen-6",
       "name": "Exxen Spor 6",
       "url": "https://dga1op10s1u3leo.b2101e1ff539c5.click/live/sexxen-6/playlist.m3u8",
-      "group": "SPOR"
+      "tvg_id": "exxen6",
+      "logo": "https://www.sporcafe15.xyz/assets/images/channels/exxen.png"
     },
     {
       "id": "sssport",
       "name": "S Sport",
       "url": "https://dga1op10s1u3leo.b2101e1ff539c5.click/live/sssport/playlist.m3u8",
-      "group": "S SPORT"
+      "tvg_id": "ssport",
+      "logo": "https://www.sporcafe15.xyz/assets/images/channels/ssport_logo.png"
     },
     {
       "id": "sssport2",
       "name": "S Sport 2",
       "url": "https://dga1op10s1u3leo.b2101e1ff539c5.click/live/sssport2/playlist.m3u8",
-      "group": "S SPORT"
+      "tvg_id": "ssport2",
+      "logo": "https://www.sporcafe15.xyz/assets/images/channels/ssport2_logo.png"
     },
     {
       "id": "sssplus1",
       "name": "S Sport Plus 1",
       "url": "https://dga1op10s1u3leo.b2101e1ff539c5.click/live/sssplus1/playlist.m3u8",
-      "group": "SPOR"
+      "tvg_id": "ssportplus1",
+      "logo": "https://www.sporcafe15.xyz/assets/images/channels/ssportplus_logo.png"
     },
     {
       "id": "sssplus2",
       "name": "S Sport Plus 2",
       "url": "https://dga1op10s1u3leo.b2101e1ff539c5.click/live/sssplus2/playlist.m3u8",
-      "group": "SPOR"
+      "tvg_id": "ssportplus2",
+      "logo": "https://www.sporcafe15.xyz/assets/images/channels/ssportplus_logo.png"
     },
     {
       "id": "ssmartspor",
       "name": "Smart Spor",
       "url": "https://dga1op10s1u3leo.b2101e1ff539c5.click/live/ssmartspor/playlist.m3u8",
-      "group": "SPOR"
+      "tvg_id": "smartspor",
+      "logo": "https://www.sporcafe15.xyz/assets/images/channels/smartspor.jpg"
     },
     {
       "id": "ssmartspor2",
       "name": "Smart Spor 2",
       "url": "https://dga1op10s1u3leo.b2101e1ff539c5.click/live/ssmartspor2/playlist.m3u8",
-      "group": "SPOR"
+      "tvg_id": "smartspor2",
+      "logo": "https://www.sporcafe15.xyz/assets/images/channels/smartspor.jpg"
     },
     {
       "id": "stabiispor-1",
       "name": "Tabii Spor 1",
       "url": "https://dga1op10s1u3leo.b2101e1ff539c5.click/live/stabiispor-1/playlist.m3u8",
-      "group": "SPOR"
+      "tvg_id": "tabii1",
+      "logo": "https://www.sporcafe15.xyz/assets/images/channels/tabiispor.png"
     },
     {
       "id": "stabiispor-2",
       "name": "Tabii Spor 2",
       "url": "https://dga1op10s1u3leo.b2101e1ff539c5.click/live/stabiispor-2/playlist.m3u8",
-      "group": "SPOR"
+      "tvg_id": "tabii2",
+      "logo": "https://www.sporcafe15.xyz/assets/images/channels/tabiispor.png"
     },
     {
       "id": "stabiispor-3",
       "name": "Tabii Spor 3",
       "url": "https://dga1op10s1u3leo.b2101e1ff539c5.click/live/stabiispor-3/playlist.m3u8",
-      "group": "SPOR"
+      "tvg_id": "tabii3",
+      "logo": "https://www.sporcafe15.xyz/assets/images/channels/tabiispor.png"
     },
     {
       "id": "stabiispor-4",
       "name": "Tabii Spor 4",
       "url": "https://dga1op10s1u3leo.b2101e1ff539c5.click/live/stabiispor-4/playlist.m3u8",
-      "group": "SPOR"
+      "tvg_id": "tabii4",
+      "logo": "https://www.sporcafe15.xyz/assets/images/channels/tabiispor.png"
     },
     {
       "id": "stabiispor-5",
       "name": "Tabii Spor 5",
       "url": "https://dga1op10s1u3leo.b2101e1ff539c5.click/live/stabiispor-5/playlist.m3u8",
-      "group": "SPOR"
+      "tvg_id": "tabii5",
+      "logo": "https://www.sporcafe15.xyz/assets/images/channels/tabiispor.png"
     },
     {
       "id": "stivibuspor-1",
       "name": "Tivibu Spor 1",
       "url": "https://dga1op10s1u3leo.b2101e1ff539c5.click/live/stivibuspor-1/playlist.m3u8",
-      "group": "SPOR"
+      "tvg_id": "tivibu1",
+      "logo": "https://www.sporcafe15.xyz/assets/images/channels/tivibu.png"
     },
     {
       "id": "stivibuspor-2",
       "name": "Tivibu Spor 2",
       "url": "https://dga1op10s1u3leo.b2101e1ff539c5.click/live/stivibuspor-2/playlist.m3u8",
-      "group": "SPOR"
+      "tvg_id": "tivibu2",
+      "logo": "https://www.sporcafe15.xyz/assets/images/channels/tivibu.png"
     },
     {
       "id": "stivibuspor-3",
       "name": "Tivibu Spor 3",
       "url": "https://dga1op10s1u3leo.b2101e1ff539c5.click/live/stivibuspor-3/playlist.m3u8",
-      "group": "SPOR"
+      "tvg_id": "tivibu3",
+      "logo": "https://www.sporcafe15.xyz/assets/images/channels/tivibu.png"
     },
     {
       "id": "stivibuspor-4",
       "name": "Tivibu Spor 4",
       "url": "https://dga1op10s1u3leo.b2101e1ff539c5.click/live/stivibuspor-4/playlist.m3u8",
-      "group": "SPOR"
+      "tvg_id": "tivibu4",
+      "logo": "https://www.sporcafe15.xyz/assets/images/channels/tivibu.png"
     },
     {
       "id": "strt1",
       "name": "TRT 1",
       "url": "https://dga1op10s1u3leo.b2101e1ff539c5.click/live/strt1/playlist.m3u8",
-      "group": "TRT"
+      "tvg_id": "trt1",
+      "logo": "https://www.sporcafe15.xyz/assets/uploads/trt1-21284924-0-0-250-250.png"
     },
     {
       "id": "strtspor",
       "name": "TRT Spor",
       "url": "https://dga1op10s1u3leo.b2101e1ff539c5.click/live/strtspor/playlist.m3u8",
-      "group": "TRT"
+      "tvg_id": "trtspor",
+      "logo": "https://www.sporcafe15.xyz/assets/images/channels/trtspor.png"
     },
     {
       "id": "strtspor2",
       "name": "TRT Spor 2",
       "url": "https://dga1op10s1u3leo.b2101e1ff539c5.click/live/strtspor2/playlist.m3u8",
-      "group": "TRT"
+      "tvg_id": "trtspor2",
+      "logo": "https://www.sporcafe15.xyz/assets/images/channels/trtspor2.png"
     },
     {
       "id": "stv8",
       "name": "TV8",
       "url": "https://dga1op10s1u3leo.b2101e1ff539c5.click/live/stv8/playlist.m3u8",
-      "group": "SPOR"
+      "tvg_id": "tv8",
+      "logo": "https://www.sporcafe15.xyz/assets/images/channels/tv8_logo.png"
     }
   ]
 }
