@@ -68,7 +68,7 @@ class JustSportHDManager:
         try:
             with open("justsporthd1.m3u", "w", encoding="utf-8") as f:
                 f.write(content if content.strip() else '#EXTM3U\n')
-            print(f"✅ justsporthd1.m3u başarıyla oluşturuldu! İçerik uzunluğu: {len(content)}")
+            print(f"✅ justsporthd.m3u başarıyla oluşturuldu! İçerik uzunluğu: {len(content)}")
         except Exception as e:
             print(f"❌ Dosya yazma hatası: {e}")
 
