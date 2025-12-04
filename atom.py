@@ -1,7 +1,7 @@
 import requests
 import re
 
-# Başlangıç URL'si
+# AtomSporTV
 START_URL = "https://url24.link/AtomSporTV"
 OUTPUT_FILE = "atom.m3u"
 
@@ -13,139 +13,120 @@ headers = {
     'Accept-Encoding': 'gzip, deflate',
     'Accept-Language': 'tr-TR,tr;q=0.8',
     'Connection': 'keep-alive',
-    'User-Agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36'
+    'User-Agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36',
+    'Referer': 'https://url24.link/'
 }
 
-def follow_redirects(start_url):
-    """Yönlendirmeleri takip ederek asıl domain'i bul"""
-    print(f"Yönlendirme takip ediliyor: {start_url}")
-    
+def get_base_domain():
+    """Ana domain'i bul"""
     try:
-        # İlk istek
-        response = requests.get(start_url, headers=headers, allow_redirects=False, timeout=10)
+        response = requests.get(START_URL, headers=headers, allow_redirects=False, timeout=10)
         
-        # Location header'ını kontrol et
         if 'location' in response.headers:
-            location1 = response.headers['location'].strip()
-            print(f"1. Yönlendirme: {location1}")
-            
-            # İkinci istek
+            location1 = response.headers['location']
             response2 = requests.get(location1, headers=headers, allow_redirects=False, timeout=10)
             
             if 'location' in response2.headers:
-                base_domain = response2.headers['location'].strip()
-                print(f"2. Yönlendirme (Ana Domain): {base_domain}")
-                return base_domain.rstrip('/')
+                base_domain = response2.headers['location'].strip().rstrip('/')
+                print(f"Ana Domain: {base_domain}")
+                return base_domain
         
-        # Eğer yönlendirme yoksa veya farklı bir yapıdaysa
-        print("Yönlendirme bulunamadı, direkt URL kullanılıyor")
-        return "https://atomsportv480.top"
+        return "https://www.atomsportv480.top"
         
     except Exception as e:
-        print(f"Yönlendirme hatası: {e}")
-        return "https://atomsportv480.top"
+        print(f"Domain hatası: {e}")
+        return "https://www.atomsportv480.top"
 
-def get_channel_list(base_domain):
-    """Kanal listesini çek"""
-    print(f"\nKanal listesi çekiliyor: {base_domain}")
-    
+def get_channel_m3u8(channel_id, base_domain):
+    """PHP mantığı ile m3u8 linkini al"""
     try:
-        # Ana sayfayı çek
-        response = requests.get(base_domain, headers=headers, timeout=10)
-        html = response.text
-        
-        # matches?id= pattern'lerini bul
-        matches = re.findall(r'matches\?id=([^"\'\s&]+)', html)
-        
-        if matches:
-            unique_matches = list(set(matches))
-            print(f"Bulunan kanallar: {len(unique_matches)}")
-            
-            # Her kanal için detaylı bilgi çek
-            channels = []
-            for match_id in unique_matches[:50]:  # İlk 50 kanal
-                channel_info = get_channel_info(base_domain, match_id)
-                if channel_info:
-                    channels.append(channel_info)
-            
-            return channels
-        else:
-            print("HTML'de match bulunamadı, alternatif yaklaşım...")
-            
-            # Alternatif: Statik kanal listesi
-            return get_static_channels()
-            
-    except Exception as e:
-        print(f"Kanal listesi çekme hatası: {e}")
-        return get_static_channels()
-
-def get_channel_info(base_domain, channel_id):
-    """Kanal bilgilerini ve m3u8 linkini al"""
-    try:
-        # matches endpoint'ini çağır
+        # 1. matches?id= endpoint
         matches_url = f"{base_domain}/matches?id={channel_id}"
         response = requests.get(matches_url, headers=headers, timeout=10)
         html = response.text
         
-        # fetch URL'sini bul (PHP'deki gibi)
+        # 2. fetch URL'sini bul
         fetch_match = re.search(r'fetch\("(.*?)"', html)
+        if not fetch_match:
+            # Alternatif pattern
+            fetch_match = re.search(r'fetch\(\s*["\'](.*?)["\']', html)
+        
         if fetch_match:
             fetch_url = fetch_match.group(1).strip()
             
-            # Origin ve Referer header'larını ekle
+            # 3. fetch URL'sine istek yap
             custom_headers = headers.copy()
             custom_headers['Origin'] = base_domain
             custom_headers['Referer'] = base_domain
             
-            # Fetch URL'sine istek yap
             if not fetch_url.endswith(channel_id):
                 fetch_url = fetch_url + channel_id
             
             response2 = requests.get(fetch_url, headers=custom_headers, timeout=10)
             fetch_data = response2.text
             
-            # m3u8 linkini bul
+            # 4. m3u8 linkini bul
             m3u8_match = re.search(r'"deismackanal":"(.*?)"', fetch_data)
             if m3u8_match:
                 m3u8_url = m3u8_match.group(1).replace('\\', '')
-                
+                return m3u8_url
+            
+            # Alternatif pattern
+            m3u8_match = re.search(r'"(?:stream|url|source)":\s*"(.*?\.m3u8)"', fetch_data)
+            if m3u8_match:
+                return m3u8_match.group(1).replace('\\', '')
+        
+        return None
+        
+    except Exception as e:
+        #print(f"  ❌ {channel_id}: {e}")
+        return None
+
+def extract_channels_from_html(html_content):
+    """HTML'den tüm kanal ID'lerini çıkar"""
+    print("HTML'den kanal ID'leri çıkarılıyor...")
+    
+    channels = []
+    
+    # Pattern 1: matches?id=XXX
+    matches1 = re.findall(r'matches\?id=([^"\'\s&]+)', html_content)
+    
+    # Pattern 2: href="matches?id=XXX"
+    matches2 = re.findall(r'href="matches\?id=([^"]+)"', html_content)
+    
+    # Pattern 3: data-matchtype içerenler
+    matches3 = re.findall(r'data-matchtype="[^"]*".*?href="matches\?id=([^"]+)"', html_content, re.DOTALL)
+    
+    # Tüm eşleşmeleri birleştir
+    all_matches = matches1 + matches2 + matches3
+    
+    if all_matches:
+        # Benzersiz değerleri al
+        unique_matches = list(set(all_matches))
+        print(f"HTML'den {len(unique_matches)} benzersiz kanal ID'si bulundu")
+        
+        for channel_id in unique_matches:
+            if channel_id and len(channel_id) > 3:
                 # Kanal adını belirle
                 channel_name = format_channel_name(channel_id)
                 
                 # Grup belirle
-                group = "TV Kanalları"
-                if any(sport in channel_id.lower() for sport in ['futboi', 'futbol']):
-                    group = "Futbol"
-                elif any(sport in channel_id.lower() for sport in ['basketboi', 'basketbol']):
-                    group = "Basketbol"
-                elif 'tenis' in channel_id.lower():
-                    group = "Tenis"
-                elif 'voleybol' in channel_id.lower():
-                    group = "Voleybol"
-                elif any(channel in channel_id.lower() for channel in ['bein', 'trt', 'aspor', 'tivibu', 's-sport']):
-                    group = "TV Kanalları"
+                group = determine_group(channel_id, channel_name)
                 
-                return {
+                channels.append({
                     'id': channel_id,
                     'name': channel_name,
-                    'group': group,
-                    'url': m3u8_url,
-                    'referer': base_domain
-                }
-        
-        print(f"  ⚠️ {channel_id}: m3u8 linki bulunamadı")
-        return None
-        
-    except Exception as e:
-        print(f"  ❌ {channel_id}: Hata - {e}")
-        return None
+                    'group': group
+                })
+    
+    return channels
 
 def format_channel_name(channel_id):
     """Kanal ID'sinden okunabilir isim oluştur"""
     # Özel isimlendirmeler
     special_names = {
         'bein-sports-1': 'BEIN SPORTS 1',
-        'bein-sports-2': 'BEIN SPORTS 2', 
+        'bein-sports-2': 'BEIN SPORTS 2',
         'bein-sports-3': 'BEIN SPORTS 3',
         'bein-sports-4': 'BEIN SPORTS 4',
         's-sport': 'S SPORT',
@@ -162,7 +143,7 @@ def format_channel_name(channel_id):
         'liverpool-sunderland-futboi': 'Liverpool vs Sunderland',
         'anadolu-efes-real-madrid-basketboi': 'Anadolu Efes vs Real Madrid',
         'zalgiris-kaunas-maccabi-tel-aviv-basketboi': 'Zalgiris vs Maccabi Tel Aviv',
-        'olympiakos-fenerbahce-beko-basketboi': 'Olympiakos vs Fenerbahçe',
+        'olympiakos-fenerbahce-beko-basketboi': 'Olympiakos vs Fenerbahçe Beko',
     }
     
     if channel_id in special_names:
@@ -179,43 +160,99 @@ def format_channel_name(channel_id):
     
     return name
 
-def get_static_channels():
-    """Statik kanal listesi (fallback)"""
-    print("Statik kanal listesi kullanılıyor...")
+def determine_group(channel_id, channel_name):
+    """Kanal grubunu belirle"""
+    # TV kanalları
+    tv_keywords = ['bein', 'trt', 'aspor', 'tivibu', 's-sport', 'sport', 'tv']
+    if any(keyword in channel_id.lower() for keyword in tv_keywords):
+        return "TV Kanalları"
     
-    static_channels = [
-        # TV Kanalları
-        {'id': 'bein-sports-1', 'name': 'BEIN SPORTS 1', 'group': 'TV Kanalları'},
-        {'id': 'bein-sports-2', 'name': 'BEIN SPORTS 2', 'group': 'TV Kanalları'},
-        {'id': 'bein-sports-3', 'name': 'BEIN SPORTS 3', 'group': 'TV Kanalları'},
-        {'id': 'bein-sports-4', 'name': 'BEIN SPORTS 4', 'group': 'TV Kanalları'},
-        {'id': 's-sport', 'name': 'S SPORT', 'group': 'TV Kanalları'},
-        {'id': 's-sport-2', 'name': 'S SPORT 2', 'group': 'TV Kanalları'},
-        {'id': 'tivibu-spor-1', 'name': 'TİVİBU SPOR 1', 'group': 'TV Kanalları'},
-        {'id': 'tivibu-spor-2', 'name': 'TİVİBU SPOR 2', 'group': 'TV Kanalları'},
-        {'id': 'tivibu-spor-3', 'name': 'TİVİBU SPOR 3', 'group': 'TV Kanalları'},
-        {'id': 'aspor', 'name': 'ASPOR', 'group': 'TV Kanalları'},
-        {'id': 'trt-spor', 'name': 'TRT SPOR', 'group': 'TV Kanalları'},
-        {'id': 'trt-yildiz', 'name': 'TRT YILDIZ', 'group': 'TV Kanalları'},
-        {'id': 'trt1', 'name': 'TRT 1', 'group': 'TV Kanalları'},
-        
-        # Örnek maçlar
-        {'id': 'arsenal-brentford-futboi', 'name': 'Arsenal vs Brentford', 'group': 'Futbol'},
-        {'id': 'leeds-united-chelsea-futboi', 'name': 'Leeds United vs Chelsea', 'group': 'Futbol'},
-        {'id': 'liverpool-sunderland-futboi', 'name': 'Liverpool vs Sunderland', 'group': 'Futbol'},
-        {'id': 'anadolu-efes-real-madrid-basketboi', 'name': 'Anadolu Efes vs Real Madrid', 'group': 'Basketbol'},
-        {'id': 'zalgiris-kaunas-maccabi-tel-aviv-basketboi', 'name': 'Zalgiris vs Maccabi Tel Aviv', 'group': 'Basketbol'},
-    ]
+    # Spor türleri
+    if 'futboi' in channel_id or 'futbol' in channel_name.lower():
+        return "Futbol"
+    elif 'basketboi' in channel_id or 'basketbol' in channel_name.lower():
+        return "Basketbol"
+    elif 'tenis' in channel_id.lower() or 'tenis' in channel_name.lower():
+        return "Tenis"
+    elif 'voleybol' in channel_id.lower() or 'voleybol' in channel_name.lower():
+        return "Voleybol"
+    elif 'hokey' in channel_id.lower() or 'hokey' in channel_name.lower():
+        return "Buz Hokeyi"
+    elif 'masa' in channel_id.lower() or 'masa' in channel_name.lower():
+        return "Masa Tenisi"
+    elif 'espor' in channel_id.lower() or 'e-spor' in channel_name.lower():
+        return "e-Sporlar"
     
-    # URL'leri oluştur
-    for channel in static_channels:
-        channel['url'] = f"https://atomsportv480.top/matches?id={channel['id']}"
-        channel['referer'] = "https://atomsportv480.top"
-    
-    return static_channels
+    return "Diğer"
 
-def create_m3u(channels):
+def get_dynamic_channels():
+    """Dinamik olarak yüklenen kanalları al"""
+    print("\nDinamik kanallar alınıyor...")
+    
+    try:
+        # Fetch API endpoint'inden veri al
+        fetch_url = "https://analyticsjs.sbs/load/matches.php"
+        response = requests.get(fetch_url, headers=headers, timeout=10)
+        
+        if response.status_code == 200:
+            html = response.text
+            return extract_channels_from_html(html)
+        else:
+            print(f"Fetch API hatası: {response.status_code}")
+            return []
+            
+    except Exception as e:
+        print(f"Fetch hatası: {e}")
+        return []
+
+def get_static_html():
+    """Statik HTML'yi al (debug için)"""
+    print("Statik HTML analiz ediliyor...")
+    
+    # Burada verdiğiniz HTML'yi kullanacağız
+    html_content = """
+    [YUKARIDAKİ HTML İÇERİĞİ BURAYA GELECEK]
+    """
+    
+    return extract_channels_from_html(html_content)
+
+def test_and_create_m3u(channels, base_domain, max_test=None):
+    """Kanalları test et ve M3U oluştur"""
+    if not channels:
+        print("❌ Test edilecek kanal yok!")
+        return []
+    
+    if max_test:
+        channels = channels[:max_test]
+    
+    print(f"\n{len(channels)} kanal test ediliyor...")
+    
+    working_channels = []
+    
+    for i, channel in enumerate(channels):
+        channel_id = channel["id"]
+        channel_name = channel["name"]
+        group = channel["group"]
+        
+        print(f"{i+1:3d}. {channel_name[:40]:40s}...", end=" ", flush=True)
+        
+        m3u8_url = get_channel_m3u8(channel_id, base_domain)
+        
+        if m3u8_url:
+            print(f"{GREEN}✓{RESET}")
+            channel['url'] = m3u8_url
+            working_channels.append(channel)
+        else:
+            print("✗")
+    
+    return working_channels
+
+def create_m3u_file(working_channels, base_domain):
     """M3U dosyası oluştur"""
+    if not working_channels:
+        print("❌ M3U oluşturmak için çalışan kanal yok!")
+        return
+    
     print(f"\nM3U dosyası oluşturuluyor: {OUTPUT_FILE}")
     
     with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
@@ -223,97 +260,95 @@ def create_m3u(channels):
         
         # Gruplara göre sırala
         groups = {}
-        for channel in channels:
+        for channel in working_channels:
             group = channel.get("group", "Diğer")
             if group not in groups:
                 groups[group] = []
             groups[group].append(channel)
         
-        # Toplam kanal sayısı
-        total_channels = sum(len(channels) for channels in groups.values())
-        
-        # Her grup için kanalları yaz
+        # Her grup için
         for group_name, group_channels in groups.items():
-            print(f"  {group_name}: {len(group_channels)} kanal")
+            print(f"{group_name}: {len(group_channels)} kanal")
             
             for channel in group_channels:
                 channel_id = channel["id"]
                 channel_name = channel["name"]
-                channel_url = channel.get("url", f"https://atomsportv480.top/matches?id={channel_id}")
-                referer = channel.get("referer", "https://atomsportv480.top")
+                m3u8_url = channel["url"]
                 
                 # EXTINF satırı
                 f.write(f'#EXTINF:-1 tvg-id="{channel_id}" tvg-name="{channel_name}" group-title="{group_name}",{channel_name}\n')
                 
                 # VLC seçenekleri
-                f.write(f'#EXTVLCOPT:http-referrer={referer}\n')
+                f.write(f'#EXTVLCOPT:http-referrer={base_domain}\n')
                 f.write(f'#EXTVLCOPT:http-user-agent={headers["User-Agent"]}\n')
                 
-                # URL (gerçek m3u8 linki varsa onu kullan, yoksa matches linkini)
-                if 'm3u8' in channel_url or 'mp4' in channel_url or 'ts' in channel_url:
-                    f.write(channel_url + "\n")
-                else:
-                    # Gerçek link bulunamadı, matches linkini kullan
-                    f.write(channel_url + "\n")
+                # URL
+                f.write(m3u8_url + "\n")
     
     print(f"\n{GREEN}[✓] M3U dosyası oluşturuldu: {OUTPUT_FILE}{RESET}")
-    print(f"Toplam {total_channels} kanal eklendi.")
-
-def test_single_channel():
-    """Tek bir kanalı test et"""
-    print("\n" + "="*50)
-    print("Tek kanal testi:")
-    
-    # Test için bir kanal ID'si
-    test_id = "bein-sports-1"
-    base_domain = follow_redirects(START_URL)
-    
-    print(f"\nTest kanalı: {test_id}")
-    channel_info = get_channel_info(base_domain, test_id)
-    
-    if channel_info:
-        print(f"  ✓ Kanal adı: {channel_info['name']}")
-        print(f"  ✓ Grup: {channel_info['group']}")
-        print(f"  ✓ URL: {channel_info['url'][:80]}...")
-        return True
-    else:
-        print(f"  ✗ Kanal bilgisi alınamadı")
-        return False
+    print(f"Toplam {len(working_channels)} çalışan kanal eklendi.")
 
 def main():
-    print(f"{GREEN}AtomSporTV M3U Oluşturucu (PHP Mantığı){RESET}")
-    print("=" * 60)
+    print(f"{GREEN}AtomSporTV M3U Oluşturucu - HTML Parser{RESET}")
+    print("=" * 70)
     
-    # 1. Önce tek kanal testi yap
-    print("\n1. Sistem test ediliyor...")
-    test_passed = test_single_channel()
+    # 1. Ana domain'i bul
+    print("\n1. Ana domain bulunuyor...")
+    base_domain = get_base_domain()
     
-    if not test_passed:
-        print("\n⚠️ Test başarısız, statik liste kullanılacak")
-        channels = get_static_channels()
-    else:
-        # 2. Yönlendirmeleri takip et
-        print("\n2. Ana domain bulunuyor...")
-        base_domain = follow_redirects(START_URL)
+    # 2. Dinamik kanalları al
+    print("\n2. Dinamik kanallar alınıyor...")
+    dynamic_channels = get_dynamic_channels()
+    
+    # 3. Eğer dinamik kanal yoksa, statik HTML'yi kullan
+    if not dynamic_channels:
+        print("Dinamik kanal bulunamadı, verilen HTML kullanılıyor...")
         
-        # 3. Kanal listesini çek
-        print("\n3. Kanal listesi alınıyor...")
-        channels = get_channel_list(base_domain)
+        # Verdiğiniz HTML'yi dosyadan oku
+        try:
+            with open("atom_page.html", "r", encoding="utf-8") as f:
+                html_content = f.read()
+                dynamic_channels = extract_channels_from_html(html_content)
+        except:
+            print("HTML dosyası bulunamadı, örnek HTML kullanılıyor...")
+            # Burada sizin verdiğiniz HTML kısmını kullanabiliriz
+            # Şimdilik boş bırakalım
     
-    # 4. M3U oluştur
+    print(f"\nToplam {len(dynamic_channels)} kanal bulundu")
+    
+    if not dynamic_channels:
+        print("❌ Hiç kanal bulunamadı!")
+        return
+    
+    # 4. İlk 50 kanalı test et
+    print("\n3. Kanallar test ediliyor...")
+    working_channels = test_and_create_m3u(dynamic_channels, base_domain, max_test=50)
+    
+    # 5. M3U oluştur
     print("\n4. M3U dosyası oluşturuluyor...")
-    create_m3u(channels)
+    create_m3u_file(working_channels, base_domain)
     
-    # 5. Örnek çıktı
-    print("\n" + "=" * 60)
-    print("İlk 10 kanal:")
-    for i, channel in enumerate(channels[:10]):
-        group = channel.get('group', 'Diğer')
-        name = channel['name']
-        print(f"  {i+1}. [{group}] {name}")
+    # 6. Sonuçları göster
+    print("\n" + "=" * 70)
+    print("ÇALIŞAN KANALLAR:")
     
-    # 6. GitHub komutları
-    print("\n" + "=" * 60)
+    groups = {}
+    for channel in working_channels:
+        group = channel.get("group", "Diğer")
+        if group not in groups:
+            groups[group] = []
+        groups[group].append(channel["name"])
+    
+    for group_name, channel_names in groups.items():
+        print(f"\n{group_name} ({len(channel_names)}):")
+        for name in channel_names[:10]:  # İlk 10'u göster
+            print(f"  ✓ {name}")
+        
+        if len(channel_names) > 10:
+            print(f"  ... ve {len(channel_names) - 10} kanal daha")
+    
+    # 7. GitHub komutları
+    print("\n" + "=" * 70)
     print("GitHub komutları:")
     print(f"  git add {OUTPUT_FILE}")
     print('  git commit -m "AtomSporTV M3U güncellemesi"')
