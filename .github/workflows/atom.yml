@@ -31,13 +31,13 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Atom M3U oluştur (trgoalss.py)
+      - name: Atom M3U oluştur (atom.py)
         run: python atom.py
 
       - name: Değişiklikleri Commit et
         run: |
           git add atom.m3u
-          git commit -m "Auto-update trgoalss.m3u" || echo "No changes to commit"
+          git commit -m "Auto-update atom.m3u" || echo "No changes to commit"
 
       - name: Uzaktaki değişiklikleri çek
         run: |
