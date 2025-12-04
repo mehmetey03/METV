@@ -11,15 +11,13 @@ headers = {
     "Accept": "*/*"
 }
 
-
 # -------------------------------------------------------
-# 1) Aktif AtomSpor domain bulma
+# 1) Aktif domain bul
 # -------------------------------------------------------
 def get_base_domain():
     try:
         r1 = requests.get(START_URL, headers=headers, allow_redirects=False, timeout=10)
         loc1 = r1.headers.get("location")
-
         if not loc1:
             return "https://www.atomsportv480.top"
 
@@ -36,43 +34,41 @@ def get_base_domain():
 
 
 # -------------------------------------------------------
-# 2) Tüm kanal ID’lerini toplama
+# 2) Tüm kanalları resmi API'den çek
 # -------------------------------------------------------
-def get_all_channel_ids(base):
-    print("\nKanal ID'leri alınıyor...")
+def get_channel_list(base):
+    url = base + "/home/channels.php"
 
-    r = requests.get(base, headers=headers)
-    html = r.text
+    print("\nKanal listesi çekiliyor:", url)
 
-    ids = re.findall(r"yayinlink\.php\?id=(\d+)", html)
-    ids2 = re.findall(r"data-id=[\"'](\d+)[\"']", html)
-    ids3 = re.findall(r"(\d+)\.m3u8", html)
+    try:
+        r = requests.get(url, headers=headers, timeout=10)
+        js = json.loads(r.text)
 
-    all_ids = list(set(ids + ids2 + ids3))
+        print(f"Toplam {len(js)} kanal bulundu.")
+        return js
 
-    print(f"Toplam {len(all_ids)} ID bulundu.")
-    return all_ids
+    except Exception as e:
+        print("Kanal listesi okunamadı:", e)
+        return []
 
 
 # -------------------------------------------------------
-# 3) ID → yayınlink.php → gerçek .m3u8 alma
+# 3) yayınlink.php → ID → gerçek m3u8
 # -------------------------------------------------------
 def get_m3u8_from_yayinlink(channel_id):
     try:
         url = f"https://analyticsjs.sbs/load/yayinlink.php?id={channel_id}"
         r = requests.get(url, headers=headers, timeout=10)
-        text = r.text
 
-        # JSON → { "link": "https://......m3u8" }
         try:
-            js = json.loads(text)
+            js = json.loads(r.text)
             if "link" in js:
                 return js["link"]
         except:
             pass
 
-        # fallback regex
-        m = re.search(r'(https?://[^\s"]+\.m3u8[^\s"]*)', text)
+        m = re.search(r'(https?://[^\s"]+\.m3u8[^\s"]*)', r.text)
         if m:
             return m.group(1)
 
@@ -83,36 +79,29 @@ def get_m3u8_from_yayinlink(channel_id):
 
 
 # -------------------------------------------------------
-# 4) fetch(...) → deismackanal → m3u8 alma
+# 4) fetch(...) → deismackanal → m3u8
 # -------------------------------------------------------
-def get_m3u8_by_fetch(channel_id, base):
+def get_m3u8_by_fetch(channel_slug, base):
     try:
-        matches_url = f"{base}/matches?id={channel_id}"
-        response = requests.get(matches_url, headers=headers, timeout=10)
-        html = response.text
+        page = f"{base}/{channel_slug}"
+        r = requests.get(page, headers=headers, timeout=10)
+        html = r.text
 
         fetch_match = re.search(r'fetch\(["\'](.*?)["\']', html)
         if not fetch_match:
             return None
 
-        fetch_url = fetch_match.group(1)
-        if not fetch_url.endswith(channel_id):
-            fetch_url += channel_id
+        api = fetch_match.group(1)
+        if api.startswith("/"):
+            api = base + api
 
-        custom_headers = headers.copy()
-        custom_headers['Origin'] = base
-        custom_headers['Referer'] = base
+        r2 = requests.get(api, headers=headers, timeout=10)
 
-        r2 = requests.get(fetch_url, headers=custom_headers, timeout=10)
-        text = r2.text
-
-        # yeni API
-        m1 = re.search(r'"deismackanal":"(.*?)"', text)
+        m1 = re.search(r'"deismackanal":"(.*?)"', r2.text)
         if m1:
             return m1.group(1).replace("\\", "")
 
-        # eski API
-        m2 = re.search(r'"(?:stream|url|source)":\s*"(.*?\.m3u8)"', text)
+        m2 = re.search(r'"(?:stream|url)":\s*"(.*?\.m3u8)"', r2.text)
         if m2:
             return m2.group(1).replace("\\", "")
 
@@ -123,47 +112,56 @@ def get_m3u8_by_fetch(channel_id, base):
 
 
 # -------------------------------------------------------
-# 5) Bir kanalı çözme (en güçlü yöntem)
+# 5) kanal çözme
 # -------------------------------------------------------
-def get_channel_m3u8(channel_id, base):
-    # 1. fetch yöntemi
-    m3u8 = get_m3u8_by_fetch(channel_id, base)
+def resolve_channel(ch, base):
+    cid = ch["id"]
+    slug = ch["name"]
 
-    # 2. yayınlink yöntemi
-    if not m3u8:
-        m3u8 = get_m3u8_from_yayinlink(channel_id)
+    # 1) fetch → maç + premium kanallar
+    m3u8 = get_m3u8_by_fetch(slug, base)
+    if m3u8:
+        return m3u8
 
-    return m3u8
+    # 2) ID → yayınlink → xmediaget
+    m3u8 = get_m3u8_from_yayinlink(cid)
+    if m3u8:
+        return m3u8
+
+    return None
 
 
 # -------------------------------------------------------
-# 6) M3U yazma
+# 6) M3U yaz
 # -------------------------------------------------------
 def create_m3u(base, channels):
     with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
         f.write("#EXTM3U\n")
 
-        for cid in channels:
-            print(f"→ {cid} işleniyor...", end=" ")
+        for ch in channels:
+            cid = ch["id"]
+            name = ch["name"]
 
-            m3u8_real = get_channel_m3u8(cid, base)
+            print(f"→ {name} ({cid}) çözülüyor...", end=" ")
 
-            if not m3u8_real:
+            m3u8 = resolve_channel(ch, base)
+
+            if not m3u8:
                 print("✗")
                 continue
 
             print("✓")
 
-            f.write(f'#EXTINF:-1 tvg-id="{cid}" tvg-name="{cid}" group-title="Diğer",{cid}\n')
+            f.write(f'#EXTINF:-1 tvg-id="{cid}" tvg-name="{name}" group-title="AtomSpor",{name}\n')
             f.write(f"#EXTVLCOPT:http-referrer={base}\n")
             f.write(f"#EXTVLCOPT:http-user-agent={headers['User-Agent']}\n")
-            f.write(m3u8_real + "\n")
+            f.write(m3u8 + "\n")
 
-    print("\nM3U Hazır →", OUTPUT_FILE)
+    print("\n[✓] M3U oluştı: atom.m3u")
 
 
 # -------------------------------------------------------
-# 7) MAIN
+# MAIN
 # -------------------------------------------------------
 def main():
     print("AtomSporTV — Tüm kanallar çekiliyor...\n")
@@ -171,10 +169,11 @@ def main():
     base = get_base_domain()
     print("Aktif domain:", base)
 
-    ids = get_all_channel_ids(base)
-    create_m3u(base, ids)
+    channels = get_channel_list(base)
 
-    print("\nToplam kanal:", len(ids))
+    create_m3u(base, channels)
+
+    print("\nToplam kanal:", len(channels))
 
 
 if __name__ == "__main__":
