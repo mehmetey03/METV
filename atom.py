@@ -1,10 +1,4 @@
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from bs4 import BeautifulSoup
-import time
+import requests
 import re
 
 # AtomSporTV ana sayfası
@@ -14,226 +8,193 @@ OUTPUT_FILE = "atom.m3u"
 GREEN = "\033[92m"
 RESET = "\033[0m"
 
-def setup_driver():
-    """Selenium driver'ını kur"""
-    chrome_options = Options()
-    chrome_options.add_argument("--headless")  # Arka planda çalıştır
-    chrome_options.add_argument("--no-sandbox")
-    chrome_options.add_argument("--disable-dev-shm-usage")
-    chrome_options.add_argument("--disable-gpu")
-    chrome_options.add_argument("--window-size=1920,1080")
-    chrome_options.add_argument("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36")
+# Orijinal HTML örneğinden aldığımız kanal listesi
+STATIC_CHANNELS = [
+    # Maçlar (Futbol)
+    {"id": "arsenal-brentford-futboi", "name": "Arsenal vs Brentford", "group": "Futbol"},
+    {"id": "17839903", "name": "Brighton & Hove Albion vs Aston Villa", "group": "Futbol TR"},
+    {"id": "17839900", "name": "Burnley vs Crystal Palace", "group": "Futbol TR"},
+    {"id": "leeds-united-chelsea-futboi", "name": "Leeds United vs Chelsea", "group": "Futbol TR"},
+    {"id": "liverpool-sunderland-futboi", "name": "Liverpool vs Sunderland", "group": "Futbol TR"},
+    {"id": "yalova-fk-gaziantep-fk-futboi", "name": "Yalova FK vs Gaziantep FK", "group": "Futbol"},
+    {"id": "igdir-fk-orduspor-1967-sk-futboi", "name": "Iğdır FK vs Orduspor 1967 SK", "group": "Futbol"},
+    {"id": "silifke-belediye-spor-antalyaspor-futboi", "name": "Silifke Belediye Spor vs Antalyaspor", "group": "Futbol"},
+    {"id": "bologna-parma-futboi", "name": "Bologna vs Parma", "group": "Futbol"},
+    {"id": "corum-fk-alanyaspor-futboi", "name": "Çorum FK vs Alanyaspor", "group": "Futbol"},
+    {"id": "manchester-united-west-ham-united-futboi", "name": "Manchester United vs West Ham United", "group": "Futbol"},
+    {"id": "lazio-milan-futboi", "name": "Lazio vs Milan", "group": "Futbol"},
     
-    driver = webdriver.Chrome(options=chrome_options)
-    return driver
+    # Basketbol
+    {"id": "anadolu-efes-real-madrid-basketboi", "name": "Anadolu Efes vs Real Madrid", "group": "Basketbol"},
+    {"id": "zalgiris-kaunas-maccabi-tel-aviv-basketboi", "name": "Zalgiris Kaunas vs Maccabi Tel Aviv", "group": "Basketbol"},
+    {"id": "olympiakos-fenerbahce-beko-basketboi", "name": "Olympiakos vs Fenerbahçe Beko", "group": "Basketbol"},
+    
+    # TV Kanalları (Orijinal HTML'den)
+    {"id": "bein-sports-1", "name": "BEIN SPORTS 1", "group": "TV Kanalları", "type": "tv"},
+    {"id": "bein-sports-2", "name": "BEIN SPORTS 2", "group": "TV Kanalları", "type": "tv"},
+    {"id": "bein-sports-3", "name": "BEIN SPORTS 3", "group": "TV Kanalları", "type": "tv"},
+    {"id": "bein-sports-4", "name": "BEIN SPORTS 4", "group": "TV Kanalları", "type": "tv"},
+    {"id": "s-sport", "name": "S SPORT", "group": "TV Kanalları", "type": "tv"},
+    {"id": "s-sport-2", "name": "S SPORT 2", "group": "TV Kanalları", "type": "tv"},
+    {"id": "tivibu-spor-1", "name": "TİVİBU SPOR 1", "group": "TV Kanalları", "type": "tv"},
+    {"id": "tivibu-spor-2", "name": "TİVİBU SPOR 2", "group": "TV Kanalları", "type": "tv"},
+    {"id": "tivibu-spor-3", "name": "TİVİBU SPOR 3", "group": "TV Kanalları", "type": "tv"},
+    {"id": "aspor", "name": "ASPOR", "group": "TV Kanalları", "type": "tv"},
+    {"id": "trt-spor", "name": "TRT SPOR", "group": "TV Kanalları", "type": "tv"},
+    {"id": "trt-yildiz", "name": "TRT YILDIZ", "group": "TV Kanalları", "type": "tv"},
+    {"id": "trt1", "name": "TRT1", "group": "TV Kanalları", "type": "tv"},
+]
 
-def get_content_with_selenium():
-    """Selenium ile dinamik içeriği çek"""
-    print("Selenium ile sayfa yükleniyor...")
-    driver = None
+def try_get_live_matches():
+    """
+    Canlı maçları çekmeyi dene
+    """
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
+        "Accept-Language": "tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7",
+        "Cache-Control": "no-cache",
+        "Pragma": "no-cache"
+    }
     
     try:
-        driver = setup_driver()
-        driver.get(ATOMSPORTV_URL)
+        print(f"Canlı veri çekilmeye çalışılıyor: {ATOMSPORTV_URL}")
+        response = requests.get(ATOMSPORTV_URL, headers=headers, timeout=10)
         
-        # Sayfanın tam yüklenmesini bekle
-        time.sleep(5)
-        
-        # Maçların yüklenmesi için daha fazla bekle
-        print("Maç listesi yükleniyor, bekleniyor...")
-        time.sleep(3)
-        
-        # Sayfa kaynağını al
-        page_source = driver.page_source
-        
-        # Debug için kaydet
-        with open("selenium_page.html", "w", encoding="utf-8") as f:
-            f.write(page_source)
-        print("Selenium HTML kaydedildi: selenium_page.html")
-        
-        soup = BeautifulSoup(page_source, 'html.parser')
-        
-        # Tüm linkleri kontrol et
-        all_links = soup.find_all('a')
-        print(f"\nSelenium ile bulunan toplam link: {len(all_links)}")
-        
-        # matches içeren linkleri bul
-        match_links = []
-        for link in all_links:
-            href = link.get('href', '')
-            if href and 'matches' in href.lower():
-                match_links.append((href, link.get_text(strip=True)))
-        
-        print(f"'matches' içeren linkler: {len(match_links)}")
-        
-        # Linkleri göster
-        for i, (href, text) in enumerate(match_links[:10]):
-            print(f"  {i+1}. Href: {href}")
-            print(f"     Text: {text[:50]}...")
-        
-        # Eğer hala match yoksa, iframe veya başka elementleri kontrol et
-        if not match_links:
-            print("\nMatch linki bulunamadı, alternatif tarama...")
+        if response.status_code == 200:
+            content = response.text
             
-            # Tüm onclick eventlerini kontrol et
-            onclick_elements = soup.find_all(attrs={"onclick": True})
-            print(f"onclick elementleri: {len(onclick_elements)}")
-            
-            # Tüm script tag'lerini kontrol et
-            scripts = soup.find_all('script')
-            print(f"Script tag'leri: {len(scripts)}")
-            
-            # Script'lerde matches kelimesini ara
-            matches_in_scripts = []
-            for script in scripts:
-                if script.string and 'matches' in script.string.lower():
-                    matches_in_scripts.append(script.string[:200])
-            
-            print(f"'matches' içeren script'ler: {len(matches_in_scripts)}")
-        
-        return match_links
-        
-    except Exception as e:
-        print(f"Selenium hatası: {e}")
-        import traceback
-        traceback.print_exc()
-        return []
-    
-    finally:
-        if driver:
-            driver.quit()
-
-def get_matches_from_api():
-    """
-    API veya alternatif kaynaktan maçları çekmeyi dene
-    """
-    print("\nAlternatif kaynaklardan veri çekiliyor...")
-    
-    # Farklı URL'leri deneyelim
-    urls_to_try = [
-        "https://atomsportv480.top/",
-        "https://atomsportv481.top/",
-        "https://trgoals1472.xyz/",
-    ]
-    
-    all_matches = []
-    
-    for url in urls_to_try:
-        try:
-            import requests
-            headers = {
-                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
-            }
-            
-            print(f"\n{url} deneniyor...")
-            r = requests.get(url, headers=headers, timeout=10)
-            
-            # Regex ile tüm matches linklerini bul
-            matches = re.findall(r'(matches\?id=[^"\s]+)', r.text)
+            # matches?id= ile başlayan tüm linkleri bul
+            matches = re.findall(r'matches\?id=([^"\s&]+)', content)
             if matches:
                 unique_matches = list(set(matches))
-                print(f"  {len(unique_matches)} match bulundu")
-                all_matches.extend([(match, "") for match in unique_matches])
+                print(f"Canlı olarak {len(unique_matches)} maç/kanal bulundu")
                 
-                # İlk 3'ü göster
-                for match in unique_matches[:3]:
-                    print(f"    - {match}")
-            else:
-                print("  Match bulunamadı")
+                channels = []
+                for match_id in unique_matches:
+                    # Kanal adını belirle
+                    channel_name = match_id.replace('-', ' ').title()
+                    
+                    # Özel isimlendirmeler
+                    if 'bein-sports' in match_id:
+                        channel_name = match_id.upper().replace('-', ' ')
+                    elif 'trt' in match_id:
+                        channel_name = match_id.upper()
+                    elif 'aspor' in match_id:
+                        channel_name = 'ASPOR'
+                    elif 's-sport' in match_id:
+                        channel_name = match_id.upper().replace('-', ' ')
+                    elif 'tivibu' in match_id:
+                        channel_name = match_id.upper().replace('-', ' ')
+                    
+                    # Grup belirle
+                    group = "TV Kanalları"
+                    if any(sport in match_id for sport in ['futboi', 'futbol']):
+                        group = "Futbol"
+                    elif any(sport in match_id for sport in ['basketboi', 'basketbol']):
+                        group = "Basketbol"
+                    elif 'tenis' in match_id.lower():
+                        group = "Tenis"
+                    elif 'voleybol' in match_id.lower():
+                        group = "Voleybol"
+                    
+                    channels.append({
+                        "id": match_id,
+                        "name": channel_name,
+                        "group": group
+                    })
                 
-        except Exception as e:
-            print(f"  Hata: {e}")
-    
-    return all_matches
+                return channels
+            
+        print("Canlı veri alınamadı, statik liste kullanılacak")
+        return []
+        
+    except Exception as e:
+        print(f"Canlı veri hatası: {e}")
+        return []
 
-def create_m3u_from_links(match_links):
-    """Linklerden M3U dosyası oluştur"""
-    if not match_links:
-        print("❌ M3U oluşturmak için yeterli veri yok!")
-        return
-    
+def create_m3u(channels):
+    """
+    M3U dosyası oluştur
+    """
     with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
         f.write("#EXTM3U\n")
         
-        for i, (href, text) in enumerate(match_links):
-            # Href tam URL mi kontrol et
-            if href.startswith('http'):
-                full_url = href
-            else:
-                full_url = f"{ATOMSPORTV_URL}{href}" if not href.startswith('/') else f"{ATOMSPORTV_URL.rstrip('/')}{href}"
+        # Gruplara göre sırala
+        groups = {}
+        for channel in channels:
+            group = channel.get("group", "Diğer")
+            if group not in groups:
+                groups[group] = []
+            groups[group].append(channel)
+        
+        # Her grup için kanalları yaz
+        for group_name, group_channels in groups.items():
+            print(f"{group_name}: {len(group_channels)} kanal")
             
-            # Match ID'yi çıkar
-            match_id = ""
-            if 'id=' in href:
-                match_id = href.split('id=')[-1].split('&')[0]
-            else:
-                match_id = href.split('/')[-1] if '/' in href else href
-            
-            # Kanal adı
-            if text:
-                channel_name = text
-            else:
-                channel_name = f"Channel {i+1} - {match_id}"
-            
-            # Kısa isim
-            short_name = channel_name[:50]
-            
-            f.write(f'#EXTINF:-1 tvg-id="{match_id}" group-title="AtomSporTV",{short_name}\n')
-            f.write(f'#EXTVLCOPT:http-referrer={ATOMSPORTV_URL}\n')
-            f.write(f'#EXTVLCOPT:http-user-agent=Mozilla/5.0\n')
-            f.write(full_url + "\n")
+            for channel in group_channels:
+                channel_id = channel["id"]
+                channel_name = channel["name"]
+                
+                # M3U8 URL'si
+                m3u8_url = f"{ATOMSPORTV_URL}matches?id={channel_id}"
+                
+                # EXTINF satırı
+                f.write(f'#EXTINF:-1 tvg-id="{channel_id}" group-title="{group_name}",{channel_name}\n')
+                
+                # VLC seçenekleri
+                f.write(f'#EXTVLCOPT:http-referrer={ATOMSPORTV_URL}\n')
+                f.write(f'#EXTVLCOPT:http-user-agent=Mozilla/5.0\n')
+                
+                # URL
+                f.write(m3u8_url + "\n")
     
     print(f"\n{GREEN}[✓] M3U dosyası oluşturuldu: {OUTPUT_FILE}{RESET}")
-    print(f"Toplam {len(match_links)} kanal eklendi.")
+    print(f"Toplam {len(channels)} kanal eklendi.")
 
-# --- ANA PROGRAM ---
-print(f"{GREEN}AtomSporTV M3U Oluşturucu (Selenium){RESET}")
-print("=" * 60)
-
-# 1. Önce Selenium ile deneyelim
-print("\n1. Selenium ile dinamik içerik çekiliyor...")
-selenium_matches = get_content_with_selenium()
-
-if selenium_matches:
-    print("\n2. M3U dosyası oluşturuluyor...")
-    create_m3u_from_links(selenium_matches)
-else:
-    print("\nSelenium ile maç bulunamadı, alternatif yöntemler deneniyor...")
+def main():
+    print(f"{GREEN}AtomSporTV M3U Oluşturucu{RESET}")
+    print("=" * 50)
     
-    # 2. API/alternatif kaynakları dene
-    print("\n3. Alternatif kaynaklardan veri çekiliyor...")
-    api_matches = get_matches_from_api()
+    # 1. Önce canlı veriyi dene
+    print("\n1. Canlı veri çekiliyor...")
+    live_channels = try_get_live_matches()
     
-    if api_matches:
-        print("\n4. M3U dosyası oluşturuluyor...")
-        create_m3u_from_links(api_matches)
+    # 2. Canlı veri varsa onu kullan, yoksa statik listeyi kullan
+    if live_channels:
+        print(f"   {len(live_channels)} canlı kanal bulundu")
+        channels_to_use = live_channels
     else:
-        print("\n❌ Hiçbir kaynaktan veri alınamadı!")
-        print("\nOlası nedenler:")
-        print("1. Sayfa yapısı tamamen değişmiş")
-        print("2. JavaScript engelleniyor")
-        print("3. IP/Cihaz engeli var")
-        print("4. Site çalışmıyor olabilir")
-        
-        # Fallback: Manuel liste
-        print("\n5. Manuel fallback listesi oluşturuluyor...")
-        manual_matches = [
-            ("matches?id=bein-sports-1", "BEIN SPORTS 1"),
-            ("matches?id=bein-sports-2", "BEIN SPORTS 2"),
-            ("matches?id=bein-sports-3", "BEIN SPORTS 3"),
-            ("matches?id=bein-sports-4", "BEIN SPORTS 4"),
-            ("matches?id=s-sport", "S SPORT"),
-            ("matches?id=s-sport-2", "S SPORT 2"),
-            ("matches?id=tivibu-spor-1", "TİVİBU SPOR 1"),
-            ("matches?id=tivibu-spor-2", "TİVİBU SPOR 2"),
-            ("matches?id=aspor", "ASPOR"),
-            ("matches?id=trt-spor", "TRT SPOR"),
-        ]
-        
-        create_m3u_from_links(manual_matches)
+        print("   Canlı veri bulunamadı, statik liste kullanılıyor...")
+        channels_to_use = STATIC_CHANNELS
+    
+    # 3. M3U oluştur
+    print("\n2. M3U dosyası oluşturuluyor...")
+    create_m3u(channels_to_use)
+    
+    # 4. Örnek çıktı göster
+    print("\n" + "=" * 50)
+    print("İlk 10 kanal:")
+    for i, channel in enumerate(channels_to_use[:10]):
+        print(f"  {i+1}. [{channel.get('group', 'Diğer')}] {channel['name']}")
+    
+    print("\n" + "=" * 50)
+    print("GitHub komutları:")
+    print(f"  git add {OUTPUT_FILE}")
+    print('  git commit -m "AtomSporTV M3U güncellemesi"')
+    print("  git push")
+    
+    # 5. Dosya içeriğini göster (ilk 5 satır)
+    print(f"\n{OUTPUT_FILE} dosyasının ilk 5 satırı:")
+    try:
+        with open(OUTPUT_FILE, "r", encoding="utf-8") as f:
+            for i, line in enumerate(f):
+                if i < 5:
+                    print(f"  {line.rstrip()}")
+                else:
+                    break
+    except:
+        pass
 
-print("\n" + "=" * 60)
-print("GitHub komutları:")
-print(f"git add {OUTPUT_FILE}")
-print('git commit -m "AtomSporTV M3U güncellemesi"')
-print("git push")
+if __name__ == "__main__":
+    main()
