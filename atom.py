@@ -1,5 +1,6 @@
 import requests
 import re
+import json
 
 START_URL = "https://url24.link/AtomSporTV"
 OUTPUT_FILE = "atom.m3u"
@@ -12,121 +13,132 @@ headers = {
     'User-Agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36'
 }
 
-# -------------------------
-# 1) GERÇEK DOMAINİ BULMA
-# -------------------------
 def follow_redirects(url):
     try:
         r = requests.get(url, headers=headers, allow_redirects=False, timeout=10)
-        if "location" in r.headers:
-            loc = r.headers["location"]
-            r2 = requests.get(loc, headers=headers, allow_redirects=False, timeout=10)
-            if "location" in r2.headers:
-                return r2.headers["location"].rstrip("/")
+        if "location" not in r.headers:
+            return "https://atomsportv480.top"
+
+        loc1 = r.headers["location"]
+        r2 = requests.get(loc1, headers=headers, allow_redirects=False, timeout=10)
+
+        if "location" in r2.headers:
+            domain = r2.headers["location"].rstrip("/")
+            return domain
+
         return "https://atomsportv480.top"
     except:
         return "https://atomsportv480.top"
 
-# -------------------------
-# 2) TÜM KANAL ID’LERİNİ BULMA
-# -------------------------
-def get_all_ids(base):
-    print(f"Kanal listesi alınıyor: {base}")
+def extract_fetch_urls(html):
+    """ fetch("URL") ile çağrılan tüm API linklerini bul """
+    urls = re.findall(r'fetch\(["\'](.*?)["\']', html)
+    clean_urls = []
 
-    r = requests.get(base, headers=headers, timeout=10)
-    html = r.text
+    for u in urls:
+        u = u.strip()
+        if u.startswith("//"):   # //api şeklinde olabilir
+            u = "https:" + u
+        clean_urls.append(u)
 
-    ids = re.findall(r"matches\?id=([^\"\'\s&]+)", html)
+    return list(set(clean_urls))
 
-    ids = list(set(ids))  # benzersiz yap
+def get_all_matches(base):
+    print(f"\nBase: {base}")
+    main_page = requests.get(base, headers=headers, timeout=10).text
 
-    print(f"Toplam {len(ids)} kanal bulundu.")
-    return ids
+    fetch_urls = extract_fetch_urls(main_page)
 
-# -------------------------
-# 3) HER KANALIN GERÇEK M3U8 LİNKİNİ ÇEKME
-# -------------------------
-def get_real_link(base, cid):
-    try:
-        match_url = f"{base}/matches?id={cid}"
-        r = requests.get(match_url, headers=headers, timeout=10)
-        html = r.text
+    print(f"Bulunan fetch API sayısı: {len(fetch_urls)}")
 
-        fetch = re.search(r'fetch\("(.*?)"', html)
-        if not fetch:
-            return None
+    all_channels = []
 
-        fetch_url = fetch.group(1)
-        if not fetch_url.endswith(cid):
-            fetch_url += cid
+    for api in fetch_urls:
+        try:
+            if not api.startswith("http"):
+                api = base + api
 
-        custom = headers.copy()
-        custom["Origin"] = base
-        custom["Referer"] = match_url
+            # ID ekleniyorsa ID'yi sondan ekleme
+            if "?id=" not in api:
+                continue
 
-        r2 = requests.get(fetch_url, headers=custom, timeout=10)
+            print(f"→ API: {api}")
 
-        m = re.search(r'"deismackanal":"(.*?)"', r2.text)
-        if not m:
-            return None
+            resp = requests.get(api, headers=headers, timeout=10).text
 
-        url = m.group(1).replace("\\", "")
-        return url
+            # JSON olan API’ler
+            try:
+                data = json.loads(resp)
+            except:
+                continue
 
-    except:
-        return None
+            if "deismackanal" in resp:
+                # Tek kanal dönen API
+                url = data.get("deismackanal", "").replace("\\", "")
+                cid = api.split("=")[-1]
 
-# -------------------------
-# 4) M3U OLUŞTURMA
-# -------------------------
+                all_channels.append({
+                    "id": cid,
+                    "name": cid.replace("-", " ").title(),
+                    "group": "Spor",
+                    "url": url,
+                    "referer": base
+                })
+
+            # Liste dönen API
+            if "data" in data:
+                for item in data["data"]:
+                    cid = item.get("id")
+                    url = item.get("url", "").replace("\\", "")
+                    name = item.get("name", cid)
+                    group = item.get("kategori", "Spor")
+
+                    if cid and url:
+                        all_channels.append({
+                            "id": cid,
+                            "name": name,
+                            "group": group,
+                            "url": url,
+                            "referer": base
+                        })
+
+        except Exception as e:
+            print(f"API hata: {e}")
+
+    # tekrarları kaldır
+    uniq = {}
+    for ch in all_channels:
+        uniq[ch["id"]] = ch
+
+    return list(uniq.values())
+
 def create_m3u(channels):
-    print("M3U oluşturuluyor...")
+    print(f"\nM3U oluşturuluyor... ({len(channels)} kanal)")
 
     with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
         f.write("#EXTM3U\n")
 
         for ch in channels:
-            cid = ch["id"]
-            name = ch["name"]
-            url = ch["url"]
-
-            f.write(f'#EXTINF:-1 tvg-id="{cid}",{name}\n')
+            f.write(
+                f'#EXTINF:-1 tvg-id="{ch["id"]}" tvg-name="{ch["name"]}" group-title="{ch["group"]}",{ch["name"]}\n'
+            )
             f.write(f'#EXTVLCOPT:http-referrer={ch["referer"]}\n')
             f.write(f'#EXTVLCOPT:http-user-agent={headers["User-Agent"]}\n')
-            f.write(url + "\n")
+            f.write(ch["url"] + "\n")
 
-    print(f"[✓] {OUTPUT_FILE} oluşturuldu ({len(channels)} kanal).")
+    print(f"[✓] {OUTPUT_FILE} oluşturuldu.")
 
-# -------------------------
-# 5) ÇALIŞTIRMA
-# -------------------------
 def main():
     print("AtomSporTV — Tüm kanallar çekiliyor...\n")
 
-    domain = follow_redirects(START_URL)
-    print("Aktif domain:", domain)
+    base = follow_redirects(START_URL)
+    print("Aktif domain:", base)
 
-    ids = get_all_ids(domain)
+    channels = get_all_matches(base)
 
-    final = []
+    print("\nToplam bulunan kanal:", len(channels))
 
-    for cid in ids:
-        print("→", cid)
-        url = get_real_link(domain, cid)
-        if url:
-            final.append({
-                "id": cid,
-                "name": cid.replace("-", " ").title(),
-                "url": url,
-                "referer": domain
-            })
-            print("   ✔ M3U8 bulundu")
-        else:
-            print("   ✗ M3U8 yok (atlanıyor)")
-
-    create_m3u(final)
-
-    print("\nBiten toplam kanal:", len(final))
+    create_m3u(channels)
 
 if __name__ == "__main__":
     main()
