@@ -2,9 +2,57 @@ import re
 import requests
 import urllib3
 from datetime import datetime
+import json
 
 # SSL uyarılarını kapat
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+
+# Kanal adları mapping'i - global olarak tanımla
+CHANNEL_NAMES = {
+    "saspor": "A Spor",
+    "sbeinsports-1": "beIN Sports 1",
+    "sbeinsports-2": "beIN Sports 2",
+    "sbeinsports-3": "beIN Sports 3",
+    "sbeinsports-4": "beIN Sports 4",
+    "sbeinsports-5": "beIN Sports 5",
+    "sbeinsportshaber": "beIN Sports Haber",
+    "sdazn1": "DAZN 1",
+    "sdazn2": "DAZN 2",
+    "sexxen-1": "Exxen Spor 1",
+    "sexxen-2": "Exxen Spor 2",
+    "sexxen-3": "Exxen Spor 3",
+    "sexxen-4": "Exxen Spor 4",
+    "sexxen-5": "Exxen Spor 5",
+    "sexxen-6": "Exxen Spor 6",
+    "sssport": "S Sport",
+    "sssport2": "S Sport 2",
+    "sssplus1": "S Sport Plus 1",
+    "sssplus2": "S Sport Plus 2",
+    "ssmartspor": "Smart Spor",
+    "ssmartspor2": "Smart Spor 2",
+    "stabiispor-1": "Tabii Spor 1",
+    "stabiispor-2": "Tabii Spor 2",
+    "stabiispor-3": "Tabii Spor 3",
+    "stabiispor-4": "Tabii Spor 4",
+    "stabiispor-5": "Tabii Spor 5",
+    "stivibuspor-1": "Tivibu Spor 1",
+    "stivibuspor-2": "Tivibu Spor 2",
+    "stivibuspor-3": "Tivibu Spor 3",
+    "stivibuspor-4": "Tivibu Spor 4",
+    "strt1": "TRT 1",
+    "strtspor": "TRT Spor",
+    "strtspor2": "TRT Spor 2",
+    "stv8": "TV8",
+    "sbeinsportsmax-1": "beIN Sports MAX 1",
+    "sbeinsportsmax-2": "beIN Sports MAX 2",
+    "seurosport1": "Eurosport 1",
+    "seurosport2": "Eurosport 2",
+    "sf1": "F1 TV",
+    "sufcfightpass": "UFC Fight Pass",
+    "smotorsporttv": "Motor Sport TV",
+    "smotorvisiontv": "Motor Vision TV",
+    "sssportplus1": "S Sport Plus 1"
+}
 
 def fetch_url(url):
     """URL'den içerik çek"""
@@ -14,115 +62,114 @@ def fetch_url(url):
     try:
         response = requests.get(url, headers=headers, timeout=10, verify=False)
         return response.text
-    except:
+    except Exception as e:
+        print(f"    ✗ Error fetching {url}: {e}")
         return None
 
 def get_active_domain():
     """Aktif domain'i PHP'deki gibi bul"""
+    print("🔍 Searching for active domain...")
     for i in range(15, 4, -1):  # 15'ten 5'e
         url = f"https://www.sporcafe{i}.xyz/"
+        print(f"  Trying: {url}")
         html = fetch_url(url)
-        if html and ('channel-item' in html or 'data-stream-url' in html):
-            return {'url': url, 'html': html}
+        if html:
+            # Basit kontrol - herhangi bir HTML içeriği varsa kabul et
+            if len(html) > 100:  # Minimum 100 karakter
+                print(f"  ✓ Active domain found: {url}")
+                return {'url': url, 'html': html}
+            else:
+                print(f"    ✗ Empty or too short response")
+        else:
+            print(f"    ✗ Could not fetch")
+    
+    print("  ✗ No active domain found")
     return None
 
-def get_stream_links(domain_info):
-    """Stream linklerini PHP'deki mantıkla al"""
-    # Stream domain'ini bul
-    stream_domain_match = re.search(
+def get_stream_domain(html):
+    """HTML'den stream domain'ini bul"""
+    patterns = [
         r'https?:\/\/(main\.uxsyplayer[0-9a-zA-Z\-]+\.click)',
-        domain_info['html']
-    )
-    
-    if not stream_domain_match:
-        return None
-    
-    stream_domain = f"https://{stream_domain_match.group(1)}"
-    
-    # Sabit kanal listesi - PHP'deki gibi
-    channels = [
-        "sbeinsports-1", "sbeinsports-2", "sbeinsports-3", "sbeinsports-4", "sbeinsports-5",
-        "sbeinsportsmax-1", "sbeinsportsmax-2", "sssport", "sssport2", "ssmartspor",
-        "ssmartspor2", "stivibuspor-1", "stivibuspor-2", "stivibuspor-3", "stivibuspor-4",
-        "sbeinsportshaber", "saspor", "seurosport1", "seurosport2", "sf1",
-        "sdazn1", "sdazn2", "sufcfightpass", "smotorsporttv", "smotorvisiontv",
-        "stabiispor", "sssportplus1"
+        r'https?:\/\/(main\.[0-9a-zA-Z\-]+\.click)',
+        r'https?:\/\/(player\.[0-9a-zA-Z\-]+\.click)',
     ]
     
-    results = {}
-    for channel in channels:
-        html = fetch_url(f"{stream_domain}/index.php?id={channel}")
-        if html:
-            ads_match = re.search(r'this\.adsBaseUrl\s*=\s*[\'"]([^\'"]+)', html)
-            if ads_match:
-                base_url = ads_match.group(1)
-                if not base_url.endswith('/'):
-                    base_url += '/'
-                results[channel] = f"{base_url}{channel}/playlist.m3u8"
+    for pattern in patterns:
+        match = re.search(pattern, html)
+        if match:
+            return f"https://{match.group(1)}"
     
-    return {'referer': domain_info['url'], 'channels': results}
+    return None
 
 def get_all_channels_from_html(html):
     """HTML'den tüm kanal ID'lerini çıkar"""
     # Regex ile tüm data-stream-url değerlerini bul
     pattern = r'data-stream-url="([^"]+)"'
     matches = re.findall(pattern, html)
-    return list(set(matches))  # Benzersiz olanları döndür
+    unique_channels = list(set(matches))
+    
+    if unique_channels:
+        print(f"  Found {len(unique_channels)} channels in HTML")
+        return unique_channels
+    
+    # Eğer bulamazsak, sabit listeyi kullan
+    print("  Using default channel list")
+    return [
+        "saspor", "sbeinsports-1", "sbeinsports-2", "sbeinsports-3", 
+        "sbeinsports-4", "sbeinsportshaber", "sdazn1", "sdazn2",
+        "sexxen-1", "sexxen-2", "sexxen-3", "sexxen-4", "sexxen-5", "sexxen-6",
+        "sssport", "sssport2", "sssplus1", "sssplus2",
+        "ssmartspor", "ssmartspor2", "stabiispor-1", "stabiispor-2",
+        "stabiispor-3", "stabiispor-4", "stabiispor-5",
+        "stivibuspor-1", "stivibuspor-2", "stivibuspor-3", "stivibuspor-4",
+        "strt1", "strtspor", "strtspor2", "stv8"
+    ]
 
 def get_stream_links_all_channels(domain_info):
     """Tüm kanallar için stream linklerini al"""
+    print("🔗 Fetching stream links...")
+    
     # Stream domain'ini bul
-    stream_domain_match = re.search(
-        r'https?:\/\/(main\.uxsyplayer[0-9a-zA-Z\-]+\.click)',
-        domain_info['html']
-    )
+    stream_domain = get_stream_domain(domain_info['html'])
     
-    if not stream_domain_match:
-        # Alternatif pattern
-        stream_domain_match = re.search(
-            r'https?:\/\/(main\.[0-9a-zA-Z\-]+\.click)',
-            domain_info['html']
-        )
-        if not stream_domain_match:
-            return None
+    if not stream_domain:
+        print("  ✗ Could not find stream domain in HTML")
+        # Varsayılan bir domain deneyelim
+        stream_domain = "https://main.uxsyplayer1.click"
+        print(f"  Using default: {stream_domain}")
     
-    stream_domain = f"https://{stream_domain_match.group(1)}"
+    print(f"  ✓ Stream domain: {stream_domain}")
     
     # HTML'den tüm kanal ID'lerini çıkar
     all_channels = get_all_channels_from_html(domain_info['html'])
     
     if not all_channels:
-        # Eğer bulamazsak, sabit listeyi kullan
-        all_channels = [
-            "saspor", "sbeinsports-1", "sbeinsports-2", "sbeinsports-3", 
-            "sbeinsports-4", "sbeinsportshaber", "sdazn1", "sdazn2",
-            "sexxen-1", "sexxen-2", "sexxen-3", "sexxen-4", "sexxen-5", "sexxen-6",
-            "sssport", "sssport2", "sssplus1", "sssplus2",
-            "ssmartspor", "ssmartspor2", "stabiispor-1", "stabiispor-2",
-            "stabiispor-3", "stabiispor-4", "stabiispor-5",
-            "stivibuspor-1", "stivibuspor-2", "stivibuspor-3", "stivibuspor-4",
-            "strt1", "strtspor", "strtspor2", "stv8"
-        ]
+        print("  ✗ No channels found")
+        return None
     
     results = {}
     successful = 0
     
-    print(f"Found {len(all_channels)} channels to process")
+    print(f"  Processing {len(all_channels)} channels...")
     
     for i, channel in enumerate(all_channels, 1):
-        print(f"  Processing {i}/{len(all_channels)}: {channel}")
+        channel_name = CHANNEL_NAMES.get(channel, channel)
+        print(f"  [{i:2d}/{len(all_channels)}] {channel_name}")
         
-        html = fetch_url(f"{stream_domain}/index.php?id={channel}")
+        channel_url = f"{stream_domain}/index.php?id={channel}"
+        html = fetch_url(channel_url)
+        
         if html:
-            # Birden fazla pattern deneyelim
-            patterns = [
+            # adsBaseUrl'yi bul
+            ads_patterns = [
                 r'this\.adsBaseUrl\s*=\s*[\'"]([^\'"]+)',
                 r'adsBaseUrl\s*=\s*[\'"]([^\'"]+)',
                 r'var\s+adsBaseUrl\s*=\s*[\'"]([^\'"]+)',
                 r'baseUrl\s*=\s*[\'"]([^\'"]+)'
             ]
             
-            for pattern in patterns:
+            found = False
+            for pattern in ads_patterns:
                 ads_match = re.search(pattern, html)
                 if ads_match:
                     base_url = ads_match.group(1)
@@ -132,14 +179,16 @@ def get_stream_links_all_channels(domain_info):
                     stream_url = f"{base_url}{channel}/playlist.m3u8"
                     results[channel] = stream_url
                     successful += 1
-                    print(f"    ✓ Found stream URL")
+                    print(f"      ✓ Stream found")
+                    found = True
                     break
-            else:
-                print(f"    ✗ No stream URL found")
+            
+            if not found:
+                print(f"      ✗ No stream URL found")
         else:
-            print(f"    ✗ Could not fetch channel page")
+            print(f"      ✗ Could not fetch channel page")
     
-    print(f"\nSuccessfully fetched {successful}/{len(all_channels)} streams")
+    print(f"\n  📊 Results: {successful}/{len(all_channels)} streams fetched")
     
     return {
         'referer': domain_info['url'],
@@ -154,159 +203,148 @@ def generate_m3u(stream_info):
     if not stream_info or not stream_info['channels']:
         return "#EXTM3U\n#EXTINF:-1,Error: Could not generate stream links"
     
-    output = ["#EXTM3U"]
+    output_lines = ["#EXTM3U"]
     
-    # Kanal adları için mapping
-    channel_names = {
-        "saspor": "A Spor",
-        "sbeinsports-1": "beIN Sports 1",
-        "sbeinsports-2": "beIN Sports 2",
-        "sbeinsports-3": "beIN Sports 3",
-        "sbeinsports-4": "beIN Sports 4",
-        "sbeinsports-5": "beIN Sports 5",
-        "sbeinsportshaber": "beIN Sports Haber",
-        "sdazn1": "DAZN 1",
-        "sdazn2": "DAZN 2",
-        "sexxen-1": "Exxen Spor 1",
-        "sexxen-2": "Exxen Spor 2",
-        "sexxen-3": "Exxen Spor 3",
-        "sexxen-4": "Exxen Spor 4",
-        "sexxen-5": "Exxen Spor 5",
-        "sexxen-6": "Exxen Spor 6",
-        "sssport": "S Sport",
-        "sssport2": "S Sport 2",
-        "sssplus1": "S Sport Plus 1",
-        "sssplus2": "S Sport Plus 2",
-        "ssmartspor": "Smart Spor",
-        "ssmartspor2": "Smart Spor 2",
-        "stabiispor-1": "Tabii Spor 1",
-        "stabiispor-2": "Tabii Spor 2",
-        "stabiispor-3": "Tabii Spor 3",
-        "stabiispor-4": "Tabii Spor 4",
-        "stabiispor-5": "Tabii Spor 5",
-        "stivibuspor-1": "Tivibu Spor 1",
-        "stivibuspor-2": "Tivibu Spor 2",
-        "stivibuspor-3": "Tivibu Spor 3",
-        "stivibuspor-4": "Tivibu Spor 4",
-        "strt1": "TRT 1",
-        "strtspor": "TRT Spor",
-        "strtspor2": "TRT Spor 2",
-        "stv8": "TV8",
-        "sbeinsportsmax-1": "beIN Sports MAX 1",
-        "sbeinsportsmax-2": "beIN Sports MAX 2",
-        "seurosport1": "Eurosport 1",
-        "seurosport2": "Eurosport 2",
-        "sf1": "F1 TV",
-        "sufcfightpass": "UFC Fight Pass",
-        "smotorsporttv": "Motor Sport TV",
-        "smotorvisiontv": "Motor Vision TV",
-        "sssportplus1": "S Sport Plus 1"
-    }
+    # Başlık bilgileri
+    output_lines.append(f"#PLAYLIST:SPORCAFE TV")
+    output_lines.append(f"#GENERATED: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    output_lines.append(f"#DOMAIN: {stream_info['referer']}")
+    output_lines.append(f"#CHANNELS: {stream_info['successful']}/{stream_info['total']}")
+    output_lines.append("")
     
-    # Kanalları sırala
-    sorted_channels = sorted(stream_info['channels'].items())
+    # Kanalları isme göre sırala
+    sorted_channels = sorted(
+        stream_info['channels'].items(),
+        key=lambda x: CHANNEL_NAMES.get(x[0], x[0])
+    )
     
     for channel_id, stream_url in sorted_channels:
-        # Kanal adını al
-        channel_name = channel_names.get(channel_id, channel_id)
+        channel_name = CHANNEL_NAMES.get(channel_id, channel_id)
         
-        # Temiz ID oluştur
-        clean_id = channel_id.lstrip('s').replace('-', ' ')
+        # Grup belirle
+        group = "SPOR"
+        if 'beinsports' in channel_id:
+            group = "BEIN SPORTS"
+        elif 'dazn' in channel_id:
+            group = "DAZN"
+        elif 'ssport' in channel_id:
+            group = "S SPORT"
+        elif 'trt' in channel_id:
+            group = "TRT"
+        elif 'exxen' in channel_id:
+            group = "EXXEN"
         
-        output.append(f"#EXTINF:-1 tvg-id=\"{channel_id}\",{channel_name}")
-        output.append(f"#EXTVLCOPT:http-referrer={stream_info['referer']}")
-        output.append(f"{stream_url}\n")
+        # EXTINF satırı
+        output_lines.append(f'#EXTINF:-1 tvg-id="{channel_id}" group-title="{group}",{channel_name}')
+        output_lines.append(f'#EXTVLCOPT:http-referrer={stream_info["referer"]}')
+        output_lines.append(f'#EXTVLCOPT:http-user-agent=Mozilla/5.0')
+        output_lines.append(stream_url)
+        output_lines.append("")
     
-    return "\n".join(output)
+    output_lines.append("#EOF")
+    
+    return "\n".join(output_lines)
+
+def save_files(m3u_content, stream_info):
+    """Dosyaları kaydet"""
+    try:
+        # M3U dosyasını kaydet
+        with open('sporcafe.m3u', 'w', encoding='utf-8') as f:
+            f.write(m3u_content)
+        print("✓ M3U file saved: sporcafe.m3u")
+        
+        # JSON dosyasını kaydet
+        json_data = {
+            'generated': datetime.now().isoformat(),
+            'domain': stream_info['referer'],
+            'stream_domain': stream_info.get('stream_domain', ''),
+            'total_channels': stream_info['total'],
+            'successful_channels': stream_info['successful'],
+            'channels': [
+                {
+                    'id': channel_id,
+                    'name': CHANNEL_NAMES.get(channel_id, channel_id),
+                    'url': stream_url,
+                    'group': 'BEIN SPORTS' if 'beinsports' in channel_id else 
+                            'DAZN' if 'dazn' in channel_id else 
+                            'S SPORT' if 'ssport' in channel_id else 
+                            'TRT' if 'trt' in channel_id else 
+                            'SPOR'
+                }
+                for channel_id, stream_url in stream_info['channels'].items()
+            ]
+        }
+        
+        with open('channels.json', 'w', encoding='utf-8') as f:
+            json.dump(json_data, f, ensure_ascii=False, indent=2)
+        print("✓ JSON file saved: channels.json")
+        
+        return True
+        
+    except Exception as e:
+        print(f"✗ Error saving files: {e}")
+        return False
 
 def main():
     print("=" * 60)
-    print("SPORCAFE M3U GENERATOR - PHP STYLE")
+    print("SPORCAFE M3U PLAYLIST GENERATOR")
     print("=" * 60)
     
     # 1. Aktif domain'i bul
-    print("\n1. Finding active domain...")
+    print("\n[1/3] Finding active domain...")
     domain_info = get_active_domain()
     
     if not domain_info:
-        # Alternatif domain'leri dene
-        print("Trying alternative domains...")
-        alt_domains = [
-            "https://sporcafe.live/",
-            "https://sporcafe.tv/",
-            "https://sporcafe.org/",
-        ]
-        
-        for url in alt_domains:
-            print(f"  Trying: {url}")
-            html = fetch_url(url)
-            if html:
-                domain_info = {'url': url, 'html': html}
-                print(f"  ✓ Using: {url}")
-                break
-        
-        if not domain_info:
-            print("✗ No active domain found!")
-            print("#EXTM3U\n#EXTINF:-1,Error: No active domain found")
-            return
+        print("\n✗ ERROR: No active domain found!")
+        print("=" * 60)
+        print("#EXTM3U\n#EXTINF:-1,Error: No active domain found")
+        return
     
     print(f"✓ Active domain: {domain_info['url']}")
     
     # 2. Stream linklerini al
-    print("\n2. Fetching stream links...")
+    print("\n[2/3] Fetching stream links...")
     stream_info = get_stream_links_all_channels(domain_info)
     
-    if not stream_info:
-        print("✗ Could not fetch stream links")
+    if not stream_info or not stream_info['channels']:
+        print("\n✗ ERROR: Could not fetch stream links!")
+        print("=" * 60)
         print("#EXTM3U\n#EXTINF:-1,Error: Could not generate stream links")
         return
     
     print(f"✓ Successfully fetched {stream_info['successful']} streams")
     
-    # 3. M3U oluştur
-    print("\n3. Generating M3U playlist...")
+    # 3. M3U playlist oluştur
+    print("\n[3/3] Generating M3U playlist...")
     m3u_content = generate_m3u(stream_info)
     
-    # 4. Dosyaya yaz
-    with open('sporcafe.m3u', 'w', encoding='utf-8') as f:
-        f.write(m3u_content)
+    # 4. Dosyaları kaydet
+    save_files(m3u_content, stream_info)
     
-    # 5. JSON çıktısı oluştur
-    import json
-    json_data = {
-        'generated': datetime.now().isoformat(),
-        'domain': domain_info['url'],
-        'channels_count': stream_info['successful'],
-        'channels': [
-            {
-                'id': channel_id,
-                'url': stream_url,
-                'name': channel_names.get(channel_id, channel_id)
-            }
-            for channel_id, stream_url in stream_info['channels'].items()
-        ]
-    }
-    
-    with open('channels.json', 'w', encoding='utf-8') as f:
-        json.dump(json_data, f, ensure_ascii=False, indent=2)
-    
+    # 5. Sonuçları göster
     print("\n" + "=" * 60)
     print("GENERATION COMPLETE!")
     print("=" * 60)
     print(f"Active Domain: {domain_info['url']}")
     print(f"Stream Domain: {stream_info.get('stream_domain', 'N/A')}")
-    print(f"Channels Found: {stream_info['successful']}")
+    print(f"Total Channels: {stream_info['total']}")
+    print(f"Successful Streams: {stream_info['successful']}")
     print(f"M3U File: sporcafe.m3u")
     print(f"JSON File: channels.json")
     print("=" * 60)
     
-    # İlk 5 kanalı göster
-    print("\nSample channels:")
+    # Örnek kanalları göster
+    print("\nSample channels in playlist:")
     print("-" * 40)
-    channels_list = list(stream_info['channels'].items())[:5]
-    for channel_id, url in channels_list:
-        name = channel_names.get(channel_id, channel_id)
+    channels_list = list(stream_info['channels'].items())[:8]
+    for channel_id, _ in channels_list:
+        name = CHANNEL_NAMES.get(channel_id, channel_id)
         print(f"  • {name}")
+    
+    if stream_info['successful'] > 8:
+        print(f"  ... and {stream_info['successful'] - 8} more channels")
+    
+    print("\n✅ Playlist is ready! Use 'sporcafe.m3u' in your media player.")
 
 if __name__ == "__main__":
     main()
