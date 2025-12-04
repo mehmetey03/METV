@@ -1,0 +1,51 @@
+name: İnat M3U Oluşturucu
+
+permissions:
+  contents: write  # Push izni çok önemli!
+
+on:
+  schedule:
+    - cron: '0 * * * *'   # Her saat başı çalışır
+  workflow_dispatch:       # Manuel çalıştırma
+
+jobs:
+  update-inat-m3u:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Repo Checkout
+        uses: actions/checkout@v3
+
+      - name: Python Kur
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Gerekli Python paketlerini yükle
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install requests beautifulsoup4
+
+      - name: Git Ayarları
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: İnat M3U oluştur (inat.py)
+        run: python inat.py
+
+      - name: Değişiklikleri Commit et
+        run: |
+          git add inat.m3u
+          git commit -m "Auto-update inat.m3u" || echo "No changes to commit"
+
+      - name: Uzaktaki değişiklikleri çek
+        run: |
+          git fetch origin main
+          git rebase origin/main || git rebase --abort
+
+      - name: Değişiklikleri Pushla
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git push https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }} main
