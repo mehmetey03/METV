@@ -10,16 +10,12 @@ OUTPUT_FILE = "inat.m3u"
 GREEN = "\033[92m"
 RESET = "\033[0m"
 
-# -------------------- Yardımcı Fonksiyonlar --------------------
+# -------------------- Yardımcı Fonksiyon --------------------
 def clean_text(text):
-    """
-    Metni düzgün UTF-8 ve Türkçe karakterlere çevirir.
-    """
+    """Metni düzgün Türkçe karakterlerle düzeltir"""
     if not text:
         return ""
-    # HTML entity’leri düzelt
     text = html.unescape(text)
-    # Unicode normalize ederek karakterleri standart hâle getir
     text = unicodedata.normalize("NFC", text)
     return text
 
@@ -35,12 +31,7 @@ def get_active_domain():
     return m.group(1).strip()
 
 def get_channel_m3u8(domain, channel_id):
-    """
-    PHP mantığını kullanarak:
-    1. channel.html?id=yayinzirve sayfasını çek
-    2. Base URL'yi bul
-    3. Kanal ID ile birleştir ve doğru m3u8 linki döndür
-    """
+    """PHP mantığını kullanarak m3u8 linkini al"""
     try:
         base_page_url = f"{domain}/channel.html?id=yayinzirve"
         headers = {
@@ -48,21 +39,14 @@ def get_channel_m3u8(domain, channel_id):
         }
 
         r = requests.get(base_page_url, headers=headers, timeout=10)
-        if r.status_code != 200:
-            print(f"Hata: {base_page_url} sayfası çekilemedi.")
-            return ""
-
+        r.encoding = r.apparent_encoding  # <- encoding düzeltildi
         html_text = r.text
 
-        # PHP kodundan baseurl çek
         m = re.search(r'baseurl\s*=\s*"(.*?)"', html_text)
         if not m:
-            print("Base URL bulunamadı.")
             return ""
-
         baseurl = m.group(1).strip()
-        final_url = f"{baseurl}{channel_id}.m3u8"
-        return final_url
+        return f"{baseurl}{channel_id}.m3u8"
 
     except Exception as e:
         print("get_channel_m3u8 hatası:", e)
@@ -75,10 +59,7 @@ def get_matches(domain):
 
     try:
         r = requests.get(domain, headers=headers, timeout=10)
-        if r.status_code != 200:
-            print(f"Hata: {domain} sayfası çekilemedi.")
-            return []
-
+        r.encoding = r.apparent_encoding
         soup = BeautifulSoup(r.text, "html.parser")
         maclar = []
 
@@ -88,13 +69,11 @@ def get_matches(domain):
             live = True if item.select_one(".live-badge") else False
             href = item.get("href", "")
 
-            # PHP id çek
             m = re.search(r"id=([^&]+)", href)
             kanal_id = m.group(1).strip() if m else ""
             if not kanal_id:
                 continue
 
-            # Gerçek m3u8 linkini al
             m3u8_link = get_channel_m3u8(domain, kanal_id)
             if not m3u8_link:
                 continue
@@ -115,7 +94,7 @@ def get_matches(domain):
         return []
 
 def create_m3u(maclar, domain):
-    with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
+    with open(OUTPUT_FILE, "w", encoding="utf-8-sig") as f:  # <- UTF-8 BOM eklendi
         f.write("#EXTM3U\n")
         for kanal in maclar:
             f.write(f'#EXTINF:-1 tvg-id="{kanal["tvg_id"]}" group-title="İnat",{kanal["kanal_adi"]}\n')
@@ -124,21 +103,20 @@ def create_m3u(maclar, domain):
     print(f"✔ M3U dosyası oluşturuldu: {OUTPUT_FILE}")
 
 # -------------------- ÇALIŞTIR --------------------
-if __name__ == "__main__":
-    try:
-        print("Güncel domain alınıyor...")
-        domain = get_active_domain()
-        print(f"{GREEN}[✓] Kullanılan domain: {domain}{RESET}")
+try:
+    print("Güncel domain alınıyor...")
+    domain = get_active_domain()
+    print(f"{GREEN}[✓] Kullanılan domain: {domain}{RESET}")
 
-        print("Maçlar çekiliyor...")
-        maclar = get_matches(domain)
-        print(f"{len(maclar)} geçerli maç bulundu.")
+    print("Maçlar çekiliyor...")
+    maclar = get_matches(domain)
+    print(f"{len(maclar)} geçerli maç bulundu.")
 
-        if maclar:
-            print("M3U oluşturuluyor...")
-            create_m3u(maclar, domain)
-        else:
-            print("Maç bulunamadı, M3U oluşturulmadı.")
+    if maclar:
+        print("M3U oluşturuluyor...")
+        create_m3u(maclar, domain)
+    else:
+        print("Maç bulunamadı, M3U oluşturulmadı.")
 
-    except Exception as e:
-        print("Hata:", e)
+except Exception as e:
+    print("Hata:", e)
