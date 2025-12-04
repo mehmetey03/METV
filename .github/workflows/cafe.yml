@@ -2,7 +2,7 @@ name: Update Sporcafe M3U
 
 on:
   schedule:
-    - cron: '0 */3 * * *'  # Her 3 saatte bir
+    - cron: '0 */4 * * *'  # Her 4 saatte bir
   workflow_dispatch:  # Manuel çalıştırma
   push:
     branches: [ main ]
@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     
     - name: Setup Python
       uses: actions/setup-python@v4
@@ -28,15 +28,17 @@ jobs:
     - name: Generate M3U playlist
       run: python cafe.py
     
-    - name: Upload M3U file
-      uses: actions/upload-artifact@v3
-      with:
-        name: sporcafe-m3u
-        path: sporcafe.m3u
+    - name: Show file info
+      run: |
+        echo "Generated file:"
+        ls -la sporcafe.m3u
+        echo ""
+        echo "First 10 lines:"
+        head -10 sporcafe.m3u
     
-    - name: Commit and push
+    - name: Commit and push changes
       run: |
         git config --local user.email "github-actions[bot]@users.noreply.github.com"
         git config --local user.name "github-actions[bot]"
         git add sporcafe.m3u
-        git diff --quiet && git diff --staged --quiet || (git commit -m "📺 Update sporcafe.m3u $(date +'%Y-%m-%d %H:%M')" && git push)
+        git diff --quiet && git diff --staged --quiet || (git commit -m "📺 Update sporcafe.m3u - $(date +'%Y-%m-%d %H:%M')" && git push)
