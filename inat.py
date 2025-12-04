@@ -2,13 +2,13 @@ import requests
 from bs4 import BeautifulSoup
 import re
 
-DOMAIN_TXT_URL = "https://raw.githubusercontent.com/mehmetey03/goal/refs/heads/main/domain.txt"
-OUTPUT_FILE = "trgoalss.m3u"
+DOMAIN_TXT_URL = "https://raw.githubusercontent.com/mehmetey03/inatdom/refs/heads/main/domain.txt"
+OUTPUT_FILE = "inat.m3u"
 
 GREEN = "\033[92m"
 RESET = "\033[0m"
 
-trgoals_ref = "https://trgoals1472.xyz"  # artık gerçek domain buradan alınabilir
+trgoals_ref = "https://inatspor12.xyz/"  # artık gerçek domain buradan alınabilir
 
 
 def get_active_domain():
@@ -102,7 +102,7 @@ def create_m3u(maclar):
     with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
         f.write("#EXTM3U\n")
         for kanal in maclar:
-            f.write(f'#EXTINF:-1 tvg-id="{kanal["tvg_id"]}" group-title="TrGoals",{kanal["kanal_adi"]}\n')
+            f.write(f'#EXTINF:-1 tvg-id="{kanal["tvg_id"]}" group-title="İnat",{kanal["kanal_adi"]}\n')
             f.write(f'#EXTVLCOPT:http-referrer={trgoals_ref}\n')
             f.write(kanal["dosya"] + "\n")
 
@@ -115,7 +115,7 @@ try:
     domain = get_active_domain()
     print("Kullanılan domain:", domain)
 
-    print(f"{GREEN}[✓] TrGoals domain: {trgoals_ref}{RESET}")
+    print(f"{GREEN}[✓] İnat domain: {trgoals_ref}{RESET}")
     print("Maçlar çekiliyor...")
     maclar = get_matches(domain)
     print(f"{len(maclar)} geçerli maç bulundu.")
