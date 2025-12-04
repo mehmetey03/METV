@@ -1,46 +1,38 @@
-name: Cafe kontrol
-concurrency:
-  group: ${{ github.workflow }}-${{ github.event_name }}-${{ github.ref }}
-  cancel-in-progress: true
-on:
-  workflow_dispatch:
-  schedule:
-    - cron: '*/10 * * * *'  
-jobs:
-  BirlesikGuncelleme:
-    runs-on: ubuntu-latest
-    env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    permissions:
-      contents: write
-    steps:
-      - name: Depoyu Klonla
-        uses: actions/checkout@v4.2.2
-        
-      - name: Python 3.11.8 Yükle
-        uses: actions/setup-python@v5.3.0
-        with:
-          python-version: 3.11.8
-          
-      - name: Gereksinimleri Kur
-        run: |
-          python -m pip install --upgrade pip
-          pip install -U setuptools wheel Kekik httpx parsel requests
-          
-      - name: cafe.py Çalıştır
-        run: python cafe.py
+name: Update Sporcafe Playlist
 
-      
-      - name: Değişiklik Kontrolü
-        id: degisiklik_kontrol
-        run: |
-          git diff --quiet . || echo "degisiklik=true" >> $GITHUB_OUTPUT
-          
-      - name: Değişiklikleri Commit Et
-        if: steps.degisiklik_kontrol.outputs.degisiklik == 'true'
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add .
-          git commit -m "🔄 Cafe güncellendi" -m "🕒 Otomatik işlem - $GITHUB_SHA"
-          git push
+on:
+  schedule:
+    - cron: '0 */6 * * *'  # Her 6 saatte bir
+  workflow_dispatch:  # Manuel çalıştırma
+  push:
+    branches: [ main ]
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+    
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+    
+    - name: Install dependencies
+      run: pip install requests
+    
+    - name: Run generator
+      run: python cafe.py
+    
+    - name: Commit and push changes
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add sporcafe.m3u channels.json
+        git diff --quiet && git diff --staged --quiet || (git commit -m "Update playlist $(date +'%Y-%m-%d %H:%M')" && git push)
