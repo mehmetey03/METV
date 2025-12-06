@@ -2,8 +2,8 @@ name: Film Scraper
 
 on:
   schedule:
-    - cron: '0 2 * * *'   # Her gün 02:00 UTC'de çalışır
-  workflow_dispatch:      # Manuel tetikleme
+    - cron: '0 2 * * *'
+  workflow_dispatch:
 
 jobs:
   update-films:
@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          persist-credentials: false  # Token kendi başına kullanılacak
 
       - name: Set up Python
         uses: actions/setup-python@v4
