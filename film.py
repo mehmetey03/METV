@@ -12,6 +12,9 @@ HEADERS = {
     "User-Agent": "Mozilla/5.0"
 }
 
+
+# ---------------- DOMAIN BUL ----------------
+
 def find_active_domain():
     global BASE_URL
 
@@ -23,7 +26,7 @@ def find_active_domain():
             print(f"  Deneniyor: {test}")
             r = requests.get(test, timeout=6, headers=HEADERS)
 
-            if r.status_code == 200 and "Film" in r.text:
+            if r.status_code == 200 and "/filmler/" in r.text:
                 BASE_URL = test
                 print(f"  ✓ Aktif bulundu: {BASE_URL}\n")
                 return BASE_URL
@@ -35,30 +38,33 @@ def find_active_domain():
     exit()
 
 
-# ---------------- EMBED ALMA ----------------
+# ---------------- EMBED BUL ----------------
 
 def get_embed(detail_url):
     try:
         r = requests.get(detail_url, headers=HEADERS, timeout=8)
         soup = BeautifulSoup(r.text, "html.parser")
 
-        player = soup.select_one("iframe[data-player], iframe[src*='dizipal']")
-        if player:
-            if player.has_attr("data-player"):
-                return player["data-player"]
-            if player.has_attr("src"):
-                return player["src"]
+        iframe = soup.select_one("iframe")
+        if iframe:
+            if iframe.get("data-player"):
+                return iframe["data-player"]
+            if iframe.get("src"):
+                src = iframe["src"]
+                if src.startswith("/"):
+                    return BASE_URL + src
+                return src
 
-    except Exception:
+    except:
         return ""
 
     return ""
 
 
-# --------------- TEK SAYFA OKUMA --------------
+# ---------------- TEK SAYFA OKU ----------------
 
 def get_movies_from_page(page):
-    url = f"{BASE_URL}/film?page={page}"
+    url = f"{BASE_URL}/filmler/{page}"
     print(f"  → Sayfa: {url}")
 
     r = requests.get(url, headers=HEADERS)
@@ -71,29 +77,27 @@ def get_movies_from_page(page):
 
     movies = []
 
-    for c in cards:
-        a = c.select_one("a")
-        img = c.select_one("img")
-        title = c.select_one(".video-card-title")
+    for card in cards:
+        a = card.select_one("a")
+        img = card.select_one("img")
+        title = card.select_one(".video-card-title")
 
         if not a:
             continue
 
         detail_url = BASE_URL + a["href"]
 
-        embed_url = get_embed(detail_url)
-
         movies.append({
             "title": title.text.strip() if title else "",
             "image": img["src"] if img else "",
             "detail_url": detail_url,
-            "embed_url": embed_url
+            "embed_url": get_embed(detail_url)
         })
 
     return movies
 
 
-# ---------------- TÜM SAYFALARI OKU ----------------
+# ---------------- TÜM SAYFALAR ----------------
 
 def scrape_all():
     print("📄 Film sayfaları taranıyor...\n")
@@ -114,12 +118,16 @@ def scrape_all():
     print(f"🎉 Toplam film: {len(ALL_MOVIES)}\n")
 
 
+# ---------------- JSON KAYDET ----------------
+
 def save_json():
     with open("film.json", "w", encoding="utf-8") as f:
         json.dump(ALL_MOVIES, f, ensure_ascii=False, indent=4)
 
     print("💾 film.json kaydedildi!\n")
 
+
+# ---------------- ÇALIŞTIR ----------------
 
 if __name__ == "__main__":
     find_active_domain()
