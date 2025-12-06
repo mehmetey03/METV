@@ -4,12 +4,10 @@ import json
 import time
 
 BASE = "https://dizipall30.com"
-HEADERS = { "User-Agent": "Mozilla/5.0" }
+HEADERS = {
+    "User-Agent": "Mozilla/5.0"
+}
 
-
-# -------------------------------------------------
-# Embed çözücü
-# -------------------------------------------------
 def get_embed(detail_url):
     try:
         r = requests.get(detail_url, headers=HEADERS, timeout=10)
@@ -20,8 +18,8 @@ def get_embed(detail_url):
         return ""
 
     soup = BeautifulSoup(r.text, "html.parser")
-
     iframe = soup.select_one("iframe")
+
     if iframe:
         src = iframe.get("src", "")
         if src.startswith("//"):
@@ -31,9 +29,6 @@ def get_embed(detail_url):
     return ""
 
 
-# -------------------------------------------------
-# Tüm filmleri tarayan ana fonksiyon
-# -------------------------------------------------
 def scrape_all_movies():
     all_movies = []
     page = 1
@@ -54,54 +49,63 @@ def scrape_all_movies():
 
         soup = BeautifulSoup(r.text, "html.parser")
 
-        movies = soup.select(".movie-card")
-        if not movies:
+        # GERÇEK film kutusu seçicisi
+        blocks = soup.select("div.group")
+        if not blocks:
             print("❌ Film bulunamadı, tarama bitti.")
             break
 
-        print(f"  • Bulunan film sayısı: {len(movies)}")
+        print(f"  • Bulunan film kutusu: {len(blocks)}")
 
-        for m in movies:
-            title = m.select_one(".movie-name")
-            title = title.get_text(strip=True) if title else ""
+        for m in blocks:
 
-            year = m.select_one(".movie-year")
-            year = year.get_text(strip=True) if year else ""
+            # başlık
+            title_el = m.select_one("div.font-semibold")
+            title = title_el.get_text(strip=True) if title_el else ""
 
-            genre = m.select_one(".movie-type")
-            genre = genre.get_text(strip=True) if genre else ""
+            # tür + yıl birlikte geliyor: "Aksiyon • Gerilim • 2023"
+            info_el = m.select_one("div.text-xs")
+            info_text = info_el.get_text(strip=True) if info_el else ""
+            year = ""
+            genre = ""
 
-            img = m.select_one("img")
-            img = img["src"] if img and "src" in img.attrs else ""
+            if "•" in info_text:
+                parts = [x.strip() for x in info_text.split("•")]
+                if parts[-1].isdigit():
+                    year = parts[-1]
+                    genre = " | ".join(parts[:-1])
+                else:
+                    genre = info_text
 
-            link = m.select_one("a")
-            if link:
-                detail_url = BASE + link["href"]
-            else:
-                detail_url = ""
+            # resim
+            img_el = m.find("img")
+            image = img_el["src"] if img_el else ""
 
-            embed_url = get_embed(detail_url) if detail_url else ""
+            # detay linki
+            a = m.find("a")
+            detail_url = BASE + a["href"] if a and a.has_attr("href") else ""
+
+            # embed
+            embed = get_embed(detail_url) if detail_url else ""
 
             all_movies.append({
                 "title": title,
                 "year": year,
                 "genre": genre,
-                "image": img,
+                "image": image,
                 "detail_url": detail_url,
-                "embed_url": embed_url
+                "embed_url": embed
             })
 
         page += 1
-        time.sleep(0.5)
+        time.sleep(0.3)
 
     return all_movies
 
 
-# -------------------------------------------------
-# JSON KAYIT
-# -------------------------------------------------
 if __name__ == "__main__":
     print("🔍 Film taraması başlıyor...\n")
+
     movies = scrape_all_movies()
 
     with open("film.json", "w", encoding="utf-8") as f:
