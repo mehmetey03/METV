@@ -3,7 +3,6 @@ from bs4 import BeautifulSoup
 import json
 import time
 import os
-import hashlib
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 BASE = "https://dizipall30.com"
@@ -14,9 +13,6 @@ HEADERS = {
 SESSION = requests.Session()
 SESSION.headers.update(HEADERS)
 
-# ------------------------------
-# HTML çekme
-# ------------------------------
 def get_html(url):
     try:
         r = SESSION.get(url, timeout=10)
@@ -26,9 +22,6 @@ def get_html(url):
         pass
     return ""
 
-# ------------------------------
-# Embed URL çözme
-# ------------------------------
 def get_embed_url(detail_url):
     if not detail_url:
         return ""
@@ -37,7 +30,6 @@ def get_embed_url(detail_url):
         return ""
     soup = BeautifulSoup(html, 'html.parser')
 
-    # iframe
     iframe = soup.find('iframe')
     if iframe and iframe.get('src'):
         src = iframe['src']
@@ -47,18 +39,14 @@ def get_embed_url(detail_url):
             src = 'https://dizipal.website' + src
         return src
 
-    # data-video-id
     video_div = soup.find(attrs={"data-video-id": True})
     if video_div:
         return f"https://dizipal.website/{video_div['data-video-id']}"
 
-    # fallback
     slug = detail_url.rstrip('/').split('/')[-1]
+    import hashlib
     return f"https://dizipal.website/{hashlib.md5(slug.encode()).hexdigest()[:13]}"
 
-# ------------------------------
-# Film scraping
-# ------------------------------
 def scrape_page(page=1):
     url = f"{BASE}/filmler" if page == 1 else f"{BASE}/filmler/{page}"
     print(f"→ Sayfa {page} çekiliyor: {url}")
@@ -78,33 +66,14 @@ def scrape_page(page=1):
     movies = []
     for container in containers:
         try:
-            # Başlık
             title_elem = container.find(['h2', 'h3', 'h4'])
             title = title_elem.get_text(strip=True) if title_elem else ""
 
-            # Yıl
             year_elem = container.find(class_=lambda x: x and 'year' in x)
             year = year_elem.get_text(strip=True) if year_elem else ""
 
-            # Tür
             genre_elem = container.find(class_=lambda x: x and 'title' in x)
             genre = genre_elem.get('title', '') if genre_elem else ""
-
-            # Resim
-            img_elem = container.find('img')
-            img = ""
-            if img_elem:
-                src = img_elem.get('src') or img_elem.get('data-src')
-                if src and 'uploads/movies/original/' in src:
-                    img = src
-                elif src and 'uploads/video/group/original/' in src:
-                    img = src
-            # Eğer boşsa slug’dan otomatik oluştur
-            if not img:
-                slug = container.find('a', href=lambda x: x and '/film/' in x)
-                if slug:
-                    slug_text = slug['href'].rstrip('/').split('/')[-1]
-                    img = f"{BASE}/uploads/movies/original/{slug_text}.webp"
 
             # Detay URL
             link_elem = container.find('a', href=lambda x: x and '/film/' in x)
@@ -116,11 +85,15 @@ def scrape_page(page=1):
                 elif href.startswith('http'):
                     detail_url = href
 
+            # Resim URL'sini slug’dan oluştur
+            slug = detail_url.rstrip('/').split('/')[-1]
+            image = f"{BASE}/uploads/movies/original/{slug}.webp"
+
             movies.append({
                 "title": title,
                 "year": year,
                 "genre": genre,
-                "image": img,
+                "image": image,
                 "detail_url": detail_url,
                 "embed_url": ""  # Sonra dolduracağız
             })
@@ -129,9 +102,6 @@ def scrape_page(page=1):
 
     return movies
 
-# ------------------------------
-# Embed URL'leri paralel al
-# ------------------------------
 def fill_embed_urls(movies):
     with ThreadPoolExecutor(max_workers=5) as executor:
         futures = {executor.submit(get_embed_url, m['detail_url']): m for m in movies}
@@ -142,9 +112,6 @@ def fill_embed_urls(movies):
             except:
                 movie['embed_url'] = ""
 
-# ------------------------------
-# Tüm sayfaları çek
-# ------------------------------
 def scrape_all(max_pages=5):
     all_movies = []
     for page in range(1, max_pages + 1):
@@ -157,14 +124,10 @@ def scrape_all(max_pages=5):
         time.sleep(0.2)
     return all_movies
 
-# ------------------------------
-# MAIN
-# ------------------------------
 if __name__ == "__main__":
     print("🎬 DIZIPAL FILM SCRAPER")
     movies = scrape_all(max_pages=5)
 
-    # JSON kaydet
     try:
         file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "film.json")
         with open(file_path, "w", encoding="utf-8") as f:
