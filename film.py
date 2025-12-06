@@ -2,134 +2,77 @@ import requests
 import json
 from bs4 import BeautifulSoup
 
-START_DOMAIN = 30
-END_DOMAIN = 100
-
-BASE_URL = None
-ALL_MOVIES = []
-
-HEADERS = {
-    "User-Agent": "Mozilla/5.0"
+HEAD = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123 Safari/537.36"
 }
 
-
-# ---------------- DOMAIN BUL ----------------
-
-def find_active_domain():
-    global BASE_URL
-
+def aktif_domaini_bul():
     print("🔍 Aktif domain aranıyor...\n")
 
-    for i in range(START_DOMAIN, END_DOMAIN + 1):
-        test = f"https://dizipall{i}.com"
+    for i in range(30, 101):   # 30 → 100
+        domain = f"https://dizipall{i}.com"
+
+        print(f"  Deneniyor: {domain}")
         try:
-            print(f"  Deneniyor: {test}")
-            r = requests.get(test, timeout=6, headers=HEADERS)
-
-            if r.status_code == 200 and "/filmler/" in r.text:
-                BASE_URL = test
-                print(f"  ✓ Aktif bulundu: {BASE_URL}\n")
-                return BASE_URL
-
+            r = requests.get(domain + "/filmler/1", headers=HEAD, timeout=5)
+            if r.status_code == 200 and "filmler" in r.text.lower():
+                print(f"  ✓ Aktif bulundu: {domain}\n")
+                return domain
         except:
             pass
 
     print("❌ Domain bulunamadı!")
-    exit()
+    return None
 
 
-# ---------------- EMBED BUL ----------------
-
-def get_embed(detail_url):
-    try:
-        r = requests.get(detail_url, headers=HEADERS, timeout=8)
-        soup = BeautifulSoup(r.text, "html.parser")
-
-        iframe = soup.select_one("iframe")
-        if iframe:
-            if iframe.get("data-player"):
-                return iframe["data-player"]
-            if iframe.get("src"):
-                src = iframe["src"]
-                if src.startswith("/"):
-                    return BASE_URL + src
-                return src
-
-    except:
-        return ""
-
-    return ""
-
-
-# ---------------- TEK SAYFA OKU ----------------
-
-def get_movies_from_page(page):
-    url = f"{BASE_URL}/filmler/{page}"
-    print(f"  → Sayfa: {url}")
-
-    r = requests.get(url, headers=HEADERS)
-    soup = BeautifulSoup(r.text, "html.parser")
-
-    cards = soup.select("div.col-xl-2.col-lg-3.col-md-4.col-sm-4.col-6.mb-3")
-
-    if not cards:
-        return []
-
-    movies = []
-
-    for card in cards:
-        a = card.select_one("a")
-        img = card.select_one("img")
-        title = card.select_one(".video-card-title")
-
-        if not a:
-            continue
-
-        detail_url = BASE_URL + a["href"]
-
-        movies.append({
-            "title": title.text.strip() if title else "",
-            "image": img["src"] if img else "",
-            "detail_url": detail_url,
-            "embed_url": get_embed(detail_url)
-        })
-
-    return movies
-
-
-# ---------------- TÜM SAYFALAR ----------------
-
-def scrape_all():
+def filmleri_tar(domain):
     print("📄 Film sayfaları taranıyor...\n")
-    page = 1
+
+    filmler = []
+    sayfa = 1
 
     while True:
-        movies = get_movies_from_page(page)
+        url = f"{domain}/filmler/{sayfa}"
+        print(f"  → Sayfa: {url}")
 
-        if not movies:
+        try:
+            r = requests.get(url, headers=HEAD, timeout=10)
+            if r.status_code != 200:
+                break
+        except:
             break
 
-        ALL_MOVIES.extend(movies)
+        soup = BeautifulSoup(r.text, "html.parser")
 
-        print(f"  ✓ {len(movies)} film bulundu (Sayfa {page})\n")
+        items = soup.select(".movie-item")
+        if not items:
+            break  # artık film yok → dur
 
-        page += 1
+        for item in items:
+            title = item.select_one("h3").get_text(strip=True)
+            link = domain + item.select_one("a")["href"]
+            img = item.select_one("img")["src"]
 
-    print(f"🎉 Toplam film: {len(ALL_MOVIES)}\n")
+            filmler.append({
+                "title": title,
+                "link": link,
+                "image": img
+            })
+
+        sayfa += 1
+
+    print(f"\n🎉 Toplam film: {len(filmler)}\n")
+    return filmler
 
 
-# ---------------- JSON KAYDET ----------------
-
-def save_json():
+def kaydet(veri):
     with open("film.json", "w", encoding="utf-8") as f:
-        json.dump(ALL_MOVIES, f, ensure_ascii=False, indent=4)
+        json.dump(veri, f, ensure_ascii=False, indent=2)
+    print("💾 film.json kaydedildi!")
 
-    print("💾 film.json kaydedildi!\n")
-
-
-# ---------------- ÇALIŞTIR ----------------
 
 if __name__ == "__main__":
-    find_active_domain()
-    scrape_all()
-    save_json()
+    domain = aktif_domaini_bul()
+    if domain:
+        data = filmleri_tar(domain)
+        kaydet(data)
