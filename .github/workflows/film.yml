@@ -34,7 +34,9 @@ jobs:
           git config --global user.name "GitHub Actions"
 
       - name: Commit and push film.json
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git add film.json
           git commit -m "Film listesi güncellendi [GitHub Actions]" || echo "No changes to commit"
-          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/mehmetey03/METV2.git main
+          git push https://x-access-token:${GITHUB_TOKEN}@github.com/mehmetey03/METV2.git main
