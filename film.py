@@ -160,7 +160,7 @@ def main():
 
     all_movies = []
 
-    for page in range(1, 11):   # 10 sayfa tarar
+    for page in range(1, 160):   # 10 sayfa tarar
         movies = scrape_page(page)
 
         if not movies:
