@@ -36,7 +36,6 @@ def get_embed_url(detail_url):
         return ""
     soup = BeautifulSoup(html, 'html.parser')
 
-    # 1. iframe
     iframe = soup.find('iframe')
     if iframe and iframe.get('src'):
         src = iframe['src']
@@ -46,18 +45,15 @@ def get_embed_url(detail_url):
             src = 'https://dizipal.website' + src
         return src
 
-    # 2. data-video-id
     video_div = soup.find(attrs={"data-video-id": True})
     if video_div:
         video_id = video_div['data-video-id']
         return f"https://dizipal.website/{video_id}"
 
-    # 3. direkt link
     direct = soup.find('a', href=lambda x: x and 'dizipal.website/' in x)
     if direct:
         return direct['href']
 
-    # 4. fallback slug
     slug = detail_url.rstrip('/').split('/')[-1]
     h = hashlib.md5(slug.encode()).hexdigest()[:13]
     return f"https://dizipal.website/{h}"
@@ -90,7 +86,6 @@ def scrape_page(page=1):
     movies = []
     for box in containers:
         try:
-            # Başlık
             title_el = box.find(["h2", "h3", "h4"])
             if not title_el:
                 continue
@@ -106,15 +101,16 @@ def scrape_page(page=1):
                 elif href.startswith('http'):
                     detail_url = href
 
-            # Resim
+            # Resim URL (doğru)
             img = ""
-            img_match = box.find("img", src=lambda x: x and "/uploads/movies/original/" in x)
-            if img_match:
-                img = img_match.get("src")
+            img_tag = box.find('img', src=lambda x: x and '/uploads/movies/original/' in x)
+            if img_tag:
+                img = img_tag['src']
             else:
-                img_match = box.find("img", src=lambda x: x and "/uploads/video/group/original/" in x)
-                if img_match:
-                    img = img_match.get("src")
+                # fallback /uploads/video/group/original/
+                img_tag2 = box.find('img', src=lambda x: x and '/uploads/video/group/original/' in x)
+                if img_tag2:
+                    img = img_tag2['src']
 
             # Yıl
             year_el = box.find(class_=lambda x: x and 'year' in x)
@@ -140,9 +136,9 @@ def scrape_page(page=1):
                 "rating": rating,
                 "year": year,
                 "genre": genre,
-                "image": img,
+                "image": img,  # doğru resim URL
                 "detail_url": detail_url,
-                "embed_url": ""  # Sonra doldurulacak
+                "embed_url": ""  # sonra doldurulacak
             })
 
         except Exception as e:
