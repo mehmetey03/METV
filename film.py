@@ -1,353 +1,246 @@
 import requests
-import re
+from bs4 import BeautifulSoup
 import json
 import time
 import os
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from datetime import datetime, timedelta
 
 BASE = "https://dizipall30.com"
 SESSION = requests.Session()
 SESSION.headers.update({
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
-    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-    "Accept-Encoding": "gzip, deflate, br",
-    "Accept-Language": "tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7",
 })
 
-CACHE_DIR = "cache"
-if not os.path.exists(CACHE_DIR):
-    os.makedirs(CACHE_DIR)
-
-def get_html(url, timeout=10):
-    """Hızlı HTML çekme"""
+def get_html(url):
     try:
-        response = SESSION.get(url, timeout=timeout)
-        if response.status_code == 200 and len(response.text) > 500:
+        response = SESSION.get(url, timeout=10)
+        if response.status_code == 200:
             return response.text
-    except Exception as e:
-        print(f"⚠ Hata: {e}")
+    except:
+        pass
     return ""
 
-def get_embed_fast(detail_url):
-    """Hızlı embed URL çözücü"""
+def get_embed_url(detail_url):
+    """Embed URL'sini al"""
     if not detail_url:
         return ""
     
-    html = get_html(detail_url, timeout=8)
+    html = get_html(detail_url)
     if not html:
         return ""
     
-    # 1. iframe'den src al
-    iframe_match = re.search(r'<iframe[^>]+src=["\']([^"\']+)["\']', html, re.IGNORECASE)
-    if iframe_match:
-        src = iframe_match.group(1)
-        if src.startswith("//"):
-            src = "https:" + src
-        elif not src.startswith("http"):
-            src = "https://dizipal.website" + src
+    soup = BeautifulSoup(html, 'html.parser')
+    
+    # 1. iframe'den al
+    iframe = soup.find('iframe')
+    if iframe and iframe.get('src'):
+        src = iframe['src']
+        if src.startswith('//'):
+            src = 'https:' + src
+        elif not src.startswith('http'):
+            src = 'https://dizipal.website' + src
         return src
     
     # 2. data-video-id'den al
-    video_match = re.search(r'data-video-id=["\']([a-zA-Z0-9]{10,15})["\']', html, re.IGNORECASE)
-    if video_match:
-        return f"https://dizipal.website/{video_match.group(1)}"
+    video_div = soup.find(attrs={"data-video-id": True})
+    if video_div:
+        video_id = video_div['data-video-id']
+        return f"https://dizipal.website/{video_id}"
     
-    # 3. dizipal.website linki ara
-    embed_match = re.search(r'https?://dizipal\.website/[a-zA-Z0-9]{10,15}', html, re.IGNORECASE)
-    if embed_match:
-        return embed_match.group(0)
-    
-    # 4. Fallback
+    # 3. Fallback
     slug = detail_url.rstrip('/').split('/')[-1]
     import hashlib
-    hash_md5 = hashlib.md5(slug.encode()).hexdigest()[:13]
-    return f"https://dizipal.website/{hash_md5}"
+    return f"https://dizipal.website/{hashlib.md5(slug.encode()).hexdigest()[:13]}"
 
-def get_embed_for_movie(movie_data):
-    """Thread için embed alma"""
-    movie_data['embed_url'] = get_embed_fast(movie_data['detail_url'])
-    return movie_data
-
-def scrape_page(page):
-    """Tek sayfa scrape et"""
-    cache_file = f"{CACHE_DIR}/movies_page_{page}.json"
+def scrape_with_bs4(page=1):
+    """BeautifulSoup ile scrape et"""
+    print(f"→ Sayfa {page} çekiliyor (BeautifulSoup)...")
     
-    # Cache kontrolü
-    if os.path.exists(cache_file):
-        file_time = datetime.fromtimestamp(os.path.getmtime(cache_file))
-        if datetime.now() - file_time < timedelta(hours=1):
-            try:
-                with open(cache_file, 'r', encoding='utf-8') as f:
-                    return json.load(f)
-            except:
-                pass
-    
-    print(f"→ Sayfa {page} çekiliyor...")
-    
-    # URL oluştur
+    # URL
     if page == 1:
         url = f"{BASE}/filmler"
     else:
         url = f"{BASE}/filmler/{page}"
     
-    html = get_html(url, timeout=15)
+    html = get_html(url)
     if not html:
-        return {"status": "error", "msg": "Sayfa çekilemedi", "page": page, "movies": []}
+        print(f"  ⚠ HTML çekilemedi")
+        return []
+    
+    soup = BeautifulSoup(html, 'html.parser')
+    
+    # Önce HTML'nin yapısını anlamaya çalış
+    print(f"  • HTML analiz ediliyor...")
+    
+    # Tüm olası film container'larını bul
+    film_containers = []
+    
+    # 1. w-1/2 class'lı li'leri bul
+    film_containers.extend(soup.select('li.w-1\\/2'))
+    
+    # 2. w-1/2 class'ı olan tüm elementler
+    if not film_containers:
+        film_containers.extend(soup.find_all(class_=lambda x: x and 'w-1/2' in x))
+    
+    # 3. /film/ içeren linklerin parent'larını bul
+    if not film_containers:
+        film_links = soup.find_all('a', href=lambda x: x and '/film/' in x)
+        for link in film_links:
+            # Link'in parent veya grandparent'ını al
+            container = link.find_parent('li') or link.find_parent('div') or link.parent
+            if container and container not in film_containers:
+                film_containers.append(container)
+    
+    print(f"  • {len(film_containers)} film container'ı bulundu")
+    
+    if not film_containers:
+        # Debug için HTML'yi kaydet
+        with open(f"bs4_debug_page_{page}.html", "w", encoding="utf-8") as f:
+            f.write(str(soup))
+        print(f"  ⚠ Film container'ı bulunamadı. HTML kaydedildi.")
+        return []
     
     movies = []
     
-    # GÜNCELLENMİŞ PATTERN - w-1/2 yerine w-1\/2 (escape edilmiş)
-    pattern = r'<li\s+class="[^"]*w-1\\/2[^"]*"[^>]*>(.*?)</li>'
-    blocks = re.findall(pattern, html, re.DOTALL)
-    
-    # Eğer yoksa, alternatif pattern dene
-    if not blocks:
-        pattern = r'<li[^>]*class="[^"]*w-1/2[^"]*"[^>]*>(.*?)</li>'
-        blocks = re.findall(pattern, html, re.DOTALL | re.IGNORECASE)
-    
-    # Hala yoksa, tüm li'leri kontrol et
-    if not blocks:
-        pattern = r'<li[^>]*>(.*?)</li>'
-        all_li = re.findall(pattern, html, re.DOTALL | re.IGNORECASE)
-        # Sadece film içeren li'leri filtrele
-        for li in all_li:
-            if '/film/' in li and 'uploads/movies/' in li:
-                blocks.append(li)
-    
-    print(f"  • {len(blocks)} film bloğu bulundu")
-    
-    if not blocks:
-        # HTML'yi kaydet debug için
-        with open(f"debug_page_{page}.html", "w", encoding="utf-8") as f:
-            f.write(html[:5000])
-        return {"status": "error", "msg": "Film bloğu bulunamadı", "page": page, "movies": []}
-    
-    for block in blocks[:3]:  # İlk 3'ü debug için göster
-        print(f"\n  DEBUG Blok (ilk 300 karakter):")
-        print(f"  {block[:300]}...")
-    
-    for block in blocks:
-        # Başlık - farklı pattern'ler dene
-        title = ""
-        title_patterns = [
-            r'<h2[^>]*class="truncate"[^>]*>(.*?)</h2>',
-            r'<h2[^>]*>(.*?)</h2>',
-            r'<h3[^>]*>(.*?)</h3>',
-            r'<div[^>]*class="[^"]*title[^"]*"[^>]*>(.*?)</div>',
-        ]
-        
-        for pattern in title_patterns:
-            match = re.search(pattern, block, re.DOTALL | re.IGNORECASE)
-            if match:
-                title = re.sub(r'<[^>]+>', '', match.group(1)).strip()
-                break
-        
-        if not title:
-            continue
-        
-        # Yıl
-        year = ""
-        year_match = re.search(r'<span[^>]*class="[^"]*year[^"]*"[^>]*>([^<]+)</span>', block, re.IGNORECASE)
-        if year_match:
-            year = year_match.group(1).strip()
-        
-        # Tür
-        genre = ""
-        genre_match = re.search(r'<p[^>]*class="truncate"[^>]*title="([^"]+)"', block, re.IGNORECASE)
-        if not genre_match:
-            genre_match = re.search(r'<p[^>]*class="truncate"[^>]*>([^<]+)</p>', block, re.DOTALL | re.IGNORECASE)
-        if genre_match:
-            genre = genre_match.group(1).strip()
-            genre = re.sub(r'<[^>]+>', '', genre)
-        
-        # Resim
-        img = ""
-        img_patterns = [
-            r'src="(https://dizipall30\.com/uploads/movies/original/[^"]+\.webp)"',
-            r'data-src="(https://dizipall30\.com/uploads/movies/original/[^"]+\.webp)"',
-            r'src="(https://dizipall30\.com/uploads/movies/[^"]+)"',
-        ]
-        
-        for pattern in img_patterns:
-            match = re.search(pattern, block, re.IGNORECASE)
-            if match:
-                img = match.group(1)
-                break
-        
-        # Detay URL
-        detail_url = ""
-        url_patterns = [
-            r'href="(https://dizipall30\.com/film/[^"]+)"',
-            r'href="(/film/[^"]+)"',
-        ]
-        
-        for pattern in url_patterns:
-            match = re.search(pattern, block, re.IGNORECASE)
-            if match:
-                detail_url = match.group(1)
-                if detail_url.startswith("/"):
-                    detail_url = BASE + detail_url
-                break
-        
-        # Puan
-        rating = "0.0"
-        rating_patterns = [
-            r'<span[^>]*class="[^"]*rating[^"]*"[^>]*>.*?</svg>\s*([\d\.]+)',
-            r'<span[^>]*class="rating[^"]*"[^>]*>([^<]*[\d\.]+[^<]*)<',
-            r'<div[^>]*class="[^"]*rating[^"]*"[^>]*>([^<]*[\d\.]+[^<]*)<',
-        ]
-        
-        for pattern in rating_patterns:
-            match = re.search(pattern, block, re.DOTALL | re.IGNORECASE)
-            if match:
-                num_match = re.search(r'[\d\.]+', match.group(1))
-                if num_match:
-                    rating = num_match.group(0)
-                break
-        
-        movies.append({
-            "title": title,
-            "rating": rating,
-            "year": year,
-            "genre": genre,
-            "image": img,
-            "detail_url": detail_url,
-            "embed_url": ""  # Sonra dolduracağız
-        })
+    for i, container in enumerate(film_containers[:10]):  # İlk 10'u işle
+        try:
+            # Başlık
+            title_elem = container.find(['h2', 'h3', 'h4']) or container.find(class_=lambda x: x and ('title' in str(x) or 'name' in str(x)))
+            title = title_elem.get_text(strip=True) if title_elem else ""
+            
+            if not title:
+                continue
+            
+            # Yıl
+            year_elem = container.find(class_=lambda x: x and 'year' in str(x))
+            year = year_elem.get_text(strip=True) if year_elem else ""
+            
+            # Tür
+            genre_elem = container.find(class_=lambda x: x and ('genre' in str(x) or 'category' in str(x)))
+            genre = genre_elem.get('title', '') if genre_elem and genre_elem.get('title') else genre_elem.get_text(strip=True) if genre_elem else ""
+            
+            # Resim
+            img_elem = container.find('img')
+            img = ""
+            if img_elem:
+                img = img_elem.get('src', '') or img_elem.get('data-src', '')
+            
+            # Detay URL
+            detail_url = ""
+            link_elem = container.find('a', href=lambda x: x and '/film/' in x)
+            if link_elem:
+                href = link_elem['href']
+                if href.startswith('/'):
+                    detail_url = BASE + href
+                elif href.startswith('http'):
+                    detail_url = href
+            
+            # Puan
+            rating_elem = container.find(class_=lambda x: x and 'rating' in str(x))
+            rating = "0.0"
+            if rating_elem:
+                rating_text = rating_elem.get_text(strip=True)
+                import re
+                numbers = re.findall(r'\d+\.?\d*', rating_text)
+                if numbers:
+                    rating = numbers[0]
+            
+            movies.append({
+                "title": title,
+                "rating": rating,
+                "year": year,
+                "genre": genre,
+                "image": img,
+                "detail_url": detail_url,
+                "embed_url": ""  # Sonra dolduracağız
+            })
+            
+            print(f"    ✓ {title[:30]}...")
+            
+        except Exception as e:
+            print(f"    ⚠ Film {i+1} işlenirken hata: {e}")
     
     # Embed URL'leri paralel al
     print(f"  • {len(movies)} film için embed URL'leri alınıyor...")
     
-    # Thread sayısını sınırla
-    max_workers = min(10, len(movies))
-    
-    with ThreadPoolExecutor(max_workers=max_workers) as executor:
-        future_to_movie = {executor.submit(get_embed_for_movie, movie): movie for movie in movies}
+    with ThreadPoolExecutor(max_workers=5) as executor:
+        futures = []
+        for movie in movies:
+            futures.append(executor.submit(get_embed_for_movie, movie))
         
-        updated_movies = []
-        completed = 0
-        for future in as_completed(future_to_movie):
-            completed += 1
-            if completed % 5 == 0:
-                print(f"    {completed}/{len(movies)} embed tamamlandı")
-            
+        for i, future in enumerate(as_completed(futures)):
             try:
-                updated_movie = future.result(timeout=15)
-                updated_movies.append(updated_movie)
-            except Exception as e:
-                original_movie = future_to_movie[future]
-                updated_movies.append(original_movie)
+                movie = future.result(timeout=10)
+                movies[i] = movie
+            except:
+                pass
     
-    # Orijinal sıraya göre sırala
-    title_to_movie = {m['title']: m for m in updated_movies}
-    final_movies = []
-    for orig_movie in movies:
-        if orig_movie['title'] in title_to_movie:
-            final_movies.append(title_to_movie[orig_movie['title']])
-    
-    result = {
-        "status": "success",
-        "page": page,
-        "total": len(final_movies),
-        "movies": final_movies
-    }
-    
-    # Cache'e kaydet
-    try:
-        with open(cache_file, 'w', encoding='utf-8') as f:
-            json.dump(result, f, indent=2, ensure_ascii=False)
-    except Exception as e:
-        print(f"  ⚠ Cache kaydedilemedi: {e}")
-    
-    return result
+    print(f"  • {len(movies)} film başarıyla çekildi")
+    return movies
 
-def test_scraper():
-    """Sadece test için"""
-    print("🧪 Scraper test ediliyor...")
+def get_embed_for_movie(movie):
+    """Thread için embed alma"""
+    movie['embed_url'] = get_embed_url(movie['detail_url'])
+    return movie
+
+def main():
+    print("🎬 DIZIPAL FILM SCRAPER - BeautifulSoup")
+    print("=" * 50)
     
-    # Test için 1. sayfa
-    result = scrape_page(1)
+    # Önce bir sayfayı test et
+    test_movies = scrape_with_bs4(1)
     
-    if result['status'] == 'success' and result['movies']:
-        print(f"\n✅ TEST BAŞARILI!")
-        print(f"📊 {len(result['movies'])} film bulundu")
+    if test_movies:
+        print(f"\n✅ TEST BAŞARILI! {len(test_movies)} film bulundu")
         
-        print("\n📋 İlk 5 film:")
-        for i, movie in enumerate(result['movies'][:5]):
+        # İlk 3 filmi göster
+        print("\n📋 İlk 3 film:")
+        for i, movie in enumerate(test_movies[:3]):
             print(f"\n{i+1}. {movie['title']}")
             print(f"   ⭐ Puan: {movie['rating']}")
             print(f"   📅 Yıl: {movie['year']}")
             print(f"   🎭 Tür: {movie['genre']}")
-            print(f"   🖼️  Resim: {movie['image'][:50]}...")
             print(f"   🔗 Embed: {movie['embed_url'][:50]}...")
         
-        # Tümünü JSON'a kaydet
-        with open("test_output.json", "w", encoding="utf-8") as f:
-            json.dump(result, f, indent=2, ensure_ascii=False)
-        print(f"\n💾 test_output.json dosyasına kaydedildi")
+        # Kaydet
+        with open("bs4_output.json", "w", encoding="utf-8") as f:
+            json.dump(test_movies, f, indent=2, ensure_ascii=False)
+        print(f"\n💾 bs4_output.json dosyasına kaydedildi")
         
-        return True
-    else:
-        print(f"\n❌ TEST BAŞARISIZ!")
-        print(f"Mesaj: {result.get('msg', 'Bilinmeyen hata')}")
-        
-        # Debug dosyalarını kontrol et
-        if os.path.exists("debug_page_1.html"):
-            print("\n📄 Debug HTML dosyası oluşturuldu: debug_page_1.html")
-        
-        return False
-
-if __name__ == "__main__":
-    print("🎬 DIZIPAL FILM SCRAPER - Python")
-    print("=" * 50)
-    
-    # Önce test et
-    if test_scraper():
+        # Daha fazla sayfa çekmek ister misin?
         print("\n" + "=" * 50)
-        print("🎉 Test başarılı! Tüm sayfaları çekmek ister misiniz?")
-        print("1. Evet, tüm sayfaları çek (1-158)")
+        print("Daha fazla sayfa çekmek ister misiniz?")
+        print("1. Evet, 10 sayfa çek")
         print("2. Hayır, sadece test yeterli")
         
         choice = input("\nSeçiminiz (1/2): ").strip()
         
         if choice == "1":
-            print("\n📥 Tüm sayfalar çekiliyor...")
+            all_movies = test_movies.copy()
             
-            all_movies = []
-            start_time = time.time()
-            
-            for page in range(1, 159):  # 1-158
-                try:
-                    result = scrape_page(page)
-                    
-                    if result['status'] == 'success' and result['movies']:
-                        all_movies.extend(result['movies'])
-                        print(f"✓ Sayfa {page}: {len(result['movies'])} film (Toplam: {len(all_movies)})")
-                    else:
-                        print(f"✗ Sayfa {page}: {result.get('msg', 'Film yok')}")
-                        if page > 5:  # İlk 5 sayfadan sonra boşsa dur
-                            break
-                    
-                    # Bekle
-                    time.sleep(0.3)
-                    
-                except Exception as e:
-                    print(f"✗ Sayfa {page} hatası: {e}")
+            for page in range(2, 11):
+                print(f"\n→ Sayfa {page} çekiliyor...")
+                movies = scrape_with_bs4(page)
+                
+                if movies:
+                    all_movies.extend(movies)
+                    print(f"✓ Sayfa {page}: {len(movies)} film (Toplam: {len(all_movies)})")
+                    time.sleep(0.5)
+                else:
+                    print(f"✗ Sayfa {page}: Film bulunamadı")
                     break
             
-            end_time = time.time()
+            # Tümünü kaydet
+            with open("all_movies_bs4.json", "w", encoding="utf-8") as f:
+                json.dump(all_movies, f, indent=2, ensure_ascii=False)
             
             print(f"\n{'='*50}")
-            print(f"✅ İŞLEM TAMAMLANDI")
-            print(f"⏱️  Süre: {end_time - start_time:.2f} saniye")
-            print(f"🎬 Toplam film: {len(all_movies)}")
-            
-            # JSON olarak kaydet
-            with open("all_movies.json", "w", encoding="utf-8") as f:
-                json.dump(all_movies, f, indent=2, ensure_ascii=False)
-            print(f"💾 all_movies.json dosyasına kaydedildi")
-        else:
-            print("\n👋 Çıkılıyor...")
+            print(f"✅ TOPLAM {len(all_movies)} FİLM ÇEKİLDİ")
+            print(f"💾 all_movies_bs4.json dosyasına kaydedildi")
+        
     else:
-        print("\n⚠ Scraper düzeltilmesi gerekiyor!")
+        print("\n❌ TEST BAŞARISIZ!")
+        print("HTML yapısı değişmiş olabilir.")
+
+if __name__ == "__main__":
+    main()
