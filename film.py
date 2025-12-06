@@ -14,6 +14,7 @@ HEADERS = {
 SESSION = requests.Session()
 SESSION.headers.update(HEADERS)
 
+# HTML çekme
 def get_html(url):
     try:
         r = SESSION.get(url, timeout=10)
@@ -23,6 +24,7 @@ def get_html(url):
         pass
     return ""
 
+# Embed URL çözme
 def get_embed_url(detail_url):
     if not detail_url:
         return ""
@@ -47,12 +49,12 @@ def get_embed_url(detail_url):
     slug = detail_url.rstrip('/').split('/')[-1]
     return f"https://dizipal.website/{hashlib.md5(slug.encode()).hexdigest()[:13]}"
 
+# Sayfa scrape
 def scrape_page(page=1):
     url = f"{BASE}/filmler" if page == 1 else f"{BASE}/filmler/{page}"
     print(f"→ Sayfa {page} çekiliyor: {url}")
     html = get_html(url)
     if not html:
-        print("  ⚠ HTML çekilemedi")
         return []
 
     soup = BeautifulSoup(html, 'html.parser')
@@ -72,18 +74,17 @@ def scrape_page(page=1):
             year_elem = container.find(class_=lambda x: x and 'year' in x)
             year = year_elem.get_text(strip=True) if year_elem else ""
 
-            genre_elem = container.find(attrs={"title": True})
-            genre = genre_elem['title'].strip() if genre_elem else ""
+            genre_elem = container.find(class_=lambda x: x and 'title' in x)
+            genre = genre_elem.get('title', '') if genre_elem else ""
 
             img_elem = container.find('img')
             img = ""
             if img_elem:
                 src = img_elem.get('src') or img_elem.get('data-src')
-                if src:
-                    if src.startswith('/'):
-                        img = BASE + src
-                    else:
-                        img = src
+                if src and 'uploads/movies/original/' in src:
+                    img = src
+                elif src and 'uploads/video/group/original/' in src:
+                    img = src
 
             link_elem = container.find('a', href=lambda x: x and '/film/' in x)
             detail_url = ""
@@ -100,13 +101,13 @@ def scrape_page(page=1):
                 "genre": genre,
                 "image": img,
                 "detail_url": detail_url,
-                "embed_url": ""
+                "embed_url": ""  # Sonra doldurulacak
             })
-        except Exception as e:
-            print(f"⚠ Film işlenirken hata: {e}")
-
+        except:
+            continue
     return movies
 
+# Embed URL'leri paralel al
 def fill_embed_urls(movies):
     with ThreadPoolExecutor(max_workers=5) as executor:
         futures = {executor.submit(get_embed_url, m['detail_url']): m for m in movies}
@@ -117,6 +118,7 @@ def fill_embed_urls(movies):
             except:
                 movie['embed_url'] = ""
 
+# Tüm sayfaları çek
 def scrape_all(max_pages=50):
     all_movies = []
     for page in range(1, max_pages + 1):
@@ -129,14 +131,13 @@ def scrape_all(max_pages=50):
         time.sleep(0.2)
     return all_movies
 
+# MAIN
 if __name__ == "__main__":
     print("🎬 DIZIPAL FILM SCRAPER")
     movies = scrape_all(max_pages=50)
 
-    try:
-        with open("film.json", "w", encoding="utf-8") as f:
-            json.dump(movies, f, indent=2, ensure_ascii=False)
-        print(f"\n🎉 Toplam film: {len(movies)}")
-        print(f"💾 film.json kaydedildi!")
-    except Exception as e:
-        print(f"❌ film.json kaydedilemedi: {e}")
+    file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "film.json")
+    with open(file_path, "w", encoding="utf-8") as f:
+        json.dump(movies, f, indent=2, ensure_ascii=False)
+    print(f"\n🎉 Toplam film: {len(movies)}")
+    print(f"💾 film.json kaydedildi! ({file_path})")
