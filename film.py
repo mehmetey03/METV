@@ -142,7 +142,7 @@ def fill_embed_urls(movies):
 # ------------------------------
 # Tüm sayfaları çek
 # ------------------------------
-def scrape_all(max_pages=5):
+def scrape_all(max_pages=160):
     all_movies = []
     for page in range(1, max_pages + 1):
         movies = scrape_page(page)
@@ -159,7 +159,7 @@ def scrape_all(max_pages=5):
 # ------------------------------
 if __name__ == "__main__":
     print("🎬 DIZIPAL FILM SCRAPER")
-    movies = scrape_all(max_pages=5)
+    movies = scrape_all(max_pages=160)
 
     # JSON kaydet
     try:
