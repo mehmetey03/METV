@@ -2,124 +2,86 @@ import requests
 from bs4 import BeautifulSoup
 import json
 import time
+import re
 
 BASE = "https://dizipall30.com"
 
 SESSION = requests.Session()
 SESSION.headers.update({
-    "User-Agent": (
-        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-        "AppleWebKit/537.36 (KHTML, like Gecko) "
-        "Chrome/124.0.0.0 Safari/537.36"
-    ),
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
     "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-    "Accept-Language": "tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7",
-    "Accept-Encoding": "gzip, deflate, br",
-    "Connection": "keep-alive",
 })
 
 def get_html(url):
     try:
-        r = SESSION.get(url, timeout=10)
-        if r.status_code == 200 and len(r.text) > 200:
-            return r.text
-        else:
-            print("⚠ Boş/korumalı HTML:", url)
+        r = SESSION.get(url, timeout=15)
+        r.raise_for_status()
+        return r.text
     except:
-        pass
-    return ""
-
-
-def get_embed(detail_url):
-    html = get_html(detail_url)
-    if not html:
         return ""
 
-    soup = BeautifulSoup(html, "html.parser")
-    iframe = soup.select_one("iframe")
-
-    if iframe:
-        src = iframe.get("src", "")
-        if src.startswith("//"):
-            src = "https:" + src
-        return src
-
-    return ""
-
-
-def scrape():
+def scrape_simple():
+    """PHP'deki regex mantığını kullanan basit scraper"""
     all_movies = []
     page = 1
-
-    while True:
-        url = f"{BASE}/filmler/{page}"
-        print(f"→ Tarama: {url}")
-
+    
+    while page <= 3:  # Sadece 3 sayfa test
+        if page == 1:
+            url = f"{BASE}/filmler"
+        else:
+            url = f"{BASE}/filmler/{page}"
+        
+        print(f"→ Sayfa {page}: {url}")
         html = get_html(url)
+        
         if not html:
-            print("❌ Film bulunamadı (HTML boş) → Durdu.")
             break
-
-        soup = BeautifulSoup(html, "html.parser")
-
-        blocks = soup.select("div.group")
-        if not blocks:
-            print("❌ Film kutusu yok → Durdu.")
-            break
-
-        print(f"  • {len(blocks)} film bulundu")
-
-        for m in blocks:
-
+        
+        # PHP'deki regex pattern'ini kullan
+        pattern = r'<li\s+class="[^"]*w-1/2[^"]*"[^>]*>(.*?)</li>'
+        matches = re.findall(pattern, html, re.DOTALL)
+        
+        print(f"  • Regex ile {len(matches)} blok bulundu")
+        
+        for i, content in enumerate(matches[:3]):  # İlk 3'ü göster
+            print(f"\n  Blok {i+1}:")
+            
             # Başlık
-            title = (m.select_one("div.font-semibold") or "").get_text(strip=True)
-
-            # Tür + yıl
-            info = (m.select_one("div.text-xs") or "").get_text(strip=True)
-            year = ""
-            genre = ""
-
-            if "•" in info:
-                parts = [x.strip() for x in info.split("•")]
-                if parts[-1].isdigit():
-                    year = parts[-1]
-                    genre = " | ".join(parts[:-1])
-
+            title_match = re.search(r'<h2[^>]*class="truncate"[^>]*>(.*?)</h2>', content, re.DOTALL)
+            title = title_match.group(1).strip() if title_match else "Başlık Yok"
+            title = re.sub(r'<[^>]+>', '', title)  # HTML tag'larını temizle
+            print(f"    Başlık: {title}")
+            
+            # Puan
+            rating_match = re.search(r'<span[^>]*class="[^"]*rating[^"]*"[^>]*>.*?</svg>\s*([\d\.]+)', content, re.DOTALL)
+            rating = rating_match.group(1) if rating_match else "0.0"
+            print(f"    Puan: {rating}")
+            
+            # Yıl
+            year_match = re.search(r'<span[^>]*class="[^"]*year[^"]*"[^>]*>([^<]+)</span>', content)
+            year = year_match.group(1).strip() if year_match else ""
+            print(f"    Yıl: {year}")
+            
+            # Tür
+            genre_match = re.search(r'<p[^>]*class="truncate"[^>]*title="([^"]+)"', content)
+            genre = genre_match.group(1) if genre_match else ""
+            print(f"    Tür: {genre}")
+            
             # Resim
-            img = ""
-            imgtag = m.find("img")
-            if imgtag:
-                img = imgtag.get("src", "")
-
+            img_match = re.search(r'(?:src|data-src)="(https://dizipall30\.com/uploads/movies/original/[^"]+\.webp)"', content)
+            img = img_match.group(1) if img_match else ""
+            print(f"    Resim: {img[:50]}...")
+            
             # Detay URL
-            a = m.find("a")
-            detail = BASE + a["href"] if a else ""
-
-            # Embed
-            embed = get_embed(detail) if detail else ""
-
-            all_movies.append({
-                "title": title,
-                "year": year,
-                "genre": genre,
-                "image": img,
-                "detail_url": detail,
-                "embed_url": embed
-            })
-
+            url_match = re.search(r'href="(https://dizipall30\.com/film/[^"]+)"', content)
+            detail = url_match.group(1) if url_match else ""
+            print(f"    Detay: {detail}")
+        
+        time.sleep(1)
         page += 1
-        time.sleep(0.2)
-
+    
     return all_movies
 
-
 if __name__ == "__main__":
-    print("🔍 Film taraması başlıyor...\n")
-
-    movies = scrape()
-
-    with open("film.json", "w", encoding="utf-8") as f:
-        json.dump(movies, f, indent=2, ensure_ascii=False)
-
-    print(f"\n🎉 Toplam film: {len(movies)}")
-    print("💾 film.json kaydedildi!\n")
+    print("🔍 Basit scraper testi...\n")
+    movies = scrape_simple()
