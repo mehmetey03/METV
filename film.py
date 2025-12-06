@@ -9,7 +9,6 @@ BASE = "https://dizipall30.com"
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 }
-
 SESSION = requests.Session()
 SESSION.headers.update(HEADERS)
 
@@ -29,7 +28,6 @@ def get_embed_url(detail_url):
     if not html:
         return ""
     soup = BeautifulSoup(html, 'html.parser')
-
     iframe = soup.find('iframe')
     if iframe and iframe.get('src'):
         src = iframe['src']
@@ -38,13 +36,11 @@ def get_embed_url(detail_url):
         elif not src.startswith('http'):
             src = 'https://dizipal.website' + src
         return src
-
     video_div = soup.find(attrs={"data-video-id": True})
     if video_div:
         return f"https://dizipal.website/{video_div['data-video-id']}"
-
-    slug = detail_url.rstrip('/').split('/')[-1]
     import hashlib
+    slug = detail_url.rstrip('/').split('/')[-1]
     return f"https://dizipal.website/{hashlib.md5(slug.encode()).hexdigest()[:13]}"
 
 def scrape_page(page=1):
@@ -85,15 +81,24 @@ def scrape_page(page=1):
                 elif href.startswith('http'):
                     detail_url = href
 
-            # Resim URL'sini slug’dan oluştur
-            slug = detail_url.rstrip('/').split('/')[-1]
-            image = f"{BASE}/uploads/movies/original/{slug}.webp"
+            # Resim URL: container içindeki img tag’ından al
+            img_elem = container.find('img')
+            img = ""
+            if img_elem:
+                img_src = img_elem.get('data-src') or img_elem.get('src')
+                if img_src and 'uploads/movies/original/' in img_src:
+                    if img_src.startswith('//'):
+                        img = 'https:' + img_src
+                    elif img_src.startswith('/'):
+                        img = BASE + img_src
+                    else:
+                        img = img_src
 
             movies.append({
                 "title": title,
                 "year": year,
                 "genre": genre,
-                "image": image,
+                "image": img,
                 "detail_url": detail_url,
                 "embed_url": ""  # Sonra dolduracağız
             })
@@ -112,7 +117,7 @@ def fill_embed_urls(movies):
             except:
                 movie['embed_url'] = ""
 
-def scrape_all(max_pages=160):
+def scrape_all(max_pages=5):
     all_movies = []
     for page in range(1, max_pages + 1):
         movies = scrape_page(page)
@@ -126,7 +131,7 @@ def scrape_all(max_pages=160):
 
 if __name__ == "__main__":
     print("🎬 DIZIPAL FILM SCRAPER")
-    movies = scrape_all(max_pages=160)
+    movies = scrape_all(max_pages=5)
 
     try:
         file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "film.json")
