@@ -112,7 +112,7 @@ def fill_embed_urls(movies):
             except:
                 movie['embed_url'] = ""
 
-def scrape_all(max_pages=5):
+def scrape_all(max_pages=160):
     all_movies = []
     for page in range(1, max_pages + 1):
         movies = scrape_page(page)
@@ -126,7 +126,7 @@ def scrape_all(max_pages=5):
 
 if __name__ == "__main__":
     print("🎬 DIZIPAL FILM SCRAPER")
-    movies = scrape_all(max_pages=5)
+    movies = scrape_all(max_pages=160)
 
     try:
         file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "film.json")
