@@ -1,0 +1,38 @@
+name: Film JSON Builder
+
+on:
+  schedule:
+    - cron: '*/20 * * * *'   # Her 20 dakikada bir çalışır
+  workflow_dispatch:
+
+jobs:
+  update-json:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+        
+    - name: Install dependencies
+      run: |
+        pip install requests bs4 lxml
+        
+    - name: Run Film Scraper
+      run: python "film.py"
+      
+    - name: Commit and push
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add -A
+        git commit -m "🎬 Film listesi güncellendi - $(date +'%Y-%m-%d %H:%M:%S')" || exit 0
+        git push
