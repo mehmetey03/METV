@@ -10,6 +10,7 @@ BASE = "https://dizipall30.com"
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 }
+
 SESSION = requests.Session()
 SESSION.headers.update(HEADERS)
 
@@ -89,15 +90,21 @@ def scrape_page(page=1):
             genre_elem = container.find(class_=lambda x: x and 'title' in x)
             genre = genre_elem.get('title', '') if genre_elem else ""
 
-            # Resim (sadece /movies/original/ klasörü)
+            # Resim
             img_elem = container.find('img')
             img = ""
             if img_elem:
                 src = img_elem.get('src') or img_elem.get('data-src')
                 if src and 'uploads/movies/original/' in src:
-                    img = src  # sadece movie resmi al
-                else:
-                    img = ""  # diğer svg veya video grup ikonlarını atla
+                    img = src
+                elif src and 'uploads/video/group/original/' in src:
+                    img = src
+            # Eğer boşsa slug’dan otomatik oluştur
+            if not img:
+                slug = container.find('a', href=lambda x: x and '/film/' in x)
+                if slug:
+                    slug_text = slug['href'].rstrip('/').split('/')[-1]
+                    img = f"{BASE}/uploads/movies/original/{slug_text}.webp"
 
             # Detay URL
             link_elem = container.find('a', href=lambda x: x and '/film/' in x)
