@@ -1,78 +1,138 @@
 import requests
+import re
 import json
-from bs4 import BeautifulSoup
+import time
 
-HEAD = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123 Safari/537.36"
+BASE = "https://dizipall30.com"
+HEADERS = {
+    "User-Agent": "Mozilla/5.0",
+    "Accept-Encoding": "gzip"
 }
 
-def aktif_domaini_bul():
-    print("🔍 Aktif domain aranıyor...\n")
 
-    for i in range(30, 101):   # 30 → 100
-        domain = f"https://dizipall{i}.com"
-
-        print(f"  Deneniyor: {domain}")
-        try:
-            r = requests.get(domain + "/filmler/1", headers=HEAD, timeout=5)
-            if r.status_code == 200 and "filmler" in r.text.lower():
-                print(f"  ✓ Aktif bulundu: {domain}\n")
-                return domain
-        except:
-            pass
-
-    print("❌ Domain bulunamadı!")
-    return None
+# -----------------------------------------
+# FAST REQUEST
+# -----------------------------------------
+def fast_get(url):
+    try:
+        r = requests.get(url, headers=HEADERS, timeout=8)
+        if r.status_code == 200:
+            return r.text
+    except:
+        return ""
+    return ""
 
 
-def filmleri_tar(domain):
-    print("📄 Film sayfaları taranıyor...\n")
+# -----------------------------------------
+# EMBED ÇÖZÜCÜ (PHP'DEKİYLE AYNI)
+# -----------------------------------------
+def get_embed_fast(detail_url):
+    html = fast_get(detail_url)
+    if not html:
+        return ""
 
-    filmler = []
-    sayfa = 1
+    # <iframe src="">
+    m = re.search(r'<iframe[^>]+src=["\']([^"\']+)["\']', html)
+    if m:
+        src = m.group(1)
+        if not src.startswith("http"):
+            src = "https://dizipal.website" + src
+        return src
+
+    # data-video-id
+    m = re.search(r'data-video-id=["\']([A-Za-z0-9]+)', html)
+    if m:
+        return "https://dizipal.website/" + m.group(1)
+
+    # direkt dizipal.website linki
+    m = re.search(r'(https?://dizipal\.website/[A-Za-z0-9]+)', html)
+    if m:
+        return m.group(1)
+
+    # fallback slug → md5 → 13 karakter
+    slug = detail_url.rstrip("/").split("/")[-1]
+    import hashlib
+    h = hashlib.md5(slug.encode()).hexdigest()[:13]
+    return "https://dizipal.website/" + h
+
+
+# -----------------------------------------
+# TÜM SAYFALARI TARAMA
+# -----------------------------------------
+def scrape_all_movies():
+    page = 1
+    all_movies = []
 
     while True:
-        url = f"{domain}/filmler/{sayfa}"
-        print(f"  → Sayfa: {url}")
+        url = f"{BASE}/filmler/{page}"
+        print(f"→ Tarama: {url}")
 
-        try:
-            r = requests.get(url, headers=HEAD, timeout=10)
-            if r.status_code != 200:
-                break
-        except:
+        html = fast_get(url)
+        if not html:
+            print("❌ Sayfa boş, durduruluyor...")
             break
 
-        soup = BeautifulSoup(r.text, "html.parser")
+        # li bloklarını bul
+        blocks = re.findall(r'<li class="[^"]*w-1/2[^"]*"[^>]*>(.*?)</li>', html, re.S)
 
-        items = soup.select(".movie-item")
-        if not items:
-            break  # artık film yok → dur
+        if len(blocks) == 0:
+            print("❌ Film bulunamadı, durduruluyor.")
+            break
 
-        for item in items:
-            title = item.select_one("h3").get_text(strip=True)
-            link = domain + item.select_one("a")["href"]
-            img = item.select_one("img")["src"]
+        for b in blocks:
 
-            filmler.append({
+            # title
+            t = re.search(r'<h2[^>]*>(.*?)</h2>', b)
+            title = t.group(1).strip() if t else ""
+
+            # year
+            y = re.search(r'year[^>]*>(.*?)<', b)
+            year = y.group(1).strip() if y else ""
+
+            # genre (title="")
+            g = re.search(r'title="([^"]+)"', b)
+            genre = g.group(1).strip() if g else ""
+
+            # image
+            img = ""
+            m = re.search(r'src="(https://dizipall30\.com/uploads/movies/original/[^"]+)"', b)
+            if m:
+                img = m.group(1)
+            else:
+                m2 = re.search(r'src="(https://dizipall30\.com/uploads/video/group/original/[^"]+)"', b)
+                if m2:
+                    img = m2.group(1)
+
+            # detail url
+            u = re.search(r'href="(https://dizipall30\.com/film/[^"]+)"', b)
+            detail_url = u.group(1) if u else ""
+
+            # embed
+            embed = get_embed_fast(detail_url) if detail_url else ""
+
+            all_movies.append({
                 "title": title,
-                "link": link,
-                "image": img
+                "year": year,
+                "genre": genre,
+                "image": img,
+                "detail_url": detail_url,
+                "embed_url": embed
             })
 
-        sayfa += 1
+        page += 1
+        time.sleep(0.2)  # 0.2 saniye gecikme
 
-    print(f"\n🎉 Toplam film: {len(filmler)}\n")
-    return filmler
-
-
-def kaydet(veri):
-    with open("film.json", "w", encoding="utf-8") as f:
-        json.dump(veri, f, ensure_ascii=False, indent=2)
-    print("💾 film.json kaydedildi!")
+    return all_movies
 
 
+# -----------------------------------------
+# JSON KAYIT
+# -----------------------------------------
 if __name__ == "__main__":
-    domain = aktif_domaini_bul()
-    if domain:
-        data = filmleri_tar(domain)
-        kaydet(data)
+    movies = scrape_all_movies()
+
+    with open("film.json", "w", encoding="utf-8") as f:
+        json.dump(movies, f, indent=4, ensure_ascii=False)
+
+    print(f"\n🎉 Toplam film: {len(movies)}")
+    print("💾 film.json kaydedildi!\n")
