@@ -4,20 +4,38 @@ import json
 import time
 
 BASE = "https://dizipall30.com"
-HEADERS = {
-    "User-Agent": "Mozilla/5.0"
-}
+
+SESSION = requests.Session()
+SESSION.headers.update({
+    "User-Agent": (
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+        "AppleWebKit/537.36 (KHTML, like Gecko) "
+        "Chrome/124.0.0.0 Safari/537.36"
+    ),
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+    "Accept-Language": "tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7",
+    "Accept-Encoding": "gzip, deflate, br",
+    "Connection": "keep-alive",
+})
+
+def get_html(url):
+    try:
+        r = SESSION.get(url, timeout=10)
+        if r.status_code == 200 and len(r.text) > 200:
+            return r.text
+        else:
+            print("⚠ Boş/korumalı HTML:", url)
+    except:
+        pass
+    return ""
+
 
 def get_embed(detail_url):
-    try:
-        r = requests.get(detail_url, headers=HEADERS, timeout=10)
-    except:
+    html = get_html(detail_url)
+    if not html:
         return ""
 
-    if r.status_code != 200:
-        return ""
-
-    soup = BeautifulSoup(r.text, "html.parser")
+    soup = BeautifulSoup(html, "html.parser")
     iframe = soup.select_one("iframe")
 
     if iframe:
@@ -29,76 +47,68 @@ def get_embed(detail_url):
     return ""
 
 
-def scrape_all_movies():
+def scrape():
     all_movies = []
     page = 1
 
     while True:
         url = f"{BASE}/filmler/{page}"
-        print(f"→ Tarama: {url}", flush=True)
+        print(f"→ Tarama: {url}")
 
-        try:
-            r = requests.get(url, headers=HEADERS, timeout=10)
-        except:
-            print("❌ İstek hatası, durduruldu.")
+        html = get_html(url)
+        if not html:
+            print("❌ Film bulunamadı (HTML boş) → Durdu.")
             break
 
-        if r.status_code != 200:
-            print("❌ Status kodu:", r.status_code)
-            break
+        soup = BeautifulSoup(html, "html.parser")
 
-        soup = BeautifulSoup(r.text, "html.parser")
-
-        # GERÇEK film kutusu seçicisi
         blocks = soup.select("div.group")
         if not blocks:
-            print("❌ Film bulunamadı, tarama bitti.")
+            print("❌ Film kutusu yok → Durdu.")
             break
 
-        print(f"  • Bulunan film kutusu: {len(blocks)}")
+        print(f"  • {len(blocks)} film bulundu")
 
         for m in blocks:
 
-            # başlık
-            title_el = m.select_one("div.font-semibold")
-            title = title_el.get_text(strip=True) if title_el else ""
+            # Başlık
+            title = (m.select_one("div.font-semibold") or "").get_text(strip=True)
 
-            # tür + yıl birlikte geliyor: "Aksiyon • Gerilim • 2023"
-            info_el = m.select_one("div.text-xs")
-            info_text = info_el.get_text(strip=True) if info_el else ""
+            # Tür + yıl
+            info = (m.select_one("div.text-xs") or "").get_text(strip=True)
             year = ""
             genre = ""
 
-            if "•" in info_text:
-                parts = [x.strip() for x in info_text.split("•")]
+            if "•" in info:
+                parts = [x.strip() for x in info.split("•")]
                 if parts[-1].isdigit():
                     year = parts[-1]
                     genre = " | ".join(parts[:-1])
-                else:
-                    genre = info_text
 
-            # resim
-            img_el = m.find("img")
-            image = img_el["src"] if img_el else ""
+            # Resim
+            img = ""
+            imgtag = m.find("img")
+            if imgtag:
+                img = imgtag.get("src", "")
 
-            # detay linki
+            # Detay URL
             a = m.find("a")
-            detail_url = BASE + a["href"] if a and a.has_attr("href") else ""
+            detail = BASE + a["href"] if a else ""
 
-            # embed
-            embed = get_embed(detail_url) if detail_url else ""
+            # Embed
+            embed = get_embed(detail) if detail else ""
 
             all_movies.append({
                 "title": title,
                 "year": year,
                 "genre": genre,
-                "image": image,
-                "detail_url": detail_url,
+                "image": img,
+                "detail_url": detail,
                 "embed_url": embed
             })
 
         page += 1
-        time.sleep(0.3)
+        time.sleep(0.2)
 
     return all_movies
 
@@ -106,7 +116,7 @@ def scrape_all_movies():
 if __name__ == "__main__":
     print("🔍 Film taraması başlıyor...\n")
 
-    movies = scrape_all_movies()
+    movies = scrape()
 
     with open("film.json", "w", encoding="utf-8") as f:
         json.dump(movies, f, indent=2, ensure_ascii=False)
