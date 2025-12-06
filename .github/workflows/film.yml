@@ -1,36 +1,45 @@
-name: Film JSON Generator
+name: Film Scraper
 
 on:
   schedule:
-    - cron: "0 */6 * * *"   # 6 saatte bir
-  workflow_dispatch:
+    - cron: '0 2 * * *'   # Her gün 02:00 UTC'de çalışır
+  workflow_dispatch:      # Manuel tetikleme
 
 jobs:
-  build:
+  update-films:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
 
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - name: Python kur
+      - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: "3.10"
+          python-version: '3.10'
 
-      - name: Gerekli paketleri kur
+      - name: Install dependencies
         run: |
-          pip install requests bs4
+          python -m pip install --upgrade pip
+          pip install requests beautifulsoup4
 
-      - name: Film toplama scripti çalıştır
-        run: python film.py
-
-      - name: Commit & Push
+      - name: Run film scraper
         run: |
-          git config --global user.name "GitHub Actions"
+          python film.py
+          echo "💾 film.json kaydedildi!"
+
+      - name: Configure Git
+        run: |
           git config --global user.email "actions@github.com"
+          git config --global user.name "GitHub Actions"
+
+      - name: Pull remote changes and reset
+        run: |
+          git fetch origin main
+          git reset --hard origin/main
+
+      - name: Commit and push film.json
+        run: |
           git add film.json
-          git commit -m "Film listesi güncellendi $(date)" || echo "No changes"
-          git push
+          git commit -m "Film listesi güncellendi [GitHub Actions]" || echo "No changes to commit"
+          git push origin main
