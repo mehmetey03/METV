@@ -1,7 +1,10 @@
-name: HDFilmCehennemi Embed Collector
+name: HDFilmCehennemi Scraper
 
 on:
   workflow_dispatch:
+  schedule:
+    # Her gün saat 02:00'de çalışır (UTC)
+    - cron: '0 2 * * *'
 
 jobs:
   scrape:
@@ -10,24 +13,33 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
-          python-version: 3.11
+          python-version: '3.11'
 
-      - name: Install Playwright
+      - name: Install Dependencies
         run: |
-          pip install playwright
-          playwright install
+          pip install urllib3 html5lib
 
       - name: Run HDCH Scraper
-        run: python hdch.py
+        run: python hdch_final.py
 
-      - name: Commit JSON
+      - name: Commit and Push Results
         run: |
-          git config --global user.name "github-actions"
-          git config --global user.email "github-actions@github.com"
-          git add hdceh_embeds.json
-          git commit -m "Update hdceh_embeds.json" || echo "No changes"
-          git push
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          
+          # Tüm JSON dosyalarını ekle
+          git add *.json
+          
+          # Değişiklikleri kontrol et ve commit yap
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Auto-update: Scraped data $(date +'%Y-%m-%d %H:%M:%S')"
+            git push
+          fi
