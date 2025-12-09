@@ -1,163 +1,127 @@
 #!/usr/bin/env python3
 """
-hdch_fixed.py - Fixed HDFilmCehennemi scraper
+hdch_simple.py - Simple but reliable HDFilmCehennemi scraper
 """
 import urllib.request
-import urllib.error
 import json
 import re
-import time
-import ssl
 import html
 from datetime import datetime
 
-BASE_URL = "https://www.hdfilmcehennemi.ws/"
-CATEGORY_URL = "https://www.hdfilmcehennemi.ws/category/film-izle-2/"
-
-# Create an unverified SSL context
-ssl_context = ssl.create_default_context()
-ssl_context.check_hostname = False
-ssl_context.verify_mode = ssl.CERT_NONE
-
 def get_html(url):
-    """Fetch HTML content"""
-    headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
-        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-        'Accept-Language': 'tr,en-US;q=0.7,en;q=0.3',
-    }
-    
+    """Get HTML with minimal dependencies"""
+    headers = {'User-Agent': 'Mozilla/5.0'}
     try:
         req = urllib.request.Request(url, headers=headers)
-        with urllib.request.urlopen(req, context=ssl_context, timeout=15) as response:
+        with urllib.request.urlopen(req, timeout=10) as response:
             return response.read().decode('utf-8', errors='ignore')
-    except Exception as e:
-        print(f"Error fetching {url}: {e}")
+    except:
         return None
 
-def clean_text(text):
-    """Clean and decode HTML entities in text"""
-    if not text:
-        return ""
-    # Decode HTML entities
-    text = html.unescape(text)
-    # Remove extra whitespace
-    text = re.sub(r'\s+', ' ', text).strip()
-    return text
-
-def extract_films_from_html(html_content):
-    """Extract films from HTML with improved parsing"""
+def extract_films_directly(html_content):
+    """Direct extraction using simpler patterns"""
     films = []
     
     if not html_content:
         return films
     
-    # Find the posters container
-    container_match = re.search(r'<div class="posters-[^"]*"[^>]*>(.*?)</div>\s*</div>', html_content, re.DOTALL)
-    if not container_match:
-        # Try alternative pattern
-        container_match = re.search(r'<div[^>]*class="[^"]*posters[^"]*"[^>]*>(.*?)</div>\s*</div>', html_content, re.DOTALL)
+    # Save HTML for debugging
+    with open('debug_page.html', 'w', encoding='utf-8') as f:
+        f.write(html_content[:10000])  # First 10k chars
     
-    container_html = container_match.group(1) if container_match else html_content
+    # METHOD 1: Look for film blocks with data-token attribute
+    # Pattern: <a ... data-token="..." ...> ... </a>
+    film_pattern = r'<a\s+[^>]*data-token="\d+"[^>]*>.*?</a>'
+    film_blocks = re.findall(film_pattern, html_content, re.DOTALL | re.IGNORECASE)
     
-    # Find all poster links - improved pattern
-    film_blocks = re.findall(r'<a\s+[^>]*class="[^"]*poster[^"]*"[^>]*>.*?</a>', container_html, re.DOTALL)
+    print(f"Method 1: Found {len(film_blocks)} blocks with data-token")
     
-    print(f"Found {len(film_blocks)} film blocks")
+    if film_blocks:
+        for block in film_blocks:
+            film = parse_film_simple(block)
+            if film:
+                films.append(film)
     
-    for block in film_blocks:
-        film = parse_film_block_improved(block)
-        if film:
-            films.append(film)
+    # METHOD 2: If first method fails, look for links to film pages
+    if not films:
+        print("Trying Method 2...")
+        # Look for links containing /film/ or /dizi/
+        link_pattern = r'<a\s+href="([^"]*/(?:film|dizi)/[^"]*)"[^>]*>(.*?)</a>'
+        links = re.findall(link_pattern, html_content, re.DOTALL | re.IGNORECASE)
+        
+        print(f"Method 2: Found {len(links)} film/dizi links")
+        
+        for href, content in links:
+            film = parse_from_link(href, content)
+            if film:
+                films.append(film)
+    
+    # METHOD 3: Look for any anchor with class containing "poster"
+    if not films:
+        print("Trying Method 3...")
+        poster_pattern = r'<a\s+[^>]*class="[^"]*poster[^"]*"[^>]*>.*?</a>'
+        poster_blocks = re.findall(poster_pattern, html_content, re.DOTALL | re.IGNORECASE)
+        
+        print(f"Method 3: Found {len(poster_blocks)} poster blocks")
+        
+        for block in poster_blocks:
+            film = parse_film_simple(block)
+            if film:
+                films.append(film)
     
     return films
 
-def parse_film_block_improved(block):
-    """Improved film block parsing"""
+def parse_film_simple(block):
+    """Simple parsing of film block"""
     try:
-        # Extract URL
+        # URL
         url_match = re.search(r'href="([^"]*)"', block)
         if not url_match:
             return None
         url = url_match.group(1)
         
-        # Extract title from title attribute first
+        # Title from title attribute
         title = ''
-        title_attr_match = re.search(r'title="([^"]*)"', block)
-        if title_attr_match:
-            title = clean_text(title_attr_match.group(1))
+        title_match = re.search(r'title="([^"]*)"', block)
+        if title_match:
+            title = html.unescape(title_match.group(1)).strip()
         
-        # Also try to get title from poster-title class
+        # Alternative: get title from text content
         if not title:
-            title_match = re.search(r'<strong[^>]*class="[^"]*poster-title[^"]*"[^>]*>(.*?)</strong>', block, re.DOTALL)
-            if title_match:
-                title = clean_text(title_match.group(1))
+            # Remove all HTML tags
+            text = re.sub(r'<[^>]+>', ' ', block)
+            text = re.sub(r'\s+', ' ', text).strip()
+            if len(text) > 5 and len(text) < 100:
+                title = text
         
         if not title:
             return None
         
-        # Extract year - look for 4-digit number in a span
+        # Year - look for 4-digit number
         year = ''
-        year_match = re.search(r'<span>\s*(\d{4})\s*</span>', block)
+        year_match = re.search(r'\b(19|20)\d{2}\b', block)
         if year_match:
-            year = year_match.group(1)
+            year = year_match.group(0)
         
-        # Fix IMDB rating extraction - look for the actual rating
+        # IMDB - look for pattern like 8.0 or 7.5
         imdb = '0.0'
-        # Pattern 1: Look for imdb class with rating
-        imdb_match = re.search(r'<span[^>]*class="[^"]*imdb[^"]*"[^>]*>.*?(\d+\.\d+|\d+)', block, re.DOTALL)
+        imdb_match = re.search(r'(\d+\.\d+)\s*(?:/10)?', block)
         if imdb_match:
-            imdb_val = imdb_match.group(1)
             try:
-                # Validate it's a reasonable IMDB rating (0-10)
-                imdb_float = float(imdb_val)
-                if 0 <= imdb_float <= 10:
-                    imdb = f"{imdb_float:.1f}"
+                rating = float(imdb_match.group(1))
+                if 1.0 <= rating <= 10.0:
+                    imdb = f"{rating:.1f}"
             except:
                 pass
         
-        # Pattern 2: Look for SVG star icon followed by rating
-        if imdb == '0.0':
-            svg_imdb_match = re.search(r'<svg[^>]*><path d="[^"]*"></path></svg>\s*<p>\s*(\d+\.\d+)\s*</p>', block, re.DOTALL)
-            if svg_imdb_match:
-                imdb_val = svg_imdb_match.group(1)
-                try:
-                    imdb_float = float(imdb_val)
-                    if 0 <= imdb_float <= 10:
-                        imdb = f"{imdb_float:.1f}"
-                except:
-                    pass
-        
-        # Extract image
+        # Image
         image = ''
-        img_match = re.search(r'src="([^"]+\.webp)"', block)
+        img_match = re.search(r'src="([^"]+\.(?:webp|jpg|jpeg|png))"', block)
         if img_match:
             image = img_match.group(1)
         
-        # Extract comments count
-        comments = '0'
-        comment_match = re.search(r'<svg[^>]*>.*?</svg>\s*(\d+)', block, re.DOTALL)
-        if comment_match:
-            comments = comment_match.group(1)
-        
-        # Extract language
-        language = ''
-        lang_match = re.search(r'<span[^>]*class="[^"]*poster-lang[^"]*"[^>]*>.*?<span>\s*(.*?)\s*</span>', block, re.DOTALL)
-        if lang_match:
-            language = clean_text(lang_match.group(1))
-        
-        # Determine type
+        # Type
         film_type = 'dizi' if '/dizi/' in url else 'film'
-        
-        # Extract token if available
-        token = ''
-        token_match = re.search(r'data-token="(\d+)"', block)
-        if token_match:
-            token = token_match.group(1)
-        
-        # Clean up title (remove common suffixes)
-        title = re.sub(r'\s*(?:izle|türkçe|dublaj|altyazı|yabancı|dizi|film)\s*$', '', title, flags=re.IGNORECASE)
-        title = title.strip()
         
         return {
             'url': url,
@@ -165,161 +129,109 @@ def parse_film_block_improved(block):
             'year': year,
             'imdb': imdb,
             'image': image,
-            'comments': comments,
-            'language': language,
             'type': film_type,
-            'token': token,
             'scraped_at': datetime.now().isoformat()
         }
-    except Exception as e:
-        print(f"Error parsing film: {e}")
+    except:
         return None
 
-def scrape_multiple_pages(base_url, max_pages=3):
-    """Scrape multiple pages with pagination"""
-    all_films = []
-    
-    for page in range(1, max_pages + 1):
-        if page == 1:
-            url = base_url
-        else:
-            url = f"{base_url}page/{page}/"
+def parse_from_link(href, content):
+    """Parse film from link and its content"""
+    try:
+        # Clean content
+        text = re.sub(r'<[^>]+>', ' ', content)
+        text = re.sub(r'\s+', ' ', text).strip()
         
-        print(f"\nScraping page {page}: {url}")
-        html_content = get_html(url)
+        if not text or len(text) < 3:
+            return None
         
-        if not html_content:
-            print(f"  Failed to fetch page {page}")
-            break
+        # Title is the link text
+        title = html.unescape(text).strip()
         
-        films = extract_films_from_html(html_content)
+        # Year from URL or text
+        year = ''
+        year_match = re.search(r'\b(19|20)\d{2}\b', href + ' ' + text)
+        if year_match:
+            year = year_match.group(0)
         
-        if not films:
-            print(f"  No films found on page {page}")
-            break
+        # Type
+        film_type = 'dizi' if '/dizi/' in href else 'film'
         
-        all_films.extend(films)
-        print(f"  Found {len(films)} films on page {page}")
-        
-        # Check if we should continue (look for next page)
-        if page == 1:
-            next_page_match = re.search(r'href="[^"]*page/2/', html_content)
-            if not next_page_match:
-                print("  No more pages found")
-                break
-        
-        time.sleep(1)  # Be polite
-    
-    return all_films
+        return {
+            'url': href,
+            'title': title[:100],  # Limit title length
+            'year': year,
+            'imdb': '0.0',
+            'image': '',
+            'type': film_type,
+            'scraped_at': datetime.now().isoformat()
+        }
+    except:
+        return None
 
 def main():
-    print("=" * 70)
-    print("HDFilmCehennemi Scraper - Fixed Version")
-    print("=" * 70)
+    print("HDFilmCehennemi Simple Scraper")
+    print("=" * 60)
     
-    # Scrape the category
-    print(f"\nScraping category: {CATEGORY_URL}")
-    films = scrape_multiple_pages(CATEGORY_URL, max_pages=2)
+    url = "https://www.hdfilmcehennemi.ws/category/film-izle-2/"
+    print(f"\nFetching: {url}")
     
-    if not films:
-        print("\n❌ No films found!")
+    html_content = get_html(url)
+    if not html_content:
+        print("❌ Failed to fetch page")
         return
     
-    # Remove duplicates by URL
-    unique_films = []
-    seen_urls = set()
+    print(f"✓ Page fetched ({len(html_content)} characters)")
     
+    films = extract_films_directly(html_content)
+    
+    print(f"\nFound {len(films)} films")
+    
+    if not films:
+        print("\nNo films found. Debugging info:")
+        print("1. Check debug_page.html to see the actual HTML")
+        print("2. The site might have changed its structure")
+        print("3. Try a different approach")
+        return
+    
+    # Remove duplicates
+    unique_films = []
+    seen = set()
     for film in films:
-        if film['url'] not in seen_urls:
-            seen_urls.add(film['url'])
+        if film['url'] not in seen:
+            seen.add(film['url'])
             unique_films.append(film)
     
-    print(f"\nTotal unique films: {len(unique_films)}")
+    print(f"Unique films: {len(unique_films)}")
     
     # Save results
     result = {
         'metadata': {
             'scraped_at': datetime.now().isoformat(),
-            'source_url': CATEGORY_URL,
-            'total_films': len(unique_films),
-            'films_count': len([f for f in unique_films if f['type'] == 'film']),
-            'diziler_count': len([f for f in unique_films if f['type'] == 'dizi'])
+            'url': url,
+            'total_films': len(unique_films)
         },
         'films': unique_films
     }
     
-    output_file = 'hdfilms_fixed.json'
-    try:
-        with open(output_file, 'w', encoding='utf-8') as f:
-            json.dump(result, f, ensure_ascii=False, indent=2)
-        print(f"\n✅ Results saved to: {output_file}")
-    except Exception as e:
-        print(f"\n❌ Error saving results: {e}")
-        return
+    with open('films.json', 'w', encoding='utf-8') as f:
+        json.dump(result, f, ensure_ascii=False, indent=2)
     
-    # Print detailed summary
-    print("\n" + "=" * 70)
-    print("DETAILED SUMMARY")
-    print("=" * 70)
+    print(f"\n✅ Saved to films.json")
     
-    # Count by type
-    films_count = len([f for f in unique_films if f['type'] == 'film'])
-    diziler_count = len([f for f in unique_films if f['type'] == 'dizi'])
+    # Display results
+    print("\n" + "=" * 60)
+    print("FILMS FOUND")
+    print("=" * 60)
     
-    print(f"Total: {len(unique_films)}")
-    print(f"Films: {films_count}")
-    print(f"Diziler: {diziler_count}")
+    for i, film in enumerate(unique_films[:20], 1):
+        title = film['title'][:50] + "..." if len(film['title']) > 50 else film['title']
+        year = f"({film['year']})" if film['year'] else ""
+        imdb = f"IMDB: {film['imdb']}" if film['imdb'] != '0.0' else ""
+        print(f"{i:2}. {title:53} {year:8} {imdb}")
     
-    # Years distribution
-    years = {}
-    for film in unique_films:
-        year = film.get('year', 'Unknown')
-        years[year] = years.get(year, 0) + 1
-    
-    if years:
-        print(f"\nYears distribution ({len(years)} different years):")
-        sorted_years = sorted([(y, c) for y, c in years.items() if y != '' and y != 'Unknown'], 
-                            key=lambda x: x[1], reverse=True)
-        for year, count in sorted_years:
-            print(f"  {year}: {count} films")
-    
-    # IMDB statistics
-    films_with_imdb = [f for f in unique_films if f.get('imdb', '0.0') not in ['0.0', '0', '', '316.9']]
-    print(f"\nFilms with valid IMDB ratings: {len(films_with_imdb)}")
-    
-    if films_with_imdb:
-        # Sort by IMDB
-        films_with_imdb.sort(key=lambda x: float(x.get('imdb', 0)), reverse=True)
-        
-        print("\nTop films by IMDB rating:")
-        for idx, film in enumerate(films_with_imdb[:10], 1):
-            print(f"{idx:2}. {film['title'][:40]:40} ({film.get('year', 'N/A'):4}) - IMDB: {film['imdb']}")
-    
-    # Show all films with corrected data
-    print(f"\nAll films ({len(unique_films)} total):")
-    print("-" * 80)
-    print(f"{'No.':3} {'Title':40} {'Year':6} {'IMDB':6} {'Type':6} {'Lang':10}")
-    print("-" * 80)
-    
-    for i, film in enumerate(unique_films, 1):
-        title = film['title'][:38] + "..." if len(film['title']) > 38 else film['title']
-        year = film.get('year', 'N/A')
-        imdb = film.get('imdb', '0.0')
-        # Highlight suspicious IMDB ratings
-        if imdb == '316.9':
-            imdb = 'N/A*'
-        film_type = film.get('type', 'film')[:6]
-        lang = film.get('language', '')[:8]
-        
-        print(f"{i:3} {title:40} {year:6} {imdb:6} {film_type:6} {lang:10}")
-    
-    print("-" * 80)
-    if any(f.get('imdb') == '316.9' for f in unique_films):
-        print("* IMDB ratings marked as 'N/A*' are showing incorrect values (316.9)")
-    
-    print(f"\n{'='*70}")
-    print("SCRAPING COMPLETE!")
-    print(f"{'='*70}")
+    if len(unique_films) > 20:
+        print(f"... and {len(unique_films) - 20} more")
 
 if __name__ == '__main__':
     main()
