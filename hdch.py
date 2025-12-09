@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-hdch_final.py - Final HDFilmCehennemi scraper with pagination
+hdch_final.py - HDFilmCehennemi scraper with embed URLs
 """
 import urllib.request
+import urllib.parse
 import json
 import re
 import html
@@ -11,6 +12,8 @@ from datetime import datetime
 from urllib.parse import urljoin
 
 BASE_URL = "https://www.hdfilmcehennemi.ws/"
+EMBED_BASE_URL = "https://hdfilmcehennemi.mobi/video/embed/"
+
 CATEGORIES = {
     'film': 'https://www.hdfilmcehennemi.ws/category/film-izle-2/',
     'dizi': 'https://www.hdfilmcehennemi.ws/category/dizi-izle-2/',
@@ -23,14 +26,67 @@ def get_html(url):
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
         'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+        'Accept-Language': 'tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7',
+        'Referer': BASE_URL,
     }
     try:
         req = urllib.request.Request(url, headers=headers)
-        with urllib.request.urlopen(req, timeout=15) as response:
+        with urllib.request.urlopen(req, timeout=20) as response:
             return response.read().decode('utf-8', errors='ignore')
     except Exception as e:
         print(f"  Error fetching {url}: {e}")
         return None
+
+def extract_embed_url(film_url, token):
+    """Extract embed URL from film detail page"""
+    print(f"    Fetching embed for: {film_url}")
+    
+    html_content = get_html(film_url)
+    if not html_content:
+        return None
+    
+    embed_url = None
+    
+    # Method 1: Look for iframe embed
+    iframe_pattern = r'<iframe[^>]*src="([^"]*)"[^>]*>'
+    iframe_matches = re.findall(iframe_pattern, html_content, re.IGNORECASE)
+    
+    for iframe_src in iframe_matches:
+        if 'hdfilmcehennemi.mobi/video/embed/' in iframe_src:
+            embed_url = iframe_src
+            break
+    
+    # Method 2: Look for GKsnOLw2hsT pattern in script tags
+    if not embed_url:
+        script_pattern = r'<script[^>]*>.*?(GKsnOLw2hsT[^"\']*).*?</script>'
+        script_matches = re.findall(script_pattern, html_content, re.DOTALL | re.IGNORECASE)
+        
+        for match in script_matches:
+            if 'GKsnOLw2hsT' in match:
+                # Extract the embed code
+                embed_code_match = re.search(r'([A-Za-z0-9_\-]+)/\?rapidrame_id=([A-Za-z0-9]+)', match)
+                if embed_code_match:
+                    embed_path = embed_code_match.group(1)
+                    rapidrame_id = embed_code_match.group(2)
+                    embed_url = f"{EMBED_BASE_URL}{embed_path}/?rapidrame_id={rapidrame_id}"
+                    break
+    
+    # Method 3: Try to construct from token
+    if not embed_url and token:
+        # Try common embed patterns
+        possible_embeds = [
+            f"{EMBED_BASE_URL}GKsnOLw2hsT/?rapidrame_id={token}",
+            f"{EMBED_BASE_URL}{token}/",
+            f"https://hdfilmcehennemi.mobi/embed/{token}",
+        ]
+        
+        for test_embed in possible_embeds:
+            # Quick check if the URL might exist
+            if 'GKsnOLw2hsT' in test_embed or token in test_embed:
+                embed_url = test_embed
+                break
+    
+    return embed_url
 
 def extract_films(html_content, source_url):
     """Extract films from HTML"""
@@ -39,37 +95,24 @@ def extract_films(html_content, source_url):
     if not html_content:
         return films
     
-    # Alternative: Look for article containers which might be more reliable
-    article_pattern = r'<article[^>]*>.*?</article>'
-    articles = re.findall(article_pattern, html_content, re.DOTALL)
+    # Pattern for film items - more comprehensive
+    film_pattern = r'<article[^>]*>.*?</article>'
+    articles = re.findall(film_pattern, html_content, re.DOTALL)
     
-    print(f"  Found {len(articles)} article blocks")
+    print(f"  Found {len(articles)} articles")
     
     for article in articles:
-        film = parse_article_block(article, source_url)
+        film = parse_film_article(article, source_url)
         if film:
             films.append(film)
     
-    # Fallback to old pattern if no articles found
-    if not films:
-        print("  No articles found, trying data-token pattern...")
-        film_pattern = r'<a\s+[^>]*data-token="\d+"[^>]*>.*?</a>'
-        film_blocks = re.findall(film_pattern, html_content, re.DOTALL | re.IGNORECASE)
-        
-        print(f"  Found {len(film_blocks)} film blocks with data-token")
-        
-        for block in film_blocks:
-            film = parse_film_block(block, source_url)
-            if film:
-                films.append(film)
-    
     return films
 
-def parse_article_block(article, source_url):
-    """Parse an article block - more reliable method"""
+def parse_film_article(article, source_url):
+    """Parse a film article"""
     try:
         # URL
-        url_match = re.search(r'href="([^"]*)"', article)
+        url_match = re.search(r'href="([^"]+)"', article)
         if not url_match:
             return None
         
@@ -77,16 +120,16 @@ def parse_article_block(article, source_url):
         if not url.startswith('http'):
             url = urljoin(BASE_URL, url)
         
-        # Title from h2 or h3
+        # Title from h2/h3
         title = ''
         title_match = re.search(r'<h[23][^>]*>\s*<a[^>]*>(.*?)</a>\s*</h[23]>', article, re.DOTALL)
         if title_match:
             title = re.sub(r'<[^>]+>', '', title_match.group(1)).strip()
             title = html.unescape(title)
         
-        # Alternative: title from alt attribute of image
+        # Alternative: title from alt attribute
         if not title:
-            img_match = re.search(r'<img[^>]*alt="([^"]*)"[^>]*>', article)
+            img_match = re.search(r'<img[^>]*alt="([^"]+)"[^>]*>', article)
             if img_match:
                 title = html.unescape(img_match.group(1)).strip()
         
@@ -94,26 +137,24 @@ def parse_article_block(article, source_url):
             return None
         
         # Clean title
-        title = re.sub(r'\s*(?:izle|türkçe|dublaj|altyazı|yabancı|dizi|film|hd)\s*$', '', title, flags=re.IGNORECASE)
-        title = re.sub(r'^\s*[♪♫★☆♥♦♣♠■□▪▫●○◆◇]+\s*', '', title)
+        title = re.sub(r'\s*\(?\d{4}\)?\s*$', '', title)
+        title = re.sub(r'\s*(?:izle|türkçe|dublaj|altyazı|yabancı|dizi|film|hd|full)\s*$', '', title, flags=re.IGNORECASE)
         title = title.strip()
         
-        # Year - look for 4-digit year
+        # Year
         year = ''
         year_match = re.search(r'<span[^>]*>\s*(\d{4})\s*</span>', article)
-        if not year_match:
+        if year_match:
+            year = year_match.group(1)
+        else:
+            # Try to extract year from title
             year_match = re.search(r'\((\d{4})\)', title)
             if year_match:
                 year = year_match.group(1)
-                # Remove year from title
-                title = re.sub(r'\s*\(\d{4}\)\s*$', '', title)
         
-        if year_match and not year:
-            year = year_match.group(1)
-        
-        # IMDB
+        # IMDB rating
         imdb = '0.0'
-        imdb_match = re.search(r'imdb\s*[^>]*>\s*(\d+\.\d+)', article, re.IGNORECASE)
+        imdb_match = re.search(r'imdb[^>]*>.*?(\d+\.\d+)', article, re.IGNORECASE | re.DOTALL)
         if not imdb_match:
             imdb_match = re.search(r'(\d+\.\d+)\s*/?\s*10', article)
         
@@ -133,26 +174,26 @@ def parse_article_block(article, source_url):
             if not image.startswith('http'):
                 image = urljoin(BASE_URL, image)
         
-        # Language
-        language = ''
-        lang_match = re.search(r'türkçe\s+(?:dublaj|altyazı)', article, re.IGNORECASE)
-        if lang_match:
-            language = 'Türkçe Dublaj' if 'dublaj' in lang_match.group(0).lower() else 'Türkçe Altyazı'
-        
-        # Type
-        film_type = 'dizi' if '/dizi/' in url or 'dizi' in source_url.lower() else 'film'
-        
-        # Comments
-        comments = '0'
-        comment_match = re.search(r'comment.*?(\d+)', article, re.IGNORECASE)
-        if comment_match:
-            comments = comment_match.group(1)
-        
         # Token
         token = ''
         token_match = re.search(r'data-token="(\d+)"', article)
         if token_match:
             token = token_match.group(1)
+        else:
+            # Extract token from URL
+            token_match = re.search(r'/(\d+)(?:-|$|/)', url)
+            if token_match:
+                token = token_match.group(1)
+        
+        # Type
+        film_type = 'dizi' if '/dizi/' in url or 'dizi' in source_url.lower() else 'film'
+        
+        # Language
+        language = ''
+        if 'türkçe' in article.lower() or 'dublaj' in article.lower():
+            language = 'Türkçe Dublaj'
+        elif 'altyazı' in article.lower():
+            language = 'Türkçe Altyazı'
         
         return {
             'url': url,
@@ -160,10 +201,9 @@ def parse_article_block(article, source_url):
             'year': year,
             'imdb': imdb,
             'image': image,
-            'comments': comments,
-            'language': language,
-            'type': film_type,
             'token': token,
+            'type': film_type,
+            'language': language,
             'source': source_url,
             'scraped_at': datetime.now().isoformat()
         }
@@ -171,83 +211,7 @@ def parse_article_block(article, source_url):
         print(f"    Error parsing article: {e}")
         return None
 
-def parse_film_block(block, source_url):
-    """Parse a film block (fallback method)"""
-    try:
-        # URL
-        url_match = re.search(r'href="([^"]*)"', block)
-        if not url_match:
-            return None
-        
-        url = url_match.group(1)
-        if not url.startswith('http'):
-            url = urljoin(BASE_URL, url)
-        
-        # Title
-        title = ''
-        title_match = re.search(r'title="([^"]*)"', block)
-        if title_match:
-            title = html.unescape(title_match.group(1)).strip()
-        
-        if not title:
-            return None
-        
-        # Clean title
-        title = re.sub(r'\s*(?:izle|türkçe|dublaj|altyazı|yabancı|dizi|film|hd)\s*$', '', title, flags=re.IGNORECASE)
-        title = title.strip()
-        
-        # Year
-        year = ''
-        year_match = re.search(r'<span>\s*(\d{4})\s*</span>', block)
-        if year_match:
-            year = year_match.group(1)
-        
-        # IMDB
-        imdb = '0.0'
-        imdb_match = re.search(r'(\d+\.\d+).*?imdb', block, re.IGNORECASE)
-        if imdb_match:
-            try:
-                rating = float(imdb_match.group(1))
-                if 1.0 <= rating <= 10.0:
-                    imdb = f"{rating:.1f}"
-            except:
-                pass
-        
-        # Image
-        image = ''
-        img_match = re.search(r'src="([^"]+\.(?:webp|jpg|jpeg|png))"', block)
-        if img_match:
-            image = img_match.group(1)
-            if not image.startswith('http'):
-                image = urljoin(BASE_URL, image)
-        
-        # Type
-        film_type = 'dizi' if '/dizi/' in url else 'film'
-        
-        # Token
-        token = ''
-        token_match = re.search(r'data-token="(\d+)"', block)
-        if token_match:
-            token = token_match.group(1)
-        
-        return {
-            'url': url,
-            'title': title,
-            'year': year,
-            'imdb': imdb,
-            'image': image,
-            'comments': '0',
-            'language': '',
-            'type': film_type,
-            'token': token,
-            'source': source_url,
-            'scraped_at': datetime.now().isoformat()
-        }
-    except Exception as e:
-        print(f"    Error parsing block: {e}")
-        return None
-
-def scrape_category(category_url, category_name, max_pages=3):
+def scrape_category(category_url, category_name, max_pages=2):
     """Scrape a category with pagination"""
     all_films = []
     
@@ -271,31 +235,23 @@ def scrape_category(category_url, category_name, max_pages=3):
         
         if not films:
             print(f"    No films found on page {page}")
-            # Try one more page before giving up
             if page == 1:
-                continue
+                continue  # Try next page
             else:
                 break
         
         all_films.extend(films)
         print(f"    Found {len(films)} films")
         
-        # Check if there are more pages (simple check)
-        next_page_link = f'page/{page + 1}/'
-        if page < max_pages and next_page_link not in html_content and 'class="next' not in html_content:
-            print(f"    No more pages found")
-            break
-        
         # Be polite
-        if page < max_pages:
-            time.sleep(1.5)
+        time.sleep(1.5)
     
     print(f"  Total from {category_name}: {len(all_films)} films")
     return all_films
 
 def main():
     print("=" * 70)
-    print("HDFilmCehennemi Complete Scraper")
+    print("HDFilmCehennemi Scraper with Embed URLs")
     print("=" * 70)
     
     all_films = []
@@ -304,20 +260,10 @@ def main():
     for cat_name, cat_url in CATEGORIES.items():
         category_films = scrape_category(cat_url, cat_name, max_pages=2)
         all_films.extend(category_films)
-        
-        # Be polite between categories
         time.sleep(2)
     
     if not all_films:
-        print("\n❌ No films found at all!")
-        print("Trying direct homepage scrape...")
-        
-        # Try scraping homepage as fallback
-        homepage_films = scrape_category(BASE_URL, 'homepage', max_pages=1)
-        all_films.extend(homepage_films)
-    
-    if not all_films:
-        print("\n❌ Still no films found!")
+        print("\n❌ No films found!")
         return
     
     # Remove duplicates by URL
@@ -330,22 +276,50 @@ def main():
             unique_films.append(film)
     
     print(f"\n{'='*70}")
+    print(f"Fetching embed URLs for {len(unique_films)} films...")
+    print(f"{'='*70}")
+    
+    # Fetch embed URLs for each film
+    films_with_embeds = []
+    for i, film in enumerate(unique_films, 1):
+        print(f"  [{i}/{len(unique_films)}] {film['title'][:40]}...")
+        
+        embed_url = extract_embed_url(film['url'], film.get('token', ''))
+        
+        if embed_url:
+            film['embed_url'] = embed_url
+            print(f"    ✓ Found embed: {embed_url[:60]}...")
+        else:
+            film['embed_url'] = None
+            print(f"    ✗ No embed found")
+        
+        films_with_embeds.append(film)
+        
+        # Be polite when fetching embeds
+        if i < len(unique_films):
+            time.sleep(0.5)
+    
+    # Count films with embeds
+    films_with_embeds_count = sum(1 for f in films_with_embeds if f.get('embed_url'))
+    
+    print(f"\n{'='*70}")
     print(f"SCRAPING COMPLETE")
     print(f"{'='*70}")
-    print(f"Total films collected: {len(all_films)}")
-    print(f"Unique films: {len(unique_films)}")
+    print(f"Total unique films: {len(films_with_embeds)}")
+    print(f"Films with embed URLs: {films_with_embeds_count}")
     
-    # Save results
-    output_file = 'hdfilms_complete.json'
+    # Save complete results
+    output_file = 'hdfilms_with_embeds.json'
     try:
         result = {
             'metadata': {
                 'scraped_at': datetime.now().isoformat(),
-                'total_films': len(unique_films),
+                'total_films': len(films_with_embeds),
+                'films_with_embeds': films_with_embeds_count,
                 'source': 'hdfilmcehennemi.ws',
                 'categories': list(CATEGORIES.keys())
             },
-            'films': unique_films
+            'films': films_with_embeds
         }
         
         with open(output_file, 'w', encoding='utf-8') as f:
@@ -354,20 +328,45 @@ def main():
     except Exception as e:
         print(f"\n❌ Error saving results: {e}")
     
-    # Print summary
-    if unique_films:
-        print(f"\nSample of scraped films:")
-        print("-" * 80)
-        for i, film in enumerate(unique_films[:20], 1):
-            title = film['title'][:50] + "..." if len(film['title']) > 50 else film['title']
-            year = film.get('year', 'N/A')
-            imdb = f"⭐{film['imdb']}" if film['imdb'] != '0.0' else ""
-            type_icon = "🎬" if film['type'] == 'film' else "📺"
-            print(f"{i:2}. {type_icon} {title:55} {year:6} {imdb}")
+    # Save simple version for GitHub Actions
+    try:
+        simple_data = []
+        for film in films_with_embeds:
+            simple_data.append({
+                'title': film['title'],
+                'year': film.get('year', ''),
+                'type': film['type'],
+                'url': film['url'],
+                'embed_url': film.get('embed_url', ''),
+                'imdb': film['imdb'],
+                'image': film.get('image', '')
+            })
+        
+        with open('hdceh_embeds.json', 'w', encoding='utf-8') as f:
+            json.dump(simple_data, f, ensure_ascii=False, indent=2)
+        print(f"✅ GitHub Actions file saved to: hdceh_embeds.json")
+    except Exception as e:
+        print(f"❌ Error saving GitHub Actions file: {e}")
     
-    print(f"\n{'='*70}")
-    print("DONE!")
-    print(f"{'='*70}")
+    # Print summary
+    if films_with_embeds:
+        print(f"\nSample of films with embeds:")
+        print("-" * 80)
+        
+        films_with_embeds_list = [f for f in films_with_embeds if f.get('embed_url')]
+        if films_with_embeds_list:
+            for i, film in enumerate(films_with_embeds_list[:15], 1):
+                title = film['title'][:40] + "..." if len(film['title']) > 40 else film['title']
+                year = film.get('year', 'N/A')
+                embed_short = film['embed_url'][:50] + "..." if len(film['embed_url']) > 50 else film['embed_url']
+                print(f"{i:2}. {title:45} {year:6}")
+                print(f"    {embed_short}")
+        else:
+            print("No films with embed URLs found")
+        
+        print(f"\n{'='*70}")
+        print("DONE!")
+        print(f"{'='*70}")
 
 if __name__ == '__main__':
     main()
