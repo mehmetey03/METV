@@ -1,53 +1,59 @@
-# hdch_playwright.py
-import asyncio
-import json
-from playwright.async_api import async_playwright
+import asyncio, json
+from playwright.async_api import async_playwright, TimeoutError
 
-# Site URL
 BASE_URL = "https://www.hdfilmcehennemi.ws/category/film-izle-2/"
-
-# JSON kaydedilecek dosya
 OUTPUT_FILE = "hdceh_embeds.json"
+MAX_PAGES = 50
 
 async def fetch_films():
-    films = []
+    embeds = []
+
     async with async_playwright() as p:
         browser = await p.chromium.launch(headless=True)
         context = await browser.new_context()
         page = await context.new_page()
 
-        page_number = 1
-        while True:
-            url = f"{BASE_URL}page/{page_number}/"
-            print(f"[INFO] Sayfa {page_number}: {url}")
-            await page.goto(url)
-            await page.wait_for_load_state("networkidle")
+        for page_no in range(1, MAX_PAGES+1):
+            url = f"{BASE_URL}page/{page_no}/"
+            try:
+                await page.goto(url, wait_until="networkidle", timeout=30000)
+            except TimeoutError:
+                print(f"[WARN] Timeout {url}")
+                continue
 
-            # Film containerlerini seç
-            film_elements = await page.query_selector_all("div.video-block")
-            if not film_elements:
-                print("[INFO] Film bulunamadı, tarama durduruluyor.")
+            # sayfa 404 veya "Sayfa Bulunamadı" ise dur
+            content = await page.content()
+            if "Sayfa Bulunamadı" in content or "404" in content:
+                print(f"[STOP] Sayfa {page_no} yok, scraping durdu.")
                 break
 
-            for fe in film_elements:
-                title = await fe.query_selector_eval("h3.title a", "el => el.textContent.trim()")
-                href  = await fe.query_selector_eval("h3.title a", "el => el.href")
-                embed = await fe.query_selector_eval("iframe", "el => el.src").catch(lambda e: None)
-                films.append({
-                    "title": title,
-                    "href": href,
-                    "embed_url": embed
-                })
-            
-            page_number += 1
+            # film linklerini bul
+            film_links = await page.query_selector_all("div.post-container a")
+            for film in film_links:
+                title = await film.get_attribute("title")
+                href = await film.get_attribute("href")
+                if not href or not title:
+                    continue
+
+                try:
+                    await page.goto(href, wait_until="networkidle", timeout=30000)
+                except TimeoutError:
+                    print(f"[WARN] Timeout film {title}")
+                    continue
+
+                # iframe/video embed URL
+                embed_url = await page.eval_on_selector(
+                    "div.video-player iframe, div.video-player video",
+                    "el => el.src"
+                )
+                if embed_url:
+                    embeds.append({"title": title, "embed": embed_url})
+                    print(f"[OK] {title}")
 
         await browser.close()
 
-    # JSON olarak kaydet
     with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
-        json.dump(films, f, ensure_ascii=False, indent=4)
+        json.dump(embeds, f, ensure_ascii=False, indent=2)
+    print(f"[DONE] Toplam {len(embeds)} film kaydedildi → {OUTPUT_FILE}")
 
-    print(f"[DONE] Toplam {len(films)} film kaydedildi → {OUTPUT_FILE}")
-
-# Async çalıştır
 asyncio.run(fetch_films())
