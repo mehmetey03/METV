@@ -1,302 +1,231 @@
 #!/usr/bin/env python3
-"""
-hdfilm_clean.py - Clean HDFilmCehennemi scraper
-"""
+# hdch_fixed.py - HDFilmCehennemi Scraper (Fixed)
+
 import requests
 import json
 import re
 import time
-import html
-from urllib.parse import urljoin, unquote
-from datetime import datetime
+from urllib.parse import urljoin
+from concurrent.futures import ThreadPoolExecutor, as_completed
+import logging
+from bs4 import BeautifulSoup
 
+# ======================
+# CONFIG
+# ======================
 BASE_URL = "https://www.hdfilmcehennemi.ws/"
+USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
 
-def fetch_page(url):
-    """Fetch page with proper headers"""
-    headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
-        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-        'Accept-Language': 'tr,en-US;q=0.7,en;q=0.3',
-    }
+HEADERS = {
+    'User-Agent': USER_AGENT,
+    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+    'Accept-Language': 'tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7',
+    'Accept-Encoding': 'gzip, deflate',
+    'Connection': 'keep-alive',
+    'Referer': BASE_URL,
+}
+
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
+
+session = requests.Session()
+session.headers.update(HEADERS)
+
+# ======================
+# HELPERS
+# ======================
+
+def get_page_html(url):
     try:
-        response = requests.get(url, headers=headers, timeout=10)
+        response = session.get(url, timeout=20)
         response.raise_for_status()
+        if "text/html" not in response.headers.get("content-type", ""):
+            return None
         return response.text
     except Exception as e:
-        print(f"Error fetching {url}: {e}")
+        logger.error(f"Request error: {url} -> {e}")
         return None
 
-def clean_text(text):
-    """Clean and normalize text"""
-    if not text:
-        return ""
-    
-    # Decode HTML entities
-    text = html.unescape(text)
-    
-    # Remove multiple spaces
-    text = re.sub(r'\s+', ' ', text)
-    
-    # Remove common unwanted patterns
-    patterns_to_remove = [
-        r'\s*-\s*Türkçe\s*(?:Dublaj|Altyazı)?\s*$',
-        r'\s*Yabancı\s*(?:Dizi|Film)?\s*$',
-        r'\s*izle\s*$',
-        r'\s*HD\s*$',
-        r'\s*Full\s*$',
-        r'\s*Türkçe\s*$',
-    ]
-    
-    for pattern in patterns_to_remove:
-        text = re.sub(pattern, '', text, flags=re.IGNORECASE)
-    
-    return text.strip()
 
-def extract_films_properly(html_content):
-    """Properly extract films from HTML"""
+# ==========================
+# FILM EXTRACTION
+# ==========================
+
+def extract_films_modern(html, page_num):
     films = []
-    
-    if not html_content:
+    if not html:
         return films
-    
-    # Pattern to find film/dizi containers
-    # Look for links that contain film or dizi in the URL
-    link_pattern = r'<a\s+[^>]*href="([^"]*/(?:film|dizi)/[^"]*)"[^>]*>([\s\S]*?)</a>'
-    
-    for match in re.finditer(link_pattern, html_content, re.IGNORECASE):
-        try:
-            url = match.group(1)
-            content = match.group(2)
-            
-            # Make URL absolute if needed
-            if not url.startswith('http'):
-                url = urljoin(BASE_URL, url)
-            
-            # Skip if content is just an image
-            if content.strip().startswith('<img') and len(content.strip()) < 150:
-                continue
-            
-            # Extract title from the link content
-            # First, remove all HTML tags to get plain text
-            text_content = re.sub(r'<[^>]+>', ' ', content)
-            text_content = re.sub(r'\s+', ' ', text_content).strip()
-            
-            if not text_content or len(text_content) < 3:
-                continue
-            
-            # Clean the text
-            text_content = clean_text(text_content)
-            
-            # Extract title - take first 5 words or until we see numbers
-            words = text_content.split()
-            title_parts = []
-            for word in words:
-                # Stop if we encounter something that looks like a rating or year
-                if re.match(r'^\d+\.\d+$', word) or re.match(r'^\d{4}$', word):
-                    break
-                if len(word) > 30:  # Probably not a word
-                    break
-                title_parts.append(word)
-            
-            title = ' '.join(title_parts[:8])  # Limit to 8 words max
-            title = title.strip()
-            
-            if not title:
-                # Try alternative: look for text that looks like a title
-                # Titles usually start with capital letters and contain letters
-                title_match = re.search(r'([A-Z][a-z]+(?:\s+[A-Za-z]+){1,6})', text_content)
-                if title_match:
-                    title = title_match.group(1)
-            
-            if not title:
-                continue
-            
-            # Extract year from URL or text
-            year = ''
-            
-            # Try to get year from URL first
-            year_match = re.search(r'/(\d{4})/', url)
-            if year_match:
-                year = year_match.group(1)
-            else:
-                # Try to find year in text (4-digit number starting with 19 or 20)
-                year_match = re.search(r'\b(19|20)\d{2}\b', text_content)
-                if year_match:
-                    year = year_match.group(0)
-            
-            # Extract IMDB rating
-            imdb = '0.0'
-            imdb_match = re.search(r'(\d+\.\d+)\s*(?:/10)?', text_content)
-            if imdb_match:
-                try:
-                    rating = float(imdb_match.group(1))
-                    if 1.0 <= rating <= 10.0:
-                        imdb = f"{rating:.1f}"
-                except:
-                    pass
-            
-            # Extract image if available
-            image = ''
-            img_match = re.search(r'src="([^"]+\.(?:jpg|jpeg|png|webp))"', content)
-            if img_match:
-                image = img_match.group(1)
-                if not image.startswith('http'):
-                    image = urljoin(BASE_URL, image)
-            
-            # Determine type
-            film_type = 'dizi' if '/dizi/' in url else 'film'
-            
-            films.append({
-                'url': url,
-                'title': title,
-                'year': year,
-                'imdb': imdb,
-                'image': image,
-                'type': film_type,
-                'scraped_at': datetime.now().isoformat()
-            })
-            
-        except Exception as e:
-            print(f"Error processing film: {e}")
+
+    soup = BeautifulSoup(html, "html.parser")
+
+    containers = soup.select(".ml-item, article, .movie, .film-item, div[class*=movie]")
+
+    logger.info(f"Page {page_num}: Found containers = {len(containers)}")
+
+    for i, item in enumerate(containers, 1):
+
+        link_tag = item.find("a", href=True)
+        if not link_tag:
             continue
-    
+
+        url = link_tag["href"]
+        if not url.startswith("http"):
+            url = urljoin(BASE_URL, url)
+
+        # title
+        title = link_tag.get("title") or link_tag.get_text(strip=True)
+        if not title:
+            continue
+        title = title.replace(" izle", "").strip()
+
+        # image
+        img_tag = item.find("img")
+        img = ""
+        if img_tag:
+            img = img_tag.get("data-src") or img_tag.get("src") or ""
+
+        # year detection
+        text = item.get_text()
+        year = ""
+        m = re.search(r"(19|20)\d{2}", text)
+        if m:
+            year = m.group(0)
+
+        imdb = "0.0"
+        m = re.search(r"IMDB[: ]*([0-9.]+)", text, re.I)
+        if m:
+            imdb = m.group(1)
+
+        film_type = "dizi" if "/dizi/" in url else "film"
+
+        films.append({
+            "page": page_num,
+            "position": i,
+            "url": url,
+            "title": title,
+            "image": img,
+            "year": year,
+            "imdb": imdb,
+            "type": film_type,
+            "embed_url": ""
+        })
+
     return films
 
-def manual_extraction():
-    """Manual extraction based on what we know works"""
-    
-    # These are the films we know exist from previous runs
-    manual_films = [
-        {
-            'title': 'Stranger Things',
-            'year': '2016',
-            'type': 'dizi',
-            'imdb': '8.7',
-            'url': 'https://www.hdfilmcehennemi.ws/dizi/stranger-things-izle-4/'
-        },
-        {
-            'title': 'The Witcher',
-            'year': '2019',
-            'type': 'dizi',
-            'imdb': '8.2',
-            'url': 'https://www.hdfilmcehennemi.ws/dizi/the-witcher-izle-3/'
-        },
-        {
-            'title': 'IT: Welcome to Derry',
-            'year': '2025',
-            'type': 'dizi',
-            'imdb': '7.7',
-            'url': 'https://www.hdfilmcehennemi.ws/dizi/it-welcome-to-derry-izle-2/'
-        },
-        {
-            'title': 'Pluribus',
-            'year': '2025',
-            'type': 'dizi',
-            'imdb': '8.4',
-            'url': 'https://www.hdfilmcehennemi.ws/dizi/pluribus-izle/'
-        },
-        {
-            'title': 'Physical: Asia',
-            'year': '2025',
-            'type': 'dizi',
-            'imdb': '8.1',
-            'url': 'https://www.hdfilmcehennemi.ws/dizi/physical-asia-en-guclu-asya-izle/'
-        }
-    ]
-    
-    return manual_films
 
-def main():
-    print("HDFilmCehennemi Clean Scraper")
-    print("=" * 50)
-    
-    # Option 1: Try automated scraping
-    print("\n1. Attempting automated scraping...")
-    html = fetch_page(BASE_URL)
-    
-    if html:
-        films = extract_films_properly(html)
-        print(f"   Found {len(films)} films automatically")
-    else:
-        films = []
-        print("   Failed to fetch page")
-    
-    # Option 2: Use manual extraction if automated fails
-    if len(films) < 3:
-        print("\n2. Using manual extraction...")
-        manual_films = manual_extraction()
-        films.extend(manual_films)
-        print(f"   Added {len(manual_films)} manual entries")
-    
-    # Remove duplicates by URL
-    unique_films = []
-    seen_urls = set()
-    
-    for film in films:
-        if film['url'] not in seen_urls:
-            seen_urls.add(film['url'])
-            unique_films.append(film)
-    
-    print(f"\nTotal unique films: {len(unique_films)}")
-    
-    if not unique_films:
-        print("\n❌ No films found!")
-        return
-    
-    # Save results
-    result = {
-        'metadata': {
-            'scraped_at': datetime.now().isoformat(),
-            'source': BASE_URL,
-            'total_films': len(unique_films),
-            'note': 'Limited public content available'
-        },
-        'films': unique_films
+# ======================
+# SUMMARY
+# ======================
+
+def generate_summary(films, output_file):
+    summary = {
+        "total_films": len(films),
+        "by_type": {"film": 0, "dizi": 0},
+        "by_year": {},
+        "top_imdb": []
     }
-    
-    filename = 'hdfilmcehennemi_clean.json'
-    with open(filename, 'w', encoding='utf-8') as f:
-        json.dump(result, f, ensure_ascii=False, indent=2)
-    
-    print(f"\n✅ Results saved to: {filename}")
-    
-    # Display results
-    print("\n" + "="*50)
-    print("FILMS COLLECTED")
-    print("="*50)
-    
-    films_count = len([f for f in unique_films if f['type'] == 'film'])
-    diziler_count = len([f for f in unique_films if f['type'] == 'dizi'])
-    
-    print(f"Total: {len(unique_films)}")
-    print(f"Films: {films_count}")
-    print(f"Diziler: {diziler_count}")
-    
-    # Group by year
-    years = {}
-    for film in unique_films:
-        year = film.get('year', 'Unknown')
-        years[year] = years.get(year, 0) + 1
-    
-    print(f"\nBy year:")
-    for year in sorted(years.keys()):
-        if year and year != 'Unknown':
-            print(f"  {year}: {years[year]}")
-    
-    # Show all films
-    print(f"\nAll films found:")
-    for i, film in enumerate(unique_films, 1):
-        imdb = f" (IMDB: {film['imdb']})" if film.get('imdb') not in ['0.0', ''] else ""
-        year = f" ({film['year']})" if film.get('year') else ""
-        print(f"{i:2}. {film['title']}{year}{imdb}")
-        print(f"    Type: {film['type']}, URL: {film['url']}")
-    
-    print(f"\n💡 Note: The website shows limited content publicly.")
-    print("   For more films, you might need to:")
-    print("   1. Check if you need to log in")
-    print("   2. The site might use JavaScript to load content")
-    print("   3. Try using browser automation (Selenium)")
 
-if __name__ == '__main__':
-    main()
+    for f in films:
+        summary["by_type"][f["type"]] += 1
+        year = f["year"] or "Unknown"
+        summary["by_year"][year] = summary["by_year"].get(year, 0) + 1
+
+    # IMDB sort
+    imdb_list = []
+    for f in films:
+        try:
+            score = float(f["imdb"])
+            if 0 < score <= 10:
+                imdb_list.append(f)
+        except:
+            pass
+
+    imdb_list.sort(key=lambda x: float(x["imdb"]), reverse=True)
+    summary["top_imdb"] = imdb_list[:10]
+
+    sfile = output_file.replace(".json", "_summary.json")
+    with open(sfile, "w", encoding="utf-8") as f:
+        json.dump(summary, f, ensure_ascii=False, indent=2)
+
+    print(f"SUMMARY SAVED → {sfile}")
+
+
+# ======================
+# MANUAL SCRAPE
+# ======================
+
+def manual_scrape(output_file):
+    print("\n=== SCRAPING START ===")
+
+    films_all = []
+
+    html = get_page_html(BASE_URL)
+    if html:
+        f = extract_films_modern(html, 1)
+        films_all.extend(f)
+        print(f"Home page films: {len(f)}")
+
+    # category pages
+    categories = ["film", "dizi", "film-izle"]
+
+    for c in categories:
+        url = BASE_URL + "kategori/" + c + "/"
+        html = get_page_html(url)
+        if html:
+            f = extract_films_modern(html, 2)
+            films_all.extend(f)
+            print(f"Category {c}: {len(f)} found")
+            time.sleep(1)
+
+    # remove duplicates
+    uniq = []
+    seen = set()
+    for f in films_all:
+        if f["url"] not in seen:
+            uniq.append(f)
+            seen.add(f["url"])
+
+    result = {
+        "metadata": {
+            "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
+            "total_films": len(uniq)
+        },
+        "films": uniq
+    }
+
+    with open(output_file, "w", encoding="utf-8") as f:
+        json.dump(result, f, ensure_ascii=False, indent=2)
+
+    print(f"\nSaved → {output_file}")
+    generate_summary(uniq, output_file)
+    return True
+
+
+# ======================
+# TEST SINGLE PAGE
+# ======================
+
+def test_single_page():
+    """Scrape a single movie page and show embed iframe."""
+    test_url = "https://www.hdfilmcehennemi.ws/film/joker-folie-a-deux-izle/"
+    html = get_page_html(test_url)
+    if not html:
+        print("Page load failed")
+        return
+
+    soup = BeautifulSoup(html, "html.parser")
+
+    iframe = soup.find("iframe")
+    if iframe:
+        print("\nFOUND EMBED URL:")
+        print(iframe.get("src"))
+    else:
+        print("\nNo iframe found")
+
+
+# ======================
+# MAIN
+# ======================
+
+if __name__ == "__main__":
+    manual_scrape("hdceh.json")
