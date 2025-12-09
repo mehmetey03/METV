@@ -1,83 +1,93 @@
-import requests
+import asyncio
+from playwright.async_api import async_playwright
 from bs4 import BeautifulSoup
 import json
-import time
 
 BASE = "https://www.hdfilmcehennemi.ws"
+START_URL = BASE + "/filmler"
 
-HEADERS = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
-                  "(KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-    "X-Requested-With": "XMLHttpRequest",   # AJAX olduğumuzu belirtiyoruz
-    "Referer": BASE + "/filmler",
-    "Accept": "text/html, */*; q=0.01"
-}
-
-def fetch_ajax(page):
-    """ AJAX sayfasını indir """
-    url = f"{BASE}/load/page/{page}/categories/film-izle-2/"
-    print(f"[FETCH] {url}")
+async def get_page_content(page, page_no):
+    ajax_url = f"{BASE}/load/page/{page_no}/categories/film-izle-2/"
+    print(f"[FETCH] {ajax_url}")
 
     try:
-        r = requests.get(url, headers=HEADERS, timeout=10)
-        if r.status_code == 200 and len(r.text) > 50:
-            return r.text
-        else:
-            print("[EMPTY] -> 404 veya boş içerik")
+        response = await page.request.get(ajax_url)
+        if response.status != 200:
+            print("[WARN] Status:", response.status)
             return None
+        
+        text = await response.text()
+        if len(text) < 30:
+            print("[EMPTY]")
+            return None
+        
+        return text
     except Exception as e:
-        print("[ERROR]", e)
+        print("ERROR:", e)
         return None
 
 
 def parse_films(html):
     soup = BeautifulSoup(html, "html.parser")
-    items = soup.select(".moviefilm, .moviesfilm, .flw-item")
-
+    items = soup.select("a")
     films = []
-    for item in items:
-        title = item.select_one("img")["alt"] if item.select_one("img") else "No title"
-        img = item.select_one("img")["src"] if item.select_one("img") else ""
-        link = item.select_one("a")["href"] if item.select_one("a") else ""
 
+    for a in items:
+        img = a.find("img")
+        if not img:
+            continue
+        
         films.append({
-            "title": title,
-            "img": img,
-            "link": BASE + link if link.startswith("/") else link
+            "title": img.get("alt", ""),
+            "img": img.get("src", ""),
+            "link": a.get("href", "")
         })
-
     return films
 
 
-all_films = []
-empty_count = 0
+async def main():
+    all_films = []
+    empty_count = 0
 
-print("=== START ===")
+    async with async_playwright() as p:
+        browser = await p.chromium.launch(headless=True)
+        context = await browser.new_context()
 
-for page in range(1, 500):
-    html = fetch_ajax(page)
+        print("[INFO] Opening main page...")
+        page = await context.new_page()
+        await page.goto(START_URL)
 
-    if not html:
-        empty_count += 1
-        if empty_count >= 5:
-            print("Too many empty pages → STOP")
-            break
-        continue
+        # Cloudflare challenge çözülmüş olacak!
+        print("[INFO] Cloudflare bypass complete.")
 
-    films = parse_films(html)
-    print(f"[PAGE {page}] Films found:", len(films))
+        for page_no in range(1, 300):
+            html = await get_page_content(page, page_no)
 
-    if len(films) == 0:
-        empty_count += 1
-    else:
-        empty_count = 0
+            if not html:
+                empty_count += 1
+                if empty_count >= 5:
+                    print("[STOP] Too many empty pages.")
+                    break
+                continue
 
-    all_films.extend(films)
-    time.sleep(1)
+            films = parse_films(html)
+            print(f"[PAGE {page_no}] Found:", len(films))
 
-print("\nTOTAL FILMS:", len(all_films))
+            if len(films) == 0:
+                empty_count += 1
+            else:
+                empty_count = 0
 
-with open("hdceh.json", "w", encoding="utf-8") as f:
-    json.dump(all_films, f, ensure_ascii=False, indent=2)
+            all_films.extend(films)
 
-print("Saved → hdceh.json")
+        await browser.close()
+
+    print("\nTOTAL FILMS:", len(all_films))
+
+    with open("hdceh.json", "w", encoding="utf-8") as f:
+        json.dump(all_films, f, indent=2, ensure_ascii=False)
+
+    print("Saved → hdceh.json")
+
+
+asyncio.run(main())
