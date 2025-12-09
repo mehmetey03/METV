@@ -1,0 +1,38 @@
+name: HDCH Scraper
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"   # 15 dakikada bir çalışır
+  workflow_dispatch:         # Manuel çalıştırma için
+
+jobs:
+  run-scraper:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Depoyu çek
+      uses: actions/checkout@v4
+
+    - name: Python kur
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.11"
+
+    - name: Gerekli kütüphaneleri yükle
+      run: |
+        pip install requests beautifulsoup4 lxml
+
+    - name: Scraper çalıştır (hdch.py)
+      run: |
+        python hdch.py
+
+    - name: Değişiklik var mı kontrol et
+      run: |
+        git config --global user.name "github-actions"
+        git config --global user.email "github-actions@github.com"
+        git add .
+        git diff --cached --quiet || git commit -m "Auto update: JSON güncellendi $(date '+%Y-%m-%d %H:%M')"
+
+    - name: Değişiklikleri GitHub'a gönder
+      run: |
+        git push
