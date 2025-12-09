@@ -26,7 +26,7 @@ jobs:
           pip install urllib3 html5lib
 
       - name: Run HDCH Scraper
-        run: python hdch_final.py
+        run: python hdch.py
 
       - name: Commit and Push Results
         run: |
