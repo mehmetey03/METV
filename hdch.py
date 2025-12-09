@@ -1,46 +1,78 @@
 #!/usr/bin/env python3
 """
-hdch_final.py - HDFilmCehennemi scraper with proper parsing
+hdch_final.py - HDFilmCehennemi scraper with load-more support
 """
 import urllib.request
+import urllib.parse
 import json
 import re
 import html
 import time
+import math
 from datetime import datetime
 from urllib.parse import urljoin
 
 BASE_URL = "https://www.hdfilmcehennemi.ws/"
 EMBED_BASE = "https://hdfilmcehennemi.mobi/video/embed/"
+API_URL = "https://www.hdfilmcehennemi.ws/ajax/discover"
 
-def get_html(url):
+def get_html(url, headers=None):
     """Get HTML content"""
-    headers = {
+    default_headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
         'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
         'Accept-Language': 'tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7',
         'Referer': BASE_URL,
     }
+    
+    if headers:
+        default_headers.update(headers)
+    
     try:
-        req = urllib.request.Request(url, headers=headers)
-        with urllib.request.urlopen(req, timeout=20) as response:
+        req = urllib.request.Request(url, headers=default_headers)
+        with urllib.request.urlopen(req, timeout=30) as response:
             return response.read().decode('utf-8', errors='ignore')
     except Exception as e:
         print(f"  Error fetching {url}: {e}")
         return None
 
+def post_data(url, data, headers=None):
+    """POST request gönder"""
+    default_headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+        'Accept': 'application/json, text/javascript, */*; q=0.01',
+        'Accept-Language': 'tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7',
+        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+        'X-Requested-With': 'XMLHttpRequest',
+        'Origin': 'https://www.hdfilmcehennemi.ws',
+        'Referer': BASE_URL,
+    }
+    
+    if headers:
+        default_headers.update(headers)
+    
+    try:
+        data_encoded = urllib.parse.urlencode(data).encode('utf-8')
+        req = urllib.request.Request(url, data=data_encoded, headers=default_headers, method='POST')
+        
+        with urllib.request.urlopen(req, timeout=30) as response:
+            return response.read().decode('utf-8', errors='ignore')
+    except Exception as e:
+        print(f"  POST error to {url}: {e}")
+        return None
+
 def extract_films_from_html(html_content, source_url):
-    """Extract films from HTML with proper parsing"""
+    """Extract films from HTML"""
     films = []
     
     if not html_content:
         return films
     
-    # Film posta'larını bul (a tag with data-token)
+    # Pattern 1: Look for film posters with data-token
     film_pattern = r'<a\s+[^>]*data-token="\d+"[^>]*>.*?</a>'
     film_matches = re.findall(film_pattern, html_content, re.DOTALL | re.IGNORECASE)
     
-    print(f"  Found {len(film_matches)} film matches")
+    print(f"  Found {len(film_matches)} film posters")
     
     for match in film_matches:
         film = parse_film_poster(match, source_url)
@@ -117,15 +149,14 @@ def parse_film_poster(poster_html, source_url):
         
         # Language
         language = ''
-        lang_match = re.search(r'class="poster-lang"[^>]*>.*?<span>(.*?)</span>', poster_html, re.DOTALL)
-        if lang_match:
-            lang_text = lang_match.group(1).strip()
-            if 'Yerli' in lang_text:
-                language = 'Yerli'
-            elif 'Dublaj' in lang_text or 'Altyazı' in lang_text:
-                language = lang_text
-            else:
-                language = 'Türkçe Dublaj' if 'tr-flag' in poster_html else ''
+        if 'Yerli' in poster_html:
+            language = 'Yerli'
+        elif 'Dublaj' in poster_html and 'Altyazı' in poster_html:
+            language = 'Dublaj & Altyazılı'
+        elif 'Dublaj' in poster_html:
+            language = 'Türkçe Dublaj'
+        elif 'Altyazı' in poster_html:
+            language = 'Türkçe Altyazı'
         
         # Token
         token = ''
@@ -232,18 +263,106 @@ def extract_embed_url_from_film_page(film_url, token):
     
     return None
 
-def scrape_category(category_url, category_name, max_pages=3):
-    """Scrape a category with pagination"""
+def scrape_with_load_more(base_url, max_items=100):
+    """Load more butonunu simüle ederek tüm filmleri çek"""
+    all_films = []
+    page = 1
+    
+    print(f"\nScraping with load-more: {base_url}")
+    
+    # İlk sayfayı al
+    html_content = get_html(base_url)
+    if not html_content:
+        return all_films
+    
+    # İlk sayfadaki filmleri çıkar
+    films = extract_films_from_html(html_content, base_url)
+    all_films.extend(films)
+    print(f"  Page {page}: {len(films)} films")
+    
+    # Load more butonu için gerekli parametreleri bul
+    # data-discover-more attribute'ünden parametreleri al
+    discover_match = re.search(r'data-discover-more="([^"]+)"', html_content)
+    if not discover_match:
+        print("  No load-more button found, using manual pagination")
+        return scrape_with_pagination(base_url, max_items)
+    
+    discover_data = discover_match.group(1)
+    print(f"  Discover data: {discover_data}")
+    
+    # JSON formatına çevir
+    try:
+        import ast
+        discover_dict = ast.literal_eval(discover_data.replace('&quot;', '"'))
+    except:
+        print("  Could not parse discover data")
+        return all_films
+    
+    # Load more döngüsü
+    total_loaded = len(films)
+    
+    while total_loaded < max_items:
+        page += 1
+        print(f"  Loading more... Page {page}")
+        
+        # POST data hazırla
+        post_data_dict = {
+            'action': 'discover',
+            'page': str(page),
+            'type': discover_dict.get('type', 'movie'),
+            'category': discover_dict.get('category', ''),
+            'genre': discover_dict.get('genre', ''),
+            'country': discover_dict.get('country', ''),
+            'year': discover_dict.get('year', ''),
+            'imdb': discover_dict.get('imdb', ''),
+            'sort': discover_dict.get('sort', ''),
+        }
+        
+        # POST isteği gönder
+        response = post_data(API_URL, post_data_dict)
+        if not response:
+            print(f"    Failed to load page {page}")
+            break
+        
+        try:
+            # JSON response'u parse et
+            response_data = json.loads(response)
+            if response_data.get('success') and response_data.get('html'):
+                # Yeni filmleri çıkar
+                new_films = extract_films_from_html(response_data['html'], f"{base_url}?page={page}")
+                
+                if not new_films:
+                    print(f"    No more films found")
+                    break
+                
+                all_films.extend(new_films)
+                total_loaded += len(new_films)
+                print(f"    Added {len(new_films)} films, total: {total_loaded}")
+                
+                # Be polite
+                time.sleep(1)
+            else:
+                print(f"    API error: {response_data.get('message', 'Unknown error')}")
+                break
+                
+        except json.JSONDecodeError:
+            print(f"    Invalid JSON response")
+            break
+        except Exception as e:
+            print(f"    Error processing response: {e}")
+            break
+    
+    return all_films
+
+def scrape_with_pagination(base_url, max_items=100):
+    """Manuel pagination ile çek"""
     all_films = []
     
-    print(f"\nScraping category: {category_name}")
-    print(f"URL: {category_url}")
-    
-    for page in range(1, max_pages + 1):
+    for page in range(1, 10):  # Max 10 sayfa
         if page == 1:
-            url = category_url
+            url = base_url
         else:
-            url = f"{category_url}page/{page}/"
+            url = f"{base_url}page/{page}/"
         
         print(f"  Page {page}: {url}")
         
@@ -256,93 +375,75 @@ def scrape_category(category_url, category_name, max_pages=3):
         
         if not films:
             print(f"    No films found on page {page}")
-            # Check if we should continue
-            if page == 1:
-                # Maybe try different pattern
-                print("    Trying alternative parsing...")
-                # Look for posters-6-col div
-                posters_div = re.search(r'<div[^>]*class="[^"]*posters-6-col[^"]*"[^>]*>(.*?)</div>', html_content, re.DOTALL)
-                if posters_div:
-                    films = extract_films_from_html(posters_div.group(1), url)
-            
-            if not films:
-                break
+            break
         
         all_films.extend(films)
-        print(f"    Found {len(films)} films")
+        print(f"    Found {len(films)} films, total: {len(all_films)}")
         
-        # Check if there are more pages
-        next_page_link = f'page/{page + 1}/'
-        if page < max_pages and next_page_link not in html_content and 'class="next' not in html_content:
-            print(f"    No more pages found")
+        if len(all_films) >= max_items:
+            print(f"    Reached max items limit: {max_items}")
             break
         
         # Be polite
-        if page < max_pages:
-            time.sleep(1)
+        time.sleep(1)
     
-    print(f"  Total from {category_name}: {len(all_films)} films")
+    return all_films
+
+def scrape_all_films():
+    """Tüm filmleri çek"""
+    all_films = []
+    
+    # Farklı URL'lerden çek
+    urls_to_scrape = [
+        ("https://www.hdfilmcehennemi.ws/", "homepage", 50),
+        ("https://www.hdfilmcehennemi.ws/filmler/", "films", 100),
+        ("https://www.hdfilmcehennemi.ws/diziler/", "series", 50),
+        ("https://www.hdfilmcehennemi.ws/populer-filmler/", "popular", 30),
+        ("https://www.hdfilmcehennemi.ws/yeni-filmler/", "new", 30),
+    ]
+    
+    for url, name, limit in urls_to_scrape:
+        print(f"\nScraping {name}: {url}")
+        films = scrape_with_load_more(url, limit)
+        
+        if films:
+            # Benzersiz filmleri ekle
+            existing_urls = {f['url'] for f in all_films}
+            for film in films:
+                if film['url'] not in existing_urls:
+                    all_films.append(film)
+                    existing_urls.add(film['url'])
+            
+            print(f"  Added {len(films)} films from {name}, total unique: {len(all_films)}")
+        else:
+            print(f"  No films found from {name}")
+        
+        time.sleep(2)
+    
     return all_films
 
 def main():
     print("=" * 70)
-    print("HDFilmCehennemi Scraper")
+    print("HDFilmCehennemi Advanced Scraper")
     print("=" * 70)
     
-    # Test URL: Film robotu sayfası
-    test_urls = [
-        "https://www.hdfilmcehennemi.ws/film-robotu-1/",
-        "https://www.hdfilmcehennemi.ws/",
-        "https://www.hdfilmcehennemi.ws/filmler/",
-        "https://www.hdfilmcehennemi.ws/diziler/",
-    ]
-    
-    all_films = []
-    
-    # Test each URL
-    for url in test_urls:
-        print(f"\nTesting URL: {url}")
-        html_content = get_html(url)
-        if html_content:
-            films = extract_films_from_html(html_content, url)
-            if films:
-                print(f"  Found {len(films)} films")
-                all_films.extend(films)
-            else:
-                print("  No films found with standard parsing")
-                # Try to find posters-6-col div
-                posters_div = re.search(r'<div[^>]*class="[^"]*posters-6-col[^"]*"[^>]*>(.*?)</div>', html_content, re.DOTALL)
-                if posters_div:
-                    print("  Found posters-6-col div, parsing...")
-                    films = extract_films_from_html(posters_div.group(1), url)
-                    if films:
-                        print(f"  Found {len(films)} films in posters-6-col")
-                        all_films.extend(films)
-        time.sleep(1)
+    # Tüm filmleri çek
+    all_films = scrape_all_films()
     
     if not all_films:
-        print("\n❌ No films found at all!")
+        print("\n❌ No films found!")
         return
     
-    # Remove duplicates by URL
-    unique_films = []
-    seen_urls = set()
-    
-    for film in all_films:
-        if film['url'] not in seen_urls:
-            seen_urls.add(film['url'])
-            unique_films.append(film)
-    
     print(f"\n{'='*70}")
-    print(f"Found {len(unique_films)} unique films")
+    print(f"Found {len(all_films)} unique films")
     print(f"{'='*70}")
     
-    # Fetch embed URLs
+    # Embed URL'leri al
     print(f"\nFetching embed URLs...")
     films_with_embeds = []
     
-    for i, film in enumerate(unique_films, 1):
-        print(f"  [{i}/{len(unique_films)}] {film['title'][:40]}...")
+    for i, film in enumerate(all_films, 1):
+        print(f"  [{i}/{len(all_films)}] {film['title'][:40]}...")
         
         embed_url = extract_embed_url_from_film_page(film['url'], film.get('token', ''))
         film['embed_url'] = embed_url
@@ -355,8 +456,8 @@ def main():
         films_with_embeds.append(film)
         
         # Be polite
-        if i < len(unique_films):
-            time.sleep(0.5)
+        if i < len(all_films):
+            time.sleep(0.3)
     
     # Count films with embeds
     films_with_embeds_count = sum(1 for f in films_with_embeds if f.get('embed_url'))
@@ -430,13 +531,14 @@ def print_summary(films):
     print(f"  With embeds: {embeds_count}")
     
     # Sample films
-    print(f"\n  Sample films:")
-    for i, film in enumerate(films[:15], 1):
+    print(f"\n  Sample films (first 20):")
+    for i, film in enumerate(films[:20], 1):
         title = film['title'][:45] + "..." if len(film['title']) > 45 else film['title']
         year = film.get('year', 'N/A')
         imdb = f"⭐{film['imdb']}" if film['imdb'] != '0.0' else ""
         embed = "✓" if film.get('embed_url') else "✗"
-        print(f"    {i:2}. [{embed}] {title:50} {year:6} {imdb}")
+        type_icon = "🎬" if film['type'] == 'film' else "📺"
+        print(f"    {i:2}. [{embed}] {type_icon} {title:48} {year:6} {imdb}")
     
     # Films with highest IMDB
     films_with_imdb = [f for f in films if f['imdb'] != '0.0']
@@ -447,6 +549,19 @@ def print_summary(films):
             title = film['title'][:40] + "..." if len(film['title']) > 40 else film['title']
             year = film.get('year', 'N/A')
             print(f"    {i:2}. {title:45} {year:6} ⭐{film['imdb']}")
+    
+    # Distribution by year
+    years = {}
+    for film in films:
+        year = film.get('year', 'Unknown')
+        if year:
+            years[year] = years.get(year, 0) + 1
+    
+    if years:
+        print(f"\n  Years distribution (top 10):")
+        sorted_years = sorted(years.items(), key=lambda x: int(x[0]) if x[0].isdigit() else 0, reverse=True)[:10]
+        for year, count in sorted_years:
+            print(f"    {year}: {count} films")
     
     print(f"\n{'='*70}")
     print("DONE!")
