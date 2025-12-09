@@ -1,13 +1,12 @@
 #!/usr/bin/env python3
 """
-hdch_fixed.py - Fixed HDFilmCehennemi scraper
+hdch_final.py - Final HDFilmCehennemi scraper with multiple strategies
 """
 import requests
 import json
 import re
 import time
 from urllib.parse import urljoin, urlparse, parse_qs
-from concurrent.futures import ThreadPoolExecutor, as_completed
 import argparse
 import logging
 import sys
@@ -40,598 +39,492 @@ logger = logging.getLogger(__name__)
 session = requests.Session()
 session.headers.update(HEADERS)
 
-# -----------------------
-# Helper Functions
-# -----------------------
-def get_page_html(url):
-    """Get HTML content of a page"""
-    try:
-        logger.debug(f"Fetching: {url}")
-        response = session.get(url, timeout=30)
-        response.raise_for_status()
-        
-        # Check if we got a valid HTML response
-        content_type = response.headers.get('content-type', '')
-        if 'text/html' not in content_type:
-            logger.warning(f"Non-HTML response from {url}: {content_type}")
-            return None
+def get_page_html(url, retries=2):
+    """Get HTML content of a page with retries"""
+    for attempt in range(retries + 1):
+        try:
+            logger.debug(f"Fetching: {url} (attempt {attempt + 1})")
+            response = session.get(url, timeout=30)
+            response.raise_for_status()
             
-        return response.text
-    except requests.exceptions.HTTPError as e:
-        logger.warning(f"HTTP error {e.response.status_code} for {url}")
-        return None
-    except Exception as e:
-        logger.error(f"Error fetching {url}: {e}")
-        return None
+            # Check if we got a valid HTML response
+            content_type = response.headers.get('content-type', '')
+            if 'text/html' not in content_type:
+                logger.warning(f"Non-HTML response from {url}: {content_type}")
+                return None
+                
+            return response.text
+        except requests.exceptions.HTTPError as e:
+            if e.response.status_code == 404:
+                logger.warning(f"Page not found: {url}")
+                return None
+            if attempt < retries:
+                logger.warning(f"HTTP error {e.response.status_code} for {url}, retrying...")
+                time.sleep(1)
+                continue
+            logger.warning(f"HTTP error {e.response.status_code} for {url}")
+            return None
+        except Exception as e:
+            if attempt < retries:
+                logger.warning(f"Error fetching {url}: {e}, retrying...")
+                time.sleep(1)
+                continue
+            logger.error(f"Error fetching {url}: {e}")
+            return None
+    return None
 
-def inspect_page_structure():
-    """Inspect the website structure to understand how it works"""
-    print("\n" + "="*60)
-    print("INSPECTING WEBSITE STRUCTURE")
-    print("="*60)
-    
-    # First, get the homepage
-    html = get_page_html(BASE_URL)
-    if not html:
-        print("❌ Cannot access homepage")
-        return
-    
-    # Parse with BeautifulSoup for easier inspection
-    soup = BeautifulSoup(html, 'html.parser')
-    
-    print(f"\n1. Page Title: {soup.title.string if soup.title else 'No title'}")
-    
-    # Look for film/series items
-    print("\n2. Looking for film/series containers...")
-    
-    # Check common container classes
-    container_classes = [
-        'post', 'movie', 'film', 'dizi', 'item', 'card', 
-        'content', 'article', 'entry', 'product'
-    ]
-    
-    for cls in container_classes:
-        elements = soup.find_all(class_=re.compile(cls, re.I))
-        if elements:
-            print(f"   Found {len(elements)} elements with class containing '{cls}'")
-    
-    # Look for pagination
-    print("\n3. Checking pagination...")
-    pagination = soup.find_all('a', href=True)
-    pagination_links = []
-    for link in pagination:
-        href = link['href']
-        if 'page' in href or 'sayfa' in href or 'paged' in href:
-            pagination_links.append(href)
-    
-    if pagination_links:
-        print(f"   Found {len(pagination_links)} pagination links")
-        unique_links = set(pagination_links[:5])
-        for link in unique_links:
-            print(f"   - {link}")
-    else:
-        print("   No pagination links found")
-    
-    # Look for film links
-    print("\n4. Looking for film/dizi links...")
-    film_links = []
-    for link in soup.find_all('a', href=True):
-        href = link['href']
-        if ('/film/' in href or '/dizi/' in href) and href.startswith('http'):
-            film_links.append((href, link.get_text(strip=True)[:50]))
-    
-    if film_links:
-        print(f"   Found {len(film_links)} film/dizi links")
-        for href, text in film_links[:3]:
-            print(f"   - {text}... -> {href}")
-    else:
-        # Try to find links in another way
-        all_links = soup.find_all('a', href=True)
-        print(f"   Total links on page: {len(all_links)}")
-        for link in all_links[:10]:
-            href = link['href']
-            text = link.get_text(strip=True)[:30]
-            print(f"   - {text}... -> {href}")
-    
-    # Check HTML structure
-    print("\n5. HTML Structure Analysis...")
-    
-    # Find all script tags that might contain data
-    scripts = soup.find_all('script')
-    data_scripts = []
-    for script in scripts:
-        if script.string and ('film' in script.string.lower() or 'movie' in script.string.lower()):
-            data_scripts.append(script.string[:200])
-    
-    if data_scripts:
-        print(f"   Found {len(data_scripts)} scripts with film data")
-        for i, script in enumerate(data_scripts[:2]):
-            print(f"   Script {i+1}: {script}...")
-    
-    print("\n" + "="*60)
-    print("END OF INSPECTION")
-    print("="*60)
-    
-    return html
-
-def extract_films_modern(html, page_num):
-    """Modern extraction using BeautifulSoup"""
+def extract_films_from_soup(soup, page_num):
+    """Extract films from BeautifulSoup object"""
     films = []
     
-    if not html:
-        return films
+    # Strategy 1: Look for links to film/dizi pages
+    film_links = soup.find_all('a', href=re.compile(r'.*/(film|dizi)/.*'))
     
-    soup = BeautifulSoup(html, 'html.parser')
-    
-    # Try different selectors based on common WordPress themes
-    selectors = [
-        'article',  # WordPress articles
-        '.post',  # WordPress posts
-        '.movie',  # Movie items
-        '.film-item',  # Film items
-        '.dizi-item',  # Dizi items
-        '.content-item',  # Content items
-        '.entry',  # Entry items
-        'div[class*="movie"]',  # Any div with movie in class
-        'div[class*="film"]',  # Any div with film in class
-        'div[class*="post-"]',  # WordPress post items
-    ]
-    
-    film_elements = []
-    
-    for selector in selectors:
-        elements = soup.select(selector)
-        if elements and len(elements) > 2:  # More than 2 suggests we found the right selector
-            logger.debug(f"Found {len(elements)} elements with selector '{selector}'")
-            film_elements = elements
-            break
-    
-    # If no specific selector worked, look for any container that might have a film link
-    if not film_elements:
-        # Look for links to film/dizi pages
-        film_links = soup.find_all('a', href=re.compile(r'.*/(film|dizi)/.*'))
-        for link in film_links:
-            # Get the parent container
-            parent = link.find_parent(['article', 'div', 'li'])
-            if parent and parent not in film_elements:
-                film_elements.append(parent)
-    
-    logger.info(f"Found {len(film_elements)} potential film containers on page {page_num}")
-    
-    for idx, element in enumerate(film_elements[:50], 1):  # Limit to avoid noise
+    seen_urls = set()
+    for link in film_links:
         try:
-            # Find the link
-            link_elem = element.find('a', href=re.compile(r'.*/(film|dizi)/.*'))
-            if not link_elem:
+            url = link.get('href', '')
+            if not url or url in seen_urls:
                 continue
-            
-            url = link_elem.get('href', '')
+                
             if not url.startswith('http'):
                 url = urljoin(BASE_URL, url)
             
-            # Extract title
-            title = ''
+            seen_urls.add(url)
             
-            # Try multiple ways to get title
-            title_elem = element.find(['h2', 'h3', 'h4', '.title', '.entry-title'])
-            if title_elem:
-                title = title_elem.get_text(strip=True)
+            # Get title from link or nearby elements
+            title = link.get_text(strip=True)
             
-            if not title:
-                # Try alt text of image
-                img_elem = element.find('img')
-                if img_elem and img_elem.get('alt'):
-                    title = img_elem.get('alt', '')
+            # If title is too short, look for title in parent elements
+            if len(title) < 3:
+                # Check parent h2/h3
+                parent = link.find_parent(['h2', 'h3', 'h4'])
+                if parent:
+                    title = parent.get_text(strip=True)
+                else:
+                    # Check sibling div with class containing title
+                    sibling = link.find_previous_sibling(class_=re.compile('title', re.I))
+                    if sibling:
+                        title = sibling.get_text(strip=True)
             
-            if not title:
-                # Use link text
-                title = link_elem.get_text(strip=True)
+            # Clean title
+            title = re.sub(r'\s+', ' ', title).strip()
+            title = re.sub(r'\s*[–\-]\s*Türkçe Dublaj\s*$', '', title, flags=re.I)
+            title = re.sub(r'\s*[–\-]\s*Türkçe Altyazı\s*$', '', title, flags=re.I)
+            title = re.sub(r'\s*izle\s*$', '', title, flags=re.I)
             
             if not title or len(title) < 2:
                 continue
             
-            # Clean up title
-            title = re.sub(r'\s+', ' ', title).strip()
-            title = re.sub(r'\s*izle\s*$', '', title, flags=re.I)
-            
-            # Extract image
+            # Find image
             image = ''
-            img_elem = element.find('img')
-            if img_elem:
-                image = img_elem.get('src', '')
-                if not image:
-                    image = img_elem.get('data-src', '')
             
-            # Extract year
-            year = ''
+            # Look for image in the link or nearby
+            img = link.find('img')
+            if img:
+                image = img.get('src', '') or img.get('data-src', '')
             
-            # Look for year in various places
-            year_pattern = r'\b(19|20)\d{2}\b'
-            
-            # Check element text
-            element_text = element.get_text()
-            year_match = re.search(year_pattern, element_text)
-            if year_match:
-                year = year_match.group(0)
-            
-            # Extract IMDB rating
-            imdb = '0.0'
-            
-            # Look for IMDB in text
-            imdb_patterns = [
-                r'imdb[:\s]*([\d\.]+)',
-                r'IMDB[:\s]*([\d\.]+)',
-                r'([\d\.]+)/10',
-            ]
-            
-            for pattern in imdb_patterns:
-                imdb_match = re.search(pattern, element_text, re.I)
-                if imdb_match:
-                    try:
-                        imdb_val = float(imdb_match.group(1))
-                        if 0 <= imdb_val <= 10:
-                            imdb = f"{imdb_val:.1f}"
-                            break
-                    except:
-                        pass
+            # If no image found, look in parent container
+            if not image:
+                container = link.find_parent(['article', 'div', 'li'])
+                if container:
+                    container_img = container.find('img')
+                    if container_img:
+                        image = container_img.get('src', '') or container_img.get('data-src', '')
             
             # Determine type
             film_type = 'dizi' if '/dizi/' in url else 'film'
             
+            # Extract year from URL or title
+            year = ''
+            year_match = re.search(r'(\b(19|20)\d{2}\b)', url + ' ' + title)
+            if year_match:
+                year = year_match.group(1)
+            
+            # Get more details by visiting the film page
+            film_details = get_film_details(url)
+            
             films.append({
                 'page': page_num,
-                'position': idx,
                 'url': url,
                 'title': title,
                 'image': image,
                 'year': year,
-                'imdb': imdb,
+                'imdb': film_details.get('imdb', '0.0'),
+                'description': film_details.get('description', ''),
+                'genres': film_details.get('genres', []),
+                'duration': film_details.get('duration', ''),
                 'type': film_type,
-                'embed_url': ''
+                'scraped_at': time.strftime('%Y-%m-%d %H:%M:%S')
             })
             
         except Exception as e:
-            logger.debug(f"Error processing element {idx}: {e}")
+            logger.debug(f"Error processing link: {e}")
             continue
     
     return films
 
-def get_pagination_urls():
-    """Get pagination URLs by inspecting the site"""
-    html = get_page_html(BASE_URL)
-    if not html:
-        return []
+def get_film_details(url):
+    """Get detailed information from individual film page"""
+    details = {
+        'imdb': '0.0',
+        'description': '',
+        'genres': [],
+        'duration': ''
+    }
     
-    soup = BeautifulSoup(html, 'html.parser')
-    
-    # Look for pagination
-    pagination_urls = []
-    
-    # Check pagination links
-    pagination_selectors = [
-        '.pagination a',
-        '.page-numbers a',
-        '.pager a',
-        '.nav-links a',
-        'a[href*="page"]',
-        'a[href*="sayfa"]',
-        'a[href*="paged"]',
-    ]
-    
-    for selector in pagination_selectors:
-        links = soup.select(selector)
-        for link in links:
-            href = link.get('href', '')
-            if href and href not in pagination_urls:
-                pagination_urls.append(href)
-    
-    # Also check if there's JavaScript-based pagination
-    scripts = soup.find_all('script')
-    for script in scripts:
-        if script.string:
-            # Look for URLs in JavaScript
-            url_matches = re.findall(r'["\'](https?://[^"\']*page[^"\']*)["\']', script.string)
-            pagination_urls.extend(url_matches)
-    
-    return list(set(pagination_urls))  # Remove duplicates
-
-def scrape_with_ajax(start_page, end_page, output_file):
-    """Try to scrape using AJAX-like requests if available"""
-    films = []
-    
-    # Some sites use AJAX for pagination with URLs like:
-    # /wp-json/... or /ajax/... or ?action=load_more
-    
-    ajax_patterns = [
-        f"{BASE_URL}wp-json/wp/v2/posts?page={{page}}",
-        f"{BASE_URL}?action=load_more&page={{page}}",
-        f"{BASE_URL}ajax.php?page={{page}}",
-        f"{BASE_URL}index.php?page={{page}}",
-    ]
-    
-    for page in range(start_page, end_page + 1):
-        logger.info(f"Trying AJAX method for page {page}")
+    try:
+        html = get_page_html(url)
+        if not html:
+            return details
         
-        for pattern in ajax_patterns:
-            url = pattern.format(page=page)
-            html = get_page_html(url)
-            
-            if html and len(html) > 100:
-                logger.info(f"Found working AJAX URL: {url}")
-                page_films = extract_films_modern(html, page)
-                films.extend(page_films)
+        soup = BeautifulSoup(html, 'html.parser')
+        
+        # Try to find IMDB rating
+        imdb_patterns = [
+            r'IMDB[:\s]*([\d\.]+)/10',
+            r'IMDB[:\s]*([\d\.]+)',
+            r'imdb[:\s]*([\d\.]+)',
+        ]
+        
+        page_text = soup.get_text()
+        for pattern in imdb_patterns:
+            match = re.search(pattern, page_text, re.I)
+            if match:
+                try:
+                    imdb_val = float(match.group(1))
+                    if 1.0 <= imdb_val <= 10.0:  # Valid IMDB range
+                        details['imdb'] = f"{imdb_val:.1f}"
+                        break
+                except:
+                    pass
+        
+        # Try to find description
+        desc_selectors = [
+            '.entry-content',
+            '.description',
+            '.synopsis',
+            'article p',
+            '.content p',
+            'meta[property="og:description"]',
+            'meta[name="description"]',
+        ]
+        
+        for selector in desc_selectors:
+            if selector.startswith('meta'):
+                meta = soup.find('meta', {'property': selector.split('[')[1].split(']')[0].split('=')[1].strip('"')})
+                if meta and meta.get('content'):
+                    details['description'] = meta.get('content', '')[:500]
+                    break
+            else:
+                element = soup.select_one(selector)
+                if element:
+                    text = element.get_text(strip=True)
+                    if len(text) > 50:  # Reasonable length for description
+                        details['description'] = text[:500]
+                        break
+        
+        # Try to find genres
+        genre_selectors = [
+            '.genre',
+            '.categories',
+            '.tags',
+            'a[href*="kategori"]',
+            'a[href*="genre"]',
+        ]
+        
+        for selector in genre_selectors:
+            elements = soup.select(selector)
+            for elem in elements:
+                genre = elem.get_text(strip=True)
+                if genre and len(genre) > 2 and genre.lower() not in ['film', 'dizi', 'izle']:
+                    if genre not in details['genres']:
+                        details['genres'].append(genre)
+        
+        # Try to find duration
+        duration_patterns = [
+            r'(\d+)\s*dk\b',
+            r'(\d+)\s*min\b',
+            r'Süre[:\s]*(\d+)\s*',
+            r'Duration[:\s]*(\d+)\s*',
+        ]
+        
+        for pattern in duration_patterns:
+            match = re.search(pattern, page_text, re.I)
+            if match:
+                details['duration'] = f"{match.group(1)} dk"
                 break
         
-        time.sleep(1)
+    except Exception as e:
+        logger.debug(f"Error getting details from {url}: {e}")
+    
+    return details
+
+def get_films_from_homepage():
+    """Get films from homepage"""
+    print("\n" + "="*60)
+    print("SCRAPING HOMEPAGE")
+    print("="*60)
+    
+    films = []
+    
+    html = get_page_html(BASE_URL)
+    if html:
+        soup = BeautifulSoup(html, 'html.parser')
+        films = extract_films_from_soup(soup, 1)
+        print(f"Found {len(films)} films on homepage")
     
     return films
 
-def manual_scrape(output_file):
-    """Manual scraping approach - try different methods"""
+def get_films_from_sitemap():
+    """Try to find films from sitemap"""
     print("\n" + "="*60)
-    print("MANUAL SCRAPING MODE")
+    print("CHECKING SITEMAP")
     print("="*60)
     
-    all_films = []
+    films = []
     
-    # Method 1: Direct homepage scrape
-    print("\n1. Scraping homepage...")
-    html = get_page_html(BASE_URL)
-    if html:
-        films = extract_films_modern(html, 1)
-        all_films.extend(films)
-        print(f"   Found {len(films)} films on homepage")
-    
-    # Method 2: Try category pages
-    print("\n2. Trying category pages...")
-    categories = [
-        'film-izle',
-        'dizi-izle',
-        'film',
-        'dizi',
-        'movies',
-        'series',
+    # Common sitemap locations
+    sitemap_urls = [
+        f"{BASE_URL}sitemap.xml",
+        f"{BASE_URL}sitemap_index.xml",
+        f"{BASE_URL}wp-sitemap.xml",
+        f"{BASE_URL}sitemap-1.xml",
     ]
     
-    for category in categories:
-        url = f"{BASE_URL}kategori/{category}/"
-        html = get_page_html(url)
+    for sitemap_url in sitemap_urls:
+        print(f"Checking sitemap: {sitemap_url}")
+        html = get_page_html(sitemap_url)
         if html:
-            films = extract_films_modern(html, 2)
-            all_films.extend(films)
-            print(f"   Found {len(films)} films in category '{category}'")
-            time.sleep(1)
+            # Check if it's an XML sitemap
+            if '<?xml' in html and 'sitemap' in html.lower():
+                print(f"Found XML sitemap at {sitemap_url}")
+                
+                # Extract URLs from sitemap
+                urls = re.findall(r'<loc[^>]*>([^<]+)</loc>', html)
+                film_urls = [url for url in urls if '/film/' in url or '/dizi/' in url]
+                
+                print(f"Found {len(film_urls)} film/dizi URLs in sitemap")
+                
+                # Sample some URLs to get details
+                for url in film_urls[:10]:  # Limit to 10 to avoid too many requests
+                    try:
+                        # Get basic info from URL
+                        film_type = 'dizi' if '/dizi/' in url else 'film'
+                        
+                        # Extract title from URL
+                        title = url.split('/')[-2].replace('-', ' ').title()
+                        title = re.sub(r'\s*Izle\s*$', '', title, flags=re.I)
+                        
+                        # Get year from URL
+                        year = ''
+                        year_match = re.search(r'(\b(19|20)\d{2}\b)', url)
+                        if year_match:
+                            year = year_match.group(1)
+                        
+                        films.append({
+                            'page': 0,
+                            'url': url,
+                            'title': title,
+                            'image': '',
+                            'year': year,
+                            'imdb': '0.0',
+                            'description': '',
+                            'genres': [],
+                            'duration': '',
+                            'type': film_type,
+                            'scraped_at': time.strftime('%Y-%m-%d %H:%M:%S'),
+                            'source': 'sitemap'
+                        })
+                    except Exception as e:
+                        print(f"Error processing URL {url}: {e}")
+                
+                break
+            else:
+                print("Not a valid XML sitemap")
+        else:
+            print("No sitemap found")
     
-    # Method 3: Try AJAX if available
-    print("\n3. Trying AJAX endpoints...")
-    ajax_films = scrape_with_ajax(1, 3, output_file)
-    all_films.extend(ajax_films)
-    print(f"   Found {len(ajax_films)} films via AJAX")
+    return films
+
+def get_films_from_search():
+    """Try to find films using search functionality"""
+    print("\n" + "="*60)
+    print("TRYING SEARCH FUNCTIONALITY")
+    print("="*60)
+    
+    films = []
+    
+    # Common search patterns
+    search_terms = ['film', 'dizi', 'movie', 'series']
+    
+    for term in search_terms:
+        print(f"Searching for: {term}")
+        
+        # Try different search URL patterns
+        search_urls = [
+            f"{BASE_URL}?s={term}",
+            f"{BASE_URL}search/{term}/",
+            f"{BASE_URL}ara?q={term}",
+        ]
+        
+        for search_url in search_urls:
+            html = get_page_html(search_url)
+            if html:
+                soup = BeautifulSoup(html, 'html.parser')
+                search_films = extract_films_from_soup(soup, 0)
+                
+                if search_films:
+                    print(f"Found {len(search_films)} films searching for '{term}'")
+                    films.extend(search_films)
+                    break
+        
+        time.sleep(1)  # Be polite
+    
+    return films
+
+def save_results(films, output_file):
+    """Save results to JSON file"""
+    if not films:
+        print("\n⚠️  No films found to save")
+        return False
     
     # Remove duplicates
     unique_films = []
     seen_urls = set()
-    for film in all_films:
+    
+    for film in films:
         if film['url'] not in seen_urls:
             seen_urls.add(film['url'])
             unique_films.append(film)
     
-    print(f"\nTotal unique films found: {len(unique_films)}")
+    print(f"\nTotal unique films: {len(unique_films)}")
     
-    # Save results
+    # Organize by type
+    films_by_type = {
+        'film': [],
+        'dizi': []
+    }
+    
+    for film in unique_films:
+        films_by_type[film['type']].append(film)
+    
     result = {
         'metadata': {
-            'scrape_method': 'manual',
-            'timestamp': time.strftime('%Y-%m-%d %H:%M:%S'),
             'total_films': len(unique_films),
-            'base_url': BASE_URL
+            'films_count': len(films_by_type['film']),
+            'diziler_count': len(films_by_type['dizi']),
+            'timestamp': time.strftime('%Y-%m-%d %H:%M:%S'),
+            'base_url': BASE_URL,
+            'scraping_methods': ['homepage', 'sitemap', 'search']
         },
-        'films': unique_films
+        'films_by_type': films_by_type,
+        'all_films': unique_films
     }
     
     with open(output_file, 'w', encoding='utf-8') as f:
         json.dump(result, f, ensure_ascii=False, indent=2)
     
-    print(f"\nResults saved to: {output_file}")
-    
-    # Generate summary
-    generate_summary(unique_films, output_file)
-    
-    return len(unique_films) > 0
-
-def generate_summary(films, output_file):
-    """Generate summary statistics"""
-    summary = {
-        'total_films': len(films),
-        'by_type': {
-            'film': 0,
-            'dizi': 0
-        },
-        'by_year': {},
-        'top_imdb': []
-    }
-    
-    for film in films:
-        # Count by type
-        film_type = film.get('type', 'film')
-        summary['by_type'][film_type] = summary['by_type'].get(film_type, 0) + 1
-        
-        # Count by year
-        year = film.get('year', 'Unknown')
-        summary['by_year'][year] = summary['by_year'].get(year, 0) + 1
-    
-    # Get top 10 by IMDB rating
-    films_with_imdb = []
-    for f in films:
-        imdb = f.get('imdb', '0.0')
-        if imdb and imdb != '0.0':
-            try:
-                if 0 <= float(imdb) <= 10:
-                    films_with_imdb.append(f)
-            except:
-                pass
-    
-    films_with_imdb.sort(key=lambda x: float(x.get('imdb', 0)), reverse=True)
-    summary['top_imdb'] = [
-        {
-            'title': f.get('title', 'Unknown'),
-            'imdb': f.get('imdb', '0.0'),
-            'year': f.get('year', 'Unknown'),
-            'type': f.get('type', 'film'),
-            'url': f.get('url', '')
-        }
-        for f in films_with_imdb[:10]
-    ]
-    
-    # Save summary
-    summary_file = output_file.replace('.json', '_summary.json')
-    with open(summary_file, 'w', encoding='utf-8') as f:
-        json.dump(summary, f, ensure_ascii=False, indent=2)
+    print(f"\n✅ Results saved to: {output_file}")
     
     # Print summary
-    print("\n" + "="*50)
+    print_summary(unique_films)
+    
+    return True
+
+def print_summary(films):
+    """Print summary of scraped films"""
+    print("\n" + "="*60)
     print("SCRAPING SUMMARY")
-    print("="*50)
-    print(f"Total films: {summary['total_films']}")
-    print(f"Films: {summary['by_type'].get('film', 0)}")
-    print(f"Diziler: {summary['by_type'].get('dizi', 0)}")
+    print("="*60)
     
-    if summary['by_year']:
-        print(f"\nYears distribution: {len(summary['by_year'])} different years")
-        sorted_years = sorted([(y, c) for y, c in summary['by_year'].items() if y != 'Unknown'], 
+    films_count = len([f for f in films if f['type'] == 'film'])
+    diziler_count = len([f for f in films if f['type'] == 'dizi'])
+    
+    print(f"Total: {len(films)}")
+    print(f"Films: {films_count}")
+    print(f"Diziler: {diziler_count}")
+    
+    # Years
+    years = {}
+    for film in films:
+        year = film.get('year', 'Unknown')
+        years[year] = years.get(year, 0) + 1
+    
+    if years:
+        print(f"\nYears distribution ({len(years)} different years):")
+        sorted_years = sorted([(y, c) for y, c in years.items() if y != '' and y != 'Unknown'], 
                             key=lambda x: x[1], reverse=True)
-        if sorted_years:
-            print("\nTop years:")
-            for year, count in sorted_years[:5]:
-                print(f"  {year}: {count} films")
+        for year, count in sorted_years[:10]:
+            print(f"  {year}: {count}")
     
-    if summary['top_imdb']:
-        print("\nTop by IMDB rating:")
-        for idx, film in enumerate(summary['top_imdb'][:5], 1):
-            print(f"  {idx}. {film['title']} ({film['year']}) - {film['imdb']}")
-
-def test_single_page():
-    """Test scraping a single film page to understand structure"""
-    test_urls = [
-        "https://www.hdfilmcehennemi.ws/film/joker-folie-a-deux-izle-6/",
-        "https://www.hdfilmcehennemi.ws/dizi/stranger-things-izle-4/",
-    ]
+    # Top films by IMDB
+    films_with_imdb = [f for f in films if f.get('imdb', '0.0') != '0.0']
+    if films_with_imdb:
+        films_with_imdb.sort(key=lambda x: float(x.get('imdb', 0)), reverse=True)
+        print(f"\nTop films by IMDB rating:")
+        for idx, film in enumerate(films_with_imdb[:5], 1):
+            print(f"  {idx}. {film['title']} ({film.get('year', 'N/A')}) - IMDB: {film['imdb']}")
     
-    for url in test_urls:
-        print(f"\nTesting: {url}")
-        html = get_page_html(url)
-        if html:
-            soup = BeautifulSoup(html, 'html.parser')
-            
-            # Get title
-            title = soup.title.string if soup.title else 'No title'
-            print(f"Title: {title}")
-            
-            # Look for movie info
-            info_selectors = ['.movie-info', '.film-info', '.entry-content', 'article']
-            for selector in info_selectors:
-                elements = soup.select(selector)
-                if elements:
-                    print(f"\nFound {len(elements)} elements with selector '{selector}'")
-                    for elem in elements[:1]:
-                        text = elem.get_text()[:300]
-                        print(f"Text preview: {text}...")
-                        break
-            
-            # Look for meta tags
-            print("\nMeta tags:")
-            for meta in soup.find_all('meta'):
-                if meta.get('property') in ['og:title', 'og:description', 'og:image']:
-                    print(f"  {meta.get('property')}: {meta.get('content', '')[:100]}")
+    # Sample films
+    print(f"\nSample films:")
+    for idx, film in enumerate(films[:5], 1):
+        print(f"  {idx}. {film['title']} ({film.get('year', 'N/A')}) - {film['type']}")
 
-# -----------------------
-# Main Function
-# -----------------------
 def main():
-    parser = argparse.ArgumentParser(description='HDFilmCehennemi Scraper (Fixed)')
-    parser.add_argument('--mode', choices=['inspect', 'scrape', 'test', 'manual'], 
-                       default='scrape', help='Operation mode')
-    parser.add_argument('--output', default='films.json', help='Output JSON file')
-    parser.add_argument('--debug', action='store_true', help='Enable debug logging')
+    parser = argparse.ArgumentParser(description='HDFilmCehennemi Scraper - Final Version')
+    parser.add_argument('--output', default='hdfilmcehennemi_films.json', help='Output JSON file')
+    parser.add_argument('--simple', action='store_true', help='Simple mode (homepage only)')
+    parser.add_argument('--full', action='store_true', help='Full mode (all methods)')
     
     args = parser.parse_args()
     
-    if args.debug:
-        logger.setLevel(logging.DEBUG)
-    
     print(f"""
-    HDFilmCehennemi Scraper (Fixed Version)
-    ========================================
-    Mode: {args.mode}
+    HDFilmCehennemi Scraper
+    ========================
     Output: {args.output}
+    Mode: {'full' if args.full else 'simple' if args.simple else 'standard'}
     """)
     
     try:
-        if args.mode == 'inspect':
-            inspect_page_structure()
+        all_films = []
+        
+        # Always check homepage
+        print("\n" + "="*60)
+        print("STARTING SCRAPING PROCESS")
+        print("="*60)
+        
+        homepage_films = get_films_from_homepage()
+        all_films.extend(homepage_films)
+        
+        if args.full or (not args.simple and len(homepage_films) < 10):
+            # Try additional methods
+            sitemap_films = get_films_from_sitemap()
+            all_films.extend(sitemap_films)
             
-        elif args.mode == 'test':
-            test_single_page()
-            
-        elif args.mode == 'manual':
-            success = manual_scrape(args.output)
-            if success:
-                print(f"\n✅ Manual scraping completed")
-                print(f"📁 Output saved to: {args.output}")
-            else:
-                print(f"\n⚠️  No films found")
-                
-        elif args.mode == 'scrape':
-            # Try to scrape first 2 pages
-            print("Attempting to scrape pages 1-2...")
-            
-            all_films = []
-            for page in [1, 2]:
-                if page == 1:
-                    url = BASE_URL
-                else:
-                    # Try to find correct pagination
-                    url = f"{BASE_URL}?page={page}"
-                
-                html = get_page_html(url)
-                if html:
-                    films = extract_films_modern(html, page)
-                    all_films.extend(films)
-                    print(f"Page {page}: Found {len(films)} films")
-                time.sleep(1)
-            
-            if all_films:
-                # Remove duplicates
-                unique_films = []
-                seen_urls = set()
-                for film in all_films:
-                    if film['url'] not in seen_urls:
-                        seen_urls.add(film['url'])
-                        unique_films.append(film)
-                
-                # Save results
-                result = {
-                    'metadata': {
-                        'pages_scraped': [1, 2],
-                        'timestamp': time.strftime('%Y-%m-%d %H:%M:%S'),
-                        'total_films': len(unique_films),
-                        'base_url': BASE_URL
-                    },
-                    'films': unique_films
-                }
-                
-                with open(args.output, 'w', encoding='utf-8') as f:
-                    json.dump(result, f, ensure_ascii=False, indent=2)
-                
-                generate_summary(unique_films, args.output)
-                
-                print(f"\n✅ Successfully scraped {len(unique_films)} films")
-                print(f"📁 Output saved to: {args.output}")
-            else:
-                print("\n⚠️  No films found. Try --mode=manual or --mode=inspect")
+            search_films = get_films_from_search()
+            all_films.extend(search_films)
+        
+        # Save results
+        success = save_results(all_films, args.output)
+        
+        if success:
+            print("\n" + "="*60)
+            print("SCRAPING COMPLETED SUCCESSFULLY!")
+            print("="*60)
+        else:
+            print("\n" + "="*60)
+            print("NO FILMS FOUND - SITE MAY HAVE CHANGED")
+            print("="*60)
+            print("\nPossible reasons:")
+            print("1. Website structure has changed")
+            print("2. Content is loaded with JavaScript")
+            print("3. Site is blocking scrapers")
+            print("4. Only limited content is publicly accessible")
+            print("\nTry visiting the site manually to check available content.")
             
     except KeyboardInterrupt:
-        print("\n\n⚠️  Operation interrupted by user")
+        print("\n\n⚠️  Scraping interrupted by user")
         sys.exit(0)
     except Exception as e:
         print(f"\n❌ Error: {e}")
