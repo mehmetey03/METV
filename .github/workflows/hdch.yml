@@ -1,1 +1,33 @@
+name: HDFilmCehennemi Embed Collector
 
+on:
+  workflow_dispatch:
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+
+      - name: Install Playwright
+        run: |
+          pip install playwright
+          playwright install
+
+      - name: Run HDCH Scraper
+        run: python hdch_playwright.py
+
+      - name: Commit JSON
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add hdceh_embeds.json
+          git commit -m "Update hdceh_embeds.json" || echo "No changes"
+          git push
