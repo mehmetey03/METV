@@ -22,7 +22,7 @@ jobs:
           playwright install
 
       - name: Run HDCH Scraper
-        run: python hdch_playwright.py
+        run: python hdch.py
 
       - name: Commit JSON
         run: |
