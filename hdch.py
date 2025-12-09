@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """
-hdch.py - HDFilmCehennemi scraper using requests only
+hdch.py - HDFilmCehennemi scraper using requests only (Updated Version)
 """
 import requests
 import json
 import re
 import time
-from urllib.parse import urljoin, urlparse
+from urllib.parse import urljoin, urlparse, quote
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import argparse
 import logging
@@ -23,6 +23,7 @@ HEADERS = {
     'Accept-Encoding': 'gzip, deflate',
     'Connection': 'keep-alive',
     'Upgrade-Insecure-Requests': '1',
+    'Referer': 'https://www.hdfilmcehennemi.ws/',
 }
 
 # -----------------------
@@ -43,9 +44,22 @@ session.headers.update(HEADERS)
 def get_page_html(url):
     """Get HTML content of a page"""
     try:
+        logger.debug(f"Fetching: {url}")
         response = session.get(url, timeout=30)
         response.raise_for_status()
+        
+        # Check if we got a valid HTML response
+        if 'text/html' not in response.headers.get('content-type', ''):
+            logger.warning(f"Non-HTML response from {url}")
+            return None
+            
         return response.text
+    except requests.exceptions.HTTPError as e:
+        if e.response.status_code == 404:
+            logger.warning(f"Page not found: {url}")
+        else:
+            logger.error(f"HTTP error fetching {url}: {e}")
+        return None
     except Exception as e:
         logger.error(f"Error fetching {url}: {e}")
         return None
@@ -54,127 +68,156 @@ def extract_films_from_html(html, page_num):
     """Extract film information from HTML"""
     films = []
     
-    # Pattern to find film blocks
-    # Looking for anchor tags with poster class
-    poster_pattern = r'<a\s+[^>]*class="[^"]*poster[^"]*"[^>]*href="([^"]+)"[^>]*title="([^"]+)"[^>]*data-token="(\d+)"[^>]*>'
+    if not html:
+        return films
     
-    matches = re.finditer(poster_pattern, html, re.IGNORECASE)
+    # Try different patterns for finding film blocks
+    patterns = [
+        # Pattern 1: Look for article containers with movie data
+        r'<article[^>]*class="[^"]*post-[^"]*"[^>]*>(.*?)</article>',
+        # Pattern 2: Look for div containers with movie data
+        r'<div[^>]*class="[^"]*movie-poster[^"]*"[^>]*>(.*?)</div>',
+        # Pattern 3: Look for film items
+        r'<div[^>]*class="[^"]*film-item[^"]*"[^>]*>(.*?)</div>',
+    ]
     
-    for idx, match in enumerate(matches, 1):
+    all_film_blocks = []
+    
+    for pattern in patterns:
+        blocks = re.findall(pattern, html, re.DOTALL | re.IGNORECASE)
+        if blocks:
+            logger.debug(f"Found {len(blocks)} blocks with pattern")
+            all_film_blocks.extend(blocks)
+            break
+    
+    # If no blocks found with specific patterns, try to find anchor tags with movie data
+    if not all_film_blocks:
+        # Look for any anchor tag that might contain movie info
+        anchor_pattern = r'<a\s+[^>]*href="([^"]*/(?:film|dizi)/[^"]*)"[^>]*>(.*?)</a>'
+        anchors = re.findall(anchor_pattern, html, re.DOTALL | re.IGNORECASE)
+        for href, content in anchors:
+            if 'poster' in content.lower() or 'movie' in content.lower():
+                all_film_blocks.append(f'<a href="{href}">{content}</a>')
+    
+    logger.info(f"Found {len(all_film_blocks)} potential film blocks on page {page_num}")
+    
+    for idx, block in enumerate(all_film_blocks[:50], 1):  # Limit to 50 to avoid noise
         try:
-            url = match.group(1)
-            title = match.group(2)
-            token = match.group(3)
+            # Extract URL
+            url_match = re.search(r'href="([^"]*/(?:film|dizi)/[^"]*)"', block, re.IGNORECASE)
+            if not url_match:
+                continue
+                
+            url = url_match.group(1)
+            if not url.startswith('http'):
+                url = urljoin(BASE_URL, url)
+            
+            # Extract title
+            title = ''
+            title_match = re.search(r'title="([^"]*)"', block, re.IGNORECASE)
+            if title_match:
+                title = title_match.group(1)
+            else:
+                # Try to find title in alt text of image
+                alt_match = re.search(r'alt="([^"]*)"', block, re.IGNORECASE)
+                if alt_match:
+                    title = alt_match.group(1)
+                else:
+                    # Try to find in h2/h3 tags
+                    h_match = re.search(r'<h[23][^>]*>(.*?)</h[23]>', block, re.DOTALL | re.IGNORECASE)
+                    if h_match:
+                        title = re.sub(r'<[^>]+>', '', h_match.group(1)).strip()
+            
+            if not title:
+                continue
             
             # Decode HTML entities in title
             import html
-            title = html.unescape(title)
+            title = html.unescape(title.strip())
             
-            # Get the full anchor tag block
-            anchor_start = match.start()
-            anchor_end = html.find('</a>', anchor_start)
-            if anchor_end == -1:
-                anchor_end = anchor_start + 2000
-            
-            film_block = html[anchor_start:anchor_end]
-            
-            # Extract image URL
+            # Extract image
             image = ''
-            img_match = re.search(r'src="([^"]+\.webp)"', film_block)
+            img_match = re.search(r'src="([^"]+\.(?:jpg|jpeg|png|webp))"', block, re.IGNORECASE)
             if img_match:
                 image = img_match.group(1)
             
             # Extract year
             year = ''
-            year_match = re.search(r'<span>\s*(\d{4})\s*</span>', film_block)
+            year_match = re.search(r'<span[^>]*>\s*(\d{4})\s*</span>', block)
+            if not year_match:
+                year_match = re.search(r'(\b\d{4}\b)', block)
             if year_match:
                 year = year_match.group(1)
             
             # Extract IMDB rating
             imdb = '0.0'
-            imdb_match = re.search(r'<span[^>]*class="[^"]*imdb[^"]*"[^>]*>.*?(\d+\.\d+)', film_block, re.DOTALL)
+            imdb_match = re.search(r'imdb.*?(\d+\.\d+)', block, re.IGNORECASE)
             if imdb_match:
                 imdb = imdb_match.group(1)
-            
-            # Extract comment count
-            comments = '0'
-            # Look for a number after an SVG icon
-            comment_match = re.search(r'<svg[^>]*>.*?</svg>\s*(\d+)', film_block, re.DOTALL)
-            if comment_match:
-                comments = comment_match.group(1)
             
             # Determine type
             film_type = 'dizi' if '/dizi/' in url else 'film'
             
+            # Extract token if available
+            token = ''
+            token_match = re.search(r'data-token="(\d+)"', block)
+            if token_match:
+                token = token_match.group(1)
+            
             films.append({
                 'page': page_num,
                 'position': idx,
-                'url': url if url.startswith('http') else urljoin(BASE_URL, url),
+                'url': url,
                 'title': title,
                 'token': token,
                 'image': image,
                 'year': year,
                 'imdb': imdb,
-                'comments': comments,
                 'type': film_type,
                 'embed_url': ''
             })
             
         except Exception as e:
-            logger.error(f"Error processing film {idx} on page {page_num}: {e}")
+            logger.debug(f"Error processing block {idx} on page {page_num}: {e}")
+            continue
     
     return films
 
 def get_total_pages():
-    """Get total number of pages"""
+    """Get total number of pages by checking pagination"""
     try:
         html = get_page_html(BASE_URL)
-        if html:
-            # Look for data-pages attribute
-            pages_match = re.search(r'data-pages="(\d+)"', html)
-            if pages_match:
-                return int(pages_match.group(1))
-            
-            # Alternative: look for last page number in pagination
-            last_page_match = re.search(r'<a[^>]*href="[^"]*page/(\d+)/"[^>]*>Son\s*Sayfa', html, re.IGNORECASE)
-            if last_page_match:
-                return int(last_page_match.group(1))
+        if not html:
+            return 1  # Default if can't fetch
+        
+        # Try multiple patterns for pagination
+        patterns = [
+            r'<a[^>]*href="[^"]*page/(\d+)/"[^>]*>\s*Son\s*</a>',
+            r'<a[^>]*href="[^"]*page/(\d+)/"[^>]*>\s*Last\s*</a>',
+            r'data-pages="(\d+)"',
+            r'class="last".*?href="[^"]*page/(\d+)/"',
+            r'<span[^>]*>\s*(\d+)\s*</span>\s*</a>\s*</li>\s*</ul>',
+        ]
+        
+        for pattern in patterns:
+            match = re.search(pattern, html, re.IGNORECASE | re.DOTALL)
+            if match:
+                pages = int(match.group(1))
+                logger.info(f"Found total pages: {pages}")
+                return pages
+        
+        # If no pagination found, check if we have next page links
+        if 'page/2/' in html:
+            # Try to find the highest page number
+            page_numbers = re.findall(r'page/(\d+)/', html)
+            if page_numbers:
+                return max(map(int, page_numbers))
+        
+        return 1  # Only one page if no pagination found
+        
     except Exception as e:
         logger.error(f"Error getting total pages: {e}")
-    
-    return 1124  # Default fallback
-
-def extract_embed_url(film):
-    """Extract embed URL from film detail page"""
-    try:
-        response = session.get(film['url'], timeout=15)
-        if response.status_code == 200:
-            html = response.text
-            
-            # Pattern 1: iframe src
-            iframe_match = re.search(r'<iframe[^>]*src="([^"]*hdfilmcehennemi[^"]*embed[^"]+)"', html, re.IGNORECASE)
-            if iframe_match:
-                return iframe_match.group(1)
-            
-            # Pattern 2: data-player attribute
-            player_match = re.search(r'data-player="([^"]+)"', html)
-            if player_match:
-                return player_match.group(1)
-            
-            # Pattern 3: rapidrame links
-            rapidrame_match = re.search(r'(https?://[^"\']+rapidrame[^"\']+)', html)
-            if rapidrame_match:
-                return rapidrame_match.group(1)
-            
-            # Pattern 4: data-embed attribute
-            embed_match = re.search(r'data-embed="([^"]+)"', html)
-            if embed_match:
-                return embed_match.group(1)
-    
-    except Exception as e:
-        logger.error(f"Error extracting embed for {film['title']}: {e}")
-    
-    return ''
+        return 1
 
 def scrape_pages(start_page, end_page, output_file, get_embeds=False, max_workers=4, delay=1):
     """Main scraping function"""
@@ -193,17 +236,44 @@ def scrape_pages(start_page, end_page, output_file, get_embeds=False, max_worker
     for page in range(start_page, end_page + 1):
         logger.info(f"Scraping page {page}/{end_page}")
         
-        # Construct URL
+        # Construct URL (handle pagination)
         if page == 1:
             url = BASE_URL
         else:
-            url = f"{BASE_URL}page/{page}/"
+            # Try different pagination formats
+            pagination_formats = [
+                f"{BASE_URL}page/{page}/",
+                f"{BASE_URL}sayfa/{page}/",
+                f"{BASE_URL}?page={page}",
+                f"{BASE_URL}?sayfa={page}",
+                f"{BASE_URL}index.php?page={page}",
+            ]
+            
+            url = None
+            for format_url in pagination_formats:
+                test_html = get_page_html(format_url)
+                if test_html and len(test_html) > 1000:  # Valid HTML
+                    url = format_url
+                    logger.debug(f"Using pagination format: {format_url}")
+                    break
+            
+            if not url:
+                url = pagination_formats[0]  # Default to first format
         
         # Get page HTML
         html = get_page_html(url)
         if not html:
             logger.warning(f"Failed to get page {page}")
-            continue
+            
+            # Try alternative URL
+            if page != 1:
+                alt_url = f"{BASE_URL}?s=&paged={page}"
+                logger.info(f"Trying alternative URL: {alt_url}")
+                html = get_page_html(alt_url)
+                
+            if not html:
+                logger.warning(f"Completely failed to get page {page}")
+                continue
         
         # Extract films
         films = extract_films_from_html(html, page)
@@ -217,41 +287,28 @@ def scrape_pages(start_page, end_page, output_file, get_embeds=False, max_worker
     
     logger.info(f"Total films collected: {len(all_films)}")
     
-    # Extract embed URLs if requested
-    if get_embeds and all_films:
-        logger.info(f"Extracting embed URLs for {len(all_films)} films...")
-        
-        with ThreadPoolExecutor(max_workers=max_workers) as executor:
-            future_to_film = {
-                executor.submit(extract_embed_url, film): film 
-                for film in all_films
-            }
-            
-            for idx, future in enumerate(as_completed(future_to_film), 1):
-                film = future_to_film[future]
-                try:
-                    embed_url = future.result(timeout=20)
-                    film['embed_url'] = embed_url
-                    
-                    if idx % 10 == 0:
-                        logger.info(f"Processed {idx}/{len(all_films)} embed URLs")
-                        
-                except Exception as e:
-                    logger.error(f"Error getting embed for {film['title']}: {e}")
-                    film['embed_url'] = ''
+    # Remove duplicates by URL
+    unique_films = []
+    seen_urls = set()
+    for film in all_films:
+        if film['url'] not in seen_urls:
+            seen_urls.add(film['url'])
+            unique_films.append(film)
     
-    # Prepare result
+    logger.info(f"Unique films after deduplication: {len(unique_films)}")
+    
+    # Save results even if no films found
     result = {
         'metadata': {
             'total_pages_scraped': end_page - start_page + 1,
             'start_page': start_page,
             'end_page': end_page,
-            'total_films': len(all_films),
+            'total_films': len(unique_films),
             'timestamp': time.strftime('%Y-%m-%d %H:%M:%S'),
             'embeds_included': get_embeds,
             'base_url': BASE_URL
         },
-        'films': all_films
+        'films': unique_films
     }
     
     # Save to file
@@ -261,9 +318,9 @@ def scrape_pages(start_page, end_page, output_file, get_embeds=False, max_worker
     logger.info(f"Results saved to {output_file}")
     
     # Generate summary
-    generate_summary(all_films, output_file)
+    generate_summary(unique_films, output_file)
     
-    return True
+    return len(unique_films) > 0
 
 def generate_summary(films, output_file):
     """Generate summary statistics"""
@@ -279,21 +336,22 @@ def generate_summary(films, output_file):
     
     for film in films:
         # Count by type
-        summary['by_type'][film['type']] = summary['by_type'].get(film['type'], 0) + 1
+        film_type = film.get('type', 'film')
+        summary['by_type'][film_type] = summary['by_type'].get(film_type, 0) + 1
         
         # Count by year
         year = film.get('year', 'Unknown')
         summary['by_year'][year] = summary['by_year'].get(year, 0) + 1
     
     # Get top 10 by IMDB rating
-    films_with_imdb = [f for f in films if f['imdb'] != '0.0']
-    films_with_imdb.sort(key=lambda x: float(x['imdb']), reverse=True)
+    films_with_imdb = [f for f in films if f.get('imdb', '0.0') not in ['0.0', '0', '']]
+    films_with_imdb.sort(key=lambda x: float(x.get('imdb', 0)), reverse=True)
     summary['top_imdb'] = [
         {
-            'title': f['title'],
-            'imdb': f['imdb'],
-            'year': f['year'],
-            'type': f['type']
+            'title': f.get('title', 'Unknown'),
+            'imdb': f.get('imdb', '0.0'),
+            'year': f.get('year', 'Unknown'),
+            'type': f.get('type', 'film')
         }
         for f in films_with_imdb[:10]
     ]
@@ -310,13 +368,15 @@ def generate_summary(films, output_file):
     print("SCRAPING SUMMARY")
     print("="*50)
     print(f"Total films: {summary['total_films']}")
-    print(f"Films: {summary['by_type']['film']}")
-    print(f"Diziler: {summary['by_type']['dizi']}")
+    print(f"Films: {summary['by_type'].get('film', 0)}")
+    print(f"Diziler: {summary['by_type'].get('dizi', 0)}")
     print(f"Years distribution: {len(summary['by_year'])} different years")
-    print("\nTop 5 years:")
-    sorted_years = sorted(summary['by_year'].items(), key=lambda x: x[1], reverse=True)
-    for year, count in sorted_years[:5]:
-        print(f"  {year}: {count} films")
+    
+    if summary['by_year']:
+        print("\nTop 5 years:")
+        sorted_years = sorted(summary['by_year'].items(), key=lambda x: x[1], reverse=True)
+        for year, count in sorted_years[:5]:
+            print(f"  {year}: {count} films")
     
     if summary['top_imdb']:
         print("\nTop 5 by IMDB rating:")
@@ -327,19 +387,23 @@ def generate_summary(films, output_file):
 # Main Function
 # -----------------------
 def main():
-    parser = argparse.ArgumentParser(description='HDFilmCehennemi Scraper')
+    parser = argparse.ArgumentParser(description='HDFilmCehennemi Scraper (Updated)')
     parser.add_argument('--start', type=int, default=1, help='Start page (default: 1)')
     parser.add_argument('--end', type=int, default=5, help='End page (default: 5)')
     parser.add_argument('--output', default='films.json', help='Output JSON file')
     parser.add_argument('--embeds', action='store_true', help='Extract embed URLs')
     parser.add_argument('--workers', type=int, default=4, help='Number of parallel workers')
     parser.add_argument('--delay', type=float, default=1.0, help='Delay between page requests in seconds')
+    parser.add_argument('--debug', action='store_true', help='Enable debug logging')
     
     args = parser.parse_args()
     
+    if args.debug:
+        logger.setLevel(logging.DEBUG)
+    
     print(f"""
-    HDFilmCehennemi Scraper
-    ========================
+    HDFilmCehennemi Scraper (Updated)
+    ==================================
     Pages: {args.start} to {args.end}
     Output: {args.output}
     Extract embeds: {args.embeds}
@@ -361,14 +425,16 @@ def main():
             print(f"\n✅ Successfully scraped pages {args.start}-{args.end}")
             print(f"📁 Output saved to: {args.output}")
         else:
-            print("\n❌ Scraping failed!")
-            exit(1)
+            print(f"\n⚠️  No films found. Check website structure or try different pages.")
+            print(f"📁 Output saved to: {args.output}")
             
     except KeyboardInterrupt:
         print("\n\n⚠️  Scraping interrupted by user")
         exit(0)
     except Exception as e:
         print(f"\n❌ Error: {e}")
+        import traceback
+        traceback.print_exc()
         exit(1)
 
 # -----------------------
@@ -376,16 +442,16 @@ def main():
 # -----------------------
 def quick_test():
     """Quick test function"""
-    print("Running quick test (pages 1-2)...")
+    print("Running quick test (page 1 only)...")
     
     try:
-        # Test first 2 pages
+        # Test only page 1
         success = scrape_pages(
             start_page=1,
-            end_page=2,
+            end_page=1,
             output_file='test_output.json',
             get_embeds=False,
-            max_workers=2,
+            max_workers=1,
             delay=0.5
         )
         
@@ -395,17 +461,22 @@ def quick_test():
                 data = json.load(f)
                 print(f"\nTest successful!")
                 print(f"Total films: {len(data['films'])}")
-                print("\nSample films:")
-                for film in data['films'][:5]:
-                    print(f"  • {film['title']} ({film['year']}) - {film['type']}")
+                if data['films']:
+                    print("\nSample films:")
+                    for film in data['films'][:3]:
+                        print(f"  • {film.get('title', 'Unknown')} ({film.get('year', 'N/A')}) - {film.get('type', 'N/A')}")
+                else:
+                    print("No films found. The website structure may have changed.")
         else:
-            print("Test failed!")
+            print("Test failed - no films found!")
             
     except Exception as e:
         print(f"Test error: {e}")
+        import traceback
+        traceback.print_exc()
 
 if __name__ == '__main__':
-    # For quick testing
+    # Uncomment for quick testing
     # quick_test()
     
     # Run main function
