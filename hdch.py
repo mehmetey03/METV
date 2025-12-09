@@ -1,231 +1,155 @@
-#!/usr/bin/env python3
-# hdch_fixed.py - HDFilmCehennemi Scraper (Fixed)
-
-import requests
 import json
-import re
 import time
-from urllib.parse import urljoin
-from concurrent.futures import ThreadPoolExecutor, as_completed
 import logging
-from bs4 import BeautifulSoup
+from pathlib import Path
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.by import By
+from selenium.common.exceptions import NoSuchElementException, WebDriverException
 
-# ======================
-# CONFIG
-# ======================
-BASE_URL = "https://www.hdfilmcehennemi.ws/"
-USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+# ===============================
+# AYARLAR
+# ===============================
 
-HEADERS = {
-    'User-Agent': USER_AGENT,
-    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
-    'Accept-Language': 'tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7',
-    'Accept-Encoding': 'gzip, deflate',
-    'Connection': 'keep-alive',
-    'Referer': BASE_URL,
-}
+BASE_URL = "https://www.hdfilmcehennemi.ws/filmler/sayfa/{}/"
+MAX_PAGES = 1124  # sitenin gösterdiği gerçek sayı
+WAIT_JS = 3       # JS yüklenmesi için bekleme süresi
+OUTPUT_JSON = "hdceh.json"
+SUMMARY_JSON = "hdceh_summary.json"
 
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
-logger = logging.getLogger(__name__)
+# ===============================
+# LOG AYARLARI
+# ===============================
 
-session = requests.Session()
-session.headers.update(HEADERS)
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(levelname)s - %(message)s"
+)
 
-# ======================
-# HELPERS
-# ======================
 
-def get_page_html(url):
+# ===============================
+# SELENIUM BAŞLAT
+# ===============================
+
+def start_driver():
+    opts = Options()
+    opts.add_argument("--headless")
+    opts.add_argument("--disable-gpu")
+    opts.add_argument("--no-sandbox")
+    opts.add_argument("--disable-dev-shm-usage")
+    opts.add_argument("--window-size=1920,1080")
+    return webdriver.Chrome(options=opts)
+
+
+# ===============================
+# TEK SAYFAYI SCRAPE ET
+# ===============================
+
+def scrape_page(driver, page):
+    url = BASE_URL.format(page)
+    logging.info(f"Scraping page {page}: {url}")
+
     try:
-        response = session.get(url, timeout=20)
-        response.raise_for_status()
-        if "text/html" not in response.headers.get("content-type", ""):
-            return None
-        return response.text
-    except Exception as e:
-        logger.error(f"Request error: {url} -> {e}")
-        return None
+        driver.get(url)
+    except WebDriverException as e:
+        logging.error(f"Driver error: {e}")
+        return []
 
+    time.sleep(WAIT_JS)  # JS film kartlarını yüklesin
 
-# ==========================
-# FILM EXTRACTION
-# ==========================
+    try:
+        items = driver.find_elements(By.CSS_SELECTOR, ".ml-item")
+    except:
+        items = []
 
-def extract_films_modern(html, page_num):
+    logging.info(f"Found film containers: {len(items)}")
+
     films = []
-    if not html:
-        return films
 
-    soup = BeautifulSoup(html, "html.parser")
+    for item in items:
+        try:
+            a = item.find_element(By.CSS_SELECTOR, "a")
+            href = a.get_attribute("href")
+            title = a.get_attribute("title")
 
-    containers = soup.select(".ml-item, article, .movie, .film-item, div[class*=movie]")
+            img_el = a.find_element(By.CSS_SELECTOR, "img")
+            img = (
+                img_el.get_attribute("data-original")
+                or img_el.get_attribute("data-src")
+                or img_el.get_attribute("src")
+            )
 
-    logger.info(f"Page {page_num}: Found containers = {len(containers)}")
+            films.append({
+                "title": title,
+                "url": href,
+                "image": img
+            })
 
-    for i, item in enumerate(containers, 1):
-
-        link_tag = item.find("a", href=True)
-        if not link_tag:
+        except NoSuchElementException:
             continue
-
-        url = link_tag["href"]
-        if not url.startswith("http"):
-            url = urljoin(BASE_URL, url)
-
-        # title
-        title = link_tag.get("title") or link_tag.get_text(strip=True)
-        if not title:
-            continue
-        title = title.replace(" izle", "").strip()
-
-        # image
-        img_tag = item.find("img")
-        img = ""
-        if img_tag:
-            img = img_tag.get("data-src") or img_tag.get("src") or ""
-
-        # year detection
-        text = item.get_text()
-        year = ""
-        m = re.search(r"(19|20)\d{2}", text)
-        if m:
-            year = m.group(0)
-
-        imdb = "0.0"
-        m = re.search(r"IMDB[: ]*([0-9.]+)", text, re.I)
-        if m:
-            imdb = m.group(1)
-
-        film_type = "dizi" if "/dizi/" in url else "film"
-
-        films.append({
-            "page": page_num,
-            "position": i,
-            "url": url,
-            "title": title,
-            "image": img,
-            "year": year,
-            "imdb": imdb,
-            "type": film_type,
-            "embed_url": ""
-        })
+        except Exception as e:
+            logging.error(f"Film parse error: {e}")
 
     return films
 
 
-# ======================
-# SUMMARY
-# ======================
+# ===============================
+# ANA SCRAPER
+# ===============================
 
-def generate_summary(films, output_file):
+def main():
+    driver = start_driver()
+    all_films = []
+    empty_pages = 0
+
+    logging.info("=== SCRAPING STARTED ===")
+
+    for page in range(1, MAX_PAGES + 1):
+
+        films = scrape_page(driver, page)
+
+        if len(films) == 0:
+            logging.warning(f"Page {page} → EMPTY")
+            empty_pages += 1
+
+            # 3 boş sayfa üst üste → bitir
+            if empty_pages >= 3:
+                logging.warning("Too many empty pages → stopping.")
+                break
+        else:
+            empty_pages = 0
+
+        all_films.extend(films)
+
+        # Anti-block
+        time.sleep(1)
+
+    driver.quit()
+
+    # ===============================
+    # JSON KAYDET
+    # ===============================
+
+    Path(OUTPUT_JSON).write_text(
+        json.dumps(all_films, indent=2, ensure_ascii=False),
+        encoding="utf8"
+    )
+
     summary = {
-        "total_films": len(films),
-        "by_type": {"film": 0, "dizi": 0},
-        "by_year": {},
-        "top_imdb": []
+        "total_films": len(all_films),
+        "total_pages_scanned": page,
+        "output_file": OUTPUT_JSON
     }
 
-    for f in films:
-        summary["by_type"][f["type"]] += 1
-        year = f["year"] or "Unknown"
-        summary["by_year"][year] = summary["by_year"].get(year, 0) + 1
+    Path(SUMMARY_JSON).write_text(
+        json.dumps(summary, indent=2, ensure_ascii=False),
+        encoding="utf8"
+    )
 
-    # IMDB sort
-    imdb_list = []
-    for f in films:
-        try:
-            score = float(f["imdb"])
-            if 0 < score <= 10:
-                imdb_list.append(f)
-        except:
-            pass
+    logging.info(f"Saved FULL FILM LIST → {OUTPUT_JSON}")
+    logging.info(f"SUMMARY SAVED → {SUMMARY_JSON}")
+    logging.info("=== SCRAPING FINISHED ===")
 
-    imdb_list.sort(key=lambda x: float(x["imdb"]), reverse=True)
-    summary["top_imdb"] = imdb_list[:10]
-
-    sfile = output_file.replace(".json", "_summary.json")
-    with open(sfile, "w", encoding="utf-8") as f:
-        json.dump(summary, f, ensure_ascii=False, indent=2)
-
-    print(f"SUMMARY SAVED → {sfile}")
-
-
-# ======================
-# MANUAL SCRAPE
-# ======================
-
-def manual_scrape(output_file):
-    print("\n=== SCRAPING START ===")
-
-    films_all = []
-
-    html = get_page_html(BASE_URL)
-    if html:
-        f = extract_films_modern(html, 1)
-        films_all.extend(f)
-        print(f"Home page films: {len(f)}")
-
-    # category pages
-    categories = ["film", "dizi", "film-izle"]
-
-    for c in categories:
-        url = BASE_URL + "kategori/" + c + "/"
-        html = get_page_html(url)
-        if html:
-            f = extract_films_modern(html, 2)
-            films_all.extend(f)
-            print(f"Category {c}: {len(f)} found")
-            time.sleep(1)
-
-    # remove duplicates
-    uniq = []
-    seen = set()
-    for f in films_all:
-        if f["url"] not in seen:
-            uniq.append(f)
-            seen.add(f["url"])
-
-    result = {
-        "metadata": {
-            "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
-            "total_films": len(uniq)
-        },
-        "films": uniq
-    }
-
-    with open(output_file, "w", encoding="utf-8") as f:
-        json.dump(result, f, ensure_ascii=False, indent=2)
-
-    print(f"\nSaved → {output_file}")
-    generate_summary(uniq, output_file)
-    return True
-
-
-# ======================
-# TEST SINGLE PAGE
-# ======================
-
-def test_single_page():
-    """Scrape a single movie page and show embed iframe."""
-    test_url = "https://www.hdfilmcehennemi.ws/film/joker-folie-a-deux-izle/"
-    html = get_page_html(test_url)
-    if not html:
-        print("Page load failed")
-        return
-
-    soup = BeautifulSoup(html, "html.parser")
-
-    iframe = soup.find("iframe")
-    if iframe:
-        print("\nFOUND EMBED URL:")
-        print(iframe.get("src"))
-    else:
-        print("\nNo iframe found")
-
-
-# ======================
-# MAIN
-# ======================
 
 if __name__ == "__main__":
-    manual_scrape("hdceh.json")
+    main()
