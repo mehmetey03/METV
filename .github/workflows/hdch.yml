@@ -3,7 +3,7 @@ name: HDCH Scraper
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 */12 * * *"   # 12 saatte bir çalışsın
+    - cron: "0 */12 * * *"   # 12 saatte bir çalışır
 
 jobs:
   scrape:
@@ -11,23 +11,24 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Install Python
-        uses: actions/setup-python@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
         with:
-          python-version: 3.11
+          python-version: "3.11"
 
-      - name: Install Playwright
+      - name: Install Python dependencies
         run: |
-          pip install playwright beautifulsoup4 lxml
+          pip install playwright
+          pip install beautifulsoup4 lxml
           playwright install --with-deps chromium
 
       - name: Run scraper
         run: python hdch.py
 
-      - name: Upload results
-        uses: actions/upload-artifact@v3
+      - name: Upload artifact (JSON)
+        uses: actions/upload-artifact@v4
         with:
           name: hdceh
           path: hdceh.json
