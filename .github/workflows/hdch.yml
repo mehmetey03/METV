@@ -1,38 +1,33 @@
 name: HDCH Scraper
 
 on:
+  workflow_dispatch:
   schedule:
-    - cron: "*/15 * * * *"   # 15 dakikada bir çalışır
-  workflow_dispatch:         # Manuel çalıştırma için
+    - cron: "0 */12 * * *"   # 12 saatte bir çalışsın
 
 jobs:
-  run-scraper:
+  scrape:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Depoyu çek
-      uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v3
 
-    - name: Python kur
-      uses: actions/setup-python@v5
-      with:
-        python-version: "3.11"
+      - name: Install Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
 
-    - name: Gerekli kütüphaneleri yükle
-      run: |
-        pip install requests beautifulsoup4 lxml
+      - name: Install Playwright
+        run: |
+          pip install playwright beautifulsoup4 lxml
+          playwright install --with-deps chromium
 
-    - name: Scraper çalıştır (hdch.py)
-      run: |
-        python hdch.py
+      - name: Run scraper
+        run: python hdch.py
 
-    - name: Değişiklik var mı kontrol et
-      run: |
-        git config --global user.name "github-actions"
-        git config --global user.email "github-actions@github.com"
-        git add .
-        git diff --cached --quiet || git commit -m "Auto update: JSON güncellendi $(date '+%Y-%m-%d %H:%M')"
-
-    - name: Değişiklikleri GitHub'a gönder
-      run: |
-        git push
+      - name: Upload results
+        uses: actions/upload-artifact@v3
+        with:
+          name: hdceh
+          path: hdceh.json
