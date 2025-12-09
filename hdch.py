@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-hdch_final.py - HDFilmCehennemi scraper with robotu page
+hdch_final_ultimate.py - Ultimate HDFilmCehennemi scraper
 """
 import urllib.request
 import json
@@ -16,9 +16,8 @@ EMBED_BASE = "https://hdfilmcehennemi.mobi/video/embed/"
 def get_html(url, headers=None):
     """Get HTML content"""
     default_headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
-        'Accept-Language': 'tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
         'Referer': BASE_URL,
     }
     
@@ -27,10 +26,9 @@ def get_html(url, headers=None):
     
     try:
         req = urllib.request.Request(url, headers=default_headers)
-        with urllib.request.urlopen(req, timeout=30) as response:
+        with urllib.request.urlopen(req, timeout=20) as response:
             return response.read().decode('utf-8', errors='ignore')
     except Exception as e:
-        print(f"  Error fetching {url}: {e}")
         return None
 
 def extract_films_from_html(html_content, source_url):
@@ -43,8 +41,6 @@ def extract_films_from_html(html_content, source_url):
     # Pattern 1: Look for film posters with data-token
     film_pattern = r'<a\s+[^>]*data-token="\d+"[^>]*>.*?</a>'
     film_matches = re.findall(film_pattern, html_content, re.DOTALL | re.IGNORECASE)
-    
-    print(f"  Found {len(film_matches)} film posters")
     
     for match in film_matches:
         film = parse_film_poster(match, source_url)
@@ -94,7 +90,6 @@ def parse_film_poster(poster_html, source_url):
         imdb = '0.0'
         imdb_match = re.search(r'class="imdb"[^>]*>.*?(\d+\.\d+)', poster_html, re.DOTALL)
         if not imdb_match:
-            # Try alternative pattern
             imdb_match = re.search(r'<svg[^>]*><path[^>]*></path></svg>\s*<p>\s*(\d+\.\d+)', poster_html, re.DOTALL)
         
         if imdb_match:
@@ -113,11 +108,14 @@ def parse_film_poster(poster_html, source_url):
             if not image.startswith('http'):
                 image = urljoin(BASE_URL, image)
         
-        # Comments count
-        comments = '0'
-        comment_match = re.search(r'<svg[^>]*>.*?</svg>\s*(\d+)', poster_html, re.DOTALL)
-        if comment_match:
-            comments = comment_match.group(1)
+        # Token
+        token = ''
+        token_match = re.search(r'data-token="(\d+)"', poster_html)
+        if token_match:
+            token = token_match.group(1)
+        
+        # Type
+        film_type = 'dizi' if '/dizi/' in url or 'dizi' in source_url.lower() else 'film'
         
         # Language
         language = ''
@@ -130,22 +128,12 @@ def parse_film_poster(poster_html, source_url):
         elif 'Altyazı' in poster_html:
             language = 'Türkçe Altyazı'
         
-        # Token
-        token = ''
-        token_match = re.search(r'data-token="(\d+)"', poster_html)
-        if token_match:
-            token = token_match.group(1)
-        
-        # Type
-        film_type = 'dizi' if '/dizi/' in url or 'dizi' in source_url.lower() else 'film'
-        
         return {
             'url': url,
             'title': title,
             'year': year,
             'imdb': imdb,
             'image': image,
-            'comments': comments,
             'language': language,
             'type': film_type,
             'token': token,
@@ -153,7 +141,6 @@ def parse_film_poster(poster_html, source_url):
             'scraped_at': datetime.now().isoformat()
         }
     except Exception as e:
-        print(f"    Error parsing poster: {e}")
         return None
 
 def clean_title(title):
@@ -179,18 +166,13 @@ def clean_title(title):
     for suffix in suffixes:
         title = re.sub(suffix, '', title, flags=re.IGNORECASE)
     
-    # Remove year in parentheses
     title = re.sub(r'\s*\(\d{4}\)\s*$', '', title)
-    
-    # Clean up spaces
     title = re.sub(r'\s+', ' ', title).strip()
     
     return title
 
 def extract_embed_url_from_film_page(film_url, token):
     """Extract embed URL from individual film page"""
-    print(f"    Fetching embed for: {film_url}")
-    
     html_content = get_html(film_url)
     if not html_content:
         return None
@@ -211,124 +193,64 @@ def extract_embed_url_from_film_page(film_url, token):
     if direct_match:
         return direct_match.group(1)
     
-    # Pattern 3: video-container div içinde
-    container_pattern = r'<div[^>]*class="[^"]*video-container[^"]*"[^>]*>.*?(https://hdfilmcehennemi\.mobi/video/embed/[^<]+)'
-    container_match = re.search(container_pattern, html_content, re.DOTALL | re.IGNORECASE)
-    if container_match:
-        return container_match.group(1).strip()
-    
-    # Pattern 4: GKsnOLw2hsT pattern
-    gksn_pattern = r'(GKsnOLw2hsT[^"\']*)'
-    gksn_match = re.search(gksn_pattern, html_content)
-    if gksn_match:
-        embed_code = gksn_match.group(1)
-        # Format: GKsnOLw2hsT/?rapidrame_id=TOKEN
-        embed_match = re.search(r'([A-Za-z0-9_\-]+)/\?rapidrame_id=([A-Za-z0-9]+)', embed_code)
-        if embed_match:
-            embed_path = embed_match.group(1)
-            rapidrame_id = embed_match.group(2)
-            return f"{EMBED_BASE}{embed_path}/?rapidrame_id={rapidrame_id}"
-    
-    # Pattern 5: Construct from token
+    # Pattern 3: Construct from token
     if token:
         return f"{EMBED_BASE}GKsnOLw2hsT/?rapidrame_id={token}"
     
     return None
 
-def scrape_robotu_pages():
-    """Robotu sayfalarından tüm filmleri çek"""
-    all_films = []
-    
-    # Film robotu sayfaları (örnekler)
-    robotu_urls = [
-        "https://www.hdfilmcehennemi.ws/film-robotu-1/",
-        "https://www.hdfilmcehennemi.ws/film-robotu-2/",
-        "https://www.hdfilmcehennemi.ws/film-robotu-3/",
-        "https://www.hdfilmcehennemi.ws/film-robotu-4/",
-        "https://www.hdfilmcehennemi.ws/film-robotu-5/",
-        "https://www.hdfilmcehennemi.ws/film-robotu-6/",
-        "https://www.hdfilmcehennemi.ws/film-robotu-7/",
-        "https://www.hdfilmcehennemi.ws/film-robotu-8/",
-        "https://www.hdfilmcehennemi.ws/film-robotu-9/",
-        "https://www.hdfilmcehennemi.ws/film-robotu-10/",
-    ]
-    
-    for i, base_url in enumerate(robotu_urls, 1):
-        print(f"\nScraping robotu page {i}: {base_url}")
-        
-        html_content = get_html(base_url)
-        if not html_content:
-            print(f"  Failed to fetch page")
-            continue
-        
-        # Filmleri çıkar
-        films = extract_films_from_html(html_content, base_url)
-        
-        if films:
-            # Benzersiz filmleri ekle
-            existing_urls = {f['url'] for f in all_films}
-            new_films = []
-            for film in films:
-                if film['url'] not in existing_urls:
-                    new_films.append(film)
-                    existing_urls.add(film['url'])
-            
-            all_films.extend(new_films)
-            print(f"  Added {len(new_films)} new films, total: {len(all_films)}")
-        else:
-            print(f"  No films found on this page")
-        
-        # Be polite
-        time.sleep(1)
-    
-    return all_films
-
-def scrape_multiple_sources():
-    """Çeşitli kaynaklardan film çek"""
+def scrape_discovery_pages():
+    """Keşfetme sayfalarını tarar"""
     all_films = []
     
     print("=" * 70)
-    print("Scraping from multiple sources...")
+    print("HDFilmCehennemi Discovery Scraper")
     print("=" * 70)
     
     # 1. Ana sayfa
     print("\n1. Scraping homepage...")
-    homepage_html = get_html(BASE_URL)
-    if homepage_html:
-        films = extract_films_from_html(homepage_html, BASE_URL)
+    html_content = get_html(BASE_URL)
+    if html_content:
+        films = extract_films_from_html(html_content, BASE_URL)
         if films:
             all_films.extend(films)
-            print(f"  Added {len(films)} films from homepage")
+            print(f"  Found {len(films)} films")
     
-    # 2. Robotu sayfaları
-    print("\n2. Scraping robotu pages...")
-    robotu_films = scrape_robotu_pages()
-    if robotu_films:
-        # Benzersiz filmleri ekle
-        existing_urls = {f['url'] for f in all_films}
-        new_films = []
-        for film in robotu_films:
-            if film['url'] not in existing_urls:
-                new_films.append(film)
-                existing_urls.add(film['url'])
+    # 2. Bilinen film listesi sayfaları
+    print("\n2. Scraping known list pages...")
+    
+    # Farklı listeleme sayfalarını dene
+    list_pages = [
+        # Film robotu sayfaları
+        "https://www.hdfilmcehennemi.ws/film-robotu-1/",
         
-        all_films.extend(new_films)
-        print(f"  Added {len(new_films)} new films from robotu pages, total: {len(all_films)}")
-    
-    # 3. Farklı kategori URL'lerini dene
-    print("\n3. Testing other URLs...")
-    test_urls = [
-        "https://www.hdfilmcehennemi.ws/kategori/film/",
-        "https://www.hdfilmcehennemi.ws/kategori/dizi/",
-        "https://www.hdfilmcehennemi.ws/populer/",
-        "https://www.hdfilmcehennemi.ws/en-yeni/",
-        "https://www.hdfilmcehennemi.ws/box-office/",
-        "https://www.hdfilmcehennemi.ws/imdb-yuksek/",
-        "https://www.hdfilmcehennemi.ws/turk-filmleri/",
-        "https://www.hdfilmcehennemi.ws/hollywood/",
+        # Diğer olası listeleme sayfaları
+        "https://www.hdfilmcehennemi.ws/arsiv/",
+        "https://www.hdfilmcehennemi.ws/tum-filmler/",
+        "https://www.hdfilmcehennemi.ws/tum-diziler/",
+        "https://www.hdfilmcehennemi.ws/en-iyi-filmler/",
+        "https://www.hdfilmcehennemi.ws/imdb-top-250/",
+        "https://www.hdfilmcehennemi.ws/yabanci-filmler/",
+        "https://www.hdfilmcehennemi.ws/yerli-filmler/",
+        "https://www.hdfilmcehennemi.ws/aksiyon-filmleri/",
+        "https://www.hdfilmcehennemi.ws/komedi-filmleri/",
+        "https://www.hdfilmcehennemi.ws/dram-filmleri/",
+        "https://www.hdfilmcehennemi.ws/gerilim-filmleri/",
+        "https://www.hdfilmcehennemi.ws/bilim-kurgu-filmleri/",
+        "https://www.hdfilmcehennemi.ws/fantastik-filmleri/",
+        "https://www.hdfilmcehennemi.ws/macera-filmleri/",
+        "https://www.hdfilmcehennemi.ws/romantik-filmleri/",
+        "https://www.hdfilmcehennemi.ws/korku-filmleri/",
+        
+        # Sayfa numaralı listeler
+        "https://www.hdfilmcehennemi.ws/sayfa/1/",
+        "https://www.hdfilmcehennemi.ws/sayfa/2/",
+        "https://www.hdfilmcehennemi.ws/sayfa/3/",
+        "https://www.hdfilmcehennemi.ws/sayfa/4/",
+        "https://www.hdfilmcehennemi.ws/sayfa/5/",
     ]
     
-    for url in test_urls:
+    for url in list_pages:
         print(f"  Testing: {url}")
         html_content = get_html(url)
         if html_content:
@@ -348,71 +270,163 @@ def scrape_multiple_sources():
         
         time.sleep(0.5)
     
+    # 3. Daha fazla robotu sayfası dene (1-50)
+    print("\n3. Testing more robotu pages (1-50)...")
+    for i in range(1, 51):
+        url = f"https://www.hdfilmcehennemi.ws/film-robotu-{i}/"
+        html_content = get_html(url)
+        if html_content:
+            films = extract_films_from_html(html_content, url)
+            if films:
+                existing_urls = {f['url'] for f in all_films}
+                new_films = []
+                for film in films:
+                    if film['url'] not in existing_urls:
+                        new_films.append(film)
+                        existing_urls.add(film['url'])
+                
+                if new_films:
+                    all_films.extend(new_films)
+                    print(f"    Robotu-{i}: Added {len(new_films)} new films, total: {len(all_films)}")
+        
+        if i % 10 == 0:
+            time.sleep(1)
+    
+    # 4. Kategori sayfalarını dene
+    print("\n4. Testing category pages...")
+    categories = [
+        "film", "dizi", "aksiyon", "komedi", "dram", "gerilim", 
+        "bilim-kurgu", "fantastik", "macera", "romantik", "korku",
+        "suç", "biyografi", "tarih", "belgesel", "aile", "animasyon",
+        "müzikal", "spor", "savaş", "western", "gizem", "polisiye"
+    ]
+    
+    for category in categories:
+        url = f"https://www.hdfilmcehennemi.ws/kategori/{category}/"
+        html_content = get_html(url)
+        if html_content:
+            films = extract_films_from_html(html_content, url)
+            if films:
+                existing_urls = {f['url'] for f in all_films}
+                new_films = []
+                for film in films:
+                    if film['url'] not in existing_urls:
+                        new_films.append(film)
+                        existing_urls.add(film['url'])
+                
+                if new_films:
+                    all_films.extend(new_films)
+                    print(f"    Category {category}: Added {len(new_films)} new films, total: {len(all_films)}")
+        
+        time.sleep(0.3)
+    
+    return all_films
+
+def scrape_by_popular_films():
+    """Popüler filmlerden başlayarak tarar"""
+    all_films = []
+    
+    print("\n5. Scraping by exploring popular film pages...")
+    
+    # Önce bilinen popüler filmleri al
+    popular_films = [
+        "https://www.hdfilmcehennemi.ws/1-esaretin-bedeli-film-izle-hdf-hdf-6/",
+        "https://www.hdfilmcehennemi.ws/hd-the-godfather-izle-10/",
+        "https://www.hdfilmcehennemi.ws/batman-kara-sovalye-hd-film-izle-hdf-hdf-7/",
+        "https://www.hdfilmcehennemi.ws/1-yuzuklerin-efendisi-kralin-donusu-izle-hdf-7/",
+        "https://www.hdfilmcehennemi.ws/1-dovus-kulubu-izle-6/",
+        "https://www.hdfilmcehennemi.ws/ucuz-roman-izle-hdf-7/",
+        "https://www.hdfilmcehennemi.ws/1-iyi-kotu-ve-cirkin-izle-hdf-7/",
+        "https://www.hdfilmcehennemi.ws/hd-schindlerin-listesi-film-izle-7/",
+        "https://www.hdfilmcehennemi.ws/12-angry-men-6/",
+        "https://www.hdfilmcehennemi.ws/yuzuklerin-efendisi-iki-kule-film-izle-hdf-7/",
+    ]
+    
+    # Bu film sayfalarından "benzer filmler" veya "diğer filmler" bölümlerini çıkarmaya çalış
+    for film_url in popular_films:
+        print(f"  Exploring: {film_url}")
+        html_content = get_html(film_url)
+        if html_content:
+            # Sayfada diğer film linkleri olabilir
+            films = extract_films_from_html(html_content, film_url)
+            if films:
+                existing_urls = {f['url'] for f in all_films}
+                new_films = []
+                for film in films:
+                    if film['url'] not in existing_urls:
+                        new_films.append(film)
+                        existing_urls.add(film['url'])
+                
+                if new_films:
+                    all_films.extend(new_films)
+                    print(f"    Added {len(new_films)} new films, total: {len(all_films)}")
+        
+        time.sleep(0.5)
+    
     return all_films
 
 def main():
-    print("=" * 70)
-    print("HDFilmCehennemi Multi-Source Scraper")
-    print("=" * 70)
+    # Tüm filmleri topla
+    print("Starting comprehensive scraping...")
     
-    # Çeşitli kaynaklardan film çek
-    all_films = scrape_multiple_sources()
+    all_films = []
+    
+    # Discovery sayfalarını tara
+    films1 = scrape_discovery_pages()
+    all_films.extend(films1)
+    
+    # Popüler filmleri tara
+    films2 = scrape_by_popular_films()
+    all_films.extend(films2)
     
     if not all_films:
         print("\n❌ No films found!")
         return
     
+    # Benzersiz filmler
+    unique_films = []
+    seen_urls = set()
+    
+    for film in all_films:
+        if film['url'] not in seen_urls:
+            seen_urls.add(film['url'])
+            unique_films.append(film)
+    
     print(f"\n{'='*70}")
-    print(f"Found {len(all_films)} unique films from all sources")
+    print(f"Found {len(unique_films)} unique films")
     print(f"{'='*70}")
     
-    # Embed URL'leri al (sınırlı sayıda, hız için)
-    print(f"\nFetching embed URLs (first 100 films)...")
+    # Embed URL'leri al (ilk 50 film için)
+    print(f"\nFetching embed URLs (first 50 films)...")
     films_with_embeds = []
-    max_films_to_process = min(100, len(all_films))
+    max_to_process = min(50, len(unique_films))
     
-    for i, film in enumerate(all_films[:max_films_to_process], 1):
-        print(f"  [{i}/{max_films_to_process}] {film['title'][:40]}...")
+    for i, film in enumerate(unique_films[:max_to_process], 1):
+        print(f"  [{i}/{max_to_process}] {film['title'][:40]}...")
         
         embed_url = extract_embed_url_from_film_page(film['url'], film.get('token', ''))
         film['embed_url'] = embed_url
         
-        if embed_url:
-            print(f"    ✓ Embed found")
-        else:
-            print(f"    ✗ No embed found")
-        
         films_with_embeds.append(film)
         
-        # Be polite
-        if i < max_films_to_process:
-            time.sleep(0.3)
+        if i < max_to_process:
+            time.sleep(0.2)
     
-    # Kalan filmleri embed URL olmadan ekle
-    if len(all_films) > max_films_to_process:
-        remaining_films = all_films[max_films_to_process:]
-        for film in remaining_films:
+    # Kalan filmleri embed olmadan ekle
+    if len(unique_films) > max_to_process:
+        remaining = unique_films[max_to_process:]
+        for film in remaining:
             film['embed_url'] = None
             films_with_embeds.append(film)
     
-    # Count films with embeds
-    films_with_embeds_count = sum(1 for f in films_with_embeds if f.get('embed_url'))
-    
-    print(f"\n{'='*70}")
-    print(f"SCRAPING COMPLETE")
-    print(f"{'='*70}")
-    print(f"Total unique films: {len(films_with_embeds)}")
-    print(f"Films with embed URLs: {films_with_embeds_count}")
-    
-    # Save results
+    # Sonuçları kaydet
     save_results(films_with_embeds)
     
-    # Print summary
+    # Özet göster
     print_summary(films_with_embeds)
 
 def save_results(films):
     """Save results to files"""
-    # Complete results
     try:
         result = {
             'metadata': {
@@ -430,7 +444,6 @@ def save_results(films):
     except Exception as e:
         print(f"❌ Error saving complete file: {e}")
     
-    # GitHub Actions file
     try:
         simple_data = []
         for film in films:
@@ -461,32 +474,22 @@ def print_summary(films):
     embeds_count = sum(1 for f in films if f.get('embed_url'))
     
     print(f"\nSUMMARY:")
-    print(f"  Total: {len(films)}")
+    print(f"  Total films: {len(films)}")
     print(f"  Films: {films_count}")
     print(f"  Diziler: {diziler_count}")
-    print(f"  With embeds: {embeds_count}")
+    print(f"  With embed URLs: {embeds_count}")
     
-    # Sample films
-    print(f"\n  Sample films (first 20):")
-    for i, film in enumerate(films[:20], 1):
-        title = film['title'][:45] + "..." if len(film['title']) > 45 else film['title']
-        year = film.get('year', 'N/A')
-        imdb = f"⭐{film['imdb']}" if film['imdb'] != '0.0' else ""
-        embed = "✓" if film.get('embed_url') else "✗"
-        type_icon = "🎬" if film['type'] == 'film' else "📺"
-        print(f"    {i:2}. [{embed}] {type_icon} {title:48} {year:6} {imdb}")
-    
-    # Films with highest IMDB
+    # En yüksek IMDB'li filmler
     films_with_imdb = [f for f in films if f['imdb'] != '0.0']
     if films_with_imdb:
         films_with_imdb.sort(key=lambda x: float(x['imdb']), reverse=True)
-        print(f"\n  Top films by IMDB:")
+        print(f"\n  Top 10 films by IMDB:")
         for i, film in enumerate(films_with_imdb[:10], 1):
-            title = film['title'][:40] + "..." if len(film['title']) > 40 else film['title']
+            title = film['title'][:45] + "..." if len(film['title']) > 45 else film['title']
             year = film.get('year', 'N/A')
-            print(f"    {i:2}. {title:45} {year:6} ⭐{film['imdb']}")
+            print(f"    {i:2}. {title:50} {year:6} ⭐{film['imdb']}")
     
-    # Distribution by year
+    # Yıllara göre dağılım
     years = {}
     for film in films:
         year = film.get('year', 'Unknown')
@@ -500,7 +503,7 @@ def print_summary(films):
             print(f"    {year}: {count} films")
     
     print(f"\n{'='*70}")
-    print("DONE!")
+    print("SCRAPING COMPLETE!")
     print(f"{'='*70}")
 
 if __name__ == '__main__':
