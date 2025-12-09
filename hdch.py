@@ -1,154 +1,112 @@
+import requests
+from bs4 import BeautifulSoup
 import json
 import time
 import logging
 from pathlib import Path
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.common.by import By
-from selenium.common.exceptions import NoSuchElementException, WebDriverException
 
-# ===============================
-# AYARLAR
-# ===============================
+BASE = "https://www.hdfilmcehennemi.ws/filmler/sayfa/{}/"
+MAX_PAGES = 1124
+OUT_FILE = "hdceh.json"
+SUMMARY_FILE = "hdceh_summary.json"
 
-BASE_URL = "https://www.hdfilmcehennemi.ws/filmler/sayfa/{}/"
-MAX_PAGES = 1124  # sitenin gösterdiği gerçek sayı
-WAIT_JS = 3       # JS yüklenmesi için bekleme süresi
-OUTPUT_JSON = "hdceh.json"
-SUMMARY_JSON = "hdceh_summary.json"
+headers = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123 Safari/537.36"
+}
 
-# ===============================
-# LOG AYARLARI
-# ===============================
-
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s - %(levelname)s - %(message)s"
-)
+logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 
 
-# ===============================
-# SELENIUM BAŞLAT
-# ===============================
-
-def start_driver():
-    opts = Options()
-    opts.add_argument("--headless")
-    opts.add_argument("--disable-gpu")
-    opts.add_argument("--no-sandbox")
-    opts.add_argument("--disable-dev-shm-usage")
-    opts.add_argument("--window-size=1920,1080")
-    return webdriver.Chrome(options=opts)
-
-
-# ===============================
-# TEK SAYFAYI SCRAPE ET
-# ===============================
-
-def scrape_page(driver, page):
-    url = BASE_URL.format(page)
-    logging.info(f"Scraping page {page}: {url}")
+def fetch_page(page):
+    url = BASE.format(page)
+    logging.info(f"Fetching page {page}: {url}")
 
     try:
-        driver.get(url)
-    except WebDriverException as e:
-        logging.error(f"Driver error: {e}")
-        return []
+        r = requests.get(url, headers=headers, timeout=10)
+    except Exception as e:
+        logging.error(f"Request failed: {e}")
+        return None
 
-    time.sleep(WAIT_JS)  # JS film kartlarını yüklesin
+    if r.status_code == 404:
+        logging.warning(f"Page {page} returned 404 → STOP")
+        return None
 
-    try:
-        items = driver.find_elements(By.CSS_SELECTOR, ".ml-item")
-    except:
-        items = []
+    return r.text
 
-    logging.info(f"Found film containers: {len(items)}")
 
+def parse_films(html):
+    soup = BeautifulSoup(html, "html.parser")
+    items = soup.select(".item")
     films = []
 
     for item in items:
         try:
-            a = item.find_element(By.CSS_SELECTOR, "a")
-            href = a.get_attribute("href")
-            title = a.get_attribute("title")
+            a = item.select_one(".poster a")
+            if not a:
+                continue
 
-            img_el = a.find_element(By.CSS_SELECTOR, "img")
-            img = (
-                img_el.get_attribute("data-original")
-                or img_el.get_attribute("data-src")
-                or img_el.get_attribute("src")
+            link = a.get("href")
+            title = a.get("title") or item.select_one(".film-title").get_text(strip=True)
+
+            img_el = a.select_one("img")
+            image = (
+                img_el.get("data-src")
+                or img_el.get("data-original")
+                or img_el.get("src")
             )
 
             films.append({
                 "title": title,
-                "url": href,
-                "image": img
+                "url": link,
+                "image": image
             })
-
-        except NoSuchElementException:
-            continue
         except Exception as e:
-            logging.error(f"Film parse error: {e}")
+            logging.error(f"Parse error: {e}")
+            continue
 
     return films
 
 
-# ===============================
-# ANA SCRAPER
-# ===============================
-
 def main():
-    driver = start_driver()
     all_films = []
-    empty_pages = 0
+    empty_count = 0
 
-    logging.info("=== SCRAPING STARTED ===")
+    logging.info("=== SCRAPING START ===")
 
     for page in range(1, MAX_PAGES + 1):
+        html = fetch_page(page)
+        if not html:
+            empty_count += 1
+            if empty_count >= 5:
+                logging.warning("Too many empty pages — stopping")
+                break
+            continue
 
-        films = scrape_page(driver, page)
+        films = parse_films(html)
+        logging.info(f"Page {page}: found {len(films)} films")
 
         if len(films) == 0:
-            logging.warning(f"Page {page} → EMPTY")
-            empty_pages += 1
-
-            # 3 boş sayfa üst üste → bitir
-            if empty_pages >= 3:
-                logging.warning("Too many empty pages → stopping.")
+            empty_count += 1
+            if empty_count >= 5:
                 break
         else:
-            empty_pages = 0
+            empty_count = 0
 
         all_films.extend(films)
-
-        # Anti-block
         time.sleep(1)
 
-    driver.quit()
-
-    # ===============================
-    # JSON KAYDET
-    # ===============================
-
-    Path(OUTPUT_JSON).write_text(
-        json.dumps(all_films, indent=2, ensure_ascii=False),
-        encoding="utf8"
-    )
+    Path(OUT_FILE).write_text(json.dumps(all_films, indent=2, ensure_ascii=False), encoding="utf8")
 
     summary = {
         "total_films": len(all_films),
-        "total_pages_scanned": page,
-        "output_file": OUTPUT_JSON
+        "pages_scanned": page,
+        "output": OUT_FILE
     }
 
-    Path(SUMMARY_JSON).write_text(
-        json.dumps(summary, indent=2, ensure_ascii=False),
-        encoding="utf8"
-    )
+    Path(SUMMARY_FILE).write_text(json.dumps(summary, indent=2, ensure_ascii=False), encoding="utf8")
 
-    logging.info(f"Saved FULL FILM LIST → {OUTPUT_JSON}")
-    logging.info(f"SUMMARY SAVED → {SUMMARY_JSON}")
-    logging.info("=== SCRAPING FINISHED ===")
+    logging.info(f"Saved: {OUT_FILE}")
+    logging.info(f"Summary: {SUMMARY_FILE}")
 
 
 if __name__ == "__main__":
