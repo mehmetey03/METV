@@ -297,13 +297,68 @@ def scrape_discovery_pages():
         if i % 10 == 0:
             time.sleep(1)
     
-    # 4. Kategori sayfalarını dene
-    print("\n4. Testing category pages...")
+    # 4. Yeni eklenen tür sayfaları (nav linkleri)
+    print("\n4. Testing navigation category pages...")
+    category_pages = [
+        "https://www.hdfilmcehennemi.ws/tur/aile-filmleri-izleyin-7/",
+        "https://www.hdfilmcehennemi.ws/tur/aksiyon-filmleri-izleyin-6/",
+        "https://www.hdfilmcehennemi.ws/tur/animasyon-filmlerini-izleyin-5/",
+        "https://www.hdfilmcehennemi.ws/tur/belgesel-filmlerini-izle-2/",
+        "https://www.hdfilmcehennemi.ws/tur/bilim-kurgu-filmlerini-izleyin-5/",
+        "https://www.hdfilmcehennemi.ws/tur/biyografi-filmleri-izle-3/",
+        "https://www.hdfilmcehennemi.ws/tur/dram-filmlerini-izle-2/",
+        "https://www.hdfilmcehennemi.ws/tur/fantastik-filmlerini-izleyin-3/",
+        "https://www.hdfilmcehennemi.ws/tur/film-noir/",
+        "https://www.hdfilmcehennemi.ws/tur/game-show-izle/",
+        "https://www.hdfilmcehennemi.ws/tur/gerilim-filmlerini-izle-2/",
+        "https://www.hdfilmcehennemi.ws/tur/gizem-filmleri-izle-3/",
+        "https://www.hdfilmcehennemi.ws/tur/komedi-filmlerini-izleyin-2/",
+        "https://www.hdfilmcehennemi.ws/tur/korku-filmlerini-izle-5/",
+        "https://www.hdfilmcehennemi.ws/tur/macera-filmlerini-izleyin-4/",
+        "https://www.hdfilmcehennemi.ws/tur/muzik-filmlerini-izle/",
+        "https://www.hdfilmcehennemi.ws/tur/muzik-filmleri-izle-844/",
+        "https://www.hdfilmcehennemi.ws/tur/news/",
+        "https://www.hdfilmcehennemi.ws/tur/polisiye-filmleri-izle/",
+        "https://www.hdfilmcehennemi.ws/tur/reality-izle/",
+        "https://www.hdfilmcehennemi.ws/tur/reality-tv-izle/",
+        "https://www.hdfilmcehennemi.ws/tur/romantik-filmleri-izle-3/",
+        "https://www.hdfilmcehennemi.ws/tur/savas-filmleri-izle-5/",
+        "https://www.hdfilmcehennemi.ws/tur/science-fiction/",
+        "https://www.hdfilmcehennemi.ws/tur/short-filmleri/",
+        "https://www.hdfilmcehennemi.ws/tur/spor-filmleri-izle-3/",
+        "https://www.hdfilmcehennemi.ws/tur/suc-filmleri-izle-3/",
+        "https://www.hdfilmcehennemi.ws/tur/tarih-filmleri-izle-5/",
+        "https://www.hdfilmcehennemi.ws/tur/tv-movie-1/",
+        "https://www.hdfilmcehennemi.ws/tur/western-filmleri-izle-3/",
+    ]
+    
+    for url in category_pages:
+        print(f"  Testing: {url}")
+        html_content = get_html(url)
+        if html_content:
+            films = extract_films_from_html(html_content, url)
+            if films:
+                existing_urls = {f['url'] for f in all_films}
+                new_films = []
+                for film in films:
+                    if film['url'] not in existing_urls:
+                        new_films.append(film)
+                        existing_urls.add(film['url'])
+                
+                if new_films:
+                    all_films.extend(new_films)
+                    print(f"    Category: Added {len(new_films)} new films, total: {len(all_films)}")
+        
+        time.sleep(0.3)
+    
+    # 5. Kategori sayfalarını dene
+    print("\n5. Testing more category pages...")
     categories = [
         "film", "dizi", "aksiyon", "komedi", "dram", "gerilim", 
         "bilim-kurgu", "fantastik", "macera", "romantik", "korku",
         "suç", "biyografi", "tarih", "belgesel", "aile", "animasyon",
-        "müzikal", "spor", "savaş", "western", "gizem", "polisiye"
+        "müzikal", "spor", "savaş", "western", "gizem", "polisiye",
+        "yerli", "yabancı", "2025", "2024", "2023"
     ]
     
     for category in categories:
@@ -331,7 +386,7 @@ def scrape_by_popular_films():
     """Popüler filmlerden başlayarak tarar"""
     all_films = []
     
-    print("\n5. Scraping by exploring popular film pages...")
+    print("\n6. Scraping by exploring popular film pages...")
     
     # Önce bilinen popüler filmleri al
     popular_films = [
@@ -345,6 +400,12 @@ def scrape_by_popular_films():
         "https://www.hdfilmcehennemi.ws/hd-schindlerin-listesi-film-izle-7/",
         "https://www.hdfilmcehennemi.ws/12-angry-men-6/",
         "https://www.hdfilmcehennemi.ws/yuzuklerin-efendisi-iki-kule-film-izle-hdf-7/",
+        "https://www.hdfilmcehennemi.ws/1-baslangic-izle-7/",
+        "https://www.hdfilmcehennemi.ws/hd-star-wars-empire-strikes-back-film-izle-6/",
+        "https://www.hdfilmcehennemi.ws/1-matrix-film-izle-hdf-hdf-7/",
+        "https://www.hdfilmcehennemi.ws/hd-yedi-samura-izle-7/",
+        "https://www.hdfilmcehennemi.ws/1-silahsor-film-izle-5/",
+        "https://www.hdfilmcehennemi.ws/hd-terminator-2-judgment-day-izle-7/",
     ]
     
     # Bu film sayfalarından "benzer filmler" veya "diğer filmler" bölümlerini çıkarmaya çalış
@@ -370,6 +431,27 @@ def scrape_by_popular_films():
     
     return all_films
 
+def scrape_additional_pages():
+    """Ek sayfaları tarar"""
+    all_films = []
+    
+    print("\n7. Scraping additional pages...")
+    
+    # Daha fazla sayfa numarası dene
+    for page_num in range(6, 21):
+        url = f"https://www.hdfilmcehennemi.ws/sayfa/{page_num}/"
+        print(f"  Testing: {url}")
+        html_content = get_html(url)
+        if html_content:
+            films = extract_films_from_html(html_content, url)
+            if films:
+                all_films.extend(films)
+                print(f"    Page {page_num}: Found {len(films)} films, total: {len(all_films)}")
+        
+        time.sleep(0.2)
+    
+    return all_films
+
 def main():
     # Tüm filmleri topla
     print("Starting comprehensive scraping...")
@@ -377,12 +459,19 @@ def main():
     all_films = []
     
     # Discovery sayfalarını tara
+    print("\nPhase 1: Discovery pages")
     films1 = scrape_discovery_pages()
     all_films.extend(films1)
     
     # Popüler filmleri tara
+    print("\nPhase 2: Popular films")
     films2 = scrape_by_popular_films()
     all_films.extend(films2)
+    
+    # Ek sayfaları tara
+    print("\nPhase 3: Additional pages")
+    films3 = scrape_additional_pages()
+    all_films.extend(films3)
     
     if not all_films:
         print("\n❌ No films found!")
@@ -401,10 +490,10 @@ def main():
     print(f"Found {len(unique_films)} unique films")
     print(f"{'='*70}")
     
-    # Embed URL'leri al (ilk 50 film için)
-    print(f"\nFetching embed URLs (first 50 films)...")
+    # Embed URL'leri al (ilk 100 film için)
+    print(f"\nFetching embed URLs (first 100 films)...")
     films_with_embeds = []
-    max_to_process = min(50, len(unique_films))
+    max_to_process = min(100, len(unique_films))
     
     for i, film in enumerate(unique_films[:max_to_process], 1):
         print(f"  [{i}/{max_to_process}] {film['title'][:40]}...")
@@ -415,7 +504,7 @@ def main():
         films_with_embeds.append(film)
         
         if i < max_to_process:
-            time.sleep(0.2)
+            time.sleep(0.1)  # Daha hızlı tarama için delay azaltıldı
     
     # Kalan filmleri embed olmadan ekle
     if len(unique_films) > max_to_process:
@@ -484,6 +573,24 @@ def print_summary(films):
     print(f"  Diziler: {diziler_count}")
     print(f"  With embed URLs: {embeds_count}")
     
+    # Film türlerine göre dağılım
+    print(f"\n  Categories found:")
+    categories = {}
+    for film in films:
+        if 'source' in film:
+            # Kaynaktan kategoriyi çıkar
+            source = film['source']
+            if '/tur/' in source:
+                category_match = re.search(r'/tur/([^/-]+)', source)
+                if category_match:
+                    category = category_match.group(1).replace('-', ' ').title()
+                    categories[category] = categories.get(category, 0) + 1
+    
+    if categories:
+        sorted_categories = sorted(categories.items(), key=lambda x: x[1], reverse=True)[:10]
+        for category, count in sorted_categories:
+            print(f"    {category}: {count} films")
+    
     # En yüksek IMDB'li filmler
     films_with_imdb = [f for f in films if f['imdb'] != '0.0']
     if films_with_imdb:
@@ -492,20 +599,8 @@ def print_summary(films):
         for i, film in enumerate(films_with_imdb[:10], 1):
             title = film['title'][:45] + "..." if len(film['title']) > 45 else film['title']
             year = film.get('year', 'N/A')
-            print(f"    {i:2}. {title:50} {year:6} ⭐{film['imdb']}")
-    
-    # Yıllara göre dağılım
-    years = {}
-    for film in films:
-        year = film.get('year', 'Unknown')
-        if year:
-            years[year] = years.get(year, 0) + 1
-    
-    if years:
-        print(f"\n  Years distribution:")
-        sorted_years = sorted(years.items(), key=lambda x: x[1], reverse=True)[:10]
-        for year, count in sorted_years:
-            print(f"    {year}: {count} films")
+            has_embed = "✓" if film.get('embed_url') else "✗"
+            print(f"    {i:2}. {title:50} {year:6} ⭐{film['imdb']} [embed:{has_embed}]")
     
     print(f"\n{'='*70}")
     print("SCRAPING COMPLETE!")
