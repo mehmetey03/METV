@@ -302,7 +302,7 @@ def scrape_discovery_pages():
         "https://www.hdfilmcehennemi.ws/film-robotu-1/",
         
         # Diğer olası listeleme sayfaları
-        "https://www.hdfilmcehennemi.ws/arsiv/",
+        "https://www.hdfilmcehennemi.ws/",
         "https://www.hdfilmcehennemi.ws/category/film-izle-2/",
         "https://www.hdfilmcehennemi.ws/category/nette-ilk-filmler/",
         "https://www.hdfilmcehennemi.ws/dil/turkce-dublajli-film-izleyin-4/",
@@ -320,9 +320,9 @@ def scrape_discovery_pages():
         "https://www.hdfilmcehennemi.ws/gerilim-filmleri/",
         "https://www.hdfilmcehennemi.ws/bilim-kurgu-filmleri/",
         "https://www.hdfilmcehennemi.ws/fantastik-filmleri/",
-        "https://www.hdfilmcehennemi.ws/macera-filmleri/",
-        "https://www.hdfilmcehennemi.ws/romantik-filmleri/",
-        "https://www.hdfilmcehennemi.ws/korku-filmleri/",
+        "https://www.hdfilmcehennemi.ws/en-cok-begenilen-filmleri-izle-2/",
+        "https://www.hdfilmcehennemi.ws/en-cok-yorumlananlar-2/",
+        "https://www.hdfilmcehennemi.ws/imdb-7-puan-uzeri-filmler-2/",
         
         # Sayfa numaralı listeler
         "https://www.hdfilmcehennemi.ws/sayfa/1/",
