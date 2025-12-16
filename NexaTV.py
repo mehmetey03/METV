@@ -5,11 +5,11 @@ from datetime import datetime
 class NexaTVManager:
     def __init__(self):
         self.proxy_prefix = "https://api.codetabs.com/v1/proxy/?quest="
-        self.base_stream_url = "https://andro.226503.xyz/checklist/"
+        self.base_stream_url = "https://andro.okan11gote12sokan.cfd/checklist/"
         self.logo_url = "https://i.hizliresim.com/8xzjgqv.jpg"
         self.group_title = "NexaTV"
         self.channels = [
-            {"name": "TR:beIN Sport 1 HD", "path": "androstreamlivebs1.m3u8"},
+            {"name": "TR:beIN Sport 1 HD", "path": "androstreamlivebiraz1.m3u8"},
             {"name": "TR:beIN Sport 2 HD", "path": "androstreamlivebs2.m3u8"},
             {"name": "TR:beIN Sport 3 HD", "path": "androstreamlivebs3.m3u8"},
             {"name": "TR:beIN Sport 4 HD", "path": "androstreamlivebs4.m3u8"},
@@ -81,4 +81,5 @@ def gorevi_calistir():
 
 if __name__ == "__main__":
     gorevi_calistir()
+
 
