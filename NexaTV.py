@@ -5,7 +5,7 @@ from datetime import datetime
 class NexaTVManager:
     def __init__(self):
         self.proxy_prefix = "https://api.codetabs.com/v1/proxy/?quest="
-        self.base_stream_url = "https://andro.okan9gote10sokan.cfd/checklist/"
+        self.base_stream_url = "https://andro.226503.xyz/checklist/"
         self.logo_url = "https://i.hizliresim.com/8xzjgqv.jpg"
         self.group_title = "NexaTV"
         self.channels = [
@@ -81,3 +81,4 @@ def gorevi_calistir():
 
 if __name__ == "__main__":
     gorevi_calistir()
+
