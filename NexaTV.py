@@ -9,7 +9,7 @@ class NexaTVManager:
         self.logo_url = "https://i.hizliresim.com/8xzjgqv.jpg"
         self.group_title = "NexaTV"
         self.channels = [
-            {"name": "TR:beIN Sport 1 HD", "path": "androstreamlivebiraz1.m3u8"},
+            {"name": "TR:beIN Sport 1 HD", "path": "androstreamlivebs1.m3u8"},
             {"name": "TR:beIN Sport 2 HD", "path": "androstreamlivebs2.m3u8"},
             {"name": "TR:beIN Sport 3 HD", "path": "androstreamlivebs3.m3u8"},
             {"name": "TR:beIN Sport 4 HD", "path": "androstreamlivebs4.m3u8"},
@@ -81,5 +81,6 @@ def gorevi_calistir():
 
 if __name__ == "__main__":
     gorevi_calistir()
+
 
 
