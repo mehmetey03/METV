@@ -1,14 +1,14 @@
 # Workflow'un adı
 name: Roxie Sports M3U Script
 
-# Workflow tetikleyicileri
+# Ne zaman çalışacağı
 on:
-  # main branch'e her push'ta çalışır
+  # main branch'e push olunca
   push:
     branches:
       - main
 
-  # Her saat başı otomatik çalışır
+  # Her saat başı otomatik
   schedule:
     - cron: "0 * * * *"
 
@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1️⃣ Repo'yu checkout et
+      # 1️⃣ Repo'yu çek
       - name: Checkout repository
         uses: actions/checkout@v4
 
@@ -28,16 +28,21 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: "3.11"
 
-      # 3️⃣ Gerekli Python paketlerini yükle
+      # 3️⃣ TÜM gerekli kütüphaneleri yükle
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install httpx requests beautifulsoup4 zstandard
+          pip install \
+            httpx \
+            requests \
+            beautifulsoup4 \
+            selectolax \
+            zstandard
 
       # 4️⃣ Roxie scriptini çalıştır
-      - name: Run Roxie M3U script
+      - name: Run Roxie script
         run: python roxie.py
 
       # 5️⃣ Oluşan M3U dosyasını commit & push et
