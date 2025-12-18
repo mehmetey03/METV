@@ -51,7 +51,7 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-          git add roxie_sports.m3u
+          git add roxie.m3u.m3u
           git commit -m "Update Roxie Sports M3U [skip ci]" || echo "No changes to commit"
           git push
         env:
