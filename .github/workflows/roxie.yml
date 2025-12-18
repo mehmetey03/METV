@@ -1,5 +1,5 @@
 # Workflow'un adı
-name: 2Sports M3U Script
+name: Roxie Sports M3U Script
 
 # Bu workflow'un ne zaman çalışacağını belirleyen tetikleyiciler
 on:
@@ -38,7 +38,7 @@ jobs:
       # 4. Adım: Python script'ini çalıştırır (GÜNCELLENDİ)
       # Script adını 'a.py' olarak değiştirdik.
       - name: Run M3U generator script
-        run: python sprtv.py
+        run: python roxie.py
 
       # 5. Adım: Oluşturulan M3U dosyasını repoya commit'leyip push'lar
       - name: Commit and Push M3U file
@@ -48,8 +48,8 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           
           # Oluşturulan yeni dosyayı git'e ekle (GÜNCELLENDİ)
-          # Dosya adını 'alll_world_sports.m3u' olarak değiştirdik.
-          git add alll_world_sports.m3u
+          # Dosya adını 'roxie_sports.m3u' olarak değiştirdik.
+          git add roxie_sports.m3u
           
           # Değişiklikleri commit'le. Eğer değişiklik yoksa hata vermemesi için '|| echo' kullanılır.
           git commit -m "Update M3U playlist [skip ci]" || echo "No changes to commit"
