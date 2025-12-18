@@ -5,7 +5,7 @@ from urllib.parse import urljoin, urlparse
 from requests.exceptions import RequestException
 import logging
 
-BASE_URL = "https://roxiestreams.cc"
+BASE_URL = "https://roxiestreams.live"
 
 TV_INFO = {
     "ppv": ("PPV.EVENTS.Dummy.us", "http://drewlive24.duckdns.org:9000/Logos/PPV.png", "PPV"),
@@ -173,3 +173,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
