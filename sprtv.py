@@ -38,7 +38,7 @@ def update_playlist():
         m3u_content = response.text
         
         # Write to the repository root
-        output_filename = "tv.m3u"
+        output_filename = "sprtv.m3u"
         # Use the current working directory (repository root)
         output_path = os.path.join(os.getcwd(), output_filename)
         print(f"Writing to: {output_path}")
