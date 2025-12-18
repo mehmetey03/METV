@@ -1,61 +1,53 @@
 # Workflow'un adı
 name: Roxie Sports M3U Script
 
-# Bu workflow'un ne zaman çalışacağını belirleyen tetikleyiciler
+# Workflow tetikleyicileri
 on:
-  # 'main' branch'ine her push yapıldığında çalışır
+  # main branch'e her push'ta çalışır
   push:
     branches:
       - main
-  # Zamanlanmış görev: Her saat başı otomatik olarak çalışır
+
+  # Her saat başı otomatik çalışır
   schedule:
     - cron: "0 * * * *"
-  # Manuel olarak çalıştırma imkanı ekler
+
+  # Manuel çalıştırma
   workflow_dispatch:
 
 jobs:
   build-and-push:
-    # Görevin çalışacağı sanal makine türü
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Adım: Repodaki kodları sanal makineye indirir
+      # 1️⃣ Repo'yu checkout et
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 2. Adım: Belirtilen Python versiyonunu kurar
+      # 2️⃣ Python 3.11 kur
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
-      # 3. Adım: Python script'inin çalışması için gerekli kütüphaneleri yükler
+      # 3️⃣ Gerekli Python paketlerini yükle
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install requests beautifulsoup4 zstandard
+          pip install httpx requests beautifulsoup4 zstandard
 
-      # 4. Adım: Python script'ini çalıştırır (GÜNCELLENDİ)
-      # Script adını 'a.py' olarak değiştirdik.
-      - name: Run M3U generator script
+      # 4️⃣ Roxie scriptini çalıştır
+      - name: Run Roxie M3U script
         run: python roxie.py
 
-      # 5. Adım: Oluşturulan M3U dosyasını repoya commit'leyip push'lar
+      # 5️⃣ Oluşan M3U dosyasını commit & push et
       - name: Commit and Push M3U file
         run: |
-          # Git için kullanıcı adı ve e-posta ayarları
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          
-          # Oluşturulan yeni dosyayı git'e ekle (GÜNCELLENDİ)
-          # Dosya adını 'roxie_sports.m3u' olarak değiştirdik.
+
           git add roxie_sports.m3u
-          
-          # Değişiklikleri commit'le. Eğer değişiklik yoksa hata vermemesi için '|| echo' kullanılır.
-          git commit -m "Update M3U playlist [skip ci]" || echo "No changes to commit"
-          
-          # Değişiklikleri repoya gönder
+          git commit -m "Update Roxie Sports M3U [skip ci]" || echo "No changes to commit"
           git push
         env:
-          # Repoya yazma izni için GITHUB_TOKEN kullanılır.
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
