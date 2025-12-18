@@ -1,91 +1,61 @@
-name: ▶️ Update TV Playlist
+# Workflow'un adı
+name: Run Sports M3U Script
 
+# Bu workflow'un ne zaman çalışacağını belirleyen tetikleyiciler
 on:
+  # 'main' branch'ine her push yapıldığında çalışır
+  push:
+    branches:
+      - main
+  # Zamanlanmış görev: Her saat başı otomatik olarak çalışır
   schedule:
-    # Runs at the start of every hour
-    - cron: '0 * * * *'
-  # Allow manual triggering
+    - cron: "0 * * * *"
+  # Manuel olarak çalıştırma imkanı ekler
   workflow_dispatch:
 
 jobs:
-  update-playlist:
+  build-and-push:
+    # Görevin çalışacağı sanal makine türü
     runs-on: ubuntu-latest
-    permissions:
-      contents: write  # Required for pushing changes
-      pull-requests: write
-      statuses: write
-    
+
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
-      with:
-        fetch-depth: 0  # Fetch all history for proper commit history
-        token: ${{ secrets.GITHUB_TOKEN }}
-    
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.x'
-    
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install requests urllib3
-    
-    - name: Run update script
-      id: update
-      env:
-        TV_M3U_SOURCE_URL: ${{ secrets.TV_M3U_SOURCE_URL }}
-      run: |
-        # Print current directory and files for debugging
-        pwd
-        ls -la
-        
-        # Run the update script
-        if ! python update_tv.py; then
-          echo "::error::Failed to update playlist"
-          exit 1
-        fi
-        
-        # Verify the file was created
-        if [ ! -f "tv.m3u" ]; then
-          echo "::error::dlive.m3u was not created"
-          exit 1
-        fi
-        
-        # Show file info
-        ls -la tv.m3u
-        head -n 5 tv.m3u || true
-        
-    - name: Check for changes
-      id: git-check
-      run: |
-        # Configure git
-        git config --global user.name 'GitHub Actions'
-        git config --global user.email 'actions@github.com'
-        
-        # Print git status for debugging
-        git status
-        
-        # Add the file and check for changes
-        git add tv.m3u
-        
-        # Force check for changes
-        if git diff --cached --quiet; then
-          echo "No changes detected in the staged file"
-          echo "changes_detected=false" >> $GITHUB_OUTPUT
-        else
-          echo "Changes detected in tv.m3u"
-          echo "changes_detected=true" >> $GITHUB_OUTPUT
+      # 1. Adım: Repodaki kodları sanal makineye indirir
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. Adım: Belirtilen Python versiyonunu kurar
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      # 3. Adım: Python script'inin çalışması için gerekli kütüphaneleri yükler
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests beautifulsoup4 zstandard
+
+      # 4. Adım: Python script'ini çalıştırır (GÜNCELLENDİ)
+      # Script adını 'a.py' olarak değiştirdik.
+      - name: Run M3U generator script
+        run: python sprtv.py
+
+      # 5. Adım: Oluşturulan M3U dosyasını repoya commit'leyip push'lar
+      - name: Commit and Push M3U file
+        run: |
+          # Git için kullanıcı adı ve e-posta ayarları
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
           
-          # Show the diff for debugging
-          echo "Changes to be committed:"
-          git diff --cached --stat
-        fi
-        
-    - name: Commit and push changes
-      if: steps.git-check.outputs.changes_detected == 'true'
-      run: |
-        git commit -m "🎄 Updated tv.m3u"
-        git pull --rebase origin main
-        git push
+          # Oluşturulan yeni dosyayı git'e ekle (GÜNCELLENDİ)
+          # Dosya adını 'alll_world_sports.m3u' olarak değiştirdik.
+          git add alll_world_sports.m3u
+          
+          # Değişiklikleri commit'le. Eğer değişiklik yoksa hata vermemesi için '|| echo' kullanılır.
+          git commit -m "Update M3U playlist [skip ci]" || echo "No changes to commit"
+          
+          # Değişiklikleri repoya gönder
+          git push
+        env:
+          # Repoya yazma izni için GITHUB_TOKEN kullanılır.
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
