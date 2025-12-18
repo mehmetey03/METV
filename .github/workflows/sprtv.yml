@@ -1,4 +1,4 @@
-name: ▶️ TV Playlist
+name: ▶️ Update TV Playlist
 
 on:
   schedule:
@@ -42,20 +42,20 @@ jobs:
         ls -la
         
         # Run the update script
-        if ! python sprtv.py; then
+        if ! python update_tv.py; then
           echo "::error::Failed to update playlist"
           exit 1
         fi
         
         # Verify the file was created
-        if [ ! -f "sprtv.m3u" ]; then
+        if [ ! -f "tv.m3u" ]; then
           echo "::error::dlive.m3u was not created"
           exit 1
         fi
         
         # Show file info
-        ls -la sprtv.m3u
-        head -n 5 sprtv.m3u || true
+        ls -la tv.m3u
+        head -n 5 tv.m3u || true
         
     - name: Check for changes
       id: git-check
@@ -68,7 +68,7 @@ jobs:
         git status
         
         # Add the file and check for changes
-        git add sprtv.m3u
+        git add tv.m3u
         
         # Force check for changes
         if git diff --cached --quiet; then
