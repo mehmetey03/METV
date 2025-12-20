@@ -1,116 +1,101 @@
 import re
 import requests
 import urllib3
-from datetime import datetime
 
 # SSL uyarılarını kapat
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
+BASE_DOMAIN = "https://www.sporcafe-4a2fb1f79d.xyz/"
+
 def fetch_url(url):
-    """URL'den içerik çek"""
     headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+        "Referer": BASE_DOMAIN
     }
     try:
-        response = requests.get(url, headers=headers, timeout=10, verify=False)
-        return response.text
+        r = requests.get(url, headers=headers, timeout=10, verify=False)
+        return r.text
     except:
         return None
 
-def get_active_domain():
-    """Aktif domain'i bul"""
-    print("🔍 Aktif domain aranıyor...")
-    for i in range(15, 4, -1):
-        url = f"https://www.sporcafe{i}.xyz/"
-        print(f"  Deneniyor: {url}")
-        html = fetch_url(url)
-        if html and len(html) > 1000:
-            print(f"  ✓ Bulundu: {url}")
-            return {'url': url, 'html': html}
-    return None
 
-def get_stream_links(domain_info, channels):
-    """Stream linklerini al"""
+def get_stream_links(channels):
     print("🔗 Stream linkleri alınıyor...")
-    
-    # Stream domain'ini bul
-    stream_match = re.search(r'https?:\/\/(main\.uxsyplayer[0-9a-zA-Z\-]+\.click)', domain_info['html'])
-    if not stream_match:
+
+    main_html = fetch_url(BASE_DOMAIN)
+    if not main_html:
+        print("✗ Ana sayfa alınamadı")
         return None
-    
+
+    # Stream domain tespiti
+    stream_match = re.search(
+        r'https?:\/\/(main\.uxsyplayer[0-9a-zA-Z\-]+\.click)',
+        main_html
+    )
+
+    if not stream_match:
+        print("✗ Stream domain bulunamadı")
+        return None
+
     stream_domain = f"https://{stream_match.group(1)}"
-    print(f"  Stream domain: {stream_domain}")
-    
+    print(f"✓ Stream domain: {stream_domain}")
+
     results = {}
-    successful = 0
-    
-    for i, channel in enumerate(channels, 1):
-        channel_id = channel['id']
-        print(f"  [{i:2d}/{len(channels)}] {channel['name']}")
-        
-        channel_url = f"{stream_domain}/index.php?id={channel_id}"
-        html = fetch_url(channel_url)
-        
-        if html:
-            ads_match = re.search(r'this\.adsBaseUrl\s*=\s*[\'"]([^\'"]+)', html)
-            if ads_match:
-                base_url = ads_match.group(1)
-                if not base_url.endswith('/'):
-                    base_url += '/'
-                
-                stream_url = f"{base_url}{channel_id}/playlist.m3u8"
-                results[channel_id] = {
-                    'url': stream_url,
-                    'name': channel['name'],
-                    'tvg_id': channel['tvg_id'],
-                    'logo': channel['logo'],
-                    'group': channel['group']
-                }
-                successful += 1
-                print(f"      ✓ Başarılı")
-    
-    print(f"\n  📊 Sonuç: {successful}/{len(channels)} kanal bulundu")
+    success = 0
+
+    for i, ch in enumerate(channels, 1):
+        print(f"[{i:02}/{len(channels)}] {ch['name']}")
+
+        page = fetch_url(f"{stream_domain}/index.php?id={ch['id']}")
+        if not page:
+            continue
+
+        ads = re.search(r'this\.adsBaseUrl\s*=\s*[\'"]([^\'"]+)', page)
+        if not ads:
+            continue
+
+        base = ads.group(1).rstrip("/") + "/"
+        stream_url = f"{base}{ch['id']}/playlist.m3u8"
+
+        results[ch["id"]] = {
+            "url": stream_url,
+            "name": ch["name"],
+            "tvg_id": ch["tvg_id"],
+            "logo": ch["logo"],
+            "group": ch["group"]
+        }
+
+        success += 1
+        print("   ✓ OK")
+
     return {
-        'referer': domain_info['url'],
-        'stream_domain': stream_domain,
-        'channels': results,
-        'successful': successful
+        "referer": BASE_DOMAIN,
+        "stream_domain": stream_domain,
+        "channels": results,
+        "successful": success
     }
 
-def generate_m3u(stream_info):
-    """M3U playlist oluştur"""
-    print("\n📝 M3U playlist oluşturuluyor...")
-    
-    output = ["#EXTM3U"]
-    
-    # Kanalları isme göre sırala
-    sorted_channels = sorted(
-        stream_info['channels'].items(),
-        key=lambda x: x[1]['name']
-    )
-    
-    for channel_id, channel_data in sorted_channels:
-        # EXTINF satırı
-        extinf = f'#EXTINF:-1 tvg-id="{channel_data["tvg_id"]}" tvg-name="{channel_data["name"]}" tvg-logo="{channel_data["logo"]}" group-title="{channel_data["group"]}",{channel_data["name"]}'
-        output.append(extinf)
-        
-        # Referer
-        output.append(f'#EXTVLCOPT:http-referrer={stream_info["referer"]}')
-        
-        # Stream URL
-        output.append(channel_data['url'])
-        
-        # Boş satır
-        output.append("")
-    
-    return "\n".join(output)
+
+def generate_m3u(info):
+    out = ["#EXTM3U"]
+
+    for _, ch in sorted(info["channels"].items(), key=lambda x: x[1]["name"]):
+        out.append(
+            f'#EXTINF:-1 tvg-id="{ch["tvg_id"]}" tvg-name="{ch["name"]}" '
+            f'tvg-logo="{ch["logo"]}" group-title="{ch["group"]}",{ch["name"]}'
+        )
+        out.append(f'#EXTVLCOPT:http-referrer={info["referer"]}')
+        out.append(ch["url"])
+        out.append("")
+
+    return "\n".join(out)
+
 
 def main():
     print("=" * 60)
     print("SPORCAFE M3U PLAYLIST OLUŞTURUCU")
     print("=" * 60)
-    
-    # Kanal listesi
+
     channels = [
         {"id": "sbeinsports-1", "name": "BeIN Sports 1", "tvg_id": "bein1", "logo": "https://r2.thesportsdb.com/images/media/channel/logo/5rhmw31628798883.png", "group": "BEIN SPORTS"},
         {"id": "sbeinsports-2", "name": "BeIN Sports 2", "tvg_id": "bein2", "logo": "https://r2.thesportsdb.com/images/media/channel/logo/7uv6x71628799003.png", "group": "BEIN SPORTS"},
@@ -142,42 +127,24 @@ def main():
         {"id": "stabiispor-5", "name": "Tabii Spor 5", "tvg_id": "tabii5", "logo": "https://i.postimg.cc/9MpztRQF/tabii.png", "group": "TABII"},
         {"id": "strt1", "name": "TRT 1", "tvg_id": "trt1", "logo": "https://i.postimg.cc/XYJkFyqV/trt1.png", "group": "TRT"},
     ]
-    
-    print(f"📺 Toplam {len(channels)} kanal işlenecek")
-    
-    # Aktif domain'i bul
-    domain_info = get_active_domain()
-    if not domain_info:
-        print("\n✗ HATA: Aktif domain bulunamadı!")
+
+    print(f"📺 {len(channels)} kanal işlenecek")
+
+    info = get_stream_links(channels)
+    if not info or not info["channels"]:
+        print("✗ Stream bulunamadı")
         return
-    
-    # Stream linklerini al
-    stream_info = get_stream_links(domain_info, channels)
-    if not stream_info or not stream_info['channels']:
-        print("\n✗ HATA: Stream linkleri alınamadı!")
-        return
-    
-    # M3U playlist oluştur
-    m3u_content = generate_m3u(stream_info)
-    
-    # Dosyaya yaz
-    with open('sporcafe.m3u', 'w', encoding='utf-8') as f:
-        f.write(m3u_content)
-    
-    print("\n" + "=" * 60)
-    print("✅ İŞLEM TAMAMLANDI!")
-    print("=" * 60)
-    print(f"📡 Domain: {domain_info['url']}")
-    print(f"📺 Kanal Sayısı: {stream_info['successful']}")
-    print(f"💾 Dosya: sporcafe.m3u")
-    print("=" * 60)
-    
-    # İlk 3 kanalı göster
-    print("\n📋 Örnek M3U formatı:")
-    print("-" * 40)
-    lines = m3u_content.split('\n')[:12]  # İlk 3 kanalı göster
-    for line in lines:
-        print(line)
+
+    m3u = generate_m3u(info)
+
+    with open("sporcafe.m3u", "w", encoding="utf-8") as f:
+        f.write(m3u)
+
+    print("\n✅ TAMAMLANDI")
+    print(f"📡 Referer: {BASE_DOMAIN}")
+    print(f"📺 Kanal: {info['successful']}")
+    print("💾 Dosya: sporcafe.m3u")
+
 
 if __name__ == "__main__":
     main()
