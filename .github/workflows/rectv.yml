@@ -1,53 +1,29 @@
-name: Rec Tv Kontrol
+name: Generate M3U List
 
 on:
   schedule:
-    - cron: '0 */2 * * *'  
-  workflow_dispatch:        
+    - cron: '0 */12 * * *' # 12 saatte bir otomatik
+  workflow_dispatch:      # Manuel tetikleme için
 
 jobs:
-  update-rectv:
+  build:
     runs-on: ubuntu-latest
-
-    permissions:
-      contents: write  
-
     steps:
-      - name: Repo'yu klonla
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          token: ${{ secrets.GITHUB_TOKEN }} 
+    - name: Checkout
+      uses: actions/checkout@v4
 
-      - name: Python kurulumu
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.x'
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.2'
 
-      - name: Gerekli paketleri yükle
-        run: pip install requests cloudscraper
+    - name: Run generator
+      run: py rectv.py
 
-      
-
-      - name: Rectv
-        run: python rectv.py
-
-      
-
-      - name: Değişiklik kontrolü
-        id: git-check
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          if [ -n "$(git status --porcelain)" ]; then
-            echo "changed=true" >> $GITHUB_OUTPUT
-          else
-            echo "changed=false" >> $GITHUB_OUTPUT
-          fi
-
-      - name: Commit ve push 
-        if: steps.git-check.outputs.changed == 'true'
-        run: |
-          git add 1.m3u
-          git commit -m " Kanallar/kerim.m3u güncellendi - $(date +'%Y-%m-%d %H:%M:%S')"
-          git push origin HEAD:main
+    - name: Commit & Push revtv
+      run: |
+        git config --global user.email "github-actions@users.noreply.github.com"
+        git config --global user.name "github-actions"
+        git add revtv.m3u
+        git commit -m "Update M3U rectv [skip ci]" || echo "No changes"
+        git push
