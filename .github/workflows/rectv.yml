@@ -24,7 +24,7 @@ jobs:
         pip install requests
 
     - name: Run Python generator
-      run: python rec_tv_m3u_generator.py
+      run: python rectv.py
 
     - name: Commit & Push output
       run: |
