@@ -43,7 +43,7 @@ jobs:
 
     - name: Commit changes
       run: |
-        git add output.m3u
+        git add rectv.m3u
         git commit -m "Update M3U rectv [skip ci]" || echo "No changes to commit"
 
     - name: Push changes
