@@ -2,43 +2,60 @@ name: Update Sporcafe M3U
 
 on:
   schedule:
-    - cron: '0 */4 * * *'  # Her 4 saatte bir
-  workflow_dispatch:  # Manuel çalıştırma
-  push:
-    branches: [ main ]
+    - cron: '0 */4 * * *'   # Her 4 saatte bir
+  workflow_dispatch:
 
 permissions:
   contents: write
 
+concurrency:
+  group: sporcafe-update
+  cancel-in-progress: true
+
 jobs:
   update:
     runs-on: ubuntu-latest
-    
+
     steps:
-    - uses: actions/checkout@v4
-    
-    - name: Setup Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.10'
-    
-    - name: Install dependencies
-      run: pip install requests
-    
-    - name: Generate M3U playlist
-      run: python cafe.py
-    
-    - name: Show file info
-      run: |
-        echo "Generated file:"
-        ls -la sporcafe.m3u
-        echo ""
-        echo "First 10 lines:"
-        head -10 sporcafe.m3u
-    
-    - name: Commit and push changes
-      run: |
-        git config --local user.email "github-actions[bot]@users.noreply.github.com"
-        git config --local user.name "github-actions[bot]"
-        git add sporcafe.m3u
-        git diff --quiet && git diff --staged --quiet || (git commit -m "📺 Update sporcafe.m3u - $(date +'%Y-%m-%d %H:%M')" && git push)
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # ⬅️ ÇOK ÖNEMLİ (pull --rebase için)
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Generate M3U playlist
+        run: python cafe.py
+
+      - name: Show file info
+        run: |
+          echo "Generated file:"
+          ls -la sporcafe.m3u
+          echo ""
+          echo "First 10 lines:"
+          head -10 sporcafe.m3u
+
+      - name: Commit and push changes
+        run: |
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+
+          git add sporcafe.m3u
+
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+
+          git commit -m "📺 Update sporcafe.m3u - $(date '+%Y-%m-%d %H:%M')"
+
+          # 🔑 FETCH FIRST HATASINI BİTİREN SATIR
+          git pull --rebase origin main
+
+          git push origin main
