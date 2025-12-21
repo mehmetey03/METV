@@ -6,38 +6,7 @@ import os
 import hashlib
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
-# ------------------------------
-# DOMAIN BULMA - BASİT VE ETKİLİ
-# ------------------------------
-def find_active_domain():
-    """
-    Aktif domain'i bulur (30'dan 50'ye kadar dener)
-    """
-    print("🔍 Aktif domain aranıyor...")
-    
-    for i in range(30, 51):  # 30'dan 50'ye kadar
-        test_domain = f"https://dizipall{i}.com"
-        try:
-            print(f"  Testing: {test_domain}")
-            response = requests.get(test_domain, timeout=3, 
-                                   headers={"User-Agent": "Mozilla/5.0"})
-            
-            if response.status_code == 200:
-                # Basit kontrol: sayfada "film" veya "dizi" kelimesi var mı?
-                if "film" in response.text.lower() or "dizi" in response.text.lower():
-                    print(f"✓ Aktif domain bulundu: {test_domain}")
-                    return test_domain
-        except:
-            continue
-    
-    # Hiçbiri çalışmazsa en son bilinen
-    print("⚠ Aktif domain bulunamadı, son bilinen kullanılıyor...")
-    return "https://dizipall34.com"
-
-# Aktif domain'i bul
-BASE = find_active_domain()
-print(f"🌐 Kullanılan domain: {BASE}")
-
+BASE = "https://dizipall30.com"
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 }
@@ -171,83 +140,18 @@ def fill_embed_urls(movies):
                 movie['embed_url'] = ""
 
 # ------------------------------
-# Maksimum sayfa sayısını otomatik bul
-# ------------------------------
-def get_max_pages():
-    """
-    Toplam sayfa sayısını otomatik bulur
-    """
-    url = f"{BASE}/filmler"
-    html = get_html(url)
-    if not html:
-        print("⚠ Sayfa sayısı bulunamadı, varsayılan 158 kullanılıyor")
-        return 158
-    
-    try:
-        soup = BeautifulSoup(html, 'html.parser')
-        
-        # Pagination linklerini ara
-        max_page = 1
-        
-        # Tüm linkleri kontrol et
-        for link in soup.find_all('a', href=True):
-            href = link['href']
-            if '/filmler/' in href and href != '/filmler/':
-                # Sayfa numarasını çıkar
-                parts = href.split('/')
-                for part in parts:
-                    if part.isdigit():
-                        page_num = int(part)
-                        if page_num > max_page:
-                            max_page = page_num
-        
-        # Pagination class'ını ara
-        pagination = soup.find(class_='pagination')
-        if pagination:
-            for link in pagination.find_all('a'):
-                text = link.get_text(strip=True)
-                if text.isdigit():
-                    page_num = int(text)
-                    if page_num > max_page:
-                        max_page = page_num
-        
-        if max_page > 1:
-            print(f"📊 Otomatik bulunan sayfa sayısı: {max_page}")
-            return max_page
-        else:
-            print("⚠ Sadece 1 sayfa bulundu")
-            return 1
-            
-    except Exception as e:
-        print(f"⚠ Sayfa sayısı bulunurken hata: {e}")
-    
-    return 158  # varsayılan
-
-# ------------------------------
 # Tüm sayfaları çek
 # ------------------------------
-def scrape_all():
-    # Sayfa sayısını otomatik bul
-    max_pages = get_max_pages()
-    print(f"📚 Toplam {max_pages} sayfa taranacak\n")
-    
+def scrape_all(max_pages=158):
     all_movies = []
     for page in range(1, max_pages + 1):
         movies = scrape_page(page)
         if not movies:
-            print(f"⚠ Sayfa {page}'de film bulunamadı, durduruluyor...")
             break
-        
         fill_embed_urls(movies)
         all_movies.extend(movies)
         print(f"✓ Sayfa {page}: {len(movies)} film eklendi (Toplam: {len(all_movies)})")
-        
-        # Dinamik bekleme
-        if page % 10 == 0:
-            time.sleep(1)  # Her 10 sayfada bir 1 saniye bekle
-        else:
-            time.sleep(0.2)
-    
+        time.sleep(0.2)
     return all_movies
 
 # ------------------------------
@@ -255,9 +159,7 @@ def scrape_all():
 # ------------------------------
 if __name__ == "__main__":
     print("🎬 DIZIPAL FILM SCRAPER")
-    print("=" * 50)
-    
-    movies = scrape_all()
+    movies = scrape_all(max_pages=158)
 
     # JSON kaydet
     try:
@@ -266,12 +168,5 @@ if __name__ == "__main__":
             json.dump(movies, f, indent=2, ensure_ascii=False)
         print(f"\n🎉 Toplam film: {len(movies)}")
         print(f"💾 film.json kaydedildi! ({file_path})")
-        
-        # İstatistik
-        with_embed = sum(1 for movie in movies if movie.get('embed_url'))
-        print(f"🔗 Embed URL'si olan filmler: {with_embed}/{len(movies)}")
-        
     except Exception as e:
         print(f"❌ film.json kaydedilemedi: {e}")
-    
-    print("=" * 50)
