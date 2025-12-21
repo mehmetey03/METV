@@ -10,51 +10,38 @@ import re
 # ------------------------------
 # DOMAIN BULMA
 # ------------------------------
-def find_active_domain(base_templates, max_attempts=10):
+def find_active_domain():
     """
     Aktif domain'i otomatik bulur (34, 35, 36 vb.)
     """
-    for domain_template in base_templates:
-        for i in range(34, 34 + max_attempts):
-            test_domain = domain_template.format(i)
-            try:
-                print(f"🔍 Testing: {test_domain}")
-                response = requests.get(test_domain, headers=HEADERS, timeout=5)
-                if response.status_code == 200:
-                    print(f"✓ Active domain found: {test_domain}")
-                    return test_domain
-            except:
-                continue
+    for i in range(34, 45):  # 34'ten 44'e kadar dene
+        test_domain = f"https://dizipall{i}.com"
+        try:
+            print(f"🔍 Testing: {test_domain}")
+            response = requests.get(test_domain, headers=HEADERS, timeout=5)
+            if response.status_code == 200:
+                print(f"✓ Active domain found: {test_domain}")
+                return test_domain
+        except:
+            continue
     
-    # Eğer bulunamazsa, son bilinen domain'i dene
+    # Eğer bulunamazsa, en son bilinen domain'i dene
     fallback = "https://dizipall34.com"
     print(f"⚠ No active domain found, using fallback: {fallback}")
     return fallback
 
-# Domain şablonları
-DOMAIN_TEMPLATES = [
-    "https://dizipall{}.com",
-    "https://dizipal{}.com",
-    "https://dizipall{}.net",
-    "https://dizipal{}.net"
-]
-
 # Aktif domain'i bul
-BASE = find_active_domain(DOMAIN_TEMPLATES)
+BASE = find_active_domain()
 print(f"🌐 Using domain: {BASE}")
 
 HEADERS = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
     "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
     "Accept-Language": "tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7",
     "Accept-Encoding": "gzip, deflate, br",
     "Connection": "keep-alive",
     "Upgrade-Insecure-Requests": "1",
-    "Cache-Control": "max-age=0",
-    "Sec-Fetch-Dest": "document",
-    "Sec-Fetch-Mode": "navigate",
-    "Sec-Fetch-Site": "none",
-    "Sec-Fetch-User": "?1"
+    "Cache-Control": "max-age=0"
 }
 
 SESSION = requests.Session()
@@ -74,10 +61,10 @@ def get_html(url, retries=3):
                 return ""
             else:
                 print(f"⚠ Status {r.status_code} for {url}, retry {attempt+1}")
-                time.sleep(2)
+                time.sleep(1)
         except requests.exceptions.RequestException as e:
             print(f"⚠ Connection error for {url}: {e}, retry {attempt+1}")
-            time.sleep(2)
+            time.sleep(1)
     return ""
 
 # ------------------------------
@@ -93,7 +80,7 @@ def get_embed_url(detail_url):
     
     soup = BeautifulSoup(html, 'html.parser')
     
-    # Önce iframe kontrolü
+    # 1. iframe kontrolü
     iframe = soup.find('iframe')
     if iframe and iframe.get('src'):
         src = iframe['src']
@@ -103,34 +90,38 @@ def get_embed_url(detail_url):
             src = 'https://dizipal.website' + src
         return src
     
-    # Video player div'i
+    # 2. Video player div'i
     video_div = soup.find(attrs={"data-video-id": True})
     if video_div and video_div.get('data-video-id'):
         video_id = video_div['data-video-id']
         return f"https://dizipal.website/{video_id}"
     
-    # Video tag'i
+    # 3. Video tag'i
     video_tag = soup.find('video')
     if video_tag and video_tag.get('src'):
-        return video_tag['src']
+        src = video_tag['src']
+        if src.startswith('//'):
+            src = 'https:' + src
+        return src
     
-    # JavaScript içinde embed URL arama
+    # 4. JavaScript içinde embed URL arama
     scripts = soup.find_all('script')
     for script in scripts:
         if script.string:
-            # Regex ile URL bulma
             patterns = [
-                r'https?://[^\s"\']+\.(mp4|m3u8)[^\s"\']*',
-                r'src\s*:\s*["\']([^"\']+video[^"\']*)["\']',
-                r'embedUrl\s*:\s*["\']([^"\']+)["\']',
-                r'videoUrl\s*:\s*["\']([^"\']+)["\']'
+                r'src\s*[=:]\s*["\'](https?://[^"\']*\.(mp4|m3u8)[^"\']*)["\']',
+                r'embedUrl\s*[=:]\s*["\'](https?://[^"\']+)["\']',
+                r'videoUrl\s*[=:]\s*["\'](https?://[^"\']+)["\']',
+                r'file\s*[=:]\s*["\'](https?://[^"\']+)["\']'
             ]
             for pattern in patterns:
                 matches = re.findall(pattern, script.string, re.IGNORECASE)
                 if matches:
-                    return matches[0] if isinstance(matches[0], str) else matches[0][0]
+                    url = matches[0][0] if isinstance(matches[0], tuple) else matches[0]
+                    if 'dizipal' in url or 'video' in url or 'mp4' in url or 'm3u8' in url:
+                        return url
     
-    # Fallback: slug'dan hash oluştur
+    # 5. Fallback: slug'dan hash oluştur
     slug = detail_url.rstrip('/').split('/')[-1]
     if slug:
         return f"https://dizipal.website/{hashlib.md5(slug.encode()).hexdigest()[:13]}"
@@ -151,26 +142,10 @@ def scrape_page(page=1):
     
     soup = BeautifulSoup(html, 'html.parser')
     
-    # Farklı container seçenekleri
-    selectors = [
-        'li.w-1\\/2',
-        'div.w-1\\/2',
-        '.movie-poster',
-        '.film-item',
-        '[class*="film"]',
-        '[class*="movie"]'
-    ]
-    
-    containers = []
-    for selector in selectors:
-        containers = soup.select(selector)
-        if containers:
-            break
-    
+    # Film container'larını bul
+    containers = soup.select('li.w-1\\/2')
     if not containers:
-        # Class name ile bulma
-        containers = soup.find_all(class_=lambda x: x and any(keyword in str(x).lower() 
-                           for keyword in ['film', 'movie', 'poster', 'item']))
+        containers = soup.find_all(class_=lambda x: x and 'w-1/2' in str(x))
     
     if not containers:
         print(f"❌ No movie containers found on page {page}")
@@ -180,24 +155,22 @@ def scrape_page(page=1):
     for container in containers:
         try:
             # Başlık
-            title_elem = container.find(['h2', 'h3', 'h4', 'h5'])
+            title_elem = container.find(['h2', 'h3', 'h4'])
             title = title_elem.get_text(strip=True) if title_elem else ""
             
             # Yıl
-            year_elem = container.find(class_=lambda x: x and any(keyword in str(x).lower() 
-                                   for keyword in ['year', 'yıl', 'date']))
+            year_elem = container.find(class_=lambda x: x and 'year' in str(x).lower())
             year = year_elem.get_text(strip=True) if year_elem else ""
             
-            # Tür/Genre
-            genre_elem = container.find(class_=lambda x: x and any(keyword in str(x).lower() 
-                                    for keyword in ['genre', 'tür', 'category', 'type']))
-            genre = genre_elem.get_text(strip=True) if genre_elem else ""
+            # Tür
+            genre_elem = container.find(class_=lambda x: x and 'title' in str(x))
+            genre = genre_elem.get('title', '') if genre_elem else ""
             
             # Resim
             img = ""
             img_elem = container.find('img')
             if img_elem:
-                src = img_elem.get('data-src') or img_elem.get('src') or img_elem.get('data-lazy-src') or ""
+                src = img_elem.get('data-src') or img_elem.get('src') or ""
                 if src:
                     if src.startswith('//'):
                         img = 'https:' + src
@@ -213,20 +186,20 @@ def scrape_page(page=1):
             link_elem = container.find('a', href=True)
             if link_elem:
                 href = link_elem['href']
-                if href and ('/film/' in href or '/movie/' in href):
+                if href and '/film/' in href:
                     if href.startswith('/'):
                         detail_url = BASE + href
                     elif href.startswith('http'):
                         detail_url = href
             
-            if title and detail_url:  # Sadece geçerli filmleri ekle
+            if title and detail_url:
                 movies.append({
                     "title": title,
                     "year": year,
                     "genre": genre,
                     "image": img,
                     "detail_url": detail_url,
-                    "embed_url": ""  # Will be filled later
+                    "embed_url": ""
                 })
         except Exception as e:
             print(f"⚠ Error processing movie: {e}")
@@ -237,12 +210,12 @@ def scrape_page(page=1):
 # ------------------------------
 # Embed URL'leri paralel al
 # ------------------------------
-def fill_embed_urls(movies, max_workers=5):
+def fill_embed_urls(movies):
     if not movies:
         return
     
     print(f"  ↳ Fetching embed URLs for {len(movies)} movies...")
-    with ThreadPoolExecutor(max_workers=max_workers) as executor:
+    with ThreadPoolExecutor(max_workers=5) as executor:
         futures = {}
         for movie in movies:
             if movie.get('detail_url'):
@@ -252,54 +225,49 @@ def fill_embed_urls(movies, max_workers=5):
         for future in as_completed(futures):
             movie = futures[future]
             try:
-                movie['embed_url'] = future.result(timeout=15)
+                movie['embed_url'] = future.result(timeout=10)
                 completed += 1
                 if completed % 10 == 0:
                     print(f"    {completed}/{len(movies)} embed URLs fetched")
             except Exception as e:
                 movie['embed_url'] = ""
-                print(f"⚠ Error fetching embed URL for {movie.get('title', 'unknown')}: {e}")
+                print(f"⚠ Error fetching embed URL: {e}")
     
-    print(f"  ✓ {completed}/{len(movies)} embed URLs fetched successfully")
+    print(f"  ✓ {completed}/{len(movies)} embed URLs fetched")
 
 # ------------------------------
-# Maksimum sayfa sayısını otomatik bul
+# Maksimum sayfa sayısını bul
 # ------------------------------
 def get_max_pages():
     url = f"{BASE}/filmler"
     html = get_html(url)
     if not html:
-        return 158  # Fallback değer
+        return 158  # Fallback
     
     soup = BeautifulSoup(html, 'html.parser')
     
     # Sayfa numaralarını bul
     page_links = soup.select('a[href*="/filmler/"]')
-    page_numbers = []
+    max_page = 1
     
     for link in page_links:
         href = link.get('href', '')
         if href:
-            # URL'den sayfa numarasını çıkar
             match = re.search(r'/filmler/(\d+)', href)
             if match:
-                page_numbers.append(int(match.group(1)))
+                page_num = int(match.group(1))
+                if page_num > max_page:
+                    max_page = page_num
     
-    # Sayfa numaralarından en büyüğünü bul
-    if page_numbers:
-        max_page = max(page_numbers)
-        print(f"📊 Detected {max_page} pages")
-        return max_page
-    
-    # Pagination container kontrolü
-    pagination = soup.find(class_=lambda x: x and any(keyword in str(x).lower() 
-                          for keyword in ['pagination', 'page', 'sayfa']))
+    # Son sayfa linkini kontrol et
+    pagination = soup.find(class_='pagination')
     if pagination:
-        last_page_link = pagination.find_all('a')[-1]
-        if last_page_link and last_page_link.get_text(strip=True).isdigit():
-            return int(last_page_link.get_text(strip=True))
+        last_page = pagination.find_all('a')[-1]
+        if last_page and last_page.get_text(strip=True).isdigit():
+            max_page = max(max_page, int(last_page.get_text(strip=True)))
     
-    return 158  # Varsayılan değer
+    print(f"📊 Detected {max_page} pages")
+    return max_page
 
 # ------------------------------
 # Tüm sayfaları çek
@@ -307,7 +275,6 @@ def get_max_pages():
 def scrape_all():
     print(f"\n🚀 Starting scraping from: {BASE}")
     
-    # Maksimum sayfa sayısını bul
     max_pages = get_max_pages()
     print(f"📚 Total pages to scrape: {max_pages}\n")
     
@@ -327,8 +294,11 @@ def scrape_all():
         elapsed = time.time() - start_time
         print(f"✓ Page {page}: {len(movies)} movies added (Total: {len(all_movies)}) in {elapsed:.1f}s\n")
         
-        # Dinamik bekleme süresi
-        time.sleep(0.5 if page % 10 != 0 else 2)
+        # Sayfalar arası bekleme
+        if page % 5 == 0:
+            time.sleep(1)
+        else:
+            time.sleep(0.3)
     
     return all_movies
 
@@ -339,12 +309,13 @@ def save_to_json(data, filename="film.json"):
     try:
         file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), filename)
         with open(file_path, "w", encoding="utf-8") as f:
-            json.dump(data, f, indent=2, ensure_ascii=False, sort_keys=True)
-        print(f"\n💾 Saved to {file_path}")
-        print(f"📊 Total movies: {len(data)}")
+            json.dump(data, f, indent=2, ensure_ascii=False)
         
         # İstatistikler
         with_embed = sum(1 for movie in data if movie.get('embed_url'))
+        
+        print(f"\n💾 Saved to {file_path}")
+        print(f"📊 Total movies: {len(data)}")
         print(f"🎬 Movies with embed URL: {with_embed}/{len(data)} ({with_embed/len(data)*100:.1f}%)")
         
         return True
@@ -360,13 +331,8 @@ if __name__ == "__main__":
     print("🎬 DIZIPAL FILM SCRAPER")
     print("=" * 50)
     
-    # Domain kontrolü
-    print(f"\n🌐 Active Domain: {BASE}")
-    
-    # Filmleri çek
     movies = scrape_all()
     
-    # JSON'a kaydet
     if movies:
         save_to_json(movies)
         print("\n✅ Scraping completed successfully!")
