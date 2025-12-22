@@ -1,19 +1,23 @@
-import requests
-from bs4 import BeautifulSoup
+#!/usr/bin/env python3
+"""
+Taraftariumizle.org'dan m3u8 linklerini çeken ve M3U oluşturan script
+Playwright ile browser otomasyonu kullanır
+"""
+
 import re
+import json
+import time
+from playwright.sync_api import sync_playwright
 import urllib3
 
+# SSL uyarılarını gizle
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 def main():
-    PROXY = "https://proxy.freecdn.workers.dev/?url="
-    START = "https://taraftariumizle.org"
-    FILE_NAME = "taraftariumizle.m3u"
+    START_URL = "https://taraftariumizle.org"
+    OUTPUT_FILE = "taraftariumizle.m3u"
     
-    headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
-    }
-
+    # Kanal listesi - güncellenmiş
     channels = [
         ("androstreamlivebiraz1", 'TR:beIN Sport 1 HD'),
         ("androstreamlivebs1", 'TR:beIN Sport 1 HD'),
@@ -53,69 +57,204 @@ def main():
         ("androstreamliveexn7", 'TR:Exxen 7 HD'),
         ("androstreamliveexn8", 'TR:Exxen 8 HD'),
     ]
-
-    def get_src(u, ref=None):
-        try:
-            if ref: headers['Referer'] = ref
-            r = requests.get(PROXY + u, headers=headers, verify=False, timeout=20)
-            return r.text if r.status_code == 200 else None
-        except: return None
-
-    h1 = get_src(START)
-    if not h1: return
-
-    s = BeautifulSoup(h1, 'html.parser')
-    lnk = s.find('link', rel='amphtml')
-    if not lnk: return
-    amp = lnk.get('href')
-
-    h2 = get_src(amp)
-    if not h2: return
-
-    m = re.search(r'\[src\]="appState\.currentIframe".*?src="(https?://[^"]+)"', h2, re.DOTALL)
-    if not m: return
-    ifr = m.group(1)
-
-    h3 = get_src(ifr, ref=amp)
-    if not h3: return
-
-    bm = re.search(r'baseUrls\s*=\s*\[(.*?)\]', h3, re.DOTALL)
-    if not bm: return
-
-    cl = bm.group(1).replace('"', '').replace("'", "").replace("\n", "").replace("\r", "")
-    srvs = [x.strip() for x in cl.split(',') if x.strip().startswith("http")]
-    srvs = list(set(srvs)) # Benzersiz yap
-
-    active_servers = []
-    tid = "androstreamlivebs1" 
-
-    # Tüm sunucuları test et
-    for sv in srvs:
-        sv = sv.rstrip('/')
-        turl = f"{sv}/{tid}.m3u8" if "checklist" in sv else f"{sv}/checklist/{tid}.m3u8"
-        turl = turl.replace("checklist//", "checklist/")
+    
+    print("🚀 Taraftariumizle M3U8 Fetcher başlatılıyor...")
+    
+    with sync_playwright() as p:
+        # Tarayıcıyı başlat (headless modda)
+        browser = p.chromium.launch(headless=True)
+        context = browser.new_context(
+            user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+            viewport={"width": 1920, "height": 1080}
+        )
+        page = context.new_page()
         
         try:
-            headers['Referer'] = ifr
-            tr = requests.get(PROXY + turl, headers=headers, verify=False, timeout=5)
-            if tr.status_code == 200:
-                active_servers.append(sv) # Çalışanı listeye ekle
-        except: pass
-
-    if active_servers:
-        with open(FILE_NAME, "w", encoding="utf-8") as f:
-            f.write("#EXTM3U\n")
+            # 1. Adım: Ana sayfaya git
+            print("📡 Ana sayfaya erişiliyor...")
+            page.goto(START_URL, wait_until="networkidle", timeout=30000)
+            time.sleep(3)
             
-            # Bulunan her sunucu için listeyi döngüye sok
-            for srv in active_servers:
-                for cid, cname in channels:
-                    furl = f"{srv}/{cid}.m3u8" if "checklist" in srv else f"{srv}/checklist/{cid}.m3u8"
-                    furl = furl.replace("checklist//", "checklist/")
-                    
-                    line = f'#EXTINF:-1 tvg-id="sport.tr" tvg-name="{cname}" tvg-logo="https://i.hizliresim.com/8xzjgqv.jpg" group-title="Andro-Panel",{cname}\n{furl}\n'
-                    f.write(line)
-                    
-        print(f"{FILE_NAME} Saved ({len(active_servers)} servers found).")
+            # 2. Adım: AMP sayfa linkini bul
+            amp_link = None
+            try:
+                amp_link = page.locator('link[rel="amphtml"]').get_attribute('href')
+                if amp_link:
+                    print(f"🔗 AMP link bulundu: {amp_link}")
+            except:
+                print("⚠️  AMP link bulunamadı, alternatif yöntem deneniyor...")
+            
+            # AMP link yoksa ana sayfayı kullan
+            target_url = amp_link if amp_link else START_URL
+            
+            # 3. Adım: Hedef sayfaya git
+            print(f"🌐 Hedef sayfaya gidiliyor: {target_url}")
+            page.goto(target_url, wait_until="networkidle", timeout=30000)
+            time.sleep(3)
+            
+            # 4. Adım: Sayfa kaynağını al
+            page_content = page.content()
+            
+            # 5. Adım: m3u8 sunucularını bul
+            print("🔍 M3U8 sunucuları aranıyor...")
+            
+            # Pattern 1: baseUrls değişkenini ara
+            server_patterns = [
+                r'baseUrls\s*=\s*\[(.*?)\]',
+                r'servers\s*:\s*\[(.*?)\]',
+                r'var\s+servers\s*=\s*\[(.*?)\]',
+                r'"server"\s*:\s*\[(.*?)\]'
+            ]
+            
+            servers = []
+            
+            for pattern in server_patterns:
+                match = re.search(pattern, page_content, re.DOTALL)
+                if match:
+                    try:
+                        # JSON formatında olabilir
+                        content = match.group(1)
+                        # Tırnak işaretlerini temizle
+                        content = content.replace('"', '').replace("'", "")
+                        # Virgülle ayır ve temizle
+                        found = [s.strip() for s in content.split(',') if s.strip()]
+                        servers.extend([s for s in found if s.startswith('http')])
+                        if servers:
+                            print(f"✅ {len(servers)} sunucu bulundu (pattern: {pattern[:30]}...)")
+                            break
+                    except Exception as e:
+                        print(f"⚠️  Pattern işleme hatası: {e}")
+            
+            # Pattern 2: Doğrudan m3u8 linklerini ara
+            if not servers:
+                m3u8_patterns = [
+                    r'https?://[^\s"\']+\.m3u8[^\s"\']*',
+                    r'src="(https?://[^"]+\.m3u8[^"]*)"',
+                    r"src='(https?://[^']+\.m3u8[^']*)'"
+                ]
+                
+                for pattern in m3u8_patterns:
+                    matches = re.findall(pattern, page_content, re.IGNORECASE)
+                    if matches:
+                        # Base URL'leri çıkar
+                        for match in matches:
+                            base_url = match.split('/checklist/')[0] if '/checklist/' in match else match.rsplit('/', 1)[0]
+                            if base_url.startswith('http'):
+                                servers.append(base_url)
+                        servers = list(set(servers))  # Tekilleştir
+                        if servers:
+                            print(f"✅ {len(servers)} sunucu bulundu (m3u8 pattern)")
+                            break
+            
+            # Pattern 3: JavaScript içinde URL'leri ara
+            if not servers:
+                js_url_pattern = r'https?://[^\s"\']+/checklist/[^\s"\']*'
+                matches = re.findall(js_url_pattern, page_content)
+                for match in matches:
+                    base_url = match.split('/checklist/')[0]
+                    if base_url.startswith('http'):
+                        servers.append(base_url)
+                servers = list(set(servers))
+                if servers:
+                    print(f"✅ {len(servers)} sunucu bulundu (checklist pattern)")
+            
+            if not servers:
+                print("❌ Hiç sunucu bulunamadı!")
+                return
+            
+            print(f"📊 Toplam {len(servers)} sunucu bulundu:")
+            for i, server in enumerate(servers[:5], 1):  # İlk 5'i göster
+                print(f"  {i}. {server}")
+            if len(servers) > 5:
+                print(f"  ... ve {len(servers)-5} daha")
+            
+            # 6. Adım: Sunucuları test et
+            print("🧪 Sunucular test ediliyor...")
+            active_servers = []
+            test_channel = "androstreamlivebs1"
+            
+            for server in servers:
+                server = server.rstrip('/')
+                # İki farklı URL formatını dene
+                test_urls = [
+                    f"{server}/checklist/{test_channel}.m3u8",
+                    f"{server}/{test_channel}.m3u8"
+                ]
+                
+                for test_url in test_urls:
+                    try:
+                        print(f"  Testing: {test_url[:80]}...")
+                        response = page.context.request.get(
+                            test_url,
+                            headers={
+                                'Referer': target_url,
+                                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+                            },
+                            timeout=5000
+                        )
+                        
+                        if response.status in [200, 206]:
+                            content = response.text()
+                            if '#EXTM3U' in content or '.m3u8' in content:
+                                active_servers.append(server)
+                                print(f"  ✅ Aktif sunucu: {server}")
+                                break
+                    except Exception as e:
+                        continue
+                
+                # Her sunucu için maksimum 1 saniye bekle
+                time.sleep(0.5)
+            
+            if not active_servers:
+                print("⚠️  Hiç aktif sunucu bulunamadı, bulunan sunucuları kullanıyoruz...")
+                active_servers = servers[:3]  # İlk 3 sunucuyu dene
+            
+            print(f"🎯 {len(active_servers)} aktif sunucu kullanılacak")
+            
+            # 7. Adım: M3U dosyasını oluştur
+            print("📝 M3U dosyası oluşturuluyor...")
+            
+            with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
+                f.write("#EXTM3U x-tvg-url=\"\"\n\n")
+                
+                for server in active_servers:
+                    server = server.rstrip('/')
+                    for channel_id, channel_name in channels:
+                        # İki farklı URL formatını oluştur
+                        m3u8_url = f"{server}/checklist/{channel_id}.m3u8"
+                        alt_m3u8_url = f"{server}/{channel_id}.m3u8"
+                        
+                        # Kanal için M3U girişi
+                        f.write(f'#EXTINF:-1 tvg-id="" tvg-name="{channel_name}" tvg-logo="" group-title="TR Sports",{channel_name}\n')
+                        f.write(f"{m3u8_url}\n\n")
+            
+            print(f"✅ {OUTPUT_FILE} dosyası başarıyla oluşturuldu!")
+            print(f"📊 İstatistikler:")
+            print(f"   • Toplam kanal: {len(channels)}")
+            print(f"   • Aktif sunucu: {len(active_servers)}")
+            print(f"   • Toplam kayıt: {len(channels) * len(active_servers)}")
+            
+            # Ek bilgi dosyası oluştur
+            with open("server_info.json", "w", encoding="utf-8") as info_file:
+                info_data = {
+                    "last_updated": time.strftime("%Y-%m-%d %H:%M:%S"),
+                    "active_servers": active_servers,
+                    "total_channels": len(channels),
+                    "output_file": OUTPUT_FILE
+                }
+                json.dump(info_data, info_file, indent=2, ensure_ascii=False)
+            
+            print("📋 server_info.json oluşturuldu")
+            
+        except Exception as e:
+            print(f"❌ Hata oluştu: {str(e)}")
+            import traceback
+            print(traceback.format_exc())
+            
+        finally:
+            # Tarayıcıyı kapat
+            browser.close()
+            print("👋 Tarayıcı kapatıldı")
 
 if __name__ == "__main__":
     main()
