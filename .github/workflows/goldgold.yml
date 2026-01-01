@@ -1,0 +1,58 @@
+name: M3U Playlist Güncelleme (curl Yöntemi)
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 */6 * * *'
+
+jobs:
+  fetch-and-commit:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      # 1. Depoyu Klonla
+      - name: Depoyu Klonla (Checkout)
+        uses: actions/checkout@v4
+
+      # 2. Python veya bağımlılığa GEREK YOK
+      # Doğrudan 'curl' komutu ile playlist'i indir
+      #
+      # --- !!! GÜVENLİK UYARISI !!! ---
+      # URL herkes tarafından görülebilir.
+      # -----------------------------------
+      - name: Playlist'i Çek (curl)
+        run: |
+          curl -L -o indirilen_playlist.m3u \
+          "https://goldvod.org/get.php?username=hpgdisco&password=123456&type=m3u_plus&output=m3u" \
+          --fail --silent
+        
+        # 'continue-on-error: true'
+        # Bu, 404 hatası (veya --fail ile yakalanan başka bir hata)
+        # alırsak iş akışını durdurmaz, bir sonraki adıma geçer.
+        # Bu, 1001390031.jpg'deki 'git add' hatasını önler.
+        continue-on-error: true
+
+      # 3. Değişiklikleri Depoya Gönder (Commit)
+      - name: Değişiklikleri Depoya Gönder (Commit)
+        run: |
+          # Önce indirilen dosyanın var olup olmadığını kontrol et
+          # Eğer curl başarısız olduysa (örn: 404 aldıysa) dosya oluşmaz
+          # ve bu adım hata vermeden atlanır.
+          if [ ! -f indirilen_playlist.m3u ]; then
+            echo "indirilen_playlist.m3u dosyası bulunamadı. Muhtemelen curl adımı 404 hatası aldı."
+            echo "Commit atılacak yeni bir dosya yok."
+            exit 0 # Başarılı olarak çık
+          fi
+
+          echo "indirilen_playlist.m3u bulundu, commit atılıyor..."
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          
+          git add indirilen_playlist.m3u
+          
+          # Sadece dosya değiştiyse commit at
+          git diff-index --quiet HEAD || git commit -m "Otomatik Güncelleme: M3U playlist yenilendi"
+          
+          git push
