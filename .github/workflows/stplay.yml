@@ -1,59 +1,61 @@
 name: İSTPLAY M3U Listesini Oluştur ve Güncelle
 
 on:
-  workflow_dispatch: # Manuel olarak tetikleme
+  workflow_dispatch:
   schedule:
-    - cron: '*/30 * * * *' # 30 dakikada bir otomatik çalıştır
+    - cron: '*/30 * * * *'
+
+# Aynı anda sadece 1 workflow çalışsın (çakışma çözümü)
+concurrency:
+  group: istplay-m3u
+  cancel-in-progress: true
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    
-    # Adım: Depoya yazma izni ver
-    # Bu, 'git push' adımının başarılı olması için gereklidir.
+
+    # Repo'ya push atabilmek için gerekli izin
     permissions:
       contents: write
 
     steps:
-      # 1. Adım: Depodaki kodları (stplay.py ve requirements.txt) runner'a indir
+      # 1️⃣ Repo'yu çek
       - name: Depoyu Klonla
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # pull --rebase için ŞART
 
-      # 2. Adım: Python 3.10'u kur
+      # 2️⃣ Python kur
       - name: Python 3.10 Kurulumu
         uses: actions/setup-python@v5
         with:
           python-version: '3.10'
-          cache: 'pip' # pip önbelleğini kullanarak kurulumları hızlandır
+          cache: 'pip'
 
-      # 3. Adım: Gerekli Python kütüphanelerini kur
-      # Burası requirements.txt dosyasını okur ve (requests, zstandard, beautifulsoup4) kurar.
+      # 3️⃣ Gerekli paketleri kur
       - name: Gerekli Kütüphaneleri Kur
         run: |
-          python -m pip install --upgrade pip
-          if [ -f requirements.txt ]; then
-            pip install -r requirements.txt
-          else
-            echo "requirements.txt bulunamadı, kurulum atlanıyor."
-          fi
-      
-      # 4. Adım: Python betiğini çalıştırarak M3U dosyasını oluştur
+          python -m pip install --upgrade pip setuptools wheel
+          pip install -r requirements.txt
+
+      # 4️⃣ Scripti çalıştır
       - name: M3U Listesini Oluştur
         run: python stplay.py
 
-      # 5. Adım: Oluşturulan M3U dosyasını depoya geri yükle (Commit)
+      # 5️⃣ Değişiklikleri güvenli şekilde push et
       - name: Değişiklikleri Depoya Yükle
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          
-          # Yalnızca 'istplay_streams.m3u' dosyasında değişiklik varsa commit at
+
+          # Remote branch ile senkronize ol
+          git pull --rebase origin main
+
           git add istplay_streams.m3u
-          
-          # Değişiklik olup olmadığını kontrol et
+
           if [[ -n $(git status --porcelain) ]]; then
             git commit -m "M3U listesi güncellendi (Otomatik)"
-            git push
+            git push origin main
           else
-            echo "Değişiklik bulunamadı, commit atılmadı."
+            echo "Değişiklik yok, commit atılmadı."
           fi
