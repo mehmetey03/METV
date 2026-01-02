@@ -1,55 +1,19 @@
-name: popcorrn Güncelleme 
+- name: Playlist'i Çek (curl)
+  run: |
+    set -e
 
-on:
-  workflow_dispatch:
-  schedule:
-    - cron: '0 */6 * * *'
+    HTTP_CODE=$(curl -L \
+      --connect-timeout 15 \
+      --max-time 60 \
+      -w "%{http_code}" \
+      -o indirildi_playlist.m3u \
+      "http://ns3051909.ip-137-74-92.eu:25461/get.php?username=900EB311156D&password=PopcornTV&type=m3u_plus&output=m3u"
+    )
 
-concurrency:
-  group: altin-guncelleme-${{ github.ref }}
-  cancel-in-progress: true
+    echo "HTTP CODE: $HTTP_CODE"
 
-jobs:
-  fetch-and-commit:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-
-    steps:
-      # 1. Depoyu Klonla
-      - name: Depoyu Klonla (Checkout)
-        uses: actions/checkout@v4
-
-      # 2. Playlist'i indir
-      - name: Playlist'i Çek (curl)
-        run: |
-          curl -L -o indirildi_playlist.m3u \
-          "http://ns3051909.ip-137-74-92.eu:25461/get.php?username=900EB311156D&password=PopcornTV&type=m3u_plus&output=m3u" \
-          --fail --silent
-        continue-on-error: true
-
-      # 3. Commit + Push (ÇAKIŞMASIZ)
-      - name: Değişiklikleri Depoya Gönder (Commit)
-        run: |
-          if [ ! -f indirildi_playlist.m3u ]; then
-            echo "indirildi_playlist.m3u yok, commit atlanıyor."
-            exit 0
-          fi
-
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
-          git add indirildi_playlist.m3u
-
-          # Değişiklik yoksa commit atma
-          git diff-index --quiet HEAD && {
-            echo "Değişiklik yok, çıkılıyor."
-            exit 0
-          }
-
-          git commit -m "Otomatik Güncelleme: M3U playlist yenilendi"
-
-          # 🔴 ASIL KRİTİK SATIR
-          git pull --rebase origin main
-
-          git push origin main
+    if [ "$HTTP_CODE" != "200" ]; then
+      echo "Playlist indirilemedi (HTTP $HTTP_CODE)"
+      rm -f indirildi_playlist.m3u
+      exit 0
+    fi
