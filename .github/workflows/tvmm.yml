@@ -19,38 +19,45 @@ jobs:
       - name: Repo'yu klonla
         uses: actions/checkout@v4
 
-      - name: Playlist'i Worker üzerinden çek
+      - name: Playlist'i indir (hatasız mod)
         run: |
           echo "📥 Playlist indiriliyor..."
 
-          HTTP_CODE=$(curl -L \
+          # curl HİÇBİR ŞEKİLDE workflow'u düşürmez
+          curl -L \
             --connect-timeout 15 \
             --max-time 60 \
-            -w "%{http_code}" \
+            -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64)" \
             -o indirildi_playlist.m3u \
-            "https://popcorn-proxy.workers.dev"
-          )
+            "http://ns3051909.ip-137-74-92.eu:25461/get.php?username=900EB311156D&password=PopcornTV&type=m3u_plus&output=m3u" \
+            || true
 
-          echo "🌐 HTTP CODE: $HTTP_CODE"
-
-          if [ "$HTTP_CODE" != "200" ]; then
-            echo "❌ Playlist alınamadı"
-            rm -f indirildi_playlist.m3u
+          # Dosya yoksa
+          if [ ! -f indirildi_playlist.m3u ]; then
+            echo "❌ Dosya oluşmadı (erişim engelli olabilir)"
             exit 0
           fi
 
+          # Dosya boşsa
           if [ ! -s indirildi_playlist.m3u ]; then
-            echo "❌ Dosya boş"
+            echo "❌ Dosya boş, siliniyor"
             rm -f indirildi_playlist.m3u
             exit 0
           fi
 
-          echo "✅ Playlist alındı"
+          # M3U kontrolü
+          if ! head -n 1 indirildi_playlist.m3u | grep -q "#EXTM3U"; then
+            echo "❌ Geçersiz M3U içeriği"
+            rm -f indirildi_playlist.m3u
+            exit 0
+          fi
+
+          echo "✅ Playlist başarıyla indirildi"
 
       - name: Commit ve Push
         run: |
           if [ ! -f indirildi_playlist.m3u ]; then
-            echo "ℹ️ Güncellenecek dosya yok"
+            echo "ℹ️ Commit edilecek dosya yok"
             exit 0
           fi
 
@@ -67,3 +74,5 @@ jobs:
           git commit -m "Otomatik Güncelleme: Popcorn M3U"
           git pull --rebase origin main
           git push origin main
+
+          echo "🚀 Güncelleme gönderildi"
