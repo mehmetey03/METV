@@ -16,65 +16,54 @@ jobs:
       contents: write
 
     steps:
-      # 1. Repo'yu klonla
-      - name: Depoyu Klonla
+      - name: Repo'yu klonla
         uses: actions/checkout@v4
 
-      # 2. Playlist'i indir (GÜVENLİ CURL)
-      - name: Playlist'i Çek (curl)
+      - name: Playlist'i Worker üzerinden çek
         run: |
           echo "📥 Playlist indiriliyor..."
 
           HTTP_CODE=$(curl -L \
             --connect-timeout 15 \
             --max-time 60 \
-            -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64)" \
             -w "%{http_code}" \
             -o indirildi_playlist.m3u \
-            "http://ns3051909.ip-137-74-92.eu:25461/get.php?username=900EB311156D&password=PopcornTV&type=m3u_plus&output=m3u"
+            "https://popcorn-proxy.workers.dev"
           )
 
           echo "🌐 HTTP CODE: $HTTP_CODE"
 
-          # Başarısızsa dosyayı sil
           if [ "$HTTP_CODE" != "200" ]; then
-            echo "❌ Playlist indirilemedi (HTTP $HTTP_CODE)"
+            echo "❌ Playlist alınamadı"
             rm -f indirildi_playlist.m3u
             exit 0
           fi
 
-          # Dosya boşsa iptal
           if [ ! -s indirildi_playlist.m3u ]; then
-            echo "❌ Dosya boş, commit atlanıyor."
+            echo "❌ Dosya boş"
             rm -f indirildi_playlist.m3u
             exit 0
           fi
 
-          echo "✅ Playlist başarıyla indirildi."
+          echo "✅ Playlist alındı"
 
-      # 3. Commit + Push
-      - name: Değişiklikleri Depoya Gönder
+      - name: Commit ve Push
         run: |
           if [ ! -f indirildi_playlist.m3u ]; then
-            echo "ℹ️ Güncellenecek dosya yok."
+            echo "ℹ️ Güncellenecek dosya yok"
             exit 0
           fi
 
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
           git add indirildi_playlist.m3u
 
-          # Değişiklik yoksa commit atma
           if git diff --cached --quiet; then
-            echo "ℹ️ Değişiklik yok, commit atlanıyor."
+            echo "ℹ️ Değişiklik yok"
             exit 0
           fi
 
-          git commit -m "Otomatik Güncelleme: M3U playlist yenilendi"
-
-          # ÇAKIŞMASIZ PUSH
+          git commit -m "Otomatik Güncelleme: Popcorn M3U"
           git pull --rebase origin main
           git push origin main
-
-          echo "🚀 Güncelleme başarıyla gönderildi."
