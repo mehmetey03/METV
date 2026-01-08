@@ -6,7 +6,7 @@ import os
 import hashlib
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
-BASE = "https://dizipall34.com"
+BASE = "https://dizipall35.com"
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 }
