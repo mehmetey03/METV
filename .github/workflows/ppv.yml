@@ -1,36 +1,52 @@
-
 name: PPV M3U8 Playlist
 
 on:
   schedule:
-    - cron: '0 */6 * * *'  # Runs every 6 hours
-  workflow_dispatch:  # Enables manual triggering
+    - cron: '0 */6 * * *'   # Her 6 saatte bir
+  workflow_dispatch:        # Manuel çalıştırma
+
+concurrency:
+  group: ppv-m3u8-update
+  cancel-in-progress: true  # Aynı anda ikinci job çalışmasın
 
 jobs:
   update:
     runs-on: ubuntu-latest
     permissions:
-      contents: write  # Explicitly grants write access for commits/pushes
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}  # Persists credentials for git operations
+      contents: write
 
-      - name: Set up Python
+    steps:
+      - name: Repoyu klonla
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0   # rebase için şart
+
+      - name: Python kurulumu
         uses: actions/setup-python@v4
         with:
           python-version: '3.x'
 
-      - name: Install dependencies
+      - name: Gerekli paketler
         run: pip install requests
 
-      - name: Run scraper script
+      - name: Scraper çalıştır
         run: python ppv.py
 
-      - name: Commit and push updated playlist
+      - name: Commit ve Push
         run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Remote değişiklikleri al (çakışma çözümü)
+          git pull --rebase origin main
+
+          # Değişiklik yoksa çık
+          if git diff --quiet; then
+            echo "Değişiklik yok, commit atılmadı."
+            exit 0
+          fi
+
           git add ppv.m3u8
-          git commit -m "Automated update of ppv.m3u8 playlist" || echo "No changes to commit"
-          git push
+          git commit -m "Automated update of ppv.m3u8 playlist"
+          git push origin main
