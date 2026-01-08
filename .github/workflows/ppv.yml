@@ -3,11 +3,11 @@ name: PPV M3U8 Playlist
 on:
   schedule:
     - cron: '0 */6 * * *'   # Her 6 saatte bir
-  workflow_dispatch:        # Manuel çalıştırma
+  workflow_dispatch:
 
 concurrency:
   group: ppv-m3u8-update
-  cancel-in-progress: true  # Aynı anda ikinci job çalışmasın
+  cancel-in-progress: true
 
 jobs:
   update:
@@ -16,37 +16,53 @@ jobs:
       contents: write
 
     steps:
-      - name: Repoyu klonla
+      - name: Repo checkout
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          fetch-depth: 0   # rebase için şart
+          fetch-depth: 0
 
       - name: Python kurulumu
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.x'
 
       - name: Gerekli paketler
-        run: pip install requests
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests
 
       - name: Scraper çalıştır
-        run: python ppv.py
+        run: |
+          python ppv.py
+
+      - name: Dosya kontrol
+        run: |
+          echo "Çalışma dizini:"
+          pwd
+          echo "Dosyalar:"
+          ls -lah
+          echo "ppv.m3u8 aranıyor:"
+          find . -name "ppv.m3u8"
 
       - name: Commit ve Push
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-          # Remote değişiklikleri al (çakışma çözümü)
+          if [ ! -f ppv.m3u8 ]; then
+            echo "❌ HATA: ppv.m3u8 oluşturulmadı!"
+            exit 1
+          fi
+
           git pull --rebase origin main
 
-          # Değişiklik yoksa çık
-          if git diff --quiet; then
+          git add ppv.m3u8
+
+          if git diff --cached --quiet; then
             echo "Değişiklik yok, commit atılmadı."
             exit 0
           fi
 
-          git add ppv.m3u8
           git commit -m "Automated update of ppv.m3u8 playlist"
           git push origin main
