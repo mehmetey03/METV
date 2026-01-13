@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 import re
 import html
 import unicodedata
+import json
 import time
 
 DOMAIN_TXT_URL = "https://raw.githubusercontent.com/mehmetey03/inatdom/refs/heads/main/domain.txt"
@@ -37,9 +38,9 @@ def get_active_domain():
 def get_channel_m3u8(domain, channel_id):
     """Kanal ID'sinden m3u8 linkini oluştur"""
     try:
-        print(f"{YELLOW}[?] Kanal M3U8 aranıyor: {channel_id}{RESET}")
+        print(f"{YELLOW}[?] Kanal M3U8: {channel_id}{RESET}")
         
-        # Önce direkt olarak stream sunucularını deneyelim
+        # Bilinen stream sunucuları
         stream_servers = [
             f"https://tv.ssps.xyz/hls/{channel_id}.m3u8",
             f"https://stream.ssps.xyz/hls/{channel_id}.m3u8",
@@ -48,7 +49,6 @@ def get_channel_m3u8(domain, channel_id):
             f"{domain}/hls/{channel_id}.m3u8",
             f"{domain}/live/{channel_id}.m3u8",
             f"{domain}/tv/{channel_id}.m3u8",
-            f"https://{domain.replace('https://', '').replace('http://', '').split('/')[0]}/stream/{channel_id}.m3u8"
         ]
         
         headers = {
@@ -56,147 +56,74 @@ def get_channel_m3u8(domain, channel_id):
             "Referer": domain
         }
         
+        # İlk geçerli URL'yi döndür
         for stream_url in stream_servers:
             try:
-                print(f"{YELLOW}[?] Test ediliyor: {stream_url}{RESET}")
-                r = requests.head(stream_url, headers=headers, timeout=5)
+                r = requests.head(stream_url, headers=headers, timeout=3)
                 if r.status_code in [200, 302, 301]:
-                    print(f"{GREEN}[✓] M3U8 bulundu: {stream_url}{RESET}")
+                    print(f"{GREEN}[✓] M3U8: {stream_url}{RESET}")
                     return stream_url
             except:
                 continue
         
-        # Eğer bulamazsak, channel.html sayfasını çekip içinden ara
-        print(f"{YELLOW}[!] Stream URL'leri çalışmadı, channel.html kontrol ediliyor...{RESET}")
-        
-        channel_url = f"{domain}/channel.html?id={channel_id}"
-        r = requests.get(channel_url, headers=headers, timeout=10)
-        r.encoding = 'utf-8'
-        html_text = r.text
-        
-        # JavaScript içinde baseurl ara
-        baseurl_patterns = [
-            r'baseurl\s*=\s*["\']([^"\']+)["\']',
-            r'BASE_URL\s*=\s*["\']([^"\']+)["\']',
-            r'streamUrl\s*=\s*["\']([^"\']+)["\']',
-            r'var\s+\w+\s*=\s*["\']([^"\']+/hls/)["\']',
-            r'src\s*=\s*["\']([^"\']+\.m3u8)["\']'
-        ]
-        
-        for pattern in baseurl_patterns:
-            matches = re.findall(pattern, html_text)
-            for match in matches:
-                if '.m3u8' in match:
-                    # m3u8 linki bulundu
-                    print(f"{GREEN}[✓] M3U8 bulundu (pattern): {match}{RESET}")
-                    return match
-                elif '/hls/' in match or '/stream/' in match:
-                    # baseurl bulundu
-                    m3u8_url = f"{match}{channel_id}.m3u8"
-                    print(f"{GREEN}[✓] BaseURL bulundu, M3U8: {m3u8_url}{RESET}")
-                    return m3u8_url
-        
-        # Son çare olarak en yaygın pattern'i kullan
+        # Varsayılan URL
         default_url = f"https://tv.ssps.xyz/hls/{channel_id}.m3u8"
-        print(f"{YELLOW}[!] Varsayılan M3U8 kullanılıyor: {default_url}{RESET}")
+        print(f"{YELLOW}[!] Varsayılan M3U8: {default_url}{RESET}")
         return default_url
             
     except Exception as e:
         print(f"{RED}[!] M3U8 hatası: {e}{RESET}")
         return f"https://tv.ssps.xyz/hls/{channel_id}.m3u8"
 
-def extract_channels_from_html(html_content, domain):
-    """HTML içerisinden kanalları çıkar"""
-    soup = BeautifulSoup(html_content, "html.parser")
-    maclar = []
+def extract_channels_from_js(html_content):
+    """JavaScript içinden kanal bilgilerini çıkar"""
+    kanallar = []
     
-    # Tüm linkleri bul
-    all_links = soup.find_all('a', href=True)
-    print(f"{YELLOW}[?] Toplam {len(all_links)} link bulundu{RESET}")
+    # JavaScript içinde kanal array'leri ara
+    patterns = [
+        # Array pattern: [...]
+        r'\[([^\]]+channel[^\]]+)\]',
+        r'var\s+\w+\s*=\s*\[([^\]]+)\]',
+        # JSON pattern
+        r'\{[^{}]*channel[^{}]*\}',
+    ]
     
-    for link in all_links:
-        href = link.get('href', '')
-        
-        # Sadece channel.html linklerini işle
-        if '/channel.html?id=' not in href:
-            continue
+    for pattern in patterns:
+        matches = re.findall(pattern, html_content, re.DOTALL | re.IGNORECASE)
+        for match in matches:
+            if 'yayin' in match.lower():
+                print(f"{YELLOW}[?] JS pattern bulundu: {match[:100]}...{RESET}")
+    
+    # Daha spesifik arama: HTML içinde kanal linkleri
+    # Pattern: <a ... href="...id=yayin..." ...> ... </a>
+    channel_pattern = r'<a[^>]*href=[\'"][^\'"]*id=([a-zA-Z0-9_\-]+)[^\'"]*[\'"][^>]*>([^<]*(?:<[^>]+>[^<]*)*)</a>'
+    matches = re.findall(channel_pattern, html_content, re.IGNORECASE)
+    
+    for kanal_id, html_content in matches:
+        if 'yayin' in kanal_id.lower():
+            # HTML'den text çıkar
+            text = re.sub(r'<[^>]+>', '', html_content)
+            text = clean_text(text)
             
-        try:
-            # Kanal ID'sini çıkar
-            match = re.search(r'id=([^&]+)', href)
-            if not match:
-                continue
-                
-            kanal_id = match.group(1).strip()
-            if not kanal_id:
-                continue
-            
-            # Kanal adını bul
-            kanal_adi = ""
-            
-            # Önce channel-name class'ını dene
-            name_div = link.find(class_='channel-name')
-            if name_div:
-                kanal_adi = clean_text(name_div.get_text(strip=True))
-                # İkonları temizle
-                kanal_adi = re.sub(r'<i[^>]*>.*?</i>', '', kanal_adi)
-                kanal_adi = clean_text(kanal_adi)
-            
-            # Eğer bulamazsak, link içindeki tüm text'i al
-            if not kanal_adi:
-                kanal_adi = clean_text(link.get_text(strip=True))
-                # İkonları ve fazlalıkları temizle
-                kanal_adi = re.sub(r'<[^>]+>', '', kanal_adi)
-                kanal_adi = clean_text(kanal_adi)
-            
-            if not kanal_adi:
-                kanal_adi = f"Kanal {kanal_id}"
-            
-            # Saat bilgisini bul
+            # Saat bilgisini ayır (eğer varsa)
             saat = ""
-            status_div = link.find(class_='channel-status')
-            if status_div:
-                saat = clean_text(status_div.get_text(strip=True))
+            if ' - ' in text:
+                parts = text.split(' - ', 1)
+                saat = parts[0].strip()
+                kanal_adi = parts[1].strip()
+            elif ':' in text and len(text) < 10:
+                saat = text
+                kanal_adi = f"Kanal {kanal_id}"
+            else:
+                kanal_adi = text if text else f"Kanal {kanal_id}"
             
-            # Kategori bilgisini al
-            kategori = link.get('data-category', '')
-            
-            # Canlı durumu
-            live = False
-            if saat == "7/24" or ":" in saat:
-                live = True
-            
-            # TVG ID
-            tvg_id = kanal_id.replace(" ", "_").replace(":", "_")
-            
-            # M3U8 linkini al
-            m3u8_link = get_channel_m3u8(domain, kanal_id)
-            if not m3u8_link:
-                continue
-            
-            # Kanal bilgilerini oluştur
-            display_name = f"{saat} - {kanal_adi}" if saat else kanal_adi
-            if live:
-                display_name = "🔴 " + display_name
-            
-            mac = {
-                "saat": saat,
-                "takimlar": kanal_adi,
-                "canli": live,
-                "dosya": m3u8_link,
-                "kanal_adi": display_name,
-                "tvg_id": tvg_id,
-                "kategori": kategori
-            }
-            
-            maclar.append(mac)
-            print(f"{GREEN}[✓] Kanal eklendi: {display_name} ({kanal_id}){RESET}")
-            
-        except Exception as e:
-            print(f"{RED}[!] Link işlenirken hata: {e}{RESET}")
-            continue
+            kanallar.append({
+                'id': kanal_id,
+                'adi': kanal_adi,
+                'saat': saat
+            })
     
-    return maclar
+    return kanallar
 
 def get_matches(domain):
     headers = {
@@ -212,81 +139,60 @@ def get_matches(domain):
         print(f"{YELLOW}[?] Ana sayfa çekiliyor: {domain}{RESET}")
         r = requests.get(domain, headers=headers, timeout=15)
         r.encoding = 'utf-8'
+        html_content = r.text
         
-        # HTML içeriğini kaydet (debug için)
+        # Debug için kaydet
         with open("debug_page.html", "w", encoding="utf-8") as f:
-            f.write(r.text)
-        print(f"{YELLOW}[?] HTML kaydedildi: debug_page.html{RESET}")
+            f.write(html_content)
+        print(f"{YELLOW}[?] HTML kaydedildi: debug_page.html ({len(html_content)} karakter){RESET}")
         
-        # Kanalları çıkar
-        maclar = extract_channels_from_html(r.text, domain)
+        # 1. Önce doğrudan regex ile kanal linklerini ara
+        print(f"{YELLOW}[?] Regex ile kanal arama...{RESET}")
         
-        # Eğer hala kanal bulunamadıysa, alternatif yöntem dene
-        if not maclar:
-            print(f"{YELLOW}[!] Kanal bulunamadı, alternatif parsing deniyor...{RESET}")
-            
-            # Regex ile tüm channel.html linklerini bul
-            channel_pattern = r'href=["\'](/channel\.html\?id=[^"\']+)["\']'
-            channel_matches = re.findall(channel_pattern, r.text)
-            
-            print(f"{YELLOW}[?] Regex ile {len(channel_matches)} channel linki bulundu{RESET}")
-            
-            # Her bir channel linkini işle
-            for i, href in enumerate(channel_matches[:50]):  # İlk 50 link
-                try:
-                    # Tam URL'yi oluştur
-                    if href.startswith('/'):
-                        full_url = domain + href
-                    else:
-                        full_url = domain + '/' + href
-                    
-                    # Kanal ID'sini çıkar
-                    match = re.search(r'id=([^&]+)', href)
-                    if not match:
-                        continue
-                    
-                    kanal_id = match.group(1).strip()
-                    
-                    # Kanal adını bulmak için link çevresindeki HTML'i ara
-                    # Pattern: href="...">(.*?)</a>
-                    link_pattern = f'href=["\']{re.escape(href)}["\'][^>]*>(.*?)</a>'
-                    link_match = re.search(link_pattern, r.text, re.DOTALL | re.IGNORECASE)
-                    
-                    kanal_adi = f"Kanal {kanal_id}"
-                    saat = ""
-                    
-                    if link_match:
-                        link_content = link_match.group(1)
-                        # <div class="channel-name"> içeriğini ara
-                        name_match = re.search(r'<div[^>]*class=["\']channel-name["\'][^>]*>(.*?)</div>', link_content, re.DOTALL | re.IGNORECASE)
-                        if name_match:
-                            kanal_adi = clean_text(name_match.group(1))
-                            # İkonları temizle
-                            kanal_adi = re.sub(r'<[^>]+>', '', kanal_adi)
-                            kanal_adi = clean_text(kanal_adi)
-                        
-                        # <div class="channel-status"> içeriğini ara
-                        status_match = re.search(r'<div[^>]*class=["\']channel-status["\'][^>]*>(.*?)</div>', link_content, re.DOTALL | re.IGNORECASE)
-                        if status_match:
-                            saat = clean_text(status_match.group(1))
-                    
-                    # M3U8 linkini al
-                    m3u8_link = get_channel_m3u8(domain, kanal_id)
-                    if not m3u8_link:
-                        continue
-                    
-                    # Canlı durumu
-                    live = False
-                    if saat == "7/24" or ":" in saat:
-                        live = True
-                    
+        # Tüm olası kanal ID'lerini topla
+        kanal_ids = set()
+        
+        # Pattern 1: id=yayinXXX
+        id_patterns = [
+            r'id=([a-zA-Z0-9_\-]+)',
+            r'["\']id["\']\s*:\s*["\']([^"\']+)["\']',
+            r'channelId["\']?\s*:\s*["\']([^"\']+)["\']',
+        ]
+        
+        for pattern in id_patterns:
+            matches = re.findall(pattern, html_content, re.IGNORECASE)
+            for match in matches:
+                if 'yayin' in match.lower():
+                    kanal_ids.add(match)
+        
+        print(f"{YELLOW}[?] Bulunan kanal ID'leri: {len(kanal_ids)}{RESET}")
+        
+        # Eğer yayin ID'leri bulunduysa
+        if kanal_ids:
+            maclar = []
+            for kanal_id in kanal_ids:
+                # Kanal adını bulmaya çalış
+                kanal_adi = f"Kanal {kanal_id}"
+                saat = ""
+                
+                # Kanal adı için HTML'de arama yap
+                # Pattern: ...id=kanal_id...>...< veya ...kanal_id...
+                ad_pattern = f'{re.escape(kanal_id)}[^>]*>([^<]+)'
+                ad_match = re.search(ad_pattern, html_content, re.IGNORECASE)
+                if ad_match:
+                    kanal_adi = clean_text(ad_match.group(1))
+                
+                # M3U8 linkini al
+                m3u8_link = get_channel_m3u8(domain, kanal_id)
+                if m3u8_link:
                     # TVG ID
                     tvg_id = kanal_id.replace(" ", "_").replace(":", "_")
                     
+                    # Canlı durumu
+                    live = True  # Varsayılan olarak canlı
+                    
                     # Kanal bilgilerini oluştur
                     display_name = f"{saat} - {kanal_adi}" if saat else kanal_adi
-                    if live:
-                        display_name = "🔴 " + display_name
                     
                     mac = {
                         "saat": saat,
@@ -299,11 +205,75 @@ def get_matches(domain):
                     }
                     
                     maclar.append(mac)
-                    print(f"{GREEN}[✓] Kanal eklendi (regex): {display_name} ({kanal_id}){RESET}")
-                    
-                except Exception as e:
-                    print(f"{RED}[!] Regex kanal işlenirken hata: {e}{RESET}")
-                    continue
+                    print(f"{GREEN}[✓] Kanal eklendi: {display_name} ({kanal_id}){RESET}")
+            
+            if maclar:
+                return maclar
+        
+        # 2. Manuel olarak bilinen kanalları ekle
+        print(f"{YELLOW}[!] Otomatik bulunamadı, manuel kanallar ekleniyor...{RESET}")
+        
+        # HTML'den bilinen kanalları çıkar
+        bilinen_kanallar = []
+        
+        # Yaygın kanal ID'leri
+        common_channels = [
+            # BeIN Sports
+            ("yayininat", "BeIN Sports 1"),
+            ("yayinb2", "BeIN Sports 2"),
+            ("yayinb3", "BeIN Sports 3"),
+            ("yayinb4", "BeIN Sports 4"),
+            ("yayinb5", "BeIN Sports 5"),
+            ("yayinbm1", "BeIN Max 1"),
+            ("yayinbm2", "BeIN Max 2"),
+            
+            # S Sport
+            ("yayinss", "S Sport"),
+            ("yayinss2", "S Sport 2"),
+            
+            # Tivibu
+            ("yayint1", "Tivibu 1"),
+            ("yayint2", "Tivibu 2"),
+            ("yayint3", "Tivibu 3"),
+            ("yayint4", "Tivibu 4"),
+            
+            # Diğer
+            ("yayinas", "A Spor"),
+            ("yayintrtspor", "TRT Spor"),
+            ("yayintrtspor2", "TRT Spor 2"),
+            ("yayinsmarts", "Smartspor"),
+            ("yayinsms2", "Smartspor 2"),
+            ("yayineu1", "Euro Sport 1"),
+            ("yayineu2", "Euro Sport 2"),
+            ("yayinnbatv", "NBA TV"),
+        ]
+        
+        # HTML'de hangi kanalların geçtiğini kontrol et
+        for kanal_id, kanal_adi in common_channels:
+            if kanal_id in html_content.lower():
+                bilinen_kanallar.append((kanal_id, kanal_adi))
+        
+        print(f"{YELLOW}[?] HTML'de bulunan bilinen kanallar: {len(bilinen_kanallar)}{RESET}")
+        
+        # Manuel kanalları ekle
+        maclar = []
+        for kanal_id, kanal_adi in bilinen_kanallar:
+            m3u8_link = get_channel_m3u8(domain, kanal_id)
+            if m3u8_link:
+                tvg_id = kanal_id.replace(" ", "_").replace(":", "_")
+                
+                mac = {
+                    "saat": "7/24",
+                    "takimlar": kanal_adi,
+                    "canli": True,
+                    "dosya": m3u8_link,
+                    "kanal_adi": f"🔴 7/24 - {kanal_adi}",
+                    "tvg_id": tvg_id,
+                    "kategori": "7/24"
+                }
+                
+                maclar.append(mac)
+                print(f"{GREEN}[✓] Manuel kanal eklendi: {kanal_adi} ({kanal_id}){RESET}")
         
         return maclar
 
@@ -319,33 +289,21 @@ def create_m3u(maclar, domain):
         return
     
     try:
-        # Kategorilere göre grupla
-        kategoriler = {}
-        for kanal in maclar:
-            kategori = kanal.get("kategori", "genel")
-            if kategori not in kategoriler:
-                kategoriler[kategori] = []
-            kategoriler[kategori].append(kanal)
-        
         with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
-            f.write("#EXTM3U\n\n")
+            f.write("#EXTM3U x-tvg-url=\"\"\n\n")
             
-            # Tüm kanallar için
-            for kategori, kanallar in kategoriler.items():
-                grup_adi = kategori.capitalize() if kategori and kategori != "genel" else "İnat TV"
+            for kanal in maclar:
+                channel_name = kanal["kanal_adi"]
                 
-                for kanal in kanallar:
-                    # Kanal adını temizle
-                    channel_name = kanal["kanal_adi"]
-                    
-                    # EXTINF satırı
-                    f.write(f'#EXTINF:-1 tvg-id="{kanal["tvg_id"]}" tvg-name="{channel_name}" group-title="{grup_adi}",{channel_name}\n')
-                    
-                    # Referer ekle
-                    f.write(f'#EXTVLCOPT:http-referrer={domain}\n')
-                    
-                    # Stream URL
-                    f.write(kanal["dosya"] + "\n\n")
+                # EXTINF satırı
+                f.write(f'#EXTINF:-1 tvg-id="{kanal["tvg_id"]}" tvg-name="{channel_name}" group-title="İnat TV",{channel_name}\n')
+                
+                # Referer ekle
+                f.write(f'#EXTVLCOPT:http-referrer={domain}\n')
+                f.write(f'#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36\n')
+                
+                # Stream URL
+                f.write(kanal["dosya"] + "\n\n")
         
         print(f"{GREEN}[✓] M3U dosyası oluşturuldu: {OUTPUT_FILE}{RESET}")
         print(f"{GREEN}[✓] Toplam {len(maclar)} kanal eklendi{RESET}")
@@ -354,27 +312,18 @@ def create_m3u(maclar, domain):
         print(f"\n{YELLOW}[📊] İSTATİSTİKLER:{RESET}")
         print(f"Toplam Kanal: {len(maclar)}")
         
-        for kategori, kanallar in kategoriler.items():
-            if kategori:
-                grup_adi = kategori.capitalize()
-            else:
-                grup_adi = "Genel"
-            print(f"  {grup_adi}: {len(kanallar)} kanal")
-        
-        # İlk 10 kanalı göster
-        print(f"\n{YELLOW}[📺] İLK 10 KANAL:{RESET}")
-        for i, kanal in enumerate(maclar[:10], 1):
-            print(f"  {i}. {kanal['kanal_adi']}")
+        # Kanal listesi
+        print(f"\n{YELLOW}[📺] KANAL LİSTESİ:{RESET}")
+        for i, kanal in enumerate(maclar, 1):
+            print(f"  {i:2d}. {kanal['kanal_adi']}")
             
     except Exception as e:
         print(f"{RED}[!] M3U dosyası yazılırken hata: {e}{RESET}")
-        import traceback
-        traceback.print_exc()
 
 # -------------------- ÇALIŞTIR --------------------
 if __name__ == "__main__":
     print(f"{GREEN}{'='*50}{RESET}")
-    print(f"{GREEN}     İnat Spor M3U Oluşturucu v3.0     {RESET}")
+    print(f"{GREEN}     İnat Spor M3U Oluşturucu v4.0     {RESET}")
     print(f"{GREEN}{'='*50}{RESET}\n")
     
     try:
@@ -398,7 +347,57 @@ if __name__ == "__main__":
             print(f"🎯 Toplam Kanal: {len(maclar)}")
         else:
             print(f"{RED}[!] Kanal bulunamadı, M3U oluşturulamadı.{RESET}")
-            print(f"{YELLOW}[?] Lütfen debug_page.html dosyasını kontrol edin{RESET}")
+            print(f"{YELLOW}[?] Alternatif yöntem deneniyor...{RESET}")
+            
+            # Alternatif: Sabit kanal listesi
+            print(f"{YELLOW}[!] Sabit kanal listesi kullanılıyor{RESET}")
+            
+            # Sabit kanal listesi (en yaygın kanallar)
+            fixed_channels = [
+                ("yayininat", "BeIN Sports 1"),
+                ("yayinb2", "BeIN Sports 2"),
+                ("yayinb3", "BeIN Sports 3"),
+                ("yayinb4", "BeIN Sports 4"),
+                ("yayinb5", "BeIN Sports 5"),
+                ("yayinbm1", "BeIN Max 1"),
+                ("yayinbm2", "BeIN Max 2"),
+                ("yayinss", "S Sport"),
+                ("yayinss2", "S Sport 2"),
+                ("yayinas", "A Spor"),
+                ("yayintrtspor", "TRT Spor"),
+                ("yayintrtspor2", "TRT Spor 2"),
+                ("yayint1", "Tivibu 1"),
+                ("yayint2", "Tivibu 2"),
+                ("yayint3", "Tivibu 3"),
+                ("yayint4", "Tivibu 4"),
+                ("yayineu1", "Euro Sport 1"),
+                ("yayineu2", "Euro Sport 2"),
+                ("yayinnbatv", "NBA TV"),
+            ]
+            
+            maclar = []
+            for kanal_id, kanal_adi in fixed_channels:
+                m3u8_link = get_channel_m3u8(domain, kanal_id)
+                if m3u8_link:
+                    tvg_id = kanal_id.replace(" ", "_").replace(":", "_")
+                    
+                    mac = {
+                        "saat": "7/24",
+                        "takimlar": kanal_adi,
+                        "canli": True,
+                        "dosya": m3u8_link,
+                        "kanal_adi": f"🔴 7/24 - {kanal_adi}",
+                        "tvg_id": tvg_id,
+                        "kategori": "7/24"
+                    }
+                    
+                    maclar.append(mac)
+                    print(f"{GREEN}[✓] Sabit kanal eklendi: {kanal_adi}{RESET}")
+            
+            if maclar:
+                create_m3u(maclar, domain)
+            else:
+                print(f"{RED}[!] Hiçbir kanal eklenemedi!{RESET}")
             
     except Exception as e:
         print(f"{RED}[!] Ana hata: {e}{RESET}")
