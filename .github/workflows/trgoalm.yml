@@ -31,8 +31,8 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: TRgoal M3U oluştur (trgolam.py)
-        run: python trgolam.py
+      - name: TRgoal M3U oluştur (trgoalm.py)
+        run: python trgoalm.py
 
       - name: Değişiklikleri Commit et
         run: |
