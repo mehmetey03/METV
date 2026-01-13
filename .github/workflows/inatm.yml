@@ -1,4 +1,4 @@
-name: İnat M3U Oluşturucu
+name: İnatm M3U Oluşturucu
 
 permissions:
   contents: write  # Push izni çok önemli!
@@ -31,8 +31,8 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: İnat M3U oluştur (inat.py)
-        run: python inat.py
+      - name: İnat M3U oluştur (inatm.py)
+        run: python inatm.py
 
       - name: Değişiklikleri Commit et
         run: |
