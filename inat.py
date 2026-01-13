@@ -1,47 +1,46 @@
+import requests
 import re
 import html
 import unicodedata
-import cloudscraper
 from bs4 import BeautifulSoup
 
-DOMAIN_TXT_URL = "https://raw.githubusercontent.com/mehmetey03/inatdom/refs/heads/main/domain.txt"
 OUTPUT_FILE = "inat.m3u"
 
 GREEN = "\033[92m"
 RESET = "\033[0m"
 
-scraper = cloudscraper.create_scraper(
-    browser={
-        "browser": "chrome",
-        "platform": "windows",
-        "desktop": True
-    }
-)
+HEADERS = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
+}
 
-# -------------------- Yardımcı --------------------
+# -------------------------------------------------
 def clean_text(text):
     if not text:
         return ""
     text = html.unescape(text)
     return unicodedata.normalize("NFC", text).strip()
 
-# -------------------- Domain Al --------------------
-def get_active_domain():
-    r = scraper.get(DOMAIN_TXT_URL, timeout=10)
-    if r.status_code != 200:
-        raise Exception("domain.txt okunamadı")
+# -------------------------------------------------
+def find_active_domain():
+    print("🔍 Aktif domain aranıyor...")
 
-    m = re.search(r"guncel_domain\s*=\s*(https?://[^\s]+)", r.text)
-    if not m:
-        raise Exception("guncel_domain bulunamadı")
+    for i in range(1204, 2000):
+        url = f"https://inattv{i}.xyz"
+        try:
+            r = requests.get(url, headers=HEADERS, timeout=6, allow_redirects=True)
+            if r.status_code == 200 and len(r.text) > 1000:
+                print(f"{GREEN}✅ Aktif domain bulundu: {url}{RESET}")
+                return url
+        except:
+            pass
 
-    return m.group(1).rstrip("/")
+    return None
 
-# -------------------- m3u8 Al --------------------
+# -------------------------------------------------
 def get_channel_m3u8(domain, channel_id):
     try:
         url = f"{domain}/channel.html?id=yayinzirve"
-        r = scraper.get(url, timeout=10)
+        r = requests.get(url, headers=HEADERS, timeout=8)
         r.encoding = r.apparent_encoding
 
         m = re.search(r'baseurl\s*=\s*"(.*?)"', r.text)
@@ -52,26 +51,24 @@ def get_channel_m3u8(domain, channel_id):
     except:
         return ""
 
-# -------------------- Maçları Çek --------------------
+# -------------------------------------------------
 def get_matches(domain):
     try:
         url = domain + "/live"
-        r = scraper.get(url, timeout=10)
+        r = requests.get(url, headers=HEADERS, timeout=8)
         r.encoding = r.apparent_encoding
 
         soup = BeautifulSoup(r.text, "html.parser")
         maclar = []
 
-        # GENEL ve DAYANIKLI SELECTOR
-        for item in soup.select("a[href*='id=']"):
-            href = item.get("href", "")
+        for a in soup.select("a[href*='id=']"):
+            href = a.get("href", "")
             m = re.search(r"id=([^&]+)", href)
             if not m:
                 continue
 
             kanal_id = m.group(1)
-
-            name = clean_text(item.get_text(" ", strip=True))
+            name = clean_text(a.get_text(" ", strip=True))
             if not name:
                 continue
 
@@ -91,7 +88,7 @@ def get_matches(domain):
         print("get_matches hatası:", e)
         return []
 
-# -------------------- M3U Oluştur --------------------
+# -------------------------------------------------
 def create_m3u(maclar, domain):
     with open(OUTPUT_FILE, "w", encoding="utf-8-sig") as f:
         f.write("#EXTM3U\n")
@@ -104,21 +101,19 @@ def create_m3u(maclar, domain):
 
     print(f"{GREEN}✔ M3U oluşturuldu: {OUTPUT_FILE}{RESET}")
 
-# -------------------- ÇALIŞTIR --------------------
+# -------------------------------------------------
 if __name__ == "__main__":
-    try:
-        print("Güncel domain alınıyor...")
-        domain = get_active_domain()
-        print(f"{GREEN}[✓] Domain: {domain}{RESET}")
+    domain = find_active_domain()
 
-        print("Maçlar çekiliyor...")
-        maclar = get_matches(domain)
-        print(f"{GREEN}{len(maclar)} maç bulundu{RESET}")
+    if not domain:
+        print("❌ Aktif domain bulunamadı")
+        exit(1)
 
-        if maclar:
-            create_m3u(maclar, domain)
-        else:
-            print("⚠ Maç bulunamadı")
+    print("📡 Maçlar çekiliyor...")
+    maclar = get_matches(domain)
+    print(f"{GREEN}{len(maclar)} yayın bulundu{RESET}")
 
-    except Exception as e:
-        print("HATA:", e)
+    if maclar:
+        create_m3u(maclar, domain)
+    else:
+        print("⚠ Maç bulunamadı, M3U oluşturulmadı")
