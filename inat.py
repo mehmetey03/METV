@@ -22,7 +22,7 @@ def clean_text(text):
 # -------------------------------------------------
 def find_active_domain():
     print("🔍 Aktif domain aranıyor...")
-    for i in range(1204, 2000):
+    for i in range(1212, 2000):
         url = f"https://inattv{i}.xyz"
         try:
             r = requests.get(url, headers=HEADERS, timeout=6)
