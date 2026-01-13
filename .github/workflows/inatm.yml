@@ -36,8 +36,8 @@ jobs:
 
       - name: Değişiklikleri Commit et
         run: |
-          git add inat.m3u
-          git commit -m "Auto-update inat.m3u" || echo "No changes to commit"
+          git add karsilasmalar.m3u
+          git commit -m "Auto-update karsilasmalar.m3u" || echo "No changes to commit"
 
       - name: Uzaktaki değişiklikleri çek
         run: |
