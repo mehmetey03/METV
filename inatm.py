@@ -128,7 +128,7 @@ def main():
             full_url = f"{base_url}{cid}.m3u8"
             lines.append(full_url)
         
-        with open("karsilasmalar.m3u", "w", encoding="utf-8") as f:
+        with open("inat.m3u", "w", encoding="utf-8") as f:
             f.write("\n".join(lines))
         
         print(f"✅ karsilasmalar.m3u başarıyla oluşturuldu ({len(channels)} kanal)")
