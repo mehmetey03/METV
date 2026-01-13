@@ -1,162 +1,141 @@
 import requests
 import re
-import html
-import unicodedata
-from bs4 import BeautifulSoup
+import sys
 
-OUTPUT_FILE = "inat.m3u"
-
-HEADERS = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)",
-    "Accept": "application/json,text/html,*/*",
-    "Referer": "https://google.com"
-}
-
-# -------------------------------------------------
-def clean_text(text):
-    if not text:
-        return ""
-    text = html.unescape(text)
-    return unicodedata.normalize("NFC", text).strip()
-
-# -------------------------------------------------
-def find_active_domain():
-    print("🔍 Aktif domain aranıyor...")
-    for i in range(1212, 2000):
-        url = f"https://inattv{i}.xyz"
-        try:
-            r = requests.get(url, headers=HEADERS, timeout=6)
-            if r.status_code == 200 and len(r.text) > 1000:
-                print(f"✅ Aktif domain bulundu: {url}")
-                return url
-        except:
-            pass
-    return None
-
-# -------------------------------------------------
-def get_channel_m3u8(domain, channel_id):
+def main():
     try:
-        url = f"{domain}/channel.html?id=yayinzirve"
-        r = requests.get(url, headers=HEADERS, timeout=8)
-        r.encoding = r.apparent_encoding
-
-        m = re.search(r'baseurl\s*=\s*"(.*?)"', r.text)
-        if not m:
-            return ""
-
-        return f"{m.group(1)}{channel_id}.m3u8"
-    except:
-        return ""
-
-# -------------------------------------------------
-def get_matches_from_api(domain):
-    api_urls = [
-        "/api/live",
-        "/ajax/live",
-        "/api/matches",
-        "/data/matches.json"
-    ]
-
-    for api in api_urls:
+        # Domain aralığı (25–99)
+        active_domain = None
+        print("🔍 Aktif domain aranıyor...")
+        
+        for i in range(1204, 2000):
+            url = f"https://inattv{i}.xyz/"
+            try:
+                r = requests.head(url, timeout=5)
+                if r.status_code == 200:
+                    active_domain = url
+                    print(f"✅ Aktif domain bulundu: {active_domain}")
+                    break
+            except Exception as e:
+                continue
+        
+        if not active_domain:
+            print("⚠️  Aktif domain bulunamadı. Boş M3U dosyası oluşturuluyor...")
+            create_empty_m3u()
+            return 0
+        
+        # İlk kanal ID'si al
+        print("📡 Kanal ID'si alınıyor...")
         try:
-            r = requests.get(domain + api, headers=HEADERS, timeout=8)
-            if r.status_code != 200:
-                continue
-
-            data = r.json()
-            if not isinstance(data, list):
-                continue
-
-            print(f"✅ API bulundu: {api}")
-
-            maclar = []
-            for item in data:
-                kanal_id = item.get("id") or item.get("channel_id")
-                title = item.get("title") or item.get("name")
-
-                if not kanal_id or not title:
-                    continue
-
-                m3u8 = get_channel_m3u8(domain, kanal_id)
-                if not m3u8:
-                    continue
-
-                maclar.append({
-                    "tvg_id": kanal_id,
-                    "kanal_adi": clean_text(title),
-                    "dosya": m3u8
-                })
-
-            if maclar:
-                return maclar
-
-        except:
-            continue
-
-    return []
-
-# -------------------------------------------------
-def get_matches_from_html(domain):
-    try:
-        r = requests.get(domain + "/live", headers=HEADERS, timeout=8)
-        soup = BeautifulSoup(r.text, "html.parser")
-
-        maclar = []
-        for a in soup.select("a[href*='id=']"):
-            m = re.search(r"id=([^&]+)", a.get("href", ""))
+            html = requests.get(active_domain, timeout=10).text
+            m = re.search(r'<iframe[^>]+id="customIframe"[^>]+src="/channel.html\?id=([^"]+)"', html)
+            
             if not m:
-                continue
+                print("⚠️  Kanal ID bulunamadı. Boş M3U dosyası oluşturuluyor...")
+                create_empty_m3u()
+                return 0
+            
+            first_id = m.group(1)
+            print(f"✅ Kanal ID bulundu: {first_id}")
+            
+        except Exception as e:
+            print(f"⚠️  HTML alınırken hata: {str(e)}")
+            create_empty_m3u()
+            return 0
+        
+        # Base URL çek
+        print("🔗 Base URL alınıyor...")
+        try:
+            event_source = requests.get(active_domain + "channel.html?id=" + first_id, timeout=10).text
+            b = re.search(r'const\s+BASE_URL\s*=\s*"([^"]+)"', event_source)
+            
+            if not b:
+                print("⚠️  Base URL bulunamadı. Boş M3U dosyası oluşturuluyor...")
+                create_empty_m3u()
+                return 0
+            
+            base_url = b.group(1)
+            print(f"✅ Base URL bulundu: {base_url}")
+            
+        except Exception as e:
+            print(f"⚠️  Event source alınırken hata: {str(e)}")
+            create_empty_m3u()
+            return 0
+        
+        # Kanal listesi
+        channel_ids = {
+            "yayinzirve": ["beIN Sports 1 A", "Inat TV"],
+            "yayininat":  ["beIN Sports 1 B", "Inat TV"],
+            "yayin1":     ["beIN Sports 1 C️", "Inat TV"],
+            "yayinb2":    ["beIN Sports 2", "Inat TV"],
+            "yayinb3":    ["beIN Sports 3", "Inat TV"],
+            "yayinb4":    ["beIN Sports 4", "Inat TV"],
+            "yayinb5":    ["beIN Sports 5", "Inat TV"],
+            "yayinbm1":   ["beIN Sports 1 Max", "Inat TV"],
+            "yayinbm2":   ["beIN Sports 2 Max", "Inat TV"],
+            "yayinss":    ["S Sports 1", "Inat TV"],
+            "yayinss2":   ["S Sports 2", "Inat TV"],
+            "yayint1":    ["Tivibu Sports 1", "Inat TV"],
+            "yayint2":    ["Tivibu Sports 2", "Inat TV"],
+            "yayint3":    ["Tivibu Sports 3", "Inat TV"],
+            "yayint4":    ["Tivibu Sports 4", "Inat TV"],
+            "yayinsmarts":["Smart Sports", "Inat TV"],
+            "yayinsms2":  ["Smart Sports 2", "Inat TV"],
+            "yayineu1":  ["Euro Sport 1", "Inat TV"],
+            "yayineu2":  ["Euro Sport 2", "Inat TV"],
+            "yayinex1":   ["Tâbii 1", "Inat TV"],
+            "yayinex2":   ["Tâbii 2", "Inat TV"],
+            "yayinex3":   ["Tâbii 3", "Inat TV"],
+            "yayinex4":   ["Tâbii 4", "Inat TV"],
+            "yayinex5":   ["Tâbii 5", "Inat TV"],
+            "yayinex6":   ["Tâbii 6", "Inat TV"],
+            "yayinex7":   ["Tâbii 7", "Inat TV"],
+            "yayinex8":   ["Tâbii 8", "Inat TV"]
+        }
+        
+        # M3U dosyası oluştur
+        print("📝 M3U dosyası oluşturuluyor...")
+        lines = ["\n"]
+        for cid, details in channel_ids.items():
+            name = details[0]  # Listenin ilk elemanı: Kanal Adı (Örn: beIN Sports 1 A)
+            title = details[1] # Listenin ikinci elemanı: Grup (Örn: Inat TV)
+            
+            # EXTM3U satırını oluştur
+            lines.append(f'#EXTINF:-1 group-title="Inat TV" ,{name}')
+            lines.append(f'#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5)')
+            lines.append(f'#EXTVLCOPT:http-referrer={active_domain}')
+            
+            # URL satırını oluştur (Sözlük anahtarı olan 'cid' kullanılıyor)
+            full_url = f"{base_url}{cid}.m3u8"
+            lines.append(full_url)
+        
+        with open("inattv.m3u", "w", encoding="utf-8") as f:
+            f.write("\n".join(lines))
+        
+        print(f"✅ inattv.m3u başarıyla oluşturuldu ({len(channel_ids)} kanal)")
+        return 0
+        
+    except Exception as e:
+        print(f"❌ Beklenmeyen hata: {str(e)}")
+        print("⚠️  Boş M3U dosyası oluşturuluyor...")
+        create_empty_m3u()
+        return 0
 
-            kanal_id = m.group(1)
-            name = clean_text(a.get_text(" ", strip=True))
+def create_empty_m3u():
+    """Hata durumunda boş/placeholder M3U dosyası oluştur"""
+    try:
+        with open("inattv.m3u", "w", encoding="utf-8") as f:
+            f.write("#EXTM3U\n")
+            f.write("# Kanal listesi şu anda kullanılamıyor\n")
+        print("✅ Placeholder M3U dosyası oluşturuldu")
+    except Exception as e:
+        print(f"❌ M3U dosyası oluşturulamadı: {str(e)}")
 
-            if not name:
-                continue
-
-            m3u8 = get_channel_m3u8(domain, kanal_id)
-            if not m3u8:
-                continue
-
-            maclar.append({
-                "tvg_id": kanal_id,
-                "kanal_adi": name,
-                "dosya": m3u8
-            })
-
-        return maclar
-    except:
-        return []
-
-# -------------------------------------------------
-def create_m3u(maclar, domain):
-    with open(OUTPUT_FILE, "w", encoding="utf-8-sig") as f:
-        f.write("#EXTM3U\n")
-        for k in maclar:
-            f.write(
-                f'#EXTINF:-1 tvg-id="{k["tvg_id"]}" group-title="İnat",{k["kanal_adi"]}\n'
-            )
-            f.write(f"#EXTVLCOPT:http-referrer={domain}\n")
-            f.write(k["dosya"] + "\n")
-
-    print(f"✔ M3U oluşturuldu: {OUTPUT_FILE}")
-
-# -------------------------------------------------
 if __name__ == "__main__":
-    domain = find_active_domain()
-    if not domain:
-        print("❌ Domain bulunamadı")
-        exit(1)
+    exit_code = main()
+    sys.exit(exit_code)
 
-    print("📡 Yayınlar API’den deneniyor...")
-    maclar = get_matches_from_api(domain)
 
-    if not maclar:
-        print("⚠ API yok, HTML deneniyor...")
-        maclar = get_matches_from_html(domain)
 
-    print(f"📊 Bulunan yayın: {len(maclar)}")
 
-    if maclar:
-        create_m3u(maclar, domain)
-    else:
-        print("❌ Hiç yayın bulunamadı")
+
