@@ -32,7 +32,6 @@ def main():
             "yayintrt1":  ["TRT 1", "Inat TV"],
             "yayinatv":  ["ATV", "Inat TV"],
             "yayintv85":  ["TV8.5", "Inat TV"],
-            "yayintv8":   ["TV8, "Inat TV"],
             "yayinnbatv":  ["NBATV", "Inat TV"],
             "yayineu1":   ["Euro Sport 1", "Inat TV"],
             "yayineu2":   ["Euro Sport 2", "Inat TV"],
