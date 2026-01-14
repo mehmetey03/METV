@@ -27,12 +27,12 @@ def main():
             "yayinsmarts":["Smart Sports", "Inat TV"],
             "yayinsms2":  ["Smart Sports 2", "Inat TV"],
             "yayinas":    ["A Spor", "Inat TV"],
-            "yayintrtspor":    ["TRT Spor", "Inat TV"],
-            "yayintrtspor2":    ["TRT Spor Yıldız", "Inat TV"],
+            "yayintrtspor": ["TRT Spor", "Inat TV"],
+            "yayintrtspor2":["TRT Spor Yıldız", "Inat TV"],
             "yayintrt1":  ["TRT 1", "Inat TV"],
-            "yayinatv":  ["ATV", "Inat TV"],
+            "yayinatv":   ["ATV", "Inat TV"],
             "yayintv85":  ["TV8.5", "Inat TV"],
-            "yayinnbatv":  ["NBATV", "Inat TV"],
+            "yayinnbatv": ["NBATV", "Inat TV"],
             "yayineu1":   ["Euro Sport 1", "Inat TV"],
             "yayineu2":   ["Euro Sport 2", "Inat TV"],
             "yayinex1":   ["Tâbii 1", "Inat TV"],
@@ -70,13 +70,19 @@ def main():
         # BASE_URL AL
         # ===============================
         main_html = requests.get(active_domain, timeout=10).text
-        m = re.search(r'<iframe[^>]+id="customIframe"[^>]+src="/channel.html\?id=([^"]+)"', main_html)
+        m = re.search(
+            r'<iframe[^>]+id="customIframe"[^>]+src="/channel.html\?id=([^"]+)"',
+            main_html
+        )
         if not m:
             print("⚠️ İlk kanal ID bulunamadı")
             return 0
 
         first_id = m.group(1)
-        channel_html = requests.get(f"{active_domain}channel.html?id={first_id}", timeout=10).text
+        channel_html = requests.get(
+            f"{active_domain}channel.html?id={first_id}", timeout=10
+        ).text
+
         b = re.search(r'const\s+BASE_URL\s*=\s*"([^"]+)"', channel_html)
         if not b:
             print("⚠️ BASE_URL bulunamadı")
@@ -86,21 +92,29 @@ def main():
         print(f"✅ BASE_URL: {base_url}")
 
         # ===============================
-        # CANLI MAÇLARI ÇEK
+        # CANLI MAÇLARI ÇEK (UTF-8 FIX)
         # ===============================
         print("📡 Canlı maçlar alınıyor...")
         response = requests.get(active_domain, timeout=10)
+        response.encoding = "utf-8"   # 🔥 TÜRKÇE KARAKTER FIX
         soup = BeautifulSoup(response.text, "html.parser")
 
         matches_tab = soup.find(id="matches-tab")
         dynamic_channels = []
 
         if matches_tab:
-            links = matches_tab.find_all("a", href=re.compile(r'/channel\.html\?id='))
+            links = matches_tab.find_all(
+                "a", href=re.compile(r'/channel\.html\?id=')
+            )
             for link in links:
-                cid = re.search(r'id=([^&]+)', link.get("href", "")).group(1)
+                id_match = re.search(r'id=([^&]+)', link.get("href", ""))
+                if not id_match:
+                    continue
+
+                cid = id_match.group(1)
                 name_el = link.find(class_="channel-name")
                 time_el = link.find(class_="channel-status")
+
                 if name_el and time_el:
                     title = f"{time_el.get_text(strip=True)} | {name_el.get_text(strip=True)}"
                     dynamic_channels.append((cid, title))
@@ -130,12 +144,13 @@ def main():
         with open("karsilasmalar.m3u", "w", encoding="utf-8") as f:
             f.write("\n".join(lines))
 
-        print(f"✅ karsilasmalar.m3u hazırlandı (Maçlar + Kanallar)")
+        print("✅ karsilasmalar.m3u başarıyla oluşturuldu")
         return 0
 
     except Exception as e:
         print(f"❌ Hata: {e}")
         return 0
+
 
 if __name__ == "__main__":
     sys.exit(main())
