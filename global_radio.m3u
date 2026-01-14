@@ -53,13 +53,13 @@ http://icecast.radiofrance.fr/franceculture-hifi.aac
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://streaming.radio.rtl.fr/rtl-1-44-128
 
-#EXTINF:-1 tvg-id="France_9" tvg-name="RFI-Afrique" tvg-logo="" group-title="France",RFI-Afrique
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://live02.rfi.fr/rfiafrique-96k.mp3
-
-#EXTINF:-1 tvg-id="France_10" tvg-name="France Inter" tvg-logo="" group-title="France",France Inter
+#EXTINF:-1 tvg-id="France_9" tvg-name="France Inter" tvg-logo="" group-title="France",France Inter
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://direct.franceinter.fr/live/franceinter-midfi.mp3
+
+#EXTINF:-1 tvg-id="France_10" tvg-name="RFI-Afrique" tvg-logo="" group-title="France",RFI-Afrique
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://live02.rfi.fr/rfiafrique-96k.mp3
 
 #EXTINF:-1 tvg-id="France_11" tvg-name="Skyrock" tvg-logo="https://play-lh.googleusercontent.com/dPiQ01OUKZVfRZUbbb-EVK5g9miS_K-xrxHgmBbynGG-GQ53yt3GzFKr0zUTnb-xswQ=s200-rw" group-title="France",Skyrock
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -326,13 +326,13 @@ https://icecast.walmradio.com:8443/walm
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://icecast.walmradio.com:8443/otr
 
-#EXTINF:-1 tvg-id="The United States Of America_6" tvg-name="101 SMOOTH JAZZ" tvg-logo="http://101smoothjazz.com/favicon.ico" group-title="The United States Of America",101 SMOOTH JAZZ
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://www.101smoothjazz.com/101-smoothjazz.m3u
-
-#EXTINF:-1 tvg-id="The United States Of America_7" tvg-name="WALM 2 HD" tvg-logo="https://icecast.walmradio.com:8443/walm.jpg" group-title="The United States Of America",WALM 2 HD
+#EXTINF:-1 tvg-id="The United States Of America_6" tvg-name="WALM 2 HD" tvg-logo="https://icecast.walmradio.com:8443/walm.jpg" group-title="The United States Of America",WALM 2 HD
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://icecast.walmradio.com:8443/walm2
+
+#EXTINF:-1 tvg-id="The United States Of America_7" tvg-name="101 SMOOTH JAZZ" tvg-logo="http://101smoothjazz.com/favicon.ico" group-title="The United States Of America",101 SMOOTH JAZZ
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://www.101smoothjazz.com/101-smoothjazz.m3u
 
 #EXTINF:-1 tvg-id="The United States Of America_8" tvg-name="Deep House Lounge" tvg-logo="http://www.deephouselounge.com/wp-content/themes/maronpro/images/favicon.ico" group-title="The United States Of America",Deep House Lounge
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
