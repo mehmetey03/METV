@@ -137,10 +137,10 @@ def main():
             lines.append(f'#EXTVLCOPT:http-referrer={active_domain}')
             lines.append(json_links[cid])
 
-        with open("karsilasmalar_final.m3u", "w", encoding="utf-8") as f:
+        with open("karsilasmalar2.m3u", "w", encoding="utf-8") as f:
             f.write("\n".join(lines))
 
-        print("✅ karsilasmalar_final.m3u başarıyla oluşturuldu")
+        print("✅ karsilasmalar2.m3u başarıyla oluşturuldu")
         return 0
 
     except Exception as e:
