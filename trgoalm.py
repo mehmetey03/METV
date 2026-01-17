@@ -121,10 +121,10 @@ def main():
                 f"{base_url}{cid}.m3u8"
             ]
 
-        with open("karsilasmalar.m3u", "w", encoding="utf-8") as f:
+        with open("karsilasmalar2.m3u", "w", encoding="utf-8") as f:
             f.write("\n".join(lines))
 
-        print("✅ karsilasmalar.m3u hazır")
+        print("✅ karsilasmalar2.m3u hazır")
 
     except Exception as e:
         print("❌ Hata:", e)
