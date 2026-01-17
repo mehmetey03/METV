@@ -1,22 +1,11 @@
 import requests
 import re
 import sys
+import json
 from bs4 import BeautifulSoup
 
 
-def extract_base_url(channel_html, cid):
-    """
-    channel.html içinden cid.m3u8 geçen TAM URL'yi yakalar
-    ve base_url üretir
-    """
-    # cid.m3u8 geçen URL'yi bul
-    pattern = rf'(https?://[^"\']+/{cid}\.m3u8)'
-    m = re.search(pattern, channel_html)
-    if not m:
-        return None
-
-    full_url = m.group(1)
-    return full_url.replace(f"{cid}.m3u8", "")
+TRGOALS_JSON = "https://raw.githubusercontent.com/mehmetey03/METV/5af7251ac4b20adf59a0c3c8b3431b416a18ab94/trgoals_data.json"
 
 
 def main():
@@ -25,30 +14,30 @@ def main():
         # SABİT KANAL LİSTESİ
         # ===============================
         fixed_channels = {
-            "yayinzirve": ["beIN Sports 1 A", "Inat TV"],
-            "yayininat": ["beIN Sports 1 B", "Inat TV"],
-            "yayin1": ["beIN Sports 1 C", "Inat TV"],
-            "yayinb2": ["beIN Sports 2", "Inat TV"],
-            "yayinb3": ["beIN Sports 3", "Inat TV"],
-            "yayinb4": ["beIN Sports 4", "Inat TV"],
-            "yayinb5": ["beIN Sports 5", "Inat TV"],
-            "yayinbm1": ["beIN Sports 1 Max", "Inat TV"],
-            "yayinbm2": ["beIN Sports 2 Max", "Inat TV"],
-            "yayinss": ["S Sports 1", "Inat TV"],
-            "yayinss2": ["S Sports 2", "Inat TV"],
-            "yayint1": ["Tivibu Sports 1", "Inat TV"],
-            "yayint2": ["Tivibu Sports 2", "Inat TV"],
-            "yayint3": ["Tivibu Sports 3", "Inat TV"],
-            "yayint4": ["Tivibu Sports 4", "Inat TV"],
-            "yayinas": ["A Spor", "Inat TV"],
-            "yayintrtspor": ["TRT Spor", "Inat TV"],
-            "yayintrtspor2": ["TRT Spor Yıldız", "Inat TV"],
-            "yayintrt1": ["TRT 1", "Inat TV"],
-            "yayinatv": ["ATV", "Inat TV"],
-            "yayintv85": ["TV8.5", "Inat TV"],
-            "yayinnbatv": ["NBATV", "Inat TV"],
-            "yayineu1": ["Euro Sport 1", "Inat TV"],
-            "yayineu2": ["Euro Sport 2", "Inat TV"],
+            "yayinzirve": "beIN Sports 1 A",
+            "yayininat":  "beIN Sports 1 B",
+            "yayin1":     "beIN Sports 1 C",
+            "yayinb2":    "beIN Sports 2",
+            "yayinb3":    "beIN Sports 3",
+            "yayinb4":    "beIN Sports 4",
+            "yayinb5":    "beIN Sports 5",
+            "yayinbm1":   "beIN Sports 1 Max",
+            "yayinbm2":   "beIN Sports 2 Max",
+            "yayinss":    "S Sports 1",
+            "yayinss2":   "S Sports 2",
+            "yayint1":    "Tivibu Sports 1",
+            "yayint2":    "Tivibu Sports 2",
+            "yayint3":    "Tivibu Sports 3",
+            "yayint4":    "Tivibu Sports 4",
+            "yayinas":    "A Spor",
+            "yayintrtspor": "TRT Spor",
+            "yayintrtspor2": "TRT Spor Yıldız",
+            "yayintrt1":  "TRT 1",
+            "yayinatv":   "ATV",
+            "yayintv85":  "TV8.5",
+            "yayinnbatv": "NBATV",
+            "yayineu1":   "Euro Sport 1",
+            "yayineu2":   "Euro Sport 2"
         }
 
         # ===============================
@@ -57,7 +46,7 @@ def main():
         print("🔍 Aktif domain aranıyor...")
         active_domain = None
 
-        for i in range(1400, 2000):
+        for i in range(1497, 2000):
             url = f"https://trgoals{i}.xyz/"
             try:
                 r = requests.head(url, timeout=5)
@@ -73,30 +62,31 @@ def main():
             return 0
 
         # ===============================
-        # İLK KANAL ID
+        # JSON'DAN GERÇEK LINKLERİ AL
         # ===============================
-        main_html = requests.get(active_domain, timeout=10).text
-        m = re.search(r'/channel\.html\?id=([^"&]+)', main_html)
-        if not m:
-            print("❌ İlk kanal ID bulunamadı")
-            return 0
+        print("📦 trgoals_data.json alınıyor...")
+        j = requests.get(TRGOALS_JSON, timeout=10).json()
+        items = j["list"]["item"]
 
-        first_id = m.group(1)
+        json_links = {}
+        base_url = None
 
-        # ===============================
-        # BASE_URL ÇÖZ
-        # ===============================
-        channel_html = requests.get(
-            f"{active_domain}channel.html?id={first_id}",
-            timeout=10
-        ).text
+        for it in items:
+            url = it.get("url")
+            if not url:
+                continue
 
-        base_url = extract_base_url(channel_html, first_id)
+            cid = url.split("/")[-1].replace(".m3u8", "")
+            json_links[cid] = url
+
+            if not base_url:
+                base_url = url.replace(f"{cid}.m3u8", "")
+
         if not base_url:
-            print("❌ BASE_URL çözülemedi (m3u8 bulunamadı)")
+            print("❌ JSON içinden base_url çıkarılamadı")
             return 0
 
-        print(f"✅ BASE_URL çözüldü: {base_url}")
+        print(f"✅ BASE_URL (JSON): {base_url}")
 
         # ===============================
         # CANLI MAÇLARI ÇEK
@@ -130,22 +120,27 @@ def main():
         print("📝 M3U oluşturuluyor...")
         lines = ["#EXTM3U"]
 
+        # CANLI MAÇLAR (base_url + cid)
         for cid, title in dynamic_channels:
             lines.append(f'#EXTINF:-1 group-title="Canlı Maçlar",{title}')
             lines.append('#EXTVLCOPT:http-user-agent=Mozilla/5.0')
             lines.append(f'#EXTVLCOPT:http-referrer={active_domain}')
             lines.append(f'{base_url}{cid}.m3u8')
 
-        for cid, info in fixed_channels.items():
-            lines.append(f'#EXTINF:-1 group-title="{info[1]}",{info[0]}')
+        # SABİT KANALLAR (JSON'DAN GERÇEK URL)
+        for cid, name in fixed_channels.items():
+            if cid not in json_links:
+                continue
+
+            lines.append(f'#EXTINF:-1 group-title="Inat TV",{name}')
             lines.append('#EXTVLCOPT:http-user-agent=Mozilla/5.0')
             lines.append(f'#EXTVLCOPT:http-referrer={active_domain}')
-            lines.append(f'{base_url}{cid}.m3u8')
+            lines.append(json_links[cid])
 
         with open("karsilasmalar_final.m3u", "w", encoding="utf-8") as f:
             f.write("\n".join(lines))
 
-        print("✅ karsilasmalar_final.m3u oluşturuldu")
+        print("✅ karsilasmalar_final.m3u başarıyla oluşturuldu")
         return 0
 
     except Exception as e:
