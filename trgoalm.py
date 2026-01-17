@@ -4,15 +4,19 @@ import sys
 from bs4 import BeautifulSoup
 
 
-def extract_base_url(channel_html):
+def extract_base_url(channel_html, cid):
     """
-    channel.html içinden gerçek CDN base URL'yi yakalar
-    Örn: https://ogr.xxxxx.sbs/live/
+    channel.html içinden cid.m3u8 geçen TAM URL'yi yakalar
+    ve base_url üretir
     """
-    m = re.search(r'(https?://[^"\']+?/live/)', channel_html)
-    if m:
-        return m.group(1)
-    return None
+    # cid.m3u8 geçen URL'yi bul
+    pattern = rf'(https?://[^"\']+/{cid}\.m3u8)'
+    m = re.search(pattern, channel_html)
+    if not m:
+        return None
+
+    full_url = m.group(1)
+    return full_url.replace(f"{cid}.m3u8", "")
 
 
 def main():
@@ -36,8 +40,6 @@ def main():
             "yayint2": ["Tivibu Sports 2", "Inat TV"],
             "yayint3": ["Tivibu Sports 3", "Inat TV"],
             "yayint4": ["Tivibu Sports 4", "Inat TV"],
-            "yayinsmarts": ["Smart Sports", "Inat TV"],
-            "yayinsms2": ["Smart Sports 2", "Inat TV"],
             "yayinas": ["A Spor", "Inat TV"],
             "yayintrtspor": ["TRT Spor", "Inat TV"],
             "yayintrtspor2": ["TRT Spor Yıldız", "Inat TV"],
@@ -47,14 +49,6 @@ def main():
             "yayinnbatv": ["NBATV", "Inat TV"],
             "yayineu1": ["Euro Sport 1", "Inat TV"],
             "yayineu2": ["Euro Sport 2", "Inat TV"],
-            "yayinex1": ["Tâbii 1", "Inat TV"],
-            "yayinex2": ["Tâbii 2", "Inat TV"],
-            "yayinex3": ["Tâbii 3", "Inat TV"],
-            "yayinex4": ["Tâbii 4", "Inat TV"],
-            "yayinex5": ["Tâbii 5", "Inat TV"],
-            "yayinex6": ["Tâbii 6", "Inat TV"],
-            "yayinex7": ["Tâbii 7", "Inat TV"],
-            "yayinex8": ["Tâbii 8", "Inat TV"]
         }
 
         # ===============================
@@ -79,52 +73,48 @@ def main():
             return 0
 
         # ===============================
-        # İLK KANAL ID + BASE_URL
+        # İLK KANAL ID
         # ===============================
         main_html = requests.get(active_domain, timeout=10).text
-        iframe = re.search(
-            r'/channel\.html\?id=([^"&]+)',
-            main_html
-        )
-
-        if not iframe:
+        m = re.search(r'/channel\.html\?id=([^"&]+)', main_html)
+        if not m:
             print("❌ İlk kanal ID bulunamadı")
             return 0
 
-        first_id = iframe.group(1)
+        first_id = m.group(1)
+
+        # ===============================
+        # BASE_URL ÇÖZ
+        # ===============================
         channel_html = requests.get(
             f"{active_domain}channel.html?id={first_id}",
             timeout=10
         ).text
 
-        base_url = extract_base_url(channel_html)
+        base_url = extract_base_url(channel_html, first_id)
         if not base_url:
-            print("❌ BASE_URL çözülemedi (HTML içinden)")
+            print("❌ BASE_URL çözülemedi (m3u8 bulunamadı)")
             return 0
 
-        print(f"✅ BASE_URL: {base_url}")
+        print(f"✅ BASE_URL çözüldü: {base_url}")
 
         # ===============================
-        # CANLI MAÇLARI ÇEK (UTF-8 FIX)
+        # CANLI MAÇLARI ÇEK
         # ===============================
         print("📡 Canlı maçlar alınıyor...")
-        response = requests.get(active_domain, timeout=10)
-        response.encoding = "utf-8"
-        soup = BeautifulSoup(response.text, "html.parser")
+        r = requests.get(active_domain, timeout=10)
+        r.encoding = "utf-8"
+        soup = BeautifulSoup(r.text, "html.parser")
 
-        matches_tab = soup.find(id="matches-tab")
         dynamic_channels = []
+        matches_tab = soup.find(id="matches-tab")
 
         if matches_tab:
             for link in matches_tab.find_all("a", href=True):
                 if "channel.html?id=" not in link["href"]:
                     continue
 
-                cid_match = re.search(r'id=([^&]+)', link["href"])
-                if not cid_match:
-                    continue
-
-                cid = cid_match.group(1)
+                cid = re.search(r'id=([^&]+)', link["href"]).group(1)
                 name_el = link.find(class_="channel-name")
                 time_el = link.find(class_="channel-status")
 
@@ -140,14 +130,12 @@ def main():
         print("📝 M3U oluşturuluyor...")
         lines = ["#EXTM3U"]
 
-        # CANLI MAÇLAR
         for cid, title in dynamic_channels:
             lines.append(f'#EXTINF:-1 group-title="Canlı Maçlar",{title}')
             lines.append('#EXTVLCOPT:http-user-agent=Mozilla/5.0')
             lines.append(f'#EXTVLCOPT:http-referrer={active_domain}')
             lines.append(f'{base_url}{cid}.m3u8')
 
-        # SABİT KANALLAR
         for cid, info in fixed_channels.items():
             lines.append(f'#EXTINF:-1 group-title="{info[1]}",{info[0]}')
             lines.append('#EXTVLCOPT:http-user-agent=Mozilla/5.0')
@@ -157,7 +145,7 @@ def main():
         with open("karsilasmalar_final.m3u", "w", encoding="utf-8") as f:
             f.write("\n".join(lines))
 
-        print("✅ karsilasmalar_final.m3u başarıyla oluşturuldu")
+        print("✅ karsilasmalar_final.m3u oluşturuldu")
         return 0
 
     except Exception as e:
