@@ -124,7 +124,7 @@ for cid, name in fixed_channels.items():
     lines.append(f'#EXTVLCOPT:http-referrer={active_domain}')
     lines.append(f'{base_url}{cid}.m3u8')
 
-with open("karsilasmalar2.m3u", "w", encoding="utf-8") as f:
+with open("karsilasmalar.m3u", "w", encoding="utf-8") as f:
     f.write("\n".join(lines))
 
-print("🏁 TAMAM → karsilasmalar2.m3u oluşturuldu")
+print("🏁 TAMAM → karsilasmalar.m3u oluşturuldu")
