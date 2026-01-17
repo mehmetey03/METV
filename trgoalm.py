@@ -46,7 +46,7 @@ def main():
         active_domain = None
         print("🔍 Aktif domain aranıyor...")
 
-        for i in range(1200, 2000):
+        for i in range(1497, 2000):
             url = f"https://trgoals{i}.xyz/"
             try:
                 r = requests.head(url, headers=HEADERS, timeout=5)
