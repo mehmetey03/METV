@@ -15,8 +15,7 @@ HEADERS = {
 # =====================================================
 # SABİT KANALLAR
 # =====================================================
-        fixed_channels = {
-            "yayinzirve": ["beIN Sports 1 A", "Inat TV"],
+fixed_channels = {"yayinzirve": ["beIN Sports 1 A", "Inat TV"],
             "yayininat":  ["beIN Sports 1 B", "Inat TV"],
             "yayin1":     ["beIN Sports 1 C", "Inat TV"],
             "yayinb2":    ["beIN Sports 2", "Inat TV"],
@@ -50,7 +49,7 @@ HEADERS = {
             "yayinex6":   ["Tâbii 6", "Inat TV"],
             "yayinex7":   ["Tâbii 7", "Inat TV"],
             "yayinex8":   ["Tâbii 8", "Inat TV"]
-        }
+ }
 
 # =====================================================
 # AKTİF DOMAIN BUL
