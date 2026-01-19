@@ -548,6 +548,10 @@ https://lhttp.qtfm.cn/live/20500172/64k.mp3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://lhttp.qingting.fm/live/4915/64k.mp3
 
+#EXTINF:-1 tvg-id="China_9" tvg-name="500首华语经典" tvg-logo="" group-title="China",500首华语经典
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://lhttp.qtfm.cn/live/5022308/64k.mp3
+
 #EXTINF:-1 tvg-id="" tvg-logo="" group-title="Colombia",Colombia
 #EXTGRP:Colombia
 
@@ -614,10 +618,6 @@ https://playerservices.streamtheworld.com/api/livestream-redirect/BESAME_MEDELLI
 #EXTINF:-1 tvg-id="Colombia_15" tvg-name="Caracol Radio (Bogotá) - 100.9 FM / 810 AM - HJGL / HJCY - PRISA Radio - Bogotá Colombia" tvg-logo="https://caracol.com.co/pf/resources/caracol-colombia/touch-icon-ipad.png?d=174" group-title="Colombia",Caracol Radio (Bogotá) - 100.9 FM / 810 AM - HJGL / HJCY - PRISA Radio - Bogotá Colombia
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://playerservices.streamtheworld.com/api/livestream-redirect/CARACOL_RADIOAAC.aac
-
-#EXTINF:-1 tvg-id="Colombia_16" tvg-name="Mix (Medellín) 89.9 FM" tvg-logo="https://mixradio.co/icon?b8748d2f62517688" group-title="Colombia",Mix (Medellín) 89.9 FM
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://playerservices.streamtheworld.com/api/livestream-redirect/MIX_MEDELLINAAC.aac
 
 #EXTINF:-1 tvg-id="" tvg-logo="" group-title="Croatia",Croatia
 #EXTGRP:Croatia
@@ -1878,13 +1878,13 @@ https://nr8.newradio.it:19574/stream
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://icy.unitedradio.it/VirginRock70.mp3
 
-#EXTINF:-1 tvg-id="Italy_13" tvg-name="Radio Studio Più - HQ" tvg-logo="https://studiopiu.net/offline/img/icona.png" group-title="Italy",Radio Studio Più - HQ
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://77.241.4.100:8020/;
-
-#EXTINF:-1 tvg-id="Italy_14" tvg-name="Radio Armisa" tvg-logo="https://armisa.it/assets/favicon/android-chrome-512x512.png" group-title="Italy",Radio Armisa
+#EXTINF:-1 tvg-id="Italy_13" tvg-name="Radio Armisa" tvg-logo="https://armisa.it/assets/favicon/android-chrome-512x512.png" group-title="Italy",Radio Armisa
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://onair.armisa.it/listen/armisa/radio.mp3
+
+#EXTINF:-1 tvg-id="Italy_14" tvg-name="Radio Studio Più - HQ" tvg-logo="https://studiopiu.net/offline/img/icona.png" group-title="Italy",Radio Studio Più - HQ
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://77.241.4.100:8020/;
 
 #EXTINF:-1 tvg-id="Italy_15" tvg-name="Tele Radio Stereo" tvg-logo="http://cdn-radiotime-logos.tunein.com/s17518q.png" group-title="Italy",Tele Radio Stereo
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -3092,21 +3092,21 @@ http://nashe1.hostingradio.ru/rock-128.mp3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://icecast-radiovanya.cdnvideo.ru/radiovanya
 
-#EXTINF:-1 tvg-id="The Russian Federation_3" tvg-name="Дорожное радио" tvg-logo="https://dorognoe.ru/assets/default/i/fav_114x114.png" group-title="The Russian Federation",Дорожное радио
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://dorognoe.hostingradio.ru:8000/radio
-
-#EXTINF:-1 tvg-id="The Russian Federation_4" tvg-name="Ретро FM" tvg-logo="" group-title="The Russian Federation",Ретро FM
+#EXTINF:-1 tvg-id="The Russian Federation_3" tvg-name="Ретро FM" tvg-logo="" group-title="The Russian Federation",Ретро FM
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://retroserver.streamr.ru:8043/retro256.mp3
 
-#EXTINF:-1 tvg-id="The Russian Federation_5" tvg-name="DFM Дискач 90-х" tvg-logo="" group-title="The Russian Federation",DFM Дискач 90-х
+#EXTINF:-1 tvg-id="The Russian Federation_4" tvg-name="Дорожное радио" tvg-logo="https://dorognoe.ru/assets/default/i/fav_114x114.png" group-title="The Russian Federation",Дорожное радио
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://dfm-disc90.hostingradio.ru/disc9096.aacp
+http://dorognoe.hostingradio.ru:8000/radio
 
-#EXTINF:-1 tvg-id="The Russian Federation_6" tvg-name="DFM RUSSIAN DANCE" tvg-logo="https://dfm.ru/uploads/favicon.ico" group-title="The Russian Federation",DFM RUSSIAN DANCE
+#EXTINF:-1 tvg-id="The Russian Federation_5" tvg-name="DFM RUSSIAN DANCE" tvg-logo="https://dfm.ru/uploads/favicon.ico" group-title="The Russian Federation",DFM RUSSIAN DANCE
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://dfm-dfmrusdance.hostingradio.ru/dfmrusdance96.aacp?0.9987259013359274
+
+#EXTINF:-1 tvg-id="The Russian Federation_6" tvg-name="DFM Дискач 90-х" tvg-logo="" group-title="The Russian Federation",DFM Дискач 90-х
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://dfm-disc90.hostingradio.ru/disc9096.aacp
 
 #EXTINF:-1 tvg-id="The Russian Federation_7" tvg-name="Дискотека СССР" tvg-logo="" group-title="The Russian Federation",Дискотека СССР
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -4236,11 +4236,11 @@ http://edge.mixlr.com/channel/rumps
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://node-24.zeno.fm/542gubz258quv
 
-#EXTINF:-1 tvg-id="Yemen_7" tvg-name="صوت المقاومة" tvg-logo="https://www.facebook.com/favicon.ico" group-title="Yemen",صوت المقاومة
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://node-23.zeno.fm/b67qheuk54zuv
-
-#EXTINF:-1 tvg-id="Yemen_8" tvg-name="Huna Aden FM" tvg-logo="https://www.facebook.com/favicon.ico" group-title="Yemen",Huna Aden FM
+#EXTINF:-1 tvg-id="Yemen_7" tvg-name="Huna Aden FM" tvg-logo="https://www.facebook.com/favicon.ico" group-title="Yemen",Huna Aden FM
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://c30.radioboss.fm:18267/stream
+
+#EXTINF:-1 tvg-id="Yemen_8" tvg-name="صوت المقاومة" tvg-logo="https://www.facebook.com/favicon.ico" group-title="Yemen",صوت المقاومة
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://node-23.zeno.fm/b67qheuk54zuv
 
