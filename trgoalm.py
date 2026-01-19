@@ -1,11 +1,13 @@
 import requests
 import re
 import sys
-import json
 from bs4 import BeautifulSoup
 
 
 TRGOALS_JSON = "https://raw.githubusercontent.com/mehmetey03/METV/5af7251ac4b20adf59a0c3c8b3431b416a18ab94/trgoals_data.json"
+HEADERS = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+}
 
 
 def main():
@@ -14,30 +16,40 @@ def main():
         # SABİT KANAL LİSTESİ
         # ===============================
         fixed_channels = {
-            "yayinzirve": "beIN Sports 1 A",
-            "yayininat":  "beIN Sports 1 B",
-            "yayin1":     "beIN Sports 1 C",
-            "yayinb2":    "beIN Sports 2",
-            "yayinb3":    "beIN Sports 3",
-            "yayinb4":    "beIN Sports 4",
-            "yayinb5":    "beIN Sports 5",
-            "yayinbm1":   "beIN Sports 1 Max",
-            "yayinbm2":   "beIN Sports 2 Max",
-            "yayinss":    "S Sports 1",
-            "yayinss2":   "S Sports 2",
-            "yayint1":    "Tivibu Sports 1",
-            "yayint2":    "Tivibu Sports 2",
-            "yayint3":    "Tivibu Sports 3",
-            "yayint4":    "Tivibu Sports 4",
-            "yayinas":    "A Spor",
-            "yayintrtspor": "TRT Spor",
-            "yayintrtspor2": "TRT Spor Yıldız",
-            "yayintrt1":  "TRT 1",
-            "yayinatv":   "ATV",
-            "yayintv85":  "TV8.5",
-            "yayinnbatv": "NBATV",
-            "yayineu1":   "Euro Sport 1",
-            "yayineu2":   "Euro Sport 2"
+            "yayinzirve": ["beIN Sports 1 A", "Inat TV"],
+            "yayininat": ["beIN Sports 1 B", "Inat TV"],
+            "yayin1": ["beIN Sports 1 C", "Inat TV"],
+            "yayinb2": ["beIN Sports 2", "Inat TV"],
+            "yayinb3": ["beIN Sports 3", "Inat TV"],
+            "yayinb4": ["beIN Sports 4", "Inat TV"],
+            "yayinb5": ["beIN Sports 5", "Inat TV"],
+            "yayinbm1": ["beIN Sports 1 Max", "Inat TV"],
+            "yayinbm2": ["beIN Sports 2 Max", "Inat TV"],
+            "yayinss": ["S Sports 1", "Inat TV"],
+            "yayinss2": ["S Sports 2", "Inat TV"],
+            "yayint1": ["Tivibu Sports 1", "Inat TV"],
+            "yayint2": ["Tivibu Sports 2", "Inat TV"],
+            "yayint3": ["Tivibu Sports 3", "Inat TV"],
+            "yayint4": ["Tivibu Sports 4", "Inat TV"],
+            "yayinsmarts": ["Smart Sports", "Inat TV"],
+            "yayinsms2": ["Smart Sports 2", "Inat TV"],
+            "yayinas": ["A Spor", "Inat TV"],
+            "yayintrtspor": ["TRT Spor", "Inat TV"],
+            "yayintrtspor2": ["TRT Spor Yıldız", "Inat TV"],
+            "yayintrt1": ["TRT 1", "Inat TV"],
+            "yayinatv": ["ATV", "Inat TV"],
+            "yayintv85": ["TV8.5", "Inat TV"],
+            "yayinnbatv": ["NBATV", "Inat TV"],
+            "yayineu1": ["Euro Sport 1", "Inat TV"],
+            "yayineu2": ["Euro Sport 2", "Inat TV"],
+            "yayinex1": ["Tâbii 1", "Inat TV"],
+            "yayinex2": ["Tâbii 2", "Inat TV"],
+            "yayinex3": ["Tâbii 3", "Inat TV"],
+            "yayinex4": ["Tâbii 4", "Inat TV"],
+            "yayinex5": ["Tâbii 5", "Inat TV"],
+            "yayinex6": ["Tâbii 6", "Inat TV"],
+            "yayinex7": ["Tâbii 7", "Inat TV"],
+            "yayinex8": ["Tâbii 8", "Inat TV"]
         }
 
         # ===============================
