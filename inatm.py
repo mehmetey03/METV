@@ -1,21 +1,20 @@
 import requests
 import re
 import sys
+import json
 from bs4 import BeautifulSoup
-import urllib3
-import warnings
 
-urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-warnings.filterwarnings("ignore")
 
-HEADERS = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36",
-}
+TRGOALS_JSON = "https://raw.githubusercontent.com/mehmetey03/METV/5af7251ac4b20adf59a0c3c8b3431b416a18ab94/trgoals_data.json"
 
-# =====================================================
-# SABİT KANALLAR
-# =====================================================
-fixed_channels = {"yayinzirve": ["beIN Sports 1 A", "Inat TV"],
+
+def main():
+    try:
+        # ===============================
+        # SABİT KANAL LİSTESİ
+        # ===============================
+        fixed_channels = {
+            "yayinzirve": ["beIN Sports 1 A", "Inat TV"],
             "yayininat":  ["beIN Sports 1 B", "Inat TV"],
             "yayin1":     ["beIN Sports 1 C", "Inat TV"],
             "yayinb2":    ["beIN Sports 2", "Inat TV"],
@@ -49,7 +48,7 @@ fixed_channels = {"yayinzirve": ["beIN Sports 1 A", "Inat TV"],
             "yayinex6":   ["Tâbii 6", "Inat TV"],
             "yayinex7":   ["Tâbii 7", "Inat TV"],
             "yayinex8":   ["Tâbii 8", "Inat TV"]
- }
+        }
 
 # =====================================================
 # AKTİF DOMAIN BUL
