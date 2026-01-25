@@ -9,22 +9,32 @@ TARGET_URL = "https://jokerbettv177.com/"
 UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
 
 def get_html():
-    # En stabil proxy yöntemini kullanıyoruz
-    proxy_url = f"https://api.allorigins.win/raw?url={TARGET_URL}"
-    try:
-        response = requests.get(proxy_url, headers={"User-Agent": UA}, timeout=15)
-        return response.text if response.status_code == 200 else None
-    except:
-        return None
+    # Farklı proxy servisleri üzerinden deneme yapıyoruz
+    proxies = [
+        f"https://api.allorigins.win/raw?url={TARGET_URL}",
+        f"https://corsproxy.io/?{TARGET_URL}",
+        f"https://api.codetabs.com/v1/proxy/?quest={TARGET_URL}"
+    ]
+    
+    for url in proxies:
+        try:
+            print(f"🔄 Bağlantı deneniyor: {url[:45]}...")
+            response = requests.get(url, headers={"User-Agent": UA}, timeout=20)
+            if response.status_code == 200 and "data-stream" in response.text:
+                print("✅ Bağlantı başarılı!")
+                return response.text
+        except Exception as e:
+            continue
+    return None
 
 def main():
     html = get_html()
     if not html:
-        print("❌ Siteye bağlanılamadı.")
+        print("❌ HATA: Siteye ulaşılamadı. Proxy servisleri şu an kapalı olabilir veya site adresini kontrol etmelisin.")
         return
 
-    # 1. Sitedeki TÜM .m3u8 linklerini ve sunucuları bir kerede bul
-    # Bu yöntem pix.xsiic... değişse bile yenisini otomatik yakalar.
+    # 1. SUNUCUYU VE TÜM LİNKLERİ SİTEDEN ÇEK (Örn: pix.xsiic... değişse bile yakalar)
+    # Sayfa içindeki gizli tüm m3u8 yollarını bulur
     all_links = re.findall(r'https?://[.\w-]+\.workers\.dev/[^"\']+\.m3u8', html)
     
     # 2. Kanal isimlerini ve stream ID'lerini bul
@@ -40,16 +50,16 @@ def main():
         
         found_link = None
         
-        # 3. Gerçek linkler havuzunda bu kanalın ID'sini ara
-        # Eğer s-sports-1 geçiyorsa ama havuzda s-sport.m3u8 varsa, DOĞRU OLANI seçer.
+        # 3. DOĞRUYU BUL: 's-sports-1' gibi hatalı ID'yi, 's-sport.m3u8' gibi gerçek linkle eşleştir
+        # 's-sports' içindeki takıları temizleyip havuzda arıyoruz
+        match_key = pure_id.replace('s-sports', 's-sport').replace('-1', '').replace('-2', '')
+        
         for link in all_links:
-            # S Sport 1 için 's-sport' araması gibi...
-            short_id = pure_id.replace('-1', '').replace('-2', '').replace('s-sports', 's-sport')
-            if short_id in link.lower():
+            if match_key in link.lower():
                 found_link = link
                 break
         
-        # Eğer havuzda bulamazsa, en azından yakaladığımız ilk sunucu adresiyle birleştir
+        # Havuzda bulunamazsa, ilk bulduğumuz sunucu köküyle zorla oluştur
         if not found_link and all_links:
             base_server = all_links[0].split('.dev/')[0] + ".dev/"
             found_link = f"{base_server}{pure_id}.m3u8"
@@ -65,9 +75,9 @@ def main():
     if len(m3u) > 1:
         with open("joker.m3u8", "w", encoding="utf-8") as f:
             f.write("\n".join(m3u))
-        print(f"✅ Bitti! {len(added_links)} yayın güncel sunucuyla kaydedildi.")
+        print(f"🚀 BAŞARILI! {len(added_links)} adet güncel kanal kaydedildi.")
     else:
-        print("❌ Yayın bulunamadı.")
+        print("❌ HATA: Sayfa yüklendi ama içinde yayın linki bulunamadı.")
 
 if __name__ == "__main__":
     main()
