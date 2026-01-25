@@ -4,13 +4,15 @@ import sys
 import urllib3
 from bs4 import BeautifulSoup
 
-# SSL uyarılarını kapat
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
     "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
 }
+
+# Yasaklı kelimeler (Yayın sunucusu olamazlar)
+BANNED_DOMAINS = ["gstatic", "jsdelivr", "google", "doubleclick", "analytics", "facebook", "twitter", "yandex"]
 
 def main():
     try:
@@ -66,30 +68,36 @@ def main():
         if not active_domain:
             sys.exit("❌ Aktif domain bulunamadı.")
 
+        def is_valid_stream_domain(url):
+            return not any(banned in url for banned in BANNED_DOMAINS)
+
         def resolve_base_url(channel_id):
             target = f"{active_domain}/channel.html?id={channel_id}"
             try:
                 r = requests.get(target, headers={**HEADERS, "Referer": active_domain + "/"}, timeout=10, verify=False)
-                # jsdelivr içermeyen m3u8 linklerini bul
+                
+                # m3u8 linklerini ayıkla
                 urls = re.findall(r'["\'](https?://[^\s"\']+?/)[\w\-]+\.m3u8', r.text)
                 for link in urls:
-                    if "jsdelivr.net" not in link:
+                    if is_valid_stream_domain(link):
                         return link
-                # Yedek regex
-                alt_urls = re.findall(r'["\'](https?://[a-z0-9.-]+\.(?:sbs|xyz|live|me|net|com|pw)/)', r.text)
+
+                # Alternatif arama (Regex genişletildi)
+                alt_urls = re.findall(r'["\'](https?://[a-z0-9.-]+\.(?:sbs|xyz|live|me|net|com|pw|site|club)/)', r.text)
                 for link in alt_urls:
-                    if "jsdelivr.net" not in link: return link
+                    if is_valid_stream_domain(link):
+                        return link
             except: pass
             return None
 
-        # Yayın sunucusunu çek
+        # Gerçek sunucuyu yakala
         base_url = resolve_base_url("yayininat")
         if not base_url:
-            sys.exit("❌ Yayın sunucusu çözülemedi.")
+            sys.exit("❌ Gerçek yayın sunucusu bulunamadı.")
 
         print(f"✅ Yayın sunucusu: {base_url}")
 
-        # Canlı maçları çek
+        # Canlı maçları listele
         resp = requests.get(active_domain, headers=HEADERS, timeout=10, verify=False)
         resp.encoding = "utf-8"
         soup = BeautifulSoup(resp.text, "html.parser")
@@ -105,25 +113,22 @@ def main():
                     title = f"{status.get_text(strip=True) if status else '00:00'} | {name.get_text(strip=True)}"
                     dynamic_channels.append((cid_match.group(1), title))
 
-        # M3U Dosyasını Ham Linklerle Yazdır
+        # M3U Yazdır
         with open("karsilasmalar.m3u", "w", encoding="utf-8") as f:
             f.write("#EXTM3U\n")
-            
-            # Canlı Maçlar
             for cid, title in dynamic_channels:
                 f.write(f'#EXTINF:-1 group-title="Canlı Maçlar",{title}\n')
                 f.write(f'#EXTVLCOPT:http-user-agent={HEADERS["User-Agent"]}\n')
                 f.write(f'#EXTVLCOPT:http-referrer={active_domain}/\n')
                 f.write(f'{base_url}{cid}.m3u8\n')
 
-            # Sabit Kanallar
             for cid, info in fixed_channels.items():
                 f.write(f'#EXTINF:-1 group-title="Inat TV",{info[0]}\n')
                 f.write(f'#EXTVLCOPT:http-user-agent={HEADERS["User-Agent"]}\n')
                 f.write(f'#EXTVLCOPT:http-referrer={active_domain}/\n')
                 f.write(f'{base_url}{cid}.m3u8\n')
 
-        print(f"🏁 TAMAM → Ham linklerle karsilasmalar.m3u oluşturuldu.")
+        print(f"🏁 BAŞARILI → {base_url} üzerinden liste hazır.")
         
     except Exception as e:
         print(f"❌ Hata: {e}")
