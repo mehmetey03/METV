@@ -4,7 +4,7 @@ import sys
 import urllib3
 from bs4 import BeautifulSoup
 
-# SSL sertifika uyarılarını gizle
+# SSL uyarılarını kapat
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 HEADERS = {
@@ -56,7 +56,7 @@ def main():
         for i in range(1230, 1300):
             url = f"https://inattv{i}.xyz"
             try:
-                r = requests.get(url, headers=HEADERS, timeout=3, verify=False)
+                r = requests.get(url, headers=HEADERS, timeout=2, verify=False)
                 if r.status_code == 200:
                     active_domain = url
                     print(f"✅ Aktif domain: {active_domain}")
@@ -64,39 +64,32 @@ def main():
             except: continue
 
         if not active_domain:
-            print("❌ Aktif domain bulunamadı")
-            sys.exit(0)
+            sys.exit("❌ Aktif domain bulunamadı.")
 
-        # =====================================================
-        # SUNUCU (BASE URL) ÇÖZÜCÜ - GÜNCELLENDİ
-        # =====================================================
         def resolve_base_url(channel_id):
             target = f"{active_domain}/channel.html?id={channel_id}"
             try:
                 r = requests.get(target, headers={**HEADERS, "Referer": active_domain + "/"}, timeout=10, verify=False)
-                # Yeni Regex: m3u8 linkinin baş kısmını daha agresif yakalar
-                # Örn: https://server1.live/live/kanal.m3u8 -> https://server1.live/live/
-                found = re.search(r'["\'](https?://[^\s"\']+?/)[\w\-]+\.m3u8', r.text)
-                if found:
-                    return found.group(1)
-                
-                # Alternatif: Hiç m3u8 yoksa sadece domain yakalamayı dene
-                urls = re.findall(r'["\'](https?://[a-z0-9.-]+\.(?:sbs|xyz|live|me|net|com|pw)/)', r.text)
-                if urls: return urls[0]
+                # jsdelivr içermeyen m3u8 linklerini bul
+                urls = re.findall(r'["\'](https?://[^\s"\']+?/)[\w\-]+\.m3u8', r.text)
+                for link in urls:
+                    if "jsdelivr.net" not in link:
+                        return link
+                # Yedek regex
+                alt_urls = re.findall(r'["\'](https?://[a-z0-9.-]+\.(?:sbs|xyz|live|me|net|com|pw)/)', r.text)
+                for link in alt_urls:
+                    if "jsdelivr.net" not in link: return link
             except: pass
             return None
 
-        base_url = resolve_base_url("yayin1")
+        # Yayın sunucusunu çek
+        base_url = resolve_base_url("yayininat")
         if not base_url:
-            print("❌ Yayın sunucusu çözülemedi. Manuel bir kontrol gerekebilir.")
-            sys.exit(0)
+            sys.exit("❌ Yayın sunucusu çözülemedi.")
 
         print(f"✅ Yayın sunucusu: {base_url}")
 
-        # =====================================================
-        # CANLI MAÇLAR
-        # =====================================================
-        print("📡 Canlı maçlar alınıyor...")
+        # Canlı maçları çek
         resp = requests.get(active_domain, headers=HEADERS, timeout=10, verify=False)
         resp.encoding = "utf-8"
         soup = BeautifulSoup(resp.text, "html.parser")
@@ -106,19 +99,13 @@ def main():
         if matches_tab:
             for a in matches_tab.find_all("a", href=re.compile(r'id=')):
                 cid_match = re.search(r'id=([^&]+)', a["href"])
-                if not cid_match: continue
-                cid = cid_match.group(1)
                 name = a.find(class_="channel-name")
                 status = a.find(class_="channel-status")
-                if name:
+                if cid_match and name:
                     title = f"{status.get_text(strip=True) if status else '00:00'} | {name.get_text(strip=True)}"
-                    dynamic_channels.append((cid, title))
+                    dynamic_channels.append((cid_match.group(1), title))
 
-        print(f"✅ {len(dynamic_channels)} canlı maç bulundu")
-
-        # =====================================================
-        # M3U YAZDIRMA
-        # =====================================================
+        # M3U Dosyasını Ham Linklerle Yazdır
         with open("karsilasmalar.m3u", "w", encoding="utf-8") as f:
             f.write("#EXTM3U\n")
             
@@ -136,7 +123,7 @@ def main():
                 f.write(f'#EXTVLCOPT:http-referrer={active_domain}/\n')
                 f.write(f'{base_url}{cid}.m3u8\n')
 
-        print("🏁 TAMAM → karsilasmalar.m3u oluşturuldu")
+        print(f"🏁 TAMAM → Ham linklerle karsilasmalar.m3u oluşturuldu.")
         
     except Exception as e:
         print(f"❌ Hata: {e}")
