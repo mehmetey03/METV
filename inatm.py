@@ -1,20 +1,19 @@
 import requests
 import re
 import sys
+import urllib3
 from bs4 import BeautifulSoup
 
+# SSL sertifika uyarılarını gizle
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-TRGOALS_JSON = "https://raw.githubusercontent.com/mehmetey03/METV/5af7251ac4b20adf59a0c3c8b3431b416a18ab94/trgoals_data.json"
 HEADERS = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
 }
-
 
 def main():
     try:
-        # ===============================
-        # SABİT KANAL LİSTESİ
-        # ===============================
         fixed_channels = {
             "yayinzirve": ["beIN Sports 1 A", "Inat TV"],
             "yayininat": ["beIN Sports 1 B", "Inat TV"],
@@ -52,53 +51,50 @@ def main():
             "yayinex8": ["Tâbii 8", "Inat TV"]
         }
 
-        # =====================================================
-        # AKTİF DOMAIN BUL
-        # =====================================================
         print("🔍 Aktif domain aranıyor...")
         active_domain = None
-
-        for i in range(1230, 2000):
+        for i in range(1230, 1300):
             url = f"https://inattv{i}.xyz"
             try:
-                r = requests.get(url, headers=HEADERS, timeout=2, verify=False)
+                r = requests.get(url, headers=HEADERS, timeout=3, verify=False)
                 if r.status_code == 200:
                     active_domain = url
                     print(f"✅ Aktif domain: {active_domain}")
                     break
-            except:
-                continue
+            except: continue
 
         if not active_domain:
             print("❌ Aktif domain bulunamadı")
             sys.exit(0)
 
         # =====================================================
-        # SUNUCU (BASE URL) ÇÖZ
+        # SUNUCU (BASE URL) ÇÖZÜCÜ - GÜNCELLENDİ
         # =====================================================
         def resolve_base_url(channel_id):
-            url = f"{active_domain}/channel.html?id={channel_id}"
-            r = requests.get(url, headers={**HEADERS, "Referer": active_domain + "/"}, timeout=5, verify=False)
-
-            # GERÇEK ÇALIŞAN REGEX
-            urls = re.findall(
-                r'["\'](https?://[a-z0-9.-]+\.(?:sbs|xyz|live|me|net|com)/)["\']',
-                r.text
-            )
-            if urls:
-                return urls[0].rstrip("/") + "/"
+            target = f"{active_domain}/channel.html?id={channel_id}"
+            try:
+                r = requests.get(target, headers={**HEADERS, "Referer": active_domain + "/"}, timeout=10, verify=False)
+                # Yeni Regex: m3u8 linkinin baş kısmını daha agresif yakalar
+                # Örn: https://server1.live/live/kanal.m3u8 -> https://server1.live/live/
+                found = re.search(r'["\'](https?://[^\s"\']+?/)[\w\-]+\.m3u8', r.text)
+                if found:
+                    return found.group(1)
+                
+                # Alternatif: Hiç m3u8 yoksa sadece domain yakalamayı dene
+                urls = re.findall(r'["\'](https?://[a-z0-9.-]+\.(?:sbs|xyz|live|me|net|com|pw)/)', r.text)
+                if urls: return urls[0]
+            except: pass
             return None
 
-        # herhangi bir kanaldan base çöz
         base_url = resolve_base_url("yayin1")
         if not base_url:
-            print("❌ Yayın sunucusu çözülemedi")
+            print("❌ Yayın sunucusu çözülemedi. Manuel bir kontrol gerekebilir.")
             sys.exit(0)
 
         print(f"✅ Yayın sunucusu: {base_url}")
 
         # =====================================================
-        # CANLI MAÇLAR (UTF-8 FIX)
+        # CANLI MAÇLAR
         # =====================================================
         print("📡 Canlı maçlar alınıyor...")
         resp = requests.get(active_domain, headers=HEADERS, timeout=10, verify=False)
@@ -107,48 +103,43 @@ def main():
 
         dynamic_channels = []
         matches_tab = soup.find(id="matches-tab")
-
         if matches_tab:
-            for a in matches_tab.find_all("a", href=re.compile(r'channel\.html\?id=')):
-                cid = re.search(r'id=([^&]+)', a["href"]).group(1)
+            for a in matches_tab.find_all("a", href=re.compile(r'id=')):
+                cid_match = re.search(r'id=([^&]+)', a["href"])
+                if not cid_match: continue
+                cid = cid_match.group(1)
                 name = a.find(class_="channel-name")
-                time = a.find(class_="channel-status")
-                if name and time:
-                    title = f"{time.get_text(strip=True)} | {name.get_text(strip=True)}"
+                status = a.find(class_="channel-status")
+                if name:
+                    title = f"{status.get_text(strip=True) if status else '00:00'} | {name.get_text(strip=True)}"
                     dynamic_channels.append((cid, title))
 
         print(f"✅ {len(dynamic_channels)} canlı maç bulundu")
 
         # =====================================================
-        # M3U OLUŞTUR
+        # M3U YAZDIRMA
         # =====================================================
-        lines = ["#EXTM3U"]
-
-        # CANLI MAÇLAR
-        for cid, title in dynamic_channels:
-            lines.append(f'#EXTINF:-1 group-title="Canlı Maçlar",{title}')
-            lines.append('#EXTVLCOPT:http-user-agent=Mozilla/5.0')
-            lines.append(f'#EXTVLCOPT:http-referrer={active_domain}')
-            lines.append(f'{base_url}{cid}.m3u8')
-
-        # SABİT KANALLAR
-        for cid, info in fixed_channels.items():
-            # fixed_channels dict'i [kanal_adı, kategori] şeklinde
-            channel_name = info[0] if isinstance(info, list) else info
-            lines.append(f'#EXTINF:-1 group-title="Inat TV",{channel_name}')
-            lines.append('#EXTVLCOPT:http-user-agent=Mozilla/5.0')
-            lines.append(f'#EXTVLCOPT:http-referrer={active_domain}')
-            lines.append(f'{base_url}{cid}.m3u8')
-
         with open("karsilasmalar.m3u", "w", encoding="utf-8") as f:
-            f.write("\n".join(lines))
+            f.write("#EXTM3U\n")
+            
+            # Canlı Maçlar
+            for cid, title in dynamic_channels:
+                f.write(f'#EXTINF:-1 group-title="Canlı Maçlar",{title}\n')
+                f.write(f'#EXTVLCOPT:http-user-agent={HEADERS["User-Agent"]}\n')
+                f.write(f'#EXTVLCOPT:http-referrer={active_domain}/\n')
+                f.write(f'{base_url}{cid}.m3u8\n')
+
+            # Sabit Kanallar
+            for cid, info in fixed_channels.items():
+                f.write(f'#EXTINF:-1 group-title="Inat TV",{info[0]}\n')
+                f.write(f'#EXTVLCOPT:http-user-agent={HEADERS["User-Agent"]}\n')
+                f.write(f'#EXTVLCOPT:http-referrer={active_domain}/\n')
+                f.write(f'{base_url}{cid}.m3u8\n')
 
         print("🏁 TAMAM → karsilasmalar.m3u oluşturuldu")
         
     except Exception as e:
-        print(f"❌ Hata oluştu: {e}")
-        sys.exit(1)
-
+        print(f"❌ Hata: {e}")
 
 if __name__ == "__main__":
     main()
