@@ -1,0 +1,35 @@
+name: Jokerbet Liste Guncelle
+
+on:
+  schedule:
+    # Her 2 saatte bir otomatik çalışır (Opsiyonel: "0 * * * *" her saat başı yapar)
+    - cron: '0 */2 * * *'
+  workflow_dispatch: # Manuel olarak başlatma butonu ekler
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Depoyu Kontrol Et
+      uses: actions/checkout@v3
+
+    - name: Python Kurulumu
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+
+    - name: Kütüphaneleri Kur
+      run: |
+        pip install requests urllib3
+
+    - name: Scripti Calistir
+      run: python jokerbet_final.py
+
+    - name: Degisiklikleri Kaydet ve Yukle
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add jokerbet_otomatik.m3u8
+        git diff --quiet && git diff --staged --quiet || git commit -m "Liste güncellendi: $(date)"
+        git push
