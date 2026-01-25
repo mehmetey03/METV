@@ -58,8 +58,8 @@ def main():
         print("🔍 Aktif domain aranıyor...")
         active_domain = None
 
-        for i in range(1217, 2101):
-            url = f"https://vepro.hocke.eu/proxy/index.php?https://inattv{i}.xyz"
+        for i in range(1230, 2000):
+            url = f"https://inattv{i}.xyz"
             try:
                 r = requests.get(url, headers=HEADERS, timeout=2, verify=False)
                 if r.status_code == 200:
