@@ -55,7 +55,7 @@ def get_youtube_page(url):
     
     # Farklı proxy servislerini dene
     proxy_servers = [
-        f"https://api.codetabs.com/v1/proxy/?quest={url}",
+        f"https://vepro.hocke.eu/proxy/index.php?{url}",
         f"https://corsproxy.io/?{url}",
         f"https://api.allorigins.win/raw?url={requests.utils.quote(url)}",
         url  # Son çare olarak direkt erişim
