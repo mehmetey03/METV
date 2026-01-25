@@ -2,12 +2,16 @@ name: Jokerbet Auto Update
 
 on:
   schedule:
-    - cron: '0 */2 * * *'
-  workflow_dispatch:
+    - cron: '0 */2 * * *' # 2 saatte bir
+  workflow_dispatch: # Manuel çalıştırma butonu
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    # Yazma izni verildiğinden emin oluyoruz
+    permissions:
+      contents: write
+      
     steps:
       - name: Repo Kontrol
         uses: actions/checkout@v3
@@ -18,9 +22,7 @@ jobs:
           python-version: '3.9'
 
       - name: Kütüphaneleri Yükle
-        run: |
-          python -m pip install --upgrade pip
-          pip install requests cloudscraper urllib3
+        run: pip install requests urllib3
 
       - name: Scripti Calistir
         run: python joker.py
@@ -29,10 +31,7 @@ jobs:
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          if [ -f joker.m3u8 ]; then
-            git add joker.m3u8
-            git diff --quiet && git diff --staged --quiet || (git commit -m "Update: $(date)" && git push)
-          else
-            echo "Dosya olusmadi!"
-            exit 1
-          fi
+          git add joker.m3u8
+          # Değişiklik olsa da olmasa da commit zorla (Zaman damgası için)
+          git commit -m "Liste Güncellendi: $(date)" || echo "Değişiklik yok"
+          git push
