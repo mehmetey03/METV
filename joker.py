@@ -4,6 +4,7 @@ import urllib3
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
+# Ayarlar
 TARGET_URL = "https://jokerbettv177.com/"
 UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
 
@@ -29,35 +30,30 @@ def main():
         print("❌ Siteye ulaşılamadı!")
         return
 
-    # 1. Sunucu kök adresini dinamik yakala (Örn: https://pix.xsiic.workers.dev/)
-    # Sayfa içinde .workers.dev geçen ilk linki bulup kök dizini alıyoruz
+    # 1. Ana Sunucu Adresini Yakala
     base_match = re.search(r'(https?://[.\w-]+\.workers\.dev/)', html)
     base_url = base_match.group(1) if base_match else "https://pix.xsiic.workers.dev/"
     
     m3u = ["#EXTM3U"]
     ids = set()
 
-    # 2. Yayınları tara
-    # data-stream="..." ve data-name="..." değerlerini çekiyoruz
+    # 2. Yayınları tara (data-stream ve data-name ikilisini alır)
     matches = re.findall(r'data-stream="([^"]+)".*?data-name="([^"]+)"', html, re.DOTALL)
     
     for stream_id, name in matches:
         clean_name = name.strip().upper()
         
-        # Eğer stream_id zaten tam bir linkse (http ile başlıyorsa)
-        if stream_id.startswith('http'):
-            final_link = stream_id
+        # Gereksiz "betlivematch-" ön ekini temizle ama geri kalan metne dokunma
+        stream_path = stream_id.replace('betlivematch-', '')
+        
+        # Link oluşturma: 
+        # Eğer stream_path zaten tam bir linkse olduğu gibi al
+        # Değilse, base_url + stream_path + .m3u8 yap
+        if stream_path.startswith('http'):
+            final_link = stream_path
         else:
-            # Sadece rakamdan oluşuyorsa (Örn: "38") -> /hls/38.m3u8
-            if stream_id.isdigit():
-                final_link = f"{base_url}hls/{stream_id}.m3u8"
-            # "betlivematch-38" gibi bir şeyse rakamı ayıkla -> /hls/38.m3u8
-            elif "betlivematch" in stream_id.lower():
-                only_id = re.sub(r'\D', '', stream_id)
-                final_link = f"{base_url}hls/{only_id}.m3u8"
-            # Diğer metinler için (Örn: "bein-sports-1") -> /bein-sports-1.m3u8
-            else:
-                final_link = f"{base_url}{stream_id}.m3u8"
+            # /hls/ veya ek takıları kaldırıp doğrudan kök dizine ekliyoruz
+            final_link = f"{base_url}{stream_path}.m3u8"
 
         if final_link not in ids:
             m3u.append(f'#EXTINF:-1 group-title="⚽ CANLI YAYINLAR",{clean_name}')
@@ -66,11 +62,12 @@ def main():
             m3u.append(final_link)
             ids.add(final_link)
 
+    # 3. Dosyaya Yaz
     if len(m3u) > 1:
         with open("joker.m3u8", "w", encoding="utf-8") as f:
             f.write("\n".join(m3u))
-        print(f"🚀 Başarılı! {len(ids)} kanal doğru formatta (hls/cdn) kaydedildi.")
-        print(f"📡 Kullanılan Base: {base_url}")
+        print(f"✅ BAŞARILI! {len(ids)} kanal kaydedildi.")
+        print(f"🔗 Örnek Link: {m3u[4] if len(m3u)>4 else 'Yok'}")
     else:
         print("❌ Yayın bulunamadı.")
 
