@@ -8,76 +8,96 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 TARGET_URL = "https://jokerbettv177.com/"
 UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
 
+# BURASI LİSTENİN BAŞINA GELECEK SABİT KANALLAR
+SABIT_KANALLAR = [
+    ("beIN SPORTS HD1", "bein-sports-1.m3u8"),
+    ("beIN SPORTS HD2", "bein-sports-2.m3u8"),
+    ("beIN SPORTS HD3", "bein-sports-3.m3u8"),
+    ("beIN SPORTS HD4", "bein-sports-4.m3u8"),
+    ("beIN SPORTS HD5", "bein-sports-5.m3u8"),
+    ("beIN SPORTS MAX 1", "bein-sports-max-1.m3u8"),
+    ("beIN SPORTS MAX 2", "bein-sports-max-2.m3u8"),
+    ("S SPORT", "s-sport.m3u8"),
+    ("S SPORT 2", "s-sport-2.m3u8"),
+    ("TIVIBUSPOR 1", "tivibu-spor.m3u8"),
+    ("TIVIBUSPOR 2", "tivibu-spor-2.m3u8"),
+    ("TIVIBUSPOR 3", "tivibu-spor-3.m3u8"),
+    ("TIVIBUSPOR 4", "tivibu-spor-4.m3u8"),
+    ("spor SMART", "spor-smart.m3u8"),
+    ("spor SMART 2", "spor-smart-2.m3u8"),
+    ("TRT SPOR", "trt-spor.m3u8"),
+    ("TRT SPOR 2", "trt-spor-yildiz.m3u8"),
+    ("TRT 1", "trt-1.m3u8"),
+    ("ASPOR", "a-spor.m3u8"),
+    ("TABİİ SPOR", "tabii-spor.m3u8"),
+    ("TABİİ SPOR 1", "tabii-spor-1.m3u8"),
+    ("TABİİ SPOR 2", "tabii-spor-2.m3u8"),
+    ("TABİİ SPOR 3", "tabii-spor-3.m3u8"),
+    ("TABİİ SPOR 4", "tabii-spor-4.m3u8"),
+    ("TABİİ SPOR 5", "tabii-spor-5.m3u8"),
+    ("TABİİ SPOR 6", "tabii-spor-6.m3u8"),
+    ("ATV", "atv.m3u8"),
+    ("TV 8.5", "tv8.5.m3u8")
+]
+
 def get_html():
-    # Farklı proxy servisleri üzerinden deneme yapıyoruz
+    # Siteye erişmek için proxy deniyoruz
     proxies = [
         f"https://api.allorigins.win/raw?url={TARGET_URL}",
         f"https://corsproxy.io/?{TARGET_URL}",
         f"https://api.codetabs.com/v1/proxy/?quest={TARGET_URL}"
     ]
-    
     for url in proxies:
         try:
-            print(f"🔄 Bağlantı deneniyor: {url[:45]}...")
-            response = requests.get(url, headers={"User-Agent": UA}, timeout=20)
-            if response.status_code == 200 and "data-stream" in response.text:
-                print("✅ Bağlantı başarılı!")
-                return response.text
-        except Exception as e:
-            continue
+            print(f"🔄 Bağlanıyor: {url[:40]}...")
+            res = requests.get(url, headers={"User-Agent": UA}, timeout=15)
+            if res.status_code == 200 and "data-stream" in res.text:
+                return res.text
+        except: continue
     return None
 
 def main():
     html = get_html()
     if not html:
-        print("❌ HATA: Siteye ulaşılamadı. Proxy servisleri şu an kapalı olabilir veya site adresini kontrol etmelisin.")
+        print("❌ Siteye ulaşılamadı. Lütfen TARGET_URL adresini kontrol et.")
         return
 
-    # 1. SUNUCUYU VE TÜM LİNKLERİ SİTEDEN ÇEK (Örn: pix.xsiic... değişse bile yakalar)
-    # Sayfa içindeki gizli tüm m3u8 yollarını bulur
-    all_links = re.findall(r'https?://[.\w-]+\.workers\.dev/[^"\']+\.m3u8', html)
-    
-    # 2. Kanal isimlerini ve stream ID'lerini bul
-    matches = re.findall(r'data-stream="([^"]+)".*?data-name="([^"]+)"', html, re.DOTALL)
-    
-    m3u = ["#EXTM3U"]
-    added_links = set()
+    # 1. GÜNCEL SUNUCUYU BUL (https://....workers.dev/)
+    base_match = re.search(r'(https?://[.\w-]+\.workers\.dev/)', html)
+    base_url = base_match.group(1) if base_match else "https://pix.xsiic.workers.dev/"
+    print(f"📡 Aktif Sunucu: {base_url}")
 
+    m3u = ["#EXTM3U"]
+
+    # 2. SABİT KANALLARI EKLE (Listenin Başına)
+    for name, file in SABIT_KANALLAR:
+        m3u.append(f'#EXTINF:-1 group-title="📺 SABİT KANALLAR",{name}')
+        m3u.append(f'#EXTVLCOPT:http-user-agent={UA}')
+        m3u.append(f'#EXTVLCOPT:http-referrer={TARGET_URL}')
+        m3u.append(f"{base_url}{file}")
+
+    # 3. CANLI MAÇLARI EKLE (Siteden Çekerek)
+    matches = re.findall(r'data-stream="([^"]+)".*?data-name="([^"]+)"', html, re.DOTALL)
     for stream_id, name in matches:
         clean_name = name.strip().upper()
-        # betlivematch-s-sports-1 -> s-sports-1
+        # betlivematch-38 -> 38
         pure_id = stream_id.replace('betlivematch-', '')
         
-        found_link = None
-        
-        # 3. DOĞRUYU BUL: 's-sports-1' gibi hatalı ID'yi, 's-sport.m3u8' gibi gerçek linkle eşleştir
-        # 's-sports' içindeki takıları temizleyip havuzda arıyoruz
-        match_key = pure_id.replace('s-sports', 's-sport').replace('-1', '').replace('-2', '')
-        
-        for link in all_links:
-            if match_key in link.lower():
-                found_link = link
-                break
-        
-        # Havuzda bulunamazsa, ilk bulduğumuz sunucu köküyle zorla oluştur
-        if not found_link and all_links:
-            base_server = all_links[0].split('.dev/')[0] + ".dev/"
-            found_link = f"{base_server}{pure_id}.m3u8"
+        # Eğer rakamsa /hls/ klasöründedir, değilse direkt köktedir
+        if pure_id.isdigit():
+            link = f"{base_url}hls/{pure_id}.m3u8"
+        else:
+            link = f"{base_url}{pure_id}.m3u8"
 
-        if found_link and found_link not in added_links:
-            m3u.append(f'#EXTINF:-1 group-title="⚽ CANLI YAYINLAR",{clean_name}')
-            m3u.append(f'#EXTVLCOPT:http-user-agent={UA}')
-            m3u.append(f'#EXTVLCOPT:http-referrer={TARGET_URL}')
-            m3u.append(found_link)
-            added_links.add(found_link)
+        m3u.append(f'#EXTINF:-1 group-title="⚽ CANLI MAÇLAR",{clean_name}')
+        m3u.append(f'#EXTVLCOPT:http-user-agent={UA}')
+        m3u.append(f'#EXTVLCOPT:http-referrer={TARGET_URL}')
+        m3u.append(link)
 
-    # 4. Kaydet
-    if len(m3u) > 1:
-        with open("joker.m3u8", "w", encoding="utf-8") as f:
-            f.write("\n".join(m3u))
-        print(f"🚀 BAŞARILI! {len(added_links)} adet güncel kanal kaydedildi.")
-    else:
-        print("❌ HATA: Sayfa yüklendi ama içinde yayın linki bulunamadı.")
+    # 4. KAYDET
+    with open("joker.m3u8", "w", encoding="utf-8") as f:
+        f.write("\n".join(m3u))
+    print(f"🚀 Başarılı! Sabit kanallar ve canlı maçlar joker.m3u8 dosyasına yazıldı.")
 
 if __name__ == "__main__":
     main()
