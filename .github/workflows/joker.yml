@@ -1,35 +1,31 @@
-name: Jokerbet Liste Guncelle
+name: Jokerbet Auto Update
 
 on:
   schedule:
-    # Her 2 saatte bir otomatik çalışır (Opsiyonel: "0 * * * *" her saat başı yapar)
-    - cron: '0 */2 * * *'
-  workflow_dispatch: # Manuel olarak başlatma butonu ekler
+    - cron: '0 */2 * * *' # 2 saatte bir çalışır
+  workflow_dispatch: # Manuel çalıştırma butonu
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Depoyu Kontrol Et
-      uses: actions/checkout@v3
+      - name: Checkout Repo
+        uses: actions/checkout@v3
 
-    - name: Python Kurulumu
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.9'
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
 
-    - name: Kütüphaneleri Kur
-      run: |
-        pip install requests urllib3
+      - name: Install Dependencies
+        run: pip install requests urllib3
 
-    - name: Scripti Calistir
-      run: python joker.py
+      - name: Run Script
+        run: python joker.py
 
-    - name: Degisiklikleri Kaydet ve Yukle
-      run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git add joker.m3u8
-        git diff --quiet && git diff --staged --quiet || git commit -m "Liste güncellendi: $(date)"
-        git push
+      - name: Commit and Push
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add joker.m3u8
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Update list: $(date)" && git push)
