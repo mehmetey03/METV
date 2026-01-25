@@ -41,20 +41,22 @@ def main():
         response = requests.get(TARGET_SITE, headers=HEADERS, timeout=15, verify=False)
         html_content = response.text
 
-        # Senin attığın HTML yapısına özel Regex (Daha esnek ve hatasız)
-        # 1: id, 2: saat/lig, 3: ev sahibi, 4: deplasman
-        pattern = r'href="channel\?id=(.*?)".*?<div class="event">(.*?)</div>.*?<div class="home">(.*?)</div>.*?<div class="away">(.*?)</div>'
+        # Güncellenmiş Regex Pattern
+        # HTML'deki yapıya göre: href içinde id, date, event, home ve away sınıfları
+        pattern = r'href="channel\?id=(.*?)".*?<div class="date">(.*?)</div>.*?<div class="event">(.*?)</div>.*?<div class="home">(.*?)</div>.*?<div class="away">(.*?)</div>'
         matches = re.findall(pattern, html_content, re.DOTALL)
 
         match_count = 0
-        for cid, event, home, away in matches:
+        for cid, date, event, home, away in matches:
             # HTML içindeki gereksiz boşlukları temizle
             cid = cid.strip()
+            date = date.strip()
             event = event.strip()
             home = home.strip()
             away = away.strip()
             
-            title = f"{event} | {home} - {away}"
+            # Tarih bilgisini de ekleyelim (örn: Dövüş Sporları | 05:00 | UFC 324)
+            title = f"{date} | {event} | {home} - {away}"
             
             m3u_list.append(f'#EXTINF:-1 group-title="⚽ CANLI MAÇLAR",{title}')
             m3u_list.append(f"{base_url}{cid}.m3u8")
