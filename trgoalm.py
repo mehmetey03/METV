@@ -1,14 +1,16 @@
 import requests
 import re
 import sys
+import urllib3
 from bs4 import BeautifulSoup
 
+# SSL uyarılarını kapat
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 TRGOALS_JSON = "https://raw.githubusercontent.com/mehmetey03/METV/5af7251ac4b20adf59a0c3c8b3431b416a18ab94/trgoals_data.json"
 HEADERS = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
 }
-
 
 def main():
     try:
@@ -53,112 +55,103 @@ def main():
         }
 
         # ===============================
-        # AKTİF DOMAIN BUL
+        # AKTİF DOMAİN BUL (TRGOALS)
         # ===============================
         print("🔍 Aktif domain aranıyor...")
         active_domain = None
-
         for i in range(1497, 2000):
             url = f"https://trgoals{i}.xyz/"
             try:
-                r = requests.head(url, timeout=5)
+                r = requests.head(url, headers=HEADERS, timeout=3, verify=False)
                 if r.status_code == 200:
                     active_domain = url
                     print(f"✅ Aktif domain: {active_domain}")
                     break
-            except:
-                continue
+            except: continue
 
         if not active_domain:
             print("❌ Aktif domain bulunamadı")
             return 0
 
         # ===============================
-        # JSON'DAN GERÇEK LINKLERİ AL
+        # JSON'DAN VERİLERİ ÇEK
         # ===============================
         print("📦 trgoals_data.json alınıyor...")
-        j = requests.get(TRGOALS_JSON, timeout=10).json()
-        items = j["list"]["item"]
+        json_data = requests.get(TRGOALS_JSON, timeout=10, verify=False).json()
+        items = json_data.get("list", {}).get("item", [])
 
         json_links = {}
         base_url = None
 
         for it in items:
-            url = it.get("url")
-            if not url:
-                continue
-
-            cid = url.split("/")[-1].replace(".m3u8", "")
-            json_links[cid] = url
-
+            u = it.get("url")
+            if not u: continue
+            # URL'den ID'yi temizle (Örn: .../kanal.m3u8 -> kanal)
+            cid = u.split("/")[-1].replace(".m3u8", "")
+            json_links[cid] = u
             if not base_url:
-                base_url = url.replace(f"{cid}.m3u8", "")
+                base_url = u.replace(f"{cid}.m3u8", "")
 
         if not base_url:
-            print("❌ JSON içinden base_url çıkarılamadı")
-            return 0
+            # Fallback: Eğer JSON'dan base_url gelmezse manuel bir kontrol gerekebilir
+            print("⚠️ JSON'dan base_url alınamadı, manuel atanıyor...")
+            base_url = "https://5or.d72577a9dd0ec15.sbs/" # Örnek fallback
 
-        print(f"✅ BASE_URL (JSON): {base_url}")
+        print(f"✅ BASE_URL: {base_url}")
 
         # ===============================
         # CANLI MAÇLARI ÇEK
         # ===============================
         print("📡 Canlı maçlar alınıyor...")
-        r = requests.get(active_domain, timeout=10)
+        r = requests.get(active_domain, headers=HEADERS, timeout=10, verify=False)
         r.encoding = "utf-8"
         soup = BeautifulSoup(r.text, "html.parser")
 
         dynamic_channels = []
         matches_tab = soup.find(id="matches-tab")
-
         if matches_tab:
             for link in matches_tab.find_all("a", href=True):
-                if "channel.html?id=" not in link["href"]:
-                    continue
-
-                cid = re.search(r'id=([^&]+)', link["href"]).group(1)
-                name_el = link.find(class_="channel-name")
-                time_el = link.find(class_="channel-status")
-
-                if name_el and time_el:
-                    title = f"{time_el.get_text(strip=True)} | {name_el.get_text(strip=True)}"
-                    dynamic_channels.append((cid, title))
-
-        print(f"✅ {len(dynamic_channels)} canlı maç bulundu")
+                if "channel.html?id=" in link["href"]:
+                    cid_match = re.search(r'id=([^&]+)', link["href"])
+                    if cid_match:
+                        cid = cid_match.group(1)
+                        name_el = link.find(class_="channel-name")
+                        time_el = link.find(class_="channel-status")
+                        if name_el and time_el:
+                            title = f"{time_el.get_text(strip=True)} | {name_el.get_text(strip=True)}"
+                            dynamic_channels.append((cid, title))
 
         # ===============================
-        # M3U OLUŞTUR
+        # M3U OLUŞTURMA
         # ===============================
         print("📝 M3U oluşturuluyor...")
         lines = ["#EXTM3U"]
 
-        # CANLI MAÇLAR (base_url + cid)
+        # 1. CANLI MAÇLAR
         for cid, title in dynamic_channels:
             lines.append(f'#EXTINF:-1 group-title="Canlı Maçlar",{title}')
-            lines.append('#EXTVLCOPT:http-user-agent=Mozilla/5.0')
+            lines.append(f'#EXTVLCOPT:http-user-agent={HEADERS["User-Agent"]}')
             lines.append(f'#EXTVLCOPT:http-referrer={active_domain}')
             lines.append(f'{base_url}{cid}.m3u8')
 
-        # SABİT KANALLAR (JSON'DAN GERÇEK URL)
-        for cid, name in fixed_channels.items():
-            if cid not in json_links:
-                continue
+        # 2. TÜM SABİT KANALLAR (JSON VE MANUEL)
+        for cid, info in fixed_channels.items():
+            ch_name = info[0]
+            # Eğer JSON içinde varsa oradaki URL'yi al, yoksa base_url ile üret
+            final_url = json_links.get(cid, f"{base_url}{cid}.m3u8")
 
-            lines.append(f'#EXTINF:-1 group-title="Inat TV",{name}')
-            lines.append('#EXTVLCOPT:http-user-agent=Mozilla/5.0')
+            lines.append(f'#EXTINF:-1 group-title="Inat TV",{ch_name}')
+            lines.append(f'#EXTVLCOPT:http-user-agent={HEADERS["User-Agent"]}')
             lines.append(f'#EXTVLCOPT:http-referrer={active_domain}')
-            lines.append(json_links[cid])
+            lines.append(final_url)
 
         with open("karsilasmalar2.m3u", "w", encoding="utf-8") as f:
             f.write("\n".join(lines))
 
-        print("✅ karsilasmalar2.m3u başarıyla oluşturuldu")
-        return 0
-
+        print(f"🏁 TAMAM → karsilasmalar2.m3u oluşturuldu. ({len(dynamic_channels)} Maç + {len(fixed_channels)} Kanal)")
+        
     except Exception as e:
-        print(f"❌ Hata: {e}")
-        return 0
-
+        print(f"❌ Hata oluştu: {e}")
 
 if __name__ == "__main__":
-    sys.exit(main())
+    main()
