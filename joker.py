@@ -1,55 +1,65 @@
 import cloudscraper
 import re
+import requests
+import urllib3
 
-# Sabit Bilgiler
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+
+# Ayarlar
 SITE_URL = "https://jokerbettv177.com/"
+DOMAIN_API = "https://maqrizi.com/domain.php"
 UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
 
 def main():
     try:
-        # Cloudscraper ile bot korumasını aşmaya çalışıyoruz
-        scraper = cloudscraper.create_scraper()
-        print(f"📡 Siteye bağlanılıyor: {SITE_URL}")
+        # 1. Base URL Çek
+        base_url = requests.get(DOMAIN_API, timeout=10).json().get("baseurl", "")
         
+        # 2. Siteye Bağlan (Bot Korumasını Aşmak İçin Scraper Kullanıyoruz)
+        scraper = cloudscraper.create_scraper()
         response = scraper.get(SITE_URL, headers={"User-Agent": UA}, timeout=15)
         
         if response.status_code != 200:
-            print(f"❌ Site engelledi! Statü Kodu: {response.status_code}")
+            print(f"Site Hatası: {response.status_code}")
             return
-        
-        html_content = response.text
-        print("✅ Site içeriği başarıyla çekildi.")
 
+        html = response.text
         m3u = ["#EXTM3U"]
-        processed_links = set()
+        ids = set()
 
-        # 1. ÖNCELİK: data-streamx (Worker linkleri: https://pix.xsiic...)
-        # HTML: data-streamx="https://..." data-name="S Sport 1"
-        streams_x = re.findall(r'data-streamx="([^"]+)".*?data-name="([^"]+)"', html_content, re.DOTALL)
-        
-        for link, name in streams_x:
-            if link not in processed_links:
-                clean_name = name.strip().upper()
-                m3u.append(f'#EXTINF:-1 group-title="📺 SABİT KANALLAR (WORKER)",{clean_name}')
+        # 3. StreamX Linklerini Bul (Paylaştığın pix.xsiic... linkleri)
+        # Örnek: data-streamx="https://..." data-name="S Sport 1"
+        worker_matches = re.findall(r'data-streamx="([^"]+)".*?data-name="([^"]+)"', html, re.DOTALL)
+        for link, name in worker_matches:
+            if link not in ids:
+                m3u.append(f'#EXTINF:-1 group-title="📺 SABİT KANALLAR",{name.strip().upper()}')
                 m3u.append(f'#EXTVLCOPT:http-user-agent={UA}')
                 m3u.append(f'#EXTVLCOPT:http-referrer={SITE_URL}')
                 m3u.append(link)
-                processed_links.add(link)
+                ids.add(link)
 
-        # 2. İKİNCİ ÖNCELİK: Normal data-stream (Eğer streamx yoksa maçlar için)
-        streams_normal = re.findall(r'data-stream="([^"]+)".*?data-name="([^"]+)"', html_content, re.DOTALL)
-        # Not: Buradaki linkler için senin API'den gelen baseurl gerekebilir. 
-        # Ancak streamx linkleri (pix.xsiic...) daha stabil çalışacaktır.
+        # 4. Normal Data-Stream Linklerini Bul (Maçlar için)
+        normal_matches = re.findall(r'data-stream="([^"]+)".*?data-name="([^"]+)"', html, re.DOTALL)
+        for stream_id, name in normal_matches:
+            if stream_id not in ids:
+                clean_name = name.strip().upper()
+                group = "⚽ CANLI MAÇLAR" if "-" in clean_name else "📺 SABİT KANALLAR"
+                m3u.append(f'#EXTINF:-1 group-title="{group}",{clean_name}')
+                m3u.append(f'#EXTVLCOPT:http-user-agent={UA}')
+                m3u.append(f'#EXTVLCOPT:http-referrer={SITE_URL}')
+                m3u.append(f"{base_url}{stream_id}.m3u8")
+                ids.add(stream_id)
 
+        # 5. Dosyayı Kaydet
         if len(m3u) > 1:
             with open("joker.m3u8", "w", encoding="utf-8") as f:
                 f.write("\n".join(m3u))
-            print(f"🚀 BAŞARILI: {len(processed_links)} adet Worker yayını kaydedildi.")
+            print(f"Başarılı! {len(ids)} yayın joker.m3u8 dosyasına yazıldı.")
         else:
-            print("❌ HATA: Uygun yayın linki (streamx) bulunamadı.")
+            print("Yayın bulunamadı!")
 
     except Exception as e:
-        print(f"💥 Hata oluştu: {e}")
+        print(f"Hata: {e}")
 
 if __name__ == "__main__":
     main()
