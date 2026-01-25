@@ -4,7 +4,6 @@ import urllib3
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-# Ayarlar
 TARGET_URL = "https://jokerbettv177.com/"
 UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
 
@@ -24,69 +23,54 @@ def get_html():
         except: continue
     return None
 
-def find_dynamic_base(html):
-    """
-    Sayfa içerisinden aktif sunucu adresini (TRUE_BASE) bulmaya çalışır.
-    """
-    # 1. Yöntem: Script içindeki değişkenleri ara (Yaygın kullanılan patternler)
-    found = re.search(r'["\'](https?://[.\w-]+\.workers\.dev/cdn/)["\']', html)
-    if found:
-        return found.group(1)
-    
-    # 2. Yöntem: data-server veya benzeri bir yerden çek
-    found_alt = re.search(r'https?://[.\w-]+\.workers\.dev/[^"\']+', html)
-    if found_alt:
-        # Eğer /cdn/ yoksa sonuna ekle
-        base = found_alt.group(0)
-        return base if base.endswith('/') else base + '/'
-
-    # Bulamazsa senin verdiğin varsayılanı döndür
-    return "https://pix.xsiic.workers.dev/cdn/"
-
 def main():
     html = get_html()
     if not html:
         print("❌ Siteye ulaşılamadı!")
         return
 
-    # SUNUCU ADRESİNİ DİNAMİK OLARAK ÇEK
-    dynamic_base = find_dynamic_base(html)
-    print(f"📡 Tespit Edilen Sunucu: {dynamic_base}")
-
+    # 1. Sunucu kök adresini dinamik yakala (Örn: https://pix.xsiic.workers.dev/)
+    # Sayfa içinde .workers.dev geçen ilk linki bulup kök dizini alıyoruz
+    base_match = re.search(r'(https?://[.\w-]+\.workers\.dev/)', html)
+    base_url = base_match.group(1) if base_match else "https://pix.xsiic.workers.dev/"
+    
     m3u = ["#EXTM3U"]
     ids = set()
 
-    # 1. CANLI MAÇLAR
+    # 2. Yayınları tara
+    # data-stream="..." ve data-name="..." değerlerini çekiyoruz
     matches = re.findall(r'data-stream="([^"]+)".*?data-name="([^"]+)"', html, re.DOTALL)
     
     for stream_id, name in matches:
         clean_name = name.strip().upper()
-        # ID içindeki sadece rakamları ayıkla
-        only_id = re.sub(r'\D', '', stream_id)
         
-        if only_id and only_id not in ids:
-            m3u.append(f'#EXTINF:-1 group-title="⚽ CANLI MAÇLAR",{clean_name}')
-            m3u.append(f'#EXTVLCOPT:http-user-agent={UA}')
-            m3u.append(f'#EXTVLCOPT:http-referrer={TARGET_URL}')
-            # Dinamik olarak bulunan base ile birleştir
-            m3u.append(f"{dynamic_base}{only_id}.m3u8")
-            ids.add(only_id)
+        # Eğer stream_id zaten tam bir linkse (http ile başlıyorsa)
+        if stream_id.startswith('http'):
+            final_link = stream_id
+        else:
+            # Sadece rakamdan oluşuyorsa (Örn: "38") -> /hls/38.m3u8
+            if stream_id.isdigit():
+                final_link = f"{base_url}hls/{stream_id}.m3u8"
+            # "betlivematch-38" gibi bir şeyse rakamı ayıkla -> /hls/38.m3u8
+            elif "betlivematch" in stream_id.lower():
+                only_id = re.sub(r'\D', '', stream_id)
+                final_link = f"{base_url}hls/{only_id}.m3u8"
+            # Diğer metinler için (Örn: "bein-sports-1") -> /bein-sports-1.m3u8
+            else:
+                final_link = f"{base_url}{stream_id}.m3u8"
 
-    # 2. SABİT KANALLAR
-    worker_matches = re.findall(r'data-streamx="([^"]+)".*?data-name="([^"]+)"', html, re.DOTALL)
-    for link, name in worker_matches:
-        clean_name = name.strip().upper()
-        if clean_name not in ids:
-            m3u.append(f'#EXTINF:-1 group-title="📺 SABİT KANALLAR",{clean_name}')
+        if final_link not in ids:
+            m3u.append(f'#EXTINF:-1 group-title="⚽ CANLI YAYINLAR",{clean_name}')
             m3u.append(f'#EXTVLCOPT:http-user-agent={UA}')
             m3u.append(f'#EXTVLCOPT:http-referrer={TARGET_URL}')
-            m3u.append(link)
-            ids.add(clean_name)
+            m3u.append(final_link)
+            ids.add(final_link)
 
     if len(m3u) > 1:
         with open("joker.m3u8", "w", encoding="utf-8") as f:
             f.write("\n".join(m3u))
-        print(f"🚀 BAŞARILI! {len(ids)} yayın dinamik sunucuyla kaydedildi.")
+        print(f"🚀 Başarılı! {len(ids)} kanal doğru formatta (hls/cdn) kaydedildi.")
+        print(f"📡 Kullanılan Base: {base_url}")
     else:
         print("❌ Yayın bulunamadı.")
 
