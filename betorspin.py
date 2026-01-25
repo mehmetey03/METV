@@ -1,12 +1,11 @@
 import requests
 import urllib3
-import time
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-# Ayarlar
+# API ve Ayarlar
 DOMAIN_API = "https://maqrizi.com/domain.php"
-USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36"
+UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36"
 
 SABIT_KANALLAR = {
     "beIN Sports 1": "yayinzirve.m3u8", "beIN Sports 2": "yayinb2.m3u8", "beIN Sports 3": "yayinb3.m3u8",
@@ -23,58 +22,47 @@ SABIT_KANALLAR = {
     "NBA TV": "yayinnba.m3u8", "FB TV": "yayinfb.m3u8", "GS TV": "yayingstve.m3u8", "BJK TV": "yayinbjk.m3u8"
 }
 
-def find_working_domain():
-    """Çalışan domain'i hızlıca bulur."""
-    print("🔍 Aktif site adresi taranıyor...")
-    for i in range(63, 85):
-        url = f"https://{i}betorspintv.live/"
+def get_active_info():
+    """Hem yayın sunucusunu hem de site domainini dinamik bulur."""
+    base = ""
+    site = ""
+    
+    # 1. Yayın sunucusunu (baseurl) çek
+    try:
+        base = requests.get(DOMAIN_API, timeout=5).json().get("baseurl", "")
+    except: pass
+    
+    # 2. Aktif site domainini tara (63-80 arası)
+    for i in range(63, 81):
+        test_url = f"https://{i}betorspintv.live/"
         try:
-            r = requests.get(url, headers={"User-Agent": USER_AGENT}, timeout=2, verify=False)
+            r = requests.get(test_url, headers={"User-Agent": UA}, timeout=2, verify=False)
             if r.status_code == 200:
-                print(f"✅ Bulundu: {url}")
-                return url
-        except:
-            continue
-    return "https://63betorspintv.live/"
+                site = test_url
+                break
+        except: continue
+        
+    return base, site
 
 def main():
-    try:
-        # 1. Yayın Sunucusunu (BaseURL) Al
-        base_url = "https://bnw.zirvedesin119.lat/" # Yedek
-        try:
-            res = requests.get(DOMAIN_API, timeout=5).json()
-            base_url = res.get("baseurl", base_url)
-        except:
-            print("⚠️ API çalışmıyor, yedek sunucu kullanılıyor.")
+    base_url, site_url = get_active_info()
+    
+    if not base_url:
+        print("❌ Yayın sunucusu alınamadı.")
+        return
 
-        # 2. Referrer Domaini Bul
-        ref_url = find_working_domain()
-        
-        # 3. M3U İçeriğini Oluştur
-        m3u_content = "#EXTM3U\n"
-        
-        for name, file in SABIT_KANALLAR.items():
-            full_url = f"{base_url}{file}"
-            
-            # Hem VLC hem de diğer Playerlar için header eklemeleri
-            m3u_content += f'#EXTINF:-1 group-title="BetOrSpin",{name}\n'
-            # Bazı playerlar için opsiyonel komutlar
-            m3u_content += f'#EXTVLCOPT:http-user-agent={USER_AGENT}\n'
-            m3u_content += f'#EXTVLCOPT:http-referrer={ref_url}\n'
-            # Link sonuna eklenen headerlar (En sağlam yöntemdir)
-            m3u_content += f'{full_url}|User-Agent={USER_AGENT}&Referer={ref_url}\n'
+    m3u = ["#EXTM3U"]
+    for name, file in SABIT_KANALLAR.items():
+        m3u.append(f'#EXTINF:-1,{name}')
+        # Linkin yanına hiçbir şey eklemiyoruz, sadece saf URL
+        m3u.append(f"{base_url}{file}")
 
-        # 4. Kaydet
-        with open("betorspin.m3u8", "w", encoding="utf-8") as f:
-            f.write(m3u_content)
-            
-        print("-" * 40)
-        print(f"🚀 Başarılı! {len(SABIT_KANALLAR)} kanal eklendi.")
-        print(f"📂 Dosya: betorspin.m3u8")
-        print("-" * 40)
-
-    except Exception as e:
-        print(f"❌ Hata: {e}")
+    with open("betorspin.m3u8", "w", encoding="utf-8") as f:
+        f.write("\n".join(m3u))
+    
+    print(f"✅ İşlem Tamam.")
+    print(f"📡 Sunucu: {base_url}")
+    print(f"🔗 Site: {site_url if site_url else 'Bulunamadı'}")
 
 if __name__ == "__main__":
     main()
