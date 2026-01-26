@@ -33,7 +33,7 @@ def get_dynamic_data():
     
     # 2. Aktif domaini tara (63, 64, 65...)
     for i in range(63, 85):
-        url = f"https://{i}betorspintv.live/"
+        url = f"https://{i}baywintv.live/"
         try:
             r = requests.get(url, timeout=2, verify=False)
             if r.status_code == 200:
