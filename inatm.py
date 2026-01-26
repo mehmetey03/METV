@@ -55,7 +55,7 @@ def main():
 
         print("🔍 Aktif domain aranıyor...")
         active_domain = None
-        for i in range(1231, 1300):
+        for i in range(1233, 1300):
             url = f"https://inattv{i}.xyz"
             try:
                 r = requests.get(url, headers=HEADERS, timeout=2, verify=False)
