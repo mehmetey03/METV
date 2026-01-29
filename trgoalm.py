@@ -6,7 +6,9 @@ from bs4 import BeautifulSoup
 # SSL uyarılarını kapat
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-TRGOALS_JSON = "https://raw.githubusercontent.com/mehmetey03/METV/5af7251ac4b20adf59a0c3c8b3431b416a18ab94/trgoals_data.json"
+# GÜNCEL SABİT KANAL LİSTESİ JSON
+TRGOALS_JSON = "https://raw.githubusercontent.com/mehmetey03/METV/c4ba1c230767d0cd393798283dd4caec10b83374/trgoals_data.json"
+
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
 }
@@ -14,116 +16,96 @@ HEADERS = {
 def main():
     try:
         # ===============================
-        # SABİT KANAL LİSTESİ (Yeni ID'lere göre güncellendi)
-        # ===============================
-        fixed_channels = {
-            "zirve": ["beIN Sports 1 A", "Inat TV"],
-            "trgoals": ["beIN Sports 1 B", "Inat TV"], # Örnekteki trgoals id'si
-            "yayin1": ["beIN Sports 1 C", "Inat TV"],
-            "b2": ["beIN Sports 2", "Inat TV"],
-            "b3": ["beIN Sports 3", "Inat TV"],
-            "b4": ["beIN Sports 4", "Inat TV"],
-            "b5": ["beIN Sports 5", "Inat TV"],
-            "bm1": ["beIN Sports 1 Max", "Inat TV"],
-            "bm2": ["beIN Sports 2 Max", "Inat TV"],
-            "ss1": ["S Sports 1", "Inat TV"],
-            "ss2": ["S Sports 2", "Inat TV"],
-            "t1": ["Tivibu Sports 1", "Inat TV"],
-            "t2": ["Tivibu Sports 2", "Inat TV"],
-            "t3": ["Tivibu Sports 3", "Inat TV"],
-            "t4": ["Tivibu Sports 4", "Inat TV"],
-            "smarts": ["Smart Sports", "Inat TV"],
-            "as": ["A Spor", "Inat TV"],
-            "trtspor": ["TRT Spor", "Inat TV"],
-            "tv85": ["TV8.5", "Inat TV"],
-        }
-
-        # ===============================
-        # AKTİF DOMAİN BUL
+        # 1. AKTİF DOMAİN BUL (Web sitesi için)
         # ===============================
         print("🔍 Aktif domain aranıyor...")
-        active_domain = None
-        for i in range(1497, 2000):
-            url = f"https://trgoals{i}.xyz/"
-            try:
-                r = requests.head(url, headers=HEADERS, timeout=2, verify=False)
-                if r.status_code == 200:
-                    active_domain = url
-                    print(f"✅ Aktif domain: {active_domain}")
-                    break
-            except: continue
-
-        if not active_domain:
-            print("❌ Aktif domain bulunamadı")
-            return
-
-        # ===============================
-        # BASE URL TESPİTİ (Yeni Yapı)
-        # ===============================
-        # Örnek: https://9vy.d72577a9dd0ec19.sbs/
-        print("📦 Yayın sunucusu adresi alınıyor...")
-        # JSON'dan dinamik olarak base_url çekmeye çalışıyoruz
+        active_domain = "https://trgoals1521.xyz/" # Hızlı olması için son bulduğunu başa koyabilirsin
         try:
-            json_data = requests.get(TRGOALS_JSON, timeout=10, verify=False).json()
-            items = json_data.get("list", {}).get("item", [])
-            sample_url = items[0].get("url", "")
-            # URL'den son iki kısmı (kanal/mono.m3u8) atıp base_url alıyoruz
-            base_url = "/".join(sample_url.split("/")[:-2]) + "/"
-        except:
-            base_url = "https://9vy.d72577a9dd0ec19.sbs/" # Manuel fallback
-        
-        print(f"✅ BASE_URL: {base_url}")
+            r = requests.head(active_domain, headers=HEADERS, timeout=3, verify=False)
+            if r.status_code != 200:
+                for i in range(1510, 1550):
+                    url = f"https://trgoals{i}.xyz/"
+                    try:
+                        if requests.head(url, headers=HEADERS, timeout=2, verify=False).status_code == 200:
+                            active_domain = url
+                            break
+                    except: continue
+        except: pass
+        print(f"✅ Aktif domain: {active_domain}")
 
         # ===============================
-        # CANLI MAÇLARI ÇEK
+        # 2. SABİT KANALLARI JSON'DAN ÇEK
+        # ===============================
+        print("📦 Sabit kanallar JSON'dan alınıyor...")
+        json_response = requests.get(TRGOALS_JSON, timeout=10, verify=False).json()
+        items = json_response.get("list", {}).get("item", [])
+        
+        fixed_entries = []
+        base_url_auto = ""
+
+        for item in items:
+            title = item.get("title", "Bilinmeyen Kanal")
+            url = item.get("url", "")
+            if url:
+                fixed_entries.append((title, url))
+                # İlk geçerli URL'den base_url çıkarmaya çalış (dinamik maçlar için)
+                if not base_url_auto:
+                    base_url_auto = "/".join(url.split("/")[:-2]) + "/"
+
+        print(f"✅ {len(fixed_entries)} sabit kanal yüklendi.")
+        print(f"📡 Otomatik Base URL: {base_url_auto}")
+
+        # ===============================
+        # 3. CANLI MAÇLARI WEB SİTESİNDEN ÇEK
         # ===============================
         print("📡 Canlı maçlar web sitesinden taranıyor...")
-        r = requests.get(active_domain, headers=HEADERS, timeout=10, verify=False)
-        r.encoding = "utf-8"
-        soup = BeautifulSoup(r.text, "html.parser")
-
         dynamic_channels = []
-        matches_tab = soup.find(id="matches-tab")
-        if matches_tab:
-            for link in matches_tab.find_all("a", href=True):
-                if "id=" in link["href"]:
+        try:
+            r = requests.get(active_domain, headers=HEADERS, timeout=10, verify=False)
+            r.encoding = "utf-8"
+            soup = BeautifulSoup(r.text, "html.parser")
+            matches_tab = soup.find(id="matches-tab")
+            if matches_tab:
+                for link in matches_tab.find_all("a", href=True):
                     cid_match = re.search(r'id=([^&]+)', link["href"])
                     if cid_match:
                         cid = cid_match.group(1)
                         name_el = link.find(class_="channel-name")
                         time_el = link.find(class_="channel-status")
                         if name_el:
-                            time_str = time_el.get_text(strip=True) if time_el else "Canlı"
-                            title = f"{time_str} | {name_el.get_text(strip=True)}"
-                            dynamic_channels.append((cid, title))
+                            label = f"{time_el.get_text(strip=True) if time_el else 'CANLI'} | {name_el.get_text(strip=True)}"
+                            # Dinamik maç linkini yeni formata göre oluştur
+                            m3u8_url = f"{base_url_auto}{cid}/mono.m3u8"
+                            dynamic_channels.append((label, m3u8_url))
+        except Exception as e:
+            print(f"⚠️ Maçlar çekilirken hata: {e}")
 
         # ===============================
-        # M3U OLUŞTURMA
+        # 4. M3U OLUŞTURMA
         # ===============================
         lines = ["#EXTM3U"]
 
-        # 1. CANLI MAÇLAR
-        for cid, title in dynamic_channels:
+        # Önce Canlı Maçlar
+        for title, link in dynamic_channels:
             lines.append(f'#EXTINF:-1 group-title="Canlı Maçlar",{title}')
             lines.append(f'#EXTVLCOPT:http-user-agent={HEADERS["User-Agent"]}')
             lines.append(f'#EXTVLCOPT:http-referrer={active_domain}')
-            # Yeni format: base_url + id + /mono.m3u8
-            lines.append(f"{base_url}{cid}/mono.m3u8")
+            lines.append(link)
 
-        # 2. SABİT KANALLAR
-        for cid, info in fixed_channels.items():
-            lines.append(f'#EXTINF:-1 group-title="Inat TV",{info[0]}')
+        # Sonra Sabit Kanallar
+        for title, link in fixed_entries:
+            lines.append(f'#EXTINF:-1 group-title="7/24 Kanallar",{title}')
             lines.append(f'#EXTVLCOPT:http-user-agent={HEADERS["User-Agent"]}')
             lines.append(f'#EXTVLCOPT:http-referrer={active_domain}')
-            lines.append(f"{base_url}{cid}/mono.m3u8")
+            lines.append(link)
 
         with open("karsilasmalar2.m3u", "w", encoding="utf-8") as f:
             f.write("\n".join(lines))
 
-        print(f"🏁 TAMAM → karsilasmalar2.m3u oluşturuldu.")
-        
+        print(f"🏁 TAMAM → karsilasmalar2.m3u oluşturuldu. ({len(dynamic_channels)} Maç + {len(fixed_entries)} Sabit)")
+
     except Exception as e:
-        print(f"❌ Hata oluştu: {e}")
+        print(f"❌ Kritik Hata: {e}")
 
 if __name__ == "__main__":
     main()
