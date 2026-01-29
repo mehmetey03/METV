@@ -1231,17 +1231,17 @@ https://stream.0nlineradio.com/soft-rock?ref=radiobrowser
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://stream02.iloveradio.de/iloveradio13.mp3?hadpreroll
 
-#EXTINF:-1 tvg-id="Germany_47" tvg-name="WDR4" tvg-logo="https://www1.wdr.de/resources/img/favicon/apple-touch-icon.png" group-title="Germany",WDR4
+#EXTINF:-1 tvg-id="Germany_47" tvg-name="Technolovers DEEP HOUSE" tvg-logo="" group-title="Germany",Technolovers DEEP HOUSE
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://stream.technolovers.fm/deep-house?ref=radiobrowser
+
+#EXTINF:-1 tvg-id="Germany_48" tvg-name="WDR4" tvg-logo="https://www1.wdr.de/resources/img/favicon/apple-touch-icon.png" group-title="Germany",WDR4
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://wdr-wdr4-live.icecast.wdr.de/wdr/wdr4/live/mp3/128/stream.mp3
 
-#EXTINF:-1 tvg-id="Germany_48" tvg-name="NDR Info (Hamburg)" tvg-logo="https://www.ndr.de/apple-touch-icon-120x120.png" group-title="Germany",NDR Info (Hamburg)
+#EXTINF:-1 tvg-id="Germany_49" tvg-name="NDR Info (Hamburg)" tvg-logo="https://www.ndr.de/apple-touch-icon-120x120.png" group-title="Germany",NDR Info (Hamburg)
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://www.ndr.de/resources/metadaten/audio/m3u/ndrinfo_hh.m3u
-
-#EXTINF:-1 tvg-id="Germany_49" tvg-name="Technolovers DEEP HOUSE" tvg-logo="" group-title="Germany",Technolovers DEEP HOUSE
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://stream.technolovers.fm/deep-house?ref=radiobrowser
 
 #EXTINF:-1 tvg-id="Germany_50" tvg-name="- 0 N - 90s on Radio" tvg-logo="https://www.0nradio.com/logos/0n-90s_600x600.jpg" group-title="Germany",- 0 N - 90s on Radio
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -1636,13 +1636,13 @@ http://radio2bindia.out.airtime.pro:8000/radio2bindia_a
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://air.pc.cdn.bitgravity.com/air/live/pbaudio001/playlist.m3u8
 
-#EXTINF:-1 tvg-id="India_37" tvg-name="TORi-Live-8000" tvg-logo="" group-title="India",TORi-Live-8000
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://173.203.133.187:9700/;stream/1
-
-#EXTINF:-1 tvg-id="India_38" tvg-name="All India Radio AIR Punjabi" tvg-logo="" group-title="India",All India Radio AIR Punjabi
+#EXTINF:-1 tvg-id="India_37" tvg-name="All India Radio AIR Punjabi" tvg-logo="" group-title="India",All India Radio AIR Punjabi
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://air.pc.cdn.bitgravity.com/air/live/pbaudio138/chunklist.m3u8
+
+#EXTINF:-1 tvg-id="India_38" tvg-name="TORi-Live-8000" tvg-logo="" group-title="India",TORi-Live-8000
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://173.203.133.187:9700/;stream/1
 
 #EXTINF:-1 tvg-id="India_39" tvg-name="Tamil 80's Radio" tvg-logo="https://www.tamilradios.com/assets/img/radio-logos/tamil-80s-radio.jpg" group-title="India",Tamil 80's Radio
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -3104,13 +3104,13 @@ https://dfm-disc90.hostingradio.ru/disc9096.aacp
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://retroserver.streamr.ru:8043/retro256.mp3
 
-#EXTINF:-1 tvg-id="The Russian Federation_6" tvg-name="Дискотека СССР" tvg-logo="" group-title="The Russian Federation",Дискотека СССР
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://pub0302.101.ru:8000/stream/pro/aac/64/144?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpcCI6IjUuMTguMjQ4Ljk4IiwidXNlcmFnZW50IjoiTW96aWxsYVwvNS4wIChYMTE7IExpbnV4IHg4Nl82NDsgcnY6ODIuMCkgR2Vja29cLzIwMTAwMTAxIEZpcmVmb3hcLzgyLjAiLCJ1aWRfY2hhbm5lbCI6IjE0NCIsInR5cGVfY2hhbm5lbCI6ImNoYW5uZWwiLCJleHAiOjE2MDU5NjQ1MTZ9.Ln1wEJ8cHHzK_Ea6Zr8J8acdny0R9ShZ_KUKVf6TmQA
-
-#EXTINF:-1 tvg-id="The Russian Federation_7" tvg-name="Дорожное радио" tvg-logo="https://dorognoe.ru/assets/default/i/fav_114x114.png" group-title="The Russian Federation",Дорожное радио
+#EXTINF:-1 tvg-id="The Russian Federation_6" tvg-name="Дорожное радио" tvg-logo="https://dorognoe.ru/assets/default/i/fav_114x114.png" group-title="The Russian Federation",Дорожное радио
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://dorognoe.hostingradio.ru:8000/radio
+
+#EXTINF:-1 tvg-id="The Russian Federation_7" tvg-name="Дискотека СССР" tvg-logo="" group-title="The Russian Federation",Дискотека СССР
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://pub0302.101.ru:8000/stream/pro/aac/64/144?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpcCI6IjUuMTguMjQ4Ljk4IiwidXNlcmFnZW50IjoiTW96aWxsYVwvNS4wIChYMTE7IExpbnV4IHg4Nl82NDsgcnY6ODIuMCkgR2Vja29cLzIwMTAwMTAxIEZpcmVmb3hcLzgyLjAiLCJ1aWRfY2hhbm5lbCI6IjE0NCIsInR5cGVfY2hhbm5lbCI6ImNoYW5uZWwiLCJleHAiOjE2MDU5NjQ1MTZ9.Ln1wEJ8cHHzK_Ea6Zr8J8acdny0R9ShZ_KUKVf6TmQA
 
 #EXTINF:-1 tvg-id="The Russian Federation_8" tvg-name="Вести ФМ (Vesti FM)" tvg-logo="" group-title="The Russian Federation",Вести ФМ (Vesti FM)
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -3616,13 +3616,13 @@ http://relax.stream.publicradio.org/relax.mp3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://listen.181fm.com/181-oldschool_128k.mp3
 
-#EXTINF:-1 tvg-id="The United States Of America_15" tvg-name=".977 Hitz" tvg-logo="" group-title="The United States Of America",.977 Hitz
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://playerservices.streamtheworld.com/pls/977_HITS.m3u
-
-#EXTINF:-1 tvg-id="The United States Of America_16" tvg-name=".977 Country" tvg-logo="" group-title="The United States Of America",.977 Country
+#EXTINF:-1 tvg-id="The United States Of America_15" tvg-name=".977 Country" tvg-logo="" group-title="The United States Of America",.977 Country
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://playerservices.streamtheworld.com/pls/977_COUNTRY.m3u
+
+#EXTINF:-1 tvg-id="The United States Of America_16" tvg-name=".977 Hitz" tvg-logo="" group-title="The United States Of America",.977 Hitz
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://playerservices.streamtheworld.com/pls/977_HITS.m3u
 
 #EXTINF:-1 tvg-id="The United States Of America_17" tvg-name="Christmas Vinyl HD Opus" tvg-logo="https://icecast.walmradio.com:8443/christmas.jpg" group-title="The United States Of America",Christmas Vinyl HD Opus
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -3724,13 +3724,13 @@ https://playerservices.streamtheworld.com/pls/977_SMOOJAZZ.m3u
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://somafm.com/indiepop130.m3u
 
-#EXTINF:-1 tvg-id="The United States Of America_42" tvg-name="SomaFM Left Coast 70s (320k MP3)" tvg-logo="https://somafm.com/img3/seventies400.jpg" group-title="The United States Of America",SomaFM Left Coast 70s (320k MP3)
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://somafm.com/seventies320.m3u
-
-#EXTINF:-1 tvg-id="The United States Of America_43" tvg-name="181.FM - Highway 181" tvg-logo="http://www.181.fm/favicon.ico" group-title="The United States Of America",181.FM - Highway 181
+#EXTINF:-1 tvg-id="The United States Of America_42" tvg-name="181.FM - Highway 181" tvg-logo="http://www.181.fm/favicon.ico" group-title="The United States Of America",181.FM - Highway 181
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://www.181.fm/stream/pls/181-highway.m3u
+
+#EXTINF:-1 tvg-id="The United States Of America_43" tvg-name="SomaFM Left Coast 70s (320k MP3)" tvg-logo="https://somafm.com/img3/seventies400.jpg" group-title="The United States Of America",SomaFM Left Coast 70s (320k MP3)
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://somafm.com/seventies320.m3u
 
 #EXTINF:-1 tvg-id="The United States Of America_44" tvg-name="FUNKY RADIO - Only Funk Music (60's 70's)" tvg-logo="" group-title="The United States Of America",FUNKY RADIO - Only Funk Music (60's 70's)
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
