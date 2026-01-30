@@ -4,82 +4,94 @@ import urllib3
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-class MonoDeepScan:
+class MonoHybridBot:
     def __init__(self):
         self.headers = {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36",
-            "Accept": "*/*",
-            "Referer": "https://google.com"
+        }
+        # Senin istediğin sabit kanal listesi
+        self.kanal_sozlugu = {
+            "zirve": "beIN Sports 1 A",
+            "trgoals": "beIN Sports 1 B",
+            "yayin1": "beIN Sports 1 C",
+            "b2": "beIN Sports 2",
+            "b3": "beIN Sports 3",
+            "b4": "beIN Sports 4",
+            "b5": "beIN Sports 5",
+            "bm1": "beIN Sports 1 Max",
+            "bm2": "beIN Sports 2 Max",
+            "ss1": "S Sports 1",
+            "ss2": "S Sports 2",
+            "smarts": "Smart Sports",
+            "sms2": "Smart Sports 2",
+            "t1": "Tivibu Sports 1",
+            "t2": "Tivibu Sports 2",
+            "t3": "Tivibu Sports 3",
+            "t4": "Tivibu Sports 4",
+            "as": "A Spor",
+            "trtspor": "TRT Spor",
+            "trtspor2": "TRT Spor Yıldız",
+            "trt1": "TRT 1",
+            "atv": "ATV",
+            "tv85": "TV8.5",
+            "nbatv": "NBA TV",
+            "eu1": "Euro Sport 1",
+            "eu2": "Euro Sport 2",
+            "ex1": "Tâbii 1",
+            "ex2": "Tâbii 2",
+            "ex3": "Tâbii 3",
+            "ex4": "Tâbii 4",
+            "ex5": "Tâbii 5",
+            "ex6": "Tâbii 6",
+            "ex7": "Tâbii 7",
+            "ex8": "Tâbii 8"
         }
 
-    def run(self):
-        # 1. Aktif Domaini Bul
-        active_url = None
-        html = ""
-        for i in range(530, 560):
+    def find_dynamic_assets(self):
+        """Aktif domain ve yayın sunucusunu otomatik bulur."""
+        print("🔍 Güncel giriş adresi ve yayın sunucusu aranıyor...")
+        for i in range(530, 565):
             url = f"https://monotv{i}.com"
             try:
-                r = requests.get(url, headers=self.headers, timeout=5, verify=False)
+                r = requests.get(url, headers=self.headers, timeout=4, verify=False)
                 if r.status_code == 200:
-                    active_url, html = url, r.text
-                    print(f"✅ Aktif Site: {url}")
-                    break
-            except: continue
-
-        if not active_url: return
-
-        # 2. Yayın Sunucusunu (Dinamik Regex) Bul
-        # Sitede 'zirvedesin', 'xyz', 'cfd' gibi geçen tüm yayın linklerini tara
-        stream_patterns = [
-            r'https?://[a-z0-9.-]+\.(?:cfd|xyz|live|pw|site|tv|sbs)/',
-            r'["\'](https?://[^"\']+?/mono\.m3u8)'
-        ]
-        
-        base_stream = "https://rei.zirvedesin201.cfd/" # Default
-        for p in stream_patterns:
-            m = re.search(p, html)
-            if m:
-                found = m.group(0 if "http" in p else 1)
-                if "m3u8" in found:
-                    base_stream = found.split('zirve')[0] if 'zirve' in found else found.rsplit('/', 2)[0] + "/"
-                else:
-                    base_stream = found
-                break
-        
-        print(f"📡 Sunucu: {base_stream}")
-
-        # 3. Agresif ID ve İsim Yakalayıcı (Ham Metin Taraması)
-        # Link yapısı: channel.html?id=XXX veya id=XXX formatlarını bul
-        # Yanındaki isimleri yakalamak için daha esnek bir yapı
-        raw_matches = re.findall(r'id=([a-zA-Z0-9_-]{3,})', html)
-        unique_ids = list(dict.fromkeys(raw_matches))
-        
-        m3u = ["#EXTM3U"]
-        count = 0
-
-        for cid in unique_ids:
-            # Sistem dosyalarını ele
-            if any(x in cid.lower() for x in ['google', 'twitter', 'facebook', 'whatsapp', 'script', 'main', 'jquery']):
+                    # 1. Referer bulundu
+                    active_referer = url + "/"
+                    
+                    # 2. Yayın sunucusunu (base_stream) HTML içinden çek
+                    # Örn: https://rei.zirvedesin201.cfd/zirve/mono.m3u8 yapısından kökü al
+                    match = re.search(r'["\'](https?://[a-z0-9.-]+\.[a-z]{2,6})/[^"\']+?/mono\.m3u8', r.text)
+                    if match:
+                        base_stream = match.group(1).rstrip('/') + "/"
+                        return active_referer, base_stream
+            except:
                 continue
-            
-            # İsimlendirme (ID'den temizle)
-            name = cid.upper().replace('-', ' ').replace('_', ' ')
-            
-            # Gruba ayır (spor kelimesi geçiyorsa spor yap)
-            group = "MAÇLAR" if any(x in cid.lower() for x in ['bein', 'spor', 'tivibu', 'smart', 'ssport']) else "7/24 KANALLAR"
+        return None, None
 
-            m3u.append(f'#EXTINF:-1 group-title="{group}",{name}')
-            m3u.append(f'#EXTVLCOPT:http-referrer={active_url}/')
-            m3u.append(f'{base_stream}{cid}/mono.m3u8')
-            count += 1
+    def run(self):
+        referer, base_stream = self.find_dynamic_assets()
 
-        # 4. Kaydet
-        if count > 0:
-            with open("mono.m3u", "w", encoding="utf-8") as f:
-                f.write("\n".join(m3u))
-            print(f"🏁 SONUÇ: {count} yayın başarıyla eklendi.")
+        if not referer or not base_stream:
+            # Eğer otomatik bulunamazsa varsayılanları kullan (Güvenlik önlemi)
+            referer = "https://monotv530.com/"
+            base_stream = "https://rei.zirvedesin201.cfd/"
+            print("⚠️ Otomatik tespit başarısız, varsayılanlar kullanılıyor.")
         else:
-            print("❌ Hala 0 yayın! Site içeriği şifreli olabilir.")
+            print(f"✅ Bulunan Domain: {referer}")
+            print(f"✅ Bulunan Sunucu: {base_stream}")
+
+        m3u_lines = ["#EXTM3U"]
+        for cid, name in self.kanal_sozlugu.items():
+            group = "SPOR" if "Sport" in name or "beIN" in name else "ULUSAL"
+            
+            m3u_lines.append(f'#EXTINF:-1 group-title="{group}",{name}')
+            m3u_lines.append(f'#EXTVLCOPT:http-referrer={referer}')
+            m3u_lines.append(f'{base_stream}{cid}/mono.m3u8')
+
+        with open("mono.m3u", "w", encoding="utf-8") as f:
+            f.write("\n".join(m3u_lines))
+        
+        print(f"🏁 Bitti: {len(self.kanal_sozlugu)} kanal listeye eklendi.")
 
 if __name__ == "__main__":
-    MonoDeepScan().run()
+    MonoHybridBot().run()
