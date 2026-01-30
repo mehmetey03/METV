@@ -2,8 +2,8 @@ name: MonoTV Guncelle
 
 on:
   schedule:
-    - cron: '0 */6 * * *'
-  workflow_dispatch:
+    - cron: '0 */6 * * *' # Her 6 saatte bir çalışır
+  workflow_dispatch: # Manuel çalıştırma butonu ekler
 
 jobs:
   run_script:
@@ -14,6 +14,8 @@ jobs:
     steps:
       - name: Depoyu Cek
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Tüm geçmişi çek (pull/rebase hatasını önlemek için önemli)
 
       - name: Python Kur
         uses: actions/setup-python@v5
@@ -21,17 +23,19 @@ jobs:
           python-version: '3.10'
 
       - name: Kutuphaneleri Kur
-        # Hata buradaydı; hem requests hem de bs4 (BeautifulSoup) yüklenmeli
         run: |
           pip install requests beautifulsoup4
 
       - name: Scripti Calistir
         run: python mono.py
 
-      - name: Degisiklikleri Kaydet
+      - name: Degisiklikleri Kaydet ve Push Et
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add mono.m3u
+          # Eğer değişiklik yoksa hata vermeden devam et
           git commit -m "Liste guncellendi" || exit 0
-          git push
+          # Kritik hamle: Uzaktaki değişiklikleri al ve kendi commit'ini üste koy
+          git pull --rebase origin main
+          git push origin main
