@@ -60,26 +60,42 @@ def main():
 
     # Sabit Kanallar - ID'leri yeni yapıya (t1, b2 vb.) göre sadeleştirebilirsiniz 
     # veya kod içindeki prefixleri temizletebiliriz.
-    fixed_channels = {
-        "zirve": "beIN Sports 1 A",
-        "trgoals": "beIN Sports 1 B",
-        "yayin1": "beIN Sports 1 C",
-        "b2": "beIN Sports 2",
-        "b3": "beIN Sports 3",
-        "b4": "beIN Sports 4",
-        "b5": "beIN Sports 5",
-        "bm1": "beIN Sports 1 Max",
-        "bm2": "beIN Sports 2 Max",
-        "ss1": "S Sports 1",
-        "ss2": "S Sports 2",
-        "t1": "Tivibu Sports 1",
-        "t2": "Tivibu Sports 2",
-        "t3": "Tivibu Sports 3",
-        "t4": "Tivibu Sports 4",
-        "as": "A Spor",
-        "trtspor": "TRT Spor",
-        "tv85": "TV8.5"
-    }
+fixed_channels = {
+            "zirve": "beIN Sports 1 A",
+            "trgoals": "beIN Sports 1 B",
+            "yayin1": "beIN Sports 1 C",
+            "b2": "beIN Sports 2",
+            "b3": "beIN Sports 3",
+            "b4": "beIN Sports 4",
+            "b5": "beIN Sports 5",
+            "bm1": "beIN Sports 1 Max",
+            "bm2": "beIN Sports 2 Max",
+            "ss1": "S Sports 1",
+            "ss2": "S Sports 2",
+            "smarts": "Smart Sports",
+            "sms2": "Smart Sports 2",
+            "t1": "Tivibu Sports 1",
+            "t2": "Tivibu Sports 2",
+            "t3": "Tivibu Sports 3",
+            "t4": "Tivibu Sports 4",
+            "as": "A Spor",
+            "trtspor": "TRT Spor",
+            "trtspor2": "TRT Spor Yıldız",
+            "trt1": "TRT 1",
+            "atv": "ATV",
+            "tv85": "TV8.5",
+            "nbatv": "NBA TV",
+            "eu1": "Euro Sport 1",
+            "eu2": "Euro Sport 2",
+            "ex1": "Tâbii 1",
+            "ex2": "Tâbii 2",
+            "ex3": "Tâbii 3",
+            "ex4": "Tâbii 4",
+            "ex5": "Tâbii 5",
+            "ex6": "Tâbii 6",
+            "ex7": "Tâbii 7",
+            "ex8": "Tâbii 8"
+        }
 
     try:
         print("📡 Canlı maçlar taranıyor...")
