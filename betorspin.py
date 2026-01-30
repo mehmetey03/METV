@@ -31,8 +31,8 @@ def get_dynamic_data():
         base = requests.get(DOMAIN_API, timeout=5).json().get("baseurl", "")
     except: pass
     
-    # 2. Aktif domaini tara (63, 64, 65...)
-    for i in range(63, 85):
+    # 2. Aktif domaini tara (83, 84, 85...)
+    for i in range(82, 200):
         url = f"https://{i}baywintv.live/"
         try:
             r = requests.get(url, timeout=2, verify=False)
