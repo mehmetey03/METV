@@ -20,8 +20,10 @@ jobs:
         with:
           python-version: '3.10'
 
-      - name: Kutuphaneyi Kur
-        run: pip install httpx
+      - name: Kutuphaneleri Kur
+        # Hata buradaydı; hem requests hem de bs4 (BeautifulSoup) yüklenmeli
+        run: |
+          pip install requests beautifulsoup4
 
       - name: Scripti Calistir
         run: python mono.py
