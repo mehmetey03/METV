@@ -1,85 +1,66 @@
 import requests
 import re
 import urllib3
-from bs4 import BeautifulSoup
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-class MonoScraper:
+class MonoBot:
     def __init__(self):
-        self.session = requests.Session()
         self.headers = {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
         }
 
-    def get_active_domain(self):
-        print("🔍 Aktif giriş adresi taranıyor...")
-        for sayi in range(530, 560):
-            url = f"https://monotv{sayi}.com"
+    def run(self):
+        # 1. Aktif Domaini Bul (Hızlı Tarama)
+        active_url = None
+        html_content = ""
+        for i in range(530, 560):
+            url = f"https://monotv{i}.com"
             try:
-                r = self.session.get(url, timeout=4, verify=False, headers=self.headers)
+                r = requests.get(url, headers=self.headers, timeout=5, verify=False)
                 if r.status_code == 200:
-                    print(f"✅ Giriş adresi bulundu: {url}")
-                    return url.rstrip('/')
+                    active_url = url
+                    html_content = r.text
+                    print(f"✅ Site bulundu: {url}")
+                    break
             except: continue
-        return None
 
-    def scrape_channels(self, active_domain):
-        print("📡 Kanallar taranıyor...")
-        try:
-            r = self.session.get(active_domain, headers=self.headers, timeout=10, verify=False)
-            r.encoding = 'utf-8'
-            html = r.text
-            soup = BeautifulSoup(html, 'html.parser')
+        if not active_url:
+            print("❌ Aktif site bulunamadı.")
+            return
 
-            # 1. Yayın sunucusunu (base URL) otomatik bul
-            stream_match = re.search(r'["\'](https?://[a-z0-9.-]+\.[a-z]{2,6})/[\w\-]+/mono\.m3u8', html)
-            base_url = stream_match.group(1).rstrip('/') + "/" if stream_match else "https://rei.zirvedesin201.cfd/"
+        # 2. Yayın Sunucusunu (Base URL) Otomatik Yakala
+        # Sayfa içindeki .m3u8 içeren linklerin kök dizinini bulur
+        stream_match = re.search(r'["\'](https?://[a-z0-9.-]+\.[a-z]{2,6})/[\w\-]+/mono\.m3u8', html_content)
+        base_stream = stream_match.group(1).rstrip('/') + "/" if stream_match else "https://rei.zirvedesin201.cfd/"
+        print(f"🌐 Yayın Sunucusu: {base_stream}")
 
-            # 2. Tüm linkleri tara
-            links = soup.find_all('a', href=re.compile(r'id='))
-            m3u_content = ["#EXTM3U"]
-            added_ids = set()
+        # 3. Tüm Kanal ID'lerini Regex ile Topla
+        # 'id=' den sonra gelen ve tırnak/boşlukla biten her şeyi alır
+        all_ids = re.findall(r'id=([a-zA-Z0-9_-]+)', html_content)
+        # Tekrarlananları ve sistem ID'lerini temizle
+        cids = list(dict.fromkeys([i for i in all_ids if len(i) > 2 and i not in ['google', 'twitter', 'facebook', 'whatsapp', 'telegram']]))
 
-            for link in links:
-                # ID'yi çek
-                cid_match = re.search(r'id=([^&"\'\s]+)', link['href'])
-                if not cid_match: continue
-                cid = cid_match.group(1)
-                
-                if cid in added_ids or len(cid) < 2 or cid in ['google', 'facebook']: continue
+        if not cids:
+            # Alternatif: data-id veya farklı bir yapıda saklanıyor olabilir
+            cids = re.findall(r'data-id=["\']([^"\']+)["\']', html_content)
 
-                # Maç isimlerini (Home - Away) yakala
-                home = link.find(class_="home")
-                away = link.find(class_="away")
-                
-                if home and away:
-                    name = f"{home.get_text(strip=True)} - {away.get_text(strip=True)}"
-                    group = "CANLI MACLAR"
-                else:
-                    # Normal kanal ismi
-                    name = link.get_text(strip=True).replace("7/24", "").strip()
-                    group = "7/24 KANALLAR"
+        m3u = ["#EXTM3U"]
+        for cid in cids:
+            # İsimlendirme: ID'den temiz bir isim üret (Örn: bein1 -> BEIN 1)
+            clean_name = cid.upper().replace('BEIN', 'beIN ').replace('SPOR', ' SPOR')
+            
+            m3u.append(f'#EXTINF:-1 group-title="OTOMATIK LISTE",{clean_name}')
+            m3u.append(f'#EXTVLCOPT:http-referrer={active_url}/')
+            m3u.append(f'{base_stream}{cid}/mono.m3u8')
 
-                if not name: name = cid.upper()
-
-                m3u_content.append(f'#EXTINF:-1 group-title="{group}",{name}')
-                m3u_content.append(f'#EXTVLCOPT:http-referrer={active_domain}/')
-                m3u_content.append(f'{base_url}{cid}/mono.m3u8')
-                added_ids.add(cid)
-
-            if len(m3u_content) > 1:
-                with open("mono.m3u", "w", encoding="utf-8") as f:
-                    f.write("\n".join(m3u_content))
-                print(f"🏁 BAŞARILI: {len(added_ids)} kanal kaydedildi.")
-            else:
-                print("❌ Hiç kanal bulunamadı.")
-
-        except Exception as e:
-            print(f"❌ Hata: {e}")
+        # 4. Dosyaya Yaz
+        if len(m3u) > 1:
+            with open("mono.m3u", "w", encoding="utf-8") as f:
+                f.write("\n".join(m3u))
+            print(f"🏁 BAŞARILI: {len(cids)} kanal m3u dosyasına eklendi.")
+        else:
+            print("❌ Maalesef hiçbir kanal ID'si yakalanamadı. Site yapısı tamamen değişmiş.")
 
 if __name__ == "__main__":
-    scraper = MonoScraper()
-    domain = scraper.get_active_domain()
-    if domain:
-        scraper.scrape_channels(domain)
+    MonoBot().run()
