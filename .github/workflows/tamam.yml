@@ -1,0 +1,42 @@
+name: Link Ayıklama ve Kaydetme
+
+on:
+  schedule:
+    - cron: '*/10 * * * *' # Her 10 dakikada bir çalışır
+  workflow_dispatch: # Manuel çalıştırma butonu ekler
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Depoyu Kontrol Et
+        uses: actions/checkout@v3
+
+      - name: Linkleri Ayıkla ve Temizle
+        run: |
+          # Kaynak URL'leri bir diziye alıyoruz
+          URLS=(
+            "https://raw.githubusercontent.com/mehmetey03/METV/refs/heads/main/karsilasmalar.m3u"
+            "https://raw.githubusercontent.com/mehmetey03/METV/refs/heads/main/karsilasmalar2.m3u"
+            "https://raw.githubusercontent.com/mehmetey03/METV/refs/heads/main/mono.m3u"
+          )
+
+          # Geçici bir dosya oluştur
+          > temp_links.txt
+
+          for url in "${URLS[@]}"; do
+            # Dosyayı indir ve regex ile http(s)://.../ formatındaki domainleri yakala
+            curl -sL "$url" | grep -oE "https?://[^/]+/" >> temp_links.txt
+          done
+
+          # Tekrar edenleri temizle ve tamam.txt dosyasına yaz
+          sort -u temp_links.txt > tamam.txt
+          rm temp_links.txt
+
+      - name: Değişiklikleri Kaydet
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add tamam.txt
+          git commit -m "Otomatik Güncelleme: $(date)" || echo "Değişiklik yok"
+          git push
