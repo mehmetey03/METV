@@ -1,12 +1,12 @@
 import requests
-import re
+import itertools
 import urllib3
 
 urllib3.disable_warnings()
 
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)",
-    "Accept": "*/*",
+    "Accept": "*/*"
 }
 
 CHANNELS = {
@@ -25,14 +25,14 @@ CHANNELS = {
     "atv": "ATV"
 }
 
-# --------------------------------------------------
+# -------------------------------------------------
 
 def get_active_domain():
     print("🔍 Aktif MonoTV domain aranıyor...")
     for i in range(520, 560):
         url = f"https://monotv{i}.com"
         try:
-            r = requests.get(url, timeout=5, verify=False, headers=HEADERS)
+            r = requests.get(url, headers=HEADERS, timeout=5, verify=False)
             if r.status_code == 200:
                 print(f"✅ Aktif domain: {url}")
                 return url
@@ -40,59 +40,35 @@ def get_active_domain():
             pass
     return None
 
-# --------------------------------------------------
+# -------------------------------------------------
 
-def detect_base_from_player(domain, test_id="zirve"):
-    print("🎯 Player üzerinden CDN yakalanıyor...")
+def discover_cdn(test_id="zirve"):
+    print("🌐 CDN pattern brute başlatıldı...")
 
-    player_url = f"{domain}/player?id={test_id}"
+    subs = ["tv", "cdn", "live", "edge", "stream"]
+    names = ["zirve", "mono", "monospo", "spor", "live"]
+    tlds = ["com", "net", "xyz", "cfd", "tv"]
 
-    try:
-        r = requests.get(
-            player_url,
-            headers={**HEADERS, "Referer": domain},
-            timeout=10,
-            verify=False
-        )
-    except:
-        return None
+    for s, n, t in itertools.product(subs, names, tlds):
+        base = f"https://{s}.{n}.{t}/"
+        test_url = f"{base}{test_id}/mono.m3u8"
 
-    # m3u8 direkt varsa
-    m = re.search(r'(https?://[^"\']+?/[^"\']+?/mono\.m3u8)', r.text)
-    if m:
-        full = m.group(1)
-        base = full.split(f"/{test_id}/")[0] + "/"
-        print(f"✅ CDN bulundu: {base}")
-        return base
-
-    # alternatif: herhangi m3u8
-    m = re.search(r'(https?://[^"\']+\.m3u8)', r.text)
-    if m:
-        url = m.group(1)
-        base = url.rsplit("/", 2)[0] + "/"
-        print(f"✅ CDN bulundu (GENEL): {base}")
-        return base
+        try:
+            r = requests.get(
+                test_url,
+                headers=HEADERS,
+                timeout=5,
+                verify=False
+            )
+            if r.status_code == 200 and "#EXTM3U" in r.text:
+                print(f"✅ CDN BULUNDU: {base}")
+                return base
+        except:
+            pass
 
     return None
 
-# --------------------------------------------------
-
-def check_stream(url, referer):
-    try:
-        r = requests.get(
-            url,
-            headers={
-                "User-Agent": HEADERS["User-Agent"],
-                "Referer": referer
-            },
-            timeout=6,
-            verify=False
-        )
-        return r.status_code == 200 and "#EXTM3U" in r.text
-    except:
-        return False
-
-# --------------------------------------------------
+# -------------------------------------------------
 
 def main():
     domain = get_active_domain()
@@ -100,37 +76,31 @@ def main():
         print("❌ Domain bulunamadı")
         return
 
-    base_url = detect_base_from_player(domain)
+    base_url = discover_cdn()
     if not base_url:
-        print("❌ CDN bulunamadı → MonoTV stream gizli")
+        print("❌ CDN bulunamadı (JS runtime gerekiyor)")
         return
 
     m3u = ["#EXTM3U"]
     ok = 0
 
-    print("\n📡 Kanallar kontrol ediliyor...\n")
+    print("\n📡 Kanallar yazılıyor...\n")
 
     for cid, name in CHANNELS.items():
-        stream = f"{base_url}{cid}/mono.m3u8"
-        print(f"🔍 {name}")
-
-        if check_stream(stream, domain):
-            ok += 1
-            m3u.append(f'#EXTINF:-1,{name}')
-            m3u.append(f'#EXTVLCOPT:http-referrer={domain}')
-            m3u.append(stream)
-            print("✅ ÇALIŞIYOR")
-        else:
-            print("❌ ÇALIŞMIYOR")
+        url = f"{base_url}{cid}/mono.m3u8"
+        m3u.append(f'#EXTINF:-1,{name}')
+        m3u.append(f'#EXTVLCOPT:http-referrer={domain}')
+        m3u.append(url)
+        ok += 1
 
     with open("mono.m3u", "w", encoding="utf-8") as f:
         f.write("\n".join(m3u))
 
     print("\n🎯 TAMAMLANDI")
-    print(f"✔ Çalışan yayın: {ok}")
+    print(f"✔ Kanal sayısı: {ok}")
     print("✔ Dosya: mono.m3u")
 
-# --------------------------------------------------
+# -------------------------------------------------
 
 if __name__ == "__main__":
     main()
