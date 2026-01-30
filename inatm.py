@@ -4,105 +4,92 @@ import sys
 import urllib3
 from bs4 import BeautifulSoup
 
+# SSL uyarılarını kapat
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
+# Ayarlar
+REDIRECT_SOURCE = "https://raw.githack.com/eniyiyayinci/redirect-cdn/main/inattv.html"
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
 }
 
-# Yasaklı kelimeler (Yayın sunucusu olamazlar)
-BANNED_DOMAINS = ["gstatic", "jsdelivr", "google", "doubleclick", "analytics", "facebook", "twitter", "yandex"]
+def get_active_domain():
+    """Yönlendirme sayfasından güncel inattv domainini çeker."""
+    try:
+        print("🔍 Aktif domain yönlendirme sayfasından alınıyor...")
+        r = requests.get(REDIRECT_SOURCE, timeout=10)
+        # Meta refresh içindeki URL'yi yakala
+        match = re.search(r'URL=(https?://[^">]+)', r.text)
+        if match:
+            domain = match.group(1).rstrip('/')
+            print(f"✅ Aktif domain bulundu: {domain}")
+            return domain
+    except Exception as e:
+        print(f"❌ Domain çekilirken hata: {e}")
+    return None
+
+def resolve_base_url(active_domain):
+    """Yayın sunucusunun base adresini (örn: https://9vy...sbs/) bulur."""
+    target = f"{active_domain}/channel.html?id=yayininat"
+    try:
+        r = requests.get(target, headers={**HEADERS, "Referer": active_domain + "/"}, timeout=10, verify=False)
+        # Yeni yapıdaki URL patternini ara (mono.m3u8 içerenler)
+        match = re.search(r'["\'](https?://[^\s"\']+?)/[\w\-]+/mono\.m3u8', r.text)
+        if match:
+            return match.group(1) + "/"
+        
+        # Alternatif: Herhangi bir .sbs veya .xyz m3u8 sunucusu bul
+        alt_match = re.search(r'["\'](https?://[a-z0-9.-]+\.(?:sbs|xyz|live|pw|site)/)', r.text)
+        if alt_match:
+            return alt_match.group(1)
+    except: pass
+    return None
 
 def main():
+    active_domain = get_active_domain()
+    if not active_domain:
+        sys.exit("❌ Başlangıç domaini bulunamadı.")
+
+    base_url = resolve_base_url(active_domain)
+    if not base_url:
+        # Eğer otomatik bulunamazsa örnekteki base'i fallback olarak kullanabiliriz
+        base_url = "https://9vy.d72577a9dd0ec19.sbs/" 
+        print(f"⚠️ Sunucu otomatik bulunamadı, fallback kullanılıyor: {base_url}")
+    else:
+        print(f"✅ Yayın sunucusu tespit edildi: {base_url}")
+
+    # Sabit Kanallar - ID'leri yeni yapıya (t1, b2 vb.) göre sadeleştirebilirsiniz 
+    # veya kod içindeki prefixleri temizletebiliriz.
+    fixed_channels = {
+        "zirve": "beIN Sports 1 A",
+        "trgoals": "beIN Sports 1 B",
+        "yayin1": "beIN Sports 1 C",
+        "b2": "beIN Sports 2",
+        "b3": "beIN Sports 3",
+        "b4": "beIN Sports 4",
+        "b5": "beIN Sports 5",
+        "bm1": "beIN Sports 1 Max",
+        "bm2": "beIN Sports 2 Max",
+        "ss1": "S Sports 1",
+        "ss2": "S Sports 2",
+        "t1": "Tivibu Sports 1",
+        "t2": "Tivibu Sports 2",
+        "t3": "Tivibu Sports 3",
+        "t4": "Tivibu Sports 4",
+        "as": "A Spor",
+        "trtspor": "TRT Spor",
+        "tv85": "TV8.5"
+    }
+
     try:
-        fixed_channels = {
-            "yayinzirve": ["beIN Sports 1 A", "Inat TV"],
-            "yayininat": ["beIN Sports 1 B", "Inat TV"],
-            "yayin1": ["beIN Sports 1 C", "Inat TV"],
-            "yayinb2": ["beIN Sports 2", "Inat TV"],
-            "yayinb3": ["beIN Sports 3", "Inat TV"],
-            "yayinb4": ["beIN Sports 4", "Inat TV"],
-            "yayinb5": ["beIN Sports 5", "Inat TV"],
-            "yayinbm1": ["beIN Sports 1 Max", "Inat TV"],
-            "yayinbm2": ["beIN Sports 2 Max", "Inat TV"],
-            "yayinss": ["S Sports 1", "Inat TV"],
-            "yayinss2": ["S Sports 2", "Inat TV"],
-            "yayint1": ["Tivibu Sports 1", "Inat TV"],
-            "yayint2": ["Tivibu Sports 2", "Inat TV"],
-            "yayint3": ["Tivibu Sports 3", "Inat TV"],
-            "yayint4": ["Tivibu Sports 4", "Inat TV"],
-            "yayinsmarts": ["Smart Sports", "Inat TV"],
-            "yayinsms2": ["Smart Sports 2", "Inat TV"],
-            "yayinas": ["A Spor", "Inat TV"],
-            "yayintrtspor": ["TRT Spor", "Inat TV"],
-            "yayintrtspor2": ["TRT Spor Yıldız", "Inat TV"],
-            "yayintrt1": ["TRT 1", "Inat TV"],
-            "yayinatv": ["ATV", "Inat TV"],
-            "yayintv85": ["TV8.5", "Inat TV"],
-            "yayinnbatv": ["NBATV", "Inat TV"],
-            "yayineu1": ["Euro Sport 1", "Inat TV"],
-            "yayineu2": ["Euro Sport 2", "Inat TV"],
-            "yayinex1": ["Tâbii 1", "Inat TV"],
-            "yayinex2": ["Tâbii 2", "Inat TV"],
-            "yayinex3": ["Tâbii 3", "Inat TV"],
-            "yayinex4": ["Tâbii 4", "Inat TV"],
-            "yayinex5": ["Tâbii 5", "Inat TV"],
-            "yayinex6": ["Tâbii 6", "Inat TV"],
-            "yayinex7": ["Tâbii 7", "Inat TV"],
-            "yayinex8": ["Tâbii 8", "Inat TV"]
-        }
-
-        print("🔍 Aktif domain aranıyor...")
-        active_domain = None
-        for i in range(1241, 1300):
-            url = f"https://inattv{i}.xyz"
-            try:
-                r = requests.get(url, headers=HEADERS, timeout=2, verify=False)
-                if r.status_code == 200:
-                    active_domain = url
-                    print(f"✅ Aktif domain: {active_domain}")
-                    break
-            except: continue
-
-        if not active_domain:
-            sys.exit("❌ Aktif domain bulunamadı.")
-
-        def is_valid_stream_domain(url):
-            return not any(banned in url for banned in BANNED_DOMAINS)
-
-        def resolve_base_url(channel_id):
-            target = f"{active_domain}/channel.html?id={channel_id}"
-            try:
-                r = requests.get(target, headers={**HEADERS, "Referer": active_domain + "/"}, timeout=10, verify=False)
-                
-                # m3u8 linklerini ayıkla
-                urls = re.findall(r'["\'](https?://[^\s"\']+?/)[\w\-]+\.m3u8', r.text)
-                for link in urls:
-                    if is_valid_stream_domain(link):
-                        return link
-
-                # Alternatif arama (Regex genişletildi)
-                alt_urls = re.findall(r'["\'](https?://[a-z0-9.-]+\.(?:sbs|xyz|live|me|net|com|pw|site|club)/)', r.text)
-                for link in alt_urls:
-                    if is_valid_stream_domain(link):
-                        return link
-            except: pass
-            return None
-
-        # Gerçek sunucuyu yakala
-        base_url = resolve_base_url("yayininat")
-        if not base_url:
-            sys.exit("❌ Gerçek yayın sunucusu bulunamadı.")
-
-        print(f"✅ Yayın sunucusu: {base_url}")
-
-        # Canlı maçları listele
+        print("📡 Canlı maçlar taranıyor...")
         resp = requests.get(active_domain, headers=HEADERS, timeout=10, verify=False)
         resp.encoding = "utf-8"
         soup = BeautifulSoup(resp.text, "html.parser")
 
-        dynamic_channels = []
+        m3u_content = ["#EXTM3U"]
+        
+        # 1. Canlı Maçlar Bölümü
         matches_tab = soup.find(id="matches-tab")
         if matches_tab:
             for a in matches_tab.find_all("a", href=re.compile(r'id=')):
@@ -110,26 +97,25 @@ def main():
                 name = a.find(class_="channel-name")
                 status = a.find(class_="channel-status")
                 if cid_match and name:
-                    title = f"{status.get_text(strip=True) if status else '00:00'} | {name.get_text(strip=True)}"
-                    dynamic_channels.append((cid_match.group(1), title))
+                    cid = cid_match.group(1)
+                    title = f"{status.get_text(strip=True) if status else 'CANLI'} | {name.get_text(strip=True)}"
+                    m3u_content.append(f'#EXTINF:-1 group-title="Canlı Maçlar",{title}')
+                    m3u_content.append(f'#EXTVLCOPT:http-user-agent={HEADERS["User-Agent"]}')
+                    m3u_content.append(f'#EXTVLCOPT:http-referrer={active_domain}/')
+                    m3u_content.append(f'{base_url}{cid}/mono.m3u8')
 
-        # M3U Yazdır
+        # 2. Sabit Kanallar Bölümü
+        for cid, name in fixed_channels.items():
+            m3u_content.append(f'#EXTINF:-1 group-title="7/24 Kanallar",{name}')
+            m3u_content.append(f'#EXTVLCOPT:http-user-agent={HEADERS["User-Agent"]}')
+            m3u_content.append(f'#EXTVLCOPT:http-referrer={active_domain}/')
+            m3u_content.append(f'{base_url}{cid}/mono.m3u8')
+
         with open("karsilasmalar.m3u", "w", encoding="utf-8") as f:
-            f.write("#EXTM3U\n")
-            for cid, title in dynamic_channels:
-                f.write(f'#EXTINF:-1 group-title="Canlı Maçlar",{title}\n')
-                f.write(f'#EXTVLCOPT:http-user-agent={HEADERS["User-Agent"]}\n')
-                f.write(f'#EXTVLCOPT:http-referrer={active_domain}/\n')
-                f.write(f'{base_url}{cid}.m3u8\n')
+            f.write("\n".join(m3u_content))
 
-            for cid, info in fixed_channels.items():
-                f.write(f'#EXTINF:-1 group-title="Inat TV",{info[0]}\n')
-                f.write(f'#EXTVLCOPT:http-user-agent={HEADERS["User-Agent"]}\n')
-                f.write(f'#EXTVLCOPT:http-referrer={active_domain}/\n')
-                f.write(f'{base_url}{cid}.m3u8\n')
+        print(f"🏁 BAŞARILI → karsilasmalar.m3u hazır.")
 
-        print(f"🏁 BAŞARILI → {base_url} üzerinden liste hazır.")
-        
     except Exception as e:
         print(f"❌ Hata: {e}")
 
