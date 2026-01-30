@@ -72,3 +72,4 @@ if __name__ == "__main__":
     # Dosya adını kontrol et
     islem = MonoTV("mono.m3u")
     islem.m3u_guncelle()
+
