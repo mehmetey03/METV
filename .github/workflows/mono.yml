@@ -1,87 +1,35 @@
-name: Birleşik kontrol
-concurrency:
-  group: ${{ github.workflow }}-${{ github.event_name }}-${{ github.ref }}
-  cancel-in-progress: true
+name: MonoTV Guncelle
+
 on:
-  workflow_dispatch:
   schedule:
-    - cron: '*/10 * * * *'  
+    - cron: '0 */6 * * *' # 6 saatte bir
+  workflow_dispatch:      # Elle başlatma butonu
+
 jobs:
-  BirlesikGuncelleme:
+  run_script:
     runs-on: ubuntu-latest
-    env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     permissions:
       contents: write
+
     steps:
-      - name: Depoyu Klonla
-        uses: actions/checkout@v4.2.2
-        
-      - name: Python 3.11.8 Yükle
-        uses: actions/setup-python@v5.3.0
+      - name: Depoyu Çek
+        uses: actions/checkout@v4
+
+      - name: Python Kur
+        uses: actions/setup-python@v5
         with:
-          python-version: 3.11.8
-          
-      - name: Gereksinimleri Kur
+          python-version: '3.10'
+
+      - name: Kütüphaneyi Kur
+        run: pip install httpx
+
+      - name: Scripti Çalıştır
+        run: python mono.py
+
+      - name: Değişiklikleri Kaydet
         run: |
-          python -m pip install --upgrade pip
-          pip install -U setuptools wheel Kekik httpx parsel requests
-          
-      - name: TRGoals.py Çalıştır
-        run: python TRGoals.py
-
-      - name: TRGoal.py Çalıştır
-        run: python trgoal.py
-        
-      - name: MonoTV.py Çalıştır
-        run: python MonoTV.py
-        
-      
-
-      - name: Alive 1
-        run: curl https://kerimmkirac-dproxy.hf.space
-
-      - name: Alive 2
-        run: curl https://kerimmkirac-daddylive.hf.space
-
-      - name: Alive 3
-        run: curl https://kerimmkirac-daddyliveevents.hf.space
-
-      - name: Alive 4
-        run: curl https://kerimmkirac-vavoo.hf.space/
-
-      
-
-      - name: daddylive.m3u dosyasını oluştur
-        run: |
-         curl -s "https://raw.githubusercontent.com/ActionHelper/stforum/main/stdaddy.m3u" | \
-          sed 's|https://sinelive-sineproxy.hf.space/proxy/|https://kerimmkirac-daddylive.hf.space/proxy/|g' \
-          > daddylive.m3u
-
-      - name: daddyliveevents.m3u dosyasını oluştur
-        run: |
-         curl -s "https://raw.githubusercontent.com/ActionHelper/stforum/main/stevents.m3u" | \
-         sed 's|https://sinelive-sineproxy.hf.space/proxy/|https://kerimmkirac-daddyliveevents.hf.space/proxy/|g' \
-         > daddyliveevents.m3u
-
-
-
-
-        
-      
-      
-      
-          
-      - name: Değişiklik Kontrolü
-        id: degisiklik_kontrol
-        run: |
-          git diff --quiet . || echo "degisiklik=true" >> $GITHUB_OUTPUT
-          
-      - name: Değişiklikleri Commit Et
-        if: steps.degisiklik_kontrol.outputs.degisiklik == 'true'
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add .
-          git commit -m "🔄 Tüm listeler güncellendi (TRGoals, MonoTV & CanliTV)" -m "📺 Domain kontrolü ve M3U güncellemeleri tamamlandı" -m "🕒 Otomatik işlem - $GITHUB_SHA"
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add mono.m3u
+          git commit -m "Liste güncellendi" || exit 0
           git push
