@@ -1,77 +1,117 @@
 import requests
 import re
 import urllib3
-import json
 
-urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+urllib3.disable_warnings()
 
-class MonoGodMode:
+class MonoScraper:
     def __init__(self):
-        self.headers = {
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-            "Referer": "https://google.com"
+        self.s = requests.Session()
+        self.h = {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)",
+            "Referer": "https://monotv530.com"
         }
 
-    def run(self):
-        # 1. Aktif Domaini Bul
-        active_url = None
-        html = ""
-        for i in range(530, 560):
+        self.base_server = "https://rei.zirvedesin201.cfd/"
+
+    # --------------------------------------------------
+
+    def get_active_domain(self):
+        print("🔍 Aktif giriş adresi taranıyor...")
+        for i in range(520, 560):
             url = f"https://monotv{i}.com"
             try:
-                r = requests.get(url, headers=self.headers, timeout=5, verify=False)
+                r = self.s.get(url, headers=self.h, timeout=5, verify=False)
                 if r.status_code == 200:
-                    active_url, html = url, r.text
-                    print(f"✅ Site: {url}")
-                    break
-            except: continue
+                    print(f"✅ Giriş adresi bulundu: {url}")
+                    return url.rstrip("/")
+            except:
+                pass
+        return None
 
-        if not active_url: return
+    # --------------------------------------------------
 
-        # 2. Yayın Sunucusunu Yakala
-        stream_match = re.search(r'["\'](https?://[a-z0-9.-]+\.[a-z]{2,6})/[\w\-]+/mono\.m3u8', html)
-        base_stream = stream_match.group(1).rstrip('/') + "/" if stream_match else "https://rei.zirvedesin201.cfd/"
-        
+    def extract_html_ids(self, html):
+        ids = re.findall(r'id=([a-zA-Z0-9_-]+)', html)
+        return list(set(ids))
+
+    # --------------------------------------------------
+
+    def generate_candidate_ids(self):
+        ids = []
+
+        # Sayısal kanallar
+        for i in range(0, 150):
+            ids.append(str(i))
+
+        # Bilinen sabitler
+        ids += [
+            "bein1","bein2","bein3","bein4",
+            "ssport","ssport2",
+            "trt1","kanald","atv","fox","tv8",
+            "tivibuspor","tivibuspor2"
+        ]
+
+        return list(set(ids))
+
+    # --------------------------------------------------
+
+    def is_alive(self, url):
+        try:
+            r = self.s.head(url, headers=self.h, timeout=4, verify=False)
+            return r.status_code == 200
+        except:
+            return False
+
+    # --------------------------------------------------
+
+    def scrape(self):
+        domain = self.get_active_domain()
+        if not domain:
+            print("❌ Domain bulunamadı")
+            return
+
+        print("📡 Kanal ID’leri toplanıyor...")
+        r = self.s.get(domain, headers=self.h, timeout=10, verify=False)
+
+        html_ids = self.extract_html_ids(r.text)
+        brute_ids = self.generate_candidate_ids()
+
+        all_ids = list(set(html_ids + brute_ids))
+        print(f"🔢 Denenecek toplam ID: {len(all_ids)}")
+
         m3u = ["#EXTM3U"]
-        added_ids = set()
+        working = 0
 
-        # 3. YÖNTEM A: JSON Verisi Ara (En Garantisi)
-        # Sitedeki maçlar genellikle bir değişken içinde listelenir
-        json_data = re.findall(r'(\[\{"id":.*\}\])', html)
-        if json_data:
-            try:
-                items = json.loads(json_data[0])
-                for item in items:
-                    cid = item.get('id')
-                    name = item.get('name', cid)
-                    if cid and cid not in added_ids:
-                        m3u.append(f'#EXTINF:-1 group-title="CANLI YAYINLAR",{name}\n#EXTVLCOPT:http-referrer={active_url}/\n{base_stream}{cid}/mono.m3u8')
-                        added_ids.add(cid)
-            except: pass
+        for cid in all_ids:
+            if len(cid) < 1:
+                continue
 
-        # 4. YÖNTEM B: Gelişmiş Regex (Maç İsimlerini Çekmek İçin)
-        # HTML içindeki id= ve yanındaki isimleri temizle
-        # channel.html?id=... >...< yapısını hedefler
-        matches = re.findall(r'id=([a-zA-Z0-9_-]+)[^>]*>([^<]+)', html)
-        for cid, name in matches:
-            name = name.strip()
-            if len(cid) > 2 and cid not in added_ids and len(name) > 2:
-                if any(x in cid for x in ['google', 'twitter', 'facebook']): continue
-                m3u.append(f'#EXTINF:-1 group-title="KANALLAR",{name}\n#EXTVLCOPT:http-referrer={active_url}/\n{base_stream}{cid}/mono.m3u8')
-                added_ids.add(cid)
+            url = f"{self.base_server}{cid}/mono.m3u8"
+            print(f"🔍 Test: {cid}")
 
-        # 5. YÖNTEM C: Agresif ID Yakalayıcı (Eksik Kalmasın Diye)
-        all_cids = re.findall(r'channel\.html\?id=([a-zA-Z0-9_-]+)', html)
-        for cid in all_cids:
-            if cid not in added_ids and len(cid) > 2:
-                m3u.append(f'#EXTINF:-1 group-title="DIGER",{cid.upper()}\n#EXTVLCOPT:http-referrer={active_url}/\n{base_stream}{cid}/mono.m3u8')
-                added_ids.add(cid)
+            if self.is_alive(url):
+                working += 1
+                name = cid.upper()
+                group = "MonoTV"
 
-        # 6. Dosyaya Yaz
+                if any(x in cid.lower() for x in ["bein", "sport", "ssport", "tivibu"]):
+                    group = "Spor"
+
+                m3u.append(f'#EXTINF:-1 group-title="{group}",{name}')
+                m3u.append(f'#EXTVLCOPT:http-referrer={domain}/')
+                m3u.append(url)
+
+                print(f"✅ ÇALIŞIYOR: {cid}")
+
         with open("mono.m3u", "w", encoding="utf-8") as f:
             f.write("\n".join(m3u))
-        
-        print(f"🏁 SONUÇ: {len(added_ids)} yayın m3u dosyasına eklendi.")
+
+        print("\n🎯 TAMAMLANDI")
+        print(f"✔ Çalışan yayın: {working}")
+        print("✔ Dosya: mono.m3u")
+
+# --------------------------------------------------
 
 if __name__ == "__main__":
-    MonoGodMode().run()
+    MonoScraper().scrape()
