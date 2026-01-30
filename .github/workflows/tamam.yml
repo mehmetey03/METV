@@ -1,9 +1,9 @@
-name: Link Ayıklama ve Kaydetme
+name: Yayın Linklerini Ayıkla
 
 on:
   schedule:
-    - cron: '*/10 * * * *' # Her 10 dakikada bir çalışır
-  workflow_dispatch: # Manuel çalıştırma butonu ekler
+    - cron: '*/10 * * * *'
+  workflow_dispatch:
 
 jobs:
   build:
@@ -12,31 +12,31 @@ jobs:
       - name: Depoyu Kontrol Et
         uses: actions/checkout@v3
 
-      - name: Linkleri Ayıkla ve Temizle
+      - name: Filtreleyerek Ayıkla
         run: |
-          # Kaynak URL'leri bir diziye alıyoruz
+          # Kaynak M3U dosyaları
           URLS=(
             "https://raw.githubusercontent.com/mehmetey03/METV/refs/heads/main/karsilasmalar.m3u"
             "https://raw.githubusercontent.com/mehmetey03/METV/refs/heads/main/karsilasmalar2.m3u"
             "https://raw.githubusercontent.com/mehmetey03/METV/refs/heads/main/mono.m3u"
           )
 
-          # Geçici bir dosya oluştur
-          > temp_links.txt
+          > temp_raw.txt
 
           for url in "${URLS[@]}"; do
-            # Dosyayı indir ve regex ile http(s)://.../ formatındaki domainleri yakala
-            curl -sL "$url" | grep -oE "https?://[^/]+/" >> temp_links.txt
+            curl -sL "$url" | grep -oE "https?://[^/]+/" >> temp_raw.txt
           done
 
-          # Tekrar edenleri temizle ve tamam.txt dosyasına yaz
-          sort -u temp_links.txt > tamam.txt
-          rm temp_links.txt
+          # FİLTRELEME: inattv, monotv ve trgoals içerenleri siler
+          # Sadece yayın sunucusu formatında kalanları tutar
+          grep -vE "inattv|monotv|trgoals" temp_raw.txt | sort -u > tamam.txt
+          
+          rm temp_raw.txt
 
-      - name: Değişiklikleri Kaydet
+      - name: Kaydet ve Gönder
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add tamam.txt
-          git commit -m "Otomatik Güncelleme: $(date)" || echo "Değişiklik yok"
+          git commit -m "Sunucu listesi güncellendi: $(date)" || echo "Değişiklik yok"
           git push
