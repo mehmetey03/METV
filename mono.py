@@ -41,7 +41,7 @@ def resolve_base_url(active_domain):
     
     # Eğer koddan bulamazsa bilinen sabit sunucuyu döner
     print("⚠️ Sunucu otomatik bulunamadı, sabit sunucu kullanılıyor.")
-    return "https://rei.zirvedesin201.cfd/"
+    return ""
 
 def main():
     active_domain = get_active_domain()
@@ -94,3 +94,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
