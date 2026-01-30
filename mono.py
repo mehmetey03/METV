@@ -1,101 +1,80 @@
 import requests
 import re
-import json
 import urllib3
 from bs4 import BeautifulSoup
 
-# SSL uyarılarını kapat
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-class AdvancedMonoScraper:
+class MonoBot:
     def __init__(self):
-        self.session = requests.Session()
         self.headers = {
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+            "Referer": "https://google.com"
         }
 
-    def get_active_domain(self):
-        """Domainleri tarar ve aktif olanı döndürür."""
+    def find_active_domain(self):
         print("🔍 Aktif domain taranıyor...")
-        # Senin brute-force mantığın en güvenlisi
-        for sayi in range(530, 560):
-            domain = f"https://monotv{sayi}.com"
+        for i in range(530, 560):
+            domain = f"https://monotv{i}.com"
             try:
-                # Sadece ana sayfayı hızlıca kontrol et
-                r = self.session.get(domain, timeout=4, verify=False, headers=self.headers)
+                r = requests.get(domain, headers=self.headers, timeout=5, verify=False)
                 if r.status_code == 200:
-                    print(f"✅ Aktif site bulundu: {domain}")
-                    return domain.rstrip('/')
-            except:
-                continue
-        return None
+                    return domain.rstrip('/'), r.text
+            except: continue
+        return None, None
 
-    def find_m3u8_server(self, html):
-        """Yayın sunucusunu HTML içinden otomatik ayıklar."""
-        # Senin verdiğin sunucuyu da kapsayan geniş regex
-        pattern = r'["\'](https?://[a-z0-9.-]+\.(?:sbs|xyz|live|pw|site|cfd|tv)/)'
-        match = re.search(pattern, html)
-        if match:
-            server = match.group(1)
-            print(f"🌐 Yayın sunucusu: {server}")
-            return server
-        return "https://rei.zirvedesin201.cfd/" # Fallback
+    def run(self):
+        active_url, html_content = self.find_active_domain()
+        if not active_url:
+            print("❌ Aktif site bulunamadı.")
+            return
 
-    def scrape(self):
-        domain = self.get_active_domain()
-        if not domain: return
+        print(f"✅ Site bulundu: {active_url}")
 
-        try:
-            r = self.session.get(domain, headers=self.headers, verify=False)
-            r.encoding = 'utf-8'
-            soup = BeautifulSoup(r.text, 'html.parser')
+        # 1. Yayın sunucusunu bul
+        stream_match = re.search(r'["\'](https?://[a-z0-9.-]+\.(?:sbs|xyz|live|pw|site|cfd|tv)/)', html_content)
+        base_stream = stream_match.group(1) if stream_match else "https://rei.zirvedesin201.cfd/"
+        print(f"🌐 Sunucu: {base_stream}")
+
+        # 2. Kanalları Yakala (Regex ile daha garanti)
+        # channel?id=X yapısındaki tüm X değerlerini bulur
+        all_ids = re.findall(r'channel\?id=([a-zA-Z0-9_-]+)', html_content)
+        unique_ids = list(dict.fromkeys(all_ids)) # Tekrarları sil
+
+        if not unique_ids:
+            print("⚠️ Hiç ID bulunamadı. Sayfa yapısı tamamen değişmiş olabilir.")
+            return
+
+        m3u_lines = ["#EXTM3U"]
+        soup = BeautifulSoup(html_content, "html.parser")
+
+        for cid in unique_ids:
+            # Çöp ID'leri filtrele
+            if cid in ['google', 'facebook', 'twitter']: continue
+
+            # İsim bulma: Önce HTML içinde bu ID'ye sahip olan <a> etiketini ara
+            name = cid.upper()
+            group = "KANALLAR"
             
-            m3u8_server = self.find_m3u8_server(r.text)
-            channels = []
-
-            # 1. Maçlar ve Kanallar için Ortak Tarama
-            # Sitedeki tüm 'channel?id=' içeren linkleri bul
-            links = soup.find_all('a', href=re.compile(r'channel\?id='))
-            
-            for link in links:
-                cid_match = re.search(r'id=([^&"\']+)', link['href'])
-                if not cid_match: continue
-                cid = cid_match.group(1)
-
-                # İsim Ayıklama (Gelişmiş)
-                # Önce içindeki span veya div'lere bak, yoksa düz metni al
-                home = link.find(class_="home")
-                away = link.find(class_="away")
-                
+            link_element = soup.find("a", href=re.compile(f"id={cid}"))
+            if link_element:
+                home = link_element.find(class_="home")
+                away = link_element.find(class_="away")
                 if home and away:
                     name = f"{home.get_text(strip=True)} - {away.get_text(strip=True)}"
-                    group = "CANLI MACLAR"
+                    group = "MACLAR"
                 else:
-                    name = link.get_text(strip=True).replace("7/24", "").strip()
-                    group = "7/24 KANALLAR"
+                    clean_name = link_element.get_text(strip=True).replace("7/24", "").strip()
+                    if clean_name: name = clean_name
 
-                if not name: name = cid.upper()
+            m3u_lines.append(f'#EXTINF:-1 group-title="{group}",{name}')
+            m3u_lines.append(f'#EXTVLCOPT:http-referrer={active_url}/')
+            m3u_lines.append(f'{base_stream}{cid}/mono.m3u8')
 
-                channels.append({
-                    "name": name,
-                    "group": group,
-                    "url": f"{m3u8_server}{cid}/mono.m3u8"
-                })
-
-            # 2. M3U Oluşturma
-            if channels:
-                with open("mono_list.m3u", "w", encoding="utf-8") as f:
-                    f.write("#EXTM3U\n")
-                    for ch in channels:
-                        f.write(f'#EXTINF:-1 group-title="{ch["group"]}",{ch["name"]}\n')
-                        f.write(f'#EXTVLCOPT:http-referrer={domain}/\n')
-                        f.write(f'{ch["url"]}\n')
-                print(f"🏁 Başarılı! {len(channels)} kanal mono_list.m3u dosyasına yazıldı.")
-            else:
-                print("⚠️ Hiç kanal bulunamadı.")
-
-        except Exception as e:
-            print(f"❌ Hata: {e}")
+        with open("mono.m3u", "w", encoding="utf-8") as f:
+            f.write("\n".join(m3u_lines))
+        
+        print(f"🏁 BİTTİ! {len(unique_ids)} kanal mono.m3u dosyasına eklendi.")
 
 if __name__ == "__main__":
-    AdvancedMonoScraper().scrape()
+    MonoBot().run()
