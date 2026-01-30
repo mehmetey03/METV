@@ -2,8 +2,8 @@ name: MonoTV Guncelle
 
 on:
   schedule:
-    - cron: '0 */6 * * *' # 6 saatte bir
-  workflow_dispatch:      # Elle başlatma butonu
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
 
 jobs:
   run_script:
@@ -12,7 +12,7 @@ jobs:
       contents: write
 
     steps:
-      - name: Depoyu Çek
+      - name: Depoyu Cek
         uses: actions/checkout@v4
 
       - name: Python Kur
@@ -20,16 +20,16 @@ jobs:
         with:
           python-version: '3.10'
 
-      - name: Kütüphaneyi Kur
+      - name: Kutuphaneyi Kur
         run: pip install httpx
 
-      - name: Scripti Çalıştır
+      - name: Scripti Calistir
         run: python mono.py
 
-      - name: Değişiklikleri Kaydet
+      - name: Degisiklikleri Kaydet
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add mono.m3u
-          git commit -m "Liste güncellendi" || exit 0
+          git commit -m "Liste guncellendi" || exit 0
           git push
