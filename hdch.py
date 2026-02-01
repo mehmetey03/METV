@@ -299,20 +299,20 @@ def scrape_discovery_pages():
     # Farklı listeleme sayfalarını dene
     list_pages = [
         # Film robotu sayfaları
-        "https://www.hdfilmcehennemi.ws/film-robotu-1/",
+        "https://www.hdfilmcehennemi.nl/film-robotu-1/",
         
         # Diğer olası listeleme sayfaları
-        "https://www.hdfilmcehennemi.ws/",
-        "https://www.hdfilmcehennemi.ws/category/film-izle-2/",
-        "https://www.hdfilmcehennemi.ws/category/nette-ilk-filmler/",
-        "https://www.hdfilmcehennemi.ws/dil/turkce-dublajli-film-izleyin-4/",
-        "https://www.hdfilmcehennemi.ws/yil/2025-filmleri-izle-3/",
-        "https://www.hdfilmcehennemi.ws/tur/aile-filmleri-izleyin-7/",
-        "https://www.hdfilmcehennemi.ws/tur/aksiyon-filmleri-izleyin-6/",
-        "https://www.hdfilmcehennemi.ws/tur/bilim-kurgu-filmlerini-izleyin-5/",
-        "https://www.hdfilmcehennemi.ws/tur/fantastik-filmlerini-izleyin-3/",
-        "https://www.hdfilmcehennemi.ws/category/1080p-hd-film-izle-5/",
-        "https://www.hdfilmcehennemi.ws/serifilmlerim-3/",
+        "https://www.hdfilmcehennemi.nl/",
+        "https://www.hdfilmcehennemi.nl/category/film-izle-2/",
+        "https://www.hdfilmcehennemi.nl/category/nette-ilk-filmler/",
+        "https://www.hdfilmcehennemi.nl/dil/turkce-dublajli-film-izleyin-4/",
+        "https://www.hdfilmcehennemi.nl/yil/2025-filmleri-izle-3/",
+        "https://www.hdfilmcehennemi.nl/tur/aile-filmleri-izleyin-7/",
+        "https://www.hdfilmcehennemi.nl/tur/aksiyon-filmleri-izleyin-6/",
+        "https://www.hdfilmcehennemi.nl/tur/bilim-kurgu-filmlerini-izleyin-5/",
+        "https://www.hdfilmcehennemi.nl/tur/fantastik-filmlerini-izleyin-3/",
+        "https://www.hdfilmcehennemi.nl/category/1080p-hd-film-izle-5/",
+        "https://www.hdfilmcehennemi.nl/serifilmlerim-3/",
         "https://www.hdfilmcehennemi.ws/ulke/turkiye-2/",
         "https://www.hdfilmcehennemi.ws/tur/savas-filmleri-izle-5/",
         "https://www.hdfilmcehennemi.ws/komedi-filmleri/",
