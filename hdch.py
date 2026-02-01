@@ -10,7 +10,7 @@ import time
 from datetime import datetime
 from urllib.parse import urljoin, urlparse, parse_qs
 
-BASE_URL = "https://www.hdfilmcehennemi.ws/"
+BASE_URL = "https://www.hdfilmcehennemi.nl/"
 EMBED_BASE = "https://hdfilmcehennemi.mobi/video/embed/"
 
 def get_html(url, headers=None):
