@@ -16,7 +16,7 @@ PAGES_TO_SCRAPE = int(sys.argv[1]) if len(sys.argv) > 1 else 10
 DELAY_BETWEEN_FILMS = float(sys.argv[2]) if len(sys.argv) > 2 else 0.05  # Çok daha düşük
 
 BASE_URL = "https://www.hdfilmcehennemi.nl"
-GITHUB_JSON_URL = "https://raw.githubusercontent.com/sevdimcim/vod-max/refs/heads/main/hdfilmcehennemi.json"
+GITHUB_JSON_URL = "https://raw.githubusercontent.com/mehmetey03/METV/refs/heads/main/hdceh_list.json"
 
 # Daha agresif header ayarları
 HEADERS_PAGE = {
@@ -248,7 +248,7 @@ def main():
 
 def create_files(data):
     # JSON dosyası
-    json_filename = "hdfilmcehennemi.json"
+    json_filename = "hdceh_list.json.json"
     with open(json_filename, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
     
