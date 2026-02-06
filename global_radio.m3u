@@ -2455,13 +2455,13 @@ https://usa12.fastcast4u.com/tunein/isnesllc.m3u
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://stream3.polskieradio.pl:8918/;
 
-#EXTINF:-1 tvg-id="Poland_27" tvg-name="Radio Silesia" tvg-logo="" group-title="Poland",Radio Silesia
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://s1.slotex.pl:7926/
-
-#EXTINF:-1 tvg-id="Poland_28" tvg-name="Radio Gdansk" tvg-logo="https://radiogdansk.pl/wp-content/uploads/2020/12/cropped-favicon-180x180.png" group-title="Poland",Radio Gdansk
+#EXTINF:-1 tvg-id="Poland_27" tvg-name="Radio Gdansk" tvg-logo="https://radiogdansk.pl/wp-content/uploads/2020/12/cropped-favicon-180x180.png" group-title="Poland",Radio Gdansk
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://stream.task.gda.pl:8000/rg1
+
+#EXTINF:-1 tvg-id="Poland_28" tvg-name="Radio Silesia" tvg-logo="" group-title="Poland",Radio Silesia
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://s1.slotex.pl:7926/
 
 #EXTINF:-1 tvg-id="Poland_29" tvg-name="Radioparty.pl House Party" tvg-logo="http://radioparty.pl/images/radioparty2017.png" group-title="Poland",Radioparty.pl House Party
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -2475,13 +2475,13 @@ https://go-audio.toya.net.pl/63214
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://rs202-krk-cyfronet.rmfstream.pl/RMF24?aw_0_req.gdpr=false&aw_0_req.userConsentV2=&aw_0_1st.playerid=RMF_Player_JS_P&aw_0_1st.rmf_disable_preroll=true
 
-#EXTINF:-1 tvg-id="Poland_32" tvg-name="Radioparty.pl Energy2000" tvg-logo="http://www.radioparty.pl/favicon.ico" group-title="Poland",Radioparty.pl Energy2000
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://energy2000.radioparty.pl:8005/
-
-#EXTINF:-1 tvg-id="Poland_33" tvg-name="Antyradio" tvg-logo="https://gfx.antyradio.pl/design/antyradio/src/images/favicon/favicon_180x180.png" group-title="Poland",Antyradio
+#EXTINF:-1 tvg-id="Poland_32" tvg-name="Antyradio" tvg-logo="https://gfx.antyradio.pl/design/antyradio/src/images/favicon/favicon_180x180.png" group-title="Poland",Antyradio
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://n-4-4.dcs.redcdn.pl/sc/o2/Eurozet/live/antyradio.livx
+
+#EXTINF:-1 tvg-id="Poland_33" tvg-name="Radioparty.pl Energy2000" tvg-logo="http://www.radioparty.pl/favicon.ico" group-title="Poland",Radioparty.pl Energy2000
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://energy2000.radioparty.pl:8005/
 
 #EXTINF:-1 tvg-id="Poland_34" tvg-name="RMF FM" tvg-logo="https://www.rmf.fm/assets/images/favicon/apple-icon-120x120.png?3" group-title="Poland",RMF FM
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -3093,25 +3093,25 @@ https://icecast-radiovanya.cdnvideo.ru/radiovanya
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://dfm-disc90.hostingradio.ru/disc9096.aacp
 
-#EXTINF:-1 tvg-id="The Russian Federation_4" tvg-name="DFM RUSSIAN DANCE" tvg-logo="https://dfm.ru/uploads/favicon.ico" group-title="The Russian Federation",DFM RUSSIAN DANCE
+#EXTINF:-1 tvg-id="The Russian Federation_4" tvg-name="Дорожное радио" tvg-logo="https://dorognoe.ru/assets/default/i/fav_114x114.png" group-title="The Russian Federation",Дорожное радио
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://dfm-dfmrusdance.hostingradio.ru/dfmrusdance96.aacp?0.9987259013359274
+http://dorognoe.hostingradio.ru:8000/radio
 
 #EXTINF:-1 tvg-id="The Russian Federation_5" tvg-name="Ретро FM" tvg-logo="" group-title="The Russian Federation",Ретро FM
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://retroserver.streamr.ru:8043/retro256.mp3
 
-#EXTINF:-1 tvg-id="The Russian Federation_6" tvg-name="Дорожное радио" tvg-logo="https://dorognoe.ru/assets/default/i/fav_114x114.png" group-title="The Russian Federation",Дорожное радио
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://dorognoe.hostingradio.ru:8000/radio
-
-#EXTINF:-1 tvg-id="The Russian Federation_7" tvg-name="Дискотека СССР" tvg-logo="" group-title="The Russian Federation",Дискотека СССР
+#EXTINF:-1 tvg-id="The Russian Federation_6" tvg-name="Дискотека СССР" tvg-logo="" group-title="The Russian Federation",Дискотека СССР
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://pub0302.101.ru:8000/stream/pro/aac/64/144?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpcCI6IjUuMTguMjQ4Ljk4IiwidXNlcmFnZW50IjoiTW96aWxsYVwvNS4wIChYMTE7IExpbnV4IHg4Nl82NDsgcnY6ODIuMCkgR2Vja29cLzIwMTAwMTAxIEZpcmVmb3hcLzgyLjAiLCJ1aWRfY2hhbm5lbCI6IjE0NCIsInR5cGVfY2hhbm5lbCI6ImNoYW5uZWwiLCJleHAiOjE2MDU5NjQ1MTZ9.Ln1wEJ8cHHzK_Ea6Zr8J8acdny0R9ShZ_KUKVf6TmQA
 
-#EXTINF:-1 tvg-id="The Russian Federation_8" tvg-name="Вести ФМ (Vesti FM)" tvg-logo="" group-title="The Russian Federation",Вести ФМ (Vesti FM)
+#EXTINF:-1 tvg-id="The Russian Federation_7" tvg-name="Вести ФМ (Vesti FM)" tvg-logo="" group-title="The Russian Federation",Вести ФМ (Vesti FM)
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://icecast.vgtrk.cdnvideo.ru/vestifm_mp3_192kbps
+
+#EXTINF:-1 tvg-id="The Russian Federation_8" tvg-name="DFM RUSSIAN DANCE" tvg-logo="https://dfm.ru/uploads/favicon.ico" group-title="The Russian Federation",DFM RUSSIAN DANCE
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://dfm-dfmrusdance.hostingradio.ru/dfmrusdance96.aacp?0.9987259013359274
 
 #EXTINF:-1 tvg-id="The Russian Federation_9" tvg-name="Радио Русские Песни" tvg-logo="" group-title="The Russian Federation",Радио Русские Песни
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -3597,13 +3597,13 @@ https://icecast.walmradio.com:8443/walm2_opus
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://radiopanther.radiolebowski.com/play
 
-#EXTINF:-1 tvg-id="The United States Of America_12" tvg-name=".977 80s" tvg-logo="" group-title="The United States Of America",.977 80s
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://playerservices.streamtheworld.com/pls/977_80.m3u
-
-#EXTINF:-1 tvg-id="The United States Of America_13" tvg-name="Christmas Vinyl HD Opus" tvg-logo="https://icecast.walmradio.com:8443/christmas.jpg" group-title="The United States Of America",Christmas Vinyl HD Opus
+#EXTINF:-1 tvg-id="The United States Of America_12" tvg-name="Christmas Vinyl HD Opus" tvg-logo="https://icecast.walmradio.com:8443/christmas.jpg" group-title="The United States Of America",Christmas Vinyl HD Opus
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://icecast.walmradio.com:8443/christmas_opus
+
+#EXTINF:-1 tvg-id="The United States Of America_13" tvg-name=".977 80s" tvg-logo="" group-title="The United States Of America",.977 80s
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://playerservices.streamtheworld.com/pls/977_80.m3u
 
 #EXTINF:-1 tvg-id="The United States Of America_14" tvg-name="181.FM - Old School HipHop/RnB" tvg-logo="http://www.181.fm/favicon.ico" group-title="The United States Of America",181.FM - Old School HipHop/RnB
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -3717,13 +3717,13 @@ https://playerservices.streamtheworld.com/pls/977_SMOOJAZZ.m3u
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://somafm.com/indiepop130.m3u
 
-#EXTINF:-1 tvg-id="The United States Of America_42" tvg-name="SomaFM Left Coast 70s (320k MP3)" tvg-logo="https://somafm.com/img3/seventies400.jpg" group-title="The United States Of America",SomaFM Left Coast 70s (320k MP3)
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://somafm.com/seventies320.m3u
-
-#EXTINF:-1 tvg-id="The United States Of America_43" tvg-name="181.FM - Highway 181" tvg-logo="http://www.181.fm/favicon.ico" group-title="The United States Of America",181.FM - Highway 181
+#EXTINF:-1 tvg-id="The United States Of America_42" tvg-name="181.FM - Highway 181" tvg-logo="http://www.181.fm/favicon.ico" group-title="The United States Of America",181.FM - Highway 181
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://www.181.fm/stream/pls/181-highway.m3u
+
+#EXTINF:-1 tvg-id="The United States Of America_43" tvg-name="SomaFM Left Coast 70s (320k MP3)" tvg-logo="https://somafm.com/img3/seventies400.jpg" group-title="The United States Of America",SomaFM Left Coast 70s (320k MP3)
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://somafm.com/seventies320.m3u
 
 #EXTINF:-1 tvg-id="The United States Of America_44" tvg-name="FUNKY RADIO - Only Funk Music (60's 70's)" tvg-logo="" group-title="The United States Of America",FUNKY RADIO - Only Funk Music (60's 70's)
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
