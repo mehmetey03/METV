@@ -1,0 +1,33 @@
+name: CatCast TV M3U Playlist
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # Her gün UTC 00:00'da çalıştır
+  workflow_dispatch:       # Manuel tetiklemeye izin ver
+
+jobs:
+  generate-m3u:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
+        
+    - name: Install dependencies
+      run: pip install requests
+      
+    - name: Generate M3U playlist
+      run: python generate_playlist.py
+      
+    - name: Commit and push if changed
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add catcast_tv.m3u
+        git diff --quiet && git diff --staged --quiet || git commit -m "Update M3U playlist - $(date)"
+        git push
