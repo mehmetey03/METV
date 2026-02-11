@@ -60,6 +60,7 @@ def main():
         "zirve": "beIN Sports 1 A",
         "trgoals": "beIN Sports 1 B",
         "yayin1": "beIN Sports 1 C",
+        "patron": "beIN Sports 1 D",
         "b2": "beIN Sports 2",
         "b3": "beIN Sports 3",
         "b4": "beIN Sports 4",
