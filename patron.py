@@ -1,6 +1,5 @@
 import requests
 import re
-import sys
 import urllib3
 from bs4 import BeautifulSoup
 
@@ -23,11 +22,10 @@ def get_active_domain():
     return "https://hepbetspor5.cfd"
 
 def resolve_base_url(active_domain):
-    # Belirttiğin 'patron' kanalı üzerinden sunucuyu doğrula
+    # 'patron' kanalı üzerinden m3u8 sunucusunu bul
     target = f"{active_domain}/ch.html?id=patron"
     try:
         r = requests.get(target, headers={**HEADERS, "Referer": active_domain + "/"}, timeout=10, verify=False)
-        # Yeni linklerde sunucu adresini yakala
         match = re.search(r'["\'](https?://[^\s"\']+?)/[\w\-]+/mono\.m3u8', r.text)
         if match:
             return match.group(1).rstrip('/') + "/"
@@ -47,60 +45,38 @@ def main():
         soup = BeautifulSoup(resp.text, "html.parser")
 
         m3u_content = ["#EXTM3U"]
-        
-        # --- 1. CANLI MAÇLAR TARAMA (Daha Geniş Kapsamlı) ---
-        # Sitedeki tüm 'id=' içeren linkleri tara (hem matches-tab hem genel)
-        all_links = soup.find_all("a", href=re.compile(r'id='))
-        match_count = 0
+        channel_count = 0
 
-        for a in all_links:
-            href = a["href"]
-            cid_match = re.search(r'id=([^&]+)', href)
+        # --- YENİ YAPI: div.channel-item TARAMA ---
+        # Sitedeki tüm kanal kutularını bul
+        items = soup.find_all("div", class_="channel-item")
+
+        for item in items:
+            # ID bilgisini data-src içinden al (/ch.html?id=xxx)
+            data_src = item.get("data-src", "")
+            cid_match = re.search(r'id=([^&]+)', data_src)
             
             if cid_match:
                 cid = cid_match.group(1)
                 
-                # Kanal adını bulmaya çalış (farklı class isimlerini dene)
-                name_tag = a.find(class_="channel-name") or a.find(class_="name") or a.find("span")
-                status_tag = a.find(class_="channel-status") or a.find(class_="status")
-                
+                # Kanal ismini 'channel-name-text' class'ından al
+                name_tag = item.find(class_="channel-name-text")
                 if name_tag:
                     name = name_tag.get_text(strip=True)
-                    status = status_tag.get_text(strip=True) if status_tag else "CANLI"
                     
-                    # Eğer kanal zaten sabit listede yoksa ekle (tekrarı önlemek için)
-                    m3u_content.append(f'#EXTINF:-1 group-title="Canlı Maçlar",{status} | {name}')
+                    # M3U Formatına Ekle
+                    m3u_content.append(f'#EXTINF:-1 group-title="Canlı Kanallar",{name}')
                     m3u_content.append(f'#EXTVLCOPT:http-user-agent={HEADERS["User-Agent"]}')
                     m3u_content.append(f'#EXTVLCOPT:http-referrer={active_domain}/')
-                    # ch.html veya channel.html fark etmeksizin stream linkini oluştur
                     m3u_content.append(f'{base_url}{cid}/mono.m3u8')
-                    match_count += 1
+                    channel_count += 1
 
-        # --- 2. SABİT KANAL LİSTESİ (Güncellenmiş ID'ler) ---
-        fixed_channels = {
-            "patron": "Patron TV (beIN 1)",
-            "zirve": "Zirve TV",
-            "trgoals": "TR Goals",
-            "b2": "beIN Sports 2",
-            "b3": "beIN Sports 3",
-            "ss1": "S Sports 1",
-            "ss2": "S Sports 2",
-            "t1": "Tivibu Spor 1",
-            "tv85": "TV8.5",
-            "trtspor": "TRT Spor"
-        }
-
-        for cid, name in fixed_channels.items():
-            m3u_content.append(f'#EXTINF:-1 group-title="7/24 Kanallar",{name}')
-            m3u_content.append(f'#EXTVLCOPT:http-user-agent={HEADERS["User-Agent"]}')
-            m3u_content.append(f'#EXTVLCOPT:http-referrer={active_domain}/')
-            m3u_content.append(f'{base_url}{cid}/mono.m3u8')
-
+        # Dosyaya yaz
         with open("karsilasmalar3.m3u", "w", encoding="utf-8") as f:
             f.write("\n".join(m3u_content))
 
         print(f"🏁 Başarılı! 'karsilasmalar3.m3u' oluşturuldu.")
-        print(f"📊 Toplam {match_count} maç ve {len(fixed_channels)} sabit kanal eklendi.")
+        print(f"📊 Toplam {channel_count} kanal ve maç listeye eklendi.")
 
     except Exception as e:
         print(f"❌ Hata: {e}")
