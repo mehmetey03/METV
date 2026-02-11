@@ -1,8 +1,16 @@
 #EXTM3U
-#EXTINF:-1 group-title="7/24 Kanallar",beIN Sports 1
+#EXTINF:-1 group-title="7/24 Kanallar",Patron TV (beIN 1)
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+#EXTVLCOPT:http-referrer=https://hepbetspor5.cfd/
+https://9vy.d72577a9dd0ec19.sbs/patron/mono.m3u8
+#EXTINF:-1 group-title="7/24 Kanallar",Zirve TV
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
 #EXTVLCOPT:http-referrer=https://hepbetspor5.cfd/
 https://9vy.d72577a9dd0ec19.sbs/zirve/mono.m3u8
+#EXTINF:-1 group-title="7/24 Kanallar",TR Goals
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+#EXTVLCOPT:http-referrer=https://hepbetspor5.cfd/
+https://9vy.d72577a9dd0ec19.sbs/trgoals/mono.m3u8
 #EXTINF:-1 group-title="7/24 Kanallar",beIN Sports 2
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
 #EXTVLCOPT:http-referrer=https://hepbetspor5.cfd/
@@ -23,15 +31,11 @@ https://9vy.d72577a9dd0ec19.sbs/ss2/mono.m3u8
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
 #EXTVLCOPT:http-referrer=https://hepbetspor5.cfd/
 https://9vy.d72577a9dd0ec19.sbs/t1/mono.m3u8
-#EXTINF:-1 group-title="7/24 Kanallar",A Spor
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-#EXTVLCOPT:http-referrer=https://hepbetspor5.cfd/
-https://9vy.d72577a9dd0ec19.sbs/as/mono.m3u8
-#EXTINF:-1 group-title="7/24 Kanallar",TRT Spor
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-#EXTVLCOPT:http-referrer=https://hepbetspor5.cfd/
-https://9vy.d72577a9dd0ec19.sbs/trtspor/mono.m3u8
 #EXTINF:-1 group-title="7/24 Kanallar",TV8.5
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
 #EXTVLCOPT:http-referrer=https://hepbetspor5.cfd/
 https://9vy.d72577a9dd0ec19.sbs/tv85/mono.m3u8
+#EXTINF:-1 group-title="7/24 Kanallar",TRT Spor
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+#EXTVLCOPT:http-referrer=https://hepbetspor5.cfd/
+https://9vy.d72577a9dd0ec19.sbs/trtspor/mono.m3u8
