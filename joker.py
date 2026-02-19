@@ -43,7 +43,7 @@ SABIT_KANALLAR = [
 def get_html():
     # Siteye erişmek için proxy deniyoruz
     proxies = [
-        f"https://api.allorigins.win/raw?url={TARGET_URL}",
+        f"https://api.codetabs.com/v1/proxy/?quest={TARGET_URL}",
         f"https://corsproxy.io/?{TARGET_URL}",
         f"https://api.codetabs.com/v1/proxy/?quest={TARGET_URL}"
     ]
