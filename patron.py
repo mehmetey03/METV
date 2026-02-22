@@ -534,7 +534,7 @@ def main():
         m3u_list.append(f'{base_url}{channel_id}/mono.m3u8')
     
     # 6. Dosyaya kaydet
-    output_file = "patron_kanallar.m3u"
+    output_file = "karsilasmalar4.m3u"
     with open(output_file, "w", encoding="utf-8") as f:
         f.write("\n".join(m3u_list))
     
