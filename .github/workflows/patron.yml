@@ -31,13 +31,13 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: TrGoals M3U oluştur (trgoalss.py)
+      - name: TrGoals M3U oluştur (patron.py)
         run: python patron.py
 
       - name: Değişiklikleri Commit et
         run: |
-          git add karsilasmaklar4.m3u
-          git commit -m "Auto-update karsilasmalar.m3u" || echo "No changes to commit"
+          git add karsilasmalar4.m3u
+          git commit -m "Auto-update karsilasmalar4.m3u" || echo "No changes to commit"
 
       - name: Uzaktaki değişiklikleri çek
         run: |
