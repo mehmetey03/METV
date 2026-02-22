@@ -29,51 +29,12 @@ def get_base_url_with_fallback():
     except Exception as e:
         print(f"⚠️ Domain API hatası: {e}")
     
-    # 2. Yöntem: Redirect kaynağından base URL bul
-    try:
-        r = requests.get(REDIRECT_SOURCE_URL, headers=HEADERS, timeout=10)
-        content = r.text
-        
-        # .sbs uzantılı domainleri bul
-        sbs_domains = re.findall(r'https?://([^/]+\.sbs)', content)
-        if sbs_domains:
-            base_url = f"https://{sbs_domains[0]}/"
-            print(f"✅ Redirect'ten base URL alındı: {base_url}")
-            return base_url
-        
-        # Alternatif: obv. ile başlayan domainler
-        obv_domains = re.findall(r'https?://(obv\.[^/]+)', content)
-        if obv_domains:
-            base_url = f"https://{obv_domains[0]}/"
-            print(f"✅ Redirect'ten obv domain bulundu: {base_url}")
-            return base_url
-    except Exception as e:
-        print(f"⚠️ Redirect kaynağı hatası: {e}")
-    
-    # 3. Yöntem: matches.php'den domain çıkarımı
-    try:
-        r = requests.get(MATCHES_API_URL, headers=HEADERS, timeout=10)
-        matches = r.json()
-        if matches and len(matches) > 0:
-            # İlk maçın logo URL'inden base'i çıkar
-            first_match = matches[0]
-            logo_url = first_match.get('HomeLogo') or first_match.get('AwayLogo', '')
-            if logo_url:
-                # https://patronsports1.cfd/img/logos/... -> https://patronsports1.cfd
-                import urllib.parse
-                parsed = urllib.parse.urlparse(logo_url)
-                base_url = f"{parsed.scheme}://{parsed.netloc}/"
-                print(f"✅ Logo URL'inden base alındı: {base_url}")
-                return base_url
-    except Exception as e:
-        print(f"⚠️ Matches API'den domain çıkarılamadı: {e}")
-    
-    # 4. Yöntem: Bilinen domain yapısı (son çare olarak matches.php'nin domain'i)
+    # 2. Yöntem: matches.php'den domain çıkarımı
     try:
         from urllib.parse import urlparse
         parsed = urlparse(MATCHES_API_URL)
         base_url = f"{parsed.scheme}://{parsed.netloc}/"
-        print(f"⚠️ Varsayılan base URL kullanılıyor: {base_url}")
+        print(f"⚠️ Matches API domain'i base URL olarak kullanılıyor: {base_url}")
         return base_url
     except:
         pass
@@ -95,35 +56,10 @@ def get_referrer_with_fallback():
             referrer = cfd_matches[0].rstrip('/')
             print(f"✅ Redirect'ten referrer alındı: {referrer}")
             return referrer
-        
-        # Sayfa içinde geçen .cfd adresleri
-        cfd_domains = re.findall(r'(https?://[a-zA-Z0-9.-]+\.cfd)', content)
-        if cfd_domains:
-            referrer = cfd_domains[0].rstrip('/')
-            print(f"✅ Redirect'ten referrer alındı: {referrer}")
-            return referrer
     except Exception as e:
         print(f"⚠️ Redirect kaynağı hatası: {e}")
     
-    # 2. Yöntem: matches.php'den referrer çıkarımı
-    try:
-        r = requests.get(MATCHES_API_URL, headers=HEADERS, timeout=10)
-        matches = r.json()
-        if matches and len(matches) > 0:
-            # İlk maçın URL'inden domain'i al
-            first_match = matches[0]
-            url_path = first_match.get('URL', '')
-            if url_path and url_path.startswith('/ch.html?id='):
-                # https://site.com/ch.html?id=ss şeklinde bir URL olabilir
-                from urllib.parse import urlparse
-                parsed = urlparse(MATCHES_API_URL)
-                referrer = f"{parsed.scheme}://{parsed.netloc}"
-                print(f"✅ Matches API'den referrer alındı: {referrer}")
-                return referrer
-    except Exception as e:
-        print(f"⚠️ Matches API'den referrer çıkarılamadı: {e}")
-    
-    # 3. Yöntem: Varsayılan domain
+    # 2. Yöntem: Varsayılan domain
     try:
         from urllib.parse import urlparse
         parsed = urlparse(MATCHES_API_URL)
@@ -135,6 +71,18 @@ def get_referrer_with_fallback():
     
     print("❌ Referrer alınamadı!")
     return None
+
+def create_logo_html(home_logo, away_logo):
+    """
+    İki logoyu birleştiren bir HTML veya özel format oluştur.
+    VLC tvg-logo'da sadece tek bir URL gösterir, bu yüzden 
+    logoları yan yana göstermek için özel bir servis kullanmak gerekir.
+    Şimdilik ev sahibi logosunu kullanıp, away logosunu kanal adında belirtelim.
+    """
+    if home_logo and away_logo:
+        # İleride kullanılmak üzere her iki logoyu da sakla
+        return home_logo  # VLC uyumluluğu için tek logo
+    return home_logo or away_logo or ""
 
 def extract_static_channels_from_html(html_content):
     """Sabit kanalları HTML'den çıkar"""
@@ -195,26 +143,42 @@ def main():
                 home = match.get('HomeTeam', '').strip()
                 away = match.get('AwayTeam', '').strip()
                 league = match.get('league', 'Spor').strip()
+                match_type = match.get('type', 'football').strip()
                 match_time = match.get('Time', '').strip()
                 
-                # Logo (ev sahibi logosu öncelikli)
+                # Her iki takımın logosu
                 home_logo = match.get('HomeLogo', '')
                 away_logo = match.get('AwayLogo', '')
+                
+                # Logo için ev sahibi logosunu kullan (VLC uyumluluğu)
                 logo_url = home_logo or away_logo or ""
                 
-                # Kanal adı
+                # Kanal adı (her iki takım da görünsün)
                 channel_name = f"{home} - {away}"
                 if match_time:
                     channel_name += f" [{match_time}]"
                 
+                # Ek bilgi olarak her iki logoyu da sakla (ileride kullanılmak üzere)
                 all_matches.append({
                     'id': channel_id,
                     'name': channel_name,
                     'logo': logo_url,
+                    'home_logo': home_logo,
+                    'away_logo': away_logo,
                     'league': league,
+                    'type': match_type,
+                    'time': match_time,
                     'home': home,
                     'away': away
                 })
+                
+                # Logoları kontrol et ve varsa yazdır
+                if home_logo and away_logo:
+                    print(f"  ✓ {home} - {away}: Her iki logo da mevcut")
+                elif home_logo or away_logo:
+                    print(f"  ✓ {home} - {away}: Tek logo mevcut")
+                else:
+                    print(f"  ✓ {home} - {away}: Logo yok")
         
         print(f"✅ {len(all_matches)} maç hazır.")
         
@@ -584,13 +548,20 @@ def main():
     print(f"\n📝 {len(all_matches)} maç M3U'ya ekleniyor...")
     
     for match in all_matches:
+        # Grup başlığı
         group = f"CANLI MAÇLAR - {match['league']}"
+        
+        # EXTINF satırı - tvg-logo olarak ev sahibi logosu
         extinf = f'#EXTINF:-1 tvg-logo="{match["logo"]}" group-title="{group}",{match["name"]}'
         
         m3u_list.append(extinf)
         m3u_list.append(f'#EXTVLCOPT:http-user-agent={HEADERS["User-Agent"]}')
         m3u_list.append(f'#EXTVLCOPT:http-referrer={referrer}/')
         m3u_list.append(f'{base_url}{match["id"]}/mono.m3u8')
+        
+        # İsteğe bağlı: Her iki logoyu da yorum satırı olarak ekle (debug için)
+        if match['home_logo'] and match['away_logo']:
+            m3u_list.append(f'# İki logo: {match["home_logo"]} | {match["away_logo"]}')
     
     # Sabit kanalları ekle
     print(f"📺 {len(static_channels)} sabit kanal ekleniyor...")
@@ -607,11 +578,17 @@ def main():
     with open(output_file, "w", encoding="utf-8") as f:
         f.write("\n".join(m3u_list))
     
+    # Ayrıca JSON formatında da kaydet (tüm logo bilgileriyle)
+    json_output = "patron_maclar_detay.json"
+    with open(json_output, "w", encoding="utf-8") as f:
+        json.dump(all_matches, f, indent=2, ensure_ascii=False)
+    
     print(f"\n✅ İşlem tamamlandı!")
     print(f"📊 Toplam maç sayısı: {len(all_matches)}")
     print(f"📊 Toplam sabit kanal: {len(static_channels)}")
     print(f"📊 Toplam satır: {len(m3u_list)}")
-    print(f"💾 Dosya: {output_file}")
+    print(f"💾 M3U Dosya: {output_file}")
+    print(f"📋 JSON Dosya (tüm detaylar): {json_output}")
 
 if __name__ == "__main__":
     main()
