@@ -3,7 +3,7 @@ import urllib3
 import json
 import re
 
-urllib3.disable_warnings(urqlib3.exceptions.InsecureRequestWarning)
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)  # Düzeltildi
 
 # SADECE VERİLEN KAYNAKLAR
 REDIRECT_SOURCE_URL = "http://raw.githack.com/eniyiyayinci/redirect-cdn/main/inattv.html"
@@ -58,7 +58,7 @@ def extract_static_channels_from_html(html_content):
     """
     channels = []
     
-    # Tüm channel-item bloklarını bul
+    # Tüm channel-item bloklarını bul - reklamları filtrele
     channel_blocks = re.findall(r'<div class="channel-item".*?data-src="/ch\.html\?id=([^"]+)".*?>(.*?)</div>\s*</div>', html_content, re.DOTALL)
     
     for channel_id, block_content in channel_blocks:
@@ -534,7 +534,7 @@ def main():
         m3u_list.append(f'{base_url}{channel_id}/mono.m3u8')
     
     # 6. Dosyaya kaydet
-    output_file = "karsilasmalar4.m3u"
+    output_file = "patron_kanallar.m3u"
     with open(output_file, "w", encoding="utf-8") as f:
         f.write("\n".join(m3u_list))
     
