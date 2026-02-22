@@ -1,67 +1,59 @@
-import requests
-import re
-import urllib3
+# patron.py
 
-urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+import requests
+from bs4 import BeautifulSoup
+from urllib.parse import urljoin
+
+START_URL = "http://raw.githack.com/eniyiyayinci/redirect-cdn/main/inattv.html"
 
 HEADERS = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
-    "Referer": "https://hepbetspor16.cfd/",
-    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8"
+    "User-Agent": "Mozilla/5.0"
 }
 
-def get_base_url():
-    try:
-        r = requests.get("https://patronsports1.cfd/domain.php", headers=HEADERS, timeout=10, verify=False)
-        return r.json().get("baseurl", "").replace("\\", "").rstrip('/') + "/"
-    except:
-        return "https://obv.d72577a9dd0ec28.sbs/"
+def get_final_url(url):
+    r = requests.get(url, headers=HEADERS, allow_redirects=True, timeout=10)
+    return r.url, r.text
+
+def parse_matches(html):
+    soup = BeautifulSoup(html, "html.parser")
+    matches = []
+
+    container = soup.find("div", id="matchList")
+    if not container:
+        return matches
+
+    for item in container.find_all("div", class_="channel-item"):
+        time_tag = item.find("span", class_="match-time")
+        league_tag = item.find("span", class_="league-text")
+        teams = item.find_all("span", class_="team-name")
+
+        if len(teams) == 2:
+            match_info = {
+                "home": teams[0].get_text(strip=True),
+                "away": teams[1].get_text(strip=True),
+                "time": time_tag.get_text(strip=True) if time_tag else "",
+                "league": league_tag.get_text(strip=True) if league_tag else ""
+            }
+            matches.append(match_info)
+
+    return matches
+
+def save_to_txt(matches):
+    with open("karsilasmalar4.txt", "w", encoding="utf-8") as f:
+        for m in matches:
+            line = f"{m['time']} | {m['home']} vs {m['away']} | {m['league']}"
+            f.write(line + "\n")
+
+    print("✅ karsilasmalar4.txt oluşturuldu.")
 
 def main():
-    source_url = "https://hepbetspor16.cfd"
-    base_url = get_base_url()
-    
-    print(f"📡 Kaynak: {source_url}")
-    print(f"🚀 Sunucu: {base_url}")
+    final_url, html = get_final_url(START_URL)
+    print("Final URL:", final_url)
 
-    try:
-        response = requests.get(source_url, headers=HEADERS, timeout=15, verify=False)
-        content = response.text
+    matches = parse_matches(html)
+    print(f"{len(matches)} maç bulundu.")
 
-        # 1. Strateji: id= kısmını ve hemen peşinden gelen takımları yakala
-        # HTML yapısındaki boşlukları ve satırları (.*?) ile yutuyoruz
-        matches = re.findall(r'id=([a-zA-Z0-9_-]+)".*?class="team-name">(.*?)</span>.*?class="team-name">(.*?)</span>', content, re.DOTALL)
-        
-        m3u_content = ["#EXTM3U"]
-        count = 0
-
-        for cid, home, away in matches:
-            title = f"LIVE | {home.strip()} - {away.strip()}"
-            m3u_content.append(f'#EXTINF:-1 group-title="CANLI MAÇLAR",{title}')
-            m3u_content.append(f'{base_url}{cid}/mono.m3u8')
-            count += 1
-
-        # 2. Strateji: Eğer yukarıdaki boş dönerse, sadece ID ve tekli isimleri ara
-        if count == 0:
-            simple_matches = re.findall(r'id=([a-zA-Z0-9_-]+)".*?class="team-name">(.*?)</span>', content, re.DOTALL)
-            for cid, name in simple_matches:
-                m3u_content.append(f'#EXTINF:-1 group-title="CANLI MAÇLAR",LIVE | {name.strip()}')
-                m3u_content.append(f'{base_url}{cid}/mono.m3u8')
-                count += 1
-
-        # Sabit kanallar
-        fixed = {"b1": "beIN Sports 1", "b2": "beIN Sports 2", "ss1": "S Sports 1"}
-        for fid, fname in fixed.items():
-            m3u_content.append(f'#EXTINF:-1 group-title="7/24 KANALLAR",{fname}')
-            m3u_content.append(f'{base_url}{fid}/mono.m3u8')
-
-        with open("patron_v6.m3u", "w", encoding="utf-8") as f:
-            f.write("\n".join(m3u_content))
-
-        print(f"✅ Sonuç: {count} maç yakalandı!")
-
-    except Exception as e:
-        print(f"❌ Hata: {e}")
+    save_to_txt(matches)
 
 if __name__ == "__main__":
     main()
