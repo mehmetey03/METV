@@ -1,6 +1,7 @@
 # patron.py
 
 import requests
+import re
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin
 
@@ -10,9 +11,24 @@ HEADERS = {
     "User-Agent": "Mozilla/5.0"
 }
 
-def get_final_url(url):
-    r = requests.get(url, headers=HEADERS, allow_redirects=True, timeout=10)
-    return r.url, r.text
+def extract_js_redirect(html):
+    match = re.search(r'window\.location\.href\s*=\s*"([^"]+)"', html)
+    if match:
+        return match.group(1)
+    return None
+
+def get_real_page():
+    r = requests.get(START_URL, headers=HEADERS, timeout=10)
+    html = r.text
+
+    redirect_url = extract_js_redirect(html)
+
+    if redirect_url:
+        print("JS Redirect bulundu:", redirect_url)
+        r2 = requests.get(redirect_url, headers=HEADERS, timeout=10)
+        return redirect_url, r2.text
+    else:
+        return START_URL, html
 
 def parse_matches(html):
     soup = BeautifulSoup(html, "html.parser")
@@ -28,13 +44,12 @@ def parse_matches(html):
         teams = item.find_all("span", class_="team-name")
 
         if len(teams) == 2:
-            match_info = {
+            matches.append({
                 "home": teams[0].get_text(strip=True),
                 "away": teams[1].get_text(strip=True),
                 "time": time_tag.get_text(strip=True) if time_tag else "",
                 "league": league_tag.get_text(strip=True) if league_tag else ""
-            }
-            matches.append(match_info)
+            })
 
     return matches
 
@@ -47,8 +62,8 @@ def save_to_txt(matches):
     print("✅ karsilasmalar4.txt oluşturuldu.")
 
 def main():
-    final_url, html = get_final_url(START_URL)
-    print("Final URL:", final_url)
+    final_url, html = get_real_page()
+    print("Gerçek URL:", final_url)
 
     matches = parse_matches(html)
     print(f"{len(matches)} maç bulundu.")
