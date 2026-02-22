@@ -9,7 +9,7 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 # Ayarlar
 # Eğer verdiğiniz URL değişirse, sistem numara artırarak deneme yapacak
-START_URL = "https://inattv1256.xyz" 
+START_URL = "https://inattv1264.xyz" 
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
 }
