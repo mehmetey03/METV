@@ -118,7 +118,7 @@ def main():
                 print(f"📺 Kanal {len(channels)}: {channel_name} (ID: {channel_id})")
         
         # Çıktıyı dosyaya yaz
-        output_file = "patron_playlist.m3u"
+        output_file = "karsilasmalar4.m3u"
         with open(output_file, "w", encoding="utf-8") as f:
             f.write("\n".join(m3u_list))
         
