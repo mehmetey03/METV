@@ -1,85 +1,75 @@
 import requests
 import re
 import urllib3
-import json
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-# KAYNAKLAR
-REDIRECT_SOURCE_URL = "http://raw.githack.com/eniyiyayinci/redirect-cdn/main/inattv.html"
+# AYARLAR
 DOMAIN_API_URL = "https://patronsports1.cfd/domain.php"
+MAIN_SITE = "https://hepbetspor16.cfd"
 
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
-    "Referer": "https://hepbetspor16.cfd/",
-    "X-Requested-With": "XMLHttpRequest"
+    "Referer": f"{MAIN_SITE}/",
+    "Accept-Language": "tr-TR,tr;q=0.9"
 }
 
 def get_base_url():
     try:
         r = requests.get(DOMAIN_API_URL, headers=HEADERS, timeout=10, verify=False)
         return r.json().get("baseurl", "").replace("\\", "").rstrip('/') + "/"
-    except: return "https://obv.d72577a9dd0ec28.sbs/"
+    except: 
+        return "https://obv.d72577a9dd0ec28.sbs/"
 
 def main():
-    main_site = "https://hepbetspor16.cfd"
     base_url = get_base_url()
-    
-    print(f"📡 Bağlanılıyor: {main_site}")
+    print(f"📡 Bağlanılıyor: {MAIN_SITE}")
     print(f"🚀 Yayın Sunucusu: {base_url}")
 
     m3u_list = ["#EXTM3U"]
     
     try:
-        # Sayfayı çek
-        response = requests.get(main_site, headers=HEADERS, timeout=15, verify=False)
-        html_content = response.text
+        response = requests.get(MAIN_SITE, headers=HEADERS, timeout=15, verify=False)
+        html = response.text
 
-        # HTML içinde "channel-item" bloklarını manuel (Regex ile) parçala
-        # Bu yöntem BeautifulSoup'un kaçırdığı 'render edilmemiş' metinleri de yakalar.
-        blocks = re.findall(r'<div class="channel-item".*?>(.*?)</div>\s*</div>', html_content, re.DOTALL)
+        # Daha esnek bir yakalama deseni: 
+        # id'yi, takımları ve ligi tek seferde blok bazlı değil, içerik bazlı arıyoruz.
+        # Bu desen 'channel-item' içindeki verileri parça parça toplar.
         
-        if not blocks:
-            # Eğer yukarıdaki yakalamazsa daha geniş bir tarama yap
-            blocks = re.findall(r'data-src="/ch\.html\?id=(.*?)".*?class="team-name">(.*?)</span>.*?class="team-name">(.*?)</span>', html_content, re.DOTALL)
-
+        # 1. Önce tüm kanal bloklarını ayır
+        items = re.findall(r'<div class="channel-item".*?data-src="/ch\.html\?id=(.*?)".*?>(.*?)</div>\s*</div>', html, re.DOTALL)
+        
         found_count = 0
-        for block in blocks:
-            # block bir tuple (id, team1, team2) ise
-            if isinstance(block, tuple):
-                cid, t1, t2 = block
-                name = f"{t1} - {t2}"
-            else:
-                # Normal blok içinden ID ve isim çek
-                cid_match = re.search(r'id=([^&"\'\s>]+)', block)
-                if not cid_match: continue
-                cid = cid_match.group(1)
-                teams = re.findall(r'class="team-name">(.*?)</span>', block)
-                name = " - ".join(teams) if teams else f"Kanal {cid}"
-
-            # M3U Ekleme
-            m3u_list.append(f'#EXTINF:-1 group-title="CANLI MAÇLAR",{name}')
+        for cid, content in items:
+            # Takım isimlerini ayıkla
+            teams = re.findall(r'<span class="team-name">(.*?)</span>', content)
+            # Lig bilgisini ayıkla (varsa)
+            league_match = re.search(r'<span class="league-text">(.*?)</span>', content)
+            # Saat bilgisini ayıkla (varsa)
+            time_match = re.search(r'<span class="match-time">(.*?)</span>', content)
+            
+            # Verileri temizle ve birleştir
+            name = " - ".join(teams) if teams else f"Kanal {cid}"
+            league = f"[{league_match.group(1)}] " if league_match else ""
+            m_time = f" ({time_match.group(1)})" if time_match else ""
+            
+            # M3U Formatına ekle
+            m3u_list.append(f'#EXTINF:-1 group-title="CANLI MAÇLAR",{league}{name}{m_time}')
             m3u_list.append(f'#EXTVLCOPT:http-user-agent={HEADERS["User-Agent"]}')
-            m3u_list.append(f'#EXTVLCOPT:http-referrer={main_site}/')
+            m3u_list.append(f'#EXTVLCOPT:http-referrer={MAIN_SITE}/')
             m3u_list.append(f'{base_url}{cid}/mono.m3u8')
             found_count += 1
 
-        # Eğer hala 0 ise, sitenin maçları çektiği JSON dosyasını tahmin etmeyi deneyelim
-        if found_count == 0:
-            print("⚠️ HTML içinde maç bulunamadı, alternatif JSON kaynağı deneniyor...")
-            # Sitede genellikle ajax/matches.php gibi bir yer olur ama biz şimdilik sabitleri ekleyelim
-            fixed = ["patron", "b2", "b3", "t2", "ss1"]
-            for f_id in fixed:
-                m3u_list.append(f'#EXTINF:-1 group-title="7/24 KANALLAR",Kanal {f_id}')
-                m3u_list.append(f'{base_url}{f_id}/mono.m3u8')
-
-        with open("patron_final.m3u", "w", encoding="utf-8") as f:
+        # Dosyayı kaydet
+        with open("patron_v4.m3u", "w", encoding="utf-8") as f:
             f.write("\n".join(m3u_list))
             
-        print(f"✅ İşlem bitti. Bulunan Maç: {found_count}")
+        print(f"✅ İşlem bitti. Toplam {found_count} maç listeye eklendi.")
+        if found_count > 0:
+            print(f"📂 'patron_v4.m3u' dosyası oluşturuldu.")
 
     except Exception as e:
-        print(f"💥 Hata: {e}")
+        print(f"💥 Hata oluştu: {e}")
 
 if __name__ == "__main__":
     main()
