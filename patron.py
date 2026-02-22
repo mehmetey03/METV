@@ -3,9 +3,9 @@ import urllib3
 import json
 import re
 
-urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)  # Düzeltildi
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-# SADECE VERİLEN KAYNAKLAR
+# KAYNAKLAR
 REDIRECT_SOURCE_URL = "http://raw.githack.com/eniyiyayinci/redirect-cdn/main/inattv.html"
 DOMAIN_API_URL = "https://patronsports1.cfd/domain.php"
 MATCHES_API_URL = "https://patronsports1.cfd/matches.php"
@@ -15,7 +15,7 @@ HEADERS = {
 }
 
 def get_base_url_from_api():
-    """Sadece domain API'sini kullanarak base URL'i al."""
+    """Domain API'sinden base URL'i al"""
     try:
         r = requests.get(DOMAIN_API_URL, headers=HEADERS, timeout=10, verify=False)
         data = r.json()
@@ -23,51 +23,31 @@ def get_base_url_from_api():
         if base_url:
             base_url = base_url.replace("\\", "").rstrip('/')
             return base_url + "/"
-        else:
-            print("⚠️ Domain API'si 'baseurl' döndürmedi.")
-            return None
-    except Exception as e:
-        print(f"⚠️ Domain API'sine erişilemedi: {e}")
+        return None
+    except:
         return None
 
 def get_referrer_from_redirect():
-    """Redirect kaynağından referrer adresini bul."""
+    """Redirect kaynağından referrer adresini bul"""
     try:
         r = requests.get(REDIRECT_SOURCE_URL, headers=HEADERS, timeout=15)
         content = r.text
-        
-        # .cfd uzantılı linkleri bul
         referrer_matches = re.findall(r'href="(https?://[^"]+\.cfd)[/"]', content)
         if referrer_matches:
             return referrer_matches[0].rstrip('/')
-        
-        # Alternatif: Sayfa içinde geçen .cfd adresleri
-        domain_matches = re.findall(r'(https?://[a-zA-Z0-9.-]+\.cfd)', content)
-        if domain_matches:
-            return domain_matches[0].rstrip('/')
-        
         return None
-    except Exception as e:
-        print(f"⚠️ Redirect kaynağı işlenirken hata: {e}")
+    except:
         return None
 
 def extract_static_channels_from_html(html_content):
-    """
-    Verilen HTML içindeki sabit kanalları çıkar.
-    HTML'deki channel-item div'lerinden ID ve kanal adını alır.
-    """
+    """Sabit kanalları HTML'den çıkar"""
     channels = []
-    
-    # Tüm channel-item bloklarını bul - reklamları filtrele
     channel_blocks = re.findall(r'<div class="channel-item".*?data-src="/ch\.html\?id=([^"]+)".*?>(.*?)</div>\s*</div>', html_content, re.DOTALL)
     
     for channel_id, block_content in channel_blocks:
-        # Kanal adını bul
         name_match = re.search(r'class="channel-name-text">([^<]+)</span>', block_content)
         if name_match:
             channel_name = name_match.group(1).strip()
-            
-            # Logo URL'ini bul
             logo_match = re.search(r'<img src="([^"]+)" class="channel-logo-right"', block_content)
             logo_url = logo_match.group(1) if logo_match else ""
             
@@ -75,36 +55,36 @@ def extract_static_channels_from_html(html_content):
                 'id': channel_id,
                 'name': channel_name,
                 'logo': logo_url,
-                'type': 'static',  # Sabit kanal olduğunu belirt
-                'league': '7/24 KANALLAR'
+                'type': 'static'
             })
-    
     return channels
+
+def create_double_logo(logo1, logo2):
+    """İki logoyu birleştir veya ikisini de göster"""
+    if logo1 and logo2:
+        # İsteğe bağlı: Logoları yan yana göstermek için özel bir format
+        # VLC'de çift logo görünmeyebilir, bu yüzden ev sahibi logosunu tercih ediyoruz
+        return logo1  # Ev sahibi logosunu kullan
+    return logo1 or logo2 or ""
 
 def main():
     print("🔍 Kaynaklardan bilgiler alınıyor...")
     
-    # 1. Base URL'i al
     base_url = get_base_url_from_api()
-    if not base_url:
-        print("❌ Base URL alınamadı! İşlem durduruluyor.")
-        return
-    
-    # 2. Referrer adresini al
     referrer = get_referrer_from_redirect()
-    if not referrer:
-        print("❌ Referrer adresi alınamadı! İşlem durduruluyor.")
+    
+    if not base_url or not referrer:
+        print("❌ Gerekli bilgiler alınamadı!")
         return
     
     print(f"📡 Referrer: {referrer}")
     print(f"🚀 Yayın Sunucusu: {base_url}")
     
     m3u_list = ["#EXTM3U"]
-    all_channels = {}  # ID bazlı benzersiz kanallar
-    match_count = 0
-    static_count = 0
+    all_matches = []  # Tüm maçları tut (kanalları değil)
+    static_channels = []
     
-    # 3. Maç API'sinden dinamik maçları çek
+    # 1. API'den TÜM MAÇLARI çek (kanal bazlı gruplama YAPMA)
     try:
         print("\n📡 Maç API'sinden veriler alınıyor...")
         response = requests.get(MATCHES_API_URL, headers=HEADERS, timeout=15)
@@ -115,40 +95,46 @@ def main():
             url_path = match.get('URL', '')
             channel_id = url_path.split('id=')[-1] if 'id=' in url_path else None
             
-            if channel_id and channel_id not in all_channels:
+            if channel_id:
                 home = match.get('HomeTeam', '').strip()
                 away = match.get('AwayTeam', '').strip()
                 league = match.get('league', 'Spor').strip()
                 match_type = match.get('type', 'football').strip()
                 match_time = match.get('Time', '').strip()
                 
-                # Logo URL'i (API'den gelen)
-                logo_url = match.get('HomeLogo') or match.get('AwayLogo') or ""
+                # Her iki takımın logosunu da al
+                home_logo = match.get('HomeLogo', '')
+                away_logo = match.get('AwayLogo', '')
+                
+                # Logo seçimi (ev sahibi logosu öncelikli)
+                logo_url = create_double_logo(home_logo, away_logo)
                 
                 # Kanal adı
                 channel_name = f"{home} - {away}"
                 if match_time:
                     channel_name += f" [{match_time}]"
                 
-                all_channels[channel_id] = {
+                all_matches.append({
+                    'id': channel_id,
                     'name': channel_name,
                     'logo': logo_url,
+                    'home_logo': home_logo,
+                    'away_logo': away_logo,
                     'league': league,
                     'type': match_type,
-                    'source': 'match_api'
-                }
-                match_count += 1
+                    'time': match_time,
+                    'home': home,
+                    'away': away
+                })
         
-        print(f"✅ API'den {match_count} benzersiz kanal oluşturuldu.")
+        print(f"✅ {len(all_matches)} maç kaydedildi.")
         
     except Exception as e:
         print(f"⚠️ Maç API'si hatası: {e}")
-        print("Devam ediliyor...")
     
-    # 4. Sabit kanalları ekle (HTML'den)
+    # 2. Sabit kanalları ekle
     print("\n📺 Sabit kanallar ekleniyor...")
     
-    # Sabit kanalların HTML'i (sizin verdiğiniz)
     static_html = """<div id="matchList"><div class="channel-item" data-src="/ch.html?id=patron" data-id="channel_1">
                         <div class="channel-row" style="flex: 1;">
                             <div class="channel-left">
@@ -502,46 +488,41 @@ def main():
                         </div></div></div>"""
     
     static_channels = extract_static_channels_from_html(static_html)
+    print(f"✅ {len(static_channels)} sabit kanal hazır.")
     
-    for channel in static_channels:
-        if channel['id'] not in all_channels:
-            all_channels[channel['id']] = channel
-            static_count += 1
-        else:
-            print(f"ℹ️ {channel['name']} kanalı zaten mevcut (ID: {channel['id']})")
+    # 3. M3U'ya TÜM MAÇLARI ekle (kanal bazlı gruplama YOK)
+    print(f"\n📝 Toplam {len(all_matches)} maç M3U'ya ekleniyor...")
     
-    print(f"✅ {static_count} yeni sabit kanal eklendi.")
-    
-    # 5. Tüm kanalları M3U formatında yaz
-    print(f"\n📝 Toplam {len(all_channels)} kanal M3U'ya ekleniyor...")
-    
-    for channel_id, info in all_channels.items():
-        # Grup başlığını belirle
-        if info.get('source') == 'match_api':
-            group = f"CANLI MAÇLAR - {info.get('league', 'Spor')}"
-        else:
-            group = "7/24 KANALLAR"
+    for match in all_matches:
+        group = f"CANLI MAÇLAR - {match['league']}"
         
         # EXTINF satırı
-        if info.get('logo'):
-            extinf = f'#EXTINF:-1 tvg-logo="{info["logo"]}" group-title="{group}",{info["name"]}'
-        else:
-            extinf = f'#EXTINF:-1 group-title="{group}",{info["name"]}'
+        extinf = f'#EXTINF:-1 tvg-logo="{match["logo"]}" group-title="{group}",{match["name"]}'
         
         m3u_list.append(extinf)
         m3u_list.append(f'#EXTVLCOPT:http-user-agent={HEADERS["User-Agent"]}')
         m3u_list.append(f'#EXTVLCOPT:http-referrer={referrer}/')
-        m3u_list.append(f'{base_url}{channel_id}/mono.m3u8')
+        m3u_list.append(f'{base_url}{match["id"]}/mono.m3u8')
     
-    # 6. Dosyaya kaydet
+    # 4. Sabit kanalları ekle
+    print(f"📺 {len(static_channels)} sabit kanal ekleniyor...")
+    
+    for channel in static_channels:
+        extinf = f'#EXTINF:-1 tvg-logo="{channel["logo"]}" group-title="7/24 KANALLAR",{channel["name"]}'
+        m3u_list.append(extinf)
+        m3u_list.append(f'#EXTVLCOPT:http-user-agent={HEADERS["User-Agent"]}')
+        m3u_list.append(f'#EXTVLCOPT:http-referrer={referrer}/')
+        m3u_list.append(f'{base_url}{channel["id"]}/mono.m3u8')
+    
+    # 5. Dosyaya kaydet
     output_file = "karsilasmalar4.m3u"
     with open(output_file, "w", encoding="utf-8") as f:
         f.write("\n".join(m3u_list))
     
     print(f"\n✅ İşlem tamamlandı!")
-    print(f"📊 Toplam kanal: {len(all_channels)}")
-    print(f"   - API'den gelen maç kanalları: {match_count}")
-    print(f"   - Sabit kanallar: {static_count}")
+    print(f"📊 Toplam maç sayısı: {len(all_matches)}")
+    print(f"📊 Toplam sabit kanal: {len(static_channels)}")
+    print(f"📊 Toplam satır: {len(m3u_list)}")
     print(f"💾 Dosya: {output_file}")
 
 if __name__ == "__main__":
