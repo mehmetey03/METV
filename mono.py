@@ -282,7 +282,7 @@ def main():
         m3u_list = create_m3u_with_logos(all_matches, all_channels, base_url, referrer)
         
         # M3U dosyasını kaydet
-        output_file = "justin_playlist.m3u"
+        output_file = "mono.m3u"
         with open(output_file, "w", encoding="utf-8") as f:
             f.write("\n".join(m3u_list))
         
@@ -302,3 +302,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
