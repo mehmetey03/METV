@@ -1,7 +1,7 @@
-name:Patron M3U Oluşturucu
+name: Patron M3U Oluşturucu
 
 permissions:
-  contents: write  # Push izni çok önemli!
+  contents: write   # <<--- Push izni çok önemli!
 
 on:
   schedule:
@@ -9,7 +9,7 @@ on:
   workflow_dispatch:       # Manuel çalıştırma
 
 jobs:
-  update-inat-m3u:
+  update-trgoals-m3u:
     runs-on: ubuntu-latest
 
     steps:
@@ -21,7 +21,7 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: Gerekli Python paketlerini yükle
+      - name: Gerekli Python paketleri
         run: |
           python -m pip install --upgrade pip
           python -m pip install requests beautifulsoup4
@@ -31,12 +31,12 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: hepbet M3U oluştur (patron.py)
+      - name: TrGoals M3U oluştur (trgoalss.py)
         run: python patron.py
 
       - name: Değişiklikleri Commit et
         run: |
-          git add karsilasmalar3.m3u
+          git add karsilasmaklar4.m3u
           git commit -m "Auto-update karsilasmalar.m3u" || echo "No changes to commit"
 
       - name: Uzaktaki değişiklikleri çek
