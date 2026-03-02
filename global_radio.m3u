@@ -540,10 +540,6 @@ http://playtv-live.ifeng.com/live/06OLEGEGM4G_audio.m3u8
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://lhttp.qtfm.cn/live/20500172/64k.mp3
 
-#EXTINF:-1 tvg-id="China_8" tvg-name="清晨音乐台" tvg-logo="https://h5.sinaimg.cn/m/weibo-lite/appicon.png" group-title="China",清晨音乐台
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://lhttp.qingting.fm/live/4915/64k.mp3
-
 #EXTINF:-1 tvg-id="" tvg-logo="" group-title="Colombia",Colombia
 #EXTGRP:Colombia
 
@@ -1287,13 +1283,13 @@ http://icepool.silvacast.com/RADIOPALOMA.mp3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://streams.fluxfm.de/live/mp3-320/audio/
 
-#EXTINF:-1 tvg-id="Germany_62" tvg-name="NDR 2" tvg-logo="https://www.ndr.de//apple-touch-icon-57x57.png" group-title="Germany",NDR 2
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://www.ndr.de/resources/metadaten/audio_ssl/m3u/ndr2.m3u
-
-#EXTINF:-1 tvg-id="Germany_63" tvg-name="80s80s Radio" tvg-logo="https://upload.80s80s.de/production/static/1697296555757/icons/icon_512.ewwAEi8A30w.png" group-title="Germany",80s80s Radio
+#EXTINF:-1 tvg-id="Germany_62" tvg-name="80s80s Radio" tvg-logo="https://upload.80s80s.de/production/static/1697296555757/icons/icon_512.ewwAEi8A30w.png" group-title="Germany",80s80s Radio
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://streams.80s80s.de/web/mp3-192/play.m3u
+
+#EXTINF:-1 tvg-id="Germany_63" tvg-name="NDR 2" tvg-logo="https://www.ndr.de//apple-touch-icon-57x57.png" group-title="Germany",NDR 2
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://www.ndr.de/resources/metadaten/audio_ssl/m3u/ndr2.m3u
 
 #EXTINF:-1 tvg-id="Germany_64" tvg-name="RADIO BOB! Classic Rock" tvg-logo="" group-title="Germany",RADIO BOB! Classic Rock
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -3006,6 +3002,10 @@ http://live3.smartbomb.co.th:8624/;stream.mp3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://rs1.radiostreamer.com:8000/listen.m3u
 
+#EXTINF:-1 tvg-id="The Democratic Republic Of The Congo_1" tvg-name="RADIO MARIA DEM.REP. CONGO" tvg-logo="http://www.radiomaria.cd/favicon.ico" group-title="The Democratic Republic Of The Congo",RADIO MARIA DEM.REP. CONGO
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://dreamsiteradiocp.com:8116/stream
+
 #EXTINF:-1 tvg-id="" tvg-logo="" group-title="The Dominican Republic",The Dominican Republic
 #EXTGRP:The Dominican Republic
 
@@ -3093,13 +3093,13 @@ http://nashe1.hostingradio.ru/rock-128.mp3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://icecast-radiovanya.cdnvideo.ru/radiovanya
 
-#EXTINF:-1 tvg-id="The Russian Federation_3" tvg-name="Ретро FM" tvg-logo="" group-title="The Russian Federation",Ретро FM
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://retroserver.streamr.ru:8043/retro256.mp3
-
-#EXTINF:-1 tvg-id="The Russian Federation_4" tvg-name="DFM Дискач 90-х" tvg-logo="" group-title="The Russian Federation",DFM Дискач 90-х
+#EXTINF:-1 tvg-id="The Russian Federation_3" tvg-name="DFM Дискач 90-х" tvg-logo="" group-title="The Russian Federation",DFM Дискач 90-х
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://dfm-disc90.hostingradio.ru/disc9096.aacp
+
+#EXTINF:-1 tvg-id="The Russian Federation_4" tvg-name="Ретро FM" tvg-logo="" group-title="The Russian Federation",Ретро FM
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://retroserver.streamr.ru:8043/retro256.mp3
 
 #EXTINF:-1 tvg-id="The Russian Federation_5" tvg-name="Дискотека СССР" tvg-logo="" group-title="The Russian Federation",Дискотека СССР
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
