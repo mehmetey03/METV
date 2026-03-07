@@ -540,6 +540,10 @@ http://playtv-live.ifeng.com/live/06OLEGEGM4G_audio.m3u8
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://lhttp.qtfm.cn/live/20500172/64k.mp3
 
+#EXTINF:-1 tvg-id="China_8" tvg-name="清晨音乐台" tvg-logo="https://h5.sinaimg.cn/m/weibo-lite/appicon.png" group-title="China",清晨音乐台
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://lhttp.qingting.fm/live/4915/64k.mp3
+
 #EXTINF:-1 tvg-id="" tvg-logo="" group-title="Colombia",Colombia
 #EXTGRP:Colombia
 
@@ -976,13 +980,13 @@ https://stream.radiofrance.fr/franceinter/franceinter_hifi.m3u8?id=radiofrance
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://178.32.111.41:8027/stream-128kmp3-YogaChill
 
-#EXTINF:-1 tvg-id="France_43" tvg-name="Generations Rap U.S" tvg-logo="https://generations.fr/apple-touch-icon-120x120.png" group-title="France",Generations Rap U.S
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://generationfm-underground.ice.infomaniak.ch/generationfm-underground-high.mp3
-
-#EXTINF:-1 tvg-id="France_44" tvg-name="France Musique | Classique Easy" tvg-logo="" group-title="France",France Musique | Classique Easy
+#EXTINF:-1 tvg-id="France_43" tvg-name="France Musique | Classique Easy" tvg-logo="" group-title="France",France Musique | Classique Easy
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://direct.francemusique.fr/live/francemusiqueeasyclassique-hifi.mp3
+
+#EXTINF:-1 tvg-id="France_44" tvg-name="Generations Rap U.S" tvg-logo="https://generations.fr/apple-touch-icon-120x120.png" group-title="France",Generations Rap U.S
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://generationfm-underground.ice.infomaniak.ch/generationfm-underground-high.mp3
 
 #EXTINF:-1 tvg-id="France_45" tvg-name="法国国际广播电台" tvg-logo="" group-title="France",法国国际广播电台
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -1175,13 +1179,13 @@ http://mp3channels.webradio.antenne.de/classic-rock-live
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://avw.mdr.de/streams/284340-0_mp3_high.m3u
 
-#EXTINF:-1 tvg-id="Germany_35" tvg-name="Total instrumental" tvg-logo="" group-title="Germany",Total instrumental
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://stream.laut.fm/total-instrumental
-
-#EXTINF:-1 tvg-id="Germany_36" tvg-name="Hit Radio FFH - 80er" tvg-logo="" group-title="Germany",Hit Radio FFH - 80er
+#EXTINF:-1 tvg-id="Germany_35" tvg-name="Hit Radio FFH - 80er" tvg-logo="" group-title="Germany",Hit Radio FFH - 80er
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://mp3.ffh.de/ffhchannels/hq80er.mp3
+
+#EXTINF:-1 tvg-id="Germany_36" tvg-name="Total instrumental" tvg-logo="" group-title="Germany",Total instrumental
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://stream.laut.fm/total-instrumental
 
 #EXTINF:-1 tvg-id="Germany_37" tvg-name="Laut.FM 1000 Oldies" tvg-logo="http://1000oldies.de/apple-icon-120x120.png" group-title="Germany",Laut.FM 1000 Oldies
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -1376,10 +1380,6 @@ http://derti.live24.gr/derty1000
 #EXTINF:-1 tvg-id="Greece_14" tvg-name="Off Radio - Athens" tvg-logo="https://www.offradio.gr/wp-content/uploads/2020/09/cropped-site-icon-180x180.png" group-title="Greece",Off Radio - Athens
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://s3.yesstreaming.net:2199/tunein/offradio.m3u
-
-#EXTINF:-1 tvg-id="Greece_15" tvg-name="Laikos FM" tvg-logo="https://www.laikos.gr/templates/bt_medical/favicon.ico" group-title="Greece",Laikos FM
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://netradio.live24.gr/laikos876
 
 #EXTINF:-1 tvg-id="" tvg-logo="" group-title="Guatemala",Guatemala
 #EXTGRP:Guatemala
@@ -3531,13 +3531,13 @@ http://andromeda.shoutca.st:8031/
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://vis.media-ice.musicradio.com/CapitalUK
 
-#EXTINF:-1 tvg-id="The United Kingdom Of Great Britain And Northern Ireland_42" tvg-name="BBC Arabic Radio" tvg-logo="https://static.files.bbci.co.uk/ws/simorgh-assets/public/arabic/images/icons/icon-128x128.png" group-title="The United Kingdom Of Great Britain And Northern Ireland",BBC Arabic Radio
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://a.files.bbci.co.uk/media/live/manifesto/audio/simulcast/hls/nonuk/sbr_low/ak/bbc_arabic_radio.m3u8
-
-#EXTINF:-1 tvg-id="The United Kingdom Of Great Britain And Northern Ireland_43" tvg-name="Radio X" tvg-logo="http://www.radiox.co.uk/assets_v4r/xfm/img/favicon-196x196.png" group-title="The United Kingdom Of Great Britain And Northern Ireland",Radio X
+#EXTINF:-1 tvg-id="The United Kingdom Of Great Britain And Northern Ireland_42" tvg-name="Radio X" tvg-logo="http://www.radiox.co.uk/assets_v4r/xfm/img/favicon-196x196.png" group-title="The United Kingdom Of Great Britain And Northern Ireland",Radio X
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://media-the.musicradio.com/RadioXUK
+
+#EXTINF:-1 tvg-id="The United Kingdom Of Great Britain And Northern Ireland_43" tvg-name="BBC Arabic Radio" tvg-logo="https://static.files.bbci.co.uk/ws/simorgh-assets/public/arabic/images/icons/icon-128x128.png" group-title="The United Kingdom Of Great Britain And Northern Ireland",BBC Arabic Radio
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://a.files.bbci.co.uk/media/live/manifesto/audio/simulcast/hls/nonuk/sbr_low/ak/bbc_arabic_radio.m3u8
 
 #EXTINF:-1 tvg-id="The United Kingdom Of Great Britain And Northern Ireland_44" tvg-name="Celtic Music Radio" tvg-logo="" group-title="The United Kingdom Of Great Britain And Northern Ireland",Celtic Music Radio
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
