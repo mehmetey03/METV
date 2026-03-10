@@ -771,13 +771,13 @@ https://stream.radiojar.com/8s5u5tpdtwzuv
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://stream-34.zeno.fm/rf64mx02qa0uv?zs=-xjlLLwRS8uKrffFxK4vLA
 
-#EXTINF:-1 tvg-id="Egypt_17" tvg-name="القران الكريم من القاهره1" tvg-logo="" group-title="Egypt",القران الكريم من القاهره1
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://n0e.radiojar.com/8s5u5tpdtwzuv?rj=&rj-tok=AAABg5BDP0EA2ElNLJYUJTsVcg&rj-ttl=5
-
-#EXTINF:-1 tvg-id="Egypt_18" tvg-name="إذاعة القرآن الكريم" tvg-logo="https://i.pinimg.com/564x/3a/a1/a1/3aa1a107c9434ca52b42b2dd0ffc896f.jpg" group-title="Egypt",إذاعة القرآن الكريم
+#EXTINF:-1 tvg-id="Egypt_17" tvg-name="إذاعة القرآن الكريم" tvg-logo="https://i.pinimg.com/564x/3a/a1/a1/3aa1a107c9434ca52b42b2dd0ffc896f.jpg" group-title="Egypt",إذاعة القرآن الكريم
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://n0a.radiojar.com/0tpy1h0kxtzuv?rj-ttl=5&rj-tok=AAABhdgGORQA-2acfyF3_4WY2g
+
+#EXTINF:-1 tvg-id="Egypt_18" tvg-name="القران الكريم من القاهره1" tvg-logo="" group-title="Egypt",القران الكريم من القاهره1
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://n0e.radiojar.com/8s5u5tpdtwzuv?rj=&rj-tok=AAABg5BDP0EA2ElNLJYUJTsVcg&rj-ttl=5
 
 #EXTINF:-1 tvg-id="Egypt_19" tvg-name="NRJ EGYPT" tvg-logo="https://nrj.com/img/NRJ_EGYPT_140.jpg" group-title="Egypt",NRJ EGYPT
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -1179,13 +1179,13 @@ http://mp3channels.webradio.antenne.de/classic-rock-live
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://avw.mdr.de/streams/284340-0_mp3_high.m3u
 
-#EXTINF:-1 tvg-id="Germany_35" tvg-name="Hit Radio FFH - 80er" tvg-logo="" group-title="Germany",Hit Radio FFH - 80er
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://mp3.ffh.de/ffhchannels/hq80er.mp3
-
-#EXTINF:-1 tvg-id="Germany_36" tvg-name="Total instrumental" tvg-logo="" group-title="Germany",Total instrumental
+#EXTINF:-1 tvg-id="Germany_35" tvg-name="Total instrumental" tvg-logo="" group-title="Germany",Total instrumental
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://stream.laut.fm/total-instrumental
+
+#EXTINF:-1 tvg-id="Germany_36" tvg-name="Hit Radio FFH - 80er" tvg-logo="" group-title="Germany",Hit Radio FFH - 80er
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://mp3.ffh.de/ffhchannels/hq80er.mp3
 
 #EXTINF:-1 tvg-id="Germany_37" tvg-name="Laut.FM 1000 Oldies" tvg-logo="http://1000oldies.de/apple-icon-120x120.png" group-title="Germany",Laut.FM 1000 Oldies
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -1380,10 +1380,6 @@ http://derti.live24.gr/derty1000
 #EXTINF:-1 tvg-id="Greece_14" tvg-name="Off Radio - Athens" tvg-logo="https://www.offradio.gr/wp-content/uploads/2020/09/cropped-site-icon-180x180.png" group-title="Greece",Off Radio - Athens
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://s3.yesstreaming.net:2199/tunein/offradio.m3u
-
-#EXTINF:-1 tvg-id="Greece_15" tvg-name="Laikos FM" tvg-logo="https://www.laikos.gr/templates/bt_medical/favicon.ico" group-title="Greece",Laikos FM
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://netradio.live24.gr/laikos876
 
 #EXTINF:-1 tvg-id="" tvg-logo="" group-title="Guatemala",Guatemala
 #EXTGRP:Guatemala
@@ -1608,13 +1604,13 @@ https://azuracast.vibesounds.in:8010/radio.mp3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://airhlspush.pc.cdn.bitgravity.com/httppush/hlspbaudio004/hlspbaudio00464kbps.m3u8
 
-#EXTINF:-1 tvg-id="India_31" tvg-name="Kalai Fm-TAMIL" tvg-logo="" group-title="India",Kalai Fm-TAMIL
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://stream.zenolive.com/2vghnwshsqzuv.aac
-
-#EXTINF:-1 tvg-id="India_32" tvg-name="RADIO BOLLYWOOD 90s" tvg-logo="https://static.mytuner.mobi/media/tvos_radios/9fKKkfbJKE.png" group-title="India",RADIO BOLLYWOOD 90s
+#EXTINF:-1 tvg-id="India_31" tvg-name="RADIO BOLLYWOOD 90s" tvg-logo="https://static.mytuner.mobi/media/tvos_radios/9fKKkfbJKE.png" group-title="India",RADIO BOLLYWOOD 90s
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://stream.zeno.fm/rm4i9pdex3cuv
+
+#EXTINF:-1 tvg-id="India_32" tvg-name="Kalai Fm-TAMIL" tvg-logo="" group-title="India",Kalai Fm-TAMIL
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://stream.zenolive.com/2vghnwshsqzuv.aac
 
 #EXTINF:-1 tvg-id="India_33" tvg-name="radioBollyFM" tvg-logo="" group-title="India",radioBollyFM
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -3617,13 +3613,13 @@ https://playerservices.streamtheworld.com/pls/977_80.m3u
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://playerservices.streamtheworld.com/pls/977_COUNTRY.m3u
 
-#EXTINF:-1 tvg-id="The United States Of America_15" tvg-name="Your Classical - Relax" tvg-logo="http://www.yourclassical.org/apple-touch-icon.png" group-title="The United States Of America",Your Classical - Relax
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://relax.stream.publicradio.org/relax.mp3
-
-#EXTINF:-1 tvg-id="The United States Of America_16" tvg-name="181.FM - Old School HipHop/RnB" tvg-logo="http://www.181.fm/favicon.ico" group-title="The United States Of America",181.FM - Old School HipHop/RnB
+#EXTINF:-1 tvg-id="The United States Of America_15" tvg-name="181.FM - Old School HipHop/RnB" tvg-logo="http://www.181.fm/favicon.ico" group-title="The United States Of America",181.FM - Old School HipHop/RnB
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://listen.181fm.com/181-oldschool_128k.mp3
+
+#EXTINF:-1 tvg-id="The United States Of America_16" tvg-name="Your Classical - Relax" tvg-logo="http://www.yourclassical.org/apple-touch-icon.png" group-title="The United States Of America",Your Classical - Relax
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://relax.stream.publicradio.org/relax.mp3
 
 #EXTINF:-1 tvg-id="The United States Of America_17" tvg-name=".977 Hitz" tvg-logo="" group-title="The United States Of America",.977 Hitz
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -3932,6 +3928,10 @@ https://www.bobskaradio.com/playlist.m3u
 #EXTINF:-1 tvg-id="The United States Of America_93" tvg-name="My70sRadio" tvg-logo="" group-title="The United States Of America",My70sRadio
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://usa14.fastcast4u.com:5132/stream
+
+#EXTINF:-1 tvg-id="The United States Of America_94" tvg-name="WALM - Old Time Radio Opus" tvg-logo="https://icecast.walmradio.com:8443/otr.jpg" group-title="The United States Of America",WALM - Old Time Radio Opus
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://icecast.walmradio.com:8443/otr_opus
 
 #EXTINF:-1 tvg-id="" tvg-logo="" group-title="Togo",Togo
 #EXTGRP:Togo
