@@ -1,12 +1,16 @@
 #EXTM3U
+
+#EXTINF:-1 tvg-id="120" tvg-logo="https://feo.kablowebtv.com/resize/168A635D265A4328C2883FB4CD8FF/0/0/Vod/HLS/3261c5eb-0e08-4c96-b8fc-58211e3da29c.png" group-title="Çocuk & Eğitim ",Trt Çocuk 
+https://tv-trtcocuk.medya.trt.com.tr/master.m3u8
+#EXTINF:-1 tvg-id="123" tvg-logo="https://feo.kablowebtv.com/resize/168A635D265A4328C2883FB4CD8FF/0/0/Vod/HLS/7e733bf8-6c0e-4d6e-b18a-5864e571894b.png" group-title="Çocuk & Eğitim ",Trt Diyanet Çocuk
+https://tv-trtdiyanetcocuk.medya.trt.com.tr/master.m3u8
+#EXTINF:-1 tvg-id="cocuksmart" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRunyRTyXqfJqhgmsSuSMtKJEgqzWvqxpB0dGP3vOKBScD10GWvJuY4Kz9r&s=10" tvg-name="Çocuk Smart" group-title="Çocuk",TRT GENÇ
+https://tv-trtgenc.medya.trt.com.tr/master.m3u8
 #EXTINF:-1 tvg-id="minikacocuk" tvg-logo="https://img.dsmartgo.com.tr/content/2/Q2/13402/Thumbnail.png" tvg-name="Minika Çocuk" group-title="Çocuk",Minika Çocuk
 https://rnttwmjcin.turknet.ercdn.net/lcpmvefbyo/minikago_cocuk/minikago_cocuk.m3u8
 #EXTINF:-1 tvg-id="minikago" tvg-logo="https://img.dsmartgo.com.tr/content/I/WS/13404/Thumbnail.png" tvg-name="Minika Go" group-title="Çocuk",Minika Go
 https://rnttwmjcin.turknet.ercdn.net/lcpmvefbyo/minikago/minikago.m3u8
-#EXTINF:-1 tvg-id="trtcocuk" tvg-logo="https://i.postimg.cc/Wp8pSKvN/Poster-Maker-04032026-101226.jpg" tvg-name="TRT Çocuk" group-title="Çocuk",TRT Çocuk
-https://tv-trtcocuk.medya.trt.com.tr/master.m3u8
-#EXTINF:-1 tvg-id="trtdiyanetcocuk" tvg-logo="https://i.postimg.cc/76T7Skc3/Poster-Maker-04032026-100941.jpg" tvg-name="TRT Diyanet Çocuk" group-title="Çocuk",TRT Diyanet Çocuk
-https://tv-trtdiyanetcocuk.medya.trt.com.tr/master.m3u8
-#EXTINF:-1 tvg-id="cocuksmart" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRunyRTyXqfJqhgmsSuSMtKJEgqzWvqxpB0dGP3vOKBScD10GWvJuY4Kz9r&s=10" tvg-name="Çocuk Smart" group-title="Çocuk",TRT GENÇ
-https://tv-trtgenc.medya.trt.com.tr/master.m3u8
+#EXTINF:-1 tvg-id="127" tvg-logo="https://feo.kablowebtv.com/resize/168A635D265A4328C2883FB4CD8FF/0/0/Vod/HLS/51d3a383-2842-4a4c-b622-20f09b309973.png" group-title="Çocuk & Eğitim ",Disney Junior
 https://saran-live.ercdn.net/disneyjunior/index.m3u8
+#EXTINF:-1 tvg-id="126" tvg-logo="https://feo.kablowebtv.com/resize/168A635D265A4328C2883FB4CD8FF/0/0/Vod/HLS/2442b7b7-04da-41c1-a7ca-03466853040e.png" group-title="Çocuk & Eğitim ",Baby Tv
+https://saran-live.ercdn.net/babytv/index.m3u8
