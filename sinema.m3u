@@ -2,27 +2,27 @@
 #EXTINF:-1 tvg-id="fx" tvg-logo="https://img.dsmartgo.com.tr/content/w/Uq/16203/Thumbnail.png" tvg-name="Fx" group-title="Sinema Kanalları",Fx
 https://saran-live.ercdn.net/fx/index.m3u8
 #EXTINF:-1 tvg-id="1" tvg-logo="https://feo.kablowebtv.com/resize/168A635D265A4328C2883FB4CD8FF/0/0/Vod/HLS/22c5fe05-d70b-4c68-98fb-03bae4870e81.png" group-title="Sinema ve Dizi",Sinema Tv
-http://mss.ayakkabiparti.lol/sinema/index.m3u8
+http://65.108.239.207:80/sinema/index.m3u8
 #EXTINF:-1 tvg-id="2" tvg-logo="https://feo.kablowebtv.com/resize/168A635D265A4328C2883FB4CD8FF/500/500/channels/logos/bd434731-0e47-4a37-997e-49f71340fcc6.png" group-title="Sinema ve Dizi",Sinema Aksiyon
-http://mss.ayakkabiparti.lol/sinemaaksiyon/index.m3u8
+http://65.108.239.207:80/sinemaaksiyon/index.m3u8
 #EXTINF:-1 tvg-id="3" tvg-logo="https://feo.kablowebtv.com/resize/168A635D265A4328C2883FB4CD8FF/500/500/channels/logos/ae3d90a0-37ee-4e48-a6bc-1375e5f1329a.png" group-title="Sinema ve Dizi",Sinema Yerli
-http://mss.ayakkabiparti.lol/sinemayerli/index.m3u8
+http://65.108.239.207:80/sinemayerli/index.m3u8
 #EXTINF:-1 tvg-id="4" tvg-logo="https://feo.kablowebtv.com/resize/168A635D265A4328C2883FB4CD8FF/500/500/channels/logos/c8283b71-81f8-4fc6-8e48-6bb8f7f49ad7.png" group-title="Sinema ve Dizi",Sinema Aile
-http://mss.ayakkabiparti.lol/sinemaaile/index.m3u8
+http://65.108.239.207:80/sinemaaile/index.m3u8
 #EXTINF:-1 tvg-id="5" tvg-logo="https://feo.kablowebtv.com/resize/168A635D265A4328C2883FB4CD8FF/500/500/channels/logos/8d9fbebd-cade-492d-9cb4-6522cb558794.png" group-title="Sinema ve Dizi",Sinema 1001
-http://mss.ayakkabiparti.lol/sinema1001/index.m3u8
+http://65.108.239.207:80/sinema1001/index.m3u8
 #EXTINF:-1 tvg-id="6" tvg-logo="https://feo.kablowebtv.com/resize/168A635D265A4328C2883FB4CD8FF/500/500/channels/logos/4145ea10-96ad-400d-8870-f22a075f4add.png" group-title="Sinema ve Dizi",Sinema Komedi
-http://mss.ayakkabiparti.lol/sinemakomedi/index.m3u8
+http://65.108.239.207:80/sinemakomedi/index.m3u8
 #EXTINF:-1 tvg-id="sinemaaksiyon2" tvg-logo="https://img.dsmartgo.com.tr/content/M/RG/22895/Thumbnail.png" tvg-name="Sinema Aksiyon 2" group-title="Sinema Kanalları",Sinema Aksiyon 2
-https://mss.ayakkabiparti.lol/sinemaaksiyon2/index.m3u8
+http://65.108.239.207:80/sinemaaksiyon2/index.m3u8
 #EXTINF:-1 tvg-id="sinemaaile2" tvg-logo="https://img.dsmartgo.com.tr/content/e/Mq/22898/Thumbnail.png" tvg-name="Sinema Aile 2" group-title="Sinema Kanalları",BS ACTION1
-https://mss.ayakkabiparti.lol/bsaction1/index.m3u8
+http://65.108.239.207:80/bsaction1/index.m3u8
 #EXTINF:-1 tvg-id="filmscreen" tvg-logo="https://cosmobluemedia.com/wp-content/uploads/elementor/thumbs/film-screen-1-qgrlrm8vb8gjhoo4j5h6ctontf0f0n1yff1uhjsrci.png" tvg-name="Film Screen (Aktif)" group-title="Sinema Kanalları",BS FAMILY
-https://mss.ayakkabiparti.lol/bsfamily/index.m3u8
+http://65.108.239.207:80/bsfamily/index.m3u8
 #EXTINF:-1 tvg-id="epicdrama" tvg-logo="https://feo.kablowebtv.com/resize/168A635D265A4328C2883FB4CD8FF/0/0/Vod/HLS/df8891dd-4c22-41f7-85b0-d516ab62b473.png" tvg-name="Epic Drama (Devre Dışı)" group-title="Sinema Kanalları",BS PREMIER
-https://mss.ayakkabiparti.lol/bspremier1/index.m3u8
+http://65.108.239.207:80/bspremier1/index.m3u8
 #EXTINF:-1 tvg-id="sinemakomedi2" tvg-logo="https://img.dsmartgo.com.tr/content/o/oG/22900/Thumbnail.png" tvg-name="Sinema Komedi 2" group-title="Sinema Kanalları",BS TÜRK
-https://mss.ayakkabiparti.lol/bsturk/index.m3u8
+http://65.108.239.207:80/bsturk/index.m3u8
 #EXTINF:-1 tvg-logo="https://www.shutterstock.com/image-vector/movie-time-600nw-324455369.jpg" group-title="Sinema",FILMSCREEN
 https://edge-e3.evrideo.tv/f2dcbecf-5af0-47db-a82e-032112050a23_1000027346_HLS/manifest.m3u8
 #EXTINF:-1 tvg-logo="https://www.shutterstock.com/image-vector/movie-time-600nw-324455369.jpg" group-title="Sinema",PLAYSINEMA
@@ -33,70 +33,68 @@ https://host.onlineradyotv.net:8081/sdmtv/tracks-v1a1/mono.m3u8
 #EXTINF:-1 tvg-id="76" tvg-name="BS ACTION 1" tvg-logo="https://m.prectv61.lol/uploads/cache/channel_thumb/uploads/png/1883f1dfa1e69b6788849eaab4b1f8e7.png" group-title="CANLI ▶ Sinema",BS ACTION 1
 #EXTVLCOPT:http-user-agent=okhttp/4.12.0
 #EXTVLCOPT:http-referrer=https://twitter.com/
-https://mss.ayakkabiparti.lol/bsaction1/index.m3u8?token=WbvG4CpE9S4KI8vmXLtsQw&tms=1771162595
+http://65.108.239.207:80/bsaction1/index.m3u8?token=WbvG4CpE9S4KI8vmXLtsQw&tms=1771162595
 
 #EXTINF:-1 tvg-id="75" tvg-name="BS TURK" tvg-logo="https://m.prectv61.lol/uploads/cache/channel_thumb/uploads/png/b2d030cf4ca567bf7c8358b15c8177a9.png" group-title="CANLI ▶ Sinema",BS TURK
 #EXTVLCOPT:http-user-agent=okhttp/4.12.0
 #EXTVLCOPT:http-referrer=https://twitter.com/
-https://mss.ayakkabiparti.lol/bsturk/index.m3u8?token=WbvG4CpE9S4KI8vmXLtsQw&tms=1771162595
+http://65.108.239.207:80/bsturk/index.m3u8?token=WbvG4CpE9S4KI8vmXLtsQw&tms=1771162595
 
 #EXTINF:-1 tvg-id="74" tvg-name="BS FAMILY" tvg-logo="https://m.prectv61.lol/uploads/cache/channel_thumb/uploads/png/a2f7541d9a7a2947275ba3b3d3b6cb47.png" group-title="CANLI ▶ Sinema",BS FAMILY
 #EXTVLCOPT:http-user-agent=okhttp/4.12.0
 #EXTVLCOPT:http-referrer=https://twitter.com/
-https://mss.ayakkabiparti.lol/bsfamily/index.m3u8?token=WbvG4CpE9S4KI8vmXLtsQw&tms=1771162595
+http://65.108.239.207:80/bsfamily/index.m3u8?token=WbvG4CpE9S4KI8vmXLtsQw&tms=1771162595
 
 #EXTINF:-1 tvg-id="73" tvg-name="Bein Series HD" tvg-logo="https://m.prectv61.lol/uploads/cache/channel_thumb/uploads/png/cac143893c2e56485498895df040b2b1.png" group-title="CANLI ▶ Sinema",Bein Series HD
 #EXTVLCOPT:http-user-agent=okhttp/4.12.0
 #EXTVLCOPT:http-referrer=https://twitter.com/
-https://mss.ayakkabiparti.lol/bsseries1/index.m3u8?token=WbvG4CpE9S4KI8vmXLtsQw&tms=1771162595
+http://65.108.239.207:80/bsseries1/index.m3u8?token=WbvG4CpE9S4KI8vmXLtsQw&tms=1771162595
 
 #EXTINF:-1 tvg-id="73" tvg-name="Bein Series HD" tvg-logo="https://m.prectv61.lol/uploads/cache/channel_thumb/uploads/png/cac143893c2e56485498895df040b2b1.png" group-title="CANLI ▶ Sinema",Bein Series HD
 #EXTVLCOPT:http-user-agent=okhttp/4.12.0
 #EXTVLCOPT:http-referrer=https://twitter.com/
-https://mss.ayakkabiparti.lol/bsseries2/index.m3u8?token=WbvG4CpE9S4KI8vmXLtsQw&tms=1771162595
+http://65.108.239.207:80/bsseries2/index.m3u8?token=WbvG4CpE9S4KI8vmXLtsQw&tms=1771162595
 
 #EXTINF:-1 tvg-id="73" tvg-name="Bein Series HD" tvg-logo="https://m.prectv61.lol/uploads/cache/channel_thumb/uploads/png/cac143893c2e56485498895df040b2b1.png" group-title="CANLI ▶ Sinema",Bein Series HD
 #EXTVLCOPT:http-user-agent=okhttp/4.12.0
 #EXTVLCOPT:http-referrer=https://twitter.com/
-https://mss.ayakkabiparti.lol/bsseries3/index.m3u8?token=WbvG4CpE9S4KI8vmXLtsQw&tms=1771162595
+http://65.108.239.207:80/bsseries3/index.m3u8?token=WbvG4CpE9S4KI8vmXLtsQw&tms=1771162595
 
 #EXTINF:-1 tvg-id="73" tvg-name="Bein Series HD" tvg-logo="https://m.prectv61.lol/uploads/cache/channel_thumb/uploads/png/cac143893c2e56485498895df040b2b1.png" group-title="CANLI ▶ Sinema",Bein Series HD
 #EXTVLCOPT:http-user-agent=okhttp/4.12.0
 #EXTVLCOPT:http-referrer=https://twitter.com/
-https://mss.ayakkabiparti.lol/bsseries4/index.m3u8?token=WbvG4CpE9S4KI8vmXLtsQw&tms=1771162595
+http://65.108.239.207:80/bsseries4/index.m3u8?token=WbvG4CpE9S4KI8vmXLtsQw&tms=1771162595
 
 #EXTINF:-1 tvg-id="72" tvg-name="BS STARS" tvg-logo="https://m.prectv61.lol/uploads/cache/channel_thumb/uploads/png/45d92ce49a65dd1e9823a55694fe2a7e.png" group-title="CANLI ▶ Sinema",BS STARS
 #EXTVLCOPT:http-user-agent=okhttp/4.12.0
 #EXTVLCOPT:http-referrer=https://twitter.com/
-https://mss.ayakkabiparti.lol/bsstars/index.m3u8?token=WbvG4CpE9S4KI8vmXLtsQw&tms=1771162595
+http://65.108.239.207:80/bsstars/index.m3u8?token=WbvG4CpE9S4KI8vmXLtsQw&tms=1771162595
 
 #EXTINF:-1 tvg-id="71" tvg-name="BS PREMIER" tvg-logo="https://m.prectv61.lol/uploads/cache/channel_thumb/uploads/png/05607925151ae07d26cdf2c93b99e006.png" group-title="CANLI ▶ Sinema",BS PREMIER
 #EXTVLCOPT:http-user-agent=okhttp/4.12.0
 #EXTVLCOPT:http-referrer=https://twitter.com/
-https://mss.ayakkabiparti.lol/bspremier1/index.m3u8?token=WbvG4CpE9S4KI8vmXLtsQw&tms=1771162595
+http://65.108.239.207:80/bspremier1/index.m3u8?token=WbvG4CpE9S4KI8vmXLtsQw&tms=1771162595
 
 #EXTINF:-1 tvg-id="70" tvg-name="BS BOX OFFİCE 1" tvg-logo="https://m.prectv61.lol/uploads/cache/channel_thumb/uploads/jpg/a5e035e5aad903052fdb35a3a7984518.jpg" group-title="CANLI ▶ Sinema",BS BOX OFFİCE 1
 #EXTVLCOPT:http-user-agent=okhttp/4.12.0
 #EXTVLCOPT:http-referrer=https://twitter.com/
-https://mss.ayakkabiparti.lol/box1/index.m3u8?token=WbvG4CpE9S4KI8vmXLtsQw&tms=1771162595
+http://65.108.239.207:80/box1/index.m3u8?token=WbvG4CpE9S4KI8vmXLtsQw&tms=1771162595
 
 #EXTINF:-1 tvg-id="69" tvg-name="BS BOX OFFİCE 2" tvg-logo="https://m.prectv61.lol/uploads/cache/channel_thumb/uploads/png/aec5f81a9d58714b840be9a285928224.png" group-title="CANLI ▶ Sinema",BS BOX OFFİCE 2
 #EXTVLCOPT:http-user-agent=okhttp/4.12.0
 #EXTVLCOPT:http-referrer=https://twitter.com/
-https://mss.ayakkabiparti.lol/box2/index.m3u8?token=WbvG4CpE9S4KI8vmXLtsQw&tms=1771162595
+http://65.108.239.207:80/box2/index.m3u8?token=WbvG4CpE9S4KI8vmXLtsQw&tms=1771162595
 
 #EXTINF:-1 tvg-id="68" tvg-name="BS BOX OFFİCE 3" tvg-logo="https://m.prectv61.lol/uploads/cache/channel_thumb/uploads/png/7c52499be2693a149616127f02cc633a.png" group-title="CANLI ▶ Sinema",BS BOX OFFİCE 3
 #EXTVLCOPT:http-user-agent=okhttp/4.12.0
 #EXTVLCOPT:http-referrer=https://twitter.com/
-https://mss.ayakkabiparti.lol/box3/index.m3u8?token=WbvG4CpE9S4KI8vmXLtsQw&tms=1771162595
+http://65.108.239.207:80/box3/index.m3u8?token=WbvG4CpE9S4KI8vmXLtsQw&tms=1771162595
 
 #EXTINF:-1 tvg-id="67" tvg-name="Moviesmart Turk" tvg-logo="https://m.prectv61.lol/uploads/cache/channel_thumb/uploads/jpg/771bc3c19a6cfa2187001771d74ba63c.jpg" group-title="CANLI ▶ Sinema",Moviesmart Turk
 #EXTVLCOPT:http-user-agent=okhttp/4.12.0
 #EXTVLCOPT:http-referrer=https://twitter.com/
-https://mss.ayakkabiparti.lol/mvturk/index.m3u8?token=WbvG4CpE9S4KI8vmXLtsQw&tms=1771162595
+http://65.108.239.207:80/mvturk/index.m3u8?token=WbvG4CpE9S4KI8vmXLtsQw&tms=1771162595
 
 #EXTINF:-1 tvg-id="67" tvg-name="Moviesmart Turk" tvg-logo="https://i.hizliresim.com/qflj6bk.png" group-title="CANLI ▶ Sinema",Şaban TV
 https://teknobaba.han686314.workers.dev/Kemal_Sunal_Tv.m3u8
-#EXTINF:-1 tvg-id="67" tvg-name="Moviesmart Turk" tvg-logo="https://m.prectv61.lol/uploads/cache/channel_thumb/uploads/jpg/771bc3c19a6cfa2187001771d74ba63c.jpg" group-title="CANLI ▶ Sinema",Mov
-https://metvmetvmetv7.serv00.net/hahaha.php?url=http://gatotimerte.theworkpc.com/meg0tor0ako/kinotarek/1.m3u8?v=aHR0cHM6Ly93d3cub2hhLnRvL29oYS10di9wbGF5LzM0NDA3MTE1ODA4YjNkYzA5M2E2YzQ=
 
