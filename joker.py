@@ -109,7 +109,7 @@ def main():
         added_streams.append(clean_name)
 
     # 4. KAYDET
-    with open("joker.m3u8", "w", encoding="utf-8") as f:
+    with open("joker.m3u", "w", encoding="utf-8") as f:
         f.write("\n".join(m3u))
     
     print(f"🚀 Başarılı! {len(added_streams)} canlı maç ve sabit kanallar joker.m3u8 dosyasına yazıldı.")
