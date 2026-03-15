@@ -99,7 +99,7 @@ print(f"Genel kanallar: {general_count}")
 m3u_content = "#EXTM3U\n"
 
 for channel in turkey_channels:
-    m3u_content += f'#EXTINF:-1 tvg-id="{channel["tvg_id"]}" tvg-name="{channel["name"]}" tvg-logo="{channel["logo"]}" group-title="Vavoo Tv" tvg-country="TR" tvg-language="{channel["language_code"]}", {channel["name"]}\n https://renderd-dm9o.onrender.com/proxy/m3u?url={channel["stream_url"]}\n'
+    m3u_content += f'#EXTINF:-1 tvg-id="{channel["tvg_id"]}" tvg-name="{channel["name"]}" tvg-logo="{channel["logo"]}" group-title="Vavoo Tv" tvg-country="TR" tvg-language="{channel["language_code"]}", {channel["name"]}\n {channel["stream_url"]}\n'
 
 # Dosyayı bulunduğu dizine kaydet
 with open("vavoo.m3u", "w", encoding="utf-8") as f:
