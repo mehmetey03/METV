@@ -1,16 +1,4 @@
 #EXTM3U
-#EXTINF:-1 tvg-id="1" tvg-logo="https://feo.kablowebtv.com/resize/168A635D265A4328C2883FB4CD8FF/0/0/Vod/HLS/22c5fe05-d70b-4c68-98fb-03bae4870e81.png" group-title="Sinema ve Dizi",Sinema Tv
-http://65.108.239.207/sinema/index.m3u8
-#EXTINF:-1 tvg-id="2" tvg-logo="https://feo.kablowebtv.com/resize/168A635D265A4328C2883FB4CD8FF/500/500/channels/logos/bd434731-0e47-4a37-997e-49f71340fcc6.png" group-title="Sinema ve Dizi",Sinema Aksiyon
-http://65.108.239.207/sinemaaksiyon/index.m3u8
-#EXTINF:-1 tvg-id="3" tvg-logo="https://feo.kablowebtv.com/resize/168A635D265A4328C2883FB4CD8FF/500/500/channels/logos/ae3d90a0-37ee-4e48-a6bc-1375e5f1329a.png" group-title="Sinema ve Dizi",Sinema Yerli
-http://65.108.239.207/sinemayerli/index.m3u8
-#EXTINF:-1 tvg-id="4" tvg-logo="https://feo.kablowebtv.com/resize/168A635D265A4328C2883FB4CD8FF/500/500/channels/logos/c8283b71-81f8-4fc6-8e48-6bb8f7f49ad7.png" group-title="Sinema ve Dizi",Sinema Aile
-http://65.108.239.207/sinemaaile/index.m3u8
-#EXTINF:-1 tvg-id="5" tvg-logo="https://feo.kablowebtv.com/resize/168A635D265A4328C2883FB4CD8FF/500/500/channels/logos/8d9fbebd-cade-492d-9cb4-6522cb558794.png" group-title="Sinema ve Dizi",Sinema 1001
-http://65.108.239.207/sinema1001/index.m3u8
-#EXTINF:-1 tvg-id="6" tvg-logo="https://feo.kablowebtv.com/resize/168A635D265A4328C2883FB4CD8FF/500/500/channels/logos/4145ea10-96ad-400d-8870-f22a075f4add.png" group-title="Sinema ve Dizi",Sinema Komedi
-http://65.108.239.207/sinemakomedi/index.m3u8
 #EXTINF:-1 tvg-id="7" tvg-logo="https://feo.kablowebtv.com/resize/168A635D265A4328C2883FB4CD8FF/0/0/Vod/HLS/80196fc2-f4f6-4e35-ae29-7925a5885a20.png" group-title="Ulusal",Trt 1
 https://tv-trt1.medya.trt.com.tr/master.m3u8
 #EXTINF:-1 tvg-id="8" tvg-logo="https://feo.kablowebtv.com/resize/168A635D265A4328C2883FB4CD8FF/0/0/Vod/HLS/33b10329-faa9-4247-aa46-92a305ed5a92.png" group-title="Ulusal",Atv    
