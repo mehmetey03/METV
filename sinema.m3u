@@ -15,35 +15,23 @@ http://65.108.239.207:80/sinema1001/index.m3u8
 http://65.108.239.207:80/sinemakomedi/index.m3u8
 #EXTINF:-1 tvg-id="sinemaaksiyon2" tvg-logo="https://img.dsmartgo.com.tr/content/M/RG/22895/Thumbnail.png" tvg-name="Sinema Aksiyon 2" group-title="Sinema Kanalları",Sinema Aksiyon 2
 http://65.108.239.207:80/sinemaaksiyon2/index.m3u8
-#EXTINF:-1 tvg-id="sinemaaile2" tvg-logo="https://img.dsmartgo.com.tr/content/e/Mq/22898/Thumbnail.png" tvg-name="Sinema Aile 2" group-title="Sinema Kanalları",BS ACTION1
+#EXTINF:-1 tvg-id="sinemaaile2" tvg-logo="https://mediacms01.digiturkplay.com/channel_logo/Bein_Series_Drama_HD_250x150px_yeni.png" tvg-name="Sinema Aile 2" group-title="Sinema Kanalları",Bein Series Drama HD
 http://65.108.239.207:80/bsaction1/index.m3u8
-#EXTINF:-1 tvg-id="filmscreen" tvg-logo="https://cosmobluemedia.com/wp-content/uploads/elementor/thumbs/film-screen-1-qgrlrm8vb8gjhoo4j5h6ctontf0f0n1yff1uhjsrci.png" tvg-name="Film Screen (Aktif)" group-title="Sinema Kanalları",BS FAMILY
+#EXTINF:-1 tvg-id="72" tvg-name="BS STARS" tvg-logo="https://mediacms01.digiturkplay.com/channel_logo/Bein_Movies_Stars_HD_yeni.png" group-title="CANLI ▶ Sinema",Bein Movies Stars HD
+http://65.108.239.207:80/bsstars/index.m3u8?token=WbvG4CpE9S4KI8vmXLtsQw&tms=1771162595
+#EXTINF:-1 tvg-id="filmscreen" tvg-logo="https://mediacms01.digiturkplay.com/channel_logo/Bein_Movies_Family_HD_yeni.png" tvg-name="Film Screen (Aktif)" group-title="Sinema Kanalları",Bein Movies Family HD
 http://65.108.239.207:80/bsfamily/index.m3u8
-#EXTINF:-1 tvg-id="epicdrama" tvg-logo="https://feo.kablowebtv.com/resize/168A635D265A4328C2883FB4CD8FF/0/0/Vod/HLS/df8891dd-4c22-41f7-85b0-d516ab62b473.png" tvg-name="Epic Drama (Devre Dışı)" group-title="Sinema Kanalları",BS PREMIER
+#EXTINF:-1 tvg-id="epicdrama" tvg-logo="https://mediacms01.digiturkplay.com/channel_logo/Bein_Movies_Premiere_HD_yeni.png" tvg-name="Epic Drama (Devre Dışı)" group-title="Sinema Kanalları",Bein Movies Premiere HD
 http://65.108.239.207:80/bspremier1/index.m3u8
-#EXTINF:-1 tvg-id="sinemakomedi2" tvg-logo="https://img.dsmartgo.com.tr/content/o/oG/22900/Thumbnail.png" tvg-name="Sinema Komedi 2" group-title="Sinema Kanalları",BS TÜRK
+#EXTINF:-1 tvg-id="sinemakomedi2" tvg-logo="https://mediacms01.digiturkplay.com/channel_logo/Bein_Movies_Turk_HD_yeni.png"" tvg-name="Sinema Komedi 2" group-title="Sinema Kanalları",Bein Movies Turk HD
 http://65.108.239.207:80/bsturk/index.m3u8
-#EXTINF:-1 tvg-logo="https://www.shutterstock.com/image-vector/movie-time-600nw-324455369.jpg" group-title="Sinema",FILMSCREEN
+#EXTINF:-1 tvg-logo="https://cosmobluemedia.com/wp-content/uploads/elementor/thumbs/film-screen-1-qgrlrm8vb8gjhoo4j5h6ctontf0f0n1yff1uhjsrci.png" group-title="Sinema",FILMSCREEN
 https://edge-e3.evrideo.tv/f2dcbecf-5af0-47db-a82e-032112050a23_1000027346_HLS/manifest.m3u8
 #EXTINF:-1 tvg-logo="https://www.shutterstock.com/image-vector/movie-time-600nw-324455369.jpg" group-title="Sinema",PLAYSINEMA
 https://ip100.radyotelekomtv.com:3784/stream/play.m3u8
 #EXTINF:-1 tvg-logo="https://www.shutterstock.com/image-vector/movie-time-600nw-324455369.jpg" group-title="Sinema",SDMSINEMA
 https://host.onlineradyotv.net:8081/sdmtv/tracks-v1a1/mono.m3u8
-#EXTINF:-1 group-title="CANLI ▶ Sinema",Sinema
-#EXTINF:-1 tvg-id="76" tvg-name="BS ACTION 1" tvg-logo="https://m.prectv61.lol/uploads/cache/channel_thumb/uploads/png/1883f1dfa1e69b6788849eaab4b1f8e7.png" group-title="CANLI ▶ Sinema",BS ACTION 1
-#EXTVLCOPT:http-user-agent=okhttp/4.12.0
-#EXTVLCOPT:http-referrer=https://twitter.com/
-http://65.108.239.207:80/bsaction1/index.m3u8?token=WbvG4CpE9S4KI8vmXLtsQw&tms=1771162595
 
-#EXTINF:-1 tvg-id="75" tvg-name="BS TURK" tvg-logo="https://m.prectv61.lol/uploads/cache/channel_thumb/uploads/png/b2d030cf4ca567bf7c8358b15c8177a9.png" group-title="CANLI ▶ Sinema",BS TURK
-#EXTVLCOPT:http-user-agent=okhttp/4.12.0
-#EXTVLCOPT:http-referrer=https://twitter.com/
-http://65.108.239.207:80/bsturk/index.m3u8?token=WbvG4CpE9S4KI8vmXLtsQw&tms=1771162595
-
-#EXTINF:-1 tvg-id="74" tvg-name="BS FAMILY" tvg-logo="https://m.prectv61.lol/uploads/cache/channel_thumb/uploads/png/a2f7541d9a7a2947275ba3b3d3b6cb47.png" group-title="CANLI ▶ Sinema",BS FAMILY
-#EXTVLCOPT:http-user-agent=okhttp/4.12.0
-#EXTVLCOPT:http-referrer=https://twitter.com/
-http://65.108.239.207:80/bsfamily/index.m3u8?token=WbvG4CpE9S4KI8vmXLtsQw&tms=1771162595
 
 #EXTINF:-1 tvg-id="73" tvg-name="Bein Series HD" tvg-logo="https://m.prectv61.lol/uploads/cache/channel_thumb/uploads/png/cac143893c2e56485498895df040b2b1.png" group-title="CANLI ▶ Sinema",Bein Series HD
 #EXTVLCOPT:http-user-agent=okhttp/4.12.0
