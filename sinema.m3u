@@ -25,12 +25,8 @@ http://65.108.239.207:80/bspremier1/index.m3u8
 http://65.108.239.207:80/bsturk/index.m3u8
 #EXTINF:-1 tvg-logo="https://cosmobluemedia.com/wp-content/uploads/elementor/thumbs/film-screen-1-qgrlrm8vb8gjhoo4j5h6ctontf0f0n1yff1uhjsrci.png" group-title="Sinema",FILMSCREEN
 https://edge-e3.evrideo.tv/f2dcbecf-5af0-47db-a82e-032112050a23_1000027346_HLS/manifest.m3u8
-#EXTINF:-1 tvg-id="sinemaaile2" tvg-logo="https://mediacms01.digiturkplay.com/channel_logo/Bein_Series_Drama_HD_250x150px_yeni.png" tvg-name="Sinema Aile 2" group-title="Sinema Kanalları",Bein Series Drama HD
+#EXTINF:-1 tvg-id="sinemaaile2" tvg-logo="https://mediacms01.digiturkplay.com/channel_logo/Bein_Movies_Action_HD_yeni.png" tvg-name="Sinema Aile 2" group-title="Sinema Kanalları",Bein Movies Action HD
 http://65.108.239.207:80/bsaction1/index.m3u8
-#EXTINF:-1 tvg-logo="https://www.shutterstock.com/image-vector/movie-time-600nw-324455369.jpg" group-title="Sinema",PLAYSINEMA
-https://ip100.radyotelekomtv.com:3784/stream/play.m3u8
-#EXTINF:-1 tvg-logo="https://www.shutterstock.com/image-vector/movie-time-600nw-324455369.jpg" group-title="Sinema",SDMSINEMA
-https://host.onlineradyotv.net:8081/sdmtv/tracks-v1a1/mono.m3u8
 #EXTINF:-1 tvg-id="73" tvg-name="Bein Series HD" tvg-logo="https://w1.pngwing.com/pngs/910/513/png-transparent-network-bein-series-logo-bein-channels-network-bein-media-group-bein-sports-1-lyngsat-organization.png" group-title="CANLI ▶ Sinema",Bein Series 1 HD
 http://65.108.239.207:80/bsseries1/index.m3u8?token=WbvG4CpE9S4KI8vmXLtsQw&tms=1771162595
 #EXTINF:-1 tvg-id="73" tvg-name="Bein Series HD" tvg-logo="https://w1.pngwing.com/pngs/910/513/png-transparent-network-bein-series-logo-bein-channels-network-bein-media-group-bein-sports-1-lyngsat-organization.png" group-title="CANLI ▶ Sinema",Bein Series 2 HD
@@ -47,6 +43,10 @@ http://65.108.239.207:80/box2/index.m3u8?token=WbvG4CpE9S4KI8vmXLtsQw&tms=177116
 http://65.108.239.207:80/box3/index.m3u8?token=WbvG4CpE9S4KI8vmXLtsQw&tms=1771162595
 #EXTINF:-1 tvg-id="67" tvg-name="Moviesmart Turk" tvg-logo="https://i.ibb.co/YDmkmpj/dsmartturk.png" group-title="CANLI ▶ Sinema",Moviesmart Turk
 http://65.108.239.207:80/mvturk/index.m3u8?token=WbvG4CpE9S4KI8vmXLtsQw&tms=1771162595
+#EXTINF:-1 tvg-logo="https://www.shutterstock.com/image-vector/movie-time-600nw-324455369.jpg" group-title="Sinema",PLAYSINEMA
+https://ip100.radyotelekomtv.com:3784/stream/play.m3u8
+#EXTINF:-1 tvg-logo="https://www.shutterstock.com/image-vector/movie-time-600nw-324455369.jpg" group-title="Sinema",SDMSINEMA
+https://host.onlineradyotv.net:8081/sdmtv/tracks-v1a1/mono.m3u8
 #EXTINF:-1 tvg-id="67" tvg-name="Moviesmart Turk" tvg-logo="https://i.hizliresim.com/qflj6bk.png" group-title="CANLI ▶ Sinema",Şaban TV
 https://teknobaba.han686314.workers.dev/Kemal_Sunal_Tv.m3u8
 
