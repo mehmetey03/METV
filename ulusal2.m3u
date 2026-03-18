@@ -1,495 +1,1043 @@
-#EXTM3U x-tvg-url="https://raw.githubusercontent.com/tecotv2025/Epg/refs/heads/main/tr-guide.xml"
-#EXTINF:-1 tvg-id="TRT1.tr" tvg-logo="http://assets.tvcdn.net/1045ea2f-2453-451d-a55f-ba17539641dd.png" group-title="Ulusal",TRT 1
-https://live.tecostream.xyz/channels/trt_1.php
-#EXTINF:-1 tvg-id="ATV.tr" tvg-logo="http://assets.tvcdn.net/89a47b4b-5d20-4248-9f4c-a3d2756072dd.png" group-title="Ulusal",Atv
-https://turkuaz.tecostream.xyz/atv
-#EXTINF:-1 tvg-id="KanalD.tr" tvg-logo="http://assets.tvcdn.net/a06096dc-fd5e-4103-bfb4-83e612df23ec.png" group-title="Ulusal",Kanal D
-https://demiroren.daioncdn.net/kanald/kanald.m3u8?app=kanald_web&ce=3
-#EXTINF:-1 tvg-id="Now.tr" tvg-logo="http://assets.tvcdn.net/80eb8816-1855-41f5-9002-7a05cc93fe4f.png" group-title="Ulusal",Now TV
-https://dogus.tecostream.xyz/now.m3u8
-#EXTINF:-1 tvg-id="ShowTv.tr" tvg-logo="http://assets.tvcdn.net/9d873881-bb5e-40f0-88db-8c47aa215e5a.png" group-title="Ulusal",Show TV
-https://ciner.daioncdn.net/showtv/showtv.m3u8?ce=3&app=4bc856ef-4c68-4a94-bc87-37dfaaa66558&st=RBzhSuGauna0OGld-DJUVA&e=1664766175&tv=1
-#EXTINF:-1 tvg-id="BeyazTV.tr" tvg-logo="http://assets.tvcdn.net/60d7aaf4-817b-46be-bbab-68f8b30de8fb.png" group-title="Ulusal",Beyaz TV
-https://beyaztv-live.daioncdn.net/beyaztv/beyaztv_1080p.m3u8
-#EXTINF:-1 tvg-id="Kanal7.tr" tvg-logo="http://assets.tvcdn.net/1125734c-3525-4390-b8ed-c50380c70e4d.png" group-title="Ulusal",Kanal 7
-https://kanal7-live.daioncdn.net/kanal7/kanal7_720p.m3u8
-#EXTINF:-1 tvg-id="TV8.tr" tvg-logo="http://assets.tvcdn.net/f91342d2-bcae-4ee0-a6f8-76a8d32b891b.png" group-title="Ulusal",TV8
-https://tv8.daioncdn.net/tv8/tv8.m3u8?app=7ddc255a-ef47-4e81-ab14-c0e5f2949788&ce=3"
-#EXTINF:-1 tvg-id="StarTV.tr" tvg-logo="http://assets.tvcdn.net/0c5204fb-e613-4084-b300-8cdcc46309f9.png" group-title="Ulusal",Star TV
-https://dogus.daioncdn.net/startv/startv_720p.m3u8?&sid=7u83ih9ig2m3&app=a20ac41e-bdc3-4aa1-934d-26b484480ac9&ce=3
-#EXTINF:-1 tvg-id="360.tr" tvg-logo="http://assets.tvcdn.net/e1c3f150-4f79-4ac4-a893-4cc1144eb2d5.png" group-title="Ulusal",360 TV
-https://turkmedya-live.ercdn.net/tv360/tv360_720p.m3u8
-#EXTINF:-1 tvg-id="tele10.tr" tvg-logo="https://live.tecostream.xyz/teleon.jpg" group-title="Ulusal",Tele 10
-https://tecostream.xyz/teleonat.php?stream.m3u8
-#EXTINF:-1 tvg-id="tv100.tr" tvg-logo="http://assets.tvcdn.net/d7741078-ccce-47d8-ba1c-a041b659bad6.png" group-title="Ulusal",TV 100
-https://tv100-live.daioncdn.net/tv100/tv100_720p.m3u8
-#EXTINF:-1 tvg-id="TRTTurk.tr" tvg-logo="http://assets.tvcdn.net/fbaaa75c-0a2d-4ed6-b498-d32a59ddb899.png" group-title="Ulusal - Yurt Dışı",TRT Türk
-https://tv-trtturk.medya.trt.com.tr/master_720.m3u8
-#EXTINF:-1 tvg-id="TRTAvaz.tr" tvg-logo="http://assets.tvcdn.net/53dd1d5f-aa72-4bea-91d0-8c2d00783367.png" group-title="Ulusal - Yurt Dışı",TRT Avaz
-https://tv-trtavaz.medya.trt.com.tr/master_720.m3u8
-#EXTINF:-1 tvg-id="EuroD.tr" tvg-logo="http://assets.tvcdn.net/f4a83153-48c6-4ece-8082-1b370768f88a.png" group-title="Ulusal - Yurt Dışı",Euro D
-https://live.duhnet.tv/S2/HLS_LIVE/eurodnp/track_4_1000/playlist.m3u8
-# #EXTINF:-1 tvg-id="TGRTEU.tr" tvg-logo="http://assets.tvcdn.net/01032651-eac6-48ea-b6ef-78acf8e95daa.png" group-title="Ulusal - Yurt Dışı",TGRT EU
-# http://stream.tvcdn.net/ulusal-yurt-disi/tgrt-eu.m3u8
-#EXTINF:-1 tvg-id="ShowTurk.tr" tvg-logo="http://assets.tvcdn.net/d4d340ec-891e-4601-9776-e979a750b7e3.png" group-title="Ulusal - Yurt Dışı",Show Türk
-https://ciner-live.ercdn.net/showturk/showturk_720p.m3u8?e=1772621103&st=P9nRw1INFhLBVeeKfa6ylw&tv=1
-#EXTINF:-1 tvg-id="Kanal7Avrupa.tr" tvg-logo="http://assets.tvcdn.net/d52bb3d8-b362-47c0-9b8e-bddc4ceb4fe5.png" group-title="Ulusal - Yurt Dışı",Kanal 7 Avrupa
-https://livetv.radyotvonline.net/kanal7live/kanal7avr/playlist.m3u8
-#EXTINF:-1 tvg-id="Somine.tr" tvg-logo="https://tecostream.xyz/data/somine.png" group-title="Ulusal",Şömine TV
-https://cdn.tecostream.xyz/Somine_TV.m3u8
-#EXTINF:-1 tvg-id="TRTHaber.tr" tvg-logo="https://www.trt.net.tr/_nuxt/img/trt-haber-televizyon-kanali.3fee2de.png" group-title="Haber",TRT Haber
-https://tv-trthaber.medya.trt.com.tr/master_720.m3u8
-#EXTINF:-1 tvg-id="AHaber.tr" tvg-logo="http://assets.tvcdn.net/06e7abd9-0fbb-441f-af63-b895513d3aaa.png" group-title="Haber",A Haber
-https://turkuaz.tecostream.xyz/ahaber
-#EXTINF:-1 tvg-id="CNNTurk.tr" tvg-logo="http://assets.tvcdn.net/db0e3f2f-3191-4af2-9cde-5345eb7543e4.png" group-title="Haber",CNN Türk
-https://live.tecostream.xyz/CnnTurk.php
-#EXTINF:-1 tvg-id="HaberTurkTV.tr" tvg-logo="http://assets.tvcdn.net/9fbfa842-0fff-488a-aab7-d534dbbfe8a9.png" group-title="Haber",Habertürk
-https://turkuaz.tecostream.xyz/haberturk
-#EXTINF:-1 tvg-id="HaberGlobal.tr" tvg-logo="http://assets.tvcdn.net/d7e11245-3318-4cfd-bd1c-bdbb03d4c76a.png" group-title="Haber",Haber Global
-https://tv.ensonhaber.com/haberglobal/haberglobal.m3u8
-#EXTINF:-1 tvg-id="NTV.tr" tvg-logo="http://assets.tvcdn.net/b2aa3114-53bd-4ff5-81ed-af75a28e651f.png" group-title="Haber",NTV
-https://turkuaz.tecostream.xyz/ntv
-#EXTINF:-1 tvg-id="24TV.tr" tvg-logo="http://assets.tvcdn.net/49267a8f-6313-43f9-bab4-9d5f109bad1b.png" group-title="Haber",24 TV
-https://turkmedya-live.ercdn.net/tv24/tv24_1080p.m3u8
-#EXTINF:-1 tvg-id="EkolTv.tr" tvg-logo="http://assets.tvcdn.net/647d5a6c-242e-4431-a8b2-9b8ff27c01ae.png" group-title="Haber",Ekol TV
-https://ekoltv-live.ercdn.net/ekoltv/ekoltv_1080p.m3u8
-#EXTINF:-1 tvg-id="UlkeTV.tr" tvg-logo="http://assets.tvcdn.net/e20947de-9a22-4e53-9f88-b69cdf278be7.png" group-title="Haber",Ülke TV
-https://cdn.tecostream.xyz/Ulke_Tv.m3u8
-#EXTINF:-1 tvg-id="HalkTV.tr" tvg-logo="http://assets.tvcdn.net/f0bcd016-8730-4700-9156-d6b678f8e554.png" group-title="Haber",Halk TV
-https://turkuaz.tecostream.xyz/halktv
-#EXTINF:-1 tvg-id="AkitTV.tr" tvg-logo="http://assets.tvcdn.net/bf736fbe-8a9d-4444-adfd-99f3e7593ef9.png" group-title="Haber",Akit TV
-https://cdn.tecostream.xyz/Akit_Tv.m3u8
-#EXTINF:-1 tvg-id="SozcuTV.tr" tvg-logo="http://assets.tvcdn.net/491384df-7154-4404-8f97-2e7847655441.png" group-title="Haber",Sözcü TV
-https://cdn.tecostream.xyz/Sozcu_Tv.m3u8
-#EXTINF:-1 tvg-id="Tele1.tr" tvg-logo="http://assets.tvcdn.net/c3a805dd-2d39-47a8-8b49-a8139bdbeeeb.png" group-title="Haber",Tele 1
-https://cdn.tecostream.xyz/Tele_1.m3u8
-#EXTINF:-1 tvg-id="TVNET.tr" tvg-logo="http://assets.tvcdn.net/542d8afd-1bf7-44bd-8dfe-0b8e9ea2d3ec.png" group-title="Haber",TVNET
-https://cdn.tecostream.xyz/Tv_Net.m3u8
-#EXTINF:-1 tvg-id="tv100.tr" tvg-logo="https://upload.wikimedia.org/wikipedia/tr/0/0f/TV100_logo.png?20191010105720" group-title="Haber",TV 100
-https://cdn.tecostream.xyz/TV_100.m3u8
-#EXTINF:-1 tvg-id="GztTv.tr" tvg-logo="https://gzttv.tr/logo.png" group-title="Haber",GZT TV
-https://mn-nl.mncdn.com/gzttv/gzttv/chunklist.m3u8
-#EXTINF:-1 tvg-id="FlashTv.tr" tvg-logo="http://assets.tvcdn.net/d609d4ce-df23-4042-8537-460dc6d4ae18.png" group-title="Haber",Flash Haber
-https://cdn.tecostream.xyz/Flash_Haber.m3u8
-#EXTINF:-1 tvg-id="UlusalKanal.tr" tvg-logo="http://assets.tvcdn.net/1762dbd7-b2a4-497d-9cf0-3ecd075cf578.png" group-title="Haber",Ulusal Kanal
-https://cdn.tecostream.xyz/Ulusal_Kanal.m3u8
-#EXTINF:-1 tvg-id="BenguturkTV.tr" tvg-logo="http://assets.tvcdn.net/a8fd43de-872a-4e58-9f07-ff22d21a6c24.png" group-title="Haber",Bengütürk TV
-https://cdn.tecostream.xyz/Benguturk_Tv.m3u8
-#EXTINF:-1 tvg-id="YOLTV.de" tvg-logo="http://assets.tvcdn.net/0cebab34-cb48-48e3-81e0-a9a91a604b1e.png" group-title="Haber",Yol TV
-https://iptv.amgsmart2home.de/YOLTVMAIN/tracks-v1a1/mono.ts.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/370c4e6f-8d30-400c-b298-c6a37b19e5dd.png" group-title="Haber",TBMM TV
-https://meclistv-live.ercdn.net/meclistv/meclistv_720p.m3u8
-#EXTINF:-1 tvg-id="BloombergHT.tr" tvg-logo="http://assets.tvcdn.net/2a1808ad-733e-4223-a8b3-34be18ef21f9.png" group-title="Ekonomi",Bloomberg HT
-https://cdn.tecostream.xyz/Bloomberg_Ht.m3u8
-#EXTINF:-1 tvg-id="Ekoturk.tr" tvg-logo="http://assets.tvcdn.net/99155348-56d9-49c6-a0be-50ec0ae790ec.png" group-title="Ekonomi",Ekotürk
-https://cdn.tecostream.xyz/Eko_Turk.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/4e98253f-f791-42da-8497-51e821dde886.png" group-title="Ekonomi",Finans Türk
-https://yayin30.haber100.com/live/finansturk/chunklist_w513642373.m3u8
-#EXTINF:-1 tvg-id="CNBCe.tr" tvg-logo="http://assets.tvcdn.net/4371c426-66c5-4452-ba3e-439a0718a997.png" group-title="Ekonomi",CNBC-e
-https://cdn.tecostream.xyz/CNBC_E.m3u8
-#EXTINF:-1 tvg-id="TRT2.tr" tvg-logo="http://assets.tvcdn.net/7bab6062-acec-4452-a419-345ab95f24e9.png" group-title="Eğlence",TRT 2
-https://tv-trt2.medya.trt.com.tr/master.m3u8
-#EXTINF:-1 tvg-id="A2TV.tr" tvg-logo="http://assets.tvcdn.net/9db055df-4bc8-4a68-b0fd-766a5a3113bc.png" group-title="Eğlence",a2
-https://netspor.tecostream.xyz/a2.m3u8
-#EXTINF:-1 tvg-id="Teve2.tr" tvg-logo="http://assets.tvcdn.net/4cad68c0-fa2c-4b84-a1c2-1f0704eca7a4.png" group-title="Eğlence",teve2
-https://demiroren.daioncdn.net/teve2/teve2_1080p.m3u8?&sid=7ux7kfyod7gy&app=6aab838a-437e-4a1b-bbd0-e30f79cdbbbd&ce=3
-#EXTINF:-1 tvg-id="ShowMax.tr" tvg-logo="http://assets.tvcdn.net/ec1c55f6-b525-4466-b41c-a935915a6962.png" group-title="Eğlence",Show Max
-https://cdn.tecostream.xyz/ShowMax.m3u8
-#EXTINF:-1 tvg-id="TV85.tr" tvg-logo="http://assets.tvcdn.net/be26f47c-18d7-4447-971c-ca4ba60ffb4c.png" group-title="Eğlence",TV8.5
-https://tv8.daioncdn.net/tv8bucuk/tv8bucuk_720p.m3u8?&sid=7ux7pu9f3mr9&app=bf58ab52-4865-4c81-b223-26b41009801e&ce=3
-#EXTINF:-1 tvg-id="DMAX.tr" tvg-logo="http://assets.tvcdn.net/32da9e04-0514-4e3c-b8e1-854f1fc175ed.png" group-title="Eğlence",DMAX
-https://dogus.tecostream.xyz/dmax.m3u8
-#EXTINF:-1 tvg-id="TLC.tr" tvg-logo="http://assets.tvcdn.net/9871d781-b961-45cc-a287-c304f02bef1d.png" group-title="Eğlence",TLC
-https://dogus.tecostream.xyz/tlc.m3u8
-#EXTINF:-1 tvg-id="TV4.tr" tvg-logo="http://assets.tvcdn.net/8b16e995-ddb6-4201-8ba1-b33f7536ca50.png" group-title="Eğlence",TV 4
-https://turkmedya-live.ercdn.net/tv4/tv4.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/2b0e5b6e-3c75-4d34-b392-90330b629bbb.png" group-title="Eğlence",Dizi Film TV
-https://playlist.fasttvcdn.com/pl/rfrk9821hdy9dayo8wfyha/dizi-tv/playlist/1.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/871add1b-5165-4aa1-9799-c93185f8841d.png" group-title="Eğlence",Kültür Sanat TV
-https://playlist.fasttvcdn.com/pl/rfrk9821hdy9dayo8wfyha/kltr-sanat-tv/playlist/1.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/6982e864-f429-4e6e-b3ba-d064ae84ff13.png" group-title="Eğlence",Belgesel TV
-https://playlist.fasttvcdn.com/pl/rfrk9821hdy9dayo8wfyha/belgesel-tv/playlist/1.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/b46f11bf-bd55-4203-974c-ac36d14dc7d3.png" group-title="Eğlence",Sağlıklı Günler TV
-https://playlist.fasttvcdn.com/pl/rfrk9821hdy9dayo8wfyha/saglikli-gunler/playlist/1.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/f438ceb7-c0a8-4b3c-9415-aea43a02b93e.png" group-title="Eğlence",Tarih TV
-https://playlist.fasttvcdn.com/pl/rfrk9821hdy9dayo8wfyha/tarih-tv/playlist/1.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="|TR| TRT 1" group-title="|TR| ✪ ULUSAL",TRT1 FHD 337667
+http://uro-levene-1012.mywire.org/index.php?id=10790&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| SHOW TV" group-title="|TR| ✪ ULUSAL",SHOWTVFHD 42
+http://uro-levene-1012.mywire.org/index.php?id=10794&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| KANAL D" group-title="|TR| ✪ ULUSAL",KANALDFHD 40
+http://uro-levene-1012.mywire.org/index.php?id=10762&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| ATV" group-title="|TR| ✪ ULUSAL",ATVHD 45
+http://uro-levene-1012.mywire.org/index.php?id=10792&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| STAR TV" group-title="|TR| ✪ ULUSAL",STARTVFHD 37
+http://uro-levene-1012.mywire.org/index.php?id=10725&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| FOX TV" group-title="|TR| ✪ ULUSAL",NowTVHD 34
+http://uro-levene-1012.mywire.org/index.php?id=10732&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| BEYAZ TV" group-title="|TR| ✪ ULUSAL",|TR| BEYAZ TV
+http://uro-levene-1012.mywire.org/index.php?id=10757&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| TV8" group-title="|TR| ✪ ULUSAL",TV8FHD 31
+http://uro-levene-1012.mywire.org/index.php?id=10774&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| TV8.5" group-title="|TR| ✪ ULUSAL",|TR| TV8.5
+http://uro-levene-1012.mywire.org/index.php?id=10773&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| TV8 INT" group-title="|TR| ✪ ULUSAL",|TR| TV8 INT
+http://uro-levene-1012.mywire.org/index.php?id=314614&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| KANAL 7" group-title="|TR| ✪ ULUSAL",|TR| KANAL 7
+http://uro-levene-1012.mywire.org/index.php?id=10763&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| A2" group-title="|TR| ✪ ULUSAL",|TR| A2
+http://uro-levene-1012.mywire.org/index.php?id=10758&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| TRT EBA LISE" group-title="|TR| ✪ ULUSAL",|TR| TRT EBA LISE
+http://uro-levene-1012.mywire.org/index.php?id=314597&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| TV4" group-title="|TR| ✪ ULUSAL",|TR| TV4
+http://uro-levene-1012.mywire.org/index.php?id=10775&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| TEVE2" group-title="|TR| ✪ ULUSAL",|TR| TEVE2
+http://uro-levene-1012.mywire.org/index.php?id=314615&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| TLC ˢᴰ" group-title="|TR| ✪ ULUSAL",|TR| TLC ˢᴰ
+http://uro-levene-1012.mywire.org/index.php?id=10776&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| 360 TV" group-title="|TR| ✪ ULUSAL",|TR| 360 TV
+http://uro-levene-1012.mywire.org/index.php?id=10761&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| EURONEWS" group-title="|TR| ✪ ULUSAL",|TR| EURONEWS
+http://uro-levene-1012.mywire.org/index.php?id=10779&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| SHOWTURK" group-title="|TR| ✪ ULUSAL",|TR| SHOWTURK
+http://uro-levene-1012.mywire.org/index.php?id=314612&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| ATV EU" group-title="|TR| ✪ ULUSAL",|TR| ATV EU
+http://uro-levene-1012.mywire.org/index.php?id=314611&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| TGRT EU" group-title="|TR| ✪ ULUSAL",|TR| TGRT EU
+http://uro-levene-1012.mywire.org/index.php?id=314610&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| AKILLI TV" group-title="|TR| ✪ ULUSAL",|TR| AKILLI TV
+http://uro-levene-1012.mywire.org/index.php?id=314594&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| YILDIZ TILBE" group-title="|TR| ✪ ULUSAL",|TR| YILDIZ TILBE
+http://uro-levene-1012.mywire.org/index.php?id=314596&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| CEM TV" group-title="|TR| ✪ ULUSAL",|TR| CEM TV
+http://uro-levene-1012.mywire.org/index.php?id=314595&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| MESAJ TV" group-title="|TR| ✪ ULUSAL",|TR| MESAJ TV
+http://uro-levene-1012.mywire.org/index.php?id=314609&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| MELTEM TV" group-title="|TR| ✪ ULUSAL",|TR| MELTEM TV
+http://uro-levene-1012.mywire.org/index.php?id=314608&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| BENGU TURK TV" group-title="|TR| ✪ ULUSAL",|TR| BENGU TURK TV
+http://uro-levene-1012.mywire.org/index.php?id=10759&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| KANAL 7 AVRUPA ᴴᴰ" group-title="|TR| ✪ ULUSAL",|TR| KANAL 7 AVRUPA ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=185790&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| SAT7 TURK" group-title="|TR| ✪ ULUSAL",|TR| SAT7 TURK
+http://uro-levene-1012.mywire.org/index.php?id=314606&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| BRT 1" group-title="|TR| ✪ ULUSAL",|TR| BRT 1
+http://uro-levene-1012.mywire.org/index.php?id=314605&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| BRT 2" group-title="|TR| ✪ ULUSAL",|TR| BRT 2
+http://uro-levene-1012.mywire.org/index.php?id=314604&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| BRT 3" group-title="|TR| ✪ ULUSAL",|TR| BRT 3
+http://uro-levene-1012.mywire.org/index.php?id=314603&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| KIBRIS ADA TV" group-title="|TR| ✪ ULUSAL",|TR| KIBRIS ADA TV
+http://uro-levene-1012.mywire.org/index.php?id=314601&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| KIBRIS KANAL T" group-title="|TR| ✪ ULUSAL",|TR| KIBRIS KANAL T
+http://uro-levene-1012.mywire.org/index.php?id=314602&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| KANAL SIM" group-title="|TR| ✪ ULUSAL",|TR| KANAL SIM
+http://uro-levene-1012.mywire.org/index.php?id=314600&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| TRT EBA ORTAOKUL" group-title="|TR| ✪ ULUSAL",|TR| TRT EBA ORTAOKUL
+http://uro-levene-1012.mywire.org/index.php?id=314598&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| TRT EBA ILKOKUL" group-title="|TR| ✪ ULUSAL",|TR| TRT EBA ILKOKUL
+http://uro-levene-1012.mywire.org/index.php?id=314599&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| EURO D" group-title="|TR| ✪ ULUSAL",|TR| EURO D
+http://uro-levene-1012.mywire.org/index.php?id=314613&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| KANAL 23" group-title="|TR| ✪ ULUSAL",|TR| KANAL 23
+http://uro-levene-1012.mywire.org/index.php?id=10764&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| KANAL AVRUPA" group-title="|TR| ✪ ULUSAL",|TR| KANAL AVRUPA
+http://uro-levene-1012.mywire.org/index.php?id=314607&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| TURKMAX GURME" group-title="|TR| ✪ ULUSAL",|TR| TURKMAX GURME
+http://uro-levene-1012.mywire.org/index.php?id=10781&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| ULUSAL KANAL" group-title="|TR| ✪ ULUSAL",|TR| ULUSAL KANAL
+http://uro-levene-1012.mywire.org/index.php?id=185787&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  TRT 1 ᴴᴰ" group-title="|TR| ✪ ULUSAL HD",TRT1 HD 48
+http://uro-levene-1012.mywire.org/index.php?id=196784&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  SHOW TV ᴴᴰ" group-title="|TR| ✪ ULUSAL HD",SHOWTVHD 43
+http://uro-levene-1012.mywire.org/index.php?id=196787&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  KANAL D ᴴᴰ" group-title="|TR| ✪ ULUSAL HD",KANALDHD 39
+http://uro-levene-1012.mywire.org/index.php?id=196789&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  ATV ᴴᴰ" group-title="|TR| ✪ ULUSAL HD",ATVFHD 46
+http://uro-levene-1012.mywire.org/index.php?id=196786&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  STAR TV ᴴᴰ" group-title="|TR| ✪ ULUSAL HD",STARTVHD 36
+http://uro-levene-1012.mywire.org/index.php?id=196788&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  FOX TV ᴴᴰ" group-title="|TR| ✪ ULUSAL HD",NowTVFHD 33
+http://uro-levene-1012.mywire.org/index.php?id=196790&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  BEYAZ TV ᴴᴰ" group-title="|TR| ✪ ULUSAL HD",|TR|  BEYAZ TV ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=196794&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  TV 8 ᴴᴰ" group-title="|TR| ✪ ULUSAL HD",TV8HD 30
+http://uro-levene-1012.mywire.org/index.php?id=196791&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  TV 8 5 ᴴᴰ" group-title="|TR| ✪ ULUSAL HD",|TR|  TV 8 5 ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=196792&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  A2 ᴴᴰ" group-title="|TR| ✪ ULUSAL HD",|TR|  A2 ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=196793&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| TV 4 ᴴᴰ" group-title="|TR| ✪ ULUSAL HD",|TR| TV 4 ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=314593&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  TRT2 ᴴᴰ" group-title="|TR| ✪ ULUSAL HD",|TR|  TRT2 ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=196785&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| TRT AVAZ" group-title="|TR| ✪ ULUSAL HD",|TR| TRT AVAZ
+http://uro-levene-1012.mywire.org/index.php?id=10789&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  TRT KURDI ᴴᴰ" group-title="|TR| ✪ ULUSAL HD",|TR|  TRT KURDI ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=196814&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  TEVE2 ᴴᴰ" group-title="|TR| ✪ ULUSAL HD",|TR|  TEVE2 ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=196796&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| SHOWMAX ᴴᴰ" group-title="|TR| ✪ ULUSAL HD",|TR| SHOWMAX ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=314591&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  KANAL 7 ᴴᴰ" group-title="|TR| ✪ ULUSAL HD",|TR|  KANAL 7 ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=196795&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| UCANKUS ᴴᴰ" group-title="|TR| ✪ ULUSAL HD",|TR| UCANKUS ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=314592&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  360 ᴴᴰ" group-title="|TR| ✪ ULUSAL HD",|TR|  360 ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=196805&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  TRT TURK ᴴᴰ" group-title="|TR| ✪ ULUSAL HD",|TR|  TRT TURK ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=196812&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| TLC" group-title="|TR| ✪ ULUSAL HD",|TR| TLC
+http://uro-levene-1012.mywire.org/index.php?id=10730&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  BRT 1 ᴴᴰ" group-title="|TR| ✪ ULUSAL HD",|TR|  BRT 1 ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=196817&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  BRT 2 ᴴᴰ" group-title="|TR| ✪ ULUSAL HD",|TR|  BRT 2 ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=196818&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| TRT TURK ᵁᴴᴰ" group-title="|TR| ✪ ULUSAL FHD",|TR| TRT TURK ᵁᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=170669&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| SHOW TV ᵁᴴᴰ" group-title="|TR| ✪ ULUSAL FHD",SHOWTVx 
+http://uro-levene-1012.mywire.org/index.php?id=170657&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| KANAL D ᵁᴴᴰ" group-title="|TR| ✪ ULUSAL FHD",KANALD x
+http://uro-levene-1012.mywire.org/index.php?id=170658&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| ATV ᵁᴴᴰ" group-title="|TR| ✪ ULUSAL FHD",ATVFHD x
+http://uro-levene-1012.mywire.org/index.php?id=170656&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| STAR TV ᵁᴴᴰ" group-title="|TR| ✪ ULUSAL FHD",STAR x
+http://uro-levene-1012.mywire.org/index.php?id=170659&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| FOX TV ᵁᴴᴰ" group-title="|TR| ✪ ULUSAL FHD",|TR| FOXTV x
+http://uro-levene-1012.mywire.org/index.php?id=170660&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| BEYAZ TV  ᵁᴴᴰ" group-title="|TR| ✪ ULUSAL FHD",|TR| BEYAZ TV  ᵁᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=170663&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| TV 8 ᵁᴴᴰ" group-title="|TR| ✪ ULUSAL FHD",TV8 x
+http://uro-levene-1012.mywire.org/index.php?id=170661&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| TV 8.5 ᵁᴴᴰ" group-title="|TR| ✪ ULUSAL FHD",|TR| TV 8.5 ᵁᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=170662&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| KANAL 7 ᵁᴴᴰ" group-title="|TR| ✪ ULUSAL FHD",|TR| KANAL 7 ᵁᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=170664&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| A2 ᵁᴴᴰ" group-title="|TR| ✪ ULUSAL FHD",|TR| A2 ᵁᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=170666&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| TEVE 2 ᵁᴴᴰ" group-title="|TR| ✪ ULUSAL FHD",|TR| TEVE 2 ᵁᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=170665&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| FOX CRIME ᵁᴴᴰ" group-title="|TR| ✪ ULUSAL FHD",|TR| FOX CRIME ᵁᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=170682&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| KANAL 360  ᵁᴴᴰ" group-title="|TR| ✪ ULUSAL FHD",|TR| KANAL 360  ᵁᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=170668&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| BEIN MOVIES PREMIER ᴴᴰ" group-title="|TR| ✪ SINEMA",|TR| BEIN MOVIES PREMIER ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=170506&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| BEIN MOVIES PREMIERE 2 ᴴᴰ" group-title="|TR| ✪ SINEMA",|TR| BEIN MOVIES PREMIERE 2 ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=170507&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| BEINMOVIES PREMIER ᴴᴰ2" group-title="|TR| ✪ SINEMA",|TR| BEINMOVIES PREMIER ᴴᴰ2
+http://uro-levene-1012.mywire.org/index.php?id=27838&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| BEIN MOVIES ACTION ᴴᴰ" group-title="|TR| ✪ SINEMA",|TR| BEIN MOVIES ACTION ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=170504&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| BEIN MOVIES ACTION 2 ᴴᴰ" group-title="|TR| ✪ SINEMA",|TR| BEIN MOVIES ACTION 2 ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=170505&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| BEIN MOVIES STARS ᴴᴰ" group-title="|TR| ✪ SINEMA",|TR| BEIN MOVIES STARS ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=170508&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| BEIN MOVIES FAMILY ᴴᴰ" group-title="|TR| ✪ SINEMA",|TR| BEIN MOVIES FAMILY ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=170503&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| BEIN MOVIES TURK ᴴᴰ" group-title="|TR| ✪ SINEMA",|TR| BEIN MOVIES TURK ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=170509&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| BEIN MOVIE Turk ᴴᴰ" group-title="|TR| ✪ SINEMA",|TR| BEIN MOVIE Turk ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=12361&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| BEIN MOVIES COMEDY ᴴᴰ" group-title="|TR| ✪ SINEMA",|TR| BEIN MOVIES COMEDY ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=12360&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| BEIN MOVIES FESTIVAL ᴴᴰ" group-title="|TR| ✪ SINEMA",|TR| BEIN MOVIES FESTIVAL ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=12359&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| BEIN SERIES SCFI ᴴᴰ" group-title="|TR| ✪ SINEMA",|TR| BEIN SERIES SCFI ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=170512&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  BEIN SERIES VICE ᴴᴰ" group-title="|TR| ✪ SINEMA",|TR|  BEIN SERIES VICE ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=170514&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| BEIN SERIES DRAMA ᴴᴰ" group-title="|TR| ✪ SINEMA",|TR| BEIN SERIES DRAMA ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=170511&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| BEIN SERIES COMEDY ᴴᴰ" group-title="|TR| ✪ SINEMA",|TR| BEIN SERIES COMEDY ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=170510&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  BEIN SERIES 1001 ᴴᴰ" group-title="|TR| ✪ SINEMA",|TR|  BEIN SERIES 1001 ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=170513&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| EPIC DRAMA ᴴᴰ" group-title="|TR| ✪ SINEMA",|TR| EPIC DRAMA ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=314500&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| MOVIESMART PREMIUM ᴴᴰ" group-title="|TR| ✪ SINEMA",|TR| MOVIESMART PREMIUM ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=12377&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| MOVIESMART PREMIUM ᴴᴰ" group-title="|TR| ✪ SINEMA",|TR| MOVIESMART PREMIUM ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=27830&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| MOVIESMART ACTİON ᴴᴰ" group-title="|TR| ✪ SINEMA",|TR| MOVIESMART ACTİON ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=12371&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  MOVİESMART CLASSİC ᴴᴰ" group-title="|TR| ✪ SINEMA",|TR|  MOVİESMART CLASSİC ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=170515&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| MOVIESMART TURK ᴴᴰ" group-title="|TR| ✪ SINEMA",|TR| MOVIESMART TURK ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=12378&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| MOVİESMART TURK ᴴᴰ" group-title="|TR| ✪ SINEMA",|TR| MOVİESMART TURK ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=170519&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| MOVIESMART COCUK ᴴᴰ" group-title="|TR| ✪ SINEMA",|TR| MOVIESMART COCUK ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=170516&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  MOVIE CLASSIC ᴴᴰ" group-title="|TR| ✪ SINEMA",|TR|  MOVIE CLASSIC ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=196849&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  MOVIE TÜRK ᴴᴰ" group-title="|TR| ✪ SINEMA",|TR|  MOVIE TÜRK ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=196850&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| MOVIES ACTION 2 ᴴᴰ" group-title="|TR| ✪ SINEMA",|TR| MOVIES ACTION 2 ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=75750&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| MOVIES ACTION ᴴᴰ" group-title="|TR| ✪ SINEMA",|TR| MOVIES ACTION ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=75730&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  MOVIE PREMIUM 2 ᴴᴰ" group-title="|TR| ✪ SINEMA",|TR|  MOVIE PREMIUM 2 ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=196824&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  MOVIE PREMIUM ᴴᴰ" group-title="|TR| ✪ SINEMA",|TR|  MOVIE PREMIUM ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=196823&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| DIZI SMART MAX ᴴᴰ" group-title="|TR| ✪ SINEMA",|TR| DIZI SMART MAX ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=151777&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| DIZI SMART MAX ᴴᴰ" group-title="|TR| ✪ SINEMA",|TR| DIZI SMART MAX ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=151779&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|   DIZI SMART PREMIUM ᴴᴰ" group-title="|TR| ✪ SINEMA",|TR|   DIZI SMART PREMIUM ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=151778&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  SİNEMA TV ᴴᴰ" group-title="|TR| ✪ SINEMA",|TR|  SİNEMA TV ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=196834&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  SİNEMA 2 ᴴᴰ" group-title="|TR| ✪ SINEMA",|TR|  SİNEMA 2 ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=196827&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  SİNEMA 1001 ᴴᴰ" group-title="|TR| ✪ SINEMA",|TR|  SİNEMA 1001 ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=196825&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  SİNEMA 1002 ᴴᴰ" group-title="|TR| ✪ SINEMA",|TR|  SİNEMA 1002 ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=196826&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  SİNEMA AKSİYON ᴴᴰ" group-title="|TR| ✪ SINEMA",|TR|  SİNEMA AKSİYON ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=196828&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  SİNEMA AKSİYON 2 ᴴᴰ" group-title="|TR| ✪ SINEMA",|TR|  SİNEMA AKSİYON 2 ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=196829&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  SİNEMA AİLE ᴴᴰ" group-title="|TR| ✪ SINEMA",|TR|  SİNEMA AİLE ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=196830&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  SİNEMA AİLE 2 ᴴᴰ" group-title="|TR| ✪ SINEMA",|TR|  SİNEMA AİLE 2 ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=196831&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  SİNEMA KOMEDİ ᴴᴰ" group-title="|TR| ✪ SINEMA",|TR|  SİNEMA KOMEDİ ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=196832&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  SİNEMA KOMEDİ 2 ᴴᴰ" group-title="|TR| ✪ SINEMA",|TR|  SİNEMA KOMEDİ 2 ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=196833&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  FX ᴴᴰ" group-title="|TR| ✪ SINEMA",|TR|  FX ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=196847&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|   FX ᴴᴰ" group-title="|TR| ✪ SINEMA",|TR|   FX ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=151820&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  FX ᴴᴰ" group-title="|TR| ✪ SINEMA",|TR|  FX ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=10726&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  FOX CRIME ᴴᴰ" group-title="|TR| ✪ SINEMA",|TR|  FOX CRIME ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=151782&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  FOX CRIME ᴴᴰ" group-title="|TR| ✪ SINEMA",|TR|  FOX CRIME ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=196846&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  FILMBOX ᴴᴰ" group-title="|TR| ✪ SINEMA",|TR|  FILMBOX ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=151780&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  FILMBOX ᴴᴰ" group-title="|TR| ✪ SINEMA",|TR|  FILMBOX ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=196822&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| LIVING AVRUPA YAKASI TV" group-title="|TR| ✪ SINEMA",|TR| LIVING AVRUPA YAKASI TV
+http://uro-levene-1012.mywire.org/index.php?id=314930&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| LIVING BIZIMKILER TV" group-title="|TR| ✪ SINEMA",|TR| LIVING BIZIMKILER TV
+http://uro-levene-1012.mywire.org/index.php?id=314929&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| LIVING VIZYON 1" group-title="|TR| ✪ SINEMA",|TR| LIVING VIZYON 1
+http://uro-levene-1012.mywire.org/index.php?id=314942&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| LIVING VIZYON 2" group-title="|TR| ✪ SINEMA",|TR| LIVING VIZYON 2
+http://uro-levene-1012.mywire.org/index.php?id=314941&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| LIVING VIZYON 3" group-title="|TR| ✪ SINEMA",|TR| LIVING VIZYON 3
+http://uro-levene-1012.mywire.org/index.php?id=314940&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| LIVING CINEMAX 1" group-title="|TR| ✪ SINEMA",|TR| LIVING CINEMAX 1
+http://uro-levene-1012.mywire.org/index.php?id=314939&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| LIVING CINEMAX 2" group-title="|TR| ✪ SINEMA",|TR| LIVING CINEMAX 2
+http://uro-levene-1012.mywire.org/index.php?id=314938&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| LIVING CINEMAX 3" group-title="|TR| ✪ SINEMA",|TR| LIVING CINEMAX 3
+http://uro-levene-1012.mywire.org/index.php?id=314937&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| LIVING CINEMAX 4" group-title="|TR| ✪ SINEMA",|TR| LIVING CINEMAX 4
+http://uro-levene-1012.mywire.org/index.php?id=314936&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| LIVING CINEMAX 5" group-title="|TR| ✪ SINEMA",|TR| LIVING CINEMAX 5
+http://uro-levene-1012.mywire.org/index.php?id=314935&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| LIVING CINEMAX 6" group-title="|TR| ✪ SINEMA",|TR| LIVING CINEMAX 6
+http://uro-levene-1012.mywire.org/index.php?id=314934&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| LIVING TURK" group-title="|TR| ✪ SINEMA",|TR| LIVING TURK
+http://uro-levene-1012.mywire.org/index.php?id=314932&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| LIVING WESTERN" group-title="|TR| ✪ SINEMA",|TR| LIVING WESTERN
+http://uro-levene-1012.mywire.org/index.php?id=314933&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| LIVING KEMAL SUNAL" group-title="|TR| ✪ SINEMA",|TR| LIVING KEMAL SUNAL
+http://uro-levene-1012.mywire.org/index.php?id=314931&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| YESILCAM SINEMA" group-title="|TR| ✪ SINEMA",|TR| YESILCAM SINEMA
+http://uro-levene-1012.mywire.org/index.php?id=151819&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| DINAMIK SALON 1" group-title="|TR| ✪ SINEMA",|TR| DINAMIK SALON 1
+http://uro-levene-1012.mywire.org/index.php?id=314928&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| BEiN BOX OFFİCE 1 ᴴᴰ" group-title="|TR| ✪ SINEMA",|TR| BEiN BOX OFFİCE 1 ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=170520&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| BEIN BOX OFFICE 1" group-title="|TR| ✪ SINEMA",|TR| BEIN BOX OFFICE 1
+http://uro-levene-1012.mywire.org/index.php?id=10724&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| BEiN BOX OFFİCE 2 ᴴᴰ" group-title="|TR| ✪ SINEMA",|TR| BEiN BOX OFFİCE 2 ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=170521&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| BEiN BOX OFFİCE 3 ᴴᴰ" group-title="|TR| ✪ SINEMA",|TR| BEiN BOX OFFİCE 3 ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=170522&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  ANIMATION 1 ᴴᴰ" group-title="|TR| ✪ SINEMA",|TR|  ANIMATION 1 ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=151991&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  ANIMATION  2 ᴴᴰ" group-title="|TR| ✪ SINEMA",|TR|  ANIMATION  2 ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=151992&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| KEMAL SUNAL TV" group-title="|TR| ✪ SINEMA",|TR| KEMAL SUNAL TV
+http://uro-levene-1012.mywire.org/index.php?id=151781&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|   TOM &amp; JERRY" group-title="|TR| ✪ SINEMA",|TR|   TOM &amp; JERRY
+http://uro-levene-1012.mywire.org/index.php?id=151997&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  DİZİ PREMIUM ᴴᴰ" group-title="|TR| ✪ SINEMA",|TR|  DİZİ PREMIUM ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=196842&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  DİZİSMART MAX ᴴᴰ" group-title="|TR| ✪ SINEMA",|TR|  DİZİSMART MAX ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=196843&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| DİZİ SMART PREMIUM ᴴᴰ" group-title="|TR| ✪ SINEMA",|TR| DİZİ SMART PREMIUM ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=151776&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| DIZIAX 007 JAMES BOND" group-title="|TR| ✪ BOX OFFICE",|TR| DIZIAX 007 JAMES BOND
+http://uro-levene-1012.mywire.org/index.php?id=201801&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| DIZIAX 13.CUMA" group-title="|TR| ✪ BOX OFFICE",|TR| DIZIAX 13.CUMA
+http://uro-levene-1012.mywire.org/index.php?id=201819&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| DIZIAX ALACAKARANLIK EFSANESI" group-title="|TR| ✪ BOX OFFICE",|TR| DIZIAX ALACAKARANLIK EFSANESI
+http://uro-levene-1012.mywire.org/index.php?id=201805&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| DIZIAX ALIEN VS PREDATOR" group-title="|TR| ✪ BOX OFFICE",|TR| DIZIAX ALIEN VS PREDATOR
+http://uro-levene-1012.mywire.org/index.php?id=201826&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| DIZIAX BATMAN TV" group-title="|TR| ✪ BOX OFFICE",|TR| DIZIAX BATMAN TV
+http://uro-levene-1012.mywire.org/index.php?id=201808&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| DIZIAX BRUCE LEE TV" group-title="|TR| ✪ BOX OFFICE",|TR| DIZIAX BRUCE LEE TV
+http://uro-levene-1012.mywire.org/index.php?id=201798&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| DIZIAX CILGIN DERSHANE" group-title="|TR| ✪ BOX OFFICE",|TR| DIZIAX CILGIN DERSHANE
+http://uro-levene-1012.mywire.org/index.php?id=201829&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| DIZIAX HARRY POTTER" group-title="|TR| ✪ BOX OFFICE",|TR| DIZIAX HARRY POTTER
+http://uro-levene-1012.mywire.org/index.php?id=201802&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| DIZIAX HOBBIT TV" group-title="|TR| ✪ BOX OFFICE",|TR| DIZIAX HOBBIT TV
+http://uro-levene-1012.mywire.org/index.php?id=201807&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| DIZIAX KARANLIKLAR ULKESI" group-title="|TR| ✪ BOX OFFICE",|TR| DIZIAX KARANLIKLAR ULKESI
+http://uro-levene-1012.mywire.org/index.php?id=201830&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| DIZIAX KARAYIP KORSANLARI" group-title="|TR| ✪ BOX OFFICE",|TR| DIZIAX KARAYIP KORSANLARI
+http://uro-levene-1012.mywire.org/index.php?id=201811&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| DIZIAX MAYMUNLAR CEHENEMI" group-title="|TR| ✪ BOX OFFICE",|TR| DIZIAX MAYMUNLAR CEHENEMI
+http://uro-levene-1012.mywire.org/index.php?id=201825&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| DIZIAX MUMYA" group-title="|TR| ✪ BOX OFFICE",|TR| DIZIAX MUMYA
+http://uro-levene-1012.mywire.org/index.php?id=201821&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| DIZIAX ORUMCEK ADAM" group-title="|TR| ✪ BOX OFFICE",|TR| DIZIAX ORUMCEK ADAM
+http://uro-levene-1012.mywire.org/index.php?id=201810&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| DIZIAX POLIS AKEDEMISI" group-title="|TR| ✪ BOX OFFICE",|TR| DIZIAX POLIS AKEDEMISI
+http://uro-levene-1012.mywire.org/index.php?id=201815&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| DIZIAX RAMBO" group-title="|TR| ✪ BOX OFFICE",|TR| DIZIAX RAMBO
+http://uro-levene-1012.mywire.org/index.php?id=201827&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| DIZIAX RECEP IVEDIK" group-title="|TR| ✪ BOX OFFICE",|TR| DIZIAX RECEP IVEDIK
+http://uro-levene-1012.mywire.org/index.php?id=201804&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| DIZIAX ROCKY BALBOA" group-title="|TR| ✪ BOX OFFICE",|TR| DIZIAX ROCKY BALBOA
+http://uro-levene-1012.mywire.org/index.php?id=201803&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| DIZIAX SON DURAK" group-title="|TR| ✪ BOX OFFICE",|TR| DIZIAX SON DURAK
+http://uro-levene-1012.mywire.org/index.php?id=201814&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| DIZIAX STAR TREK" group-title="|TR| ✪ BOX OFFICE",|TR| DIZIAX STAR TREK
+http://uro-levene-1012.mywire.org/index.php?id=201824&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| DIZIAX SUPERMAN TV" group-title="|TR| ✪ BOX OFFICE",|TR| DIZIAX SUPERMAN TV
+http://uro-levene-1012.mywire.org/index.php?id=201809&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| DIZIAX TERMINATOR TV" group-title="|TR| ✪ BOX OFFICE",|TR| DIZIAX TERMINATOR TV
+http://uro-levene-1012.mywire.org/index.php?id=201817&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| DIZIAX TESTERE SAW" group-title="|TR| ✪ BOX OFFICE",|TR| DIZIAX TESTERE SAW
+http://uro-levene-1012.mywire.org/index.php?id=201816&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| DIZIAX THE BOURNE" group-title="|TR| ✪ BOX OFFICE",|TR| DIZIAX THE BOURNE
+http://uro-levene-1012.mywire.org/index.php?id=201822&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| DIZIAX THE MATRİX" group-title="|TR| ✪ BOX OFFICE",|TR| DIZIAX THE MATRİX
+http://uro-levene-1012.mywire.org/index.php?id=201823&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| DIZIAX TRANSFORMERS" group-title="|TR| ✪ BOX OFFICE",|TR| DIZIAX TRANSFORMERS
+http://uro-levene-1012.mywire.org/index.php?id=201820&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| DIZIAX X-MEN TV" group-title="|TR| ✪ BOX OFFICE",|TR| DIZIAX X-MEN TV
+http://uro-levene-1012.mywire.org/index.php?id=201818&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| DIZIAX ZOR OLUM" group-title="|TR| ✪ BOX OFFICE",|TR| DIZIAX ZOR OLUM
+http://uro-levene-1012.mywire.org/index.php?id=201812&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| DIZIAX ÖLÜMCÜL DENEY" group-title="|TR| ✪ BOX OFFICE",|TR| DIZIAX ÖLÜMCÜL DENEY
+http://uro-levene-1012.mywire.org/index.php?id=201806&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|    MAX Aksiyon ᴴᴰ" group-title="|TR| ✪ BOX OFFICE",|TR|    MAX Aksiyon ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=151783&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|   MAX 007 ᴴᴰ" group-title="|TR| ✪ BOX OFFICE",|TR|   MAX 007 ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=151793&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|   MAX Aksiyon 2 ᴴᴰ" group-title="|TR| ✪ BOX OFFICE",|TR|   MAX Aksiyon 2 ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=151785&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|   MAX GOLD ᴴᴰ" group-title="|TR| ✪ BOX OFFICE",|TR|   MAX GOLD ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=151791&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|   MAX Hint Filimleri" group-title="|TR| ✪ BOX OFFICE",|TR|   MAX Hint Filimleri
+http://uro-levene-1012.mywire.org/index.php?id=151794&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|   MAX Orjinal ᴴᴰ" group-title="|TR| ✪ BOX OFFICE",|TR|   MAX Orjinal ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=151795&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|   MAX PLUS ᴴᴰ" group-title="|TR| ✪ BOX OFFICE",|TR|   MAX PLUS ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=151792&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|   MAX Premier ᴴᴰ" group-title="|TR| ✪ BOX OFFICE",|TR|   MAX Premier ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=151784&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|   MAX STAR WARS ᴴᴰ" group-title="|TR| ✪ BOX OFFICE",|TR|   MAX STAR WARS ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=151796&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|   MAX TURK ᴴᴰ" group-title="|TR| ✪ BOX OFFICE",|TR|   MAX TURK ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=151790&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|   MAX Vizyon 2 ᴴᴰ" group-title="|TR| ✪ BOX OFFICE",|TR|   MAX Vizyon 2 ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=151787&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|   MAX Vizyon 3 ᴴᴰ" group-title="|TR| ✪ BOX OFFICE",|TR|   MAX Vizyon 3 ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=151788&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|   MAX Vizyon 4 ᴴᴰ" group-title="|TR| ✪ BOX OFFICE",|TR|   MAX Vizyon 4 ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=151789&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|   MAX Vizyon ᴴᴰ" group-title="|TR| ✪ BOX OFFICE",|TR|   MAX Vizyon ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=151786&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|   MAX Western ᴴᴰ" group-title="|TR| ✪ BOX OFFICE",|TR|   MAX Western ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=151797&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| SINEMA AKSIYON ᴴᴰ" group-title="|TR| ✪ BOX OFFICE",|TR| SINEMA AKSIYON ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=201709&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|   SINEMA TV ᴴᴰ" group-title="|TR| ✪ BOX OFFICE",|TR|   SINEMA TV ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=151771&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|   SINEMA TV 2 ᴴᴰ" group-title="|TR| ✪ BOX OFFICE",|TR|   SINEMA TV 2 ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=151766&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|   SINEMA AKSIYON ᴴᴰ" group-title="|TR| ✪ BOX OFFICE",|TR|   SINEMA AKSIYON ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=151763&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|   SINEMA TV 1001 ᴴᴰ" group-title="|TR| ✪ BOX OFFICE",|TR|   SINEMA TV 1001 X
+http://uro-levene-1012.mywire.org/index.php?id=151764&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|   SINEMA TV 1002 ᴴᴰ" group-title="|TR| ✪ BOX OFFICE",|TR|   SINEMA TV 1002 ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=151765&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|   SINEMA TV ACTION 2 ᴴᴰ" group-title="|TR| ✪ BOX OFFICE",|TR|   SINEMA TV ACTION 2 ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=151767&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|   SINEMA TV ACTION ᴴᴰ" group-title="|TR| ✪ BOX OFFICE",|TR|   SINEMA TV ACTION ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=151768&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|   SINEMA TV AILE 2 ᴴᴰ" group-title="|TR| ✪ BOX OFFICE",|TR|   SINEMA TV AILE 2 ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=151770&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|   SINEMA TV AILE ᴴᴰ" group-title="|TR| ✪ BOX OFFICE",|TR|   SINEMA TV AILE ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=151769&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|   SINEMA TV KOMEDI ᴴᴰ" group-title="|TR| ✪ BOX OFFICE",|TR|   SINEMA TV KOMEDI ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=151772&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|   SINEMA TV YERLI 2 ᴴᴰ" group-title="|TR| ✪ BOX OFFICE",|TR|   SINEMA TV YERLI 2 ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=151775&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| SINEMA TV 1001 ᴴᴰ" group-title="|TR| ✪ SINEMA",|TR| SINEMA TV 1001 ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=10767&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| SINEMA TV 1002 ᴴᴰ" group-title="|TR| ✪ SINEMA",|TR| SINEMA TV 1002 ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=10769&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| SINEMA TV AILE ᴴᴰ" group-title="|TR| ✪ SINEMA",|TR| SINEMA TV AILE ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=10705&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| SINEMAX COMEDY ᴴᴰ" group-title="|TR| ✪ BOX OFFICE",|TR| SINEMAX COMEDY ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=12367&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| BEIN IZ ᴴᴰ" group-title="|TR| ✪ BELGESEL",|TR| BEIN IZ ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=314487&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| BEIN GURME ᴴᴰ" group-title="|TR| ✪ BELGESEL",|TR| BEIN GURME ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=314486&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  24 KITCHEN ᴴᴰ" group-title="|TR| ✪ BELGESEL",|TR|  24 KITCHEN ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=196836&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| DMAX ᵁᴴᴰ" group-title="|TR| ✪ BELGESEL",|TR| DMAX ᵁᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=170683&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| HISTORY" group-title="|TR| ✪ BELGESEL",|TR| HISTORY
+http://uro-levene-1012.mywire.org/index.php?id=10736&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| BBC EARTH ᴴᴰ" group-title="|TR| ✪ BELGESEL",|TR| BBC EARTH ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=314485&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| VIASAT HISTORY ᵁᴴᴰ" group-title="|TR| ✪ BELGESEL",|TR| VIASAT HISTORY ᵁᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=170684&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  VIASAT HISTORY ᴴᴰ" group-title="|TR| ✪ BELGESEL",|TR|  VIASAT HISTORY ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=196835&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| HISTORY VIASAT" group-title="|TR| ✪ BELGESEL",|TR| HISTORY VIASAT
+http://uro-levene-1012.mywire.org/index.php?id=10735&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| VIASAT NATURE ᴴᴰ" group-title="|TR| ✪ BELGESEL",|TR| VIASAT NATURE ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=314484&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| DISCOVERY" group-title="|TR| ✪ BELGESEL",|TR| DISCOVERY
+http://uro-levene-1012.mywire.org/index.php?id=10740&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| DISCOVERY SCIENCE" group-title="|TR| ✪ BELGESEL",|TR| DISCOVERY SCIENCE
+http://uro-levene-1012.mywire.org/index.php?id=10738&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| DISCOVERY IDX ᴴᴰ" group-title="|TR| ✪ BELGESEL",|TR| DISCOVERY IDX ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=185784&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  DISCOVERY CHANNEL ᴴᴰ" group-title="|TR| ✪ BELGESEL",|TR|  DISCOVERY CHANNEL ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=196839&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  DISCOVERY SCIENCE ᴴᴰ" group-title="|TR| ✪ BELGESEL",|TR|  DISCOVERY SCIENCE ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=196841&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| NATIONAL GEO" group-title="|TR| ✪ BELGESEL",|TR| NATIONAL GEO
+http://uro-levene-1012.mywire.org/index.php?id=10744&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  NAT GEO ᴴᴰ" group-title="|TR| ✪ BELGESEL",|TR|  NAT GEO ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=196851&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| NATIONAL GEO WILD" group-title="|TR| ✪ BELGESEL",|TR| NATIONAL GEO WILD
+http://uro-levene-1012.mywire.org/index.php?id=10742&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  NAT GEO WILD ᴴᴰ" group-title="|TR| ✪ BELGESEL",|TR|  NAT GEO WILD ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=196852&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  LOVE NATURE ᴴᴰ" group-title="|TR| ✪ BELGESEL",|TR|  LOVE NATURE ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=196848&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| STINGRAY NATURESCAPE ᴴᴰ" group-title="|TR| ✪ BELGESEL",|TR| STINGRAY NATURESCAPE ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=314475&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| LIVING BELGESEL" group-title="|TR| ✪ BELGESEL",|TR| LIVING BELGESEL
+http://uro-levene-1012.mywire.org/index.php?id=314482&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  TRT BELGESEL ᴴᴰ" group-title="|TR| ✪ BELGESEL",|TR|  TRT BELGESEL ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=196807&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| TRT BELGESEL" group-title="|TR| ✪ BELGESEL",|TR| TRT BELGESEL
+http://uro-levene-1012.mywire.org/index.php?id=10788&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| TRT BELGESEL ᵁᴴᴰ" group-title="|TR| ✪ BELGESEL",|TR| TRT BELGESEL ᵁᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=170685&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  DA VINCI LEARNING ᴴᴰ" group-title="|TR| ✪ BELGESEL",|TR|  DA VINCI LEARNING ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=196819&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  DOCUBOX ᴴᴰ" group-title="|TR| ✪ BELGESEL",|TR|  DOCUBOX ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=196820&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| ANIMAL PLANET TR" group-title="|TR| ✪ BELGESEL",|TR| ANIMAL PLANET TR
+http://uro-levene-1012.mywire.org/index.php?id=10741&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  OUTDOOR ᴴᴰ" group-title="|TR| ✪ BELGESEL",|TR|  OUTDOOR ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=196855&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  NATURE ESCAPE ᴴᴰ" group-title="|TR| ✪ BELGESEL",|TR|  NATURE ESCAPE ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=196853&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| FAST&amp;FUN BOX ᴴᴰ" group-title="|TR| ✪ BELGESEL",|TR| FAST&amp;FUN BOX ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=314474&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| YABAN TV" group-title="|TR| ✪ BELGESEL",|TR| YABAN TV
+http://uro-levene-1012.mywire.org/index.php?id=10768&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| TRT COCUK" group-title="|TR| ✪ COCUK",|TR| TRT COCUK
+http://uro-levene-1012.mywire.org/index.php?id=10787&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| BOOMERANG" group-title="|TR| ✪ COCUK",|TR| BOOMERANG
+http://uro-levene-1012.mywire.org/index.php?id=10753&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  BOOMERANG ᴴᴰ" group-title="|TR| ✪ COCUK",|TR|  BOOMERANG ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=196837&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  TRT COCUK ᴴᴰ" group-title="|TR| ✪ COCUK",|TR|  TRT COCUK ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=196808&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| NICK JR" group-title="|TR| ✪ COCUK",|TR| NICK JR
+http://uro-levene-1012.mywire.org/index.php?id=10745&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| NICKTOONS" group-title="|TR| ✪ COCUK",|TR| NICKTOONS
+http://uro-levene-1012.mywire.org/index.php?id=314448&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| DISNEY JUNIOR" group-title="|TR| ✪ COCUK",|TR| DISNEY JUNIOR
+http://uro-levene-1012.mywire.org/index.php?id=10750&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| DISNEY CH" group-title="|TR| ✪ COCUK",|TR| DISNEY CH
+http://uro-levene-1012.mywire.org/index.php?id=10751&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| NICKELODEON" group-title="|TR| ✪ COCUK",|TR| NICKELODEON
+http://uro-levene-1012.mywire.org/index.php?id=10746&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| CBEEBIES ᴴᴰ" group-title="|TR| ✪ COCUK",|TR| CBEEBIES ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=314449&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| MINIKA COCUK" group-title="|TR| ✪ COCUK",|TR| MINIKA COCUK
+http://uro-levene-1012.mywire.org/index.php?id=10748&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| MINIKA GO" group-title="|TR| ✪ COCUK",|TR| MINIKA GO
+http://uro-levene-1012.mywire.org/index.php?id=10747&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  BABY TV ᴴᴰ" group-title="|TR| ✪ COCUK",|TR|  BABY TV ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=196838&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| BABY TV" group-title="|TR| ✪ COCUK",|TR| BABY TV
+http://uro-levene-1012.mywire.org/index.php?id=10754&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| LIVING NILOYA TV" group-title="|TR| ✪ COCUK",|TR| LIVING NILOYA TV
+http://uro-levene-1012.mywire.org/index.php?id=314450&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| LIVING KELOGLAN TV" group-title="|TR| ✪ COCUK",|TR| LIVING KELOGLAN TV
+http://uro-levene-1012.mywire.org/index.php?id=314451&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| LIVING HEIDI" group-title="|TR| ✪ COCUK",|TR| LIVING HEIDI
+http://uro-levene-1012.mywire.org/index.php?id=314472&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| LIVING EGE ILE GAGA" group-title="|TR| ✪ COCUK",|TR| LIVING EGE ILE GAGA
+http://uro-levene-1012.mywire.org/index.php?id=314471&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| LIVING POKEMON" group-title="|TR| ✪ COCUK",|TR| LIVING POKEMON
+http://uro-levene-1012.mywire.org/index.php?id=314470&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| LIVING TRUE TV" group-title="|TR| ✪ COCUK",|TR| LIVING TRUE TV
+http://uro-levene-1012.mywire.org/index.php?id=314469&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| LIVING HARIKA KANATLAR" group-title="|TR| ✪ COCUK",|TR| LIVING HARIKA KANATLAR
+http://uro-levene-1012.mywire.org/index.php?id=314468&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| LIVING MASHA TV" group-title="|TR| ✪ COCUK",|TR| LIVING MASHA TV
+http://uro-levene-1012.mywire.org/index.php?id=314467&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| LIVING BARBIE TV" group-title="|TR| ✪ COCUK",|TR| LIVING BARBIE TV
+http://uro-levene-1012.mywire.org/index.php?id=314466&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| LIVING PEPPA PIG" group-title="|TR| ✪ COCUK",|TR| LIVING PEPPA PIG
+http://uro-levene-1012.mywire.org/index.php?id=314465&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| LIVING KRAL SAKIR TV" group-title="|TR| ✪ COCUK",|TR| LIVING KRAL SAKIR TV
+http://uro-levene-1012.mywire.org/index.php?id=314464&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| LIVING RAFADAN TAYFA" group-title="|TR| ✪ COCUK",|TR| LIVING RAFADAN TAYFA
+http://uro-levene-1012.mywire.org/index.php?id=314463&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| LIVING PAW PATROL" group-title="|TR| ✪ COCUK",|TR| LIVING PAW PATROL
+http://uro-levene-1012.mywire.org/index.php?id=314462&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| LIVING 44 CATS" group-title="|TR| ✪ COCUK",|TR| LIVING 44 CATS
+http://uro-levene-1012.mywire.org/index.php?id=314461&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| LIVING ITFAIYECI SAM" group-title="|TR| ✪ COCUK",|TR| LIVING ITFAIYECI SAM
+http://uro-levene-1012.mywire.org/index.php?id=314460&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| LIVING MR. BEAN" group-title="|TR| ✪ COCUK",|TR| LIVING MR. BEAN
+http://uro-levene-1012.mywire.org/index.php?id=314459&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| LIVING CAILLOU TV" group-title="|TR| ✪ COCUK",|TR| LIVING CAILLOU TV
+http://uro-levene-1012.mywire.org/index.php?id=314458&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| LIVING PIRTIK" group-title="|TR| ✪ COCUK",|TR| LIVING PIRTIK
+http://uro-levene-1012.mywire.org/index.php?id=314457&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  ÇOCUKSMART ᴴᴰ" group-title="|TR| ✪ COCUK",|TR|  ÇOCUKSMART ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=196860&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| DISNEY XD" group-title="|TR| ✪ COCUK",|TR| DISNEY XD
+http://uro-levene-1012.mywire.org/index.php?id=10749&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| DIZIAX COCUK ALVINNNN ᴴᴰ" group-title="|TR| ✪ COCUK",|TR| DIZIAX COCUK ALVINNNN ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=151978&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| DIZIAX COCUK HEIDI ᴴᴰ" group-title="|TR| ✪ COCUK",|TR| DIZIAX COCUK HEIDI ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=151979&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| DIZIAX COCUK JURASSIC WORLD ᴴᴰ" group-title="|TR| ✪ COCUK",|TR| DIZIAX COCUK JURASSIC WORLD ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=151982&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| DIZIAX COCUK KRAL SAKIR ᴴᴰ" group-title="|TR| ✪ COCUK",|TR| DIZIAX COCUK KRAL SAKIR ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=151989&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  DIZIAX COCUK SONIC BOOM ᴴᴰ" group-title="|TR| ✪ COCUK",|TR|  DIZIAX COCUK SONIC BOOM ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=151984&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| DIZIAX COCUK TRANSFORMERS ᴴᴰ" group-title="|TR| ✪ COCUK",|TR| DIZIAX COCUK TRANSFORMERS ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=151983&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| DIZIAX COCUK WAKFU ᴴᴰ" group-title="|TR| ✪ COCUK",|TR| DIZIAX COCUK WAKFU ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=151985&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| LIVING SHOW 1" group-title="|TR| ✪ EXTRA",|TR| LIVING SHOW 1
+http://uro-levene-1012.mywire.org/index.php?id=314443&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| LIVING SHOW 2" group-title="|TR| ✪ EXTRA",|TR| LIVING SHOW 2
+http://uro-levene-1012.mywire.org/index.php?id=314444&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| LIVING SHOW 3" group-title="|TR| ✪ EXTRA",|TR| LIVING SHOW 3
+http://uro-levene-1012.mywire.org/index.php?id=314445&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| LIVING SHOW 4" group-title="|TR| ✪ EXTRA",|TR| LIVING SHOW 4
+http://uro-levene-1012.mywire.org/index.php?id=314446&token=DeaTHLesS
 
-#EXTINF:-1 tvg-id="BeinSportsHaber.tr" tvg-logo="https://media04.ligtv.com.tr/img/news/2020/6/12/super-lig-heyecani-bein-sports-haberde/748_416/beIN.jpg" group-title="Spor",beIN SPORTS HABER
-https://cdn.tecostream.xyz/Bein_Spor_Haber.m3u8
-
-#EXTINF:-1 tvg-id="BeinSportsHaber.tr" tvg-logo="https://media04.ligtv.com.tr/img/news/2020/6/12/super-lig-heyecani-bein-sports-haberde/748_416/beIN.jpg" group-title="Spor Maç Saati",beIN SPORTS 1 HLS
-https://dawn-glitter-9e07.tecostream.workers.dev/live/bs1v2.m3u8
-#EXTINF:-1 tvg-id="BeinSportsHaber.tr" tvg-logo="https://media04.ligtv.com.tr/img/news/2020/6/12/super-lig-heyecani-bein-sports-haberde/748_416/beIN.jpg" group-title="Spor Maç Saati",beIN SPORTS RTMP
-rtmp://31.58.250.154:1935/WebRTCApp/bs1v2
-
-#EXTINF:-1 tvg-id="TRTSpor.tr" tvg-logo="http://assets.tvcdn.net/98d69f74-e6dc-4d4a-95c6-666683834a28.png" group-title="SPOR",TRT Spor
-https://tv-trtspor-esdai.medya.trt.com.tr/master_1080p.m3u8
-
-#EXTINF:-1 tvg-id="ASpor.tr" tvg-logo="http://assets.tvcdn.net/14f4941c-00e7-4662-9a21-8203dc37b51a.png" group-title="SPOR",A Spor
-https://turkuaz.tecostream.xyz/aspor
-
-#EXTINF:-1 tvg-id="HtSpor.tr" tvg-logo="https://scontent.fist7-1.fna.fbcdn.net/v/t39.30808-6/453502310_1036101271855042_601425290510615472_n.jpg?_nc_cat=1&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=0S-i4VvrNPUQ7kNvwF4ACFq&_nc_oc=AdnHxhHgK5rYHz1Zlpdd1dARuKiV7qN2Trtj2dsspH4pWptvd4fEm4tBRM0rsSNl8OA&_nc_zt=23&_nc_ht=scontent.fist7-1.fna&_nc_gid=TFCqxeTYttlFSVNvk0Eh3g&oh=00_AfPW4xX8pYdtXvCIo6APRvcy02exIkdQoIk1qCtpARlniQ&oe=6856E50F" group-title="SPOR",HT Spor HD
-https://cdn.tecostream.xyz/Ht_Spor.m3u8
-
-#EXTINF:-1 tvg-id="SportsTV.tr" tvg-logo="http://assets.tvcdn.net/96bc5554-741b-4e91-8b4f-7b3bcc1e4c1d.png" group-title="SPOR",Sports TV
-https://live.sportstv.com.tr/hls%2Flow/sportstv.m3u8
-
-#EXTINF:-1 tvg-id="NbaTv.tr" tvg-logo="https://upload.wikimedia.org/wikipedia/tr/8/89/Nbatv.png" group-title="SPOR",NBA TV
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5)
-#EXTVLCOPT:http-referrer=https://monotv524.com/
-https://live.tecostream.xyz/mono/php_channels/yayinnbatv.php
-
-#EXTINF:-1 tvg-id="TJKTV.tr" tvg-logo="http://assets.tvcdn.net/bcbd8593-677e-438a-9077-abe1cce5ffc2.png" group-title="SPOR",TJK TV
-https://tjktv-live.tjk.org/tjktv/tjktv_720p.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/bcbd8593-677e-438a-9077-abe1cce5ffc2.png" group-title="SPOR",TJK TV 2
-http://live.artofknot.com:8080/youtube/channel/UCNLO4lpteIloZ4IKb9L2DoA.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/2bc82127-7e38-496b-9854-10e6b4c1a9b2.png" group-title="SPOR",Briç ve Satranç TV
-http://139.162.182.79/live/test/index.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/639df808-f325-4b05-8cdb-9ed151338087.png" group-title="SPOR",Fit Yaşa TV
-https://playlist.fasttvcdn.com/pl/rfrk9821hdy9dayo8wfyha/fit-yasa-tv/playlist/1.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/6f73f66b-d2d3-451d-9f56-5d1b27172abc.png" group-title="SPOR",Ziraat Türkiye Kupası TV
-https://playlist.fasttvcdn.com/pl/rfrk9821hdy9dayo8wfyha/ztktv/playlist/1.m3u8
-
-#EXTINF:-1 tvg-id="boxoffice1.tr" tvg-logo="https://upload.wikimedia.org/wikipedia/tr/f/fe/BeIN_BOX_OFFICE_HD_1_2018_logo.png" group-title="Sinema", Bein Box Office 1
-https://live.tecostream.xyz/BeinBoxOffice1.php
-#EXTINF:-1 tvg-id="boxoffice2.tr" tvg-logo="https://upload.wikimedia.org/wikipedia/tr/8/8f/BeIN_BOX_OFFICE_HD_2_2018_logo.png" group-title="Sinema", Bein Box Office 2
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36
-#EXTVLCOPT:http-referrer=https://tvheryerde.com
-https://live.tecostream.xyz/BeinBoxOffice2.php
-#EXTINF:-1 tvg-id="boxoffice3.tr" tvg-logo="https://upload.wikimedia.org/wikipedia/tr/5/5e/BeIN_BOX_OFFICE_HD_3_2018_logo.png" group-title="Sinema", Bein Box Office 3
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36
-#EXTVLCOPT:http-referrer=https://tvheryerde.com
-https://live.tecostream.xyz/BeinBoxOffice3.php
-#EXTINF:-1 tvg-id="BeinMoviesTurk.tr" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/5/56/BeIN_MOVIES_Turk-HD.png" group-title="Sinema",Bein Movies Turk
-https://live.tecostream.xyz/BeinMoviesTurk.php
-#EXTINF:-1 tvg-id="BeinMoviesAction.tr" tvg-logo="https://www.tvyayinakisi.com/wp-content/uploads/2020/05/bein-movies-action-logo.png" group-title="Sinema",Bein Movies Action
-https://live.tecostream.xyz/BeinMoviesAction.php
-#EXTINF:-1 tvg-id="BeinMoviesFamily.tr" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/2/23/BeIN_MOVIES_Family-HD.png" group-title="Sinema",Bein Movies Family
-https://live.tecostream.xyz/BeinMoviesFamily.php
-#EXTINF:-1 tvg-id="BeinMoviesStars.tr" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/4/4b/BeIN_MOVIES_Stars-HD.png" group-title="Sinema",Bein Movies Stars
-https://live.tecostream.xyz/BeinMoviesStars.php
-#EXTINF:-1 tvg-id="BeinMoviesPremier.tr" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/3/36/BeIN_MOVIES_Premier-HD.png" group-title="Sinema",Bein Movies Premier
-https://live.tecostream.xyz/BeinMoviesPremier.php
-#EXTINF:-1 tvg-id="Fx.tr" tvg-logo="https://static.ssportplus.com/wp-content/uploads/2024/03/Fx-logo-1-281x281.avif" group-title="Sinema",FX HD
-https://live.tecostream.xyz/fx.php
-#EXTINF:-1 tvg-id="SinemaTV.tr" tvg-logo="https://sinematv.com.tr/content/logo/SINEMATV-GRI.png" group-title="Sinema", Sinema TV
-https://stream.tecostream.xyz/Sinema_Tv.php
-#EXTINF:-1 tvg-id="SinemaTVAksiyon.tr" tvg-logo="https://aksiyon.sinematv.com.tr/content/logo/SINEMATV-AKSIYON.png" group-title="Sinema", Sinema Aksiyon
-https://stream.tecostream.xyz/Sinema_Aksiyon.php
-#EXTINF:-1 tvg-id="sinemayerli.tr" tvg-logo="https://yerli.sinematv.com.tr/content/logo/SINEMATV-YERLI-GRI.png" group-title="Sinema", Sinema Yerli
-https://stream.tecostream.xyz/Sinema_Yerli.php
-#EXTINF:-1 tvg-id="SinemaTVAile.tr" tvg-logo="https://www.tvyayinakisi.com/wp-content/uploads/2020/05/sinemaaile.png" group-title="Sinema", Sinema Aile
-https://stream.tecostream.xyz/Sinema_Aile.php
-#EXTINF:-1 tvg-id="SinemaTV1001.tr" tvg-logo="https://www.tvyayinakisi.com/wp-content/uploads/2020/05/sinema-1001-768x94.png" group-title="Sinema", Sinema 1001
-https://stream.tecostream.xyz/Sinema_1001.php
-#EXTINF:-1 tvg-id="SinemaTVComedy.tr" tvg-logo="https://www.tvyayinakisi.com/wp-content/uploads/2020/05/sinema-komed.png" group-title="Sinema", Sinema Komedi
-https://stream.tecostream.xyz/Sinema_Komedi.php
-
-#EXTINF:-1 tvg-id="KemalSunal.tr" tvg-logo="https://yt3.ggpht.com/ytc/AIdro_kKB21USxEgVZCcJsgoXGh1qx1DQgSgfn6hz3r-1HDv9dI=s48-c-k-c0x00ffffff-no-rj" group-title="Sinema",Kemal Sunal Filmleri
-https://cdn.tecostream.xyz/Kemal_Sunal_Tv.m3u8
-#EXTINF:-1 tvg-id="Yesilcam.tr" tvg-logo="https://yt3.ggpht.com/ytc/AIdro_m_vVKzWpm_LEriWFQTewLrMlSp0Et6frUrXP7qagTrpGE=s48-c-k-c0x00ffffff-no-rj" group-title="Sinema",Yeşilçam TV
-https://cdn.tecostream.xyz/Yesilcam_Tv.m3u8
-#EXTINF:-1 tvg-name="TRTMüzik.tr" tvg-language="Turkish" tvg-country="TR" tvg-id="TrtMuzik.tr" tvg-logo="https://cdn-i.pr.trt.com.tr/trttv/w750/h750/q100/12382043.png" group-title="Müzik",TRT Müzik
-https://tv-trtmuzik.medya.trt.com.tr/master_720.m3u8
-#EXTINF:-1 tvg-name="DreamTurk.tr" tvg-language="Turkish" tvg-country="TR" tvg-id="DreamTurk.tr" tvg-logo="https://blutv-images.mncdn.com/q/t/i/bluv2/100/750x750/5dc2c085866ac31da06187cd" group-title="Müzik",DREAM TÜRK TV
-https://live.duhnet.tv/S2/HLS_LIVE/dreamturknp/playlist.m3u8
-#EXTINF:-1 tvg-name="PowerTurk.tr" tvg-language="Turkish" tvg-country="TR" tvg-id="PowerTurk.tr" tvg-logo="https://blutv-images.mncdn.com/q/t/i/bluv2/100/750x750/5dc2c125866ac31da06187d6" group-title="Müzik",Power Türk
-https://livetv.powerapp.com.tr/powerturkTV/powerturkhd.smil/playlist.m3u8
-#EXTINF:-1 tvg-name="Power TV" tvg-language="Turkish" tvg-country="TR" tvg-id="Muzik_PowerTV" tvg-logo="https://blutv-images.mncdn.com/q/t/i/bluv2/100/750x750/5dc2c155866ac331e0feb22b" group-title="Müzik",Power TV
-https://livetv.powerapp.com.tr/powerTV/powerhd.smil/playlist.m3u8
-#EXTINF:-1 tvg-name="Power Dance" tvg-language="Turkish" tvg-country="TR" tvg-id="Muzik_PowerDance" tvg-logo="https://cdn.powergroup.com.tr/image/500x500/powerapp/channels/v3/logo_40.png" group-title="Müzik",Power Dance
-https://livetv.powerapp.com.tr/dance/dance.smil/playlist.m3u8
-#EXTINF:-1 tvg-name="Power Love" tvg-language="Turkish" tvg-country="TR" tvg-id="Muzik_PowerLove" tvg-logo="https://cdn.powergroup.com.tr/image/500x500/powerapp/channels/v3/logo_2559.png" group-title="Müzik",Power Love
-https://livetv.powerapp.com.tr/plove/love.smil/playlist.m3u8
-#EXTINF:-1 tvg-name="PowerTürk Akustik" tvg-language="Turkish" tvg-country="TR" tvg-id="Muzik_PowerTurkAkustik" tvg-logo="https://cdn.powergroup.com.tr/image/500x500/powerapp/channels/v3/logo_2542.png" group-title="Müzik",PowerTürk Akustik
-https://listen.powerapp.com.tr/pturkakustik/akustik.smil/playlist.m3u8
-#EXTINF:-1 tvg-name="PowerTürk Slow" tvg-language="Turkish" tvg-country="TR" tvg-id="Muzik_PowerTurkSlow" tvg-logo="https://cdn.powergroup.com.tr/image/500x500/powerapp/channels/v3/logo_2577.png" group-title="Müzik",PowerTürk Slow
-https://listen.powerapp.com.tr/pturkslow/slow.smil/playlist.m3u8
-#EXTINF:-1 tvg-name="PowerTürk Taptaze" tvg-language="Turkish" tvg-country="TR" tvg-id="Muzik_PowerTurkTaptaze" tvg-logo="https://cdn.powergroup.com.tr/image/500x500/powerapp/channels/v3/logo_2534.png" group-title="Müzik",PowerTürk Taptaze
-https://listen.powerapp.com.tr/pturktaptaze/taptaze.smil/playlist.m3u8
-#EXTINF:-1 tvg-name="Milyon TV" tvg-language="Turkish" tvg-country="TR" tvg-id="Muzik_MilyonTV" tvg-logo="https://blutv-images.mncdn.com/q/t/i/bluv2/100/750x750/60900db7866ac318488bc30f" group-title="Müzik",Milyon TV
-https://sosyoapp-live.cdnnew.com/sosyo/buraya-bir-isim-verin.m3u8
-#EXTINF:-1 tvg-name="Kral Pop" tvg-language="Turkish" tvg-country="TR" tvg-id="Muzik_KralPop" tvg-logo="https://img-puhutv.mncdn.com/media/img/content/23-01/26/kral.png" group-title="Müzik",Kral Pop
-https://dogus-live.daioncdn.net/kralpoptv/playlist.m3u8
-#EXTINF:-1 tvg-name="Number1Turk.tr" tvg-language="Turkish" tvg-country="TR" tvg-id="Number1Turk.tr" tvg-logo="https://blutv-images.mncdn.com/q/t/i/bluv2/100/750x750/5e415bb8866ac31d980eb377" group-title="Müzik",NumberOne Türk
-https://b01c02nl.mediatriple.net/videoonlylive/mtkgeuihrlfwlive/broadcast_5c9e187770143.smil/playlist.m3u8
-#EXTINF:-1 tvg-name="NumberOne TV" tvg-language="Turkish" tvg-country="TR" tvg-id="Muzik_NumberOneTV" tvg-logo="https://blutv-images.mncdn.com/q/t/i/bluv2/100/750x750/5e415748866ac31d980eb317" group-title="Müzik",NumberOne TV
-https://b01c02nl.mediatriple.net/videoonlylive/mtkgeuihrlfwlive/broadcast_5c9e17cd59e8b.smil/playlist.m3u8
-#EXTINF:-1 tvg-name="NumberOne Aşk" tvg-language="Turkish" tvg-country="TR" tvg-id="Muzik_NumberOneAsk" tvg-logo="https://www.numberone.com.tr/wp-content/uploads/2017/10/ask-tv-web.jpg" group-title="Müzik",NumberOne Aşk
-https://b01c02nl.mediatriple.net/videoonlylive/mtkgeuihrlfwlive/u_stream_5c9e18f9cea15_1/playlist.m3u8
-#EXTINF:-1 tvg-name="NumberOne Damar" tvg-language="Turkish" tvg-country="TR" tvg-id="Muzik_NumberOneDamar" tvg-logo="https://www.numberone.com.tr/wp-content/uploads/2017/07/N1_TR_Damar.png" group-title="Müzik",NumberOne Damar
-https://b01c02nl.mediatriple.net/videoonlylive/mtkgeuihrlfwlive/u_stream_5c9e198784bdc_1/playlist.m3u8
-#EXTINF:-1 tvg-name="NumberOne Dance" tvg-language="Turkish" tvg-country="TR" tvg-id="Muzik_NumberOneDance" tvg-logo="https://www.numberone.com.tr/wp-content/uploads/2015/12/N1_Dance-1-768x768.png" group-title="Müzik",NumberOne Dance
-https://b01c02nl.mediatriple.net/videoonlylive/mtkgeuihrlfwlive/u_stream_5c9e2aa8acf44_1/playlist.m3u8
-#EXTINF:-1 tvg-name="Tatlıses TV" tvg-language="Turkish" tvg-country="TR" tvg-id="Muzik_TatlisesTV" tvg-logo="https://www.digiturkburada.com.tr/kanal3/kanal-buyuk/tatlises-tv-buyuk.png" group-title="Müzik",Tatlıses TV
-https://live.artidijitalmedya.com/artidijital_tatlisestv/tatlisestv/playlist.m3u8
-#EXTINF:-1 tvg-name="MTV Biggest Pop" tvg-language="English" tvg-country="USA" tvg-id="Muzik_MTVBiggestPop" tvg-logo="https://images.pluto.tv/channels/5d14fd1a252d35decbc4080c/colorLogoPNG.png" group-title="Müzik",MTV Biggest Pop
-https://service-stitcher.clusters.pluto.tv/stitch/hls/channel/5d14fd1a252d35decbc4080c/master.m3u8?appName=web&appVersion=unknown&clientTime=0&deviceDNT=0&deviceId=6c2a02e7-30d3-11ef-9cf5-e9ddff8ff496&deviceMake=Chrome&deviceModel=web&deviceType=web&deviceVersion=unknown&includeExtendedEvents=false&serverSideAds=false&sid=db3aa987-9f35-4664-b523-5fe34623b36c
-#EXTINF:-1 tvg-name="Vevo Pop" tvg-language="English" tvg-country="USA" tvg-id="Muzik_VevoPop" tvg-logo="https://images.pluto.tv/channels/5d93b635b43dd1a399b39eee/colorLogoPNG.png" group-title="Müzik",Vevo Pop
-https://service-stitcher.clusters.pluto.tv/v1/stitch/embed/hls/channel/5d93b635b43dd1a399b39eee/master.m3u8?advertisingId=&appName=rokuchannel&appVersion=1.0&deviceDNT=1&deviceId=8f35210d-be26-5e0d-8c57-d0f910026ee7&deviceMake=rokuChannel&deviceModel=web&deviceType=rokuChannel&deviceVersion=1.0&embedPartner=rokuChannel
-#EXTINF:-1 tvg-id="TRTBelgesel.tr" tvg-logo="http://assets.tvcdn.net/1da7293b-5598-4e00-a5f8-3bd327af9467.png" group-title="Belgesel",TRT Belgesel
-https://tv-trtbelgesel.medya.trt.com.tr/master_720.m3u8
-#EXTINF:-1 tvg-id="NatGeo.tr" tvg-logo="https://www.google.com/url?sa=i&url=https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3ANational-Geographic-Logo.svg&psig=AOvVaw2tg1vRXi24tH9WBmvWjnJf&ust=1746187325832000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCNiA7eucgo0DFQAAAAAdAAAAABAE" group-title="Belgesel",National Geographic
-https://live.tecostream.xyz/NationalGeo.php
-#EXTINF:-1 tvg-id="NatGeoWild.tr" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Nat_Geo_Wild_logo.png/1200px-Nat_Geo_Wild_logo.png" group-title="Belgesel",NATIONAL GEOGRAPHIC WILD
-https://live.tecostream.xyz/NationalGeoWild.php
-#EXTINF:-1 tvg-id="BeinIz.tr" tvg-logo="https://images.seeklogo.com/logo-png/36/1/bein-iz-logo-png_seeklogo-367813.png" group-title="Belgesel",Bein İZ HD
-https://tecostream.xyz//BeinIz.php
-#EXTINF:-1 tvg-id="BeinGurme.tr" tvg-logo="https://images.seeklogo.com/logo-png/36/1/bein-gurme-logo-png_seeklogo-367814.png" group-title="Belgesel",Bein Gürme HD
-https://tecostream.xyz//BeinGurme.php
-#EXTINF:-1 tvg-id="DiscoveryChannel.tr" tvg-logo="https://logoeps.com/wp-content/uploads/2013/01/discovery-channel-.eps-logo-vector.png" group-title="Belgesel", Discovery Channel
-https://live.tecostream.xyz/DiscoveryChannel.php
-#EXTINF:-1 tvg-id="HistoryChannel.tr" tvg-logo="https://nhd.org/wp-content/uploads/2022/11/Copy-of-Copy-of-39673730_History_Logo_2015_RGB_Black_type-1.png" group-title="Belgesel", History Channel
-https://tecostream.xyz/History.php
-#EXTINF:-1 tvg-id="BbcEarth.tr" tvg-logo="https://ryanatkinson.tv/wp-content/uploads/2015/10/BBc-Earth-Logo-300x300.png" group-title="Belgesel", BBC Earth
-https://tecostream.xyz/BbcEarth.php
-#EXTINF:-1 tvg-id="TGRTBelgesel.tr" tvg-logo="http://assets.tvcdn.net/c6c727a2-b2be-4d9b-a32c-48ffa778cbb6.png" group-title="Belgesel",TGRT Belgesel
-https://cdn.tecostream.xyz/Tgrt_Belgesel.m3u8
-#EXTINF:-1 tvg-id="Yaban.tr" tvg-logo="http://assets.tvcdn.net/808e5d06-f9a6-4989-ac8c-63f686e61ea0.png" group-title="Belgesel",Yaban TV
-https://tecostream.xyz/YabanTv.php
-#EXTINF:-1 tvg-id="CiftciTV.tr" tvg-logo="http://assets.tvcdn.net/0ddba95e-9ad0-4d8a-9527-b562e173da80.png" group-title="Belgesel",Çiftçi TV
-http://live.artofknot.com:5080/proxy/channel?url=https%3A%2F%2Flive.artidijitalmedya.com%2Fartidijital_ciftcitv%2Fciftcitv%2Fchunks.m3u8
-#EXTINF:-1 tvg-id="TarimTV.tr" tvg-logo="http://assets.tvcdn.net/2038e897-1bbf-4744-8028-975e32561396.png" group-title="Belgesel",Tarım TV
-https://content.tvkur.com/l/c7e1da7mm25p552d9u9g/index-1080p.m3u8
-#EXTINF:-1 tvg-id="KoyTV.tr" tvg-logo="http://assets.tvcdn.net/6014fb29-bf4c-4e83-8982-949179e6bd8e.png" group-title="Belgesel",Köy TV
-http://stream.tvcdn.net/belgesel/koy-tv.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/2998d78b-5098-4e5a-8450-b2f7148ff817.png" group-title="Belgesel",Toprak TV
-http://188.245.211.255:1935/canlitv/topraktv.stream/playlist.m3u8?hash=7273527c4819c57923b8702ee6f46415
-#EXTINF:-1 tvg-id="TRTÇocuk.tr" tvg-logo="http://assets.tvcdn.net/18ae3d9c-711b-40e5-8602-8eada4748df2.png" group-title="Çocuk&Eğitim",TRT Çocuk
-https://tv-trtcocuk.medya.trt.com.tr/master_720.m3u8
-#EXTINF:-1 tvg-id="EBATVOrtaokul.tr" tvg-logo="http://assets.tvcdn.net/a80dd610-3836-4d80-9968-70a8f32165bc.png" group-title="Çocuk&Eğitim",TRT EBA
-https://tv-e-okul01.medya.trt.com.tr/master_720.m3u8
-#EXTINF:-1 tvg-id="TRTDiyanetCocuk.tr" tvg-logo="http://assets.tvcdn.net/dba05bf2-9d24-4d20-bc6c-f54a2b60ef7f.png" group-title="Çocuk&Eğitim",TRT Diyanet Çocuk
-https://tv-trtdiyanetcocuk.medya.trt.com.tr/master_720.m3u8
-#EXTINF:-1 tvg-id="MinikaGO.tr" tvg-logo="https://ia.tmgrup.com.tr/852040/64/64/0/0/64/64?u=https://i.tmgrup.com.tr/724izle/2023/06/14/1686755550790.png" group-title="Çocuk&Eğitim",Minika Go 
-https://trkvz-live.daioncdn.net/minikago/minikago_720p.m3u8
-#EXTINF:-1 tvg-id="BabyTV.tr" tvg-logo="https://img.favpng.com/20/14/7/babytv-enchanted-babyfirsttv-television-logo-png-favpng-3AzfkYmhUPejE6vK0TLTmVYV2.jpg" group-title="Çocuk&Eğitim",Baby TV
-https://live.tecostream.xyz/BabyTv.php
-#EXTINF:-1 tvg-id="DisneyJunior.tr" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmQkRbhEdkj9VU6aIWf3LRooGDSl0GDNootA&s" group-title="Çocuk&Eğitim",Disney Junior
-https://live.tecostream.xyz/DisneyJunior.php
-#EXTINF:-1 tvg-id="MinikaCocuk.tr" tvg-logo="https://ia.tmgrup.com.tr/b8b0e1/64/64/0/0/64/64?u=https://i.tmgrup.com.tr/724izle/2023/06/14/1686755575352.png" group-title="Çocuk&Eğitim",Minika Çocuk 
-https://rnttwmjcin.turknet.ercdn.net/lcpmvefbyo/minikago_cocuk/minikago_cocuk.m3u8
-#EXTINF:-1 tvg-id="CartoonNetwork.tr" tvg-logo="http://assets.tvcdn.net/9cf2fc0e-278f-4007-b1a1-8fb22d4990eb.png" group-title="Çocuk&Eğitim",Cartoon Network
-https://live.artofknot.com/youtube/channel/UCehmwSZGPod7JFbHJspmxzQ.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/222d7e52-2895-46a1-92a2-93e2ce1c8317.png" group-title="Çocuk&Eğitim",Çocuklara Özel TV
-https://playlist.fasttvcdn.com/pl/rfrk9821hdy9dayo8wfyha/cocuklara-ozel-tv/playlist/1.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/320542d3-bc8c-4e63-ba97-3b89426dda8c.png" group-title="Çocuk&Eğitim",Çizgi Film TV
-https://playlist.fasttvcdn.com/pl/rfrk9821hdy9dayo8wfyha/cizgi-film-tv/playlist/1.m3u8
-#EXTINF:-1 tvg-id="LalegulTV.tr" tvg-logo="http://assets.tvcdn.net/97578c5d-493f-4a99-ab6b-aedc02609cf0.png" group-title="Dini",Lalegül TV
-https://lbl.netmedya.net/hls/lalegultv.m3u8
-#EXTINF:-1 tvg-id="SemerkandWay.tr" tvg-logo="http://assets.tvcdn.net/01b74bf2-a065-4d30-9ad6-a4213eb88cfa.png" group-title="Dini",Semerkand Way
-https://b01c02nl.mediatriple.net/videoonlylive/mtisvwurbfcyslive/broadcast_6409fdaa68111.smil/mt_0.m3u8
-#EXTINF:-1 tvg-id="DostTV.tr" tvg-logo="http://assets.tvcdn.net/95e2b9a5-991b-4eda-bd0f-ec3c570d9147.png" group-title="Dini",Dost TV
-https://dost.stream.emsal.im/tv/live.m3u8
-#EXTINF:-1 tvg-id="MeltemTV.tr" tvg-logo="http://assets.tvcdn.net/61b5c17b-e0dd-4702-bb9b-689097e4648f.png" group-title="Dini",Meltem TV
-https://vhxyrsly.rocketcdn.com/meltemtv/chunklist.m3u8
-#EXTINF:-1 tvg-id="TV5.tr" tvg-logo="http://assets.tvcdn.net/3df2642a-042c-45b6-b292-01600c5590cd.png" group-title="Dini",TV 5
-http://stream.tvcdn.net/dini/tv-5.m3u8
-#EXTINF:-1 tvg-id="DiyarTV.tr" tvg-logo="http://assets.tvcdn.net/ea4fe219-8fe0-4476-b636-3242ae8d2bf5.png" group-title="Dini",Diyar TV
-http://stream.tvcdn.net/dini/diyar-tv.m3u8
-#EXTINF:-1 tvg-id="GoncaTV.tr" tvg-logo="http://assets.tvcdn.net/1e57f122-68ae-4bd2-8aa1-ad5cdd7e5000.png" group-title="Dini",Gonca TV
-http://stream.tvcdn.net/dini/gonca-tv.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/58500568-8b50-4b69-8b43-d303c933ca61.png" group-title="Dini",İLK TV
-http://stream.tvcdn.net/dini/ilk-tv.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/2c5ca955-eefe-4c69-81fa-007da1d9d18f.png" group-title="Dini",Kudüs TV
-http://stream.tvcdn.net/dini/kudus-tv.m3u8
-#EXTINF:-1 tvg-id="On4TV.tr" tvg-logo="http://assets.tvcdn.net/6023b7ab-402a-4f5f-aefa-210d9f97b562.png" group-title="Dini",On4 TV
-http://stream.tvcdn.net/dini/on4-tv.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/bfe4289b-7785-46f4-ba62-8bbf4a188d45.png" group-title="Dini",Mihrap TV
-http://stream.tvcdn.net/dini/mihrap-tv.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/6e6dcb66-3dd2-4ef8-9b2b-9c470844c047.png" group-title="Dini",Kanal 12
-http://stream.tvcdn.net/dini/kanal-12.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/4ca28592-03c0-44cb-85c5-29216afb1bf4.png" group-title="Dini",Aile TV
-http://stream.tvcdn.net/dini/aile-tv.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/8d763e76-e879-4e05-a451-8d39b77838e0.png" group-title="Dini",Aşrı Şerif TV
-http://stream.tvcdn.net/dini/asr-i-serif-tv.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/425981cf-189f-45c1-ad8d-6b0ccd2a12d5.png" group-title="Dini",Kuran-ı Kerim Dersleri
-http://stream.tvcdn.net/dini/kuran-i-kerim-dersleri.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/0a36c783-1a76-448d-b0d9-98add4aeab2d.png" group-title="Dini",İslam TV
-http://stream.tvcdn.net/dini/islam-tv.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/62afff37-79e9-441b-a63e-f1fba2c22182.png" group-title="Dini",İlmihal TV
-http://stream.tvcdn.net/dini/ilmihal-tv.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/cfd07412-b7c1-4a85-84f5-ac743f8f1a84.png" group-title="Dini",Asr-ı Saadet TV
-http://stream.tvcdn.net/dini/asr-i-saadet-tv.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/51a438e2-9c50-45fc-afd3-2764cc8714a8.png" group-title="Dini",İlahiler TV
-http://stream.tvcdn.net/dini/ilahiler-tv.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/19a58ffe-437d-4272-9ccc-34bb839634e1.png" group-title="Dini",Vaaz TV
-http://stream.tvcdn.net/dini/vaaz-tv.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/c2efb51d-645d-41e2-bb9e-7068e41325b7.png" group-title="Dini",Hadi TV Türkçe
-http://stream.tvcdn.net/dini/hadi-tv-turkce.m3u8
-#EXTINF:-1 tvg-id="Sat7Turk.cy" tvg-logo="http://assets.tvcdn.net/ca0a924f-a0ee-44a4-b590-b500ceb3e42b.png" group-title="Dini",Sat 7 Türk
-http://stream.tvcdn.net/dini/sat-7-turk.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/f0ca3918-8cbd-4607-b9d0-6a27d6f29425.png" group-title="Dini",Kanal Hayat
-http://stream.tvcdn.net/dini/kanal-hayat.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/19146761-32ae-46ad-a0f0-2862c2f887e9.png" group-title="Dini",ABN Turkey
-http://stream.tvcdn.net/dini/abn-turkey.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/23b391ac-5edb-4e37-8664-27da64fb0785.png" group-title="Dini",Mukabele TV
-http://stream.tvcdn.net/dini/mukabele-tv.m3u8
-
-
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/be60bef3-a276-4975-9e49-dcf3bcb8cf17.jpg" group-title="Diğer",Akademik BakÄ±ÅŸ
-http://stream.tvcdn.net/diger/akademik-bakis.m3u8
-#EXTINF:-1 tvg-id="CanTV.tr" tvg-logo="http://assets.tvcdn.net/f648574b-3fcd-4e1e-b1ea-22c65e4906a9.png" group-title="Diğer",Can TV
-http://stream.tvcdn.net/diger/can-tv.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/46eba33a-e14c-44f0-8423-a05cfe0f695b.png" group-title="Diğer",DÃ¼zgÃ¼n TV
-http://stream.tvcdn.net/diger/duzgun-tv.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/5cb9e931-5fbc-4d24-aedb-b7465226515f.jpg" group-title="Diğer",Euro 34 TV
-http://stream.tvcdn.net/diger/euro-34-tv.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/2fe84a35-3bb8-4c92-832d-bd0dafdfba1b.jpeg" group-title="Diğer",Gurme TV
-http://stream.tvcdn.net/diger/gurme-tv.m3u8
-#EXTINF:-1 tvg-id="LuysTV.tr" tvg-logo="http://assets.tvcdn.net/e876bf88-411c-4a9c-ad29-e449e651f7ae.png" group-title="Diğer",Luys TV
-http://stream.tvcdn.net/diger/luys-tv.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/0c93ed36-4504-4cad-83b5-8a32a7d76256.png" group-title="Diğer",SDM TV
-http://stream.tvcdn.net/diger/sdm-tv.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/ce391a09-3e27-4782-a2d3-1fa7fed0974e.png" group-title="Diğer",TV Mor
-http://stream.tvcdn.net/diger/tv-mor.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/98981c83-2aa1-47ba-9427-a6648c074e79.png" group-title="Diğer",TÃ¼rkiye Klinikleri
-http://stream.tvcdn.net/diger/turkiye-klinikleri.m3u8
-#EXTINF:-1 tvg-id="TurkmeneliTV.iq" tvg-logo="http://assets.tvcdn.net/aaa2df8e-7690-490c-a31e-71619d93e803.png" group-title="Diğer",TÃ¼rkmeneli TV
-http://stream.tvcdn.net/diger/turkmeneli-tv.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/d1f14d94-0c2a-4c89-8364-a04f9a382a17.jpg" group-title="Diğer",UluslararasÄ± TV
-http://stream.tvcdn.net/diger/uluslararasi-tv.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/a54a02d6-094c-4923-91d9-9c21c7503aa1.png" group-title="Diğer",Ãœni TV
-http://stream.tvcdn.net/diger/uni-tv.m3u8
-#EXTINF:-1 tvg-id="WomanTV.tr" tvg-logo="http://assets.tvcdn.net/f85e5a28-5d65-405e-a079-be0a7893b8bd.png" group-title="Diğer",Woman TV
-http://stream.tvcdn.net/diger/woman-tv.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/bfd91450-80c7-4952-b87b-1745d31bbf28.png" group-title="Diğer",World Plus TV
-http://stream.tvcdn.net/diger/world-plus-tv.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/ff9bad51-26ca-40cb-8c05-071f1c775546.png" group-title="Diğer-Müzik",Damar Web TV
-http://stream.tvcdn.net/diger-muzik/damar-web-tv.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/372149bf-3045-43ea-9794-dfea243bfb0e.png" group-title="Diğer-Müzik",Arabesk Web TV
-http://stream.tvcdn.net/diger-muzik/arabesk-web-tv.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/92b15cce-55df-4138-a88e-e1c222eab7c9.png" group-title="Diğer-Müzik",SÄ±la TV
-http://stream.tvcdn.net/diger-muzik/sila-tv.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/21718aa9-5ff3-4620-acd8-68fbc544508d.png" group-title="Diğer-Müzik",Zeyno
-http://stream.tvcdn.net/diger-muzik/zeyno.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/f8af5ed8-4d05-4c2f-aa71-7d8e45ec19c2.png" group-title="Diğer-Müzik",Dost Web TV
-http://stream.tvcdn.net/diger-muzik/dost-web-tv.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/4a8468ec-c134-4db1-93ef-699f15e1522b.png" group-title="Diğer-Müzik",Toppop TV
-http://stream.tvcdn.net/diger-muzik/toppop-tv.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/5b807bfa-5808-4af2-8a4b-4212e6d3d132.png" group-title="Diğer-Müzik",Ezo TV
-http://stream.tvcdn.net/diger-muzik/ezo-tv.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/4ed2a8ac-fd7f-4379-84cc-af1473c3fa72.png" group-title="Diğer-Müzik",Arma TV
-http://stream.tvcdn.net/diger-muzik/arma-tv.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/fc1e5546-cc3e-4c7e-b379-f16052c81901.png" group-title="Diğer-Müzik",GenÃ§ SMS TV
-http://stream.tvcdn.net/diger-muzik/genc-sms-tv.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/8c8a9c78-0e9a-456c-8427-a727f81c8ca8.png" group-title="Diğer-Müzik",Aviva
-http://stream.tvcdn.net/diger-muzik/aviva.m3u8
-#EXTINF:-1 tvg-id="FinestTV.de" tvg-logo="http://assets.tvcdn.net/63a00e4e-eb16-4c55-9917-d1d2053f8b8b.png" group-title="Diğer-Müzik",Finest TV
-http://stream.tvcdn.net/diger-muzik/finest-tv.m3u8
-#EXTINF:-1 tvg-id="TempoTV.tr" tvg-logo="http://assets.tvcdn.net/09eddd54-7c9e-4036-8f9f-07d3c60c867c.png" group-title="Diğer-Müzik",Tempo TV
-http://stream.tvcdn.net/diger-muzik/tempo-tv.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/c8bba93e-76e5-426a-8d4a-8b545559be59.png" group-title="Diğer-Müzik",Slow Karadeniz TV
-http://stream.tvcdn.net/diger-muzik/slow-karadeniz-tv.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/9e0d7b87-1ba4-4b1f-b769-4406a38a9851.jpeg" group-title="Diğer-Müzik",Fora MÃ¼zik
-http://stream.tvcdn.net/diger-muzik/fora-muzik.m3u8
-#EXTINF:-1 tvg-id="GencKrallarTV.tr" tvg-logo="http://assets.tvcdn.net/6b1d3b33-8f67-40fe-90e8-3d57db6c6318.jpg" group-title="Diğer-Müzik",GenÃ§ Kral TV
-http://stream.tvcdn.net/diger-muzik/genc-kral-tv.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/caaac704-e0c2-4e8a-ada7-565e4a68a46e.jpg" group-title="Diğer-Müzik",Mega TV Ä°skenderun
-http://stream.tvcdn.net/diger-muzik/mega-tv-iskenderun.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/139a7fd3-7e5a-4bef-90f4-73d8500794c0.png" group-title="Diğer-Müzik",Demo TV
-http://stream.tvcdn.net/diger-muzik/demo-tv.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/af0ff1ad-7d20-4b05-a12b-f069aaf365ee.jpg" group-title="Diğer-Müzik",Seda TV
-http://stream.tvcdn.net/diger-muzik/seda-tv.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/c998c2a7-19e2-4363-af98-e6e7b40774d7.png" group-title="Diğer-Müzik",Ceyhan TV
-http://stream.tvcdn.net/diger-muzik/ceyhan-tv.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/b013c3ce-79f1-4a67-b960-6f6f34b363e5.jpeg" group-title="Diğer-Müzik",YaÄŸmurlu TV
-http://stream.tvcdn.net/diger-muzik/yagmurlu-tv.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/e167f3b3-b68b-46a2-ab53-a56a7e2b7ab6.png" group-title="Diğer-Müzik",KardeÅŸ TV
-http://stream.tvcdn.net/diger-muzik/kardes-tv.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/e1779c8e-b1e4-48c8-a205-161811d2b034.png" group-title="Diğer-Müzik",Nef TV
-http://stream.tvcdn.net/diger-muzik/nef-tv.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/bd3b49c4-ed93-40a2-9187-88f1b6e94064.png" group-title="Diğer-Müzik",SolaklÄ± TV
-http://stream.tvcdn.net/diger-muzik/solakli-tv.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/559756c0-d9b8-4ff6-8ff9-d4bb087b6167.png" group-title="Diğer-Müzik",Pala TV
-http://stream.tvcdn.net/diger-muzik/pala-tv.m3u8
-#EXTINF:-1 tvg-id="" group-title="Diğer-Müzik",GenÃ§ KraliÃ§e TV
-http://stream.tvcdn.net/diger-muzik/genc-kralice-tv.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/0c036e8f-a671-446a-9224-ba0aad2d692d.png" group-title="Diğer-Müzik",Ayz TV
-http://stream.tvcdn.net/diger-muzik/ayz-tv.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/e7578e04-aeb6-494f-bef5-672c6efef128.png" group-title="Diğer-Müzik",SÃ¶nmez TV
-http://stream.tvcdn.net/diger-muzik/sonmez-tv.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/bac5987e-f340-4e36-b1fb-9b8b61d5b9a0.png" group-title="Diğer-Eğlence",SuperTurk TV
-http://stream.tvcdn.net/diger-eglence/superturk-tv.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/2a7833de-376e-4900-a8eb-523162f00502.png" group-title="Diğer-Eğlence",SuperTurk Max
-http://stream.tvcdn.net/diger-eglence/superturk-max.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/95cfe22b-0373-4601-9b30-83788ee0d5e3.jpg" group-title="Diğer-Eğlence",Aldosa TV
-http://stream.tvcdn.net/diger-eglence/aldosa-tv.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/57fd67c8-f4e4-4516-a2de-68325d438b1a.png" group-title="Diğer-Eğlence",Almanya TV
-http://stream.tvcdn.net/diger-eglence/almanya-tv.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/f9cd2889-605a-4f77-ab14-9425570a8bac.png" group-title="Diğer-Eğlence",Cine 1
-http://stream.tvcdn.net/diger-eglence/cine-1.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/735db609-c6b4-46aa-8347-3e4a4b0e4ee4.png" group-title="Diğer-Eğlence",Cine5 TV
-http://stream.tvcdn.net/diger-eglence/cine5-tv.m3u8
-#EXTINF:-1 tvg-id="CagriTV.tr" tvg-logo="http://assets.tvcdn.net/3ac45b9f-5daf-4c45-b748-fb522296f432.jpg" group-title="Diğer-Eğlence",Ã‡aÄŸrÄ± TV
-http://stream.tvcdn.net/diger-eglence/cagri-tv.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/a26c3736-672a-45df-a3d8-8c00330b5f04.png" group-title="Diğer-Eğlence",Deniz PostasÄ± TV
-http://stream.tvcdn.net/diger-eglence/deniz-postasi-tv.m3u8
-#EXTINF:-1 tvg-id="FarkTurkTV.tr" tvg-logo="http://assets.tvcdn.net/aa738840-bc02-41ec-80e5-188681441c4e.jpeg" group-title="Diğer-Eğlence",Fark TÃ¼rk TV
-http://stream.tvcdn.net/diger-eglence/fark-turk-tv.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/8e85fa7f-571e-4f55-bf56-22eb3ab59620.jpg" group-title="Diğer-Eğlence",Ä°lkgÃ¼n TV
-http://stream.tvcdn.net/diger-eglence/ilkgun-tv.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/a72d22fe-9e79-4cac-ad75-67635e6b68c9.png" group-title="Diğer-Eğlence",Ä°sviÃ§re TV
-http://stream.tvcdn.net/diger-eglence/isvicre-tv.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/4f770572-146b-42a7-a786-f7d8d0eeead1.png" group-title="Diğer-Eğlence",Kanal 19
-http://stream.tvcdn.net/diger-eglence/kanal-19.m3u8
-#EXTINF:-1 tvg-id="LugatTV.tr" tvg-logo="http://assets.tvcdn.net/50cd1375-3639-4b25-97a6-e99dd39f26be.png" group-title="Diğer-Eğlence",Lugat TV
-http://stream.tvcdn.net/diger-eglence/lugat-tv.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/3c0af333-a0c5-456f-a7fe-b491f63b30c7.png" group-title="Diğer-Eğlence",SuduraÄŸÄ± TV
-http://stream.tvcdn.net/diger-eglence/suduragi-tv.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/94505dd8-b52d-4b4d-b1e4-9fda2829ed57.png" group-title="Diğer-Eğlence",SÃ¼per 7 TV
-http://stream.tvcdn.net/diger-eglence/super-7-tv.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/917ae8e7-cebb-4647-9fe7-8e9529088d73.png" group-title="Diğer-Eğlence",Tivi TÃ¼rk
-http://stream.tvcdn.net/diger-eglence/tivi-turk.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/9e6ed485-fb7d-4d86-a76c-91f7d8149f22.png" group-title="Diğer-Eğlence",Viyana TV
-http://stream.tvcdn.net/diger-eglence/viyana-tv.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/190e5de4-240c-4394-b364-acf1be7ca010.png" group-title="Diğer-Eğlence",VRT TV
-http://stream.tvcdn.net/diger-eglence/vrt-tv.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/07df8da2-6115-49e7-84fb-717cadf0723d.png" group-title="Azerbaycan",Apa TV
-http://stream.tvcdn.net/azerbaycan/apa-tv.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/7ead0f6e-66c4-4813-8f0c-730c3ede8095.png" group-title="Azerbaycan",ARB
-http://stream.tvcdn.net/azerbaycan/arb.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/9c5f469a-6305-4b57-a591-d44a0bae7bc0.png" group-title="Azerbaycan",ARB 24
-http://stream.tvcdn.net/azerbaycan/arb-24.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/eab1873b-fe30-41c6-b755-ba6a6709f4cd.png" group-title="Azerbaycan",ARB Gunes
-http://stream.tvcdn.net/azerbaycan/arb-gunes.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/bf9a92f4-73b0-487e-ae81-59611351ae9c.png" group-title="Azerbaycan",AZ TV
-http://stream.tvcdn.net/azerbaycan/az-tv.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/84f1c014-d4b5-48bf-be6b-97afd96c7cb5.png" group-title="Azerbaycan",Azad TV
-http://stream.tvcdn.net/azerbaycan/azad-tv.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/debb1b49-4809-413b-8418-6c176181a1d6.png" group-title="Azerbaycan",Az Star TV
-http://stream.tvcdn.net/azerbaycan/az-star-tv.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/532ddf5c-b187-4616-b2e4-43d055fd53fc.png" group-title="Azerbaycan",Baku TV
-http://stream.tvcdn.net/azerbaycan/baku-tv.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/f6608442-2bd6-4e63-b229-7a4c2eb945de.png" group-title="Azerbaycan",CBC
-http://stream.tvcdn.net/azerbaycan/cbc.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/0a138109-453b-4df0-bc70-c04573a5afaf.png" group-title="Azerbaycan",DÃ¼nya TV
-http://stream.tvcdn.net/azerbaycan/dunya-tv.m3u8
-#EXTINF:-1 tvg-id="" group-title="Azerbaycan",Farrukh TV
-http://stream.tvcdn.net/azerbaycan/farrukh-tv.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/d5ef1443-3b24-4554-a82f-bfc47672fa21.png" group-title="Azerbaycan",Ictimai TV
-http://stream.tvcdn.net/azerbaycan/ictimai-tv.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/2a676b79-b093-4fc0-a539-dd53381ac8ad.png" group-title="Azerbaycan",MCJ TV Shop
-http://stream.tvcdn.net/azerbaycan/mcj-tv-shop.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/60b3dc4b-1f50-430f-bf3e-0316920d0447.png" group-title="Azerbaycan",Medeniyyet TV
-http://stream.tvcdn.net/azerbaycan/medeniyyet-tv.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/27890fa6-d544-401b-8372-05f5215b0dc4.png" group-title="Azerbaycan",Muz TV Azerbaycan
-http://stream.tvcdn.net/azerbaycan/muz-tv-azerbaycan.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/234442fa-6236-445f-ad39-81d3a8a9d34f.png" group-title="Azerbaycan",Naxcivan TV
-http://stream.tvcdn.net/azerbaycan/naxcivan-tv.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/b2fc314b-2660-48fd-b876-7aa2910dc7e2.png" group-title="Azerbaycan",Real TV
-http://stream.tvcdn.net/azerbaycan/real-tv.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/0e0b12f3-022e-4871-b7d4-f11955e281e0.png" group-title="Azerbaycan",Sehiyye TV
-http://stream.tvcdn.net/azerbaycan/sehiyye-tv.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/ac50480b-1647-42be-9340-20d8861c7218.png" group-title="Azerbaycan",Ses TV
-http://stream.tvcdn.net/azerbaycan/ses-tv.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/b1f9d0e3-fad4-4ef6-b002-b205b5f44677.png" group-title="Azerbaycan",Space TV
-http://stream.tvcdn.net/azerbaycan/space-tv.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/ca83dcf1-6fc5-4ade-bad6-a9749b37b671.png" group-title="Azerbaycan",Start TV
-http://stream.tvcdn.net/azerbaycan/start-tv.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/e6f5a04c-23bf-4d99-80c5-57bd6f9adee5.png" group-title="Azerbaycan",TMB Azerbaycan
-http://stream.tvcdn.net/azerbaycan/tmb-azerbaycan.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="http://assets.tvcdn.net/7f645673-da1a-444c-b2de-88afa0efaf67.jpeg" group-title="Azerbaycan",VIP HD
-http://stream.tvcdn.net/azerbaycan/vip-hd.m3u8
-#EXTINF:-1 tvg-id="" group-title="Azerbaycan",Xezer TV
-http://stream.tvcdn.net/azerbaycan/xezer-tv.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  BEIN SPORTS HABER ᴴᴰ" group-title="|TR| ✪ BIEN SPORTS",|TR|  BEIN SPORTS HABER ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=196816&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| BEINSPORT 1 (ᵁᴴᴰ)" group-title="|TR| ✪ BIEN SPORTS",|TR| BEINSPORT 1 (ᵁᴴᴰ)
+http://uro-levene-1012.mywire.org/index.php?id=10698&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| BEINSPORT 1 FHD" group-title="|TR| ✪ BIEN SPORTS",|TR| BEINSPORT 1 FHD
+http://uro-levene-1012.mywire.org/index.php?id=1162637&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| BEINSPORT 1 HD" group-title="|TR| ✪ BIEN SPORTS",|TR| BEINSPORT 1 HD
+http://uro-levene-1012.mywire.org/index.php?id=1162644&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| BEINSPORT 1 (ᴴᴰ)" group-title="|TR| ✪ BIEN SPORTS",|TR| BEINSPORT 1 (ᴴᴰ)
+http://uro-levene-1012.mywire.org/index.php?id=10701&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| BEINSPORT 2 (ᵁᴴᴰ)" group-title="|TR| ✪ BIEN SPORTS",|TR| BEINSPORT 2 (ᵁᴴᴰ)
+http://uro-levene-1012.mywire.org/index.php?id=10697&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| BEINSPORT 2 (ᴴᴰ)" group-title="|TR| ✪ BIEN SPORTS",|TR| BEINSPORT 2 (ᴴᴰ)
+http://uro-levene-1012.mywire.org/index.php?id=10700&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| BEINSPORT 3 (ᵁᴴᴰ)" group-title="|TR| ✪ BIEN SPORTS",|TR| BEINSPORT 3 (ᵁᴴᴰ)
+http://uro-levene-1012.mywire.org/index.php?id=10696&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| BEINSPORT 3 (ᴴᴰ)" group-title="|TR| ✪ BIEN SPORTS",|TR| BEINSPORT 3 (ᴴᴰ)
+http://uro-levene-1012.mywire.org/index.php?id=10699&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| BEINSPORT 4 (ᵁᴴᴰ)" group-title="|TR| ✪ BIEN SPORTS",|TR| BEINSPORT 4 (ᵁᴴᴰ)
+http://uro-levene-1012.mywire.org/index.php?id=10695&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| BEINSPORT 4 FHD" group-title="|TR| ✪ BIEN SPORTS",|TR| BEINSPORT 4 FHD
+http://uro-levene-1012.mywire.org/index.php?id=1162634&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| BEINSPORT 4 HD" group-title="|TR| ✪ BIEN SPORTS",|TR| BEINSPORT 4 HD
+http://uro-levene-1012.mywire.org/index.php?id=1162642&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| BEINSPORT 4 (ᴴᴰ)" group-title="|TR| ✪ BIEN SPORTS",|TR| BEINSPORT 4 (ᴴᴰ)
+http://uro-levene-1012.mywire.org/index.php?id=44446&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| BEiNSPORTS 5 (ᵁᴴᴰ)" group-title="|TR| ✪ BIEN SPORTS",|TR| BEiNSPORTS 5 (ᵁᴴᴰ)
+http://uro-levene-1012.mywire.org/index.php?id=314885&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| BEiNSPORTS 5 FHD" group-title="|TR| ✪ BIEN SPORTS",|TR| BEiNSPORTS 5 FHD
+http://uro-levene-1012.mywire.org/index.php?id=1162638&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| BEiNSPORTS 5 (ᴴᴰ)" group-title="|TR| ✪ BIEN SPORTS",|TR| BEiNSPORTS 5 (ᴴᴰ)
+http://uro-levene-1012.mywire.org/index.php?id=314886&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| BEIN SPORT MAX  1 ᵁᴴᴰ" group-title="|TR| ✪ BIEN SPORTS",|TR| BEIN SPORT MAX  1 ᵁᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=44444&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| BEIN SPORTS MAX 1 ᴴᴰ" group-title="|TR| ✪ BIEN SPORTS",|TR| BEIN SPORTS MAX 1 ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=196273&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| BEIN SPORTS MAX 1 FHD" group-title="|TR| ✪ BIEN SPORTS",|TR| BEIN SPORTS MAX 1 FHD
+http://uro-levene-1012.mywire.org/index.php?id=196272&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| BEIN SPORT MAX  1 ᴴᴰ" group-title="|TR| ✪ BIEN SPORTS",|TR| BEIN SPORT MAX  1 ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=44442&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| BEIN SPORT MAX  2 ᵁᴴᴰ" group-title="|TR| ✪ BIEN SPORTS",|TR| BEIN SPORT MAX  2 ᵁᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=44445&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| BEIN SPORTS MAX 2 ᴴᴰ" group-title="|TR| ✪ BIEN SPORTS",|TR| BEIN SPORTS MAX 2 ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=196275&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| BEIN SPORTS MAX 2 FHD" group-title="|TR| ✪ BIEN SPORTS",|TR| BEIN SPORTS MAX 2 FHD
+http://uro-levene-1012.mywire.org/index.php?id=196274&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| BEIN SPORT MAX  2 ᴴᴰ" group-title="|TR| ✪ BIEN SPORTS",|TR| BEIN SPORT MAX  2 ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=44443&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| S-SPORT" group-title="|TR| ✪ SPORT",|TR| S-SPORT
+http://uro-levene-1012.mywire.org/index.php?id=10689&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| S SPORT PLUS 1 ᵁᴴᴰ" group-title="|TR| ✪ SPORT",|TR| S SPORT PLUS 1 ᵁᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=314883&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| S SPORT PLUS 2 ᵁᴴᴰ" group-title="|TR| ✪ SPORT",|TR| S SPORT PLUS 2 ᵁᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=314881&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  S SPORT2 ᴴᴰ" group-title="|TR| ✪ SPORT",|TR|  S SPORT2 ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=196857&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  S SPORT ᴴᴰ" group-title="|TR| ✪ SPORT",|TR|  S SPORT ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=196856&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| S SPORT+1 MAC SAATI" group-title="|TR| ✪ SPORT",|TR| S SPORT+1 MAC SAATI
+http://uro-levene-1012.mywire.org/index.php?id=170686&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| S SPORT+2 MAC SAATI" group-title="|TR| ✪ SPORT",|TR| S SPORT+2 MAC SAATI
+http://uro-levene-1012.mywire.org/index.php?id=170687&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| S SPORT+3 MAC SAATI" group-title="|TR| ✪ SPORT",|TR| S SPORT+3 MAC SAATI
+http://uro-levene-1012.mywire.org/index.php?id=170688&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| S SPORT+4 MAC SAATI" group-title="|TR| ✪ SPORT",|TR| S SPORT+4 MAC SAATI
+http://uro-levene-1012.mywire.org/index.php?id=170689&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| S Sport+5 Mac Saati" group-title="|TR| ✪ SPORT",|TR| S Sport+5 Mac Saati
+http://uro-levene-1012.mywire.org/index.php?id=170690&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| EXXEN SPORT 1 ᴴᴰ" group-title="|TR| ✪  EXXEN SPORTS",|TR| EXXEN SPORT 1 ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=157112&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| EXXEN SPORT 1 ᴴᴰ" group-title="|TR| ✪  EXXEN SPORTS",|TR| EXXEN SPORT 1 ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=157111&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| EXXEN SPORT 2 ᴴᴰ" group-title="|TR| ✪  EXXEN SPORTS",|TR| EXXEN SPORT 2 ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=157114&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| EXXEN SPORT 2 ᴴᴰ" group-title="|TR| ✪  EXXEN SPORTS",|TR| EXXEN SPORT 2 ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=157113&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| EXXEN SPORT 3 ᴴᴰ" group-title="|TR| ✪  EXXEN SPORTS",|TR| EXXEN SPORT 3 ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=157116&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| EXXEN SPORT 3 ᴴᴰ" group-title="|TR| ✪  EXXEN SPORTS",|TR| EXXEN SPORT 3 ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=157115&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| EXXEN SPORT 4 ᴴᴰ" group-title="|TR| ✪  EXXEN SPORTS",|TR| EXXEN SPORT 4 ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=157117&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| EXXEN SPORT 5 ᴴᴰ" group-title="|TR| ✪  EXXEN SPORTS",|TR| EXXEN SPORT 5 ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=157118&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| EXXEN SPORT 6 ᴴᴰ" group-title="|TR| ✪  EXXEN SPORTS",|TR| EXXEN SPORT 6 ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=157119&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| EXXEN SPORT 7 ᴴᴰ" group-title="|TR| ✪  EXXEN SPORTS",|TR| EXXEN SPORT 7 ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=157120&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| EXXEN SPORT 8 ᴴᴰ" group-title="|TR| ✪  EXXEN SPORTS",|TR| EXXEN SPORT 8 ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=157121&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| EXXEN SPORT 9 ᴴᴰ" group-title="|TR| ✪  EXXEN SPORTS",|TR| EXXEN SPORT 9 ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=283468&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| EXXEN SPORT 10 ᴴᴰ" group-title="|TR| ✪  EXXEN SPORTS",|TR| EXXEN SPORT 10 ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=283469&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| SPOR SMART ᵁᴴᴰ" group-title="|TR| ✪ SPORT",|TR| SPOR SMART ᵁᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=170681&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  SPORSMART ᴴᴰ" group-title="|TR| ✪ SPORT",|TR|  SPORSMART ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=196858&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| SMART SPOR 1" group-title="|TR| ✪ SPORT",|TR| SMART SPOR 1
+http://uro-levene-1012.mywire.org/index.php?id=10688&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  SPORSMART 2 ᴴᴰ" group-title="|TR| ✪ SPORT",|TR|  SPORSMART 2 ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=196859&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="TABii SPOR FHD" group-title="|TR| ✪ TABII SPORTS",TABii SPOR FHD
+http://uro-levene-1012.mywire.org/index.php?id=1195377&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="TABii SPOR HD" group-title="|TR| ✪ TABII SPORTS",TABii SPOR HD
+http://uro-levene-1012.mywire.org/index.php?id=1195376&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="BEINCONNET CANLI MAC ʜᴅ -1" group-title="|TR| ✪ BIEN SPORTS",BEINCONNET CANLI MAC ʜᴅ -1
+http://uro-levene-1012.mywire.org/index.php?id=1195387&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="BEINCONNET CANLI MAC ʜᴅ -2" group-title="|TR| ✪ BIEN SPORTS",BEINCONNET CANLI MAC ʜᴅ -2
+http://uro-levene-1012.mywire.org/index.php?id=1195388&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="BEINCONNET CANLI MAC ʜᴅ -3" group-title="|TR| ✪ BIEN SPORTS",BEINCONNET CANLI MAC ʜᴅ -3
+http://uro-levene-1012.mywire.org/index.php?id=1195389&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="BEINCONNET CANLI MAC ʜᴅ -4" group-title="|TR| ✪ BIEN SPORTS",BEINCONNET CANLI MAC ʜᴅ -4
+http://uro-levene-1012.mywire.org/index.php?id=1195390&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="BEINCONNET CANLI MAC ʜᴅ -5" group-title="|TR| ✪ BIEN SPORTS",BEINCONNET CANLI MAC ʜᴅ -5
+http://uro-levene-1012.mywire.org/index.php?id=1195391&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="BEINCONNET CANLI MAC ʜᴅ -6" group-title="|TR| ✪ BIEN SPORTS",BEINCONNET CANLI MAC ʜᴅ -6
+http://uro-levene-1012.mywire.org/index.php?id=1195392&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="S Sport PLUS 1 ʜᴅ 1080 ( YAYIN ZAMANI AKTİF )" group-title="|TR| ✪ SPORT",S Sport PLUS 1 ʜᴅ 1080 ( YAYIN ZAMANI AKTİF )
+http://uro-levene-1012.mywire.org/index.php?id=1195378&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="S Sport PLUS 3 ʜᴅ 1080 ( YAYIN ZAMANI AKTİF )" group-title="|TR| ✪ SPORT",S Sport PLUS 3 ʜᴅ 1080 ( YAYIN ZAMANI AKTİF )
+http://uro-levene-1012.mywire.org/index.php?id=1195379&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="S Sport PLUS 4 ʜᴅ 1080 ( YAYIN ZAMANI AKTİF )" group-title="|TR| ✪ SPORT",S Sport PLUS 4 ʜᴅ 1080 ( YAYIN ZAMANI AKTİF )
+http://uro-levene-1012.mywire.org/index.php?id=1195380&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="S Sport PLUS 5 ʜᴅ 1080 ( YAYIN ZAMANI AKTİF )" group-title="|TR| ✪ SPORT",S Sport PLUS 5 ʜᴅ 1080 ( YAYIN ZAMANI AKTİF )
+http://uro-levene-1012.mywire.org/index.php?id=1195381&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="S Sport PLUS 6 ʜᴅ 1080 ( YAYIN ZAMANI AKTİF )" group-title="|TR| ✪ SPORT",S Sport PLUS 6 ʜᴅ 1080 ( YAYIN ZAMANI AKTİF )
+http://uro-levene-1012.mywire.org/index.php?id=1195382&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="S Sport PLUS 7 ʜᴅ 1080 ( YAYIN ZAMANI AKTİF )" group-title="|TR| ✪ SPORT",S Sport PLUS 7 ʜᴅ 1080 ( YAYIN ZAMANI AKTİF )
+http://uro-levene-1012.mywire.org/index.php?id=1195383&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="S Sport PLUS 8 ʜᴅ 1080 ( YAYIN ZAMANI AKTİF )" group-title="|TR| ✪ SPORT",S Sport PLUS 8 ʜᴅ 1080 ( YAYIN ZAMANI AKTİF )
+http://uro-levene-1012.mywire.org/index.php?id=1195384&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="S Sport PLUS 9 ʜᴅ 1080 ( YAYIN ZAMANI AKTİF )" group-title="|TR| ✪ SPORT",S Sport PLUS 9 ʜᴅ 1080 ( YAYIN ZAMANI AKTİF )
+http://uro-levene-1012.mywire.org/index.php?id=1195385&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="S Sport PLUS 10 ʜᴅ 1080 ( YAYIN ZAMANI AKTİF )" group-title="|TR| ✪ SPORT",S Sport PLUS 10 ʜᴅ 1080 ( YAYIN ZAMANI AKTİF )
+http://uro-levene-1012.mywire.org/index.php?id=1195386&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|TABii SPOR 1 FHD" group-title="|TR| ✪ TABII SPORTS",|TR|TABii SPOR 1 FHD
+http://uro-levene-1012.mywire.org/index.php?id=1121579&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|TABii SPOR 1 HD" group-title="|TR| ✪ TABII SPORTS",|TR|TABii SPOR 1 HD
+http://uro-levene-1012.mywire.org/index.php?id=1121578&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|TABii SPOR 2 FHD" group-title="|TR| ✪ TABII SPORTS",|TR|TABii SPOR 2 FHD
+http://uro-levene-1012.mywire.org/index.php?id=1121577&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|TABii SPOR 2 HD" group-title="|TR| ✪ TABII SPORTS",|TR|TABii SPOR 2 HD
+http://uro-levene-1012.mywire.org/index.php?id=1121576&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|TABii SPOR 3 FHD" group-title="|TR| ✪ TABII SPORTS",|TR|TABii SPOR 3 FHD
+http://uro-levene-1012.mywire.org/index.php?id=1121575&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|TABii SPOR 3 HD" group-title="|TR| ✪ TABII SPORTS",|TR|TABii SPOR 3 HD
+http://uro-levene-1012.mywire.org/index.php?id=1121574&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|TABii SPOR 4 FHD" group-title="|TR| ✪ TABII SPORTS",|TR|TABii SPOR 4 FHD
+http://uro-levene-1012.mywire.org/index.php?id=1121573&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR||TR|TABii SPOR 4 HD" group-title="|TR| ✪ TABII SPORTS",|TR||TR|TABii SPOR 4 HD
+http://uro-levene-1012.mywire.org/index.php?id=1121572&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|TABii SPOR 5 FHD" group-title="|TR| ✪ TABII SPORTS",|TR|TABii SPOR 5 FHD
+http://uro-levene-1012.mywire.org/index.php?id=1121571&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|TABii SPOR 5 HD" group-title="|TR| ✪ TABII SPORTS",|TR|TABii SPOR 5 HD
+http://uro-levene-1012.mywire.org/index.php?id=1121570&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|TABii SPOR 6 FHD" group-title="|TR| ✪ TABII SPORTS",|TR|TABii SPOR 6 FHD
+http://uro-levene-1012.mywire.org/index.php?id=1121569&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|TABii SPOR 6 HD" group-title="|TR| ✪ TABII SPORTS",|TR|TABii SPOR 6 HD
+http://uro-levene-1012.mywire.org/index.php?id=1121568&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|TABii SPOR 7 FHD" group-title="|TR| ✪ TABII SPORTS",|TR|TABii SPOR 7 FHD
+http://uro-levene-1012.mywire.org/index.php?id=1121567&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|TABii SPOR 7 HD" group-title="|TR| ✪ TABII SPORTS",|TR|TABii SPOR 7 HD
+http://uro-levene-1012.mywire.org/index.php?id=1121566&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|TABii SPOR 8 FHD" group-title="|TR| ✪ TABII SPORTS",|TR|TABii SPOR 8 FHD
+http://uro-levene-1012.mywire.org/index.php?id=1121565&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|TABii SPOR 8 HD" group-title="|TR| ✪ TABII SPORTS",|TR|TABii SPOR 8 HD
+http://uro-levene-1012.mywire.org/index.php?id=1121564&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|TABii SPOR 9 FHD" group-title="|TR| ✪ TABII SPORTS",|TR|TABii SPOR 9 FHD
+http://uro-levene-1012.mywire.org/index.php?id=1121563&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|TABii SPOR 9 HD" group-title="|TR| ✪ TABII SPORTS",|TR|TABii SPOR 9 HD
+http://uro-levene-1012.mywire.org/index.php?id=1121562&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|TABii SPOR 10 FHD" group-title="|TR| ✪ TABII SPORTS",|TR|TABii SPOR 10 FHD
+http://uro-levene-1012.mywire.org/index.php?id=1121561&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|TABii SPOR 10 HD" group-title="|TR| ✪ TABII SPORTS",|TR|TABii SPOR 10 HD
+http://uro-levene-1012.mywire.org/index.php?id=1121560&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  TIVIBU SPOR ᴴᴰ" group-title="|TR| ✪ SPORT",|TR|  TIVIBU SPOR ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=196862&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| TIVIBUSPOR 1 ᴴᴰ" group-title="|TR| ✪ SPORT",|TR| TIVIBUSPOR 1 ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=157125&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| TiViBUSPOR 1 ᴴᴰ" group-title="|TR| ✪ SPORT",|TR| TiViBUSPOR 1 ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=157122&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| TiViBUSPOR 2 ᴴᴰ" group-title="|TR| ✪ SPORT",|TR| TiViBUSPOR 2 ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=157123&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| TiViBUSPOR 3 ᴴᴰ" group-title="|TR| ✪ SPORT",|TR| TiViBUSPOR 3 ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=157124&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| TIVIBU SPOR 1 ᴴᴰ" group-title="|TR| ✪ SPORT",|TR| TIVIBU SPOR 1 ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=54289&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| TIVIBU SPOR 2 ᴴᴰ" group-title="|TR| ✪ SPORT",|TR| TIVIBU SPOR 2 ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=54287&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| TIVIBU SPOR 3 ᴴᴰ" group-title="|TR| ✪ SPORT",|TR| TIVIBU SPOR 3 ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=54288&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| TRT SPOR" group-title="|TR| ✪ SPORT",|TR| TRT SPOR
+http://uro-levene-1012.mywire.org/index.php?id=10783&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| TRT SPOR ᵁᴴᴰ" group-title="|TR| ✪ SPORT",|TR| TRT SPOR ᵁᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=170679&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| TRT SPOR YILDIZ ᵁᴴᴰ" group-title="|TR| ✪ SPORT",|TR| TRT SPOR YILDIZ ᵁᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=170680&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  TRT SPOR ᴴᴰ" group-title="|TR| ✪ SPORT",|TR|  TRT SPOR ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=196810&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  TRT SPOR YILDIZ ᴴᴰ" group-title="|TR| ✪ SPORT",|TR|  TRT SPOR YILDIZ ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=196815&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| TRT 3 SPOR ᴴᴰ" group-title="|TR| ✪ SPORT",|TR| TRT 3 SPOR ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=314888&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| A SPOR ᵁᴴᴰ" group-title="|TR| ✪ SPORT",|TR| A SPOR ᵁᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=170678&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  A SPOR ᴴᴰ" group-title="|TR| ✪ SPORT",|TR|  A SPOR ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=196803&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| A SPOR" group-title="|TR| ✪ SPORT",|TR| A SPOR
+http://uro-levene-1012.mywire.org/index.php?id=10694&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| TJK TV" group-title="|TR| ✪ SPORT",|TR| TJK TV
+http://uro-levene-1012.mywire.org/index.php?id=314884&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  NBA TV ᴴᴰ" group-title="|TR| ✪ SPORT",|TR|  NBA TV ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=196854&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| NBA TV" group-title="|TR| ✪ SPORT",|TR| NBA TV
+http://uro-levene-1012.mywire.org/index.php?id=10690&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| EDGE SPORT ᴴᴰ" group-title="|TR| ✪ SPORT",|TR| EDGE SPORT ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=314798&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| HT SPORT" group-title="|TR| ✪ SPORT",|TR| HT SPORT
+http://uro-levene-1012.mywire.org/index.php?id=1491513&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| YEDEK | SMARTSPOR ᴴᴰ" group-title="|TR| ✪ SPORT",|TR| YEDEK | SMARTSPOR ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=314802&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| HAM | SMARTSPOR 2 ᴴᴰ" group-title="|TR| ✪ SPORT",|TR| HAM | SMARTSPOR 2 ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=314801&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| HAM | SARANSPORT 1" group-title="|TR| ✪ SPORT",|TR| HAM | SARANSPORT 1
+http://uro-levene-1012.mywire.org/index.php?id=314800&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| SARANSPORT 2 ᵁᴴᴰ" group-title="|TR| ✪ SPORT",|TR| SARANSPORT 2 ᵁᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=314890&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| GS TV ᴴᴰ" group-title="|TR| ✪ SPORT",|TR| GS TV ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=314797&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| SARANSPORT ᴴᴰ 2" group-title="|TR| ✪ SPORT",|TR| SARANSPORT ᴴᴰ 2
+http://uro-levene-1012.mywire.org/index.php?id=314889&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| FB TV ᴴᴰ" group-title="|TR| ✪ SPORT",|TR| FB TV ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=314796&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| CBC SPORT ᴴᴰ" group-title="|TR| ✪ SPORT",|TR| CBC SPORT ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=314887&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  FIGHTBOX ᴴᴰ" group-title="|TR| ✪ SPORT",|TR|  FIGHTBOX ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=196821&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| NTV SPOR" group-title="|TR| ✪ SPORT",|TR| NTV SPOR
+http://uro-levene-1012.mywire.org/index.php?id=10693&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  EUROSPORT 1 ᴴᴰ" group-title="|TR| ✪ SPORT",|TR|  EUROSPORT 1 ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=196844&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  EUROSPORT 2 ᴴᴰ" group-title="|TR| ✪ SPORT",|TR|  EUROSPORT 2 ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=196845&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| Eurosport 2" group-title="|TR| ✪ SPORT",|TR| Eurosport 2
+http://uro-levene-1012.mywire.org/index.php?id=10691&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| KANAL V" group-title="|TR| ✪ YEREL",|TR| KANAL V
+http://uro-levene-1012.mywire.org/index.php?id=314389&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| KANAL 15" group-title="|TR| ✪ YEREL",|TR| KANAL 15
+http://uro-levene-1012.mywire.org/index.php?id=314390&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| KANAL 3" group-title="|TR| ✪ YEREL",|TR| KANAL 3
+http://uro-levene-1012.mywire.org/index.php?id=314391&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| HRT AKDENIZ" group-title="|TR| ✪ YEREL",|TR| HRT AKDENIZ
+http://uro-levene-1012.mywire.org/index.php?id=314392&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| ER TV" group-title="|TR| ✪ YEREL",|TR| ER TV
+http://uro-levene-1012.mywire.org/index.php?id=314393&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| DRT DENIZLI TV" group-title="|TR| ✪ YEREL",|TR| DRT DENIZLI TV
+http://uro-levene-1012.mywire.org/index.php?id=314394&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| KANAL 23" group-title="|TR| ✪ YEREL",|TR| KANAL 23
+http://uro-levene-1012.mywire.org/index.php?id=314395&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| KON TV ᴴᴰ" group-title="|TR| ✪ YEREL",|TR| KON TV ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=314397&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| AKSU TV" group-title="|TR| ✪ YEREL",|TR| AKSU TV
+http://uro-levene-1012.mywire.org/index.php?id=314398&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| KANAL 26" group-title="|TR| ✪ YEREL",|TR| KANAL 26
+http://uro-levene-1012.mywire.org/index.php?id=314399&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| KANAL 33" group-title="|TR| ✪ YEREL",|TR| KANAL 33
+http://uro-levene-1012.mywire.org/index.php?id=314400&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| KANAL 68" group-title="|TR| ✪ YEREL",|TR| KANAL 68
+http://uro-levene-1012.mywire.org/index.php?id=314401&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| ES TV" group-title="|TR| ✪ YEREL",|TR| ES TV
+http://uro-levene-1012.mywire.org/index.php?id=314396&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| KANAL URFA" group-title="|TR| ✪ YEREL",|TR| KANAL URFA
+http://uro-levene-1012.mywire.org/index.php?id=314402&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| KENT TURK" group-title="|TR| ✪ YEREL",|TR| KENT TURK
+http://uro-levene-1012.mywire.org/index.php?id=314403&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| MAVI KARADENIZ" group-title="|TR| ✪ YEREL",|TR| MAVI KARADENIZ
+http://uro-levene-1012.mywire.org/index.php?id=314404&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| TV 52" group-title="|TR| ✪ YEREL",|TR| TV 52
+http://uro-levene-1012.mywire.org/index.php?id=185791&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| PAMUKKALE TV" group-title="|TR| ✪ YEREL",|TR| PAMUKKALE TV
+http://uro-levene-1012.mywire.org/index.php?id=314405&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| KOZA TV" group-title="|TR| ✪ YEREL",|TR| KOZA TV
+http://uro-levene-1012.mywire.org/index.php?id=314406&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| TRT HABER ᵁᴴᴰ" group-title="|TR| ✪ HABER",|TR| TRT HABER ᵁᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=170673&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  TRT HABER ᴴᴰ" group-title="|TR| ✪ HABER",|TR|  TRT HABER ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=196809&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| TRT HABER" group-title="|TR| ✪ HABER",|TR| TRT HABER
+http://uro-levene-1012.mywire.org/index.php?id=10785&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  iLKE TV ʜᴅ" group-title="|TR| ✪ HABER",|TR|  iLKE TV ʜᴅ
+http://uro-levene-1012.mywire.org/index.php?id=1236190&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| NTV HABER ᵁᴴᴰ" group-title="|TR| ✪ HABER",NTVFHD 151
+http://uro-levene-1012.mywire.org/index.php?id=170676&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  NTV ᴴᴰ" group-title="|TR| ✪ HABER",|TR|  NTV ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=196797&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| NTV HABER" group-title="|TR| ✪ HABER",NTVHD 152
+http://uro-levene-1012.mywire.org/index.php?id=10756&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| SÖZCÜ SZC TV" group-title="|TR| ✪ HABER",SZCTVFHD 144
+http://uro-levene-1012.mywire.org/index.php?id=314430&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| CNN TÜRK ᵁᴴᴰ" group-title="|TR| ✪ HABER",CNNTURKFHD 149
+http://uro-levene-1012.mywire.org/index.php?id=170672&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  CNN TÜRK ᴴᴰ" group-title="|TR| ✪ HABER",CNNTURKHD 150
+http://uro-levene-1012.mywire.org/index.php?id=196798&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| CNN TURK" group-title="|TR| ✪ HABER",CNNTURK x
+http://uro-levene-1012.mywire.org/index.php?id=10777&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| HABER GLOBAL ᴴᴰ" group-title="|TR| ✪ HABER",|TR| HABER GLOBAL ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=314417&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| TGRT HABER" group-title="|TR| ✪ HABER",|TR| TGRT HABER
+http://uro-levene-1012.mywire.org/index.php?id=10755&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| TGRT HABER ᵁᴴᴰ" group-title="|TR| ✪ HABER",|TR| TGRT HABER ᵁᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=170677&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  HABERTURK ᴴᴰ" group-title="|TR| ✪ HABER",HABERTURKHD 148
+http://uro-levene-1012.mywire.org/index.php?id=196799&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| HABER TURK ᵁᴴᴰ" group-title="|TR| ✪ HABER",HABERTURKFHD 147
+http://uro-levene-1012.mywire.org/index.php?id=170675&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| HABERTURK" group-title="|TR| ✪ HABER",HABERTURK x
+http://uro-levene-1012.mywire.org/index.php?id=10780&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  A HABER ᴴᴰ" group-title="|TR| ✪ HABER",|TR|  A HABER ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=196800&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| A HABER" group-title="|TR| ✪ HABER",|TR| A HABER
+http://uro-levene-1012.mywire.org/index.php?id=10791&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| A HABER ᵁᴴᴰ" group-title="|TR| ✪ HABER",|TR| A HABER ᵁᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=170671&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| TV 100 ᵁᴴᴰ" group-title="|TR| ✪ HABER",|TR| TV 100 ᵁᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=170667&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| 24 TV" group-title="|TR| ✪ HABER",|TR| 24 TV
+http://uro-levene-1012.mywire.org/index.php?id=10760&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  24 ᴴᴰ" group-title="|TR| ✪ HABER",|TR|  24 ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=196804&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| AKIT TV ᴴᴰ" group-title="|TR| ✪ HABER",|TR| AKIT TV ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=314418&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| TVNET" group-title="|TR| ✪ HABER",|TR| TVNET
+http://uro-levene-1012.mywire.org/index.php?id=10771&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| ULKE TV" group-title="|TR| ✪ HABER",ULKETV 133
+http://uro-levene-1012.mywire.org/index.php?id=10770&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| HALK TV ᴴᴰ" group-title="|TR| ✪ HABER",|TR| HALK TV ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=314419&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| TELE 1 ᴴᴰ" group-title="|TR| ✪ HABER",|TR| TELE 1 ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=314421&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| MEDYA HABER" group-title="|TR| ✪ HABER",|TR| MEDYA HABER
+http://uro-levene-1012.mywire.org/index.php?id=314429&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  EKOL TV ʜᴅ FHD" group-title="|TR| ✪ HABER",|TR|  EKOL TV ʜᴅ FHD
+http://uro-levene-1012.mywire.org/index.php?id=1165404&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  EKOL TV ʜᴅ HD" group-title="|TR| ✪ HABER",|TR|  EKOL TV ʜᴅ HD
+http://uro-levene-1012.mywire.org/index.php?id=1165405&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  HABERTURK ʜᴅ FHD" group-title="|TR| ✪ HABER",HABERTURK x
+http://uro-levene-1012.mywire.org/index.php?id=1165406&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  HABERTURK ʜᴅ HD" group-title="|TR| ✪ HABER",HABERTURK x
+http://uro-levene-1012.mywire.org/index.php?id=1165407&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  TV 100 ʜᴅ FHD" group-title="|TR| ✪ HABER",|TR|  TV 100 ʜᴅ FHD
+http://uro-levene-1012.mywire.org/index.php?id=1165402&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  TV 100 ʜᴅ HD" group-title="|TR| ✪ HABER",|TR|  TV 100 ʜᴅ HD
+http://uro-levene-1012.mywire.org/index.php?id=1165403&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| CAN TV HD" group-title="|TR| ✪ HABER",|TR| CAN TV HD
+http://uro-levene-1012.mywire.org/index.php?id=865815&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| YOL TV" group-title="|TR| ✪ HABER",|TR| YOL TV
+http://uro-levene-1012.mywire.org/index.php?id=185786&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| ARTI TV ᴴᴰ" group-title="|TR| ✪ HABER",|TR| ARTI TV ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=185785&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| KRT ᴴᴰ" group-title="|TR| ✪ HABER",|TR| KRT ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=314422&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| KRT ᴴᴰ" group-title="|TR| ✪ HABER",|TR| KRT ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=314423&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| FLASHTV HABBER ᴴᴰ" group-title="|TR| ✪ HABER",|TR| FLASHTV HABBER ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=314428&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| TİVİ 6 ᴴᴰ" group-title="|TR| ✪ HABER",|TR| TİVİ 6 ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=314425&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| ON4 TV ᴴᴰ" group-title="|TR| ✪ HABER",|TR| ON4 TV ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=314427&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| UZAY HABER" group-title="|TR| ✪ HABER",|TR| UZAY HABER
+http://uro-levene-1012.mywire.org/index.php?id=314424&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| BLOOMBERG HT ᵁᴴᴰ" group-title="|TR| ✪ HABER",|TR| BLOOMBERG HT ᵁᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=170674&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  BLOOMBERGHT ᴴᴰ" group-title="|TR| ✪ HABER",|TR|  BLOOMBERGHT ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=196806&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| BLOOMBERG" group-title="|TR| ✪ HABER",|TR| BLOOMBERG
+http://uro-levene-1012.mywire.org/index.php?id=10778&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  A PARA ᴴᴰ" group-title="|TR| ✪ HABER",|TR|  A PARA ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=196802&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| EKOTURK ᴴᴰ" group-title="|TR| ✪ HABER",|TR| EKOTURK ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=314426&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| TRT WORLD ᵁᴴᴰ" group-title="|TR| ✪ HABER",|TR| TRT WORLD ᵁᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=170670&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  TRT WORLD ᴴᴰ" group-title="|TR| ✪ HABER",|TR|  TRT WORLD ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=196811&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| TRT WORLD" group-title="|TR| ✪ HABER",|TR| TRT WORLD
+http://uro-levene-1012.mywire.org/index.php?id=10782&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| A NEWS ᴴᴰ" group-title="|TR| ✪ HABER",|TR| A NEWS ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=185788&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  A NEWS ᴴᴰ" group-title="|TR| ✪ HABER",|TR|  A NEWS ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=196801&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| TRT DIYANET" group-title="|TR| ✪ DIN",|TR| TRT DIYANET
+http://uro-levene-1012.mywire.org/index.php?id=10786&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| VAV TV ᴴᴰ" group-title="|TR| ✪ DIN",|TR| VAV TV ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=314437&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  SEMERKAND ᴴᴰ" group-title="|TR| ✪ DIN",|TR|  SEMERKAND ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=196861&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| LALEGUL TV" group-title="|TR| ✪ DIN",|TR| LALEGUL TV
+http://uro-levene-1012.mywire.org/index.php?id=185789&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| FM TV ᴴᴰ" group-title="|TR| ✪ DIN",|TR| FM TV ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=314431&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| KUDUS TV" group-title="|TR| ✪ DIN",|TR| KUDUS TV
+http://uro-levene-1012.mywire.org/index.php?id=314432&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| REHBER TV" group-title="|TR| ✪ DIN",|TR| REHBER TV
+http://uro-levene-1012.mywire.org/index.php?id=314433&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| DOST TV" group-title="|TR| ✪ DIN",|TR| DOST TV
+http://uro-levene-1012.mywire.org/index.php?id=314434&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| KABE TV" group-title="|TR| ✪ DIN",|TR| KABE TV
+http://uro-levene-1012.mywire.org/index.php?id=314435&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| MEDINE TV" group-title="|TR| ✪ DIN",|TR| MEDINE TV
+http://uro-levene-1012.mywire.org/index.php?id=314438&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| VUSLAT TV" group-title="|TR| ✪ DIN",|TR| VUSLAT TV
+http://uro-levene-1012.mywire.org/index.php?id=314436&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| VUSLAT TV" group-title="|TR| ✪ DIN",|TR| VUSLAT TV
+http://uro-levene-1012.mywire.org/index.php?id=314440&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| MELTEM TV" group-title="|TR| ✪ DIN",|TR| MELTEM TV
+http://uro-levene-1012.mywire.org/index.php?id=314439&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="NUMBERONE FM TURK" group-title="|TR| ✪ RADIO",NUMBERONE FM TURK
+http://uro-levene-1012.mywire.org/index.php?id=314374&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="NUMBERONE FM" group-title="|TR| ✪ RADIO",NUMBERONE FM
+http://uro-levene-1012.mywire.org/index.php?id=314375&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| LIVING MUSIC ᴴᴰ" group-title="|TR| ✪ MUZIK",|TR| LIVING MUSIC ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=314387&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| LIVING SOMINE" group-title="|TR| ✪ MUZIK",|TR| LIVING SOMINE
+http://uro-levene-1012.mywire.org/index.php?id=314388&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| KRAL TV ᴴᴰ" group-title="|TR| ✪ MUZIK",|TR| KRAL TV ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=314386&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| KRALPOP ᴴᴰ" group-title="|TR| ✪ MUZIK",|TR| KRALPOP ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=314385&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| KRALPOP ᴴᴰ" group-title="|TR| ✪ MUZIK",|TR| KRALPOP ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=314376&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| NR1 TURK ᴴᴰ" group-title="|TR| ✪ MUZIK",|TR| NR1 TURK ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=314377&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| DREAM TURK ᴴᴰ" group-title="|TR| ✪ MUZIK",|TR| DREAM TURK ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=314378&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| NR1 ᴴᴰ" group-title="|TR| ✪ MUZIK",|TR| NR1 ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=314379&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| POWERTURK" group-title="|TR| ✪ MUZIK",|TR| POWERTURK
+http://uro-levene-1012.mywire.org/index.php?id=10728&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| POWER TV ᴴᴰ" group-title="|TR| ✪ MUZIK",|TR| POWER TV ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=314380&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| VATAN TV" group-title="|TR| ✪ MUZIK",|TR| VATAN TV
+http://uro-levene-1012.mywire.org/index.php?id=314382&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| ANADOLU DERNEK" group-title="|TR| ✪ MUZIK",|TR| ANADOLU DERNEK
+http://uro-levene-1012.mywire.org/index.php?id=314383&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| TRT MUZIK" group-title="|TR| ✪ MUZIK",|TR| TRT MUZIK
+http://uro-levene-1012.mywire.org/index.php?id=10784&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR|  TRT MUZIK ᴴᴰ" group-title="|TR| ✪ MUZIK",|TR|  TRT MUZIK ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=196813&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| TEMPO tv" group-title="|TR| ✪ MUZIK",|TR| TEMPO tv
+http://uro-levene-1012.mywire.org/index.php?id=314384&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| Al Turkmenia TV" group-title="|TR| ✪ ULUSAL",|TR| Al Turkmenia TV
+http://uro-levene-1012.mywire.org/index.php?id=280414&token=DeaTHLesS
+#EXTINF:-1 tvg-id="" tvg-name="|TR| Turkmeneli TV ᴴᴰ" group-title="|TR| ✪ ULUSAL",|TR| Turkmeneli TV ᴴᴰ
+http://uro-levene-1012.mywire.org/index.php?id=280417&token=DeaTHLesS
