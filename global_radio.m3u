@@ -486,10 +486,6 @@ https://cbcradiolive.akamaized.net/hls/live/2041036/ES_R1ETR/master.m3u8
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://rcavliveaudio.akamaized.net/hls/live/2006635/P-2QMTL0_MTL/playlist.m3u8
 
-#EXTINF:-1 tvg-id="Canada_7" tvg-name="Labgate - Progressive Rock" tvg-logo="" group-title="Canada",Labgate - Progressive Rock
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://s2.ssl-stream.com/radio/8180/radio.mp3
-
 #EXTINF:-1 tvg-id="" tvg-logo="" group-title="Chile",Chile
 #EXTGRP:Chile
 
@@ -1303,13 +1299,13 @@ http://streams.radiobob.de/bob-classicrock/mp3-192/streams.radiobob.de/
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://stream.laut.fm/acidjazz
 
-#EXTINF:-1 tvg-id="Germany_66" tvg-name="Antenne Bayern - Oldies but Goldies" tvg-logo="" group-title="Germany",Antenne Bayern - Oldies but Goldies
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://mp3channels.webradio.antenne.de/oldies-but-goldies
-
-#EXTINF:-1 tvg-id="Germany_67" tvg-name="104.6 RTL" tvg-logo="http://www.104.6rtl.com/assets/icons/icon-152x152.png" group-title="Germany",104.6 RTL
+#EXTINF:-1 tvg-id="Germany_66" tvg-name="104.6 RTL" tvg-logo="http://www.104.6rtl.com/assets/icons/icon-152x152.png" group-title="Germany",104.6 RTL
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://stream.104.6rtl.com/rtl-live/mp3-192/radio-browser.info/
+
+#EXTINF:-1 tvg-id="Germany_67" tvg-name="Antenne Bayern - Oldies but Goldies" tvg-logo="" group-title="Germany",Antenne Bayern - Oldies but Goldies
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://mp3channels.webradio.antenne.de/oldies-but-goldies
 
 #EXTINF:-1 tvg-id="" tvg-logo="" group-title="Ghana",Ghana
 #EXTGRP:Ghana
@@ -1544,13 +1540,13 @@ http://dard.out.airtime.pro:8000/dard_a
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://sonic.onlineaudience.co.uk/8114/stream?listening-from-radio-garden=1657427657
 
-#EXTINF:-1 tvg-id="India_15" tvg-name="AIR Fm Gold Delhi" tvg-logo="https://liveradios.in/wp-content/uploads/output-onlinepngtools-1-150x150.png" group-title="India",AIR Fm Gold Delhi
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://airhlspush.pc.cdn.bitgravity.com/httppush/hlspbaudio005/hlspbaudio00564kbps.m3u8
-
-#EXTINF:-1 tvg-id="India_16" tvg-name="Radio Mirchi Hindi" tvg-logo="https://onlineradiohub.com/wp-content/uploads/2023/05/radio-mirchi-hindi-fm.jpg" group-title="India",Radio Mirchi Hindi
+#EXTINF:-1 tvg-id="India_15" tvg-name="Radio Mirchi Hindi" tvg-logo="https://onlineradiohub.com/wp-content/uploads/2023/05/radio-mirchi-hindi-fm.jpg" group-title="India",Radio Mirchi Hindi
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://eu8.fastcast4u.com/proxy/clyedupq/stream
+
+#EXTINF:-1 tvg-id="India_16" tvg-name="AIR Fm Gold Delhi" tvg-logo="https://liveradios.in/wp-content/uploads/output-onlinepngtools-1-150x150.png" group-title="India",AIR Fm Gold Delhi
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://airhlspush.pc.cdn.bitgravity.com/httppush/hlspbaudio005/hlspbaudio00564kbps.m3u8
 
 #EXTINF:-1 tvg-id="India_17" tvg-name="Mirchi Top 20" tvg-logo="http://mirchi.in/favicon-196x196.png" group-title="India",Mirchi Top 20
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -2091,6 +2087,10 @@ http://generationdance.lu/radio/8030/hd
 #EXTINF:-1 tvg-id="Madagascar_0" tvg-name="Radio des jeunes (RDJ)" tvg-logo="https://becakgalon.com/img/begal-fiveicon.png" group-title="Madagascar",Radio des jeunes (RDJ)
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://rdj966.net:8000/rdj966.mp3
+
+#EXTINF:-1 tvg-id="Madagascar_1" tvg-name="Radio Don Bosco" tvg-logo="" group-title="Madagascar",Radio Don Bosco
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://onair15.xdevel.com:9248/;
 
 #EXTINF:-1 tvg-id="" tvg-logo="" group-title="Malawi",Malawi
 #EXTGRP:Malawi
