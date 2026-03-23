@@ -3,6 +3,8 @@
 https://saran-live.ercdn.net/fx/index.m3u8
 #EXTINF:-1 tvg-id="1" tvg-logo="https://feo.kablowebtv.com/resize/168A635D265A4328C2883FB4CD8FF/0/0/Vod/HLS/22c5fe05-d70b-4c68-98fb-03bae4870e81.png" group-title="Sinema ve Dizi",Sinema Tv
 http://65.108.239.207:80/sinema/index.m3u8
+#EXTINF:-1 tvg-id="1" tvg-logo="https://itv224226.tmp.tivibu.com.tr:6430/images/poster/20250801839032.png" group-title="Sinema ve Dizi",Sinema Tv 2
+http://65.108.239.207:80/sinema2/index.m3u8
 #EXTINF:-1 tvg-id="2" tvg-logo="https://feo.kablowebtv.com/resize/168A635D265A4328C2883FB4CD8FF/500/500/channels/logos/bd434731-0e47-4a37-997e-49f71340fcc6.png" group-title="Sinema ve Dizi",Sinema Aksiyon
 http://65.108.239.207:80/sinemaaksiyon/index.m3u8
 #EXTINF:-1 tvg-id="3" tvg-logo="https://feo.kablowebtv.com/resize/168A635D265A4328C2883FB4CD8FF/500/500/channels/logos/ae3d90a0-37ee-4e48-a6bc-1375e5f1329a.png" group-title="Sinema ve Dizi",Sinema Yerli
@@ -11,6 +13,8 @@ http://65.108.239.207:80/sinemayerli/index.m3u8
 http://65.108.239.207:80/sinemaaile/index.m3u8
 #EXTINF:-1 tvg-id="5" tvg-logo="https://feo.kablowebtv.com/resize/168A635D265A4328C2883FB4CD8FF/500/500/channels/logos/8d9fbebd-cade-492d-9cb4-6522cb558794.png" group-title="Sinema ve Dizi",Sinema 1001
 http://65.108.239.207:80/sinema1001/index.m3u8
+#EXTINF:-1 tvg-id="5" tvg-logo="https://itv224226.tmp.tivibu.com.tr:6430/images/poster/20250801838773.png" group-title="Sinema ve Dizi",Sinema 1002
+http://65.108.239.207:80/sinema1002/index.m3u8
 #EXTINF:-1 tvg-id="6" tvg-logo="https://feo.kablowebtv.com/resize/168A635D265A4328C2883FB4CD8FF/500/500/channels/logos/4145ea10-96ad-400d-8870-f22a075f4add.png" group-title="Sinema ve Dizi",Sinema Komedi
 http://65.108.239.207:80/sinemakomedi/index.m3u8
 #EXTINF:-1 tvg-id="sinemaaksiyon2" tvg-logo="https://img.dsmartgo.com.tr/content/M/RG/22895/Thumbnail.png" tvg-name="Sinema Aksiyon 2" group-title="Sinema Kanalları",Sinema Aksiyon 2
