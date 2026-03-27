@@ -1,19 +1,4 @@
 #EXTM3U
-#EXTINF:-1 tvg-logo="https://patronsports2.cfd/img/logos/nebraska.png" group-title="CANLI MAÇLAR - NCAA",Nebraska - Iowa [02:30]
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36
-#EXTVLCOPT:http-referrer=https://patronsports2.cfd/
-https://0ch.d72577a9dd0ec41.sbs/ss/mono.m3u8
-# İki logo: https://patronsports2.cfd/img/logos/nebraska.png | https://patronsports2.cfd/img/logos/iowa.png
-#EXTINF:-1 tvg-logo="https://patronsports2.cfd/img/logos/houstonrockets.png" group-title="CANLI MAÇLAR - NCAA",Houston - Illinois [05:05]
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36
-#EXTVLCOPT:http-referrer=https://patronsports2.cfd/
-https://0ch.d72577a9dd0ec41.sbs/ss/mono.m3u8
-# İki logo: https://patronsports2.cfd/img/logos/houstonrockets.png | https://patronsports2.cfd/img/logos/illinois.png
-#EXTINF:-1 tvg-logo="https://patronsports2.cfd/img/logos/f1.png" group-title="CANLI MAÇLAR - Formula 1",Formula 1 - Antrenman Turları [09:00]
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36
-#EXTVLCOPT:http-referrer=https://patronsports2.cfd/
-https://0ch.d72577a9dd0ec41.sbs/b4/mono.m3u8
-# İki logo: https://patronsports2.cfd/img/logos/f1.png | https://patronsports2.cfd/img/logos/f1.png
 #EXTINF:-1 tvg-logo="https://patronsports2.cfd/img/logos/avusturya.png" group-title="CANLI MAÇLAR - Hazırlık Maçı",Avusturya - Gana [20:00]
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36
 #EXTVLCOPT:http-referrer=https://patronsports2.cfd/
@@ -39,21 +24,6 @@ https://0ch.d72577a9dd0ec41.sbs/ex3/mono.m3u8
 #EXTVLCOPT:http-referrer=https://patronsports2.cfd/
 https://0ch.d72577a9dd0ec41.sbs/ex4/mono.m3u8
 # İki logo: https://patronsports2.cfd/img/logos/ispanya.png | https://patronsports2.cfd/img/logos/sirbistan.png
-#EXTINF:-1 tvg-logo="https://patronsports2.cfd/img/logos/turkiye.png" group-title="CANLI MAÇLAR - UEFA U19 Avrupa Şampiyonasi",Türkiye - Ermenistan [16:00]
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36
-#EXTVLCOPT:http-referrer=https://patronsports2.cfd/
-https://0ch.d72577a9dd0ec41.sbs/trtspor/mono.m3u8
-# İki logo: https://patronsports2.cfd/img/logos/turkiye.png | https://patronsports2.cfd/img/logos/ermanistan.png
-#EXTINF:-1 tvg-logo="https://patronsports2.cfd/img/logos/trabzonspor.png" group-title="CANLI MAÇLAR - Basketbol Süper Lig",Trabzonspor - Bahçeşehir [18:00]
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36
-#EXTVLCOPT:http-referrer=https://patronsports2.cfd/
-https://0ch.d72577a9dd0ec41.sbs/b5/mono.m3u8
-# İki logo: https://patronsports2.cfd/img/logos/trabzonspor.png | https://patronsports2.cfd/img/logos/bahcesehir.png
-#EXTINF:-1 tvg-logo="https://patronsports2.cfd/img/logos/manisa.png" group-title="CANLI MAÇLAR - Basketbol Süper Ligi",Manisa BB - Beşiktaş [18:00]
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36
-#EXTVLCOPT:http-referrer=https://patronsports2.cfd/
-https://0ch.d72577a9dd0ec41.sbs/patron/mono.m3u8
-# İki logo: https://patronsports2.cfd/img/logos/manisa.png | https://patronsports2.cfd/img/logos/besiktas.png
 #EXTINF:-1 tvg-logo="https://patronsports2.cfd/img/logos/buyukcekmece.png" group-title="CANLI MAÇLAR - Basketbol Süper Lig",Büyükçekmece - Türk Telekom [20:30]
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36
 #EXTVLCOPT:http-referrer=https://patronsports2.cfd/
