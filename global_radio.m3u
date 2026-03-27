@@ -1047,13 +1047,13 @@ http://wdr-1live-live.icecast.wdr.de/wdr/1live/live/mp3/128/stream.mp3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://streams.80s80s.de/web/mp3-192/streams.80s80s.de/
 
-#EXTINF:-1 tvg-id="Germany_4" tvg-name="Sunshine Live - Die 90er" tvg-logo="" group-title="Germany",Sunshine Live - Die 90er
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://stream.sunshine-live.de/90er/mp3-192/stream.sunshine-live.de
-
-#EXTINF:-1 tvg-id="Germany_5" tvg-name="90s90s Hits" tvg-logo="" group-title="Germany",90s90s Hits
+#EXTINF:-1 tvg-id="Germany_4" tvg-name="90s90s Hits" tvg-logo="" group-title="Germany",90s90s Hits
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://streams.90s90s.de/pop/mp3-192/streams.90s90s.de/
+
+#EXTINF:-1 tvg-id="Germany_5" tvg-name="Sunshine Live - Die 90er" tvg-logo="" group-title="Germany",Sunshine Live - Die 90er
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://stream.sunshine-live.de/90er/mp3-192/stream.sunshine-live.de
 
 #EXTINF:-1 tvg-id="Germany_6" tvg-name="90s90s HipHop & Rap" tvg-logo="http://aggregatorservice.loverad.io/wp-content/uploads/2018/10/90s90s_hiphoprap_600x600.png" group-title="Germany",90s90s HipHop & Rap
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -1295,13 +1295,13 @@ http://streams.radiobob.de/bob-classicrock/mp3-192/streams.radiobob.de/
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://stream.laut.fm/acidjazz
 
-#EXTINF:-1 tvg-id="Germany_66" tvg-name="Antenne Bayern - Oldies but Goldies" tvg-logo="" group-title="Germany",Antenne Bayern - Oldies but Goldies
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://mp3channels.webradio.antenne.de/oldies-but-goldies
-
-#EXTINF:-1 tvg-id="Germany_67" tvg-name="104.6 RTL" tvg-logo="http://www.104.6rtl.com/assets/icons/icon-152x152.png" group-title="Germany",104.6 RTL
+#EXTINF:-1 tvg-id="Germany_66" tvg-name="104.6 RTL" tvg-logo="http://www.104.6rtl.com/assets/icons/icon-152x152.png" group-title="Germany",104.6 RTL
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://stream.104.6rtl.com/rtl-live/mp3-192/radio-browser.info/
+
+#EXTINF:-1 tvg-id="Germany_67" tvg-name="Antenne Bayern - Oldies but Goldies" tvg-logo="" group-title="Germany",Antenne Bayern - Oldies but Goldies
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://mp3channels.webradio.antenne.de/oldies-but-goldies
 
 #EXTINF:-1 tvg-id="" tvg-logo="" group-title="Ghana",Ghana
 #EXTGRP:Ghana
@@ -1866,13 +1866,13 @@ http://icecast.unitedradio.it/RMC.mp3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://icecast.unitedradio.it/Virgin.mp3
 
-#EXTINF:-1 tvg-id="Italy_9" tvg-name="Radio 105 - Dance 90" tvg-logo="" group-title="Italy",Radio 105 - Dance 90
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://icy.unitedradio.it/105Dance90.mp3
-
-#EXTINF:-1 tvg-id="Italy_10" tvg-name="Radio Armisa" tvg-logo="https://armisa.it/assets/favicon/android-chrome-512x512.png" group-title="Italy",Radio Armisa
+#EXTINF:-1 tvg-id="Italy_9" tvg-name="Radio Armisa" tvg-logo="https://armisa.it/assets/favicon/android-chrome-512x512.png" group-title="Italy",Radio Armisa
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://onair.armisa.it/listen/armisa/radio.mp3
+
+#EXTINF:-1 tvg-id="Italy_10" tvg-name="Radio 105 - Dance 90" tvg-logo="" group-title="Italy",Radio 105 - Dance 90
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://icy.unitedradio.it/105Dance90.mp3
 
 #EXTINF:-1 tvg-id="Italy_11" tvg-name="Radio 80" tvg-logo="https://upload.wikimedia.org/wikipedia/it/1/1b/Radio80.jpg" group-title="Italy",Radio 80
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -1890,13 +1890,13 @@ http://icy.unitedradio.it/VirginRock70.mp3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://77.241.4.100:8020/;
 
-#EXTINF:-1 tvg-id="Italy_15" tvg-name="Tele Radio Stereo" tvg-logo="http://cdn-radiotime-logos.tunein.com/s17518q.png" group-title="Italy",Tele Radio Stereo
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://trsw.inmystream.info:8068/;stream.mp3
-
-#EXTINF:-1 tvg-id="Italy_16" tvg-name="Virgin Radio Rock '80" tvg-logo="" group-title="Italy",Virgin Radio Rock '80
+#EXTINF:-1 tvg-id="Italy_15" tvg-name="Virgin Radio Rock '80" tvg-logo="" group-title="Italy",Virgin Radio Rock '80
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://icy.unitedradio.it/VirginRock80.mp3
+
+#EXTINF:-1 tvg-id="Italy_16" tvg-name="Tele Radio Stereo" tvg-logo="http://cdn-radiotime-logos.tunein.com/s17518q.png" group-title="Italy",Tele Radio Stereo
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://trsw.inmystream.info:8068/;stream.mp3
 
 #EXTINF:-1 tvg-id="Italy_17" tvg-name="RMC 80" tvg-logo="" group-title="Italy",RMC 80
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -2897,13 +2897,13 @@ http://www.quran-radio.org:8002/
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://stream.srg-ssr.ch/m/rsj/mp3_128
 
-#EXTINF:-1 tvg-id="Switzerland_1" tvg-name="1.FM - Deep House Radio" tvg-logo="" group-title="Switzerland",1.FM - Deep House Radio
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://strm112.1.fm/deephouse_mobile_mp3
-
-#EXTINF:-1 tvg-id="Switzerland_2" tvg-name="1.FM - Amsterdam Trance Radio" tvg-logo="" group-title="Switzerland",1.FM - Amsterdam Trance Radio
+#EXTINF:-1 tvg-id="Switzerland_1" tvg-name="1.FM - Amsterdam Trance Radio" tvg-logo="" group-title="Switzerland",1.FM - Amsterdam Trance Radio
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://strm112.1.fm/atr_mobile_mp3
+
+#EXTINF:-1 tvg-id="Switzerland_2" tvg-name="1.FM - Deep House Radio" tvg-logo="" group-title="Switzerland",1.FM - Deep House Radio
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://strm112.1.fm/deephouse_mobile_mp3
 
 #EXTINF:-1 tvg-id="Switzerland_3" tvg-name="1.FM - Classic Rock Replay Radio" tvg-logo="" group-title="Switzerland",1.FM - Classic Rock Replay Radio
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -3487,13 +3487,13 @@ http://media-sov.musicradio.com/LBCLondon
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://media-ice.musicradio.com/LBC1152.m3u
 
-#EXTINF:-1 tvg-id="The United Kingdom Of Great Britain And Northern Ireland_31" tvg-name="Classic FM UK" tvg-logo="" group-title="The United Kingdom Of Great Britain And Northern Ireland",Classic FM UK
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://media-the.musicradio.com/ClassicFM
-
-#EXTINF:-1 tvg-id="The United Kingdom Of Great Britain And Northern Ireland_32" tvg-name="Heart London 106.2 [AAC]" tvg-logo="http://www.heart.co.uk/assets_v4r/heart/img/favicon-196x196.png" group-title="The United Kingdom Of Great Britain And Northern Ireland",Heart London 106.2 [AAC]
+#EXTINF:-1 tvg-id="The United Kingdom Of Great Britain And Northern Ireland_31" tvg-name="Heart London 106.2 [AAC]" tvg-logo="http://www.heart.co.uk/assets_v4r/heart/img/favicon-196x196.png" group-title="The United Kingdom Of Great Britain And Northern Ireland",Heart London 106.2 [AAC]
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://media-ice.musicradio.com/HeartLondon
+
+#EXTINF:-1 tvg-id="The United Kingdom Of Great Britain And Northern Ireland_32" tvg-name="Classic FM UK" tvg-logo="" group-title="The United Kingdom Of Great Britain And Northern Ireland",Classic FM UK
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://media-the.musicradio.com/ClassicFM
 
 #EXTINF:-1 tvg-id="The United Kingdom Of Great Britain And Northern Ireland_33" tvg-name="BBC Afrique Radio" tvg-logo="https://static.files.bbci.co.uk/ws/simorgh-assets/public/afrique/images/icons/icon-128x128.png" group-title="The United Kingdom Of Great Britain And Northern Ireland",BBC Afrique Radio
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -3621,13 +3621,13 @@ https://playerservices.streamtheworld.com/pls/977_COUNTRY.m3u
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://listen.181fm.com/181-oldschool_128k.mp3
 
-#EXTINF:-1 tvg-id="The United States Of America_16" tvg-name=".977 Hitz" tvg-logo="" group-title="The United States Of America",.977 Hitz
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://playerservices.streamtheworld.com/pls/977_HITS.m3u
-
-#EXTINF:-1 tvg-id="The United States Of America_17" tvg-name="Your Classical - Relax" tvg-logo="http://www.yourclassical.org/apple-touch-icon.png" group-title="The United States Of America",Your Classical - Relax
+#EXTINF:-1 tvg-id="The United States Of America_16" tvg-name="Your Classical - Relax" tvg-logo="http://www.yourclassical.org/apple-touch-icon.png" group-title="The United States Of America",Your Classical - Relax
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://relax.stream.publicradio.org/relax.mp3
+
+#EXTINF:-1 tvg-id="The United States Of America_17" tvg-name=".977 Hitz" tvg-logo="" group-title="The United States Of America",.977 Hitz
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://playerservices.streamtheworld.com/pls/977_HITS.m3u
 
 #EXTINF:-1 tvg-id="The United States Of America_18" tvg-name="Ambient Sleeping Pill" tvg-logo="" group-title="The United States Of America",Ambient Sleeping Pill
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -3873,13 +3873,13 @@ http://stream.radioparadise.com/aac-128
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://www.181.fm/stream/pls/181-70s.m3u
 
-#EXTINF:-1 tvg-id="The United States Of America_79" tvg-name="Music Lake - Relaxation Music Meditation Focus Chill Nature Sounds" tvg-logo="https://musiclake.com/wp-content/uploads/cropped-musiclake-lg-180x180.png" group-title="The United States Of America",Music Lake - Relaxation Music Meditation Focus Chill Nature Sounds
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://nap.casthost.net:8626/stream
-
-#EXTINF:-1 tvg-id="The United States Of America_80" tvg-name="WALM - Old Time Radio Opus" tvg-logo="https://icecast.walmradio.com:8443/otr.jpg" group-title="The United States Of America",WALM - Old Time Radio Opus
+#EXTINF:-1 tvg-id="The United States Of America_79" tvg-name="WALM - Old Time Radio Opus" tvg-logo="https://icecast.walmradio.com:8443/otr.jpg" group-title="The United States Of America",WALM - Old Time Radio Opus
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://icecast.walmradio.com:8443/otr_opus
+
+#EXTINF:-1 tvg-id="The United States Of America_80" tvg-name="Music Lake - Relaxation Music Meditation Focus Chill Nature Sounds" tvg-logo="https://musiclake.com/wp-content/uploads/cropped-musiclake-lg-180x180.png" group-title="The United States Of America",Music Lake - Relaxation Music Meditation Focus Chill Nature Sounds
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://nap.casthost.net:8626/stream
 
 #EXTINF:-1 tvg-id="The United States Of America_81" tvg-name="SomaFM Fluid (128k MP3)" tvg-logo="https://somafm.com/img3/fluid-400.jpg" group-title="The United States Of America",SomaFM Fluid (128k MP3)
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
