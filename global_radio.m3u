@@ -424,13 +424,13 @@ http://stream.bnr.bg:8011/horizont.aac
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://stream.radioreklama.bg/bgradio128
 
-#EXTINF:-1 tvg-id="Bulgaria_4" tvg-name="BG Estrada" tvg-logo="https://www.radioplay.bg/assets/logos/bgestrada.png" group-title="Bulgaria",BG Estrada
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://play.global.audio/bgestrada
-
-#EXTINF:-1 tvg-id="Bulgaria_5" tvg-name="Radio 1 Rock" tvg-logo="http://www.radio1rock.bg/theme_assets/radio1rock/images/favicon.png" group-title="Bulgaria",Radio 1 Rock
+#EXTINF:-1 tvg-id="Bulgaria_4" tvg-name="Radio 1 Rock" tvg-logo="http://www.radio1rock.bg/theme_assets/radio1rock/images/favicon.png" group-title="Bulgaria",Radio 1 Rock
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://stream.metacast.eu/radio1rock.ogg
+
+#EXTINF:-1 tvg-id="Bulgaria_5" tvg-name="BG Estrada" tvg-logo="https://www.radioplay.bg/assets/logos/bgestrada.png" group-title="Bulgaria",BG Estrada
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://play.global.audio/bgestrada
 
 #EXTINF:-1 tvg-id="Bulgaria_6" tvg-name="Veronika" tvg-logo="" group-title="Bulgaria",Veronika
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -832,13 +832,13 @@ http://icecast.radiofrance.fr/franceculture-hifi.aac
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://streaming.radio.rtl.fr/rtl-1-44-128
 
-#EXTINF:-1 tvg-id="France_9" tvg-name="RFI-Afrique" tvg-logo="" group-title="France",RFI-Afrique
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://live02.rfi.fr/rfiafrique-96k.mp3
-
-#EXTINF:-1 tvg-id="France_10" tvg-name="France Inter" tvg-logo="" group-title="France",France Inter
+#EXTINF:-1 tvg-id="France_9" tvg-name="France Inter" tvg-logo="" group-title="France",France Inter
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://direct.franceinter.fr/live/franceinter-midfi.mp3
+
+#EXTINF:-1 tvg-id="France_10" tvg-name="RFI-Afrique" tvg-logo="" group-title="France",RFI-Afrique
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://live02.rfi.fr/rfiafrique-96k.mp3
 
 #EXTINF:-1 tvg-id="France_11" tvg-name="Skyrock" tvg-logo="https://play-lh.googleusercontent.com/dPiQ01OUKZVfRZUbbb-EVK5g9miS_K-xrxHgmBbynGG-GQ53yt3GzFKr0zUTnb-xswQ=s200-rw" group-title="France",Skyrock
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -972,13 +972,13 @@ http://178.32.111.41:8027/stream-128kmp3-YogaChill
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://generationfm-underground.ice.infomaniak.ch/generationfm-underground-high.mp3
 
-#EXTINF:-1 tvg-id="France_44" tvg-name="France Musique | Classique Easy" tvg-logo="" group-title="France",France Musique | Classique Easy
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://direct.francemusique.fr/live/francemusiqueeasyclassique-hifi.mp3
-
-#EXTINF:-1 tvg-id="France_45" tvg-name="法国国际广播电台" tvg-logo="" group-title="France",法国国际广播电台
+#EXTINF:-1 tvg-id="France_44" tvg-name="法国国际广播电台" tvg-logo="" group-title="France",法国国际广播电台
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://rfienchinois64k.ice.infomaniak.ch/rfienchinois-64.mp3
+
+#EXTINF:-1 tvg-id="France_45" tvg-name="France Musique | Classique Easy" tvg-logo="" group-title="France",France Musique | Classique Easy
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://direct.francemusique.fr/live/francemusiqueeasyclassique-hifi.mp3
 
 #EXTINF:-1 tvg-id="France_46" tvg-name="RFM" tvg-logo="http://cdn-rfm.lanmedia.fr/apple-touch-icon-120x120.png" group-title="France",RFM
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -1259,17 +1259,17 @@ http://streams.radiobob.de/bob-alternative/mp3-192/streams.radiobob.de/
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://stream.kissfm.de/kissfm/mp3-128/internetradio/
 
-#EXTINF:-1 tvg-id="Germany_57" tvg-name="Sunshine Live - Party" tvg-logo="" group-title="Germany",Sunshine Live - Party
+#EXTINF:-1 tvg-id="Germany_57" tvg-name="80s80s Radio" tvg-logo="https://upload.80s80s.de/production/static/1697296555757/icons/icon_512.ewwAEi8A30w.png" group-title="Germany",80s80s Radio
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://sunsl.streamabc.net/sunsl-party-mp3-192-3345881?sABC=5nr16qs7%230%23q40266oo6p321s1695o82262nq851ppo%23Jroenqvb-Cynlre&amsparams=playerid:Webradio-Player;skey:1524723191
+http://streams.80s80s.de/web/mp3-192/play.m3u
 
 #EXTINF:-1 tvg-id="Germany_58" tvg-name="80s80s Love" tvg-logo="" group-title="Germany",80s80s Love
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://streams.80s80s.de/love/mp3-192/streams.80s80s.de/
 
-#EXTINF:-1 tvg-id="Germany_59" tvg-name="80s80s Radio" tvg-logo="https://upload.80s80s.de/production/static/1697296555757/icons/icon_512.ewwAEi8A30w.png" group-title="Germany",80s80s Radio
+#EXTINF:-1 tvg-id="Germany_59" tvg-name="Sunshine Live - Party" tvg-logo="" group-title="Germany",Sunshine Live - Party
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://streams.80s80s.de/web/mp3-192/play.m3u
+http://sunsl.streamabc.net/sunsl-party-mp3-192-3345881?sABC=5nr16qs7%230%23q40266oo6p321s1695o82262nq851ppo%23Jroenqvb-Cynlre&amsparams=playerid:Webradio-Player;skey:1524723191
 
 #EXTINF:-1 tvg-id="Germany_60" tvg-name="Antenne Bayern - Top 40" tvg-logo="http://www.antenne.de/logos/station-antenne-bayern/apple-touch-icon.png" group-title="Germany",Antenne Bayern - Top 40
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -1592,13 +1592,13 @@ https://drive.uber.radio/uber/bollywood2010s/icecast.audio
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://azuracast.vibesounds.in:8010/radio.mp3
 
-#EXTINF:-1 tvg-id="India_30" tvg-name="Fm Rainbow Delhi" tvg-logo="https://liveradios.in/wp-content/uploads/output-onlinepngtools-1-150x150.png" group-title="India",Fm Rainbow Delhi
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://airhlspush.pc.cdn.bitgravity.com/httppush/hlspbaudio004/hlspbaudio00464kbps.m3u8
-
-#EXTINF:-1 tvg-id="India_31" tvg-name="RADIO BOLLYWOOD 90s" tvg-logo="https://static.mytuner.mobi/media/tvos_radios/9fKKkfbJKE.png" group-title="India",RADIO BOLLYWOOD 90s
+#EXTINF:-1 tvg-id="India_30" tvg-name="RADIO BOLLYWOOD 90s" tvg-logo="https://static.mytuner.mobi/media/tvos_radios/9fKKkfbJKE.png" group-title="India",RADIO BOLLYWOOD 90s
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://stream.zeno.fm/rm4i9pdex3cuv
+
+#EXTINF:-1 tvg-id="India_31" tvg-name="Fm Rainbow Delhi" tvg-logo="https://liveradios.in/wp-content/uploads/output-onlinepngtools-1-150x150.png" group-title="India",Fm Rainbow Delhi
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://airhlspush.pc.cdn.bitgravity.com/httppush/hlspbaudio004/hlspbaudio00464kbps.m3u8
 
 #EXTINF:-1 tvg-id="India_32" tvg-name="Kalai Fm-TAMIL" tvg-logo="" group-title="India",Kalai Fm-TAMIL
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -2455,13 +2455,13 @@ https://radiostream.pl/tuba10-1.mp3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://usa12.fastcast4u.com/tunein/isnesllc.m3u
 
-#EXTINF:-1 tvg-id="Poland_26" tvg-name="Polskie Radio Kierowców" tvg-logo="" group-title="Poland",Polskie Radio Kierowców
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://stream3.polskieradio.pl:8918/;
-
-#EXTINF:-1 tvg-id="Poland_27" tvg-name="Radioparty.pl House Party" tvg-logo="http://radioparty.pl/images/radioparty2017.png" group-title="Poland",Radioparty.pl House Party
+#EXTINF:-1 tvg-id="Poland_26" tvg-name="Radioparty.pl House Party" tvg-logo="http://radioparty.pl/images/radioparty2017.png" group-title="Poland",Radioparty.pl House Party
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://house.radioparty.pl:8010/
+
+#EXTINF:-1 tvg-id="Poland_27" tvg-name="Polskie Radio Kierowców" tvg-logo="" group-title="Poland",Polskie Radio Kierowców
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://stream3.polskieradio.pl:8918/;
 
 #EXTINF:-1 tvg-id="Poland_28" tvg-name="Radio Gdansk" tvg-logo="https://radiogdansk.pl/wp-content/uploads/2020/12/cropped-favicon-180x180.png" group-title="Poland",Radio Gdansk
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -2897,13 +2897,13 @@ http://www.quran-radio.org:8002/
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://stream.srg-ssr.ch/m/rsj/mp3_128
 
-#EXTINF:-1 tvg-id="Switzerland_1" tvg-name="1.FM - Deep House Radio" tvg-logo="" group-title="Switzerland",1.FM - Deep House Radio
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://strm112.1.fm/deephouse_mobile_mp3
-
-#EXTINF:-1 tvg-id="Switzerland_2" tvg-name="1.FM - Amsterdam Trance Radio" tvg-logo="" group-title="Switzerland",1.FM - Amsterdam Trance Radio
+#EXTINF:-1 tvg-id="Switzerland_1" tvg-name="1.FM - Amsterdam Trance Radio" tvg-logo="" group-title="Switzerland",1.FM - Amsterdam Trance Radio
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://strm112.1.fm/atr_mobile_mp3
+
+#EXTINF:-1 tvg-id="Switzerland_2" tvg-name="1.FM - Deep House Radio" tvg-logo="" group-title="Switzerland",1.FM - Deep House Radio
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://strm112.1.fm/deephouse_mobile_mp3
 
 #EXTINF:-1 tvg-id="Switzerland_3" tvg-name="1.FM - Classic Rock Replay Radio" tvg-logo="" group-title="Switzerland",1.FM - Classic Rock Replay Radio
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
