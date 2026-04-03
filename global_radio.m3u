@@ -3853,13 +3853,13 @@ http://hi5.1980s.fm/;stream.mp3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://sc.hot108.com:4000/
 
-#EXTINF:-1 tvg-id="The United States Of America_74" tvg-name="181.FM - True Blues" tvg-logo="http://www.181.fm/favicon.ico" group-title="The United States Of America",181.FM - True Blues
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://www.181.fm/stream/pls/181-blues.m3u
-
-#EXTINF:-1 tvg-id="The United States Of America_75" tvg-name="WALM - Old Time Radio Opus" tvg-logo="https://icecast.walmradio.com:8443/otr.jpg" group-title="The United States Of America",WALM - Old Time Radio Opus
+#EXTINF:-1 tvg-id="The United States Of America_74" tvg-name="WALM - Old Time Radio Opus" tvg-logo="https://icecast.walmradio.com:8443/otr.jpg" group-title="The United States Of America",WALM - Old Time Radio Opus
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://icecast.walmradio.com:8443/otr_opus
+
+#EXTINF:-1 tvg-id="The United States Of America_75" tvg-name="181.FM - True Blues" tvg-logo="http://www.181.fm/favicon.ico" group-title="The United States Of America",181.FM - True Blues
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://www.181.fm/stream/pls/181-blues.m3u
 
 #EXTINF:-1 tvg-id="The United States Of America_76" tvg-name="SmoothJazz.com 128k mp3" tvg-logo="https://www.smoothjazz.com/sites/default/files/theme/sj-circle-logo.png" group-title="The United States Of America",SmoothJazz.com 128k mp3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
