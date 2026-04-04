@@ -1024,10 +1024,6 @@ http://direct.franceinfo.fr/live/franceinfo-lofi.mp3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://audio.bfmtv.com/rmcradio_128.mp3?aw_0_1st.playerId=RMC_audio_web&aggregator=RMC_audio_web
 
-#EXTINF:-1 tvg-id="France_57" tvg-name="Jazz Radio Piano Jazz" tvg-logo="https://www.jazzradio.fr/apple-touch-icon-120x120.png" group-title="France",Jazz Radio Piano Jazz
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://jzr-piano.ice.infomaniak.ch/jzr-piano.mp3
-
 #EXTINF:-1 tvg-id="" tvg-logo="" group-title="Germany",Germany
 #EXTGRP:Germany
 
@@ -2015,6 +2011,10 @@ http://kathy.torontocast.com:3330/stream/1/?esPlayer&cb=82181.mp3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://s3.voscast.com:9966/
 
+#EXTINF:-1 tvg-id="Jordan_1" tvg-name="Mazaj FM" tvg-logo="https://mazaj.fm/apple-touch-icon.png" group-title="Jordan",Mazaj FM
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://mazajfm.ice.infomaniak.ch/mazajfm-192.mp3
+
 #EXTINF:-1 tvg-id="" tvg-logo="" group-title="Kazakhstan",Kazakhstan
 #EXTGRP:Kazakhstan
 
@@ -2411,13 +2411,13 @@ https://r.dcs.redcdn.pl/sc/o2/Eurozet/live/audio.livx?audio=5
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://radiostream.pl/tuba10-1.mp3#TOK_FM
 
-#EXTINF:-1 tvg-id="Poland_15" tvg-name="Polskie Radio Program 1" tvg-logo="" group-title="Poland",Polskie Radio Program 1
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://mp3.polskieradio.pl:8900/
-
-#EXTINF:-1 tvg-id="Poland_16" tvg-name="Radio 357" tvg-logo="https://radio357.pl/wp-content/uploads/2022/04/c5399c0d-1b8e-43d5-b23b-e5cef1857856.png" group-title="Poland",Radio 357
+#EXTINF:-1 tvg-id="Poland_15" tvg-name="Radio 357" tvg-logo="https://radio357.pl/wp-content/uploads/2022/04/c5399c0d-1b8e-43d5-b23b-e5cef1857856.png" group-title="Poland",Radio 357
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://n-11-21.dcs.redcdn.pl/sc/o2/radio357/live/radio357_pr.livx?preroll=0
+
+#EXTINF:-1 tvg-id="Poland_16" tvg-name="Polskie Radio Program 1" tvg-logo="" group-title="Poland",Polskie Radio Program 1
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://mp3.polskieradio.pl:8900/
 
 #EXTINF:-1 tvg-id="Poland_17" tvg-name="Polskie Radio - Czwórka (Program 4) (AAC+)" tvg-logo="" group-title="Poland",Polskie Radio - Czwórka (Program 4) (AAC+)
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -3149,13 +3149,13 @@ http://ic6.101.ru:8000/stream/air/aac/64/202
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://radiorecord.hostingradio.ru/rus96.aacp
 
-#EXTINF:-1 tvg-id="The Russian Federation_17" tvg-name="Радио «Комсомольская Правда» | КП Россия" tvg-logo="" group-title="The Russian Federation",Радио «Комсомольская Правда» | КП Россия
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://kpradio.hostingradio.ru:8000/russia.radiokp128.mp3
-
-#EXTINF:-1 tvg-id="The Russian Federation_18" tvg-name="Nashe Radio" tvg-logo="https://www.nashe.ru/favicons/apple-touch-icon.png" group-title="The Russian Federation",Nashe Radio
+#EXTINF:-1 tvg-id="The Russian Federation_17" tvg-name="Nashe Radio" tvg-logo="https://www.nashe.ru/favicons/apple-touch-icon.png" group-title="The Russian Federation",Nashe Radio
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://nashe1.hostingradio.ru/nashe-128.mp3
+
+#EXTINF:-1 tvg-id="The Russian Federation_18" tvg-name="Радио «Комсомольская Правда» | КП Россия" tvg-logo="" group-title="The Russian Federation",Радио «Комсомольская Правда» | КП Россия
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://kpradio.hostingradio.ru:8000/russia.radiokp128.mp3
 
 #EXTINF:-1 tvg-id="The Russian Federation_19" tvg-name="Русский Рок - Russian Rock" tvg-logo="" group-title="The Russian Federation",Русский Рок - Russian Rock
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -3447,13 +3447,13 @@ https://media-ssl.musicradio.com/ChillMP3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://radio.canstream.co.uk:8075/live.mp3
 
-#EXTINF:-1 tvg-id="The United Kingdom Of Great Britain And Northern Ireland_21" tvg-name="Times Radio UK" tvg-logo="https://static.mytuner.mobi/media/tvos_radios/jehvybnq4jgc.png" group-title="The United Kingdom Of Great Britain And Northern Ireland",Times Radio UK
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://timesradio.wireless.radio/stream
-
-#EXTINF:-1 tvg-id="The United Kingdom Of Great Britain And Northern Ireland_22" tvg-name="Heart Dance" tvg-logo="https://www.heart.co.uk/assets_v4r/heart/img/favicon-196x196.png" group-title="The United Kingdom Of Great Britain And Northern Ireland",Heart Dance
+#EXTINF:-1 tvg-id="The United Kingdom Of Great Britain And Northern Ireland_21" tvg-name="Heart Dance" tvg-logo="https://www.heart.co.uk/assets_v4r/heart/img/favicon-196x196.png" group-title="The United Kingdom Of Great Britain And Northern Ireland",Heart Dance
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://media-ssl.musicradio.com/HeartDanceMP3
+
+#EXTINF:-1 tvg-id="The United Kingdom Of Great Britain And Northern Ireland_22" tvg-name="Times Radio UK" tvg-logo="https://static.mytuner.mobi/media/tvos_radios/jehvybnq4jgc.png" group-title="The United Kingdom Of Great Britain And Northern Ireland",Times Radio UK
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://timesradio.wireless.radio/stream
 
 #EXTINF:-1 tvg-id="The United Kingdom Of Great Britain And Northern Ireland_23" tvg-name="Heart 90s" tvg-logo="https://www.heart.co.uk/assets_v4r/heart/img/favicon-196x196.png" group-title="The United Kingdom Of Great Britain And Northern Ireland",Heart 90s
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -3621,13 +3621,13 @@ https://playerservices.streamtheworld.com/pls/977_COUNTRY.m3u
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://listen.181fm.com/181-oldschool_128k.mp3
 
-#EXTINF:-1 tvg-id="The United States Of America_16" tvg-name="Your Classical - Relax" tvg-logo="http://www.yourclassical.org/apple-touch-icon.png" group-title="The United States Of America",Your Classical - Relax
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://relax.stream.publicradio.org/relax.mp3
-
-#EXTINF:-1 tvg-id="The United States Of America_17" tvg-name=".977 Hitz" tvg-logo="" group-title="The United States Of America",.977 Hitz
+#EXTINF:-1 tvg-id="The United States Of America_16" tvg-name=".977 Hitz" tvg-logo="" group-title="The United States Of America",.977 Hitz
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://playerservices.streamtheworld.com/pls/977_HITS.m3u
+
+#EXTINF:-1 tvg-id="The United States Of America_17" tvg-name="Your Classical - Relax" tvg-logo="http://www.yourclassical.org/apple-touch-icon.png" group-title="The United States Of America",Your Classical - Relax
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://relax.stream.publicradio.org/relax.mp3
 
 #EXTINF:-1 tvg-id="The United States Of America_18" tvg-name="Ambient Sleeping Pill" tvg-logo="" group-title="The United States Of America",Ambient Sleeping Pill
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
