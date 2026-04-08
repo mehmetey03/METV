@@ -1012,17 +1012,17 @@ http://broadcast.infomaniak.ch/beurfm-high.mp3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://icecast.radiofrance.fr/fipreggae-hifi.aac
 
-#EXTINF:-1 tvg-id="France_54" tvg-name="Latina" tvg-logo="https://bocir-prod-bucket.s3.eu-west-1.amazonaws.com/radios/latina/images/favicon.ico" group-title="France",Latina
+#EXTINF:-1 tvg-id="France_54" tvg-name="RMC Info Talk Sport" tvg-logo="https://rmc.bfmtv.com/android-icon-192x192.png" group-title="France",RMC Info Talk Sport
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://audio.bfmtv.com/rmcradio_128.mp3?aw_0_1st.playerId=RMC_audio_web&aggregator=RMC_audio_web
+
+#EXTINF:-1 tvg-id="France_55" tvg-name="Latina" tvg-logo="https://bocir-prod-bucket.s3.eu-west-1.amazonaws.com/radios/latina/images/favicon.ico" group-title="France",Latina
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://start-latina.ice.infomaniak.ch/start-latina-high.mp3
 
-#EXTINF:-1 tvg-id="France_55" tvg-name="france info (lofi)" tvg-logo="https://www.francetvinfo.fr/skin/dist/mobile/img/pwa/launcher-76x76-832d6cb324.png" group-title="France",france info (lofi)
+#EXTINF:-1 tvg-id="France_56" tvg-name="france info (lofi)" tvg-logo="https://www.francetvinfo.fr/skin/dist/mobile/img/pwa/launcher-76x76-832d6cb324.png" group-title="France",france info (lofi)
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://direct.franceinfo.fr/live/franceinfo-lofi.mp3
-
-#EXTINF:-1 tvg-id="France_56" tvg-name="RMC Info Talk Sport" tvg-logo="https://rmc.bfmtv.com/android-icon-192x192.png" group-title="France",RMC Info Talk Sport
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://audio.bfmtv.com/rmcradio_128.mp3?aw_0_1st.playerId=RMC_audio_web&aggregator=RMC_audio_web
 
 #EXTINF:-1 tvg-id="" tvg-logo="" group-title="Germany",Germany
 #EXTGRP:Germany
@@ -1247,13 +1247,13 @@ https://0n-chillout.radionetz.de/0n-chillout.aac
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://www.ndr.de/resources/metadaten/audio/m3u/ndrinfo_sh.m3u
 
-#EXTINF:-1 tvg-id="Germany_55" tvg-name="RADIO BOB! BOBs Alternative Rock" tvg-logo="" group-title="Germany",RADIO BOB! BOBs Alternative Rock
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://streams.radiobob.de/bob-alternative/mp3-192/streams.radiobob.de/
-
-#EXTINF:-1 tvg-id="Germany_56" tvg-name="80s80s Radio" tvg-logo="https://upload.80s80s.de/production/static/1697296555757/icons/icon_512.ewwAEi8A30w.png" group-title="Germany",80s80s Radio
+#EXTINF:-1 tvg-id="Germany_55" tvg-name="80s80s Radio" tvg-logo="https://upload.80s80s.de/production/static/1697296555757/icons/icon_512.ewwAEi8A30w.png" group-title="Germany",80s80s Radio
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://streams.80s80s.de/web/mp3-192/play.m3u
+
+#EXTINF:-1 tvg-id="Germany_56" tvg-name="RADIO BOB! BOBs Alternative Rock" tvg-logo="" group-title="Germany",RADIO BOB! BOBs Alternative Rock
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://streams.radiobob.de/bob-alternative/mp3-192/streams.radiobob.de/
 
 #EXTINF:-1 tvg-id="Germany_57" tvg-name="98.8 Kiss FM" tvg-logo="https://upload.kissfm.de/production/static/1699276434696/icons/icon_64.be8y2280000.png" group-title="Germany",98.8 Kiss FM
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -2467,13 +2467,13 @@ http://stream.task.gda.pl:8000/rg1
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://go-audio.toya.net.pl/63214
 
-#EXTINF:-1 tvg-id="Poland_30" tvg-name="Radio Silesia" tvg-logo="" group-title="Poland",Radio Silesia
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://s1.slotex.pl:7926/
-
-#EXTINF:-1 tvg-id="Poland_31" tvg-name="Antyradio" tvg-logo="https://gfx.antyradio.pl/design/antyradio/src/images/favicon/favicon_180x180.png" group-title="Poland",Antyradio
+#EXTINF:-1 tvg-id="Poland_30" tvg-name="Antyradio" tvg-logo="https://gfx.antyradio.pl/design/antyradio/src/images/favicon/favicon_180x180.png" group-title="Poland",Antyradio
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://n-4-4.dcs.redcdn.pl/sc/o2/Eurozet/live/antyradio.livx
+
+#EXTINF:-1 tvg-id="Poland_31" tvg-name="Radio Silesia" tvg-logo="" group-title="Poland",Radio Silesia
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://s1.slotex.pl:7926/
 
 #EXTINF:-1 tvg-id="Poland_32" tvg-name="RMF FM" tvg-logo="https://www.rmf.fm/assets/images/favicon/apple-icon-120x120.png?3" group-title="Poland",RMF FM
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -3761,13 +3761,13 @@ http://bigrradio.cdnstream1.com/5105_128
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://tunein.cdnstream1.com/2868_96.mp3
 
-#EXTINF:-1 tvg-id="The United States Of America_52" tvg-name="VOA Chinese Radio" tvg-logo="" group-title="The United States Of America",VOA Chinese Radio
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://voa-ingest.akamaized.net/hls/live/2035206/151_124L/playlist.m3u8
-
-#EXTINF:-1 tvg-id="The United States Of America_53" tvg-name="Soft Classic Rock Radio" tvg-logo="https://cdn-radiotime-logos.tunein.com/s106474q.png" group-title="The United States Of America",Soft Classic Rock Radio
+#EXTINF:-1 tvg-id="The United States Of America_52" tvg-name="Soft Classic Rock Radio" tvg-logo="https://cdn-radiotime-logos.tunein.com/s106474q.png" group-title="The United States Of America",Soft Classic Rock Radio
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://64.71.133.122:8000/;
+
+#EXTINF:-1 tvg-id="The United States Of America_53" tvg-name="VOA Chinese Radio" tvg-logo="" group-title="The United States Of America",VOA Chinese Radio
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://voa-ingest.akamaized.net/hls/live/2035206/151_124L/playlist.m3u8
 
 #EXTINF:-1 tvg-id="The United States Of America_54" tvg-name="WEOW FM 92.7" tvg-logo="" group-title="The United States Of America",WEOW FM 92.7
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -3833,13 +3833,13 @@ http://stream.radioparadise.com/mellow-320
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://kathy.torontocast.com:2800/;
 
-#EXTINF:-1 tvg-id="The United States Of America_70" tvg-name="SMOOTH JAZZ 24/7" tvg-logo="" group-title="The United States Of America",SMOOTH JAZZ 24/7
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://www.smoothjazz247.com/smoothjazz24-7.m3u
-
-#EXTINF:-1 tvg-id="The United States Of America_71" tvg-name="WALM - Old Time Radio Opus" tvg-logo="https://icecast.walmradio.com:8443/otr.jpg" group-title="The United States Of America",WALM - Old Time Radio Opus
+#EXTINF:-1 tvg-id="The United States Of America_70" tvg-name="WALM - Old Time Radio Opus" tvg-logo="https://icecast.walmradio.com:8443/otr.jpg" group-title="The United States Of America",WALM - Old Time Radio Opus
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://icecast.walmradio.com:8443/otr_opus
+
+#EXTINF:-1 tvg-id="The United States Of America_71" tvg-name="SMOOTH JAZZ 24/7" tvg-logo="" group-title="The United States Of America",SMOOTH JAZZ 24/7
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://www.smoothjazz247.com/smoothjazz24-7.m3u
 
 #EXTINF:-1 tvg-id="The United States Of America_72" tvg-name="1980s.FM" tvg-logo="" group-title="The United States Of America",1980s.FM
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
