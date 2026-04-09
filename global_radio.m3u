@@ -3617,13 +3617,13 @@ https://playerservices.streamtheworld.com/pls/977_COUNTRY.m3u
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://listen.181fm.com/181-oldschool_128k.mp3
 
-#EXTINF:-1 tvg-id="The United States Of America_16" tvg-name=".977 Hitz" tvg-logo="" group-title="The United States Of America",.977 Hitz
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://playerservices.streamtheworld.com/pls/977_HITS.m3u
-
-#EXTINF:-1 tvg-id="The United States Of America_17" tvg-name="Your Classical - Relax" tvg-logo="http://www.yourclassical.org/apple-touch-icon.png" group-title="The United States Of America",Your Classical - Relax
+#EXTINF:-1 tvg-id="The United States Of America_16" tvg-name="Your Classical - Relax" tvg-logo="http://www.yourclassical.org/apple-touch-icon.png" group-title="The United States Of America",Your Classical - Relax
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://relax.stream.publicradio.org/relax.mp3
+
+#EXTINF:-1 tvg-id="The United States Of America_17" tvg-name=".977 Hitz" tvg-logo="" group-title="The United States Of America",.977 Hitz
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://playerservices.streamtheworld.com/pls/977_HITS.m3u
 
 #EXTINF:-1 tvg-id="The United States Of America_18" tvg-name="Ambient Sleeping Pill" tvg-logo="" group-title="The United States Of America",Ambient Sleeping Pill
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
