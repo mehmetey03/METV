@@ -1295,10 +1295,6 @@ http://stream.laut.fm/acidjazz
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://stream.104.6rtl.com/rtl-live/mp3-192/radio-browser.info/
 
-#EXTINF:-1 tvg-id="Germany_67" tvg-name="Antenne Bayern - Oldies but Goldies" tvg-logo="" group-title="Germany",Antenne Bayern - Oldies but Goldies
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://mp3channels.webradio.antenne.de/oldies-but-goldies
-
 #EXTINF:-1 tvg-id="" tvg-logo="" group-title="Ghana",Ghana
 #EXTGRP:Ghana
 
@@ -1636,13 +1632,13 @@ http://173.203.133.187:9700/;stream/1
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://psrlive2.listenon.in/80?station=tamil80shitsradio
 
-#EXTINF:-1 tvg-id="India_41" tvg-name="Radio Retro Bollywood 90s" tvg-logo="" group-title="India",Radio Retro Bollywood 90s
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://stream-143.zeno.fm/fdgs82xkzhhvv
-
-#EXTINF:-1 tvg-id="India_42" tvg-name="Red FM 93.5" tvg-logo="https://radiobarfi.com/wp-content/uploads/2024/04/Red-FM-93.5-Live-Online.png.webp" group-title="India",Red FM 93.5
+#EXTINF:-1 tvg-id="India_41" tvg-name="Red FM 93.5" tvg-logo="https://radiobarfi.com/wp-content/uploads/2024/04/Red-FM-93.5-Live-Online.png.webp" group-title="India",Red FM 93.5
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://stream-174.zeno.fm/q97eczydqrhvv?zt=eyJhbGciOiJIUzI1NiJ9.eyJzdHJlYW0iOiJxOTdlY3p5ZHFyaHZ2IiwiaG9zdCI6InN0cmVhbS0xNzQuemVuby5mbSIsInJ0dGwiOjUsImp0aSI6InRhOHAxeTRDVDdHenYtN2NoeFQxRmciLCJpYXQiOjE3NDIwNDA3NDEsImV4cCI6MTc0MjA0MDgwMX0.MkjhfjpDcWKnjIHhgkq3SGxg9gH8U901CrsfPZ42PGM
+
+#EXTINF:-1 tvg-id="India_42" tvg-name="Radio Retro Bollywood 90s" tvg-logo="" group-title="India",Radio Retro Bollywood 90s
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://stream-143.zeno.fm/fdgs82xkzhhvv
 
 #EXTINF:-1 tvg-id="" tvg-logo="" group-title="Indonesia",Indonesia
 #EXTGRP:Indonesia
@@ -2172,13 +2168,13 @@ https://playerservices.streamtheworld.com/api/livestream-redirect/XHDFMFMAAC.aac
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://playerservices.streamtheworld.com/api/livestream-redirect/XERED_AMAAC.aac
 
-#EXTINF:-1 tvg-id="Mexico_15" tvg-name="XHEXA \"Exa FM\" 104.9 FM Mexico City DF" tvg-logo="http://cdn-radiotime-logos.tunein.com/s87554q.png" group-title="Mexico",XHEXA \"Exa FM\" 104.9 FM Mexico City DF
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://playerservices.streamtheworld.com/pls/XHEXA.m3u
-
-#EXTINF:-1 tvg-id="Mexico_16" tvg-name="El Fonógrafo Música las 24 horas (elfonografo.mx) - Online - Grupo Radio Centro - Ciudad de México" tvg-logo="" group-title="Mexico",El Fonógrafo Música las 24 horas (elfonografo.mx) - Online - Grupo Radio Centro - Ciudad de México
+#EXTINF:-1 tvg-id="Mexico_15" tvg-name="El Fonógrafo Música las 24 horas (elfonografo.mx) - Online - Grupo Radio Centro - Ciudad de México" tvg-logo="" group-title="Mexico",El Fonógrafo Música las 24 horas (elfonografo.mx) - Online - Grupo Radio Centro - Ciudad de México
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://playerservices.streamtheworld.com/api/livestream-redirect/XEJP_AM_SC
+
+#EXTINF:-1 tvg-id="Mexico_16" tvg-name="XHEXA \"Exa FM\" 104.9 FM Mexico City DF" tvg-logo="http://cdn-radiotime-logos.tunein.com/s87554q.png" group-title="Mexico",XHEXA \"Exa FM\" 104.9 FM Mexico City DF
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://playerservices.streamtheworld.com/pls/XHEXA.m3u
 
 #EXTINF:-1 tvg-id="Mexico_17" tvg-name="Radio Felicidad - 1180 AM - XEFR-AM - Grupo ACIR - Ciudad de México" tvg-logo="https://upload.wikimedia.org/wikipedia/en/1/1d/XEFR_RadioFelicidad1180_logo.jpg" group-title="Mexico",Radio Felicidad - 1180 AM - XEFR-AM - Grupo ACIR - Ciudad de México
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -2241,6 +2237,10 @@ https://stream.zeno.fm/une3a02mb
 #EXTINF:-1 tvg-id="Morocco_6" tvg-name="Fayroz" tvg-logo="" group-title="Morocco",Fayroz
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://stream.zeno.fm/zv3e5wykprhvv.mp3
+
+#EXTINF:-1 tvg-id="Morocco_7" tvg-name="Radio Mars" tvg-logo="https://www.radiomars.ma/ar/wp-content/uploads/2023/10/RADIOMARS_LOGO.png" group-title="Morocco",Radio Mars
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://radiomars.ice.infomaniak.ch/radiomars-128.mp3
 
 #EXTINF:-1 tvg-id="" tvg-logo="" group-title="Mozambique",Mozambique
 #EXTGRP:Mozambique
@@ -2937,13 +2937,13 @@ http://strm112.1.fm/caferadio_mobile_mp3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://strm112.1.fm/bombaybeats_mobile_mp3
 
-#EXTINF:-1 tvg-id="Switzerland_12" tvg-name="1.FM - High Voltage Radio" tvg-logo="" group-title="Switzerland",1.FM - High Voltage Radio
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://strm112.1.fm/highvoltage_mobile_mp3
-
-#EXTINF:-1 tvg-id="Switzerland_13" tvg-name="1.FM - Deep Techno & Deep House" tvg-logo="" group-title="Switzerland",1.FM - Deep Techno & Deep House
+#EXTINF:-1 tvg-id="Switzerland_12" tvg-name="1.FM - Deep Techno & Deep House" tvg-logo="" group-title="Switzerland",1.FM - Deep Techno & Deep House
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://strm112.1.fm/deeptech_mobile_mp3
+
+#EXTINF:-1 tvg-id="Switzerland_13" tvg-name="1.FM - High Voltage Radio" tvg-logo="" group-title="Switzerland",1.FM - High Voltage Radio
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://strm112.1.fm/highvoltage_mobile_mp3
 
 #EXTINF:-1 tvg-id="Switzerland_14" tvg-name="Radio Swiss Pop" tvg-logo="http://www.radioswisspop.ch/favicon.ico" group-title="Switzerland",Radio Swiss Pop
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -3309,13 +3309,13 @@ https://hitfm.hostingradio.ru/hitfm96.aacp
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://icecast-vgtrk.cdnvideo.ru/vestifm
 
-#EXTINF:-1 tvg-id="The Russian Federation_58" tvg-name="Новое Радио 91.1 (СПб)" tvg-logo="https://newradio.ru/favicon.ico" group-title="The Russian Federation",Новое Радио 91.1 (СПб)
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://emgspb.hostingradio.ru/novoespb128.mp3
-
-#EXTINF:-1 tvg-id="The Russian Federation_59" tvg-name="Русское Радио: Русский Рок" tvg-logo="" group-title="The Russian Federation",Русское Радио: Русский Рок
+#EXTINF:-1 tvg-id="The Russian Federation_58" tvg-name="Русское Радио: Русский Рок" tvg-logo="" group-title="The Russian Federation",Русское Радио: Русский Рок
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://rr-russkijrok.hostingradio.ru/russkijrok96.aacp.m3u
+
+#EXTINF:-1 tvg-id="The Russian Federation_59" tvg-name="Новое Радио 91.1 (СПб)" tvg-logo="https://newradio.ru/favicon.ico" group-title="The Russian Federation",Новое Радио 91.1 (СПб)
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://emgspb.hostingradio.ru/novoespb128.mp3
 
 #EXTINF:-1 tvg-id="The Russian Federation_60" tvg-name="Radio Caprice - Retrowave" tvg-logo="http://radcap.ru/apple-touch-icon.png" group-title="The Russian Federation",Radio Caprice - Retrowave
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -3829,13 +3829,13 @@ https://playerservices.streamtheworld.com/pls/977_COMEDY.m3u
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://stream.radioparadise.com/mellow-320
 
-#EXTINF:-1 tvg-id="The United States Of America_69" tvg-name="metal rock radio" tvg-logo="" group-title="The United States Of America",metal rock radio
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://kathy.torontocast.com:2800/;
-
-#EXTINF:-1 tvg-id="The United States Of America_70" tvg-name="WALM - Old Time Radio Opus" tvg-logo="https://icecast.walmradio.com:8443/otr.jpg" group-title="The United States Of America",WALM - Old Time Radio Opus
+#EXTINF:-1 tvg-id="The United States Of America_69" tvg-name="WALM - Old Time Radio Opus" tvg-logo="https://icecast.walmradio.com:8443/otr.jpg" group-title="The United States Of America",WALM - Old Time Radio Opus
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://icecast.walmradio.com:8443/otr_opus
+
+#EXTINF:-1 tvg-id="The United States Of America_70" tvg-name="metal rock radio" tvg-logo="" group-title="The United States Of America",metal rock radio
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://kathy.torontocast.com:2800/;
 
 #EXTINF:-1 tvg-id="The United States Of America_71" tvg-name="SMOOTH JAZZ 24/7" tvg-logo="" group-title="The United States Of America",SMOOTH JAZZ 24/7
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
