@@ -763,13 +763,13 @@ https://stream.radiojar.com/8s5u5tpdtwzuv
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://stream-34.zeno.fm/rf64mx02qa0uv?zs=-xjlLLwRS8uKrffFxK4vLA
 
-#EXTINF:-1 tvg-id="Egypt_17" tvg-name="إذاعة القرآن الكريم" tvg-logo="https://i.pinimg.com/564x/3a/a1/a1/3aa1a107c9434ca52b42b2dd0ffc896f.jpg" group-title="Egypt",إذاعة القرآن الكريم
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://n0a.radiojar.com/0tpy1h0kxtzuv?rj-ttl=5&rj-tok=AAABhdgGORQA-2acfyF3_4WY2g
-
-#EXTINF:-1 tvg-id="Egypt_18" tvg-name="القران الكريم من القاهره1" tvg-logo="" group-title="Egypt",القران الكريم من القاهره1
+#EXTINF:-1 tvg-id="Egypt_17" tvg-name="القران الكريم من القاهره1" tvg-logo="" group-title="Egypt",القران الكريم من القاهره1
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://n0e.radiojar.com/8s5u5tpdtwzuv?rj=&rj-tok=AAABg5BDP0EA2ElNLJYUJTsVcg&rj-ttl=5
+
+#EXTINF:-1 tvg-id="Egypt_18" tvg-name="إذاعة القرآن الكريم" tvg-logo="https://i.pinimg.com/564x/3a/a1/a1/3aa1a107c9434ca52b42b2dd0ffc896f.jpg" group-title="Egypt",إذاعة القرآن الكريم
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://n0a.radiojar.com/0tpy1h0kxtzuv?rj-ttl=5&rj-tok=AAABhdgGORQA-2acfyF3_4WY2g
 
 #EXTINF:-1 tvg-id="Egypt_19" tvg-name="NRJ EGYPT" tvg-logo="https://nrj.com/img/NRJ_EGYPT_140.jpg" group-title="Egypt",NRJ EGYPT
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -2168,13 +2168,13 @@ https://playerservices.streamtheworld.com/api/livestream-redirect/XHDFMFMAAC.aac
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://playerservices.streamtheworld.com/api/livestream-redirect/XERED_AMAAC.aac
 
-#EXTINF:-1 tvg-id="Mexico_15" tvg-name="El Fonógrafo Música las 24 horas (elfonografo.mx) - Online - Grupo Radio Centro - Ciudad de México" tvg-logo="" group-title="Mexico",El Fonógrafo Música las 24 horas (elfonografo.mx) - Online - Grupo Radio Centro - Ciudad de México
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://playerservices.streamtheworld.com/api/livestream-redirect/XEJP_AM_SC
-
-#EXTINF:-1 tvg-id="Mexico_16" tvg-name="XHEXA \"Exa FM\" 104.9 FM Mexico City DF" tvg-logo="http://cdn-radiotime-logos.tunein.com/s87554q.png" group-title="Mexico",XHEXA \"Exa FM\" 104.9 FM Mexico City DF
+#EXTINF:-1 tvg-id="Mexico_15" tvg-name="XHEXA \"Exa FM\" 104.9 FM Mexico City DF" tvg-logo="http://cdn-radiotime-logos.tunein.com/s87554q.png" group-title="Mexico",XHEXA \"Exa FM\" 104.9 FM Mexico City DF
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://playerservices.streamtheworld.com/pls/XHEXA.m3u
+
+#EXTINF:-1 tvg-id="Mexico_16" tvg-name="El Fonógrafo Música las 24 horas (elfonografo.mx) - Online - Grupo Radio Centro - Ciudad de México" tvg-logo="" group-title="Mexico",El Fonógrafo Música las 24 horas (elfonografo.mx) - Online - Grupo Radio Centro - Ciudad de México
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://playerservices.streamtheworld.com/api/livestream-redirect/XEJP_AM_SC
 
 #EXTINF:-1 tvg-id="Mexico_17" tvg-name="Radio Felicidad - 1180 AM - XEFR-AM - Grupo ACIR - Ciudad de México" tvg-logo="https://upload.wikimedia.org/wikipedia/en/1/1d/XEFR_RadioFelicidad1180_logo.jpg" group-title="Mexico",Radio Felicidad - 1180 AM - XEFR-AM - Grupo ACIR - Ciudad de México
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -3491,13 +3491,13 @@ http://media-ice.musicradio.com/HeartLondon
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://media-the.musicradio.com/ClassicFM
 
-#EXTINF:-1 tvg-id="The United Kingdom Of Great Britain And Northern Ireland_33" tvg-name="BBC Afrique Radio" tvg-logo="https://static.files.bbci.co.uk/ws/simorgh-assets/public/afrique/images/icons/icon-128x128.png" group-title="The United Kingdom Of Great Britain And Northern Ireland",BBC Afrique Radio
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://a.files.bbci.co.uk/media/live/manifesto/audio/simulcast/hls/nonuk/sbr_low/ak/bbc_afrique_radio.m3u8
-
-#EXTINF:-1 tvg-id="The United Kingdom Of Great Britain And Northern Ireland_34" tvg-name="Heart UK" tvg-logo="" group-title="The United Kingdom Of Great Britain And Northern Ireland",Heart UK
+#EXTINF:-1 tvg-id="The United Kingdom Of Great Britain And Northern Ireland_33" tvg-name="Heart UK" tvg-logo="" group-title="The United Kingdom Of Great Britain And Northern Ireland",Heart UK
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://media-ice.musicradio.com/HeartUKMP3
+
+#EXTINF:-1 tvg-id="The United Kingdom Of Great Britain And Northern Ireland_34" tvg-name="BBC Afrique Radio" tvg-logo="https://static.files.bbci.co.uk/ws/simorgh-assets/public/afrique/images/icons/icon-128x128.png" group-title="The United Kingdom Of Great Britain And Northern Ireland",BBC Afrique Radio
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://a.files.bbci.co.uk/media/live/manifesto/audio/simulcast/hls/nonuk/sbr_low/ak/bbc_afrique_radio.m3u8
 
 #EXTINF:-1 tvg-id="The United Kingdom Of Great Britain And Northern Ireland_35" tvg-name="talkSPORT 2" tvg-logo="" group-title="The United Kingdom Of Great Britain And Northern Ireland",talkSPORT 2
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
