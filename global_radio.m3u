@@ -828,21 +828,21 @@ http://icecast.radiofrance.fr/franceinfo-hifi.aac
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://live02.rfi.fr/rfimonde-64.mp3
 
-#EXTINF:-1 tvg-id="France_7" tvg-name="RTL" tvg-logo="" group-title="France",RTL
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://streaming.radio.rtl.fr/rtl-1-44-128
-
-#EXTINF:-1 tvg-id="France_8" tvg-name="France Culture" tvg-logo="https://upload.wikimedia.org/wikipedia/fr/thumb/c/c9/France_Culture_-_2008.svg/1024px-France_Culture_-_2008.svg.png" group-title="France",France Culture
+#EXTINF:-1 tvg-id="France_7" tvg-name="France Culture" tvg-logo="https://upload.wikimedia.org/wikipedia/fr/thumb/c/c9/France_Culture_-_2008.svg/1024px-France_Culture_-_2008.svg.png" group-title="France",France Culture
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://icecast.radiofrance.fr/franceculture-hifi.aac
 
-#EXTINF:-1 tvg-id="France_9" tvg-name="RFI-Afrique" tvg-logo="" group-title="France",RFI-Afrique
+#EXTINF:-1 tvg-id="France_8" tvg-name="RTL" tvg-logo="" group-title="France",RTL
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://live02.rfi.fr/rfiafrique-96k.mp3
+http://streaming.radio.rtl.fr/rtl-1-44-128
 
-#EXTINF:-1 tvg-id="France_10" tvg-name="France Inter" tvg-logo="" group-title="France",France Inter
+#EXTINF:-1 tvg-id="France_9" tvg-name="France Inter" tvg-logo="" group-title="France",France Inter
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://direct.franceinter.fr/live/franceinter-midfi.mp3
+
+#EXTINF:-1 tvg-id="France_10" tvg-name="RFI-Afrique" tvg-logo="" group-title="France",RFI-Afrique
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://live02.rfi.fr/rfiafrique-96k.mp3
 
 #EXTINF:-1 tvg-id="France_11" tvg-name="Skyrock" tvg-logo="https://play-lh.googleusercontent.com/dPiQ01OUKZVfRZUbbb-EVK5g9miS_K-xrxHgmBbynGG-GQ53yt3GzFKr0zUTnb-xswQ=s200-rw" group-title="France",Skyrock
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -1858,13 +1858,13 @@ http://icestreaming.rai.it/3.mp3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://icecast.unitedradio.it/RMC.mp3
 
-#EXTINF:-1 tvg-id="Italy_8" tvg-name="Virgin Radio Italia" tvg-logo="http://www.virginradio.it/favicon_2.ico?v=1722509813651" group-title="Italy",Virgin Radio Italia
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://icecast.unitedradio.it/Virgin.mp3
-
-#EXTINF:-1 tvg-id="Italy_9" tvg-name="Radio Armisa" tvg-logo="https://armisa.it/assets/favicon/android-chrome-512x512.png" group-title="Italy",Radio Armisa
+#EXTINF:-1 tvg-id="Italy_8" tvg-name="Radio Armisa" tvg-logo="https://armisa.it/assets/favicon/android-chrome-512x512.png" group-title="Italy",Radio Armisa
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://onair.armisa.it/listen/armisa/radio.mp3
+
+#EXTINF:-1 tvg-id="Italy_9" tvg-name="Virgin Radio Italia" tvg-logo="http://www.virginradio.it/favicon_2.ico?v=1722509813651" group-title="Italy",Virgin Radio Italia
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://icecast.unitedradio.it/Virgin.mp3
 
 #EXTINF:-1 tvg-id="Italy_10" tvg-name="Radio 105 - Dance 90" tvg-logo="" group-title="Italy",Radio 105 - Dance 90
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -1942,13 +1942,13 @@ http://stream2.vivafm.it:8002/stream
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://icy.unitedradio.it/um020.mp3
 
-#EXTINF:-1 tvg-id="Italy_29" tvg-name="Radio Radicale" tvg-logo="" group-title="Italy",Radio Radicale
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://live.radioradicale.it/live.mp3
-
-#EXTINF:-1 tvg-id="Italy_30" tvg-name="CLASSIC HITS RADIO Italia" tvg-logo="" group-title="Italy",CLASSIC HITS RADIO Italia
+#EXTINF:-1 tvg-id="Italy_29" tvg-name="CLASSIC HITS RADIO Italia" tvg-logo="" group-title="Italy",CLASSIC HITS RADIO Italia
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://classichitsradio.streamingmedia.it/play
+
+#EXTINF:-1 tvg-id="Italy_30" tvg-name="Radio Radicale" tvg-logo="" group-title="Italy",Radio Radicale
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://live.radioradicale.it/live.mp3
 
 #EXTINF:-1 tvg-id="Italy_31" tvg-name="Radio Kiss Kiss Hits" tvg-logo="https://kisskiss.it/wp-content/uploads/2021/03/cropped-favicon-kisskiss-180x180.png" group-title="Italy",Radio Kiss Kiss Hits
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -2451,13 +2451,13 @@ https://radiostream.pl/tuba10-1.mp3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://usa12.fastcast4u.com/tunein/isnesllc.m3u
 
-#EXTINF:-1 tvg-id="Poland_26" tvg-name="Radioparty.pl House Party" tvg-logo="http://radioparty.pl/images/radioparty2017.png" group-title="Poland",Radioparty.pl House Party
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://house.radioparty.pl:8010/
-
-#EXTINF:-1 tvg-id="Poland_27" tvg-name="Polskie Radio Kierowców" tvg-logo="" group-title="Poland",Polskie Radio Kierowców
+#EXTINF:-1 tvg-id="Poland_26" tvg-name="Polskie Radio Kierowców" tvg-logo="" group-title="Poland",Polskie Radio Kierowców
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://stream3.polskieradio.pl:8918/;
+
+#EXTINF:-1 tvg-id="Poland_27" tvg-name="Radioparty.pl House Party" tvg-logo="http://radioparty.pl/images/radioparty2017.png" group-title="Poland",Radioparty.pl House Party
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://house.radioparty.pl:8010/
 
 #EXTINF:-1 tvg-id="Poland_28" tvg-name="Antyradio" tvg-logo="https://gfx.antyradio.pl/design/antyradio/src/images/favicon/favicon_180x180.png" group-title="Poland",Antyradio
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -3093,13 +3093,13 @@ https://icecast-radiovanya.cdnvideo.ru/radiovanya
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://dfm-disc90.hostingradio.ru/disc9096.aacp
 
-#EXTINF:-1 tvg-id="The Russian Federation_4" tvg-name="Вести ФМ (Vesti FM)" tvg-logo="" group-title="The Russian Federation",Вести ФМ (Vesti FM)
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://icecast.vgtrk.cdnvideo.ru/vestifm_mp3_192kbps
-
-#EXTINF:-1 tvg-id="The Russian Federation_5" tvg-name="Дискотека СССР" tvg-logo="" group-title="The Russian Federation",Дискотека СССР
+#EXTINF:-1 tvg-id="The Russian Federation_4" tvg-name="Дискотека СССР" tvg-logo="" group-title="The Russian Federation",Дискотека СССР
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://pub0302.101.ru:8000/stream/pro/aac/64/144?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpcCI6IjUuMTguMjQ4Ljk4IiwidXNlcmFnZW50IjoiTW96aWxsYVwvNS4wIChYMTE7IExpbnV4IHg4Nl82NDsgcnY6ODIuMCkgR2Vja29cLzIwMTAwMTAxIEZpcmVmb3hcLzgyLjAiLCJ1aWRfY2hhbm5lbCI6IjE0NCIsInR5cGVfY2hhbm5lbCI6ImNoYW5uZWwiLCJleHAiOjE2MDU5NjQ1MTZ9.Ln1wEJ8cHHzK_Ea6Zr8J8acdny0R9ShZ_KUKVf6TmQA
+
+#EXTINF:-1 tvg-id="The Russian Federation_5" tvg-name="Вести ФМ (Vesti FM)" tvg-logo="" group-title="The Russian Federation",Вести ФМ (Vesti FM)
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://icecast.vgtrk.cdnvideo.ru/vestifm_mp3_192kbps
 
 #EXTINF:-1 tvg-id="The Russian Federation_6" tvg-name="Дорожное радио" tvg-logo="https://dorognoe.ru/assets/default/i/fav_114x114.png" group-title="The Russian Federation",Дорожное радио
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -3979,13 +3979,13 @@ http://rtstream.tanitweb.com/jeunes
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://rtstream.tanitweb.com/nationale
 
-#EXTINF:-1 tvg-id="Tunisia_10" tvg-name="Radio Tunisie Kef" tvg-logo="http://www.radiokef.tn/wp-content/themes/mycms.1.0.0/favicon.png" group-title="Tunisia",Radio Tunisie Kef
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://rtstream.tanitweb.com/kef
-
-#EXTINF:-1 tvg-id="Tunisia_11" tvg-name="Radio Tunisie Monastir" tvg-logo="" group-title="Tunisia",Radio Tunisie Monastir
+#EXTINF:-1 tvg-id="Tunisia_10" tvg-name="Radio Tunisie Monastir" tvg-logo="" group-title="Tunisia",Radio Tunisie Monastir
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://rtstream.tanitweb.com/monastir
+
+#EXTINF:-1 tvg-id="Tunisia_11" tvg-name="Radio Tunisie Kef" tvg-logo="http://www.radiokef.tn/wp-content/themes/mycms.1.0.0/favicon.png" group-title="Tunisia",Radio Tunisie Kef
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://rtstream.tanitweb.com/kef
 
 #EXTINF:-1 tvg-id="Tunisia_12" tvg-name="RTCI" tvg-logo="" group-title="Tunisia",RTCI
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
