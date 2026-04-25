@@ -735,13 +735,13 @@ https://qurango.net/radio/yasser_aldosari
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://live.mp3quran.net:9728/
 
-#EXTINF:-1 tvg-id="Egypt_11" tvg-name="Radio القارئ علي حجاج السويسي" tvg-logo="" group-title="Egypt",Radio القارئ علي حجاج السويسي
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://live.mp3quran.net:9842/
-
-#EXTINF:-1 tvg-id="Egypt_12" tvg-name="القران الكريم من القاهره" tvg-logo="" group-title="Egypt",القران الكريم من القاهره
+#EXTINF:-1 tvg-id="Egypt_11" tvg-name="القران الكريم من القاهره" tvg-logo="" group-title="Egypt",القران الكريم من القاهره
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://n0c.radiojar.com/8s5u5tpdtwzuv?rj-ttl=5&amp;rj-tok=AAABdI5Qnd0AEmvTTG5DVtU31A&amp;autoplay=1%22%20type=%22audio/mpeg
+
+#EXTINF:-1 tvg-id="Egypt_12" tvg-name="Radio القارئ علي حجاج السويسي" tvg-logo="" group-title="Egypt",Radio القارئ علي حجاج السويسي
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://live.mp3quran.net:9842/
 
 #EXTINF:-1 tvg-id="Egypt_13" tvg-name="Abdulrasheed Soufi" tvg-logo="" group-title="Egypt",Abdulrasheed Soufi
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -828,13 +828,13 @@ http://live02.rfi.fr/rfimonde-64.mp3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://streaming.radio.rtl.fr/rtl-1-44-128
 
-#EXTINF:-1 tvg-id="France_8" tvg-name="France Culture" tvg-logo="https://upload.wikimedia.org/wikipedia/fr/thumb/c/c9/France_Culture_-_2008.svg/1024px-France_Culture_-_2008.svg.png" group-title="France",France Culture
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://icecast.radiofrance.fr/franceculture-hifi.aac
-
-#EXTINF:-1 tvg-id="France_9" tvg-name="France Inter" tvg-logo="" group-title="France",France Inter
+#EXTINF:-1 tvg-id="France_8" tvg-name="France Inter" tvg-logo="" group-title="France",France Inter
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://direct.franceinter.fr/live/franceinter-midfi.mp3
+
+#EXTINF:-1 tvg-id="France_9" tvg-name="France Culture" tvg-logo="https://upload.wikimedia.org/wikipedia/fr/thumb/c/c9/France_Culture_-_2008.svg/1024px-France_Culture_-_2008.svg.png" group-title="France",France Culture
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://icecast.radiofrance.fr/franceculture-hifi.aac
 
 #EXTINF:-1 tvg-id="France_10" tvg-name="RFI-Afrique" tvg-logo="" group-title="France",RFI-Afrique
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -1227,13 +1227,13 @@ https://stream.technolovers.fm/deep-house?ref=radiobrowser
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://streams.radiobob.de/bob-metal/mp3-192/streams.radiobob.de/
 
-#EXTINF:-1 tvg-id="Germany_50" tvg-name="- 0 N - Smooth Jazz on Radio" tvg-logo="https://www.0nradio.com/logos/0n-smooth-jazz_600x600.jpg" group-title="Germany",- 0 N - Smooth Jazz on Radio
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://0n-smoothjazz.radionetz.de/0n-smoothjazz.aac
-
-#EXTINF:-1 tvg-id="Germany_51" tvg-name="80s80s Radio" tvg-logo="https://upload.80s80s.de/production/static/1697296555757/icons/icon_512.ewwAEi8A30w.png" group-title="Germany",80s80s Radio
+#EXTINF:-1 tvg-id="Germany_50" tvg-name="80s80s Radio" tvg-logo="https://upload.80s80s.de/production/static/1697296555757/icons/icon_512.ewwAEi8A30w.png" group-title="Germany",80s80s Radio
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://streams.80s80s.de/web/mp3-192/play.m3u
+
+#EXTINF:-1 tvg-id="Germany_51" tvg-name="- 0 N - Smooth Jazz on Radio" tvg-logo="https://www.0nradio.com/logos/0n-smooth-jazz_600x600.jpg" group-title="Germany",- 0 N - Smooth Jazz on Radio
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://0n-smoothjazz.radionetz.de/0n-smoothjazz.aac
 
 #EXTINF:-1 tvg-id="Germany_52" tvg-name="WDR4" tvg-logo="https://www1.wdr.de/resources/img/favicon/apple-touch-icon.png" group-title="Germany",WDR4
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -1996,10 +1996,6 @@ http://alphaboys-live.streamguys1.com/alphaboys.mp3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://kathy.torontocast.com:3330/stream/1/?esPlayer&cb=82181.mp3
 
-#EXTINF:-1 tvg-id="Japan_1" tvg-name="Anime Para Ti" tvg-logo="https://images.zeno.fm/TrBD3tEtOJbMAdKu3XR64pWUT2XTjBhzgn2n2w_lFnE/rs:fit:500:500/g:ce:0:0/aHR0cHM6Ly9zdHJlYW0tdG9vbHMuemVub21lZGlhLmNvbS9jb250ZW50L3N0YXRpb25zL2FneHpmbnBsYm04dGMzUmhkSE55TWdzU0NrRjFkR2hEYkdsbGJuUVlnSUNBeF92bDF3b01DeElPVTNSaGRHbHZibEJ5YjJacGJHVVlnSUNBZ0lEeWlBb01vZ0VFZW1WdWJ3L2ltYWdlLz9yZXNpemU9NTAweDUwMCZ1cGRhdGVkPTE2NjI3NzM0MjEwMDA.webp" group-title="Japan",Anime Para Ti
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://stream.zeno.fm/qpn8mkt8c4duv
-
 #EXTINF:-1 tvg-id="" tvg-logo="" group-title="Jordan",Jordan
 #EXTGRP:Jordan
 
@@ -2471,13 +2467,13 @@ https://go-audio.toya.net.pl/63214
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://stream.task.gda.pl:8000/rg1
 
-#EXTINF:-1 tvg-id="Poland_31" tvg-name="Radio Silesia" tvg-logo="" group-title="Poland",Radio Silesia
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://s1.slotex.pl:7926/
-
-#EXTINF:-1 tvg-id="Poland_32" tvg-name="RMF FM" tvg-logo="https://www.rmf.fm/assets/images/favicon/apple-icon-120x120.png?3" group-title="Poland",RMF FM
+#EXTINF:-1 tvg-id="Poland_31" tvg-name="RMF FM" tvg-logo="https://www.rmf.fm/assets/images/favicon/apple-icon-120x120.png?3" group-title="Poland",RMF FM
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://31.192.216.8/rmf_fm
+
+#EXTINF:-1 tvg-id="Poland_32" tvg-name="Radio Silesia" tvg-logo="" group-title="Poland",Radio Silesia
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://s1.slotex.pl:7926/
 
 #EXTINF:-1 tvg-id="Poland_33" tvg-name="Radio RMF24.pl" tvg-logo="" group-title="Poland",Radio RMF24.pl
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -3613,13 +3609,13 @@ https://playerservices.streamtheworld.com/pls/977_COUNTRY.m3u
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://listen.181fm.com/181-oldschool_128k.mp3
 
-#EXTINF:-1 tvg-id="The United States Of America_16" tvg-name="Your Classical - Relax" tvg-logo="http://www.yourclassical.org/apple-touch-icon.png" group-title="The United States Of America",Your Classical - Relax
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://relax.stream.publicradio.org/relax.mp3
-
-#EXTINF:-1 tvg-id="The United States Of America_17" tvg-name=".977 Hitz" tvg-logo="" group-title="The United States Of America",.977 Hitz
+#EXTINF:-1 tvg-id="The United States Of America_16" tvg-name=".977 Hitz" tvg-logo="" group-title="The United States Of America",.977 Hitz
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://playerservices.streamtheworld.com/pls/977_HITS.m3u
+
+#EXTINF:-1 tvg-id="The United States Of America_17" tvg-name="Your Classical - Relax" tvg-logo="http://www.yourclassical.org/apple-touch-icon.png" group-title="The United States Of America",Your Classical - Relax
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://relax.stream.publicradio.org/relax.mp3
 
 #EXTINF:-1 tvg-id="The United States Of America_18" tvg-name="Ambient Sleeping Pill" tvg-logo="" group-title="The United States Of America",Ambient Sleeping Pill
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -3797,13 +3793,13 @@ http://desertmountainbroadcasting.streamguys1.com/KYYA
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://www.101smoothjazz.com/101-mellowmix.m3u
 
-#EXTINF:-1 tvg-id="The United States Of America_62" tvg-name="70s 80s Disco Funk ModernSoul Boogie" tvg-logo="" group-title="The United States Of America",70s 80s Disco Funk ModernSoul Boogie
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://discofunk.streamingmedia.it/usa
-
-#EXTINF:-1 tvg-id="The United States Of America_63" tvg-name="181.FM - Kickin' Country" tvg-logo="" group-title="The United States Of America",181.FM - Kickin' Country
+#EXTINF:-1 tvg-id="The United States Of America_62" tvg-name="181.FM - Kickin' Country" tvg-logo="" group-title="The United States Of America",181.FM - Kickin' Country
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://www.181.fm/stream/pls/181-kickincountry.m3u
+
+#EXTINF:-1 tvg-id="The United States Of America_63" tvg-name="70s 80s Disco Funk ModernSoul Boogie" tvg-logo="" group-title="The United States Of America",70s 80s Disco Funk ModernSoul Boogie
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://discofunk.streamingmedia.it/usa
 
 #EXTINF:-1 tvg-id="The United States Of America_64" tvg-name="WALM - Old Time Radio Opus" tvg-logo="https://icecast.walmradio.com:8443/otr.jpg" group-title="The United States Of America",WALM - Old Time Radio Opus
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -4010,6 +4006,10 @@ https://radio.mosaiquefm.net/mosagold
 #EXTINF:-1 tvg-id="Tunisia_17" tvg-name="oxygene fm" tvg-logo="" group-title="Tunisia",oxygene fm
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://stream.radios-arra.fr:8000/oxygenefm
+
+#EXTINF:-1 tvg-id="Tunisia_18" tvg-name="Mosaique FM Tounsi" tvg-logo="" group-title="Tunisia",Mosaique FM Tounsi
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://radio.mosaiquefm.net/mosatounsi
 
 #EXTINF:-1 tvg-id="" tvg-logo="" group-title="Uganda",Uganda
 #EXTGRP:Uganda
