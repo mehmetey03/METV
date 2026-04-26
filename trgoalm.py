@@ -56,7 +56,7 @@ def main():
 
     base_url = resolve_base_url(active_domain)
     if not base_url:
-        base_url = "https://8pi.d72577a9dd0ec30.sbs/" 
+        base_url = "https://hz8.d72577a9dd0ec62.cfd/" 
         print(f"⚠️ Sunucu otomatik bulunamadı, fallback kullanılıyor: {base_url}")
     else:
         print(f"✅ Yayın sunucusu tespit edildi: {base_url}")
