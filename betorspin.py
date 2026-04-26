@@ -32,7 +32,7 @@ def get_dynamic_data():
     except: pass
     
     # 2. Aktif domaini tara (83, 84, 85...)
-    for i in range(82, 200):
+    for i in range(94, 200):
         url = f"https://{i}baywintv.live/"
         try:
             r = requests.get(url, timeout=2, verify=False)
