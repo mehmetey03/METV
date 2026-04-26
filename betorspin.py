@@ -4,7 +4,7 @@ import urllib3
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 # API Adresi
-DOMAIN_API = "https://maqrizi.com/domain.php"
+DOMAIN_API = "https://data-reality.com/domain.php"
 FIXED_UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
 
 SABIT_KANALLAR = {
