@@ -6,7 +6,7 @@ import json
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 # Ayarlar
-TARGET_URL = "https://27intersportv.us"
+TARGET_URL = "https://29intersportv.us"
 UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
 
 # Sabit Kanallar Listesi
