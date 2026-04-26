@@ -72,7 +72,7 @@ def main():
     base_url = resolve_base_url(active_domain)
     if not base_url:
         # Sunucu bulunamazsa en sık kullanılan fallback
-        base_url = "hz8.d72577a9dd0ec62.cfd" 
+        base_url = "hz8.d72577a9dd0ec62.cfd/" 
         print(f"⚠️ Yayın sunucusu otomatik bulunamadı, fallback: {base_url}")
     else:
         print(f"✅ Yayın sunucusu tespit edildi: {base_url}")
