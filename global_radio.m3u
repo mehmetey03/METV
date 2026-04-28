@@ -739,13 +739,13 @@ http://live.mp3quran.net:9728/
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://n0c.radiojar.com/8s5u5tpdtwzuv?rj-ttl=5&amp;rj-tok=AAABdI5Qnd0AEmvTTG5DVtU31A&amp;autoplay=1%22%20type=%22audio/mpeg
 
-#EXTINF:-1 tvg-id="Egypt_12" tvg-name="Radio القارئ علي حجاج السويسي" tvg-logo="" group-title="Egypt",Radio القارئ علي حجاج السويسي
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://live.mp3quran.net:9842/
-
-#EXTINF:-1 tvg-id="Egypt_13" tvg-name="Abdulrasheed Soufi" tvg-logo="" group-title="Egypt",Abdulrasheed Soufi
+#EXTINF:-1 tvg-id="Egypt_12" tvg-name="Abdulrasheed Soufi" tvg-logo="" group-title="Egypt",Abdulrasheed Soufi
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://qurango.net/radio/abdulrasheed_soufi_assosi.mp3
+
+#EXTINF:-1 tvg-id="Egypt_13" tvg-name="Radio القارئ علي حجاج السويسي" tvg-logo="" group-title="Egypt",Radio القارئ علي حجاج السويسي
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://live.mp3quran.net:9842/
 
 #EXTINF:-1 tvg-id="Egypt_14" tvg-name="Diab FM" tvg-logo="" group-title="Egypt",Diab FM
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -1004,13 +1004,13 @@ http://kissfm.ice.infomaniak.ch/kissfm-128.mp3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://jazz-wr10.ice.infomaniak.ch/jazz-wr10-128.mp3
 
-#EXTINF:-1 tvg-id="France_52" tvg-name="Beur FM" tvg-logo="http://www.beurfm.net/favicon.ico" group-title="France",Beur FM
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://broadcast.infomaniak.ch/beurfm-high.mp3
-
-#EXTINF:-1 tvg-id="France_53" tvg-name="RMC Info Talk Sport" tvg-logo="https://rmc.bfmtv.com/android-icon-192x192.png" group-title="France",RMC Info Talk Sport
+#EXTINF:-1 tvg-id="France_52" tvg-name="RMC Info Talk Sport" tvg-logo="https://rmc.bfmtv.com/android-icon-192x192.png" group-title="France",RMC Info Talk Sport
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://audio.bfmtv.com/rmcradio_128.mp3?aw_0_1st.playerId=RMC_audio_web&aggregator=RMC_audio_web
+
+#EXTINF:-1 tvg-id="France_53" tvg-name="Beur FM" tvg-logo="http://www.beurfm.net/favicon.ico" group-title="France",Beur FM
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://broadcast.infomaniak.ch/beurfm-high.mp3
 
 #EXTINF:-1 tvg-id="France_54" tvg-name="FIP Reggae" tvg-logo="https://www.fip.fr/dist/favicons/logo-120.png" group-title="France",FIP Reggae
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -1207,13 +1207,13 @@ https://0n-90s.radionetz.de/0n-90s.mp3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://0n-indie.radionetz.de/0n-indie.mp3
 
-#EXTINF:-1 tvg-id="Germany_45" tvg-name="0nlineradio SOFT ROCK" tvg-logo="https://i.ibb.co/SJFG3bt/soft-rock.jpg" group-title="Germany",0nlineradio SOFT ROCK
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://stream.0nlineradio.com/soft-rock?ref=radiobrowser
-
-#EXTINF:-1 tvg-id="Germany_46" tvg-name="MDR Klassik" tvg-logo="https://cdn.mdr.de/resources/global/img/mdrde/favicons/apple-icon-120x120.png" group-title="Germany",MDR Klassik
+#EXTINF:-1 tvg-id="Germany_45" tvg-name="MDR Klassik" tvg-logo="https://cdn.mdr.de/resources/global/img/mdrde/favicons/apple-icon-120x120.png" group-title="Germany",MDR Klassik
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://avw.mdr.de/streams/284350-0_mp3_high.m3u
+
+#EXTINF:-1 tvg-id="Germany_46" tvg-name="0nlineradio SOFT ROCK" tvg-logo="https://i.ibb.co/SJFG3bt/soft-rock.jpg" group-title="Germany",0nlineradio SOFT ROCK
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://stream.0nlineradio.com/soft-rock?ref=radiobrowser
 
 #EXTINF:-1 tvg-id="Germany_47" tvg-name="i love radio - hip hop turnup" tvg-logo="https://www.iloveradio.de/favicon.ico" group-title="Germany",i love radio - hip hop turnup
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -2580,13 +2580,13 @@ http://edge76.rdsnet.ro:84/digifm/digifm.mp3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://www.kissfm.ro/listen.m3u
 
-#EXTINF:-1 tvg-id="Romania_6" tvg-name="Radio Manele FM" tvg-logo="https://fmradiomanele.ro/favicon.ico" group-title="Romania",Radio Manele FM
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://a.fmradiomanele.ro:8054/;
-
-#EXTINF:-1 tvg-id="Romania_7" tvg-name="Play 90's" tvg-logo="https://is3-ssl.mzstatic.com/image/thumb/Music/v4/b7/89/4a/b7894a1a-07c8-d9ae-fc50-5fcc33c59173/source/280x280.jpg" group-title="Romania",Play 90's
+#EXTINF:-1 tvg-id="Romania_6" tvg-name="Play 90's" tvg-logo="https://is3-ssl.mzstatic.com/image/thumb/Music/v4/b7/89/4a/b7894a1a-07c8-d9ae-fc50-5fcc33c59173/source/280x280.jpg" group-title="Romania",Play 90's
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://live.playradio.org:9090/90HD
+
+#EXTINF:-1 tvg-id="Romania_7" tvg-name="Radio Manele FM" tvg-logo="https://fmradiomanele.ro/favicon.ico" group-title="Romania",Radio Manele FM
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://a.fmradiomanele.ro:8054/;
 
 #EXTINF:-1 tvg-id="Romania_8" tvg-name="Pro FM" tvg-logo="http://www.profm.ro/static/theme-repo/apple-touch-icon.png?v=2.0&cache=rel-20240507-11-22" group-title="Romania",Pro FM
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -3089,17 +3089,17 @@ https://icecast-radiovanya.cdnvideo.ru/radiovanya
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://dfm-disc90.hostingradio.ru/disc9096.aacp
 
-#EXTINF:-1 tvg-id="The Russian Federation_4" tvg-name="Дискотека СССР" tvg-logo="" group-title="The Russian Federation",Дискотека СССР
+#EXTINF:-1 tvg-id="The Russian Federation_4" tvg-name="Вести ФМ (Vesti FM)" tvg-logo="" group-title="The Russian Federation",Вести ФМ (Vesti FM)
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://icecast.vgtrk.cdnvideo.ru/vestifm_mp3_192kbps
+
+#EXTINF:-1 tvg-id="The Russian Federation_5" tvg-name="Дискотека СССР" tvg-logo="" group-title="The Russian Federation",Дискотека СССР
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://pub0302.101.ru:8000/stream/pro/aac/64/144?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpcCI6IjUuMTguMjQ4Ljk4IiwidXNlcmFnZW50IjoiTW96aWxsYVwvNS4wIChYMTE7IExpbnV4IHg4Nl82NDsgcnY6ODIuMCkgR2Vja29cLzIwMTAwMTAxIEZpcmVmb3hcLzgyLjAiLCJ1aWRfY2hhbm5lbCI6IjE0NCIsInR5cGVfY2hhbm5lbCI6ImNoYW5uZWwiLCJleHAiOjE2MDU5NjQ1MTZ9.Ln1wEJ8cHHzK_Ea6Zr8J8acdny0R9ShZ_KUKVf6TmQA
 
-#EXTINF:-1 tvg-id="The Russian Federation_5" tvg-name="Дорожное радио" tvg-logo="https://dorognoe.ru/assets/default/i/fav_114x114.png" group-title="The Russian Federation",Дорожное радио
+#EXTINF:-1 tvg-id="The Russian Federation_6" tvg-name="Дорожное радио" tvg-logo="https://dorognoe.ru/assets/default/i/fav_114x114.png" group-title="The Russian Federation",Дорожное радио
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://dorognoe.hostingradio.ru:8000/radio
-
-#EXTINF:-1 tvg-id="The Russian Federation_6" tvg-name="Вести ФМ (Vesti FM)" tvg-logo="" group-title="The Russian Federation",Вести ФМ (Vesti FM)
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://icecast.vgtrk.cdnvideo.ru/vestifm_mp3_192kbps
 
 #EXTINF:-1 tvg-id="The Russian Federation_7" tvg-name="DFM RUSSIAN DANCE" tvg-logo="https://dfm.ru/uploads/favicon.ico" group-title="The Russian Federation",DFM RUSSIAN DANCE
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
