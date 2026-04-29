@@ -832,13 +832,13 @@ http://streaming.radio.rtl.fr/rtl-1-44-128
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://icecast.radiofrance.fr/franceculture-hifi.aac
 
-#EXTINF:-1 tvg-id="France_9" tvg-name="RFI-Afrique" tvg-logo="" group-title="France",RFI-Afrique
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://live02.rfi.fr/rfiafrique-96k.mp3
-
-#EXTINF:-1 tvg-id="France_10" tvg-name="France Inter" tvg-logo="" group-title="France",France Inter
+#EXTINF:-1 tvg-id="France_9" tvg-name="France Inter" tvg-logo="" group-title="France",France Inter
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://direct.franceinter.fr/live/franceinter-midfi.mp3
+
+#EXTINF:-1 tvg-id="France_10" tvg-name="RFI-Afrique" tvg-logo="" group-title="France",RFI-Afrique
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://live02.rfi.fr/rfiafrique-96k.mp3
 
 #EXTINF:-1 tvg-id="France_11" tvg-name="Skyrock" tvg-logo="https://play-lh.googleusercontent.com/dPiQ01OUKZVfRZUbbb-EVK5g9miS_K-xrxHgmBbynGG-GQ53yt3GzFKr0zUTnb-xswQ=s200-rw" group-title="France",Skyrock
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -1063,13 +1063,13 @@ http://mp3channels.webradio.rockantenne.de/rockantenne
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://wdr-wdr5-live.icecast.wdr.de/wdr/wdr5/live/mp3/128/stream.mp3
 
-#EXTINF:-1 tvg-id="Germany_9" tvg-name="Antenne Bayern" tvg-logo="" group-title="Germany",Antenne Bayern
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://mp3channels.webradio.antenne.de/antenne
-
-#EXTINF:-1 tvg-id="Germany_10" tvg-name="TranceBase.FM - AAC HD 256k" tvg-logo="https://www.trancebase.fm/media/icons/trb/apple-touch-icon.png" group-title="Germany",TranceBase.FM - AAC HD 256k
+#EXTINF:-1 tvg-id="Germany_9" tvg-name="TranceBase.FM - AAC HD 256k" tvg-logo="https://www.trancebase.fm/media/icons/trb/apple-touch-icon.png" group-title="Germany",TranceBase.FM - AAC HD 256k
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://listen.trancebase.fm/tunein-aac-hd-pls
+
+#EXTINF:-1 tvg-id="Germany_10" tvg-name="Antenne Bayern" tvg-logo="" group-title="Germany",Antenne Bayern
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://mp3channels.webradio.antenne.de/antenne
 
 #EXTINF:-1 tvg-id="Germany_11" tvg-name="TechnoBase.FM" tvg-logo="https://technobase.fm/media/icons/tb/apple-touch-icon.png" group-title="Germany",TechnoBase.FM
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
