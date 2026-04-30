@@ -828,13 +828,13 @@ http://live02.rfi.fr/rfimonde-64.mp3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://streaming.radio.rtl.fr/rtl-1-44-128
 
-#EXTINF:-1 tvg-id="France_8" tvg-name="France Culture" tvg-logo="https://upload.wikimedia.org/wikipedia/fr/thumb/c/c9/France_Culture_-_2008.svg/1024px-France_Culture_-_2008.svg.png" group-title="France",France Culture
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://icecast.radiofrance.fr/franceculture-hifi.aac
-
-#EXTINF:-1 tvg-id="France_9" tvg-name="France Inter" tvg-logo="" group-title="France",France Inter
+#EXTINF:-1 tvg-id="France_8" tvg-name="France Inter" tvg-logo="" group-title="France",France Inter
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://direct.franceinter.fr/live/franceinter-midfi.mp3
+
+#EXTINF:-1 tvg-id="France_9" tvg-name="France Culture" tvg-logo="https://upload.wikimedia.org/wikipedia/fr/thumb/c/c9/France_Culture_-_2008.svg/1024px-France_Culture_-_2008.svg.png" group-title="France",France Culture
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://icecast.radiofrance.fr/franceculture-hifi.aac
 
 #EXTINF:-1 tvg-id="France_10" tvg-name="RFI-Afrique" tvg-logo="" group-title="France",RFI-Afrique
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -1127,13 +1127,13 @@ http://stream.instrumentalhits.de:8060/
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://0n-80s.radionetz.de/0n-80s.mp3
 
-#EXTINF:-1 tvg-id="Germany_25" tvg-name="B5 aktuell" tvg-logo="https://www.br.de/favicon.ico" group-title="Germany",B5 aktuell
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://streams.br.de/b5aktuell_2.m3u
-
-#EXTINF:-1 tvg-id="Germany_26" tvg-name="Best Of Rock.FM Alternative Rock" tvg-logo="https://www.best-of-rock.fm/favicons/apple-touch-icon.png" group-title="Germany",Best Of Rock.FM Alternative Rock
+#EXTINF:-1 tvg-id="Germany_25" tvg-name="Best Of Rock.FM Alternative Rock" tvg-logo="https://www.best-of-rock.fm/favicons/apple-touch-icon.png" group-title="Germany",Best Of Rock.FM Alternative Rock
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://bestofrockfm.stream.vip/altrock/mp3-256/bestofrock.fm/
+
+#EXTINF:-1 tvg-id="Germany_26" tvg-name="B5 aktuell" tvg-logo="https://www.br.de/favicon.ico" group-title="Germany",B5 aktuell
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://streams.br.de/b5aktuell_2.m3u
 
 #EXTINF:-1 tvg-id="Germany_27" tvg-name="Country 108" tvg-logo="http://www.country108.com/assets/images/logo.png" group-title="Germany",Country 108
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -1207,13 +1207,13 @@ https://0n-90s.radionetz.de/0n-90s.mp3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://0n-indie.radionetz.de/0n-indie.mp3
 
-#EXTINF:-1 tvg-id="Germany_45" tvg-name="MDR Klassik" tvg-logo="https://cdn.mdr.de/resources/global/img/mdrde/favicons/apple-icon-120x120.png" group-title="Germany",MDR Klassik
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://avw.mdr.de/streams/284350-0_mp3_high.m3u
-
-#EXTINF:-1 tvg-id="Germany_46" tvg-name="0nlineradio SOFT ROCK" tvg-logo="https://i.ibb.co/SJFG3bt/soft-rock.jpg" group-title="Germany",0nlineradio SOFT ROCK
+#EXTINF:-1 tvg-id="Germany_45" tvg-name="0nlineradio SOFT ROCK" tvg-logo="https://i.ibb.co/SJFG3bt/soft-rock.jpg" group-title="Germany",0nlineradio SOFT ROCK
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://stream.0nlineradio.com/soft-rock?ref=radiobrowser
+
+#EXTINF:-1 tvg-id="Germany_46" tvg-name="MDR Klassik" tvg-logo="https://cdn.mdr.de/resources/global/img/mdrde/favicons/apple-icon-120x120.png" group-title="Germany",MDR Klassik
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://avw.mdr.de/streams/284350-0_mp3_high.m3u
 
 #EXTINF:-1 tvg-id="Germany_47" tvg-name="i love radio - hip hop turnup" tvg-logo="https://www.iloveradio.de/favicon.ico" group-title="Germany",i love radio - hip hop turnup
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -1604,13 +1604,13 @@ http://stream.zeno.fm/zu59ykebs2zuv
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://dreamsiteradiocp.com:8002/stream
 
-#EXTINF:-1 tvg-id="India_35" tvg-name="2B! Radio Sangam Ganesha" tvg-logo="" group-title="India",2B! Radio Sangam Ganesha
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://radio2bindia.out.airtime.pro:8000/radio2bindia_a
-
-#EXTINF:-1 tvg-id="India_36" tvg-name="Vividh Bharati" tvg-logo="https://onlineradiohub.com/wp-content/uploads/2023/02/vividh-bharati.jpg" group-title="India",Vividh Bharati
+#EXTINF:-1 tvg-id="India_35" tvg-name="Vividh Bharati" tvg-logo="https://onlineradiohub.com/wp-content/uploads/2023/02/vividh-bharati.jpg" group-title="India",Vividh Bharati
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://air.pc.cdn.bitgravity.com/air/live/pbaudio001/playlist.m3u8
+
+#EXTINF:-1 tvg-id="India_36" tvg-name="2B! Radio Sangam Ganesha" tvg-logo="" group-title="India",2B! Radio Sangam Ganesha
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://radio2bindia.out.airtime.pro:8000/radio2bindia_a
 
 #EXTINF:-1 tvg-id="India_37" tvg-name="All India Radio AIR Punjabi" tvg-logo="" group-title="India",All India Radio AIR Punjabi
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -3793,17 +3793,17 @@ http://desertmountainbroadcasting.streamguys1.com/KYYA
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://www.101smoothjazz.com/101-mellowmix.m3u
 
-#EXTINF:-1 tvg-id="The United States Of America_62" tvg-name="181.FM - Kickin' Country" tvg-logo="" group-title="The United States Of America",181.FM - Kickin' Country
+#EXTINF:-1 tvg-id="The United States Of America_62" tvg-name="WALM - Old Time Radio Opus" tvg-logo="https://icecast.walmradio.com:8443/otr.jpg" group-title="The United States Of America",WALM - Old Time Radio Opus
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://icecast.walmradio.com:8443/otr_opus
+
+#EXTINF:-1 tvg-id="The United States Of America_63" tvg-name="181.FM - Kickin' Country" tvg-logo="" group-title="The United States Of America",181.FM - Kickin' Country
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://www.181.fm/stream/pls/181-kickincountry.m3u
 
-#EXTINF:-1 tvg-id="The United States Of America_63" tvg-name="70s 80s Disco Funk ModernSoul Boogie" tvg-logo="" group-title="The United States Of America",70s 80s Disco Funk ModernSoul Boogie
+#EXTINF:-1 tvg-id="The United States Of America_64" tvg-name="70s 80s Disco Funk ModernSoul Boogie" tvg-logo="" group-title="The United States Of America",70s 80s Disco Funk ModernSoul Boogie
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://discofunk.streamingmedia.it/usa
-
-#EXTINF:-1 tvg-id="The United States Of America_64" tvg-name="WALM - Old Time Radio Opus" tvg-logo="https://icecast.walmradio.com:8443/otr.jpg" group-title="The United States Of America",WALM - Old Time Radio Opus
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://icecast.walmradio.com:8443/otr_opus
 
 #EXTINF:-1 tvg-id="The United States Of America_65" tvg-name="SomaFM Metal Detector (128k AAC)" tvg-logo="https://somafm.com/img3/metal-400.png" group-title="The United States Of America",SomaFM Metal Detector (128k AAC)
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -3821,13 +3821,13 @@ https://live.amperwave.net/direct/foxnewsradio-foxnewsradioaac-imc?source=fnr.we
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://stream.radioparadise.com/mellow-320
 
-#EXTINF:-1 tvg-id="The United States Of America_69" tvg-name=".977 Comedy" tvg-logo="" group-title="The United States Of America",.977 Comedy
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://playerservices.streamtheworld.com/pls/977_COMEDY.m3u
-
-#EXTINF:-1 tvg-id="The United States Of America_70" tvg-name="metal rock radio" tvg-logo="" group-title="The United States Of America",metal rock radio
+#EXTINF:-1 tvg-id="The United States Of America_69" tvg-name="metal rock radio" tvg-logo="" group-title="The United States Of America",metal rock radio
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://kathy.torontocast.com:2800/;
+
+#EXTINF:-1 tvg-id="The United States Of America_70" tvg-name=".977 Comedy" tvg-logo="" group-title="The United States Of America",.977 Comedy
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://playerservices.streamtheworld.com/pls/977_COMEDY.m3u
 
 #EXTINF:-1 tvg-id="The United States Of America_71" tvg-name="SMOOTH JAZZ 24/7" tvg-logo="" group-title="The United States Of America",SMOOTH JAZZ 24/7
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -3967,13 +3967,13 @@ https://streaming.diwanfm.net/stream
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://radio.mosaiquefm.net/mosatarab
 
-#EXTINF:-1 tvg-id="Tunisia_8" tvg-name="Radio Tunisie Jeunes" tvg-logo="" group-title="Tunisia",Radio Tunisie Jeunes
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://rtstream.tanitweb.com/jeunes
-
-#EXTINF:-1 tvg-id="Tunisia_9" tvg-name="Radio Tunisie Nationale" tvg-logo="" group-title="Tunisia",Radio Tunisie Nationale
+#EXTINF:-1 tvg-id="Tunisia_8" tvg-name="Radio Tunisie Nationale" tvg-logo="" group-title="Tunisia",Radio Tunisie Nationale
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://rtstream.tanitweb.com/nationale
+
+#EXTINF:-1 tvg-id="Tunisia_9" tvg-name="Radio Tunisie Jeunes" tvg-logo="" group-title="Tunisia",Radio Tunisie Jeunes
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://rtstream.tanitweb.com/jeunes
 
 #EXTINF:-1 tvg-id="Tunisia_10" tvg-name="Radio Tunisie Monastir" tvg-logo="" group-title="Tunisia",Radio Tunisie Monastir
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
