@@ -2,13 +2,17 @@ import requests
 import re
 import sys
 import urllib3
+import json
 from bs4 import BeautifulSoup
 
 # SSL uyarılarını kapat
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-# Ayarlar - Senin verdiğin yeni kaynak
+# Ayarlar
 REDIRECT_SOURCE = "https://raw.githubusercontent.com/mehmetey03/goal/refs/heads/main/domain.txt"
+# Yeni eklenen base_url kaynağı
+BASE_URL_SOURCE = "https://patronsports2.cfd/domain.php"
+
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
 }
@@ -18,13 +22,11 @@ def get_active_domain():
     try:
         print(f"🔍 Aktif domain {REDIRECT_SOURCE} adresinden alınıyor...")
         r = requests.get(REDIRECT_SOURCE, timeout=10)
-        # Dosya içeriğindeki boşlukları temizle ve linki al
         domain = r.text.strip().rstrip('/')
         if domain.startswith("http"):
             print(f"✅ Aktif domain bulundu: {domain}")
             return domain
         else:
-            # Eğer dosya içinde sadece URL değil de metin varsa regex ile ayıkla
             match = re.search(r'(https?://[^\s"<]+)', r.text)
             if match:
                 return match.group(1).rstrip('/')
@@ -32,34 +34,28 @@ def get_active_domain():
         print(f"❌ Domain çekilirken hata: {e}")
     return None
 
-def resolve_base_url(active_domain):
-    """Yayın sunucusunun base adresini bulur."""
-    target = f"{active_domain}/channel.html?id=taraftarium"
+def get_dynamic_base_url():
+    """Belirtilen PHP adresinden güncel baseurl değerini çeker."""
     try:
-        r = requests.get(target, headers={**HEADERS, "Referer": active_domain + "/"}, timeout=15, verify=False)
-        
-        # M3U8 patternini ara
-        match = re.search(r'["\'](https?://[^\s"\']+?)/[\w\-]+/mono\.m3u8', r.text)
-        if match:
-            return match.group(1).rstrip('/') + "/"
-        
-        alt_match = re.search(r'["\'](https?://[a-z0-9.-]+\.(?:sbs|xyz|live|pw|site)/)', r.text)
-        if alt_match:
-            return alt_match.group(1).rstrip('/') + "/"
-    except: pass
-    return None
+        print(f"📡 Base URL {BASE_URL_SOURCE} adresinden alınıyor...")
+        r = requests.get(BASE_URL_SOURCE, headers=HEADERS, timeout=10, verify=False)
+        # JSON verisini parse et: {"baseurl":"https:\/\/..."}
+        data = r.json()
+        base_url = data.get("baseurl", "").replace("\\/", "/") # Ters slaşları düzelt
+        if base_url:
+            print(f"✅ Dinamik Base URL bulundu: {base_url}")
+            return base_url
+    except Exception as e:
+        print(f"⚠️ Dinamik base_url alınamadı: {e}")
+    return "https://hz8.d72577a9dd0ec62.cfd/" # Hata olursa eski fallback
 
 def main():
     active_domain = get_active_domain()
     if not active_domain:
         sys.exit("❌ Başlangıç domaini bulunamadı. GitHub linkini kontrol edin.")
 
-    base_url = resolve_base_url(active_domain)
-    if not base_url:
-        base_url = "https://hz8.d72577a9dd0ec62.cfd/" 
-        print(f"⚠️ Sunucu otomatik bulunamadı, fallback kullanılıyor: {base_url}")
-    else:
-        print(f"✅ Yayın sunucusu tespit edildi: {base_url}")
+    # Base URL'yi artık PHP dosyasından alıyoruz
+    base_url = get_dynamic_base_url()
 
     # GÜNCEL KANAL LİSTESİ
     fixed_channels = {
@@ -132,7 +128,7 @@ def main():
         with open("karsilasmalar2.m3u", "w", encoding="utf-8") as f:
             f.write("\n".join(m3u_content))
 
-        print(f"🏁 BAŞARILI → karsilasmalar2.m3u hazır. ({len(m3u_content)-1} kanal)")
+        print(f"🏁 BAŞARILI → karsilasmalar2.m3u hazır. ({len(m3u_content)//4} kanal eklendi)")
 
     except Exception as e:
         print(f"❌ Hata: {e}")
