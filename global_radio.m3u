@@ -680,13 +680,13 @@ http://mp3stream4.abradio.cz:8000/humor128.mp3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://icecast8.play.cz/kisshady128.mp3
 
-#EXTINF:-1 tvg-id="Czechia_11" tvg-name="Rádio Blaník CZ Webové rádio" tvg-logo="" group-title="Czechia",Rádio Blaník CZ Webové rádio
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://ice.abradio.cz/blanikcz128.mp3
-
-#EXTINF:-1 tvg-id="Czechia_12" tvg-name="Radio ROCK" tvg-logo="" group-title="Czechia",Radio ROCK
+#EXTINF:-1 tvg-id="Czechia_11" tvg-name="Radio ROCK" tvg-logo="" group-title="Czechia",Radio ROCK
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://ice.abradio.cz/rockradio128.mp3
+
+#EXTINF:-1 tvg-id="Czechia_12" tvg-name="Rádio Blaník CZ Webové rádio" tvg-logo="" group-title="Czechia",Rádio Blaník CZ Webové rádio
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://ice.abradio.cz/blanikcz128.mp3
 
 #EXTINF:-1 tvg-id="" tvg-logo="" group-title="Egypt",Egypt
 #EXTGRP:Egypt
@@ -832,13 +832,13 @@ http://streaming.radio.rtl.fr/rtl-1-44-128
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://live02.rfi.fr/rfiafrique-96k.mp3
 
-#EXTINF:-1 tvg-id="France_9" tvg-name="France Culture" tvg-logo="https://upload.wikimedia.org/wikipedia/fr/thumb/c/c9/France_Culture_-_2008.svg/1024px-France_Culture_-_2008.svg.png" group-title="France",France Culture
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://icecast.radiofrance.fr/franceculture-hifi.aac
-
-#EXTINF:-1 tvg-id="France_10" tvg-name="France Inter" tvg-logo="" group-title="France",France Inter
+#EXTINF:-1 tvg-id="France_9" tvg-name="France Inter" tvg-logo="" group-title="France",France Inter
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://direct.franceinter.fr/live/franceinter-midfi.mp3
+
+#EXTINF:-1 tvg-id="France_10" tvg-name="France Culture" tvg-logo="https://upload.wikimedia.org/wikipedia/fr/thumb/c/c9/France_Culture_-_2008.svg/1024px-France_Culture_-_2008.svg.png" group-title="France",France Culture
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://icecast.radiofrance.fr/franceculture-hifi.aac
 
 #EXTINF:-1 tvg-id="France_11" tvg-name="Skyrock" tvg-logo="https://play-lh.googleusercontent.com/dPiQ01OUKZVfRZUbbb-EVK5g9miS_K-xrxHgmBbynGG-GQ53yt3GzFKr0zUTnb-xswQ=s200-rw" group-title="France",Skyrock
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -976,13 +976,13 @@ https://rfienchinois64k.ice.infomaniak.ch/rfienchinois-64.mp3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://generationfm-underground.ice.infomaniak.ch/generationfm-underground-high.mp3
 
-#EXTINF:-1 tvg-id="France_45" tvg-name="France Musique | Classique Easy" tvg-logo="" group-title="France",France Musique | Classique Easy
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://direct.francemusique.fr/live/francemusiqueeasyclassique-hifi.mp3
-
-#EXTINF:-1 tvg-id="France_46" tvg-name="RFM" tvg-logo="http://cdn-rfm.lanmedia.fr/apple-touch-icon-120x120.png" group-title="France",RFM
+#EXTINF:-1 tvg-id="France_45" tvg-name="RFM" tvg-logo="http://cdn-rfm.lanmedia.fr/apple-touch-icon-120x120.png" group-title="France",RFM
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://stream.rfm.fr/rfm.mp3
+
+#EXTINF:-1 tvg-id="France_46" tvg-name="France Musique | Classique Easy" tvg-logo="" group-title="France",France Musique | Classique Easy
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://direct.francemusique.fr/live/francemusiqueeasyclassique-hifi.mp3
 
 #EXTINF:-1 tvg-id="France_47" tvg-name="France Musique La Baroque" tvg-logo="" group-title="France",France Musique La Baroque
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -1175,13 +1175,13 @@ http://mp3.ffh.de/ffhchannels/hq80er.mp3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://avw.mdr.de/streams/284340-0_mp3_high.m3u
 
-#EXTINF:-1 tvg-id="Germany_37" tvg-name="Hit Radio FFH - Eurodance" tvg-logo="" group-title="Germany",Hit Radio FFH - Eurodance
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://streams.ffh.de/ffhchannels/mp3/hqeurodance.m3u
-
-#EXTINF:-1 tvg-id="Germany_38" tvg-name="90s90s Techno HQ" tvg-logo="" group-title="Germany",90s90s Techno HQ
+#EXTINF:-1 tvg-id="Germany_37" tvg-name="90s90s Techno HQ" tvg-logo="" group-title="Germany",90s90s Techno HQ
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://streams.90s90s.de/techno/mp3-192/radiode/
+
+#EXTINF:-1 tvg-id="Germany_38" tvg-name="Hit Radio FFH - Eurodance" tvg-logo="" group-title="Germany",Hit Radio FFH - Eurodance
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://streams.ffh.de/ffhchannels/mp3/hqeurodance.m3u
 
 #EXTINF:-1 tvg-id="Germany_39" tvg-name="Laut.FM 1000 Oldies" tvg-logo="http://1000oldies.de/apple-icon-120x120.png" group-title="Germany",Laut.FM 1000 Oldies
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -2844,13 +2844,13 @@ https://streams.radio.co/se1a320b47/listen
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://megastar.cope.stream.flumotion.com/cope/megastar.mp3.m3u
 
-#EXTINF:-1 tvg-id="Spain_19" tvg-name="Absolute Chillout" tvg-logo="http://www.absolutechillout.com/favicon.ico" group-title="Spain",Absolute Chillout
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://edge4.peta.live365.net/b05055_128mp3
-
-#EXTINF:-1 tvg-id="Spain_20" tvg-name="Radio Marca Barcelona" tvg-logo="http://e00-marca.uecdn.es/favicon.ico" group-title="Spain",Radio Marca Barcelona
+#EXTINF:-1 tvg-id="Spain_19" tvg-name="Radio Marca Barcelona" tvg-logo="http://e00-marca.uecdn.es/favicon.ico" group-title="Spain",Radio Marca Barcelona
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://radioweb.radiomarcabarcelona.com:9000/stream.m3u
+
+#EXTINF:-1 tvg-id="Spain_20" tvg-name="Absolute Chillout" tvg-logo="http://www.absolutechillout.com/favicon.ico" group-title="Spain",Absolute Chillout
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://edge4.peta.live365.net/b05055_128mp3
 
 #EXTINF:-1 tvg-id="Spain_21" tvg-name="LOS40 Classic" tvg-logo="https://los40es00.epimg.net/estaticos/recursosgraficos/v1/img/app/los40_192.png" group-title="Spain",LOS40 Classic
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -3093,13 +3093,13 @@ https://dfm-disc90.hostingradio.ru/disc9096.aacp
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://dfm-dfmrusdance.hostingradio.ru/dfmrusdance96.aacp?0.9987259013359274
 
-#EXTINF:-1 tvg-id="The Russian Federation_5" tvg-name="Дорожное радио" tvg-logo="https://dorognoe.ru/assets/default/i/fav_114x114.png" group-title="The Russian Federation",Дорожное радио
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://dorognoe.hostingradio.ru:8000/radio
-
-#EXTINF:-1 tvg-id="The Russian Federation_6" tvg-name="Вести ФМ (Vesti FM)" tvg-logo="" group-title="The Russian Federation",Вести ФМ (Vesti FM)
+#EXTINF:-1 tvg-id="The Russian Federation_5" tvg-name="Вести ФМ (Vesti FM)" tvg-logo="" group-title="The Russian Federation",Вести ФМ (Vesti FM)
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://icecast.vgtrk.cdnvideo.ru/vestifm_mp3_192kbps
+
+#EXTINF:-1 tvg-id="The Russian Federation_6" tvg-name="Дорожное радио" tvg-logo="https://dorognoe.ru/assets/default/i/fav_114x114.png" group-title="The Russian Federation",Дорожное радио
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://dorognoe.hostingradio.ru:8000/radio
 
 #EXTINF:-1 tvg-id="The Russian Federation_7" tvg-name="Дискотека СССР" tvg-logo="" group-title="The Russian Federation",Дискотека СССР
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -3665,13 +3665,13 @@ https://www.181.fm/stream/pls/181-beat.m3u
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://streams.echoesofbluemars.org:8000/cryosleep
 
-#EXTINF:-1 tvg-id="The United States Of America_31" tvg-name="SomaFM Underground 80s (128k MP3)" tvg-logo="https://somafm.com/img3/u80s-400.png" group-title="The United States Of America",SomaFM Underground 80s (128k MP3)
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://somafm.com/u80s.m3u
-
-#EXTINF:-1 tvg-id="The United States Of America_32" tvg-name="NPR 24 Hour Program Stream" tvg-logo="https://static-assets.npr.org/static/images/favicon/favicon-96x96.png" group-title="The United States Of America",NPR 24 Hour Program Stream
+#EXTINF:-1 tvg-id="The United States Of America_31" tvg-name="NPR 24 Hour Program Stream" tvg-logo="https://static-assets.npr.org/static/images/favicon/favicon-96x96.png" group-title="The United States Of America",NPR 24 Hour Program Stream
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://npr-ice.streamguys1.com/live.mp3
+
+#EXTINF:-1 tvg-id="The United States Of America_32" tvg-name="SomaFM Underground 80s (128k MP3)" tvg-logo="https://somafm.com/img3/u80s-400.png" group-title="The United States Of America",SomaFM Underground 80s (128k MP3)
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://somafm.com/u80s.m3u
 
 #EXTINF:-1 tvg-id="The United States Of America_33" tvg-name="Infowars" tvg-logo="" group-title="The United States Of America",Infowars
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -3781,13 +3781,13 @@ https://www.wnyc.org/stream/wnyc-fm939/mp3.m3u
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://east-mp3-128.streamthejazzgroove.com/stream
 
-#EXTINF:-1 tvg-id="The United States Of America_60" tvg-name="98.1 KBEAR" tvg-logo="https://pwa.tunegenie.com/kyyaam/icon-192.png" group-title="The United States Of America",98.1 KBEAR
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://desertmountainbroadcasting.streamguys1.com/KYYA
-
-#EXTINF:-1 tvg-id="The United States Of America_61" tvg-name="WALM - Old Time Radio Opus" tvg-logo="https://icecast.walmradio.com:8443/otr.jpg" group-title="The United States Of America",WALM - Old Time Radio Opus
+#EXTINF:-1 tvg-id="The United States Of America_60" tvg-name="WALM - Old Time Radio Opus" tvg-logo="https://icecast.walmradio.com:8443/otr.jpg" group-title="The United States Of America",WALM - Old Time Radio Opus
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://icecast.walmradio.com:8443/otr_opus
+
+#EXTINF:-1 tvg-id="The United States Of America_61" tvg-name="98.1 KBEAR" tvg-logo="https://pwa.tunegenie.com/kyyaam/icon-192.png" group-title="The United States Of America",98.1 KBEAR
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://desertmountainbroadcasting.streamguys1.com/KYYA
 
 #EXTINF:-1 tvg-id="The United States Of America_62" tvg-name="101 SMOOTH JAZZ MELLOW MIX" tvg-logo="" group-title="The United States Of America",101 SMOOTH JAZZ MELLOW MIX
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
