@@ -1,0 +1,55 @@
+name: sanstv M3U Oluşturucu
+
+permissions:
+  contents: write
+
+on:
+  schedule:
+    - cron: '0 * * * *'    # Her saat başı çalışır
+  workflow_dispatch:       # Manuel tetikleme için
+
+jobs:
+  update-m3u:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Repo Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Python Kur
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Paketleri Yükle
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install requests beautifulsoup4 urllib3
+
+      - name: Git Ayarları
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: M3U Oluştur
+        run: python sanstv.py
+
+      - name: Değişiklikleri Kaydet ve Pushla
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Uzaktaki değişikliklerle çakışmayı önlemek için pull rebase yapıyoruz
+          git pull --rebase origin main
+          
+          # Dosyayı ekle
+          git add karsilasmalar5.m3u
+          
+          # Değişiklik varsa commit yap
+          if git diff --staged --quiet; then
+            echo "Herhangi bir değişiklik bulunamadı."
+          else
+            git commit -m "Auto-update: karsilasmalar5.m3u $(date +'%Y-%m-%d %H:%M:%S')"
+            git push https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }} main
+          fi
