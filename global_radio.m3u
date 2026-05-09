@@ -762,13 +762,13 @@ http://stream-36.zeno.fm/rf64mx02qa0uv?zs=omRb6KEjQ3u0-JsaJKdhQg
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://stream.radiojar.com/8s5u5tpdtwzuv
 
-#EXTINF:-1 tvg-id="Egypt_16" tvg-name="Diab FM" tvg-logo="" group-title="Egypt",Diab FM
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://stream-34.zeno.fm/rf64mx02qa0uv?zs=-xjlLLwRS8uKrffFxK4vLA
-
-#EXTINF:-1 tvg-id="Egypt_17" tvg-name="إذاعة القرآن الكريم" tvg-logo="https://i.pinimg.com/564x/3a/a1/a1/3aa1a107c9434ca52b42b2dd0ffc896f.jpg" group-title="Egypt",إذاعة القرآن الكريم
+#EXTINF:-1 tvg-id="Egypt_16" tvg-name="إذاعة القرآن الكريم" tvg-logo="https://i.pinimg.com/564x/3a/a1/a1/3aa1a107c9434ca52b42b2dd0ffc896f.jpg" group-title="Egypt",إذاعة القرآن الكريم
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://n0a.radiojar.com/0tpy1h0kxtzuv?rj-ttl=5&rj-tok=AAABhdgGORQA-2acfyF3_4WY2g
+
+#EXTINF:-1 tvg-id="Egypt_17" tvg-name="Diab FM" tvg-logo="" group-title="Egypt",Diab FM
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://stream-34.zeno.fm/rf64mx02qa0uv?zs=-xjlLLwRS8uKrffFxK4vLA
 
 #EXTINF:-1 tvg-id="Egypt_18" tvg-name="القران الكريم من القاهره1" tvg-logo="" group-title="Egypt",القران الكريم من القاهره1
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -843,13 +843,13 @@ http://streaming.radio.rtl.fr/rtl-1-44-128
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://direct.franceinter.fr/live/franceinter-midfi.mp3
 
-#EXTINF:-1 tvg-id="France_9" tvg-name="France Culture" tvg-logo="https://upload.wikimedia.org/wikipedia/fr/thumb/c/c9/France_Culture_-_2008.svg/1024px-France_Culture_-_2008.svg.png" group-title="France",France Culture
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://icecast.radiofrance.fr/franceculture-hifi.aac
-
-#EXTINF:-1 tvg-id="France_10" tvg-name="RFI-Afrique" tvg-logo="" group-title="France",RFI-Afrique
+#EXTINF:-1 tvg-id="France_9" tvg-name="RFI-Afrique" tvg-logo="" group-title="France",RFI-Afrique
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://live02.rfi.fr/rfiafrique-96k.mp3
+
+#EXTINF:-1 tvg-id="France_10" tvg-name="France Culture" tvg-logo="https://upload.wikimedia.org/wikipedia/fr/thumb/c/c9/France_Culture_-_2008.svg/1024px-France_Culture_-_2008.svg.png" group-title="France",France Culture
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://icecast.radiofrance.fr/franceculture-hifi.aac
 
 #EXTINF:-1 tvg-id="France_11" tvg-name="Skyrock" tvg-logo="https://play-lh.googleusercontent.com/dPiQ01OUKZVfRZUbbb-EVK5g9miS_K-xrxHgmBbynGG-GQ53yt3GzFKr0zUTnb-xswQ=s200-rw" group-title="France",Skyrock
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -1178,13 +1178,13 @@ http://mp3channels.webradio.antenne.de/classic-rock-live
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://stream.laut.fm/total-instrumental
 
-#EXTINF:-1 tvg-id="Germany_35" tvg-name="MDR Aktuell" tvg-logo="https://cdn.mdr.de/resources/global/img/mdrde/favicons/apple-icon-120x120.png" group-title="Germany",MDR Aktuell
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://avw.mdr.de/streams/284340-0_mp3_high.m3u
-
-#EXTINF:-1 tvg-id="Germany_36" tvg-name="Hit Radio FFH - 80er" tvg-logo="" group-title="Germany",Hit Radio FFH - 80er
+#EXTINF:-1 tvg-id="Germany_35" tvg-name="Hit Radio FFH - 80er" tvg-logo="" group-title="Germany",Hit Radio FFH - 80er
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://mp3.ffh.de/ffhchannels/hq80er.mp3
+
+#EXTINF:-1 tvg-id="Germany_36" tvg-name="MDR Aktuell" tvg-logo="https://cdn.mdr.de/resources/global/img/mdrde/favicons/apple-icon-120x120.png" group-title="Germany",MDR Aktuell
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://avw.mdr.de/streams/284340-0_mp3_high.m3u
 
 #EXTINF:-1 tvg-id="Germany_37" tvg-name="90s90s Techno HQ" tvg-logo="" group-title="Germany",90s90s Techno HQ
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -1535,13 +1535,13 @@ http://dard.out.airtime.pro:8000/dard_a
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://sonic.onlineaudience.co.uk/8114/stream?listening-from-radio-garden=1657427657
 
-#EXTINF:-1 tvg-id="India_16" tvg-name="AIR Fm Gold Delhi" tvg-logo="https://liveradios.in/wp-content/uploads/output-onlinepngtools-1-150x150.png" group-title="India",AIR Fm Gold Delhi
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://airhlspush.pc.cdn.bitgravity.com/httppush/hlspbaudio005/hlspbaudio00564kbps.m3u8
-
-#EXTINF:-1 tvg-id="India_17" tvg-name="Mirchi Top 20" tvg-logo="http://mirchi.in/favicon-196x196.png" group-title="India",Mirchi Top 20
+#EXTINF:-1 tvg-id="India_16" tvg-name="Mirchi Top 20" tvg-logo="http://mirchi.in/favicon-196x196.png" group-title="India",Mirchi Top 20
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://drive.uber.radio/uber/bollywoodnow/icecast.audio
+
+#EXTINF:-1 tvg-id="India_17" tvg-name="AIR Fm Gold Delhi" tvg-logo="https://liveradios.in/wp-content/uploads/output-onlinepngtools-1-150x150.png" group-title="India",AIR Fm Gold Delhi
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://airhlspush.pc.cdn.bitgravity.com/httppush/hlspbaudio005/hlspbaudio00564kbps.m3u8
 
 #EXTINF:-1 tvg-id="India_18" tvg-name="Hits Of Kishor Kumar" tvg-logo="" group-title="India",Hits Of Kishor Kumar
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
