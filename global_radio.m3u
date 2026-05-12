@@ -1202,13 +1202,13 @@ http://1000oldies.stream.laut.fm/1000oldies?t302=2018-01-16_15-40-29&uuid=37780f
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://trance-high.rautemusik.fm/?ref=radiobrowser
 
-#EXTINF:-1 tvg-id="Germany_41" tvg-name="Sunshine Live - Lounge" tvg-logo="" group-title="Germany",Sunshine Live - Lounge
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://stream.sunshine-live.de/lounge/mp3-192/stream.sunshine-live.de/
-
-#EXTINF:-1 tvg-id="Germany_42" tvg-name="Radio Arabella München" tvg-logo="https://www.radioarabella.de/storage/thumbs/192x192/r:1658501906/788381.png" group-title="Germany",Radio Arabella München
+#EXTINF:-1 tvg-id="Germany_41" tvg-name="Radio Arabella München" tvg-logo="https://www.radioarabella.de/storage/thumbs/192x192/r:1658501906/788381.png" group-title="Germany",Radio Arabella München
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://rs26.stream24.net/stream?ref=radioarabella.de
+
+#EXTINF:-1 tvg-id="Germany_42" tvg-name="Sunshine Live - Lounge" tvg-logo="" group-title="Germany",Sunshine Live - Lounge
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://stream.sunshine-live.de/lounge/mp3-192/stream.sunshine-live.de/
 
 #EXTINF:-1 tvg-id="Germany_43" tvg-name="- 0 N - 90s on Radio" tvg-logo="https://www.0nradio.com/logos/0n-90s_600x600.jpg" group-title="Germany",- 0 N - 90s on Radio
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -1531,13 +1531,13 @@ https://eu8.fastcast4u.com/proxy/clyedupq/stream
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://dard.out.airtime.pro:8000/dard_a
 
-#EXTINF:-1 tvg-id="India_15" tvg-name="Radio Aashiqanaa" tvg-logo="" group-title="India",Radio Aashiqanaa
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://sonic.onlineaudience.co.uk/8114/stream?listening-from-radio-garden=1657427657
-
-#EXTINF:-1 tvg-id="India_16" tvg-name="Mirchi Top 20" tvg-logo="http://mirchi.in/favicon-196x196.png" group-title="India",Mirchi Top 20
+#EXTINF:-1 tvg-id="India_15" tvg-name="Mirchi Top 20" tvg-logo="http://mirchi.in/favicon-196x196.png" group-title="India",Mirchi Top 20
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://drive.uber.radio/uber/bollywoodnow/icecast.audio
+
+#EXTINF:-1 tvg-id="India_16" tvg-name="Radio Aashiqanaa" tvg-logo="" group-title="India",Radio Aashiqanaa
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://sonic.onlineaudience.co.uk/8114/stream?listening-from-radio-garden=1657427657
 
 #EXTINF:-1 tvg-id="India_17" tvg-name="AIR Fm Gold Delhi" tvg-logo="https://liveradios.in/wp-content/uploads/output-onlinepngtools-1-150x150.png" group-title="India",AIR Fm Gold Delhi
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -1984,6 +1984,10 @@ http://icestreaming.rai.it/6.mp3
 #EXTINF:-1 tvg-id="Italy_37" tvg-name="Italia Dance Music" tvg-logo="http://www.italiadancemusic.com/it/themes/corporate_lite/favicon.ico" group-title="Italy",Italia Dance Music
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://sr2.inmystream.info:8032/listen.m3u
+
+#EXTINF:-1 tvg-id="Italy_38" tvg-name="ITALIA Italia 80" tvg-logo="" group-title="Italy",ITALIA Italia 80
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://icy.unitedradio.it/um016.mp3
 
 #EXTINF:-1 tvg-id="" tvg-logo="" group-title="Jamaica",Jamaica
 #EXTGRP:Jamaica
@@ -2466,13 +2470,13 @@ http://stream3.polskieradio.pl:8918/;
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://go-audio.toya.net.pl/63214
 
-#EXTINF:-1 tvg-id="Poland_30" tvg-name="Radio Gdansk" tvg-logo="https://radiogdansk.pl/wp-content/uploads/2020/12/cropped-favicon-180x180.png" group-title="Poland",Radio Gdansk
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://stream.task.gda.pl:8000/rg1
-
-#EXTINF:-1 tvg-id="Poland_31" tvg-name="RMF FM" tvg-logo="https://www.rmf.fm/assets/images/favicon/apple-icon-120x120.png?3" group-title="Poland",RMF FM
+#EXTINF:-1 tvg-id="Poland_30" tvg-name="RMF FM" tvg-logo="https://www.rmf.fm/assets/images/favicon/apple-icon-120x120.png?3" group-title="Poland",RMF FM
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://31.192.216.8/rmf_fm
+
+#EXTINF:-1 tvg-id="Poland_31" tvg-name="Radio Gdansk" tvg-logo="https://radiogdansk.pl/wp-content/uploads/2020/12/cropped-favicon-180x180.png" group-title="Poland",Radio Gdansk
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://stream.task.gda.pl:8000/rg1
 
 #EXTINF:-1 tvg-id="Poland_32" tvg-name="Radio Silesia" tvg-logo="" group-title="Poland",Radio Silesia
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -2989,10 +2993,6 @@ https://cast.requestradio.in.th:830/stream/
 #EXTINF:-1 tvg-id="Thailand_1" tvg-name="90 rakthai" tvg-logo="" group-title="Thailand",90 rakthai
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://radio11.plathong.net:8896/;stream.mp3
-
-#EXTINF:-1 tvg-id="Thailand_2" tvg-name="มิติข่าว 90.5" tvg-logo="" group-title="Thailand",มิติข่าว 90.5
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://live3.smartbomb.co.th:8624/;stream.mp3
 
 #EXTINF:-1 tvg-id="" tvg-logo="" group-title="The Democratic Republic Of The Congo",The Democratic Republic Of The Congo
 #EXTGRP:The Democratic Republic Of The Congo
@@ -3780,13 +3780,13 @@ http://server1.chilltrax.com:9000/
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://liveaudio.lamusica.com/MIA_WCMQ_icy
 
-#EXTINF:-1 tvg-id="The United States Of America_58" tvg-name="WNYC-FM 93.9 New York Public Radio" tvg-logo="" group-title="The United States Of America",WNYC-FM 93.9 New York Public Radio
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://www.wnyc.org/stream/wnyc-fm939/mp3.m3u
-
-#EXTINF:-1 tvg-id="The United States Of America_59" tvg-name="WALM - Old Time Radio Opus" tvg-logo="https://icecast.walmradio.com:8443/otr.jpg" group-title="The United States Of America",WALM - Old Time Radio Opus
+#EXTINF:-1 tvg-id="The United States Of America_58" tvg-name="WALM - Old Time Radio Opus" tvg-logo="https://icecast.walmradio.com:8443/otr.jpg" group-title="The United States Of America",WALM - Old Time Radio Opus
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://icecast.walmradio.com:8443/otr_opus
+
+#EXTINF:-1 tvg-id="The United States Of America_59" tvg-name="WNYC-FM 93.9 New York Public Radio" tvg-logo="" group-title="The United States Of America",WNYC-FM 93.9 New York Public Radio
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://www.wnyc.org/stream/wnyc-fm939/mp3.m3u
 
 #EXTINF:-1 tvg-id="The United States Of America_60" tvg-name="The Jazz Groove - East" tvg-logo="" group-title="The United States Of America",The Jazz Groove - East
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
