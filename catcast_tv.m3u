@@ -1,4 +1,8 @@
 #EXTM3U
+#EXTINF:-1 tvg-id="51141" tvg-name="azer" tvg-logo="https://catcast.tv/assets/no-logo.svg" group-title="Sayfa 1",azer
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36
+#EXTVLCOPT:http-referer=https://catcast.tv/
+https://example.com/?id=azer.m3u8
 #EXTINF:-1 tvg-id="51140" tvg-name="test" tvg-logo="https://catcast.tv/assets/no-logo.svg" group-title="Sayfa 1",test
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36
 #EXTVLCOPT:http-referer=https://catcast.tv/
@@ -43,10 +47,6 @@ https://example.com/?id=cartoon-networkru.m3u8
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36
 #EXTVLCOPT:http-referer=https://catcast.tv/
 https://example.com/?id=главный-корейский.m3u8
-#EXTINF:-1 tvg-id="51129" tvg-name="kubratv" tvg-logo="https://catcast.tv/assets/no-logo.svg" group-title="Sayfa 1",kubratv
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36
-#EXTVLCOPT:http-referer=https://catcast.tv/
-https://example.com/?id=kubratv.m3u8
 #EXTINF:-1 tvg-id="51128" tvg-name="Декартостан 24" tvg-logo="https://catcast.tv/assets/no-logo.svg" group-title="Sayfa 1",Декартостан 24
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36
 #EXTVLCOPT:http-referer=https://catcast.tv/
