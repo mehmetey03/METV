@@ -1841,13 +1841,13 @@ http://icestreaming.rai.it/1.mp3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://icy.unitedradio.it/VirginRockClassics.mp3
 
-#EXTINF:-1 tvg-id="Italy_2" tvg-name="Radio 105 Network" tvg-logo="https://upload.wikimedia.org/wikipedia/it/0/01/105.png" group-title="Italy",Radio 105 Network
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://icecast.unitedradio.it/Radio105.mp3
-
-#EXTINF:-1 tvg-id="Italy_3" tvg-name="Radio 24 il sole 24 ore" tvg-logo="https://www.radio24.ilsole24ore.com/whitelabel/group-2420101401040528/img/apple-touch-icon.png" group-title="Italy",Radio 24 il sole 24 ore
+#EXTINF:-1 tvg-id="Italy_2" tvg-name="Radio 24 il sole 24 ore" tvg-logo="https://www.radio24.ilsole24ore.com/whitelabel/group-2420101401040528/img/apple-touch-icon.png" group-title="Italy",Radio 24 il sole 24 ore
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://shoutcast2.radio24.it:8000/;
+
+#EXTINF:-1 tvg-id="Italy_3" tvg-name="Radio 105 Network" tvg-logo="https://upload.wikimedia.org/wikipedia/it/0/01/105.png" group-title="Italy",Radio 105 Network
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://icecast.unitedradio.it/Radio105.mp3
 
 #EXTINF:-1 tvg-id="Italy_4" tvg-name="Rai Radio 2" tvg-logo="" group-title="Italy",Rai Radio 2
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -1985,9 +1985,9 @@ http://icestreaming.rai.it/6.mp3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://sr2.inmystream.info:8032/listen.m3u
 
-#EXTINF:-1 tvg-id="Italy_38" tvg-name="ITALIA Italia 80" tvg-logo="" group-title="Italy",ITALIA Italia 80
+#EXTINF:-1 tvg-id="Italy_38" tvg-name="Rai Radio Classica Filodiffusione" tvg-logo="" group-title="Italy",Rai Radio Classica Filodiffusione
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://icy.unitedradio.it/um016.mp3
+http://icestreaming.rai.it/5.mp3
 
 #EXTINF:-1 tvg-id="" tvg-logo="" group-title="Jamaica",Jamaica
 #EXTGRP:Jamaica
@@ -2462,13 +2462,13 @@ https://usa12.fastcast4u.com/tunein/isnesllc.m3u
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://house.radioparty.pl:8010/
 
-#EXTINF:-1 tvg-id="Poland_28" tvg-name="Polskie Radio Kierowców" tvg-logo="" group-title="Poland",Polskie Radio Kierowców
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://stream3.polskieradio.pl:8918/;
-
-#EXTINF:-1 tvg-id="Poland_29" tvg-name="Radio Nowy Świat 256k" tvg-logo="" group-title="Poland",Radio Nowy Świat 256k
+#EXTINF:-1 tvg-id="Poland_28" tvg-name="Radio Nowy Świat 256k" tvg-logo="" group-title="Poland",Radio Nowy Świat 256k
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://go-audio.toya.net.pl/63214
+
+#EXTINF:-1 tvg-id="Poland_29" tvg-name="Polskie Radio Kierowców" tvg-logo="" group-title="Poland",Polskie Radio Kierowców
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://stream3.polskieradio.pl:8918/;
 
 #EXTINF:-1 tvg-id="Poland_30" tvg-name="RMF FM" tvg-logo="https://www.rmf.fm/assets/images/favicon/apple-icon-120x120.png?3" group-title="Poland",RMF FM
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -3100,21 +3100,21 @@ https://dfm-disc90.hostingradio.ru/disc9096.aacp
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://dfm-dfmrusdance.hostingradio.ru/dfmrusdance96.aacp?0.9987259013359274
 
-#EXTINF:-1 tvg-id="The Russian Federation_5" tvg-name="Дорожное радио" tvg-logo="https://dorognoe.ru/assets/default/i/fav_114x114.png" group-title="The Russian Federation",Дорожное радио
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://dorognoe.hostingradio.ru:8000/radio
-
-#EXTINF:-1 tvg-id="The Russian Federation_6" tvg-name="Вести ФМ (Vesti FM)" tvg-logo="" group-title="The Russian Federation",Вести ФМ (Vesti FM)
+#EXTINF:-1 tvg-id="The Russian Federation_5" tvg-name="Вести ФМ (Vesti FM)" tvg-logo="" group-title="The Russian Federation",Вести ФМ (Vesti FM)
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://icecast.vgtrk.cdnvideo.ru/vestifm_mp3_192kbps
 
-#EXTINF:-1 tvg-id="The Russian Federation_7" tvg-name="Дискотека СССР" tvg-logo="" group-title="The Russian Federation",Дискотека СССР
+#EXTINF:-1 tvg-id="The Russian Federation_6" tvg-name="Дискотека СССР" tvg-logo="" group-title="The Russian Federation",Дискотека СССР
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://pub0302.101.ru:8000/stream/pro/aac/64/144?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpcCI6IjUuMTguMjQ4Ljk4IiwidXNlcmFnZW50IjoiTW96aWxsYVwvNS4wIChYMTE7IExpbnV4IHg4Nl82NDsgcnY6ODIuMCkgR2Vja29cLzIwMTAwMTAxIEZpcmVmb3hcLzgyLjAiLCJ1aWRfY2hhbm5lbCI6IjE0NCIsInR5cGVfY2hhbm5lbCI6ImNoYW5uZWwiLCJleHAiOjE2MDU5NjQ1MTZ9.Ln1wEJ8cHHzK_Ea6Zr8J8acdny0R9ShZ_KUKVf6TmQA
 
-#EXTINF:-1 tvg-id="The Russian Federation_8" tvg-name="Радио Русские Песни" tvg-logo="" group-title="The Russian Federation",Радио Русские Песни
+#EXTINF:-1 tvg-id="The Russian Federation_7" tvg-name="Радио Русские Песни" tvg-logo="" group-title="The Russian Federation",Радио Русские Песни
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://listen.rusongs.ru/ru-mp3-128
+
+#EXTINF:-1 tvg-id="The Russian Federation_8" tvg-name="Дорожное радио" tvg-logo="https://dorognoe.ru/assets/default/i/fav_114x114.png" group-title="The Russian Federation",Дорожное радио
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://dorognoe.hostingradio.ru:8000/radio
 
 #EXTINF:-1 tvg-id="The Russian Federation_9" tvg-name="Ретро FM" tvg-logo="" group-title="The Russian Federation",Ретро FM
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
