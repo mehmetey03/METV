@@ -1957,13 +1957,13 @@ https://sr2.inmystream.info:8032/listen.m3u
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://icestreaming.rai.it/5.mp3
 
-#EXTINF:-1 tvg-id="Italy_38" tvg-name="Radio 105 - Zoo Radio" tvg-logo="" group-title="Italy",Radio 105 - Zoo Radio
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://icy.unitedradio.it/105Zoo.mp3
-
-#EXTINF:-1 tvg-id="Italy_39" tvg-name="ITALIA Italia 80" tvg-logo="" group-title="Italy",ITALIA Italia 80
+#EXTINF:-1 tvg-id="Italy_38" tvg-name="ITALIA Italia 80" tvg-logo="" group-title="Italy",ITALIA Italia 80
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://icy.unitedradio.it/um016.mp3
+
+#EXTINF:-1 tvg-id="Italy_39" tvg-name="Radio 105 - Zoo Radio" tvg-logo="" group-title="Italy",Radio 105 - Zoo Radio
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://icy.unitedradio.it/105Zoo.mp3
 
 #EXTINF:-1 tvg-id="Italy_40" tvg-name="Radio Sportiva" tvg-logo="https://www.radiosportiva.com/wp-content/uploads/2021/09/logo-radiosportiva-white.svg" group-title="Italy",Radio Sportiva
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -2944,13 +2944,13 @@ http://strm112.1.fm/blues_mobile_mp3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://stream.srg-ssr.ch/m/rsc_de/mp3_128
 
-#EXTINF:-1 tvg-id="Switzerland_9" tvg-name="1.FM - Cafe Radio" tvg-logo="" group-title="Switzerland",1.FM - Cafe Radio
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://strm112.1.fm/caferadio_mobile_mp3
-
-#EXTINF:-1 tvg-id="Switzerland_10" tvg-name="1.FM - Rock Classics Radio" tvg-logo="" group-title="Switzerland",1.FM - Rock Classics Radio
+#EXTINF:-1 tvg-id="Switzerland_9" tvg-name="1.FM - Rock Classics Radio" tvg-logo="" group-title="Switzerland",1.FM - Rock Classics Radio
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://strm112.1.fm/rockclassics_mobile_mp3
+
+#EXTINF:-1 tvg-id="Switzerland_10" tvg-name="1.FM - Cafe Radio" tvg-logo="" group-title="Switzerland",1.FM - Cafe Radio
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://strm112.1.fm/caferadio_mobile_mp3
 
 #EXTINF:-1 tvg-id="Switzerland_11" tvg-name="1.FM - Bombay Beats India Radio" tvg-logo="" group-title="Switzerland",1.FM - Bombay Beats India Radio
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -4215,13 +4215,13 @@ http://procyon.shoutca.st:8488/index
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://edge.mixlr.com/channel/kijwr
 
-#EXTINF:-1 tvg-id="Yemen_4" tvg-name=". quran" tvg-logo="" group-title="Yemen",. quran
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://backup.qurango.net/radio/ahmad_khader_altarabulsi
-
-#EXTINF:-1 tvg-id="Yemen_5" tvg-name="Afaq FM  راديو آفاق" tvg-logo="https://www.facebook.com/favicon.ico" group-title="Yemen",Afaq FM  راديو آفاق
+#EXTINF:-1 tvg-id="Yemen_4" tvg-name="Afaq FM  راديو آفاق" tvg-logo="https://www.facebook.com/favicon.ico" group-title="Yemen",Afaq FM  راديو آفاق
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://edge.mixlr.com/channel/rumps
+
+#EXTINF:-1 tvg-id="Yemen_5" tvg-name=". quran" tvg-logo="" group-title="Yemen",. quran
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://backup.qurango.net/radio/ahmad_khader_altarabulsi
 
 #EXTINF:-1 tvg-id="Yemen_6" tvg-name="Radio Lana FM" tvg-logo="" group-title="Yemen",Radio Lana FM
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
