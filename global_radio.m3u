@@ -1236,13 +1236,13 @@ https://0n-indie.radionetz.de/0n-indie.mp3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://avw.mdr.de/streams/284350-0_mp3_high.m3u
 
-#EXTINF:-1 tvg-id="Germany_49" tvg-name="- 0 N - Smooth Jazz on Radio" tvg-logo="https://www.0nradio.com/logos/0n-smooth-jazz_600x600.jpg" group-title="Germany",- 0 N - Smooth Jazz on Radio
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://0n-smoothjazz.radionetz.de/0n-smoothjazz.aac
-
-#EXTINF:-1 tvg-id="Germany_50" tvg-name="WDR4" tvg-logo="https://www1.wdr.de/resources/img/favicon/apple-touch-icon.png" group-title="Germany",WDR4
+#EXTINF:-1 tvg-id="Germany_49" tvg-name="WDR4" tvg-logo="https://www1.wdr.de/resources/img/favicon/apple-touch-icon.png" group-title="Germany",WDR4
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://wdr-wdr4-live.icecast.wdr.de/wdr/wdr4/live/mp3/128/stream.mp3
+
+#EXTINF:-1 tvg-id="Germany_50" tvg-name="- 0 N - Smooth Jazz on Radio" tvg-logo="https://www.0nradio.com/logos/0n-smooth-jazz_600x600.jpg" group-title="Germany",- 0 N - Smooth Jazz on Radio
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://0n-smoothjazz.radionetz.de/0n-smoothjazz.aac
 
 #EXTINF:-1 tvg-id="Germany_51" tvg-name="80s80s Love" tvg-logo="" group-title="Germany",80s80s Love
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -1957,13 +1957,13 @@ https://sr2.inmystream.info:8032/listen.m3u
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://icestreaming.rai.it/5.mp3
 
-#EXTINF:-1 tvg-id="Italy_38" tvg-name="ITALIA Italia 80" tvg-logo="" group-title="Italy",ITALIA Italia 80
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://icy.unitedradio.it/um016.mp3
-
-#EXTINF:-1 tvg-id="Italy_39" tvg-name="Radio 105 - Zoo Radio" tvg-logo="" group-title="Italy",Radio 105 - Zoo Radio
+#EXTINF:-1 tvg-id="Italy_38" tvg-name="Radio 105 - Zoo Radio" tvg-logo="" group-title="Italy",Radio 105 - Zoo Radio
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://icy.unitedradio.it/105Zoo.mp3
+
+#EXTINF:-1 tvg-id="Italy_39" tvg-name="ITALIA Italia 80" tvg-logo="" group-title="Italy",ITALIA Italia 80
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://icy.unitedradio.it/um016.mp3
 
 #EXTINF:-1 tvg-id="Italy_40" tvg-name="Radio Sportiva" tvg-logo="https://www.radiosportiva.com/wp-content/uploads/2021/09/logo-radiosportiva-white.svg" group-title="Italy",Radio Sportiva
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -2887,10 +2887,6 @@ http://stream.zeno.fm/s70bvdgqks8uv
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://adhandler.kissfmradio.cires21.com/get_link?url=https://bbkissfm.kissfmradio.cires21.com/bbkissfm.mp3
 
-#EXTINF:-1 tvg-id="Spain_26" tvg-name="Cope Sevilla" tvg-logo="" group-title="Spain",Cope Sevilla
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://sevilla.copesedes.stream.flumotion.com/copesedes/sevilla.mp3.m3u
-
 #EXTINF:-1 tvg-id="" tvg-logo="" group-title="Sri Lanka",Sri Lanka
 #EXTGRP:Sri Lanka
 
@@ -3316,15 +3312,19 @@ http://emgspb.hostingradio.ru/novoespb128.mp3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://stream1.hostingradio.ru:8010/19_mp3_128
 
-#EXTINF:-1 tvg-id="The Russian Federation_56" tvg-name="HIP HOP RADIO" tvg-logo="" group-title="The Russian Federation",HIP HOP RADIO
+#EXTINF:-1 tvg-id="The Russian Federation_56" tvg-name="Anon.FM" tvg-logo="https://icecast.anon.fm/favicon.png" group-title="The Russian Federation",Anon.FM
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://icecast.anon.fm/radio
+
+#EXTINF:-1 tvg-id="The Russian Federation_57" tvg-name="HIP HOP RADIO" tvg-logo="" group-title="The Russian Federation",HIP HOP RADIO
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://tntradio.hostingradio.ru:8027/hhr128.mp3
 
-#EXTINF:-1 tvg-id="The Russian Federation_57" tvg-name="Radio Caprice - Retrowave" tvg-logo="http://radcap.ru/apple-touch-icon.png" group-title="The Russian Federation",Radio Caprice - Retrowave
+#EXTINF:-1 tvg-id="The Russian Federation_58" tvg-name="Radio Caprice - Retrowave" tvg-logo="http://radcap.ru/apple-touch-icon.png" group-title="The Russian Federation",Radio Caprice - Retrowave
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://79.120.39.202:9125/
 
-#EXTINF:-1 tvg-id="The Russian Federation_58" tvg-name="Бизнес FM" tvg-logo="https://www.bfm.ru/apple-touch-icon.png" group-title="The Russian Federation",Бизнес FM
+#EXTINF:-1 tvg-id="The Russian Federation_59" tvg-name="Бизнес FM" tvg-logo="https://www.bfm.ru/apple-touch-icon.png" group-title="The Russian Federation",Бизнес FM
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://bfm.hostingradio.ru:9075/fm
 
