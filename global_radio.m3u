@@ -1929,13 +1929,13 @@ http://icy.unitedradio.it/105HipHopRnB.mp3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://ice08.fluidstream.net/kk_hits.aac
 
-#EXTINF:-1 tvg-id="Italy_32" tvg-name="RMC Buddha-Bar" tvg-logo="" group-title="Italy",RMC Buddha-Bar
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://edge.radiomontecarlo.net/rmcweb002
-
-#EXTINF:-1 tvg-id="Italy_33" tvg-name="RMC Love Songs" tvg-logo="" group-title="Italy",RMC Love Songs
+#EXTINF:-1 tvg-id="Italy_32" tvg-name="RMC Love Songs" tvg-logo="" group-title="Italy",RMC Love Songs
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://edge.radiomontecarlo.net/rmcweb006
+
+#EXTINF:-1 tvg-id="Italy_33" tvg-name="RMC Buddha-Bar" tvg-logo="" group-title="Italy",RMC Buddha-Bar
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://edge.radiomontecarlo.net/rmcweb002
 
 #EXTINF:-1 tvg-id="Italy_34" tvg-name="Radio Kiss Kiss" tvg-logo="https://kisskiss.it/wp-content/uploads/2022/07/cropped-favicon-new-kisskiss-180x180.png" group-title="Italy",Radio Kiss Kiss
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -1957,13 +1957,13 @@ http://icestreaming.rai.it/5.mp3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://sportiva.inmystream.it/stream/sportiva
 
-#EXTINF:-1 tvg-id="Italy_39" tvg-name="ITALIA Italia 80" tvg-logo="" group-title="Italy",ITALIA Italia 80
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://icy.unitedradio.it/um016.mp3
-
-#EXTINF:-1 tvg-id="Italy_40" tvg-name="Radio 105 - Zoo Radio" tvg-logo="" group-title="Italy",Radio 105 - Zoo Radio
+#EXTINF:-1 tvg-id="Italy_39" tvg-name="Radio 105 - Zoo Radio" tvg-logo="" group-title="Italy",Radio 105 - Zoo Radio
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://icy.unitedradio.it/105Zoo.mp3
+
+#EXTINF:-1 tvg-id="Italy_40" tvg-name="ITALIA Italia 80" tvg-logo="" group-title="Italy",ITALIA Italia 80
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://icy.unitedradio.it/um016.mp3
 
 #EXTINF:-1 tvg-id="" tvg-logo="" group-title="Jamaica",Jamaica
 #EXTGRP:Jamaica
@@ -3252,13 +3252,13 @@ http://ep256.hostingradio.ru:8052/europaplus256.mp3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://pub0101.101.ru:8000/stream/air/aac/64/102
 
-#EXTINF:-1 tvg-id="The Russian Federation_42" tvg-name="Модель для сборки" tvg-logo="http://mds-station.com/apple-icon-120x120.png" group-title="The Russian Federation",Модель для сборки
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://mds-station.com:8000/mds
-
-#EXTINF:-1 tvg-id="The Russian Federation_43" tvg-name="Anon.FM" tvg-logo="https://icecast.anon.fm/favicon.png" group-title="The Russian Federation",Anon.FM
+#EXTINF:-1 tvg-id="The Russian Federation_42" tvg-name="Anon.FM" tvg-logo="https://icecast.anon.fm/favicon.png" group-title="The Russian Federation",Anon.FM
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://icecast.anon.fm/radio
+
+#EXTINF:-1 tvg-id="The Russian Federation_43" tvg-name="Модель для сборки" tvg-logo="http://mds-station.com/apple-icon-120x120.png" group-title="The Russian Federation",Модель для сборки
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://mds-station.com:8000/mds
 
 #EXTINF:-1 tvg-id="The Russian Federation_44" tvg-name="Radio Caprice - Eurodance" tvg-logo="http://www.radcap.ru/apple-touch-icon.png" group-title="The Russian Federation",Radio Caprice - Eurodance
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -3828,13 +3828,13 @@ http://pureplay.cdnstream1.com/6025_128.mp3?DIST=TuneIn&TGT=TuneIn&maxServers=2&
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://somafm.com/fluid.m3u
 
-#EXTINF:-1 tvg-id="The United States Of America_79" tvg-name="181.FM - 90's Country" tvg-logo="http://www.181.fm/favicon.ico" group-title="The United States Of America",181.FM - 90's Country
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://www.181.fm/stream/pls/181-90scountry.m3u
-
-#EXTINF:-1 tvg-id="The United States Of America_80" tvg-name="MSNBC" tvg-logo="https://nodeassets.nbcnews.com/cdnassets/projects/ramen/favicon/msnbc/all-other-sizes-PNG.ico/favicon-96x96.png" group-title="The United States Of America",MSNBC
+#EXTINF:-1 tvg-id="The United States Of America_79" tvg-name="MSNBC" tvg-logo="https://nodeassets.nbcnews.com/cdnassets/projects/ramen/favicon/msnbc/all-other-sizes-PNG.ico/favicon-96x96.png" group-title="The United States Of America",MSNBC
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://tunein.cdnstream1.com/3511_96.mp3
+
+#EXTINF:-1 tvg-id="The United States Of America_80" tvg-name="181.FM - 90's Country" tvg-logo="http://www.181.fm/favicon.ico" group-title="The United States Of America",181.FM - 90's Country
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://www.181.fm/stream/pls/181-90scountry.m3u
 
 #EXTINF:-1 tvg-id="The United States Of America_81" tvg-name="Radio Country Live New York" tvg-logo="https://cdn-elements.radiostreamlive.com/v1/images/favicon.ico" group-title="The United States Of America",Radio Country Live New York
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
