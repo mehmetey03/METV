@@ -3244,13 +3244,13 @@ https://icecast-vgtrk.cdnvideo.ru/vestifm_aac_32kbps
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://solovievfm.hostingradio.ru/solovievfm32.aacp
 
-#EXTINF:-1 tvg-id="The Russian Federation_38" tvg-name="Комсомольская правда" tvg-logo="https://radiokp.ru/modules/custom/dna_kpradio/modules/kp_favicon/img/favicon-194x194.png?v=1.1" group-title="The Russian Federation",Комсомольская правда
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://kpradio.hostingradio.ru:8000/64
-
-#EXTINF:-1 tvg-id="The Russian Federation_39" tvg-name="Anon.FM" tvg-logo="https://icecast.anon.fm/favicon.png" group-title="The Russian Federation",Anon.FM
+#EXTINF:-1 tvg-id="The Russian Federation_38" tvg-name="Anon.FM" tvg-logo="https://icecast.anon.fm/favicon.png" group-title="The Russian Federation",Anon.FM
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://icecast.anon.fm/radio
+
+#EXTINF:-1 tvg-id="The Russian Federation_39" tvg-name="Комсомольская правда" tvg-logo="https://radiokp.ru/modules/custom/dna_kpradio/modules/kp_favicon/img/favicon-194x194.png?v=1.1" group-title="The Russian Federation",Комсомольская правда
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://kpradio.hostingradio.ru:8000/64
 
 #EXTINF:-1 tvg-id="The Russian Federation_40" tvg-name="Радио России (Radio Russia)" tvg-logo="" group-title="The Russian Federation",Радио России (Radio Russia)
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
