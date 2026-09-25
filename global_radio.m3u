@@ -1957,13 +1957,13 @@ http://icestreaming.rai.it/5.mp3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://sportiva.inmystream.it/stream/sportiva
 
-#EXTINF:-1 tvg-id="Italy_38" tvg-name="ITALIA Italia 80" tvg-logo="" group-title="Italy",ITALIA Italia 80
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://icy.unitedradio.it/um016.mp3
-
-#EXTINF:-1 tvg-id="Italy_39" tvg-name="Radio 105 - Zoo Radio" tvg-logo="" group-title="Italy",Radio 105 - Zoo Radio
+#EXTINF:-1 tvg-id="Italy_38" tvg-name="Radio 105 - Zoo Radio" tvg-logo="" group-title="Italy",Radio 105 - Zoo Radio
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://icy.unitedradio.it/105Zoo.mp3
+
+#EXTINF:-1 tvg-id="Italy_39" tvg-name="ITALIA Italia 80" tvg-logo="" group-title="Italy",ITALIA Italia 80
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://icy.unitedradio.it/um016.mp3
 
 #EXTINF:-1 tvg-id="" tvg-logo="" group-title="Jamaica",Jamaica
 #EXTGRP:Jamaica
