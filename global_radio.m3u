@@ -1211,13 +1211,13 @@ http://1000oldies.stream.laut.fm/1000oldies?t302=2018-01-16_15-40-29&uuid=37780f
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://stream.sunshine-live.de/lounge/mp3-192/stream.sunshine-live.de/
 
-#EXTINF:-1 tvg-id="Germany_43" tvg-name="Technolovers DEEP HOUSE" tvg-logo="" group-title="Germany",Technolovers DEEP HOUSE
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://stream.technolovers.fm/deep-house?ref=radiobrowser
-
-#EXTINF:-1 tvg-id="Germany_44" tvg-name="i love radio - hip hop turnup" tvg-logo="https://www.iloveradio.de/favicon.ico" group-title="Germany",i love radio - hip hop turnup
+#EXTINF:-1 tvg-id="Germany_43" tvg-name="i love radio - hip hop turnup" tvg-logo="https://www.iloveradio.de/favicon.ico" group-title="Germany",i love radio - hip hop turnup
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://stream02.iloveradio.de/iloveradio13.mp3?hadpreroll
+
+#EXTINF:-1 tvg-id="Germany_44" tvg-name="Technolovers DEEP HOUSE" tvg-logo="" group-title="Germany",Technolovers DEEP HOUSE
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://stream.technolovers.fm/deep-house?ref=radiobrowser
 
 #EXTINF:-1 tvg-id="Germany_45" tvg-name="RADIO BOB! BOBs Metal" tvg-logo="" group-title="Germany",RADIO BOB! BOBs Metal
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -2870,13 +2870,13 @@ https://playerservices.streamtheworld.com/api/livestream-redirect/LOS40_CLASSIC.
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://edge4.peta.live365.net/b05055_128mp3
 
-#EXTINF:-1 tvg-id="Spain_20" tvg-name="MegaStarFM" tvg-logo="https://www.megastar.fm/estaticos/apple-touch-icon-192x192.png" group-title="Spain",MegaStarFM
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://megastar.cope.stream.flumotion.com/cope/megastar.mp3.m3u
-
-#EXTINF:-1 tvg-id="Spain_21" tvg-name="Radio Marca Barcelona" tvg-logo="http://e00-marca.uecdn.es/favicon.ico" group-title="Spain",Radio Marca Barcelona
+#EXTINF:-1 tvg-id="Spain_20" tvg-name="Radio Marca Barcelona" tvg-logo="http://e00-marca.uecdn.es/favicon.ico" group-title="Spain",Radio Marca Barcelona
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://radioweb.radiomarcabarcelona.com:9000/stream.m3u
+
+#EXTINF:-1 tvg-id="Spain_21" tvg-name="MegaStarFM" tvg-logo="https://www.megastar.fm/estaticos/apple-touch-icon-192x192.png" group-title="Spain",MegaStarFM
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://megastar.cope.stream.flumotion.com/cope/megastar.mp3.m3u
 
 #EXTINF:-1 tvg-id="Spain_22" tvg-name="Radio Marca Madrid" tvg-logo="" group-title="Spain",Radio Marca Madrid
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
