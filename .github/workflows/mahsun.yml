@@ -1,26 +1,64 @@
 name: Update List
+
 on:
   schedule:
-    - cron: '0 0 * * *' # Her gece çalışır
-  workflow_dispatch: # Manuel çalıştırma butonu ekler
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v5
         with:
           python-version: '3.x'
+
       - name: Install dependencies
-        run: pip install requests
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests urllib3
+
       - name: Run script
-        run: python tv.py
+        run: |
+          python tv.py
+
+      - name: Check generated file
+        run: |
+          echo "mahsun.m3u kontrol ediliyor..."
+          if [ ! -f "mahsun.m3u" ]; then
+            echo "HATA: mahsun.m3u oluşturulamadı!"
+            exit 1
+          fi
+
+          echo "Dosya boyutu:"
+          ls -lh mahsun.m3u
+
+          echo "Kanal sayısı:"
+          grep -c "#EXTINF" mahsun.m3u || true
+
       - name: Commit and push
         run: |
-          git config --global user.name 'GitHub Action'
-          git config --global user.email 'action@github.com'
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
           git add mahsun.m3u
-          git commit -m "Liste Güncellendi" || exit 0
-          git push
+
+          if git diff --cached --quiet; then
+            echo "Değişiklik yok. Push yapılmayacak."
+            exit 0
+          fi
+
+          git commit -m "Liste Güncellendi"
+
+          git push origin HEAD:${{ github.ref_name }}
