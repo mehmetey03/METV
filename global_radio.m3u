@@ -1017,13 +1017,13 @@ http://icecast.radiofrance.fr/fipreggae-hifi.aac
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://direct.franceinfo.fr/live/franceinfo-lofi.mp3
 
-#EXTINF:-1 tvg-id="France_50" tvg-name="Latina" tvg-logo="https://bocir-prod-bucket.s3.eu-west-1.amazonaws.com/radios/latina/images/favicon.ico" group-title="France",Latina
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://start-latina.ice.infomaniak.ch/start-latina-high.mp3
-
-#EXTINF:-1 tvg-id="France_51" tvg-name="OUI FM" tvg-logo="https://bocir-prod-bucket.s3.amazonaws.com/radios/oui-fm/images/favicon.ico" group-title="France",OUI FM
+#EXTINF:-1 tvg-id="France_50" tvg-name="OUI FM" tvg-logo="https://bocir-prod-bucket.s3.amazonaws.com/radios/oui-fm/images/favicon.ico" group-title="France",OUI FM
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://ouifm.ice.infomaniak.ch/ouifm-high.mp3
+
+#EXTINF:-1 tvg-id="France_51" tvg-name="Latina" tvg-logo="https://bocir-prod-bucket.s3.eu-west-1.amazonaws.com/radios/latina/images/favicon.ico" group-title="France",Latina
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://start-latina.ice.infomaniak.ch/start-latina-high.mp3
 
 #EXTINF:-1 tvg-id="France_52" tvg-name="Europe 2" tvg-logo="https://www.europe2.fr/wp-content/themes/melty/europeradio/assets/images/favicons/favicon128.png" group-title="France",Europe 2
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -2442,13 +2442,13 @@ http://audio.radiownet.pl:8000/stream
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://stream3.polskieradio.pl:8906/;stream
 
-#EXTINF:-1 tvg-id="Poland_21" tvg-name="Radio Szczecin (128K MP3)" tvg-logo="http://radioszczecin.pl/assets/favicon/apple-touch-icon.png" group-title="Poland",Radio Szczecin (128K MP3)
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://stream4.nadaje.com:11986/prs
-
-#EXTINF:-1 tvg-id="Poland_22" tvg-name="VOX FM" tvg-logo="https://www.voxfm.pl/apple-touch-icon.png" group-title="Poland",VOX FM
+#EXTINF:-1 tvg-id="Poland_21" tvg-name="VOX FM" tvg-logo="https://www.voxfm.pl/apple-touch-icon.png" group-title="Poland",VOX FM
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://www.emsoft.ct8.pl/inne/time.m3u?id=3990
+
+#EXTINF:-1 tvg-id="Poland_22" tvg-name="Radio Szczecin (128K MP3)" tvg-logo="http://radioszczecin.pl/assets/favicon/apple-touch-icon.png" group-title="Poland",Radio Szczecin (128K MP3)
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://stream4.nadaje.com:11986/prs
 
 #EXTINF:-1 tvg-id="Poland_23" tvg-name="RMF 80s" tvg-logo="http://www.rmfon.pl/assets/images/favicon/apple-touch-icon.png" group-title="Poland",RMF 80s
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -3120,13 +3120,13 @@ http://retroserver.streamr.ru:8043/retro256.mp3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://icecast.vgtrk.cdnvideo.ru/vestifm_mp3_192kbps
 
-#EXTINF:-1 tvg-id="The Russian Federation_6" tvg-name="Радио Русские Песни" tvg-logo="" group-title="The Russian Federation",Радио Русские Песни
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://listen.rusongs.ru/ru-mp3-128
-
-#EXTINF:-1 tvg-id="The Russian Federation_7" tvg-name="Дорожное радио" tvg-logo="https://dorognoe.ru/assets/default/i/fav_114x114.png" group-title="The Russian Federation",Дорожное радио
+#EXTINF:-1 tvg-id="The Russian Federation_6" tvg-name="Дорожное радио" tvg-logo="https://dorognoe.ru/assets/default/i/fav_114x114.png" group-title="The Russian Federation",Дорожное радио
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://dorognoe.hostingradio.ru:8000/radio
+
+#EXTINF:-1 tvg-id="The Russian Federation_7" tvg-name="Радио Русские Песни" tvg-logo="" group-title="The Russian Federation",Радио Русские Песни
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://listen.rusongs.ru/ru-mp3-128
 
 #EXTINF:-1 tvg-id="The Russian Federation_8" tvg-name="DFM RUSSIAN DANCE" tvg-logo="https://dfm.ru/uploads/favicon.ico" group-title="The Russian Federation",DFM RUSSIAN DANCE
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -3228,17 +3228,17 @@ http://retro.volna.top/Retro
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://radiorecord.hostingradio.ru/rus96.aacp
 
-#EXTINF:-1 tvg-id="The Russian Federation_33" tvg-name="Mixadance FM" tvg-logo="http://www.mixadance.fm/apple-touch-icon.png" group-title="The Russian Federation",Mixadance FM
+#EXTINF:-1 tvg-id="The Russian Federation_33" tvg-name="Anon.FM" tvg-logo="https://icecast.anon.fm/favicon.png" group-title="The Russian Federation",Anon.FM
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://icecast.anon.fm/radio
+
+#EXTINF:-1 tvg-id="The Russian Federation_34" tvg-name="Mixadance FM" tvg-logo="http://www.mixadance.fm/apple-touch-icon.png" group-title="The Russian Federation",Mixadance FM
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://stream.mixadance.fm/mixadance
 
-#EXTINF:-1 tvg-id="The Russian Federation_34" tvg-name="комерсант (Kommersant FM) 93.6 Moscow" tvg-logo="https://im.kommersant.ru/contentflex/images/favicons2020/apple-touch-icon-120.png" group-title="The Russian Federation",комерсант (Kommersant FM) 93.6 Moscow
+#EXTINF:-1 tvg-id="The Russian Federation_35" tvg-name="комерсант (Kommersant FM) 93.6 Moscow" tvg-logo="https://im.kommersant.ru/contentflex/images/favicons2020/apple-touch-icon-120.png" group-title="The Russian Federation",комерсант (Kommersant FM) 93.6 Moscow
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://kommersant77.hostingradio.ru:8016/kommersant64.mp3
-
-#EXTINF:-1 tvg-id="The Russian Federation_35" tvg-name="Anon.FM" tvg-logo="https://icecast.anon.fm/favicon.png" group-title="The Russian Federation",Anon.FM
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://icecast.anon.fm/radio
 
 #EXTINF:-1 tvg-id="The Russian Federation_36" tvg-name="Говорит Москва" tvg-logo="https://upload.wikimedia.org/wikipedia/ru/thumb/2/26/Govoritmsk_radio.jpeg/200px-Govoritmsk_radio.jpeg" group-title="The Russian Federation",Говорит Москва
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
