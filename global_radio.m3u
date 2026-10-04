@@ -1037,6 +1037,13 @@ https://audio.bfmtv.com/bfmradio_128.mp3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://jzr-piano.ice.infomaniak.ch/jzr-piano.mp3
 
+#EXTINF:-1 tvg-id="" tvg-logo="" group-title="Georgia",Georgia
+#EXTGRP:Georgia
+
+#EXTINF:-1 tvg-id="Georgia_0" tvg-name="Radio Amra" tvg-logo="" group-title="Georgia",Radio Amra
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://streamer.radio.co/s34b5469e0/listen
+
 #EXTINF:-1 tvg-id="" tvg-logo="" group-title="Germany",Germany
 #EXTGRP:Germany
 
@@ -2010,13 +2017,6 @@ https://stream.zeno.fm/qpn8mkt8c4duv
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://listen1.myradio24.com/5967
 
-#EXTINF:-1 tvg-id="" tvg-logo="" group-title="Kenya",Kenya
-#EXTGRP:Kenya
-
-#EXTINF:-1 tvg-id="Kenya_0" tvg-name="JESUS IS LORD Radio" tvg-logo="https://static.wixstatic.com/media/a5f063_09cc6b7970aa4e6d902c6014250d4db8%7emv2.png/v1/fill/w_180%2ch_180%2clg_1%2cusm_0.66_1.00_0.01/a5f063_09cc6b7970aa4e6d902c6014250d4db8%7emv2.png" group-title="Kenya",JESUS IS LORD Radio
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://s3.radio.co/s97f38db97/listen
-
 #EXTINF:-1 tvg-id="" tvg-logo="" group-title="Latvia",Latvia
 #EXTGRP:Latvia
 
@@ -2171,13 +2171,13 @@ https://playerservices.streamtheworld.com/api/livestream-redirect/XHSHFMAAC.aac
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://playerservices.streamtheworld.com/api/livestream-redirect/KEBUENAAAC.aac
 
-#EXTINF:-1 tvg-id="Mexico_10" tvg-name="W Radio Ciudad de México (XEW-AM 900 kHz XEW-FM 96.9 MHz) Televisa Radio" tvg-logo="http://wradio.com.mx/pf/resources/wradiomx/favicon.ico?d=71" group-title="Mexico",W Radio Ciudad de México (XEW-AM 900 kHz XEW-FM 96.9 MHz) Televisa Radio
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://provisioning.streamtheworld.com/pls/W_RADIOAAC.m3u
-
-#EXTINF:-1 tvg-id="Mexico_11" tvg-name="Panda Show Radio - Online - El Panda Zambrano - Ciudad de México" tvg-logo="https://cdn-radiotime-logos.tunein.com/s96692d.png" group-title="Mexico",Panda Show Radio - Online - El Panda Zambrano - Ciudad de México
+#EXTINF:-1 tvg-id="Mexico_10" tvg-name="Panda Show Radio - Online - El Panda Zambrano - Ciudad de México" tvg-logo="https://cdn-radiotime-logos.tunein.com/s96692d.png" group-title="Mexico",Panda Show Radio - Online - El Panda Zambrano - Ciudad de México
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://65.21.202.84:8062/
+
+#EXTINF:-1 tvg-id="Mexico_11" tvg-name="W Radio Ciudad de México (XEW-AM 900 kHz XEW-FM 96.9 MHz) Televisa Radio" tvg-logo="http://wradio.com.mx/pf/resources/wradiomx/favicon.ico?d=71" group-title="Mexico",W Radio Ciudad de México (XEW-AM 900 kHz XEW-FM 96.9 MHz) Televisa Radio
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://provisioning.streamtheworld.com/pls/W_RADIOAAC.m3u
 
 #EXTINF:-1 tvg-id="Mexico_12" tvg-name="La Comadre Ciudad de México - 1260 AM - XEL-AM - Grupo ACIR - Ciudad de México" tvg-logo="https://www.iheart.com/favicon.ico" group-title="Mexico",La Comadre Ciudad de México - 1260 AM - XEL-AM - Grupo ACIR - Ciudad de México
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -2324,13 +2324,13 @@ https://s17.ssl-stream.com:2199/tunein/radiopak.m3u
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://whmsonic.radio.gov.pk:7003/stream
 
-#EXTINF:-1 tvg-id="Pakistan_5" tvg-name="FM 100 Pakistan Karachi" tvg-logo="http://fm100pakistan.com/favicon.ico" group-title="Pakistan",FM 100 Pakistan Karachi
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://162.244.80.118:3024/stream.mp3?ver=349829
-
-#EXTINF:-1 tvg-id="Pakistan_6" tvg-name="Radio Pakistan Lahore News and Current Affair AM 1332 KHZ" tvg-logo="" group-title="Pakistan",Radio Pakistan Lahore News and Current Affair AM 1332 KHZ
+#EXTINF:-1 tvg-id="Pakistan_5" tvg-name="Radio Pakistan Lahore News and Current Affair AM 1332 KHZ" tvg-logo="" group-title="Pakistan",Radio Pakistan Lahore News and Current Affair AM 1332 KHZ
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://whmsonic.radio.gov.pk:7004/stream?type=http&nocache=12
+
+#EXTINF:-1 tvg-id="Pakistan_6" tvg-name="FM 100 Pakistan Karachi" tvg-logo="http://fm100pakistan.com/favicon.ico" group-title="Pakistan",FM 100 Pakistan Karachi
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://162.244.80.118:3024/stream.mp3?ver=349829
 
 #EXTINF:-1 tvg-id="Pakistan_7" tvg-name="FM 101 Islamabad" tvg-logo="" group-title="Pakistan",FM 101 Islamabad
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -3224,13 +3224,13 @@ https://maximum.hostingradio.ru/maximum128.mp3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://retro.volna.top/Retro
 
-#EXTINF:-1 tvg-id="The Russian Federation_32" tvg-name="Радио Рекорд Russian Mix" tvg-logo="http://radiorecord.ru/local/templates/record/assets/build/favicon-set/apple-touch-icon.png" group-title="The Russian Federation",Радио Рекорд Russian Mix
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://radiorecord.hostingradio.ru/rus96.aacp
-
-#EXTINF:-1 tvg-id="The Russian Federation_33" tvg-name="Anon.FM" tvg-logo="https://icecast.anon.fm/favicon.png" group-title="The Russian Federation",Anon.FM
+#EXTINF:-1 tvg-id="The Russian Federation_32" tvg-name="Anon.FM" tvg-logo="https://icecast.anon.fm/favicon.png" group-title="The Russian Federation",Anon.FM
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://icecast.anon.fm/radio
+
+#EXTINF:-1 tvg-id="The Russian Federation_33" tvg-name="Радио Рекорд Russian Mix" tvg-logo="http://radiorecord.ru/local/templates/record/assets/build/favicon-set/apple-touch-icon.png" group-title="The Russian Federation",Радио Рекорд Russian Mix
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://radiorecord.hostingradio.ru/rus96.aacp
 
 #EXTINF:-1 tvg-id="The Russian Federation_34" tvg-name="Mixadance FM" tvg-logo="http://www.mixadance.fm/apple-touch-icon.png" group-title="The Russian Federation",Mixadance FM
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -3328,13 +3328,13 @@ http://stream1.hostingradio.ru:8010/19_mp3_128
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://tntradio.hostingradio.ru:8027/hhr128.mp3
 
-#EXTINF:-1 tvg-id="The Russian Federation_58" tvg-name="Radio Caprice - Retrowave" tvg-logo="http://radcap.ru/apple-touch-icon.png" group-title="The Russian Federation",Radio Caprice - Retrowave
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://79.120.39.202:9125/
-
-#EXTINF:-1 tvg-id="The Russian Federation_59" tvg-name="Бизнес FM" tvg-logo="https://www.bfm.ru/apple-touch-icon.png" group-title="The Russian Federation",Бизнес FM
+#EXTINF:-1 tvg-id="The Russian Federation_58" tvg-name="Бизнес FM" tvg-logo="https://www.bfm.ru/apple-touch-icon.png" group-title="The Russian Federation",Бизнес FM
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://bfm.hostingradio.ru:9075/fm
+
+#EXTINF:-1 tvg-id="The Russian Federation_59" tvg-name="Radio Caprice - Retrowave" tvg-logo="http://radcap.ru/apple-touch-icon.png" group-title="The Russian Federation",Radio Caprice - Retrowave
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://79.120.39.202:9125/
 
 #EXTINF:-1 tvg-id="" tvg-logo="" group-title="The United Arab Emirates",The United Arab Emirates
 #EXTGRP:The United Arab Emirates
@@ -3462,13 +3462,13 @@ http://media-ice.musicradio.com/HeartLondon
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://media-ice.musicradio.com/LBC1152.m3u
 
-#EXTINF:-1 tvg-id="The United Kingdom Of Great Britain And Northern Ireland_25" tvg-name="Classic FM UK" tvg-logo="" group-title="The United Kingdom Of Great Britain And Northern Ireland",Classic FM UK
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://media-the.musicradio.com/ClassicFM
-
-#EXTINF:-1 tvg-id="The United Kingdom Of Great Britain And Northern Ireland_26" tvg-name="BBC Radio 4 (128k)" tvg-logo="https://cdn-radiotime-logos.tunein.com/s25419q.png" group-title="The United Kingdom Of Great Britain And Northern Ireland",BBC Radio 4 (128k)
+#EXTINF:-1 tvg-id="The United Kingdom Of Great Britain And Northern Ireland_25" tvg-name="BBC Radio 4 (128k)" tvg-logo="https://cdn-radiotime-logos.tunein.com/s25419q.png" group-title="The United Kingdom Of Great Britain And Northern Ireland",BBC Radio 4 (128k)
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://as-hls-ww-live.akamaized.net/pool_55057080/live/ww/bbc_radio_fourfm/bbc_radio_fourfm.isml/bbc_radio_fourfm-audio%3d128000.norewind.m3u8
+
+#EXTINF:-1 tvg-id="The United Kingdom Of Great Britain And Northern Ireland_26" tvg-name="Classic FM UK" tvg-logo="" group-title="The United Kingdom Of Great Britain And Northern Ireland",Classic FM UK
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://media-the.musicradio.com/ClassicFM
 
 #EXTINF:-1 tvg-id="The United Kingdom Of Great Britain And Northern Ireland_27" tvg-name="Heart UK" tvg-logo="" group-title="The United Kingdom Of Great Britain And Northern Ireland",Heart UK
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
