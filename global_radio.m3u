@@ -1037,13 +1037,6 @@ https://audio.bfmtv.com/bfmradio_128.mp3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://jzr-piano.ice.infomaniak.ch/jzr-piano.mp3
 
-#EXTINF:-1 tvg-id="" tvg-logo="" group-title="Georgia",Georgia
-#EXTGRP:Georgia
-
-#EXTINF:-1 tvg-id="Georgia_0" tvg-name="Radio Amra" tvg-logo="" group-title="Georgia",Radio Amra
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://streamer.radio.co/s34b5469e0/listen
-
 #EXTINF:-1 tvg-id="" tvg-logo="" group-title="Germany",Germany
 #EXTGRP:Germany
 
@@ -1315,13 +1308,13 @@ http://stream.104.6rtl.com/rtl-live/mp3-192/radio-browser.info/
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://stream.laut.fm/acidjazz
 
-#EXTINF:-1 tvg-id="Germany_67" tvg-name="GAYFM" tvg-logo="http://www.gayfm.de/favicon.png" group-title="Germany",GAYFM
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://stream.gayfm.de/
-
-#EXTINF:-1 tvg-id="Germany_68" tvg-name="TechnoBase.FM" tvg-logo="https://cdn.onlineradiobox.com/img/l/0/32040.v12.png" group-title="Germany",TechnoBase.FM
+#EXTINF:-1 tvg-id="Germany_67" tvg-name="TechnoBase.FM" tvg-logo="https://cdn.onlineradiobox.com/img/l/0/32040.v12.png" group-title="Germany",TechnoBase.FM
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://listener3.mp3.tb-group.fm/tb.mp3
+
+#EXTINF:-1 tvg-id="Germany_68" tvg-name="GAYFM" tvg-logo="http://www.gayfm.de/favicon.png" group-title="Germany",GAYFM
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://stream.gayfm.de/
 
 #EXTINF:-1 tvg-id="Germany_69" tvg-name="Rock Antenne - Punk Rock" tvg-logo="http://www.rockantenne.de/logos/station-rock-antenne/apple-touch-icon.png" group-title="Germany",Rock Antenne - Punk Rock
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -1500,6 +1493,10 @@ http://stream.webthings.hu:8000/fm95-x-128.mp3
 #EXTINF:-1 tvg-id="Hungary_16" tvg-name="Poptarisznya" tvg-logo="" group-title="Hungary",Poptarisznya
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://adas.poptarisznya.hu:8200/live.mp3
+
+#EXTINF:-1 tvg-id="Hungary_17" tvg-name="Laza Rádió (OGG 320 Kbps)" tvg-logo="" group-title="Hungary",Laza Rádió (OGG 320 Kbps)
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://stream.lazaradio.com:8100/live.ogg
 
 #EXTINF:-1 tvg-id="" tvg-logo="" group-title="India",India
 #EXTGRP:India
@@ -3216,17 +3213,17 @@ http://www.discovertrance.com/DiscoverTrance-high.m3u
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://chanson.hostingradio.ru:8041/chanson-uncensored256.mp3
 
-#EXTINF:-1 tvg-id="The Russian Federation_30" tvg-name="Радио Maximum" tvg-logo="http://maximum.ru/favicon.ico" group-title="The Russian Federation",Радио Maximum
+#EXTINF:-1 tvg-id="The Russian Federation_30" tvg-name="Anon.FM" tvg-logo="https://icecast.anon.fm/favicon.png" group-title="The Russian Federation",Anon.FM
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://icecast.anon.fm/radio
+
+#EXTINF:-1 tvg-id="The Russian Federation_31" tvg-name="Радио Maximum" tvg-logo="http://maximum.ru/favicon.ico" group-title="The Russian Federation",Радио Maximum
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://maximum.hostingradio.ru/maximum128.mp3
 
-#EXTINF:-1 tvg-id="The Russian Federation_31" tvg-name="РЕТРО ХИТ - RETRO HIT" tvg-logo="" group-title="The Russian Federation",РЕТРО ХИТ - RETRO HIT
+#EXTINF:-1 tvg-id="The Russian Federation_32" tvg-name="РЕТРО ХИТ - RETRO HIT" tvg-logo="" group-title="The Russian Federation",РЕТРО ХИТ - RETRO HIT
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://retro.volna.top/Retro
-
-#EXTINF:-1 tvg-id="The Russian Federation_32" tvg-name="Anon.FM" tvg-logo="https://icecast.anon.fm/favicon.png" group-title="The Russian Federation",Anon.FM
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://icecast.anon.fm/radio
 
 #EXTINF:-1 tvg-id="The Russian Federation_33" tvg-name="Радио Рекорд Russian Mix" tvg-logo="http://radiorecord.ru/local/templates/record/assets/build/favicon-set/apple-touch-icon.png" group-title="The Russian Federation",Радио Рекорд Russian Mix
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
