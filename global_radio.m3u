@@ -1025,13 +1025,13 @@ https://ouifm.ice.infomaniak.ch/ouifm-high.mp3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://start-latina.ice.infomaniak.ch/start-latina-high.mp3
 
-#EXTINF:-1 tvg-id="France_52" tvg-name="Europe 2" tvg-logo="https://www.europe2.fr/wp-content/themes/melty/europeradio/assets/images/favicons/favicon128.png" group-title="France",Europe 2
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://europe2.lmn.fm/europe2.mp3
-
-#EXTINF:-1 tvg-id="France_53" tvg-name="BFM Radio (128.mp3)" tvg-logo="https://www.bfmtv.com/android-icon-192x192.png" group-title="France",BFM Radio (128.mp3)
+#EXTINF:-1 tvg-id="France_52" tvg-name="BFM Radio (128.mp3)" tvg-logo="https://www.bfmtv.com/android-icon-192x192.png" group-title="France",BFM Radio (128.mp3)
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://audio.bfmtv.com/bfmradio_128.mp3
+
+#EXTINF:-1 tvg-id="France_53" tvg-name="Europe 2" tvg-logo="https://www.europe2.fr/wp-content/themes/melty/europeradio/assets/images/favicons/favicon128.png" group-title="France",Europe 2
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://europe2.lmn.fm/europe2.mp3
 
 #EXTINF:-1 tvg-id="France_54" tvg-name="Jazz Radio Piano Jazz" tvg-logo="https://www.jazzradio.fr/apple-touch-icon-120x120.png" group-title="France",Jazz Radio Piano Jazz
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -2860,13 +2860,13 @@ https://playerservices.streamtheworld.com/api/livestream-redirect/LOS40_CLASSIC.
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://edge4.peta.live365.net/b05055_128mp3
 
-#EXTINF:-1 tvg-id="Spain_20" tvg-name="MegaStarFM" tvg-logo="https://www.megastar.fm/estaticos/apple-touch-icon-192x192.png" group-title="Spain",MegaStarFM
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://megastar.cope.stream.flumotion.com/cope/megastar.mp3.m3u
-
-#EXTINF:-1 tvg-id="Spain_21" tvg-name="Radio Marca Barcelona" tvg-logo="http://e00-marca.uecdn.es/favicon.ico" group-title="Spain",Radio Marca Barcelona
+#EXTINF:-1 tvg-id="Spain_20" tvg-name="Radio Marca Barcelona" tvg-logo="http://e00-marca.uecdn.es/favicon.ico" group-title="Spain",Radio Marca Barcelona
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://radioweb.radiomarcabarcelona.com:9000/stream.m3u
+
+#EXTINF:-1 tvg-id="Spain_21" tvg-name="MegaStarFM" tvg-logo="https://www.megastar.fm/estaticos/apple-touch-icon-192x192.png" group-title="Spain",MegaStarFM
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://megastar.cope.stream.flumotion.com/cope/megastar.mp3.m3u
 
 #EXTINF:-1 tvg-id="Spain_22" tvg-name="Radio Marca Madrid" tvg-logo="" group-title="Spain",Radio Marca Madrid
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -3209,13 +3209,13 @@ https://radiorecord.hostingradio.ru/rr_main96.aacp
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://www.discovertrance.com/DiscoverTrance-high.m3u
 
-#EXTINF:-1 tvg-id="The Russian Federation_29" tvg-name="Шансон без цензуры" tvg-logo="https://www.eff.org/files/Button_Russian_white.png" group-title="The Russian Federation",Шансон без цензуры
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://chanson.hostingradio.ru:8041/chanson-uncensored256.mp3
-
-#EXTINF:-1 tvg-id="The Russian Federation_30" tvg-name="Anon.FM" tvg-logo="https://icecast.anon.fm/favicon.png" group-title="The Russian Federation",Anon.FM
+#EXTINF:-1 tvg-id="The Russian Federation_29" tvg-name="Anon.FM" tvg-logo="https://icecast.anon.fm/favicon.png" group-title="The Russian Federation",Anon.FM
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://icecast.anon.fm/radio
+
+#EXTINF:-1 tvg-id="The Russian Federation_30" tvg-name="Шансон без цензуры" tvg-logo="https://www.eff.org/files/Button_Russian_white.png" group-title="The Russian Federation",Шансон без цензуры
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://chanson.hostingradio.ru:8041/chanson-uncensored256.mp3
 
 #EXTINF:-1 tvg-id="The Russian Federation_31" tvg-name="Радио Maximum" tvg-logo="http://maximum.ru/favicon.ico" group-title="The Russian Federation",Радио Maximum
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
