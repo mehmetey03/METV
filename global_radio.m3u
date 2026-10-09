@@ -87,13 +87,13 @@ https://live.radyositesihazir.com:10997/stream?type=http&nocache=99881
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://playerservices.streamtheworld.com/api/livestream-redirect/SUPER_FM_SC
 
-#EXTINF:-1 tvg-id="Türkiye_21" tvg-name="Radyo Voyage" tvg-logo="" group-title="Türkiye",Radyo Voyage
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://voyagewmp.radyotvonline.com/;stream.mp3
-
-#EXTINF:-1 tvg-id="Türkiye_22" tvg-name="90lar turkey" tvg-logo="" group-title="Türkiye",90lar turkey
+#EXTINF:-1 tvg-id="Türkiye_21" tvg-name="90lar turkey" tvg-logo="" group-title="Türkiye",90lar turkey
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://37.247.98.8/stream/166/
+
+#EXTINF:-1 tvg-id="Türkiye_22" tvg-name="Radyo Voyage" tvg-logo="" group-title="Türkiye",Radyo Voyage
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://voyagewmp.radyotvonline.com/;stream.mp3
 
 #EXTINF:-1 tvg-id="" tvg-logo="" group-title="Afghanistan",Afghanistan
 #EXTGRP:Afghanistan
@@ -3109,13 +3109,13 @@ https://icecast-radiovanya.cdnvideo.ru/radiovanya
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://dfm-disc90.hostingradio.ru/disc9096.aacp
 
-#EXTINF:-1 tvg-id="The Russian Federation_4" tvg-name="Ретро FM" tvg-logo="" group-title="The Russian Federation",Ретро FM
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://retroserver.streamr.ru:8043/retro256.mp3
-
-#EXTINF:-1 tvg-id="The Russian Federation_5" tvg-name="Вести ФМ (Vesti FM)" tvg-logo="" group-title="The Russian Federation",Вести ФМ (Vesti FM)
+#EXTINF:-1 tvg-id="The Russian Federation_4" tvg-name="Вести ФМ (Vesti FM)" tvg-logo="" group-title="The Russian Federation",Вести ФМ (Vesti FM)
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://icecast.vgtrk.cdnvideo.ru/vestifm_mp3_192kbps
+
+#EXTINF:-1 tvg-id="The Russian Federation_5" tvg-name="Ретро FM" tvg-logo="" group-title="The Russian Federation",Ретро FM
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://retroserver.streamr.ru:8043/retro256.mp3
 
 #EXTINF:-1 tvg-id="The Russian Federation_6" tvg-name="Радио Русские Песни" tvg-logo="" group-title="The Russian Federation",Радио Русские Песни
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
