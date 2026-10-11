@@ -1316,13 +1316,13 @@ http://stream.laut.fm/acidjazz
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://listener3.mp3.tb-group.fm/tb.mp3
 
-#EXTINF:-1 tvg-id="Germany_68" tvg-name="GAYFM" tvg-logo="http://www.gayfm.de/favicon.png" group-title="Germany",GAYFM
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://stream.gayfm.de/
-
-#EXTINF:-1 tvg-id="Germany_69" tvg-name="Rock Antenne - Punk Rock" tvg-logo="http://www.rockantenne.de/logos/station-rock-antenne/apple-touch-icon.png" group-title="Germany",Rock Antenne - Punk Rock
+#EXTINF:-1 tvg-id="Germany_68" tvg-name="Rock Antenne - Punk Rock" tvg-logo="http://www.rockantenne.de/logos/station-rock-antenne/apple-touch-icon.png" group-title="Germany",Rock Antenne - Punk Rock
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://mp3channels.webradio.rockantenne.de/punkrock.aac
+
+#EXTINF:-1 tvg-id="Germany_69" tvg-name="GAYFM" tvg-logo="http://www.gayfm.de/favicon.png" group-title="Germany",GAYFM
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://stream.gayfm.de/
 
 #EXTINF:-1 tvg-id="" tvg-logo="" group-title="Ghana",Ghana
 #EXTGRP:Ghana
@@ -1692,13 +1692,13 @@ http://wijayafm.onlivestreaming.net:9880/stream?
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://45.64.97.82:9940/
 
-#EXTINF:-1 tvg-id="Indonesia_6" tvg-name="89.2 FM Jakarta Campur sari" tvg-logo="" group-title="Indonesia",89.2 FM Jakarta Campur sari
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://a8.siar.us/listen/campursari/stream
-
-#EXTINF:-1 tvg-id="Indonesia_7" tvg-name="Radio Dangdut 97.1 FM Jakarta" tvg-logo="http://www.hit-tuner.net/images/radiologos/img_laender/radio_dangdut_971.png" group-title="Indonesia",Radio Dangdut 97.1 FM Jakarta
+#EXTINF:-1 tvg-id="Indonesia_6" tvg-name="Radio Dangdut 97.1 FM Jakarta" tvg-logo="http://www.hit-tuner.net/images/radiologos/img_laender/radio_dangdut_971.png" group-title="Indonesia",Radio Dangdut 97.1 FM Jakarta
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://202.147.199.99:8000/;
+
+#EXTINF:-1 tvg-id="Indonesia_7" tvg-name="89.2 FM Jakarta Campur sari" tvg-logo="" group-title="Indonesia",89.2 FM Jakarta Campur sari
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://a8.siar.us/listen/campursari/stream
 
 #EXTINF:-1 tvg-id="Indonesia_8" tvg-name="Hardrock 87.6 FM Jakarta" tvg-logo="https://hardrockfm.com/favicon.ico" group-title="Indonesia",Hardrock 87.6 FM Jakarta
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -2612,13 +2612,13 @@ http://a.fmradiomanele.ro:8054/;
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://edge126.rdsnet.ro:84/profm/profm.mp3
 
-#EXTINF:-1 tvg-id="Romania_9" tvg-name="Radio Guerrilla" tvg-logo="http://guerrillaradio.ro/images/logo.png" group-title="Romania",Radio Guerrilla
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://live.guerrillaradio.ro:8010/guerrilla.aac
-
-#EXTINF:-1 tvg-id="Romania_10" tvg-name="Radio Cafe Romania" tvg-logo="" group-title="Romania",Radio Cafe Romania
+#EXTINF:-1 tvg-id="Romania_9" tvg-name="Radio Cafe Romania" tvg-logo="" group-title="Romania",Radio Cafe Romania
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://live.radiocafe.ro:8048/live.aac
+
+#EXTINF:-1 tvg-id="Romania_10" tvg-name="Radio Guerrilla" tvg-logo="http://guerrillaradio.ro/images/logo.png" group-title="Romania",Radio Guerrilla
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://live.guerrillaradio.ro:8010/guerrilla.aac
 
 #EXTINF:-1 tvg-id="Romania_11" tvg-name="Radio Zu" tvg-logo="https://radiozu.ro/favicon-96x96.png" group-title="Romania",Radio Zu
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -3499,13 +3499,13 @@ http://andromeda.shoutca.st:8031/
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://media-the.musicradio.com/RadioXUK
 
-#EXTINF:-1 tvg-id="The United Kingdom Of Great Britain And Northern Ireland_35" tvg-name="Radio X Manchester" tvg-logo="http://www.radiox.co.uk/assets_v4r/xfm/img/favicon-196x196.png" group-title="The United Kingdom Of Great Britain And Northern Ireland",Radio X Manchester
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://media-the.musicradio.com/RadioXManchester
-
-#EXTINF:-1 tvg-id="The United Kingdom Of Great Britain And Northern Ireland_36" tvg-name="LOVE.radio Only Love Songs 70s80s90s" tvg-logo="" group-title="The United Kingdom Of Great Britain And Northern Ireland",LOVE.radio Only Love Songs 70s80s90s
+#EXTINF:-1 tvg-id="The United Kingdom Of Great Britain And Northern Ireland_35" tvg-name="LOVE.radio Only Love Songs 70s80s90s" tvg-logo="" group-title="The United Kingdom Of Great Britain And Northern Ireland",LOVE.radio Only Love Songs 70s80s90s
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://loveradio.streamingmedia.it/england
+
+#EXTINF:-1 tvg-id="The United Kingdom Of Great Britain And Northern Ireland_36" tvg-name="Radio X Manchester" tvg-logo="http://www.radiox.co.uk/assets_v4r/xfm/img/favicon-196x196.png" group-title="The United Kingdom Of Great Britain And Northern Ireland",Radio X Manchester
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://media-the.musicradio.com/RadioXManchester
 
 #EXTINF:-1 tvg-id="The United Kingdom Of Great Britain And Northern Ireland_37" tvg-name="BBC Arabic Radio" tvg-logo="https://static.files.bbci.co.uk/ws/simorgh-assets/public/arabic/images/icons/icon-128x128.png" group-title="The United Kingdom Of Great Britain And Northern Ireland",BBC Arabic Radio
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
