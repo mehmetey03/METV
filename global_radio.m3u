@@ -160,10 +160,6 @@ https://qurango.net/radio/sahabah
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://listen.radioking.com/radio/6640/stream/347
 
-#EXTINF:-1 tvg-id="Algeria_11" tvg-name=". إذاعة ماهر المعيقلي" tvg-logo="" group-title="Algeria",. إذاعة ماهر المعيقلي
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://backup.qurango.net/radio/maher
-
 #EXTINF:-1 tvg-id="" tvg-logo="" group-title="Antigua And Barbuda",Antigua And Barbuda
 #EXTGRP:Antigua And Barbuda
 
@@ -1192,13 +1188,13 @@ http://mp3.ffh.de/ffhchannels/hq80er.mp3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://avw.mdr.de/streams/284340-0_mp3_high.m3u
 
-#EXTINF:-1 tvg-id="Germany_37" tvg-name="90s90s Techno HQ" tvg-logo="" group-title="Germany",90s90s Techno HQ
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://streams.90s90s.de/techno/mp3-192/radiode/
-
-#EXTINF:-1 tvg-id="Germany_38" tvg-name="__TRANCE__ by rautemusik (rm.fm)" tvg-logo="https://www.rm.fm/favicon.ico" group-title="Germany",__TRANCE__ by rautemusik (rm.fm)
+#EXTINF:-1 tvg-id="Germany_37" tvg-name="__TRANCE__ by rautemusik (rm.fm)" tvg-logo="https://www.rm.fm/favicon.ico" group-title="Germany",__TRANCE__ by rautemusik (rm.fm)
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://trance-high.rautemusik.fm/?ref=radiobrowser
+
+#EXTINF:-1 tvg-id="Germany_38" tvg-name="90s90s Techno HQ" tvg-logo="" group-title="Germany",90s90s Techno HQ
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://streams.90s90s.de/techno/mp3-192/radiode/
 
 #EXTINF:-1 tvg-id="Germany_39" tvg-name="Hit Radio FFH - Eurodance" tvg-logo="" group-title="Germany",Hit Radio FFH - Eurodance
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -1319,10 +1315,6 @@ https://listener3.mp3.tb-group.fm/tb.mp3
 #EXTINF:-1 tvg-id="Germany_68" tvg-name="Rock Antenne - Punk Rock" tvg-logo="http://www.rockantenne.de/logos/station-rock-antenne/apple-touch-icon.png" group-title="Germany",Rock Antenne - Punk Rock
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://mp3channels.webradio.rockantenne.de/punkrock.aac
-
-#EXTINF:-1 tvg-id="Germany_69" tvg-name="GAYFM" tvg-logo="http://www.gayfm.de/favicon.png" group-title="Germany",GAYFM
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://stream.gayfm.de/
 
 #EXTINF:-1 tvg-id="" tvg-logo="" group-title="Ghana",Ghana
 #EXTGRP:Ghana
@@ -1497,10 +1489,6 @@ http://stream.webthings.hu:8000/fm95-x-128.mp3
 #EXTINF:-1 tvg-id="Hungary_16" tvg-name="Poptarisznya" tvg-logo="" group-title="Hungary",Poptarisznya
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://adas.poptarisznya.hu:8200/live.mp3
-
-#EXTINF:-1 tvg-id="Hungary_17" tvg-name="Laza Rádió (OGG 320 Kbps)" tvg-logo="" group-title="Hungary",Laza Rádió (OGG 320 Kbps)
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://stream.lazaradio.com:8100/live.ogg
 
 #EXTINF:-1 tvg-id="" tvg-logo="" group-title="India",India
 #EXTGRP:India
@@ -2305,41 +2293,41 @@ http://live02.rfi.fr/rfihaoussa-96k.mp3
 #EXTINF:-1 tvg-id="" tvg-logo="" group-title="Pakistan",Pakistan
 #EXTGRP:Pakistan
 
-#EXTINF:-1 tvg-id="Pakistan_0" tvg-name="Samaa FM 107.4" tvg-logo="" group-title="Pakistan",Samaa FM 107.4
+#EXTINF:-1 tvg-id="Pakistan_0" tvg-name="FM 100 Pakistan" tvg-logo="http://fm100pakistan.com/favicon.ico" group-title="Pakistan",FM 100 Pakistan
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://162.244.80.118:4900/;stream.mp3
+
+#EXTINF:-1 tvg-id="Pakistan_1" tvg-name="Samaa FM 107.4" tvg-logo="" group-title="Pakistan",Samaa FM 107.4
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://samaakhi107-itelservices.radioca.st/stream
 
-#EXTINF:-1 tvg-id="Pakistan_1" tvg-name="Hot FM 105" tvg-logo="http://www.hotfm.com.pk/favicon.ico" group-title="Pakistan",Hot FM 105
+#EXTINF:-1 tvg-id="Pakistan_2" tvg-name="Hot FM 105" tvg-logo="http://www.hotfm.com.pk/favicon.ico" group-title="Pakistan",Hot FM 105
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://172.93.237.106:8000/listen.mp3
 
-#EXTINF:-1 tvg-id="Pakistan_2" tvg-name="Radio Pakistan Multan MW" tvg-logo="" group-title="Pakistan",Radio Pakistan Multan MW
+#EXTINF:-1 tvg-id="Pakistan_3" tvg-name="Radio Pakistan Multan MW" tvg-logo="" group-title="Pakistan",Radio Pakistan Multan MW
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://whmsonic.radio.gov.pk:8034/stream
 
-#EXTINF:-1 tvg-id="Pakistan_3" tvg-name="Radio Pak Filmi" tvg-logo="https://hpanel.hostinger.com/favicons/hostinger.png" group-title="Pakistan",Radio Pak Filmi
+#EXTINF:-1 tvg-id="Pakistan_4" tvg-name="Radio Pak Filmi" tvg-logo="https://hpanel.hostinger.com/favicons/hostinger.png" group-title="Pakistan",Radio Pak Filmi
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://s17.ssl-stream.com:2199/tunein/radiopak.m3u
 
-#EXTINF:-1 tvg-id="Pakistan_4" tvg-name="Radio Pakistan Islamabad" tvg-logo="" group-title="Pakistan",Radio Pakistan Islamabad
+#EXTINF:-1 tvg-id="Pakistan_5" tvg-name="Radio Pakistan Islamabad" tvg-logo="" group-title="Pakistan",Radio Pakistan Islamabad
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://whmsonic.radio.gov.pk:7003/stream
 
-#EXTINF:-1 tvg-id="Pakistan_5" tvg-name="FM 100 Pakistan Karachi" tvg-logo="http://fm100pakistan.com/favicon.ico" group-title="Pakistan",FM 100 Pakistan Karachi
+#EXTINF:-1 tvg-id="Pakistan_6" tvg-name="FM 100 Pakistan Karachi" tvg-logo="http://fm100pakistan.com/favicon.ico" group-title="Pakistan",FM 100 Pakistan Karachi
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://162.244.80.118:3024/stream.mp3?ver=349829
 
-#EXTINF:-1 tvg-id="Pakistan_6" tvg-name="Radio Pakistan Lahore News and Current Affair AM 1332 KHZ" tvg-logo="" group-title="Pakistan",Radio Pakistan Lahore News and Current Affair AM 1332 KHZ
+#EXTINF:-1 tvg-id="Pakistan_7" tvg-name="Radio Pakistan Lahore News and Current Affair AM 1332 KHZ" tvg-logo="" group-title="Pakistan",Radio Pakistan Lahore News and Current Affair AM 1332 KHZ
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://whmsonic.radio.gov.pk:7004/stream?type=http&nocache=12
 
-#EXTINF:-1 tvg-id="Pakistan_7" tvg-name="FM 101 Islamabad" tvg-logo="" group-title="Pakistan",FM 101 Islamabad
+#EXTINF:-1 tvg-id="Pakistan_8" tvg-name="FM 101 Islamabad" tvg-logo="" group-title="Pakistan",FM 101 Islamabad
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://whmsonic.radio.gov.pk:7008/stream
-
-#EXTINF:-1 tvg-id="Pakistan_8" tvg-name="City FM 89" tvg-logo="" group-title="Pakistan",City FM 89
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://radio.cityfm89.com/stream
 
 #EXTINF:-1 tvg-id="" tvg-logo="" group-title="Peru",Peru
 #EXTGRP:Peru
@@ -3117,13 +3105,13 @@ http://icecast.vgtrk.cdnvideo.ru/vestifm_mp3_192kbps
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://retroserver.streamr.ru:8043/retro256.mp3
 
-#EXTINF:-1 tvg-id="The Russian Federation_6" tvg-name="Радио Русские Песни" tvg-logo="" group-title="The Russian Federation",Радио Русские Песни
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://listen.rusongs.ru/ru-mp3-128
-
-#EXTINF:-1 tvg-id="The Russian Federation_7" tvg-name="Дорожное радио" tvg-logo="https://dorognoe.ru/assets/default/i/fav_114x114.png" group-title="The Russian Federation",Дорожное радио
+#EXTINF:-1 tvg-id="The Russian Federation_6" tvg-name="Дорожное радио" tvg-logo="https://dorognoe.ru/assets/default/i/fav_114x114.png" group-title="The Russian Federation",Дорожное радио
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://dorognoe.hostingradio.ru:8000/radio
+
+#EXTINF:-1 tvg-id="The Russian Federation_7" tvg-name="Радио Русские Песни" tvg-logo="" group-title="The Russian Federation",Радио Русские Песни
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://listen.rusongs.ru/ru-mp3-128
 
 #EXTINF:-1 tvg-id="The Russian Federation_8" tvg-name="DFM RUSSIAN DANCE" tvg-logo="https://dfm.ru/uploads/favicon.ico" group-title="The Russian Federation",DFM RUSSIAN DANCE
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -3915,83 +3903,87 @@ http://dreamsiteradiocp.com:8050/stream
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://radio.mosaiquefm.net:8000/mosalive
 
-#EXTINF:-1 tvg-id="Tunisia_1" tvg-name="Mosaique FM" tvg-logo="" group-title="Tunisia",Mosaique FM
+#EXTINF:-1 tvg-id="Tunisia_1" tvg-name="Jawhara FM" tvg-logo="https://www.jawharafm.net/ar/static/fr/image/gif/favicon.gif" group-title="Tunisia",Jawhara FM
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://streaming2.toutech.net:8000/jawharafm
+
+#EXTINF:-1 tvg-id="Tunisia_2" tvg-name="Mosaique FM" tvg-logo="" group-title="Tunisia",Mosaique FM
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://radio.mosaiquefm.net/mosalive
 
-#EXTINF:-1 tvg-id="Tunisia_2" tvg-name="diwanfm" tvg-logo="https://diwanfm.net/favicon.ico" group-title="Tunisia",diwanfm
+#EXTINF:-1 tvg-id="Tunisia_3" tvg-name="diwanfm" tvg-logo="https://diwanfm.net/favicon.ico" group-title="Tunisia",diwanfm
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://streaming.diwanfm.net/stream
 
-#EXTINF:-1 tvg-id="Tunisia_3" tvg-name="KnOOz FM" tvg-logo="" group-title="Tunisia",KnOOz FM
+#EXTINF:-1 tvg-id="Tunisia_4" tvg-name="KnOOz FM" tvg-logo="" group-title="Tunisia",KnOOz FM
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://streaming.knoozfm.net:8000/knoozfm
 
-#EXTINF:-1 tvg-id="Tunisia_4" tvg-name="Mosaique FM Tarab" tvg-logo="" group-title="Tunisia",Mosaique FM Tarab
+#EXTINF:-1 tvg-id="Tunisia_5" tvg-name="Mosaique FM Tarab" tvg-logo="" group-title="Tunisia",Mosaique FM Tarab
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://radio.mosaiquefm.net/mosatarab
 
-#EXTINF:-1 tvg-id="Tunisia_5" tvg-name="Radio Tunisie Sfax" tvg-logo="" group-title="Tunisia",Radio Tunisie Sfax
+#EXTINF:-1 tvg-id="Tunisia_6" tvg-name="Radio Tunisie Sfax" tvg-logo="" group-title="Tunisia",Radio Tunisie Sfax
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://rtstream.tanitweb.com/sfax
 
-#EXTINF:-1 tvg-id="Tunisia_6" tvg-name="Diwan FM" tvg-logo="" group-title="Tunisia",Diwan FM
+#EXTINF:-1 tvg-id="Tunisia_7" tvg-name="Diwan FM" tvg-logo="" group-title="Tunisia",Diwan FM
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://streaming.diwanfm.net/stream
 
-#EXTINF:-1 tvg-id="Tunisia_7" tvg-name="Radio Tunisie Nationale" tvg-logo="" group-title="Tunisia",Radio Tunisie Nationale
+#EXTINF:-1 tvg-id="Tunisia_8" tvg-name="Radio Tunisie Nationale" tvg-logo="" group-title="Tunisia",Radio Tunisie Nationale
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://rtstream.tanitweb.com/nationale
 
-#EXTINF:-1 tvg-id="Tunisia_8" tvg-name="Radio Tunisie Jeunes" tvg-logo="" group-title="Tunisia",Radio Tunisie Jeunes
+#EXTINF:-1 tvg-id="Tunisia_9" tvg-name="Radio Tunisie Jeunes" tvg-logo="" group-title="Tunisia",Radio Tunisie Jeunes
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://rtstream.tanitweb.com/jeunes
 
-#EXTINF:-1 tvg-id="Tunisia_9" tvg-name="Radio Tunisie Monastir" tvg-logo="" group-title="Tunisia",Radio Tunisie Monastir
+#EXTINF:-1 tvg-id="Tunisia_10" tvg-name="Radio Tunisie Monastir" tvg-logo="" group-title="Tunisia",Radio Tunisie Monastir
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://rtstream.tanitweb.com/monastir
 
-#EXTINF:-1 tvg-id="Tunisia_10" tvg-name="Radio Tunisie Kef" tvg-logo="http://www.radiokef.tn/wp-content/themes/mycms.1.0.0/favicon.png" group-title="Tunisia",Radio Tunisie Kef
+#EXTINF:-1 tvg-id="Tunisia_11" tvg-name="Radio Tunisie Kef" tvg-logo="http://www.radiokef.tn/wp-content/themes/mycms.1.0.0/favicon.png" group-title="Tunisia",Radio Tunisie Kef
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://rtstream.tanitweb.com/kef
 
-#EXTINF:-1 tvg-id="Tunisia_11" tvg-name="RTCI" tvg-logo="" group-title="Tunisia",RTCI
+#EXTINF:-1 tvg-id="Tunisia_12" tvg-name="RTCI" tvg-logo="" group-title="Tunisia",RTCI
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://rtstream.tanitweb.com/rtci
 
-#EXTINF:-1 tvg-id="Tunisia_12" tvg-name="Mosaique FM Gold" tvg-logo="" group-title="Tunisia",Mosaique FM Gold
+#EXTINF:-1 tvg-id="Tunisia_13" tvg-name="Mosaique FM Gold" tvg-logo="" group-title="Tunisia",Mosaique FM Gold
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://radio.mosaiquefm.net/mosagold
 
-#EXTINF:-1 tvg-id="Tunisia_13" tvg-name="تراتيل" tvg-logo="" group-title="Tunisia",تراتيل
+#EXTINF:-1 tvg-id="Tunisia_14" tvg-name="تراتيل" tvg-logo="" group-title="Tunisia",تراتيل
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://qurango.net/radio/tarateel
 
-#EXTINF:-1 tvg-id="Tunisia_14" tvg-name="Radio Tunisie Gafsa" tvg-logo="" group-title="Tunisia",Radio Tunisie Gafsa
+#EXTINF:-1 tvg-id="Tunisia_15" tvg-name="Radio Tunisie Gafsa" tvg-logo="" group-title="Tunisia",Radio Tunisie Gafsa
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://rtstream.tanitweb.com/gafsa
 
-#EXTINF:-1 tvg-id="Tunisia_15" tvg-name="Mosaique FM Tounsi" tvg-logo="" group-title="Tunisia",Mosaique FM Tounsi
+#EXTINF:-1 tvg-id="Tunisia_16" tvg-name="Mosaique FM Tounsi" tvg-logo="" group-title="Tunisia",Mosaique FM Tounsi
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://radio.mosaiquefm.net/mosatounsi
 
-#EXTINF:-1 tvg-id="Tunisia_16" tvg-name="Radio Tunisia Med" tvg-logo="https://www.wix.com/favicon.ico" group-title="Tunisia",Radio Tunisia Med
+#EXTINF:-1 tvg-id="Tunisia_17" tvg-name="Radio Tunisia Med" tvg-logo="https://www.wix.com/favicon.ico" group-title="Tunisia",Radio Tunisia Med
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://azuracast.conceptradio.fr:8000/radio.mp3
 
-#EXTINF:-1 tvg-id="Tunisia_17" tvg-name="oxygene fm" tvg-logo="" group-title="Tunisia",oxygene fm
+#EXTINF:-1 tvg-id="Tunisia_18" tvg-name="oxygene fm" tvg-logo="" group-title="Tunisia",oxygene fm
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://stream.radios-arra.fr:8000/oxygenefm
 
-#EXTINF:-1 tvg-id="Tunisia_18" tvg-name="Radio Tunisie Tataouine" tvg-logo="" group-title="Tunisia",Radio Tunisie Tataouine
+#EXTINF:-1 tvg-id="Tunisia_19" tvg-name="Radio Tunisie Tataouine" tvg-logo="" group-title="Tunisia",Radio Tunisie Tataouine
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://rtstream.tanitweb.com/tataouine
 
-#EXTINF:-1 tvg-id="Tunisia_19" tvg-name="radio coran" tvg-logo="" group-title="Tunisia",radio coran
+#EXTINF:-1 tvg-id="Tunisia_20" tvg-name="radio coran" tvg-logo="" group-title="Tunisia",radio coran
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://n0b.radiojar.com/0tpy1h0kxtzuv?
 
-#EXTINF:-1 tvg-id="Tunisia_20" tvg-name="إذاعة القرآن الكريم" tvg-logo="" group-title="Tunisia",إذاعة القرآن الكريم
+#EXTINF:-1 tvg-id="Tunisia_21" tvg-name="إذاعة القرآن الكريم" tvg-logo="" group-title="Tunisia",إذاعة القرآن الكريم
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://stream.radiojar.com/0tpy1h0kxtzuv
 
@@ -4037,107 +4029,111 @@ http://icecastdc.luxnet.ua/lux_mp3_128
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://online.kissfm.ua/KissFM
 
-#EXTINF:-1 tvg-id="Ukraine_3" tvg-name="Хіт FM Сучасні хіти" tvg-logo="" group-title="Ukraine",Хіт FM Сучасні хіти
+#EXTINF:-1 tvg-id="Ukraine_3" tvg-name="Радио НВ" tvg-logo="https://d3e54v103j8qbb.cloudfront.net/static/designer_favicon.5ea478d03e.png" group-title="Ukraine",Радио НВ
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://91.218.212.84:8000/radionv.mp3
+
+#EXTINF:-1 tvg-id="Ukraine_4" tvg-name="Хіт FM Сучасні хіти" tvg-logo="" group-title="Ukraine",Хіт FM Сучасні хіти
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://online.hitfm.ua/HitFM_Top
 
-#EXTINF:-1 tvg-id="Ukraine_4" tvg-name="Radio ROKS Ballads" tvg-logo="" group-title="Ukraine",Radio ROKS Ballads
+#EXTINF:-1 tvg-id="Ukraine_5" tvg-name="Radio ROKS Ballads" tvg-logo="" group-title="Ukraine",Radio ROKS Ballads
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://online.radioroks.ua/RadioROKS_Ballads_HD
 
-#EXTINF:-1 tvg-id="Ukraine_5" tvg-name="Мелодія FM 95.2" tvg-logo="" group-title="Ukraine",Мелодія FM 95.2
+#EXTINF:-1 tvg-id="Ukraine_6" tvg-name="Мелодія FM 95.2" tvg-logo="" group-title="Ukraine",Мелодія FM 95.2
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://online.melodiafm.ua/MelodiaFM
 
-#EXTINF:-1 tvg-id="Ukraine_6" tvg-name="Наше Радіо 107.9" tvg-logo="" group-title="Ukraine",Наше Радіо 107.9
+#EXTINF:-1 tvg-id="Ukraine_7" tvg-name="Наше Радіо 107.9" tvg-logo="" group-title="Ukraine",Наше Радіо 107.9
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://online.nasheradio.ua/NasheRadio
 
-#EXTINF:-1 tvg-id="Ukraine_7" tvg-name="Rock Ballads" tvg-logo="" group-title="Ukraine",Rock Ballads
+#EXTINF:-1 tvg-id="Ukraine_8" tvg-name="Rock Ballads" tvg-logo="" group-title="Ukraine",Rock Ballads
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://online.radioroks.ua/RadioROKS_Ballads
 
-#EXTINF:-1 tvg-id="Ukraine_8" tvg-name="KissFm Deep" tvg-logo="" group-title="Ukraine",KissFm Deep
+#EXTINF:-1 tvg-id="Ukraine_9" tvg-name="KissFm Deep" tvg-logo="" group-title="Ukraine",KissFm Deep
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://online.kissfm.ua/KissFM_Deep_Live
 
-#EXTINF:-1 tvg-id="Ukraine_9" tvg-name="Хіт ФМ Найбільші хіти" tvg-logo="" group-title="Ukraine",Хіт ФМ Найбільші хіти
+#EXTINF:-1 tvg-id="Ukraine_10" tvg-name="Хіт ФМ Найбільші хіти" tvg-logo="" group-title="Ukraine",Хіт ФМ Найбільші хіти
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://online.hitfm.ua/HitFM_Best
 
-#EXTINF:-1 tvg-id="Ukraine_10" tvg-name="Radio ROKS Hard'n'Heavy" tvg-logo="" group-title="Ukraine",Radio ROKS Hard'n'Heavy
+#EXTINF:-1 tvg-id="Ukraine_11" tvg-name="Radio ROKS Hard'n'Heavy" tvg-logo="" group-title="Ukraine",Radio ROKS Hard'n'Heavy
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://online.radioroks.ua/RadioROKS_HardnHeavy_HD
 
-#EXTINF:-1 tvg-id="Ukraine_11" tvg-name="HIT FM" tvg-logo="" group-title="Ukraine",HIT FM
+#EXTINF:-1 tvg-id="Ukraine_12" tvg-name="HIT FM" tvg-logo="" group-title="Ukraine",HIT FM
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://online.hitfm.ua/HitFM
 
-#EXTINF:-1 tvg-id="Ukraine_12" tvg-name="Радіо Максимум 94.2" tvg-logo="https://maximum.fm/assets/images/favicons/favicon-96x96.png?v=53" group-title="Ukraine",Радіо Максимум 94.2
+#EXTINF:-1 tvg-id="Ukraine_13" tvg-name="Радіо Максимум 94.2" tvg-logo="https://maximum.fm/assets/images/favicons/favicon-96x96.png?v=53" group-title="Ukraine",Радіо Максимум 94.2
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://icecastdc.luxnet.ua/maximum_mp3_128
 
-#EXTINF:-1 tvg-id="Ukraine_13" tvg-name="Громадське радіо / Hromadske radio" tvg-logo="" group-title="Ukraine",Громадське радіо / Hromadske radio
+#EXTINF:-1 tvg-id="Ukraine_14" tvg-name="Громадське радіо / Hromadske radio" tvg-logo="" group-title="Ukraine",Громадське радіо / Hromadske radio
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://91.218.212.67:8000/stream
 
-#EXTINF:-1 tvg-id="Ukraine_14" tvg-name="Kiss FM Ukrainian" tvg-logo="" group-title="Ukraine",Kiss FM Ukrainian
+#EXTINF:-1 tvg-id="Ukraine_15" tvg-name="Kiss FM Ukrainian" tvg-logo="" group-title="Ukraine",Kiss FM Ukrainian
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://online.kissfm.ua/KissFM_Ukr
 
-#EXTINF:-1 tvg-id="Ukraine_15" tvg-name="Радіо Трек" tvg-logo="https://radiotrek.rv.ua/tpl/images/icons/apple-touch-icon.png" group-title="Ukraine",Радіо Трек
+#EXTINF:-1 tvg-id="Ukraine_16" tvg-name="Радіо Трек" tvg-logo="https://radiotrek.rv.ua/tpl/images/icons/apple-touch-icon.png" group-title="Ukraine",Радіо Трек
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://online2.radiotrek.rv.ua:8000/AAC+_64.m3u
 
-#EXTINF:-1 tvg-id="Ukraine_16" tvg-name="Львівська хвиля (32 кбіт/с)" tvg-logo="" group-title="Ukraine",Львівська хвиля (32 кбіт/с)
+#EXTINF:-1 tvg-id="Ukraine_17" tvg-name="Львівська хвиля (32 кбіт/с)" tvg-logo="" group-title="Ukraine",Львівська хвиля (32 кбіт/с)
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://onair.lviv.fm:8000/lviv32.fm
 
-#EXTINF:-1 tvg-id="Ukraine_17" tvg-name="TRANCE IS STAR RADIO" tvg-logo="https://abs.twimg.com/favicons/twitter.2.ico" group-title="Ukraine",TRANCE IS STAR RADIO
+#EXTINF:-1 tvg-id="Ukraine_18" tvg-name="TRANCE IS STAR RADIO" tvg-logo="https://abs.twimg.com/favicons/twitter.2.ico" group-title="Ukraine",TRANCE IS STAR RADIO
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://myradio24.org/tisradio
 
-#EXTINF:-1 tvg-id="Ukraine_18" tvg-name="Радіо НВ 96.0" tvg-logo="" group-title="Ukraine",Радіо НВ 96.0
+#EXTINF:-1 tvg-id="Ukraine_19" tvg-name="Радіо НВ 96.0" tvg-logo="" group-title="Ukraine",Радіо НВ 96.0
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://online-radio.nv.ua/radionv.mp3
 
-#EXTINF:-1 tvg-id="Ukraine_19" tvg-name="Радіо Relax 101.5" tvg-logo="" group-title="Ukraine",Радіо Relax 101.5
+#EXTINF:-1 tvg-id="Ukraine_20" tvg-name="Радіо Relax 101.5" tvg-logo="" group-title="Ukraine",Радіо Relax 101.5
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://online.radiorelax.ua/RadioRelax
 
-#EXTINF:-1 tvg-id="Ukraine_20" tvg-name="Єдині новини" tvg-logo="" group-title="Ukraine",Єдині новини
+#EXTINF:-1 tvg-id="Ukraine_21" tvg-name="Єдині новини" tvg-logo="" group-title="Ukraine",Єдині новини
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://online-news.radioplayer.ua/RadioNews
 
-#EXTINF:-1 tvg-id="Ukraine_21" tvg-name="Radio Roks HD" tvg-logo="" group-title="Ukraine",Radio Roks HD
+#EXTINF:-1 tvg-id="Ukraine_22" tvg-name="Radio Roks HD" tvg-logo="" group-title="Ukraine",Radio Roks HD
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://online.radioroks.ua/RadioROKS_HD
 
-#EXTINF:-1 tvg-id="Ukraine_22" tvg-name="Lux FM" tvg-logo="https://lux.fm/assets/img/browser-icons/apple-touch-icon-120x120.png" group-title="Ukraine",Lux FM
+#EXTINF:-1 tvg-id="Ukraine_23" tvg-name="Lux FM" tvg-logo="https://lux.fm/assets/img/browser-icons/apple-touch-icon-120x120.png" group-title="Ukraine",Lux FM
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://icecast.luxnet.ua/lux
 
-#EXTINF:-1 tvg-id="Ukraine_23" tvg-name="Kiss FM Digital HD" tvg-logo="" group-title="Ukraine",Kiss FM Digital HD
+#EXTINF:-1 tvg-id="Ukraine_24" tvg-name="Kiss FM Digital HD" tvg-logo="" group-title="Ukraine",Kiss FM Digital HD
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://online.kissfm.ua/KissFM_Digital_HD
 
-#EXTINF:-1 tvg-id="Ukraine_24" tvg-name="Brokenbeats" tvg-logo="http://brokenbeats.net/favicon.ico" group-title="Ukraine",Brokenbeats
+#EXTINF:-1 tvg-id="Ukraine_25" tvg-name="Brokenbeats" tvg-logo="http://brokenbeats.net/favicon.ico" group-title="Ukraine",Brokenbeats
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://stream.brokenbeats.net/tune
 
-#EXTINF:-1 tvg-id="Ukraine_25" tvg-name="Закарпаття FM" tvg-logo="http://zakarpattyafm.com.ua/wp-content/themes/zakfm/ico.png" group-title="Ukraine",Закарпаття FM
+#EXTINF:-1 tvg-id="Ukraine_26" tvg-name="Закарпаття FM" tvg-logo="http://zakarpattyafm.com.ua/wp-content/themes/zakfm/ico.png" group-title="Ukraine",Закарпаття FM
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://195.234.148.51:8000/;
 
-#EXTINF:-1 tvg-id="Ukraine_26" tvg-name="Lviv Wave Radio" tvg-logo="" group-title="Ukraine",Lviv Wave Radio
+#EXTINF:-1 tvg-id="Ukraine_27" tvg-name="Lviv Wave Radio" tvg-logo="" group-title="Ukraine",Lviv Wave Radio
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://onair.lviv.fm:8000/lviv.fm
 
-#EXTINF:-1 tvg-id="Ukraine_27" tvg-name="Радіо ROKS 103.6" tvg-logo="" group-title="Ukraine",Радіо ROKS 103.6
+#EXTINF:-1 tvg-id="Ukraine_28" tvg-name="Радіо ROKS 103.6" tvg-logo="" group-title="Ukraine",Радіо ROKS 103.6
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://online.radioroks.ua/RadioROKS
 
-#EXTINF:-1 tvg-id="Ukraine_28" tvg-name="Мелодія FM Romantic" tvg-logo="" group-title="Ukraine",Мелодія FM Romantic
+#EXTINF:-1 tvg-id="Ukraine_29" tvg-name="Мелодія FM Romantic" tvg-logo="" group-title="Ukraine",Мелодія FM Romantic
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://online.melodiafm.ua/MelodiaFM_Romantic_Live
 
@@ -4182,7 +4178,11 @@ http://ns10.jethost.uz:8000/yoshlarovoziaac
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://213.230.109.7:9000/alo_low
 
-#EXTINF:-1 tvg-id="Uzbekistan_3" tvg-name="Radio Tabassum" tvg-logo="" group-title="Uzbekistan",Radio Tabassum
+#EXTINF:-1 tvg-id="Uzbekistan_3" tvg-name="Oriat FM" tvg-logo="" group-title="Uzbekistan",Oriat FM
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://194.5.152.248:8000/fm
+
+#EXTINF:-1 tvg-id="Uzbekistan_4" tvg-name="Radio Tabassum" tvg-logo="" group-title="Uzbekistan",Radio Tabassum
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://tabassum.uz:9000/alo_low
 
