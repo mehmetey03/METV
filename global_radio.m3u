@@ -1312,10 +1312,6 @@ http://stream.laut.fm/acidjazz
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://listener3.mp3.tb-group.fm/tb.mp3
 
-#EXTINF:-1 tvg-id="Germany_68" tvg-name="Rock Antenne - Punk Rock" tvg-logo="http://www.rockantenne.de/logos/station-rock-antenne/apple-touch-icon.png" group-title="Germany",Rock Antenne - Punk Rock
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://mp3channels.webradio.rockantenne.de/punkrock.aac
-
 #EXTINF:-1 tvg-id="" tvg-logo="" group-title="Ghana",Ghana
 #EXTGRP:Ghana
 
@@ -1833,147 +1829,151 @@ http://shoutcast2.radio24.it:8000/;
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://icecast.unitedradio.it/Radio105.mp3
 
-#EXTINF:-1 tvg-id="Italy_4" tvg-name="Radio Stereocittà" tvg-logo="" group-title="Italy",Radio Stereocittà
+#EXTINF:-1 tvg-id="Italy_4" tvg-name="Rai Radio 2" tvg-logo="" group-title="Italy",Rai Radio 2
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://icestreaming.rai.it/2.mp3
+
+#EXTINF:-1 tvg-id="Italy_5" tvg-name="Radio Stereocittà" tvg-logo="" group-title="Italy",Radio Stereocittà
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://onair11.xdevel.com:8134/;stream.mp3
 
-#EXTINF:-1 tvg-id="Italy_5" tvg-name="Radio Armisa" tvg-logo="https://armisa.it/assets/favicon/android-chrome-512x512.png" group-title="Italy",Radio Armisa
+#EXTINF:-1 tvg-id="Italy_6" tvg-name="Radio Armisa" tvg-logo="https://armisa.it/assets/favicon/android-chrome-512x512.png" group-title="Italy",Radio Armisa
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://onair.armisa.it/listen/armisa/radio.mp3
 
-#EXTINF:-1 tvg-id="Italy_6" tvg-name="Rai Radio 3" tvg-logo="" group-title="Italy",Rai Radio 3
+#EXTINF:-1 tvg-id="Italy_7" tvg-name="Rai Radio 3" tvg-logo="" group-title="Italy",Rai Radio 3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://icestreaming.rai.it/3.mp3
 
-#EXTINF:-1 tvg-id="Italy_7" tvg-name="RMC Radio Monte Carlo" tvg-logo="" group-title="Italy",RMC Radio Monte Carlo
+#EXTINF:-1 tvg-id="Italy_8" tvg-name="RMC Radio Monte Carlo" tvg-logo="" group-title="Italy",RMC Radio Monte Carlo
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://icecast.unitedradio.it/RMC.mp3
 
-#EXTINF:-1 tvg-id="Italy_8" tvg-name="Virgin Radio Italia" tvg-logo="http://www.virginradio.it/favicon_2.ico?v=1722509813651" group-title="Italy",Virgin Radio Italia
+#EXTINF:-1 tvg-id="Italy_9" tvg-name="Virgin Radio Italia" tvg-logo="http://www.virginradio.it/favicon_2.ico?v=1722509813651" group-title="Italy",Virgin Radio Italia
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://icecast.unitedradio.it/Virgin.mp3
 
-#EXTINF:-1 tvg-id="Italy_9" tvg-name="Radio 105 - Dance 90" tvg-logo="" group-title="Italy",Radio 105 - Dance 90
+#EXTINF:-1 tvg-id="Italy_10" tvg-name="Radio 105 - Dance 90" tvg-logo="" group-title="Italy",Radio 105 - Dance 90
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://icy.unitedradio.it/105Dance90.mp3
 
-#EXTINF:-1 tvg-id="Italy_10" tvg-name="Radio 80" tvg-logo="https://upload.wikimedia.org/wikipedia/it/1/1b/Radio80.jpg" group-title="Italy",Radio 80
+#EXTINF:-1 tvg-id="Italy_11" tvg-name="Radio 80" tvg-logo="https://upload.wikimedia.org/wikipedia/it/1/1b/Radio80.jpg" group-title="Italy",Radio 80
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://str01.fluidstream.net:7020/;stream.mp3
 
-#EXTINF:-1 tvg-id="Italy_11" tvg-name="70 80 Hits HQ" tvg-logo="" group-title="Italy",70 80 Hits HQ
+#EXTINF:-1 tvg-id="Italy_12" tvg-name="70 80 Hits HQ" tvg-logo="" group-title="Italy",70 80 Hits HQ
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://nr8.newradio.it:19574/stream
 
-#EXTINF:-1 tvg-id="Italy_12" tvg-name="Virgin Radio Rock '70" tvg-logo="" group-title="Italy",Virgin Radio Rock '70
+#EXTINF:-1 tvg-id="Italy_13" tvg-name="Virgin Radio Rock '70" tvg-logo="" group-title="Italy",Virgin Radio Rock '70
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://icy.unitedradio.it/VirginRock70.mp3
 
-#EXTINF:-1 tvg-id="Italy_13" tvg-name="Virgin Radio Rock '80" tvg-logo="" group-title="Italy",Virgin Radio Rock '80
+#EXTINF:-1 tvg-id="Italy_14" tvg-name="Virgin Radio Rock '80" tvg-logo="" group-title="Italy",Virgin Radio Rock '80
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://icy.unitedradio.it/VirginRock80.mp3
 
-#EXTINF:-1 tvg-id="Italy_14" tvg-name="Radio Studio Più - HQ" tvg-logo="https://studiopiu.net/offline/img/icona.png" group-title="Italy",Radio Studio Più - HQ
+#EXTINF:-1 tvg-id="Italy_15" tvg-name="Radio Studio Più - HQ" tvg-logo="https://studiopiu.net/offline/img/icona.png" group-title="Italy",Radio Studio Più - HQ
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://77.241.4.100:8020/;
 
-#EXTINF:-1 tvg-id="Italy_15" tvg-name="Tele Radio Stereo" tvg-logo="http://cdn-radiotime-logos.tunein.com/s17518q.png" group-title="Italy",Tele Radio Stereo
+#EXTINF:-1 tvg-id="Italy_16" tvg-name="Tele Radio Stereo" tvg-logo="http://cdn-radiotime-logos.tunein.com/s17518q.png" group-title="Italy",Tele Radio Stereo
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://trsw.inmystream.info:8068/;stream.mp3
 
-#EXTINF:-1 tvg-id="Italy_16" tvg-name="RMC 80" tvg-logo="" group-title="Italy",RMC 80
+#EXTINF:-1 tvg-id="Italy_17" tvg-name="RMC 80" tvg-logo="" group-title="Italy",RMC 80
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://edge.radiomontecarlo.net/rmcweb008
 
-#EXTINF:-1 tvg-id="Italy_17" tvg-name="Radio Italia Solo Musica Italiana" tvg-logo="https://www.radioitalia.it/images/logo-radioitalia.png" group-title="Italy",Radio Italia Solo Musica Italiana
+#EXTINF:-1 tvg-id="Italy_18" tvg-name="Radio Italia Solo Musica Italiana" tvg-logo="https://www.radioitalia.it/images/logo-radioitalia.png" group-title="Italy",Radio Italia Solo Musica Italiana
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://radioitaliasmi.akamaized.net/hls/live/2093120/RISMI/stream01/streamPlaylist.m3u8
 
-#EXTINF:-1 tvg-id="Italy_18" tvg-name="Virgin Radio Hard Rock" tvg-logo="" group-title="Italy",Virgin Radio Hard Rock
+#EXTINF:-1 tvg-id="Italy_19" tvg-name="Virgin Radio Hard Rock" tvg-logo="" group-title="Italy",Virgin Radio Hard Rock
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://icy.unitedradio.it/VirginHardRock.mp3
 
-#EXTINF:-1 tvg-id="Italy_19" tvg-name="Centro Suono Sport" tvg-logo="" group-title="Italy",Centro Suono Sport
+#EXTINF:-1 tvg-id="Italy_20" tvg-name="Centro Suono Sport" tvg-logo="" group-title="Italy",Centro Suono Sport
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://streaming.centrosuono.com:8000/cssport.mp3
 
-#EXTINF:-1 tvg-id="Italy_20" tvg-name="Radio Kiss Kiss Napoli" tvg-logo="" group-title="Italy",Radio Kiss Kiss Napoli
+#EXTINF:-1 tvg-id="Italy_21" tvg-name="Radio Kiss Kiss Napoli" tvg-logo="" group-title="Italy",Radio Kiss Kiss Napoli
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://wma08.fluidstream.net:3612/;listen.m3u
 
-#EXTINF:-1 tvg-id="Italy_21" tvg-name="Radio Kiss Kiss Italia" tvg-logo="https://kisskissitalia.it/wp-content/uploads/2021/07/cropped-favicon-kisskissitalia-180x180.png" group-title="Italy",Radio Kiss Kiss Italia
+#EXTINF:-1 tvg-id="Italy_22" tvg-name="Radio Kiss Kiss Italia" tvg-logo="https://kisskissitalia.it/wp-content/uploads/2021/07/cropped-favicon-kisskissitalia-180x180.png" group-title="Italy",Radio Kiss Kiss Italia
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://wma06.fluidstream.net:3614/;listen.m3u
 
-#EXTINF:-1 tvg-id="Italy_22" tvg-name="Radio Maria" tvg-logo="" group-title="Italy",Radio Maria
+#EXTINF:-1 tvg-id="Italy_23" tvg-name="Radio Maria" tvg-logo="" group-title="Italy",Radio Maria
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://dreamsiteradiocp.com:8092/;
 
-#EXTINF:-1 tvg-id="Italy_23" tvg-name="R101 FM" tvg-logo="http://www.r101.it/favicon_7.ico?v=1722509814243" group-title="Italy",R101 FM
+#EXTINF:-1 tvg-id="Italy_24" tvg-name="R101 FM" tvg-logo="http://www.r101.it/favicon_7.ico?v=1722509814243" group-title="Italy",R101 FM
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://icecast.unitedradio.it/r101
 
-#EXTINF:-1 tvg-id="Italy_24" tvg-name="Virgin Radio Rock Ballads" tvg-logo="" group-title="Italy",Virgin Radio Rock Ballads
+#EXTINF:-1 tvg-id="Italy_25" tvg-name="Virgin Radio Rock Ballads" tvg-logo="" group-title="Italy",Virgin Radio Rock Ballads
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://icy.unitedradio.it/Virgin_06.mp3
 
-#EXTINF:-1 tvg-id="Italy_25" tvg-name="Radio Ibiza" tvg-logo="https://radioibiza.it/wp-content/uploads/2021/07/cropped-favicon-ibiza-180x180.png" group-title="Italy",Radio Ibiza
+#EXTINF:-1 tvg-id="Italy_26" tvg-name="Radio Ibiza" tvg-logo="https://radioibiza.it/wp-content/uploads/2021/07/cropped-favicon-ibiza-180x180.png" group-title="Italy",Radio Ibiza
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://wma08.fluidstream.net:5010/;stream.aac
 
-#EXTINF:-1 tvg-id="Italy_26" tvg-name="CLASSIC HITS RADIO Italia" tvg-logo="" group-title="Italy",CLASSIC HITS RADIO Italia
+#EXTINF:-1 tvg-id="Italy_27" tvg-name="CLASSIC HITS RADIO Italia" tvg-logo="" group-title="Italy",CLASSIC HITS RADIO Italia
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://classichitsradio.streamingmedia.it/play
 
-#EXTINF:-1 tvg-id="Italy_27" tvg-name="ITALIA Italia 70" tvg-logo="" group-title="Italy",ITALIA Italia 70
+#EXTINF:-1 tvg-id="Italy_28" tvg-name="ITALIA Italia 70" tvg-logo="" group-title="Italy",ITALIA Italia 70
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://icy.unitedradio.it/um020.mp3
 
-#EXTINF:-1 tvg-id="Italy_28" tvg-name="Radio Radicale" tvg-logo="" group-title="Italy",Radio Radicale
+#EXTINF:-1 tvg-id="Italy_29" tvg-name="Radio Radicale" tvg-logo="" group-title="Italy",Radio Radicale
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://live.radioradicale.it/live.mp3
 
-#EXTINF:-1 tvg-id="Italy_29" tvg-name="Radio 105 - HipHop & RnB" tvg-logo="" group-title="Italy",Radio 105 - HipHop & RnB
+#EXTINF:-1 tvg-id="Italy_30" tvg-name="Radio 105 - HipHop & RnB" tvg-logo="" group-title="Italy",Radio 105 - HipHop & RnB
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://icy.unitedradio.it/105HipHopRnB.mp3
 
-#EXTINF:-1 tvg-id="Italy_30" tvg-name="Radio Kiss Kiss Hits" tvg-logo="https://kisskiss.it/wp-content/uploads/2021/03/cropped-favicon-kisskiss-180x180.png" group-title="Italy",Radio Kiss Kiss Hits
+#EXTINF:-1 tvg-id="Italy_31" tvg-name="Radio Kiss Kiss Hits" tvg-logo="https://kisskiss.it/wp-content/uploads/2021/03/cropped-favicon-kisskiss-180x180.png" group-title="Italy",Radio Kiss Kiss Hits
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://ice08.fluidstream.net/kk_hits.aac
 
-#EXTINF:-1 tvg-id="Italy_31" tvg-name="RMC Buddha-Bar" tvg-logo="" group-title="Italy",RMC Buddha-Bar
+#EXTINF:-1 tvg-id="Italy_32" tvg-name="RMC Buddha-Bar" tvg-logo="" group-title="Italy",RMC Buddha-Bar
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://edge.radiomontecarlo.net/rmcweb002
 
-#EXTINF:-1 tvg-id="Italy_32" tvg-name="RMC Love Songs" tvg-logo="" group-title="Italy",RMC Love Songs
+#EXTINF:-1 tvg-id="Italy_33" tvg-name="RMC Love Songs" tvg-logo="" group-title="Italy",RMC Love Songs
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://edge.radiomontecarlo.net/rmcweb006
 
-#EXTINF:-1 tvg-id="Italy_33" tvg-name="Radio Kiss Kiss" tvg-logo="https://kisskiss.it/wp-content/uploads/2022/07/cropped-favicon-new-kisskiss-180x180.png" group-title="Italy",Radio Kiss Kiss
+#EXTINF:-1 tvg-id="Italy_34" tvg-name="Radio Kiss Kiss" tvg-logo="https://kisskiss.it/wp-content/uploads/2022/07/cropped-favicon-new-kisskiss-180x180.png" group-title="Italy",Radio Kiss Kiss
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://players.fluidstream.net/kisskissnetwork.m3u
 
-#EXTINF:-1 tvg-id="Italy_34" tvg-name="Rai Isoradio" tvg-logo="" group-title="Italy",Rai Isoradio
+#EXTINF:-1 tvg-id="Italy_35" tvg-name="Rai Isoradio" tvg-logo="" group-title="Italy",Rai Isoradio
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://icestreaming.rai.it/6.mp3
 
-#EXTINF:-1 tvg-id="Italy_35" tvg-name="Italia Dance Music" tvg-logo="http://www.italiadancemusic.com/it/themes/corporate_lite/favicon.ico" group-title="Italy",Italia Dance Music
+#EXTINF:-1 tvg-id="Italy_36" tvg-name="Italia Dance Music" tvg-logo="http://www.italiadancemusic.com/it/themes/corporate_lite/favicon.ico" group-title="Italy",Italia Dance Music
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://sr2.inmystream.info:8032/listen.m3u
 
-#EXTINF:-1 tvg-id="Italy_36" tvg-name="Rai Radio Classica Filodiffusione" tvg-logo="" group-title="Italy",Rai Radio Classica Filodiffusione
+#EXTINF:-1 tvg-id="Italy_37" tvg-name="Rai Radio Classica Filodiffusione" tvg-logo="" group-title="Italy",Rai Radio Classica Filodiffusione
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://icestreaming.rai.it/5.mp3
 
-#EXTINF:-1 tvg-id="Italy_37" tvg-name="Radio Sportiva" tvg-logo="https://www.radiosportiva.com/wp-content/uploads/2021/09/logo-radiosportiva-white.svg" group-title="Italy",Radio Sportiva
+#EXTINF:-1 tvg-id="Italy_38" tvg-name="Radio Sportiva" tvg-logo="https://www.radiosportiva.com/wp-content/uploads/2021/09/logo-radiosportiva-white.svg" group-title="Italy",Radio Sportiva
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://sportiva.inmystream.it/stream/sportiva
 
-#EXTINF:-1 tvg-id="Italy_38" tvg-name="Radio 105 - Zoo Radio" tvg-logo="" group-title="Italy",Radio 105 - Zoo Radio
+#EXTINF:-1 tvg-id="Italy_39" tvg-name="Radio 105 - Zoo Radio" tvg-logo="" group-title="Italy",Radio 105 - Zoo Radio
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://icy.unitedradio.it/105Zoo.mp3
 
-#EXTINF:-1 tvg-id="Italy_39" tvg-name="ITALIA Italia 80" tvg-logo="" group-title="Italy",ITALIA Italia 80
+#EXTINF:-1 tvg-id="Italy_40" tvg-name="ITALIA Italia 80" tvg-logo="" group-title="Italy",ITALIA Italia 80
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://icy.unitedradio.it/um016.mp3
 
@@ -1998,6 +1998,13 @@ http://kathy.torontocast.com:3330/stream/1/?esPlayer&cb=82181.mp3
 #EXTINF:-1 tvg-id="Japan_1" tvg-name="Anime Para Ti" tvg-logo="https://images.zeno.fm/TrBD3tEtOJbMAdKu3XR64pWUT2XTjBhzgn2n2w_lFnE/rs:fit:500:500/g:ce:0:0/aHR0cHM6Ly9zdHJlYW0tdG9vbHMuemVub21lZGlhLmNvbS9jb250ZW50L3N0YXRpb25zL2FneHpmbnBsYm04dGMzUmhkSE55TWdzU0NrRjFkR2hEYkdsbGJuUVlnSUNBeF92bDF3b01DeElPVTNSaGRHbHZibEJ5YjJacGJHVVlnSUNBZ0lEeWlBb01vZ0VFZW1WdWJ3L2ltYWdlLz9yZXNpemU9NTAweDUwMCZ1cGRhdGVkPTE2NjI3NzM0MjEwMDA.webp" group-title="Japan",Anime Para Ti
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://stream.zeno.fm/qpn8mkt8c4duv
+
+#EXTINF:-1 tvg-id="" tvg-logo="" group-title="Jordan",Jordan
+#EXTGRP:Jordan
+
+#EXTINF:-1 tvg-id="Jordan_0" tvg-name="Mazaj FM" tvg-logo="https://mazaj.fm/apple-touch-icon.png" group-title="Jordan",Mazaj FM
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://mazajfm.ice.infomaniak.ch/mazajfm-192.mp3
 
 #EXTINF:-1 tvg-id="" tvg-logo="" group-title="Kazakhstan",Kazakhstan
 #EXTGRP:Kazakhstan
@@ -2279,7 +2286,11 @@ https://stream.live.vc.bbcmedia.co.uk/bbc_nepali_radio
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://stream.zenolive.com/wtuvp08xq1duv
 
-#EXTINF:-1 tvg-id="Nepal_4" tvg-name="Capital FM 92.4" tvg-logo="" group-title="Nepal",Capital FM 92.4
+#EXTINF:-1 tvg-id="Nepal_4" tvg-name="Radio Nepal" tvg-logo="" group-title="Nepal",Radio Nepal
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://stream1.radionepal.gov.np/live/
+
+#EXTINF:-1 tvg-id="Nepal_5" tvg-name="Capital FM 92.4" tvg-logo="" group-title="Nepal",Capital FM 92.4
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://streaming.softnep.net:8037/;
 
@@ -2317,15 +2328,19 @@ https://s17.ssl-stream.com:2199/tunein/radiopak.m3u
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://whmsonic.radio.gov.pk:7003/stream
 
-#EXTINF:-1 tvg-id="Pakistan_6" tvg-name="FM 100 Pakistan Karachi" tvg-logo="http://fm100pakistan.com/favicon.ico" group-title="Pakistan",FM 100 Pakistan Karachi
+#EXTINF:-1 tvg-id="Pakistan_6" tvg-name="FM 100 Pakistan Islamabad" tvg-logo="http://fm100pakistan.com/favicon.ico" group-title="Pakistan",FM 100 Pakistan Islamabad
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://162.244.80.118:4900/stream.mp3?ver=604498
+
+#EXTINF:-1 tvg-id="Pakistan_7" tvg-name="FM 100 Pakistan Karachi" tvg-logo="http://fm100pakistan.com/favicon.ico" group-title="Pakistan",FM 100 Pakistan Karachi
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://162.244.80.118:3024/stream.mp3?ver=349829
 
-#EXTINF:-1 tvg-id="Pakistan_7" tvg-name="Radio Pakistan Lahore News and Current Affair AM 1332 KHZ" tvg-logo="" group-title="Pakistan",Radio Pakistan Lahore News and Current Affair AM 1332 KHZ
+#EXTINF:-1 tvg-id="Pakistan_8" tvg-name="Radio Pakistan Lahore News and Current Affair AM 1332 KHZ" tvg-logo="" group-title="Pakistan",Radio Pakistan Lahore News and Current Affair AM 1332 KHZ
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://whmsonic.radio.gov.pk:7004/stream?type=http&nocache=12
 
-#EXTINF:-1 tvg-id="Pakistan_8" tvg-name="FM 101 Islamabad" tvg-logo="" group-title="Pakistan",FM 101 Islamabad
+#EXTINF:-1 tvg-id="Pakistan_9" tvg-name="FM 101 Islamabad" tvg-logo="" group-title="Pakistan",FM 101 Islamabad
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://whmsonic.radio.gov.pk:7008/stream
 
@@ -2518,29 +2533,29 @@ https://195.23.85.126:8455/listen.m3u?sid=1
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://provisioning.streamtheworld.com/pls/RADIO_RENASCENCA.m3u
 
-#EXTINF:-1 tvg-id="Portugal_6" tvg-name="Mega Hits" tvg-logo="http://cdn-radiotime-logos.tunein.com/s6745q.png" group-title="Portugal",Mega Hits
+#EXTINF:-1 tvg-id="Portugal_6" tvg-name="RDP Africa (Portugal)" tvg-logo="https://www.celsoazevedo.com/files/2022/11/rdp-africa.jpg" group-title="Portugal",RDP Africa (Portugal)
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://streaming-live.rtp.pt/liveradio/rdpafrica80a/playlist.m3u8
+
+#EXTINF:-1 tvg-id="Portugal_7" tvg-name="Mega Hits" tvg-logo="http://cdn-radiotime-logos.tunein.com/s6745q.png" group-title="Portugal",Mega Hits
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://provisioning.streamtheworld.com/pls/mega_hits.m3u
 
-#EXTINF:-1 tvg-id="Portugal_7" tvg-name="Rap/Hip Hop" tvg-logo="" group-title="Portugal",Rap/Hip Hop
+#EXTINF:-1 tvg-id="Portugal_8" tvg-name="Rap/Hip Hop" tvg-logo="" group-title="Portugal",Rap/Hip Hop
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://185.32.188.17:8097/stream
 
-#EXTINF:-1 tvg-id="Portugal_8" tvg-name="TOP 80 - Todos Os Exitos De 80 A 2000" tvg-logo="https://www.top80.fm/wp-content/uploads/2023/03/cropped-ic_launcher_top80-180x180.png" group-title="Portugal",TOP 80 - Todos Os Exitos De 80 A 2000
+#EXTINF:-1 tvg-id="Portugal_9" tvg-name="TOP 80 - Todos Os Exitos De 80 A 2000" tvg-logo="https://www.top80.fm/wp-content/uploads/2023/03/cropped-ic_launcher_top80-180x180.png" group-title="Portugal",TOP 80 - Todos Os Exitos De 80 A 2000
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://live.top80.fm:8086/
 
-#EXTINF:-1 tvg-id="Portugal_9" tvg-name="Rádio Amália" tvg-logo="http://cdn-radiotime-logos.tunein.com/s113888q.png" group-title="Portugal",Rádio Amália
+#EXTINF:-1 tvg-id="Portugal_10" tvg-name="Rádio Amália" tvg-logo="http://cdn-radiotime-logos.tunein.com/s113888q.png" group-title="Portugal",Rádio Amália
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://centova.radio.com.pt:9496/;
 
-#EXTINF:-1 tvg-id="Portugal_10" tvg-name="Deep in Radio" tvg-logo="" group-title="Portugal",Deep in Radio
+#EXTINF:-1 tvg-id="Portugal_11" tvg-name="Deep in Radio" tvg-logo="" group-title="Portugal",Deep in Radio
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://s3.viastreaming.net:8525/
-
-#EXTINF:-1 tvg-id="Portugal_11" tvg-name="4Drive Jazz" tvg-logo="https://www.wix.com/favicon.ico" group-title="Portugal",4Drive Jazz
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://radio.streemlion.com:1150/stream
 
 #EXTINF:-1 tvg-id="" tvg-logo="" group-title="Qatar",Qatar
 #EXTGRP:Qatar
@@ -2631,10 +2646,6 @@ http://stream2.srr.ro:8012/
 #EXTINF:-1 tvg-id="Romania_16" tvg-name="Romantic FM" tvg-logo="https://romanticfm.ro/img/favicon.png" group-title="Romania",Romantic FM
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://zuicast.digitalag.ro:9420/romanticfm
-
-#EXTINF:-1 tvg-id="Romania_17" tvg-name="Radio Tequila Dance Romania" tvg-logo="https://cdn.onlineradiobox.com/img/l/0/87390.v8.png" group-title="Romania",Radio Tequila Dance Romania
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://dance.radiotequila.ro:7000/;stream.nsv
 
 #EXTINF:-1 tvg-id="" tvg-logo="" group-title="Rwanda",Rwanda
 #EXTGRP:Rwanda
@@ -2921,55 +2932,59 @@ http://strm112.1.fm/acountry_mobile_mp3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://strm112.1.fm/ccountry_mobile_mp3
 
-#EXTINF:-1 tvg-id="Switzerland_6" tvg-name="1.FM - Blues Radio" tvg-logo="" group-title="Switzerland",1.FM - Blues Radio
+#EXTINF:-1 tvg-id="Switzerland_6" tvg-name="1.FM - Chillout Lounge Radio" tvg-logo="" group-title="Switzerland",1.FM - Chillout Lounge Radio
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://strm112.1.fm/chilloutlounge_mobile_mp3
+
+#EXTINF:-1 tvg-id="Switzerland_7" tvg-name="1.FM - Blues Radio" tvg-logo="" group-title="Switzerland",1.FM - Blues Radio
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://strm112.1.fm/blues_mobile_mp3
 
-#EXTINF:-1 tvg-id="Switzerland_7" tvg-name="Radio Swiss Classic German" tvg-logo="" group-title="Switzerland",Radio Swiss Classic German
+#EXTINF:-1 tvg-id="Switzerland_8" tvg-name="Radio Swiss Classic German" tvg-logo="" group-title="Switzerland",Radio Swiss Classic German
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://stream.srg-ssr.ch/m/rsc_de/mp3_128
 
-#EXTINF:-1 tvg-id="Switzerland_8" tvg-name="1.FM - Rock Classics Radio" tvg-logo="" group-title="Switzerland",1.FM - Rock Classics Radio
+#EXTINF:-1 tvg-id="Switzerland_9" tvg-name="1.FM - Rock Classics Radio" tvg-logo="" group-title="Switzerland",1.FM - Rock Classics Radio
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://strm112.1.fm/rockclassics_mobile_mp3
 
-#EXTINF:-1 tvg-id="Switzerland_9" tvg-name="1.FM - Cafe Radio" tvg-logo="" group-title="Switzerland",1.FM - Cafe Radio
+#EXTINF:-1 tvg-id="Switzerland_10" tvg-name="1.FM - Cafe Radio" tvg-logo="" group-title="Switzerland",1.FM - Cafe Radio
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://strm112.1.fm/caferadio_mobile_mp3
 
-#EXTINF:-1 tvg-id="Switzerland_10" tvg-name="1.FM - Bombay Beats India Radio" tvg-logo="" group-title="Switzerland",1.FM - Bombay Beats India Radio
+#EXTINF:-1 tvg-id="Switzerland_11" tvg-name="1.FM - Bombay Beats India Radio" tvg-logo="" group-title="Switzerland",1.FM - Bombay Beats India Radio
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://strm112.1.fm/bombaybeats_mobile_mp3
 
-#EXTINF:-1 tvg-id="Switzerland_11" tvg-name="1.FM - Deep Techno & Deep House" tvg-logo="" group-title="Switzerland",1.FM - Deep Techno & Deep House
+#EXTINF:-1 tvg-id="Switzerland_12" tvg-name="1.FM - Deep Techno & Deep House" tvg-logo="" group-title="Switzerland",1.FM - Deep Techno & Deep House
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://strm112.1.fm/deeptech_mobile_mp3
 
-#EXTINF:-1 tvg-id="Switzerland_12" tvg-name="1.FM - High Voltage Radio" tvg-logo="" group-title="Switzerland",1.FM - High Voltage Radio
+#EXTINF:-1 tvg-id="Switzerland_13" tvg-name="1.FM - High Voltage Radio" tvg-logo="" group-title="Switzerland",1.FM - High Voltage Radio
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://strm112.1.fm/highvoltage_mobile_mp3
 
-#EXTINF:-1 tvg-id="Switzerland_13" tvg-name="Radio Swiss Pop" tvg-logo="http://www.radioswisspop.ch/favicon.ico" group-title="Switzerland",Radio Swiss Pop
+#EXTINF:-1 tvg-id="Switzerland_14" tvg-name="Radio Swiss Pop" tvg-logo="http://www.radioswisspop.ch/favicon.ico" group-title="Switzerland",Radio Swiss Pop
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://stream.srg-ssr.ch/m/rsp/mp3_128
 
-#EXTINF:-1 tvg-id="Switzerland_14" tvg-name="1.FM - Alternative Rock X Hits Radio" tvg-logo="" group-title="Switzerland",1.FM - Alternative Rock X Hits Radio
+#EXTINF:-1 tvg-id="Switzerland_15" tvg-name="1.FM - Alternative Rock X Hits Radio" tvg-logo="" group-title="Switzerland",1.FM - Alternative Rock X Hits Radio
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://strm112.1.fm/x_mobile_mp3
 
-#EXTINF:-1 tvg-id="Switzerland_15" tvg-name="SRF 3" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Radio_SRF_3.svg/200px-Radio_SRF_3.svg.png" group-title="Switzerland",SRF 3
+#EXTINF:-1 tvg-id="Switzerland_16" tvg-name="SRF 3" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Radio_SRF_3.svg/200px-Radio_SRF_3.svg.png" group-title="Switzerland",SRF 3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://stream.srg-ssr.ch/m/drs3/mp3_128
 
-#EXTINF:-1 tvg-id="Switzerland_16" tvg-name="1.FM - BOM Psytrance Radio" tvg-logo="" group-title="Switzerland",1.FM - BOM Psytrance Radio
+#EXTINF:-1 tvg-id="Switzerland_17" tvg-name="1.FM - BOM Psytrance Radio" tvg-logo="" group-title="Switzerland",1.FM - BOM Psytrance Radio
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://strm112.1.fm/psytrance_mobile_mp3
 
-#EXTINF:-1 tvg-id="Switzerland_17" tvg-name="1.FM - Bay Smooth Jazz Radio" tvg-logo="" group-title="Switzerland",1.FM - Bay Smooth Jazz Radio
+#EXTINF:-1 tvg-id="Switzerland_18" tvg-name="1.FM - Bay Smooth Jazz Radio" tvg-logo="" group-title="Switzerland",1.FM - Bay Smooth Jazz Radio
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://strm112.1.fm/smoothjazz_mobile_mp3
 
-#EXTINF:-1 tvg-id="Switzerland_18" tvg-name="RTS La Première" tvg-logo="https://www.rts.ch/hbv7/static/images/favicon/rts/152x152.png" group-title="Switzerland",RTS La Première
+#EXTINF:-1 tvg-id="Switzerland_19" tvg-name="RTS La Première" tvg-logo="https://www.rts.ch/hbv7/static/images/favicon/rts/152x152.png" group-title="Switzerland",RTS La Première
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://stream.srg-ssr.ch/m/la-1ere/mp3_128
 
@@ -3062,10 +3077,6 @@ http://mediaserv33.live-streams.nl:8036/live
 #EXTINF:-1 tvg-id="The Netherlands_8" tvg-name="NPO Radio 5" tvg-logo="https://www.nporadio5.nl/apple-touch-icon.png" group-title="The Netherlands",NPO Radio 5
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://icecast.omroep.nl/radio5-bb-mp3
-
-#EXTINF:-1 tvg-id="The Netherlands_9" tvg-name="Sky Radio 80's Hits" tvg-logo="http://www.skyradio.nl/favicon.ico" group-title="The Netherlands",Sky Radio 80's Hits
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://playerservices.streamtheworld.com/api/livestream-redirect/SRGSTR04.mp3
 
 #EXTINF:-1 tvg-id="" tvg-logo="" group-title="The Philippines",The Philippines
 #EXTGRP:The Philippines
@@ -3205,13 +3216,13 @@ http://www.discovertrance.com/DiscoverTrance-high.m3u
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://chanson.hostingradio.ru:8041/chanson-uncensored256.mp3
 
-#EXTINF:-1 tvg-id="The Russian Federation_31" tvg-name="Радио Maximum" tvg-logo="http://maximum.ru/favicon.ico" group-title="The Russian Federation",Радио Maximum
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://maximum.hostingradio.ru/maximum128.mp3
-
-#EXTINF:-1 tvg-id="The Russian Federation_32" tvg-name="РЕТРО ХИТ - RETRO HIT" tvg-logo="" group-title="The Russian Federation",РЕТРО ХИТ - RETRO HIT
+#EXTINF:-1 tvg-id="The Russian Federation_31" tvg-name="РЕТРО ХИТ - RETRO HIT" tvg-logo="" group-title="The Russian Federation",РЕТРО ХИТ - RETRO HIT
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://retro.volna.top/Retro
+
+#EXTINF:-1 tvg-id="The Russian Federation_32" tvg-name="Радио Maximum" tvg-logo="http://maximum.ru/favicon.ico" group-title="The Russian Federation",Радио Maximum
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://maximum.hostingradio.ru/maximum128.mp3
 
 #EXTINF:-1 tvg-id="The Russian Federation_33" tvg-name="Радио Рекорд Russian Mix" tvg-logo="http://radiorecord.ru/local/templates/record/assets/build/favicon-set/apple-touch-icon.png" group-title="The Russian Federation",Радио Рекорд Russian Mix
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -3494,10 +3505,6 @@ https://loveradio.streamingmedia.it/england
 #EXTINF:-1 tvg-id="The United Kingdom Of Great Britain And Northern Ireland_36" tvg-name="Radio X Manchester" tvg-logo="http://www.radiox.co.uk/assets_v4r/xfm/img/favicon-196x196.png" group-title="The United Kingdom Of Great Britain And Northern Ireland",Radio X Manchester
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://media-the.musicradio.com/RadioXManchester
-
-#EXTINF:-1 tvg-id="The United Kingdom Of Great Britain And Northern Ireland_37" tvg-name="BBC Arabic Radio" tvg-logo="https://static.files.bbci.co.uk/ws/simorgh-assets/public/arabic/images/icons/icon-128x128.png" group-title="The United Kingdom Of Great Britain And Northern Ireland",BBC Arabic Radio
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://a.files.bbci.co.uk/media/live/manifesto/audio/simulcast/hls/nonuk/sbr_low/ak/bbc_arabic_radio.m3u8
 
 #EXTINF:-1 tvg-id="" tvg-logo="" group-title="The United States Minor Outlying Islands",The United States Minor Outlying Islands
 #EXTGRP:The United States Minor Outlying Islands
@@ -3884,10 +3891,6 @@ https://www.181.fm/stream/pls/181-eagle.m3u
 #EXTINF:-1 tvg-id="The United States Of America_93" tvg-name="My70sRadio" tvg-logo="" group-title="The United States Of America",My70sRadio
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://usa14.fastcast4u.com:5132/stream
-
-#EXTINF:-1 tvg-id="The United States Of America_94" tvg-name="PulseEDM Dance Music Radio" tvg-logo="" group-title="The United States Of America",PulseEDM Dance Music Radio
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://pulseedm.cdnstream1.com:8124/1373_128.m3u
 
 #EXTINF:-1 tvg-id="" tvg-logo="" group-title="Togo",Togo
 #EXTGRP:Togo
