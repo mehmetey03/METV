@@ -1304,11 +1304,7 @@ http://mp3channels.webradio.antenne.de/oldies-but-goldies
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://stream.104.6rtl.com/rtl-live/mp3-192/radio-browser.info/
 
-#EXTINF:-1 tvg-id="Germany_66" tvg-name="Acid Jazz Radio" tvg-logo="" group-title="Germany",Acid Jazz Radio
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://stream.laut.fm/acidjazz
-
-#EXTINF:-1 tvg-id="Germany_67" tvg-name="TechnoBase.FM" tvg-logo="https://cdn.onlineradiobox.com/img/l/0/32040.v12.png" group-title="Germany",TechnoBase.FM
+#EXTINF:-1 tvg-id="Germany_66" tvg-name="TechnoBase.FM" tvg-logo="https://cdn.onlineradiobox.com/img/l/0/32040.v12.png" group-title="Germany",TechnoBase.FM
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://listener3.mp3.tb-group.fm/tb.mp3
 
@@ -2831,13 +2827,13 @@ http://livestreaming.esradio.fm/stream64.mp3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://pureibizaradio.clubbingradios.com:9518/PureIbizaRadio
 
-#EXTINF:-1 tvg-id="Spain_12" tvg-name="Chocolate FM [calidad móvil-low bandwidth]" tvg-logo="https://chocolatefm.com/radio-browser.png" group-title="Spain",Chocolate FM [calidad móvil-low bandwidth]
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://streaming5.elitecomunicacion.es:8082/live32.aac
-
-#EXTINF:-1 tvg-id="Spain_13" tvg-name="Cadena Dial" tvg-logo="https://www.cadenadial.com/wp-content/uploads/2024/03/cropped-512x512_favicon_dial-180x180.png" group-title="Spain",Cadena Dial
+#EXTINF:-1 tvg-id="Spain_12" tvg-name="Cadena Dial" tvg-logo="https://www.cadenadial.com/wp-content/uploads/2024/03/cropped-512x512_favicon_dial-180x180.png" group-title="Spain",Cadena Dial
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://playerservices.streamtheworld.com/api/livestream-redirect/CADENADIAL.mp3
+
+#EXTINF:-1 tvg-id="Spain_13" tvg-name="Chocolate FM [calidad móvil-low bandwidth]" tvg-logo="https://chocolatefm.com/radio-browser.png" group-title="Spain",Chocolate FM [calidad móvil-low bandwidth]
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://streaming5.elitecomunicacion.es:8082/live32.aac
 
 #EXTINF:-1 tvg-id="Spain_14" tvg-name="Radio Marca" tvg-logo="" group-title="Spain",Radio Marca
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -3077,6 +3073,10 @@ http://mediaserv33.live-streams.nl:8036/live
 #EXTINF:-1 tvg-id="The Netherlands_8" tvg-name="NPO Radio 5" tvg-logo="https://www.nporadio5.nl/apple-touch-icon.png" group-title="The Netherlands",NPO Radio 5
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://icecast.omroep.nl/radio5-bb-mp3
+
+#EXTINF:-1 tvg-id="The Netherlands_9" tvg-name="Sky Radio 80's Hits" tvg-logo="http://www.skyradio.nl/favicon.ico" group-title="The Netherlands",Sky Radio 80's Hits
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://playerservices.streamtheworld.com/api/livestream-redirect/SRGSTR04.mp3
 
 #EXTINF:-1 tvg-id="" tvg-logo="" group-title="The Philippines",The Philippines
 #EXTGRP:The Philippines
@@ -3672,13 +3672,13 @@ https://somafm.com/poptron.m3u
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://playerservices.streamtheworld.com/pls/977_SMOOJAZZ.m3u
 
-#EXTINF:-1 tvg-id="The United States Of America_39" tvg-name="SomaFM Indie Pop Rocks! (128k AAC)" tvg-logo="https://somafm.com/img3/indiepop-400.jpg" group-title="The United States Of America",SomaFM Indie Pop Rocks! (128k AAC)
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://somafm.com/indiepop130.m3u
-
-#EXTINF:-1 tvg-id="The United States Of America_40" tvg-name="WALM - Old Time Radio Opus" tvg-logo="https://icecast.walmradio.com:8443/otr.jpg" group-title="The United States Of America",WALM - Old Time Radio Opus
+#EXTINF:-1 tvg-id="The United States Of America_39" tvg-name="WALM - Old Time Radio Opus" tvg-logo="https://icecast.walmradio.com:8443/otr.jpg" group-title="The United States Of America",WALM - Old Time Radio Opus
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://icecast.walmradio.com:8443/otr_opus
+
+#EXTINF:-1 tvg-id="The United States Of America_40" tvg-name="SomaFM Indie Pop Rocks! (128k AAC)" tvg-logo="https://somafm.com/img3/indiepop-400.jpg" group-title="The United States Of America",SomaFM Indie Pop Rocks! (128k AAC)
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://somafm.com/indiepop130.m3u
 
 #EXTINF:-1 tvg-id="The United States Of America_41" tvg-name="181.FM - Highway 181" tvg-logo="http://www.181.fm/favicon.ico" group-title="The United States Of America",181.FM - Highway 181
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -3696,13 +3696,13 @@ https://funkyradio.streamingmedia.it/play.mp3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://playerservices.streamtheworld.com/pls/977_OLDIES.m3u
 
-#EXTINF:-1 tvg-id="The United States Of America_45" tvg-name="Miami Beach Radio" tvg-logo="https://cdn-elements.radiostreamlive.com/v1/images/favicon.ico" group-title="The United States Of America",Miami Beach Radio
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://streaming.radiostreamlive.com/miamibeachradio_devices
-
-#EXTINF:-1 tvg-id="The United States Of America_46" tvg-name="Radio Paradise Rock Mix 320k AAC" tvg-logo="https://radioparadise.com/apple-touch-icon.png" group-title="The United States Of America",Radio Paradise Rock Mix 320k AAC
+#EXTINF:-1 tvg-id="The United States Of America_45" tvg-name="Radio Paradise Rock Mix 320k AAC" tvg-logo="https://radioparadise.com/apple-touch-icon.png" group-title="The United States Of America",Radio Paradise Rock Mix 320k AAC
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://stream.radioparadise.com/rock-320
+
+#EXTINF:-1 tvg-id="The United States Of America_46" tvg-name="Miami Beach Radio" tvg-logo="https://cdn-elements.radiostreamlive.com/v1/images/favicon.ico" group-title="The United States Of America",Miami Beach Radio
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://streaming.radiostreamlive.com/miamibeachradio_devices
 
 #EXTINF:-1 tvg-id="The United States Of America_47" tvg-name="Radio Marti" tvg-logo="https://www.radiotelevisionmarti.com/content/responsive/ocb/img/webapp/ico-128x128.png" group-title="The United States Of America",Radio Marti
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
