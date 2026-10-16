@@ -1160,13 +1160,13 @@ http://wdr-wdr2-rheinland.icecast.wdr.de/wdr/wdr2/rheinland/mp3/128/stream.mp3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://stream.laut.fm/deutschrap
 
-#EXTINF:-1 tvg-id="Germany_30" tvg-name="Hit Radio FFH" tvg-logo="https://www.ffh.de/android-icon.png" group-title="Germany",Hit Radio FFH
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://mp3.ffh.de/radioffh/hqlivestream.mp3
-
-#EXTINF:-1 tvg-id="Germany_31" tvg-name="Sunshine Live - Classics" tvg-logo="" group-title="Germany",Sunshine Live - Classics
+#EXTINF:-1 tvg-id="Germany_30" tvg-name="Sunshine Live - Classics" tvg-logo="" group-title="Germany",Sunshine Live - Classics
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://stream.sunshine-live.de/classics/mp3-192/stream.sunshine-live.de/
+
+#EXTINF:-1 tvg-id="Germany_31" tvg-name="Hit Radio FFH" tvg-logo="https://www.ffh.de/android-icon.png" group-title="Germany",Hit Radio FFH
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://mp3.ffh.de/radioffh/hqlivestream.mp3
 
 #EXTINF:-1 tvg-id="Germany_32" tvg-name="80s80s Radio" tvg-logo="https://upload.80s80s.de/production/static/1697296555757/icons/icon_512.ewwAEi8A30w.png" group-title="Germany",80s80s Radio
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -1272,13 +1272,13 @@ http://mp3channels.webradio.antenne.de/top-40
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://www.ndr.de/resources/metadaten/audio/m3u/ndrinfo_sh.m3u
 
-#EXTINF:-1 tvg-id="Germany_58" tvg-name="RADIO BOB! Classic Rock" tvg-logo="" group-title="Germany",RADIO BOB! Classic Rock
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://streams.radiobob.de/bob-classicrock/mp3-192/streams.radiobob.de/
-
-#EXTINF:-1 tvg-id="Germany_59" tvg-name="Bayern 3" tvg-logo="https://api.ardmediathek.de/image-service/images/urn:ard:image:52fd25fc45de7c6a?w=512" group-title="Germany",Bayern 3
+#EXTINF:-1 tvg-id="Germany_58" tvg-name="Bayern 3" tvg-logo="https://api.ardmediathek.de/image-service/images/urn:ard:image:52fd25fc45de7c6a?w=512" group-title="Germany",Bayern 3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://dispatcher.rndfnk.com/br/br3/live/mp3/mid
+
+#EXTINF:-1 tvg-id="Germany_59" tvg-name="RADIO BOB! Classic Rock" tvg-logo="" group-title="Germany",RADIO BOB! Classic Rock
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://streams.radiobob.de/bob-classicrock/mp3-192/streams.radiobob.de/
 
 #EXTINF:-1 tvg-id="Germany_60" tvg-name="Radio Paloma" tvg-logo="https://schlager.radio/wp-content/uploads/2020/11/cropped-radio-paloma-fav-180x180.png" group-title="Germany",Radio Paloma
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -2410,13 +2410,13 @@ http://31.192.216.10/DANCE
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://n-11-21.dcs.redcdn.pl/sc/o2/radio357/live/radio357_pr.livx?preroll=0
 
-#EXTINF:-1 tvg-id="Poland_13" tvg-name="Radio ZET" tvg-logo="" group-title="Poland",Radio ZET
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://r.dcs.redcdn.pl/sc/o2/Eurozet/live/audio.livx?audio=5
-
-#EXTINF:-1 tvg-id="Poland_14" tvg-name="TOK FM" tvg-logo="https://static.im-g.pl/im/6/7455/m7455556.gif" group-title="Poland",TOK FM
+#EXTINF:-1 tvg-id="Poland_13" tvg-name="TOK FM" tvg-logo="https://static.im-g.pl/im/6/7455/m7455556.gif" group-title="Poland",TOK FM
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://radiostream.pl/tuba10-1.mp3#TOK_FM
+
+#EXTINF:-1 tvg-id="Poland_14" tvg-name="Radio ZET" tvg-logo="" group-title="Poland",Radio ZET
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://r.dcs.redcdn.pl/sc/o2/Eurozet/live/audio.livx?audio=5
 
 #EXTINF:-1 tvg-id="Poland_15" tvg-name="ESKA ROCK" tvg-logo="https://static.mytuner.mobi/media/tvos_radios/2LqeyZhdFq.png" group-title="Poland",ESKA ROCK
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
