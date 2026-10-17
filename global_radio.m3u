@@ -1160,13 +1160,13 @@ http://wdr-wdr2-rheinland.icecast.wdr.de/wdr/wdr2/rheinland/mp3/128/stream.mp3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://stream.laut.fm/deutschrap
 
-#EXTINF:-1 tvg-id="Germany_30" tvg-name="Sunshine Live - Classics" tvg-logo="" group-title="Germany",Sunshine Live - Classics
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://stream.sunshine-live.de/classics/mp3-192/stream.sunshine-live.de/
-
-#EXTINF:-1 tvg-id="Germany_31" tvg-name="Hit Radio FFH" tvg-logo="https://www.ffh.de/android-icon.png" group-title="Germany",Hit Radio FFH
+#EXTINF:-1 tvg-id="Germany_30" tvg-name="Hit Radio FFH" tvg-logo="https://www.ffh.de/android-icon.png" group-title="Germany",Hit Radio FFH
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://mp3.ffh.de/radioffh/hqlivestream.mp3
+
+#EXTINF:-1 tvg-id="Germany_31" tvg-name="Sunshine Live - Classics" tvg-logo="" group-title="Germany",Sunshine Live - Classics
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://stream.sunshine-live.de/classics/mp3-192/stream.sunshine-live.de/
 
 #EXTINF:-1 tvg-id="Germany_32" tvg-name="80s80s Radio" tvg-logo="https://upload.80s80s.de/production/static/1697296555757/icons/icon_512.ewwAEi8A30w.png" group-title="Germany",80s80s Radio
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -1937,13 +1937,13 @@ http://icy.unitedradio.it/105HipHopRnB.mp3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://ice08.fluidstream.net/kk_hits.aac
 
-#EXTINF:-1 tvg-id="Italy_32" tvg-name="RMC Buddha-Bar" tvg-logo="" group-title="Italy",RMC Buddha-Bar
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://edge.radiomontecarlo.net/rmcweb002
-
-#EXTINF:-1 tvg-id="Italy_33" tvg-name="RMC Love Songs" tvg-logo="" group-title="Italy",RMC Love Songs
+#EXTINF:-1 tvg-id="Italy_32" tvg-name="RMC Love Songs" tvg-logo="" group-title="Italy",RMC Love Songs
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://edge.radiomontecarlo.net/rmcweb006
+
+#EXTINF:-1 tvg-id="Italy_33" tvg-name="RMC Buddha-Bar" tvg-logo="" group-title="Italy",RMC Buddha-Bar
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://edge.radiomontecarlo.net/rmcweb002
 
 #EXTINF:-1 tvg-id="Italy_34" tvg-name="Radio Kiss Kiss" tvg-logo="https://kisskiss.it/wp-content/uploads/2022/07/cropped-favicon-new-kisskiss-180x180.png" group-title="Italy",Radio Kiss Kiss
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -2410,95 +2410,99 @@ http://31.192.216.10/DANCE
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://n-11-21.dcs.redcdn.pl/sc/o2/radio357/live/radio357_pr.livx?preroll=0
 
-#EXTINF:-1 tvg-id="Poland_13" tvg-name="TOK FM" tvg-logo="https://static.im-g.pl/im/6/7455/m7455556.gif" group-title="Poland",TOK FM
+#EXTINF:-1 tvg-id="Poland_13" tvg-name="Trojka" tvg-logo="http://moje.polskieradio.pl/favicon.ico" group-title="Poland",Trojka
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://stream3.polskieradio.pl:8904/
+
+#EXTINF:-1 tvg-id="Poland_14" tvg-name="TOK FM" tvg-logo="https://static.im-g.pl/im/6/7455/m7455556.gif" group-title="Poland",TOK FM
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://radiostream.pl/tuba10-1.mp3#TOK_FM
 
-#EXTINF:-1 tvg-id="Poland_14" tvg-name="Radio ZET" tvg-logo="" group-title="Poland",Radio ZET
+#EXTINF:-1 tvg-id="Poland_15" tvg-name="Radio ZET" tvg-logo="" group-title="Poland",Radio ZET
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://r.dcs.redcdn.pl/sc/o2/Eurozet/live/audio.livx?audio=5
 
-#EXTINF:-1 tvg-id="Poland_15" tvg-name="ESKA ROCK" tvg-logo="https://static.mytuner.mobi/media/tvos_radios/2LqeyZhdFq.png" group-title="Poland",ESKA ROCK
+#EXTINF:-1 tvg-id="Poland_16" tvg-name="ESKA ROCK" tvg-logo="https://static.mytuner.mobi/media/tvos_radios/2LqeyZhdFq.png" group-title="Poland",ESKA ROCK
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://ic2.smcdn.pl/5380-1.mp3#ESKA_ROCK
 
-#EXTINF:-1 tvg-id="Poland_16" tvg-name="Polskie Radio Program 1" tvg-logo="" group-title="Poland",Polskie Radio Program 1
+#EXTINF:-1 tvg-id="Poland_17" tvg-name="Polskie Radio Program 1" tvg-logo="" group-title="Poland",Polskie Radio Program 1
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://mp3.polskieradio.pl:8900/
 
-#EXTINF:-1 tvg-id="Poland_17" tvg-name="Polskie Radio - Czwórka (Program 4) (AAC+)" tvg-logo="" group-title="Poland",Polskie Radio - Czwórka (Program 4) (AAC+)
+#EXTINF:-1 tvg-id="Poland_18" tvg-name="Polskie Radio - Czwórka (Program 4) (AAC+)" tvg-logo="" group-title="Poland",Polskie Radio - Czwórka (Program 4) (AAC+)
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://stream3.polskieradio.pl:8956/;
 
-#EXTINF:-1 tvg-id="Poland_18" tvg-name="RMF 80s Disco" tvg-logo="http://www.rmfon.pl/assets/images/favicon/apple-touch-icon.png" group-title="Poland",RMF 80s Disco
+#EXTINF:-1 tvg-id="Poland_19" tvg-name="RMF 80s Disco" tvg-logo="http://www.rmfon.pl/assets/images/favicon/apple-touch-icon.png" group-title="Poland",RMF 80s Disco
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://195.150.20.9/80SDISCO
 
-#EXTINF:-1 tvg-id="Poland_19" tvg-name="Radio Wnet" tvg-logo="https://wnet.fm/wp-content/uploads/2019/03/cropped-favikon-145x145.png" group-title="Poland",Radio Wnet
+#EXTINF:-1 tvg-id="Poland_20" tvg-name="Radio Wnet" tvg-logo="https://wnet.fm/wp-content/uploads/2019/03/cropped-favikon-145x145.png" group-title="Poland",Radio Wnet
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://audio.radiownet.pl:8000/stream
-
-#EXTINF:-1 tvg-id="Poland_20" tvg-name="Polskie Radio - Czwórka" tvg-logo="" group-title="Poland",Polskie Radio - Czwórka
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://stream3.polskieradio.pl:8906/;stream
 
 #EXTINF:-1 tvg-id="Poland_21" tvg-name="VOX FM" tvg-logo="https://www.voxfm.pl/apple-touch-icon.png" group-title="Poland",VOX FM
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://www.emsoft.ct8.pl/inne/time.m3u?id=3990
 
-#EXTINF:-1 tvg-id="Poland_22" tvg-name="Radio Szczecin (128K MP3)" tvg-logo="http://radioszczecin.pl/assets/favicon/apple-touch-icon.png" group-title="Poland",Radio Szczecin (128K MP3)
+#EXTINF:-1 tvg-id="Poland_22" tvg-name="Polskie Radio - Czwórka" tvg-logo="" group-title="Poland",Polskie Radio - Czwórka
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://stream3.polskieradio.pl:8906/;stream
+
+#EXTINF:-1 tvg-id="Poland_23" tvg-name="Radio Szczecin (128K MP3)" tvg-logo="http://radioszczecin.pl/assets/favicon/apple-touch-icon.png" group-title="Poland",Radio Szczecin (128K MP3)
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://stream4.nadaje.com:11986/prs
 
-#EXTINF:-1 tvg-id="Poland_23" tvg-name="RMF FM" tvg-logo="https://www.rmf.fm/assets/images/favicon/apple-icon-120x120.png?3" group-title="Poland",RMF FM
+#EXTINF:-1 tvg-id="Poland_24" tvg-name="RMF FM" tvg-logo="https://www.rmf.fm/assets/images/favicon/apple-icon-120x120.png?3" group-title="Poland",RMF FM
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://31.192.216.8/rmf_fm
 
-#EXTINF:-1 tvg-id="Poland_24" tvg-name="RMF 80s" tvg-logo="http://www.rmfon.pl/assets/images/favicon/apple-touch-icon.png" group-title="Poland",RMF 80s
+#EXTINF:-1 tvg-id="Poland_25" tvg-name="RMF 80s" tvg-logo="http://www.rmfon.pl/assets/images/favicon/apple-touch-icon.png" group-title="Poland",RMF 80s
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://195.150.20.9/80S
 
-#EXTINF:-1 tvg-id="Poland_25" tvg-name="Antyradio" tvg-logo="https://gfx.antyradio.pl/design/antyradio/src/images/favicon/favicon_180x180.png" group-title="Poland",Antyradio
+#EXTINF:-1 tvg-id="Poland_26" tvg-name="Antyradio" tvg-logo="https://gfx.antyradio.pl/design/antyradio/src/images/favicon/favicon_180x180.png" group-title="Poland",Antyradio
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://n-4-4.dcs.redcdn.pl/sc/o2/Eurozet/live/antyradio.livx
 
-#EXTINF:-1 tvg-id="Poland_26" tvg-name="Radio Nowy Świat 256k" tvg-logo="" group-title="Poland",Radio Nowy Świat 256k
+#EXTINF:-1 tvg-id="Poland_27" tvg-name="Radio Nowy Świat 256k" tvg-logo="" group-title="Poland",Radio Nowy Świat 256k
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://go-audio.toya.net.pl/63214
 
-#EXTINF:-1 tvg-id="Poland_27" tvg-name="TokFM" tvg-logo="https://static.im-g.pl/im/6/7455/m7455556.gif" group-title="Poland",TokFM
+#EXTINF:-1 tvg-id="Poland_28" tvg-name="TokFM" tvg-logo="https://static.im-g.pl/im/6/7455/m7455556.gif" group-title="Poland",TokFM
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://radiostream.pl/tuba10-1.mp3
 
-#EXTINF:-1 tvg-id="Poland_28" tvg-name="Radioparty.pl House Party" tvg-logo="http://radioparty.pl/images/radioparty2017.png" group-title="Poland",Radioparty.pl House Party
+#EXTINF:-1 tvg-id="Poland_29" tvg-name="Radioparty.pl House Party" tvg-logo="http://radioparty.pl/images/radioparty2017.png" group-title="Poland",Radioparty.pl House Party
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://house.radioparty.pl:8010/
 
-#EXTINF:-1 tvg-id="Poland_29" tvg-name="Polskie Radio Kierowców" tvg-logo="" group-title="Poland",Polskie Radio Kierowców
+#EXTINF:-1 tvg-id="Poland_30" tvg-name="Polskie Radio Kierowców" tvg-logo="" group-title="Poland",Polskie Radio Kierowców
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://stream3.polskieradio.pl:8918/;
 
-#EXTINF:-1 tvg-id="Poland_30" tvg-name="Radio Maryja" tvg-logo="" group-title="Poland",Radio Maryja
+#EXTINF:-1 tvg-id="Poland_31" tvg-name="Radio Maryja" tvg-logo="" group-title="Poland",Radio Maryja
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://usa12.fastcast4u.com/tunein/isnesllc.m3u
 
-#EXTINF:-1 tvg-id="Poland_31" tvg-name="Radioparty.pl Energy2000" tvg-logo="http://www.radioparty.pl/favicon.ico" group-title="Poland",Radioparty.pl Energy2000
+#EXTINF:-1 tvg-id="Poland_32" tvg-name="Radioparty.pl Energy2000" tvg-logo="http://www.radioparty.pl/favicon.ico" group-title="Poland",Radioparty.pl Energy2000
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://energy2000.radioparty.pl:8005/
 
-#EXTINF:-1 tvg-id="Poland_32" tvg-name="Radio Gdansk" tvg-logo="https://radiogdansk.pl/wp-content/uploads/2020/12/cropped-favicon-180x180.png" group-title="Poland",Radio Gdansk
+#EXTINF:-1 tvg-id="Poland_33" tvg-name="Radio Gdansk" tvg-logo="https://radiogdansk.pl/wp-content/uploads/2020/12/cropped-favicon-180x180.png" group-title="Poland",Radio Gdansk
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://stream.task.gda.pl:8000/rg1
 
-#EXTINF:-1 tvg-id="Poland_33" tvg-name="Radio Silesia" tvg-logo="" group-title="Poland",Radio Silesia
+#EXTINF:-1 tvg-id="Poland_34" tvg-name="Radio Silesia" tvg-logo="" group-title="Poland",Radio Silesia
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://s1.slotex.pl:7926/
 
-#EXTINF:-1 tvg-id="Poland_34" tvg-name="Radio RMF24.pl" tvg-logo="" group-title="Poland",Radio RMF24.pl
+#EXTINF:-1 tvg-id="Poland_35" tvg-name="Radio RMF24.pl" tvg-logo="" group-title="Poland",Radio RMF24.pl
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://rs202-krk-cyfronet.rmfstream.pl/RMF24?aw_0_req.gdpr=false&aw_0_req.userConsentV2=&aw_0_1st.playerid=RMF_Player_JS_P&aw_0_1st.rmf_disable_preroll=true
 
-#EXTINF:-1 tvg-id="Poland_35" tvg-name="RMF24" tvg-logo="https://www.rmf24.pl/i/2022/favicon/apple-icon-120x120.png" group-title="Poland",RMF24
+#EXTINF:-1 tvg-id="Poland_36" tvg-name="RMF24" tvg-logo="https://www.rmf24.pl/i/2022/favicon/apple-icon-120x120.png" group-title="Poland",RMF24
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://rmfstream1.interia.pl/rmf_24
 
@@ -3073,10 +3077,6 @@ http://mediaserv33.live-streams.nl:8036/live
 #EXTINF:-1 tvg-id="The Netherlands_8" tvg-name="NPO Radio 5" tvg-logo="https://www.nporadio5.nl/apple-touch-icon.png" group-title="The Netherlands",NPO Radio 5
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://icecast.omroep.nl/radio5-bb-mp3
-
-#EXTINF:-1 tvg-id="The Netherlands_9" tvg-name="Sky Radio 80's Hits" tvg-logo="http://www.skyradio.nl/favicon.ico" group-title="The Netherlands",Sky Radio 80's Hits
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://playerservices.streamtheworld.com/api/livestream-redirect/SRGSTR04.mp3
 
 #EXTINF:-1 tvg-id="" tvg-logo="" group-title="The Philippines",The Philippines
 #EXTGRP:The Philippines
