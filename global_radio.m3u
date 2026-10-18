@@ -1212,13 +1212,13 @@ https://0n-90s.radionetz.de/0n-90s.mp3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://stream.sunshine-live.de/lounge/mp3-192/stream.sunshine-live.de/
 
-#EXTINF:-1 tvg-id="Germany_43" tvg-name="i love radio - hip hop turnup" tvg-logo="https://www.iloveradio.de/favicon.ico" group-title="Germany",i love radio - hip hop turnup
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://stream02.iloveradio.de/iloveradio13.mp3?hadpreroll
-
-#EXTINF:-1 tvg-id="Germany_44" tvg-name="Technolovers DEEP HOUSE" tvg-logo="" group-title="Germany",Technolovers DEEP HOUSE
+#EXTINF:-1 tvg-id="Germany_43" tvg-name="Technolovers DEEP HOUSE" tvg-logo="" group-title="Germany",Technolovers DEEP HOUSE
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://stream.technolovers.fm/deep-house?ref=radiobrowser
+
+#EXTINF:-1 tvg-id="Germany_44" tvg-name="i love radio - hip hop turnup" tvg-logo="https://www.iloveradio.de/favicon.ico" group-title="Germany",i love radio - hip hop turnup
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://stream02.iloveradio.de/iloveradio13.mp3?hadpreroll
 
 #EXTINF:-1 tvg-id="Germany_45" tvg-name="RADIO BOB! BOBs Metal" tvg-logo="" group-title="Germany",RADIO BOB! BOBs Metal
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -1937,13 +1937,13 @@ http://icy.unitedradio.it/105HipHopRnB.mp3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://ice08.fluidstream.net/kk_hits.aac
 
-#EXTINF:-1 tvg-id="Italy_32" tvg-name="RMC Love Songs" tvg-logo="" group-title="Italy",RMC Love Songs
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://edge.radiomontecarlo.net/rmcweb006
-
-#EXTINF:-1 tvg-id="Italy_33" tvg-name="RMC Buddha-Bar" tvg-logo="" group-title="Italy",RMC Buddha-Bar
+#EXTINF:-1 tvg-id="Italy_32" tvg-name="RMC Buddha-Bar" tvg-logo="" group-title="Italy",RMC Buddha-Bar
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://edge.radiomontecarlo.net/rmcweb002
+
+#EXTINF:-1 tvg-id="Italy_33" tvg-name="RMC Love Songs" tvg-logo="" group-title="Italy",RMC Love Songs
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://edge.radiomontecarlo.net/rmcweb006
 
 #EXTINF:-1 tvg-id="Italy_34" tvg-name="Radio Kiss Kiss" tvg-logo="https://kisskiss.it/wp-content/uploads/2022/07/cropped-favicon-new-kisskiss-180x180.png" group-title="Italy",Radio Kiss Kiss
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -2557,6 +2557,10 @@ http://centova.radio.com.pt:9496/;
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://s3.viastreaming.net:8525/
 
+#EXTINF:-1 tvg-id="Portugal_12" tvg-name="4Drive Jazz" tvg-logo="https://www.wix.com/favicon.ico" group-title="Portugal",4Drive Jazz
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://radio.streemlion.com:1150/stream
+
 #EXTINF:-1 tvg-id="" tvg-logo="" group-title="Qatar",Qatar
 #EXTGRP:Qatar
 
@@ -3013,11 +3017,7 @@ http://live3.smartbomb.co.th:8624/;stream.mp3
 #EXTINF:-1 tvg-id="" tvg-logo="" group-title="The Democratic Republic Of The Congo",The Democratic Republic Of The Congo
 #EXTGRP:The Democratic Republic Of The Congo
 
-#EXTINF:-1 tvg-id="The Democratic Republic Of The Congo_0" tvg-name="Radio Okapi" tvg-logo="https://www.radiookapi.net/sites/default/files/avatar-ro_normal.gif_0.png" group-title="The Democratic Republic Of The Congo",Radio Okapi
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://rs1.radiostreamer.com:8000/listen.m3u
-
-#EXTINF:-1 tvg-id="The Democratic Republic Of The Congo_1" tvg-name="RADIO MARIA DEM.REP. CONGO" tvg-logo="http://www.radiomaria.cd/favicon.ico" group-title="The Democratic Republic Of The Congo",RADIO MARIA DEM.REP. CONGO
+#EXTINF:-1 tvg-id="The Democratic Republic Of The Congo_0" tvg-name="RADIO MARIA DEM.REP. CONGO" tvg-logo="http://www.radiomaria.cd/favicon.ico" group-title="The Democratic Republic Of The Congo",RADIO MARIA DEM.REP. CONGO
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://dreamsiteradiocp.com:8116/stream
 
@@ -3077,6 +3077,10 @@ http://mediaserv33.live-streams.nl:8036/live
 #EXTINF:-1 tvg-id="The Netherlands_8" tvg-name="NPO Radio 5" tvg-logo="https://www.nporadio5.nl/apple-touch-icon.png" group-title="The Netherlands",NPO Radio 5
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://icecast.omroep.nl/radio5-bb-mp3
+
+#EXTINF:-1 tvg-id="The Netherlands_9" tvg-name="Sky Radio 80's Hits" tvg-logo="http://www.skyradio.nl/favicon.ico" group-title="The Netherlands",Sky Radio 80's Hits
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://playerservices.streamtheworld.com/api/livestream-redirect/SRGSTR04.mp3
 
 #EXTINF:-1 tvg-id="" tvg-logo="" group-title="The Philippines",The Philippines
 #EXTGRP:The Philippines
@@ -3482,27 +3486,23 @@ https://64.95.243.43:8002/listen.m3u?sid=1
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://stream.techno.fm/radio.mp3
 
-#EXTINF:-1 tvg-id="The United Kingdom Of Great Britain And Northern Ireland_31" tvg-name="1Mix Radio Trance" tvg-logo="http://www.1mix.co.uk/favicon.ico" group-title="The United Kingdom Of Great Britain And Northern Ireland",1Mix Radio Trance
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://1mix.co.uk/trance/listenh.m3u
-
-#EXTINF:-1 tvg-id="The United Kingdom Of Great Britain And Northern Ireland_32" tvg-name="LBC London (London stream) MP3" tvg-logo="http://www.lbc.co.uk/assets_v4r/lbc/img/favicon-196x196.png" group-title="The United Kingdom Of Great Britain And Northern Ireland",LBC London (London stream) MP3
+#EXTINF:-1 tvg-id="The United Kingdom Of Great Britain And Northern Ireland_31" tvg-name="LBC London (London stream) MP3" tvg-logo="http://www.lbc.co.uk/assets_v4r/lbc/img/favicon-196x196.png" group-title="The United Kingdom Of Great Britain And Northern Ireland",LBC London (London stream) MP3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://media-ice.musicradio.com/LBCLondonMP3Low
 
-#EXTINF:-1 tvg-id="The United Kingdom Of Great Britain And Northern Ireland_33" tvg-name="Different Drumz DnB Radio" tvg-logo="http://www.differentdrumz.co.uk/wp-content/uploads/fbrfg/apple-touch-icon-114x114.png" group-title="The United Kingdom Of Great Britain And Northern Ireland",Different Drumz DnB Radio
+#EXTINF:-1 tvg-id="The United Kingdom Of Great Britain And Northern Ireland_32" tvg-name="Different Drumz DnB Radio" tvg-logo="http://www.differentdrumz.co.uk/wp-content/uploads/fbrfg/apple-touch-icon-114x114.png" group-title="The United Kingdom Of Great Britain And Northern Ireland",Different Drumz DnB Radio
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://andromeda.shoutca.st:8031/
 
-#EXTINF:-1 tvg-id="The United Kingdom Of Great Britain And Northern Ireland_34" tvg-name="Radio X" tvg-logo="http://www.radiox.co.uk/assets_v4r/xfm/img/favicon-196x196.png" group-title="The United Kingdom Of Great Britain And Northern Ireland",Radio X
+#EXTINF:-1 tvg-id="The United Kingdom Of Great Britain And Northern Ireland_33" tvg-name="Radio X" tvg-logo="http://www.radiox.co.uk/assets_v4r/xfm/img/favicon-196x196.png" group-title="The United Kingdom Of Great Britain And Northern Ireland",Radio X
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://media-the.musicradio.com/RadioXUK
 
-#EXTINF:-1 tvg-id="The United Kingdom Of Great Britain And Northern Ireland_35" tvg-name="LOVE.radio Only Love Songs 70s80s90s" tvg-logo="" group-title="The United Kingdom Of Great Britain And Northern Ireland",LOVE.radio Only Love Songs 70s80s90s
+#EXTINF:-1 tvg-id="The United Kingdom Of Great Britain And Northern Ireland_34" tvg-name="LOVE.radio Only Love Songs 70s80s90s" tvg-logo="" group-title="The United Kingdom Of Great Britain And Northern Ireland",LOVE.radio Only Love Songs 70s80s90s
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://loveradio.streamingmedia.it/england
 
-#EXTINF:-1 tvg-id="The United Kingdom Of Great Britain And Northern Ireland_36" tvg-name="Radio X Manchester" tvg-logo="http://www.radiox.co.uk/assets_v4r/xfm/img/favicon-196x196.png" group-title="The United Kingdom Of Great Britain And Northern Ireland",Radio X Manchester
+#EXTINF:-1 tvg-id="The United Kingdom Of Great Britain And Northern Ireland_35" tvg-name="Radio X Manchester" tvg-logo="http://www.radiox.co.uk/assets_v4r/xfm/img/favicon-196x196.png" group-title="The United Kingdom Of Great Britain And Northern Ireland",Radio X Manchester
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://media-the.musicradio.com/RadioXManchester
 
