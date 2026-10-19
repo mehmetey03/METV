@@ -1021,13 +1021,13 @@ http://direct.franceinfo.fr/live/franceinfo-lofi.mp3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://ouifm.ice.infomaniak.ch/ouifm-high.mp3
 
-#EXTINF:-1 tvg-id="France_51" tvg-name="Latina" tvg-logo="https://bocir-prod-bucket.s3.eu-west-1.amazonaws.com/radios/latina/images/favicon.ico" group-title="France",Latina
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://start-latina.ice.infomaniak.ch/start-latina-high.mp3
-
-#EXTINF:-1 tvg-id="France_52" tvg-name="BFM Radio (128.mp3)" tvg-logo="https://www.bfmtv.com/android-icon-192x192.png" group-title="France",BFM Radio (128.mp3)
+#EXTINF:-1 tvg-id="France_51" tvg-name="BFM Radio (128.mp3)" tvg-logo="https://www.bfmtv.com/android-icon-192x192.png" group-title="France",BFM Radio (128.mp3)
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://audio.bfmtv.com/bfmradio_128.mp3
+
+#EXTINF:-1 tvg-id="France_52" tvg-name="Latina" tvg-logo="https://bocir-prod-bucket.s3.eu-west-1.amazonaws.com/radios/latina/images/favicon.ico" group-title="France",Latina
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://start-latina.ice.infomaniak.ch/start-latina-high.mp3
 
 #EXTINF:-1 tvg-id="France_53" tvg-name="Europe 2" tvg-logo="https://www.europe2.fr/wp-content/themes/melty/europeradio/assets/images/favicons/favicon128.png" group-title="France",Europe 2
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -1184,13 +1184,13 @@ http://stream.laut.fm/total-instrumental
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://mp3.ffh.de/ffhchannels/hq80er.mp3
 
-#EXTINF:-1 tvg-id="Germany_36" tvg-name="MDR Aktuell" tvg-logo="https://cdn.mdr.de/resources/global/img/mdrde/favicons/apple-icon-120x120.png" group-title="Germany",MDR Aktuell
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://avw.mdr.de/streams/284340-0_mp3_high.m3u
-
-#EXTINF:-1 tvg-id="Germany_37" tvg-name="__TRANCE__ by rautemusik (rm.fm)" tvg-logo="https://www.rm.fm/favicon.ico" group-title="Germany",__TRANCE__ by rautemusik (rm.fm)
+#EXTINF:-1 tvg-id="Germany_36" tvg-name="__TRANCE__ by rautemusik (rm.fm)" tvg-logo="https://www.rm.fm/favicon.ico" group-title="Germany",__TRANCE__ by rautemusik (rm.fm)
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://trance-high.rautemusik.fm/?ref=radiobrowser
+
+#EXTINF:-1 tvg-id="Germany_37" tvg-name="MDR Aktuell" tvg-logo="https://cdn.mdr.de/resources/global/img/mdrde/favicons/apple-icon-120x120.png" group-title="Germany",MDR Aktuell
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://avw.mdr.de/streams/284340-0_mp3_high.m3u
 
 #EXTINF:-1 tvg-id="Germany_38" tvg-name="90s90s Techno HQ" tvg-logo="" group-title="Germany",90s90s Techno HQ
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -1232,13 +1232,13 @@ https://stream.0nlineradio.com/soft-rock?ref=radiobrowser
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://0n-indie.radionetz.de/0n-indie.mp3
 
-#EXTINF:-1 tvg-id="Germany_48" tvg-name="MDR Klassik" tvg-logo="https://cdn.mdr.de/resources/global/img/mdrde/favicons/apple-icon-120x120.png" group-title="Germany",MDR Klassik
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://avw.mdr.de/streams/284350-0_mp3_high.m3u
-
-#EXTINF:-1 tvg-id="Germany_49" tvg-name="WDR4" tvg-logo="https://www1.wdr.de/resources/img/favicon/apple-touch-icon.png" group-title="Germany",WDR4
+#EXTINF:-1 tvg-id="Germany_48" tvg-name="WDR4" tvg-logo="https://www1.wdr.de/resources/img/favicon/apple-touch-icon.png" group-title="Germany",WDR4
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://wdr-wdr4-live.icecast.wdr.de/wdr/wdr4/live/mp3/128/stream.mp3
+
+#EXTINF:-1 tvg-id="Germany_49" tvg-name="MDR Klassik" tvg-logo="https://cdn.mdr.de/resources/global/img/mdrde/favicons/apple-icon-120x120.png" group-title="Germany",MDR Klassik
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://avw.mdr.de/streams/284350-0_mp3_high.m3u
 
 #EXTINF:-1 tvg-id="Germany_50" tvg-name="80s80s Love" tvg-logo="" group-title="Germany",80s80s Love
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -1268,13 +1268,13 @@ http://www.ndr.de/resources/metadaten/audio/m3u/ndrinfo_hh.m3u
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://mp3channels.webradio.antenne.de/top-40
 
-#EXTINF:-1 tvg-id="Germany_57" tvg-name="NDR Info (Schleswig-Holstein)" tvg-logo="http://www.ndr.de/favicon.ico" group-title="Germany",NDR Info (Schleswig-Holstein)
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://www.ndr.de/resources/metadaten/audio/m3u/ndrinfo_sh.m3u
-
-#EXTINF:-1 tvg-id="Germany_58" tvg-name="Bayern 3" tvg-logo="https://api.ardmediathek.de/image-service/images/urn:ard:image:52fd25fc45de7c6a?w=512" group-title="Germany",Bayern 3
+#EXTINF:-1 tvg-id="Germany_57" tvg-name="Bayern 3" tvg-logo="https://api.ardmediathek.de/image-service/images/urn:ard:image:52fd25fc45de7c6a?w=512" group-title="Germany",Bayern 3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://dispatcher.rndfnk.com/br/br3/live/mp3/mid
+
+#EXTINF:-1 tvg-id="Germany_58" tvg-name="NDR Info (Schleswig-Holstein)" tvg-logo="http://www.ndr.de/favicon.ico" group-title="Germany",NDR Info (Schleswig-Holstein)
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://www.ndr.de/resources/metadaten/audio/m3u/ndrinfo_sh.m3u
 
 #EXTINF:-1 tvg-id="Germany_59" tvg-name="RADIO BOB! Classic Rock" tvg-logo="" group-title="Germany",RADIO BOB! Classic Rock
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -1625,13 +1625,13 @@ https://air.pc.cdn.bitgravity.com/air/live/pbaudio138/chunklist.m3u8
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://radio2bindia.out.airtime.pro:8000/radio2bindia_a
 
-#EXTINF:-1 tvg-id="India_35" tvg-name="Radio Retro Bollywood 90s" tvg-logo="" group-title="India",Radio Retro Bollywood 90s
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://stream-143.zeno.fm/fdgs82xkzhhvv
-
-#EXTINF:-1 tvg-id="India_36" tvg-name="Diverse FM" tvg-logo="https://onlineradiohub.com/wp-content/uploads/2023/05/diverse-fm-hindi.jpg" group-title="India",Diverse FM
+#EXTINF:-1 tvg-id="India_35" tvg-name="Diverse FM" tvg-logo="https://onlineradiohub.com/wp-content/uploads/2023/05/diverse-fm-hindi.jpg" group-title="India",Diverse FM
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://carol.epichosts.co.uk:8570/;
+
+#EXTINF:-1 tvg-id="India_36" tvg-name="Radio Retro Bollywood 90s" tvg-logo="" group-title="India",Radio Retro Bollywood 90s
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://stream-143.zeno.fm/fdgs82xkzhhvv
 
 #EXTINF:-1 tvg-id="India_37" tvg-name="Tamil 80's Radio" tvg-logo="https://www.tamilradios.com/assets/img/radio-logos/tamil-80s-radio.jpg" group-title="India",Tamil 80's Radio
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -1937,13 +1937,13 @@ http://icy.unitedradio.it/105HipHopRnB.mp3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://ice08.fluidstream.net/kk_hits.aac
 
-#EXTINF:-1 tvg-id="Italy_32" tvg-name="RMC Buddha-Bar" tvg-logo="" group-title="Italy",RMC Buddha-Bar
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://edge.radiomontecarlo.net/rmcweb002
-
-#EXTINF:-1 tvg-id="Italy_33" tvg-name="RMC Love Songs" tvg-logo="" group-title="Italy",RMC Love Songs
+#EXTINF:-1 tvg-id="Italy_32" tvg-name="RMC Love Songs" tvg-logo="" group-title="Italy",RMC Love Songs
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://edge.radiomontecarlo.net/rmcweb006
+
+#EXTINF:-1 tvg-id="Italy_33" tvg-name="RMC Buddha-Bar" tvg-logo="" group-title="Italy",RMC Buddha-Bar
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://edge.radiomontecarlo.net/rmcweb002
 
 #EXTINF:-1 tvg-id="Italy_34" tvg-name="Radio Kiss Kiss" tvg-logo="https://kisskiss.it/wp-content/uploads/2022/07/cropped-favicon-new-kisskiss-180x180.png" group-title="Italy",Radio Kiss Kiss
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -3288,13 +3288,13 @@ http://icecast.vgtrk.cdnvideo.ru/vestifm_mp3_64kbps
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://jfm1.hostingradio.ru:14536/ijstream.mp3
 
-#EXTINF:-1 tvg-id="The Russian Federation_48" tvg-name="Радио дача" tvg-logo="null" group-title="The Russian Federation",Радио дача
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://listen13.vdfm.ru:8000/dacha
-
-#EXTINF:-1 tvg-id="The Russian Federation_49" tvg-name="Звезда" tvg-logo="" group-title="The Russian Federation",Звезда
+#EXTINF:-1 tvg-id="The Russian Federation_48" tvg-name="Звезда" tvg-logo="" group-title="The Russian Federation",Звезда
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://icecast-zvezda.mediacdn.ru/radio/zvezda/zvezda_128
+
+#EXTINF:-1 tvg-id="The Russian Federation_49" tvg-name="Радио дача" tvg-logo="null" group-title="The Russian Federation",Радио дача
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://listen13.vdfm.ru:8000/dacha
 
 #EXTINF:-1 tvg-id="The Russian Federation_50" tvg-name="Радио Родных Дорог" tvg-logo="" group-title="The Russian Federation",Радио Родных Дорог
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
