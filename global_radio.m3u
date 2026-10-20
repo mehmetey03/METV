@@ -865,13 +865,13 @@ http://icecast.skyrock.net/s/natio_mp3_128k
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://jazzradio.ice.infomaniak.ch/jazzradio-high.mp3
 
-#EXTINF:-1 tvg-id="France_12" tvg-name="FIP" tvg-logo="https://upload.wikimedia.org/wikipedia/fr/thumb/d/d5/FIP_logo_2005.svg/1024px-FIP_logo_2005.svg.png" group-title="France",FIP
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://icecast.radiofrance.fr/fip-hifi.aac
-
-#EXTINF:-1 tvg-id="France_13" tvg-name="EuroDance 90 radio" tvg-logo="https://eurodance90.fr/favicon.ico" group-title="France",EuroDance 90 radio
+#EXTINF:-1 tvg-id="France_12" tvg-name="EuroDance 90 radio" tvg-logo="https://eurodance90.fr/favicon.ico" group-title="France",EuroDance 90 radio
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://stream-eurodance90.fr/radio/8000/128.mp3?1627933323
+
+#EXTINF:-1 tvg-id="France_13" tvg-name="FIP" tvg-logo="https://upload.wikimedia.org/wikipedia/fr/thumb/d/d5/FIP_logo_2005.svg/1024px-FIP_logo_2005.svg.png" group-title="France",FIP
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://icecast.radiofrance.fr/fip-hifi.aac
 
 #EXTINF:-1 tvg-id="France_14" tvg-name="100% Radio 80" tvg-logo="https://bocir-prod-bucket.s3.amazonaws.com/radios/centpourcent/images/favicon.ico" group-title="France",100% Radio 80
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -1060,13 +1060,13 @@ http://streams.80s80s.de/web/mp3-192/streams.80s80s.de/
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://streams.90s90s.de/pop/mp3-192/streams.90s90s.de/
 
-#EXTINF:-1 tvg-id="Germany_5" tvg-name="Sunshine Live - Die 90er" tvg-logo="" group-title="Germany",Sunshine Live - Die 90er
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://stream.sunshine-live.de/90er/mp3-192/stream.sunshine-live.de
-
-#EXTINF:-1 tvg-id="Germany_6" tvg-name="90s90s HipHop & Rap" tvg-logo="http://aggregatorservice.loverad.io/wp-content/uploads/2018/10/90s90s_hiphoprap_600x600.png" group-title="Germany",90s90s HipHop & Rap
+#EXTINF:-1 tvg-id="Germany_5" tvg-name="90s90s HipHop & Rap" tvg-logo="http://aggregatorservice.loverad.io/wp-content/uploads/2018/10/90s90s_hiphoprap_600x600.png" group-title="Germany",90s90s HipHop & Rap
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://streams.90s90s.de/hiphop/mp3-192/streams.90s90s.de/
+
+#EXTINF:-1 tvg-id="Germany_6" tvg-name="Sunshine Live - Die 90er" tvg-logo="" group-title="Germany",Sunshine Live - Die 90er
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://stream.sunshine-live.de/90er/mp3-192/stream.sunshine-live.de
 
 #EXTINF:-1 tvg-id="Germany_7" tvg-name="Rock Antenne" tvg-logo="http://www.rockantenne.de/logos/rock-antenne/apple-touch-icon.png" group-title="Germany",Rock Antenne
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -1505,13 +1505,13 @@ http://stream.radiobollyfm.in:8201/hd?t=1526570335
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://stream.zeno.fm/n2fd0edh9k8uv
 
-#EXTINF:-1 tvg-id="India_5" tvg-name="Hits Of Bollywood" tvg-logo="" group-title="India",Hits Of Bollywood
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://stream.zeno.fm/8ty8szwpwfeuv.m3u
-
-#EXTINF:-1 tvg-id="India_6" tvg-name="Vivid Bharti" tvg-logo="" group-title="India",Vivid Bharti
+#EXTINF:-1 tvg-id="India_5" tvg-name="Vivid Bharti" tvg-logo="" group-title="India",Vivid Bharti
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://air.pc.cdn.bitgravity.com/air/live/pbaudio001/playlist.m3u8
+
+#EXTINF:-1 tvg-id="India_6" tvg-name="Hits Of Bollywood" tvg-logo="" group-title="India",Hits Of Bollywood
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://stream.zeno.fm/8ty8szwpwfeuv.m3u
 
 #EXTINF:-1 tvg-id="India_7" tvg-name="2B! Radio Sangam Krishna" tvg-logo="" group-title="India",2B! Radio Sangam Krishna
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -1965,13 +1965,13 @@ http://icestreaming.rai.it/5.mp3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://sportiva.inmystream.it/stream/sportiva
 
-#EXTINF:-1 tvg-id="Italy_39" tvg-name="Radio 105 - Zoo Radio" tvg-logo="" group-title="Italy",Radio 105 - Zoo Radio
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://icy.unitedradio.it/105Zoo.mp3
-
-#EXTINF:-1 tvg-id="Italy_40" tvg-name="ITALIA Italia 80" tvg-logo="" group-title="Italy",ITALIA Italia 80
+#EXTINF:-1 tvg-id="Italy_39" tvg-name="ITALIA Italia 80" tvg-logo="" group-title="Italy",ITALIA Italia 80
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://icy.unitedradio.it/um016.mp3
+
+#EXTINF:-1 tvg-id="Italy_40" tvg-name="Radio 105 - Zoo Radio" tvg-logo="" group-title="Italy",Radio 105 - Zoo Radio
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://icy.unitedradio.it/105Zoo.mp3
 
 #EXTINF:-1 tvg-id="" tvg-logo="" group-title="Jamaica",Jamaica
 #EXTGRP:Jamaica
@@ -2450,13 +2450,13 @@ http://www.emsoft.ct8.pl/inne/time.m3u?id=3990
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://stream3.polskieradio.pl:8906/;stream
 
-#EXTINF:-1 tvg-id="Poland_23" tvg-name="Radio Szczecin (128K MP3)" tvg-logo="http://radioszczecin.pl/assets/favicon/apple-touch-icon.png" group-title="Poland",Radio Szczecin (128K MP3)
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://stream4.nadaje.com:11986/prs
-
-#EXTINF:-1 tvg-id="Poland_24" tvg-name="RMF FM" tvg-logo="https://www.rmf.fm/assets/images/favicon/apple-icon-120x120.png?3" group-title="Poland",RMF FM
+#EXTINF:-1 tvg-id="Poland_23" tvg-name="RMF FM" tvg-logo="https://www.rmf.fm/assets/images/favicon/apple-icon-120x120.png?3" group-title="Poland",RMF FM
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://31.192.216.8/rmf_fm
+
+#EXTINF:-1 tvg-id="Poland_24" tvg-name="Radio Szczecin (128K MP3)" tvg-logo="http://radioszczecin.pl/assets/favicon/apple-touch-icon.png" group-title="Poland",Radio Szczecin (128K MP3)
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://stream4.nadaje.com:11986/prs
 
 #EXTINF:-1 tvg-id="Poland_25" tvg-name="RMF 80s" tvg-logo="http://www.rmfon.pl/assets/images/favicon/apple-touch-icon.png" group-title="Poland",RMF 80s
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -3668,13 +3668,13 @@ http://stream.revma.ihrhls.com/zc6043
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://somafm.com/poptron.m3u
 
-#EXTINF:-1 tvg-id="The United States Of America_38" tvg-name=".977 Smooth Jazz" tvg-logo="" group-title="The United States Of America",.977 Smooth Jazz
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://playerservices.streamtheworld.com/pls/977_SMOOJAZZ.m3u
-
-#EXTINF:-1 tvg-id="The United States Of America_39" tvg-name="WALM - Old Time Radio Opus" tvg-logo="https://icecast.walmradio.com:8443/otr.jpg" group-title="The United States Of America",WALM - Old Time Radio Opus
+#EXTINF:-1 tvg-id="The United States Of America_38" tvg-name="WALM - Old Time Radio Opus" tvg-logo="https://icecast.walmradio.com:8443/otr.jpg" group-title="The United States Of America",WALM - Old Time Radio Opus
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://icecast.walmradio.com:8443/otr_opus
+
+#EXTINF:-1 tvg-id="The United States Of America_39" tvg-name=".977 Smooth Jazz" tvg-logo="" group-title="The United States Of America",.977 Smooth Jazz
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://playerservices.streamtheworld.com/pls/977_SMOOJAZZ.m3u
 
 #EXTINF:-1 tvg-id="The United States Of America_40" tvg-name="SomaFM Indie Pop Rocks! (128k AAC)" tvg-logo="https://somafm.com/img3/indiepop-400.jpg" group-title="The United States Of America",SomaFM Indie Pop Rocks! (128k AAC)
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
