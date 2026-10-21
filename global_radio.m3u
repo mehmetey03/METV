@@ -1156,13 +1156,13 @@ http://ais.rastamusic.com/rastamusic.mp3.m3u
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://wdr-wdr2-rheinland.icecast.wdr.de/wdr/wdr2/rheinland/mp3/128/stream.mp3
 
-#EXTINF:-1 tvg-id="Germany_29" tvg-name="Deutschrap" tvg-logo="" group-title="Germany",Deutschrap
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://stream.laut.fm/deutschrap
-
-#EXTINF:-1 tvg-id="Germany_30" tvg-name="Hit Radio FFH" tvg-logo="https://www.ffh.de/android-icon.png" group-title="Germany",Hit Radio FFH
+#EXTINF:-1 tvg-id="Germany_29" tvg-name="Hit Radio FFH" tvg-logo="https://www.ffh.de/android-icon.png" group-title="Germany",Hit Radio FFH
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://mp3.ffh.de/radioffh/hqlivestream.mp3
+
+#EXTINF:-1 tvg-id="Germany_30" tvg-name="Deutschrap" tvg-logo="" group-title="Germany",Deutschrap
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://stream.laut.fm/deutschrap
 
 #EXTINF:-1 tvg-id="Germany_31" tvg-name="Sunshine Live - Classics" tvg-logo="" group-title="Germany",Sunshine Live - Classics
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -2916,13 +2916,13 @@ http://www.quran-radio.org:8002/
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://stream.srg-ssr.ch/m/rsj/mp3_128
 
-#EXTINF:-1 tvg-id="Switzerland_1" tvg-name="1.FM - Amsterdam Trance Radio" tvg-logo="" group-title="Switzerland",1.FM - Amsterdam Trance Radio
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://strm112.1.fm/atr_mobile_mp3
-
-#EXTINF:-1 tvg-id="Switzerland_2" tvg-name="1.FM - Deep House Radio" tvg-logo="" group-title="Switzerland",1.FM - Deep House Radio
+#EXTINF:-1 tvg-id="Switzerland_1" tvg-name="1.FM - Deep House Radio" tvg-logo="" group-title="Switzerland",1.FM - Deep House Radio
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://strm112.1.fm/deephouse_mobile_mp3
+
+#EXTINF:-1 tvg-id="Switzerland_2" tvg-name="1.FM - Amsterdam Trance Radio" tvg-logo="" group-title="Switzerland",1.FM - Amsterdam Trance Radio
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://strm112.1.fm/atr_mobile_mp3
 
 #EXTINF:-1 tvg-id="Switzerland_3" tvg-name="1.FM - Classic Rock Replay Radio" tvg-logo="" group-title="Switzerland",1.FM - Classic Rock Replay Radio
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -3156,13 +3156,13 @@ https://radiorecord.hostingradio.ru/rus96.aacp
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://kpradio.hostingradio.ru:8000/russia.radiokp128.mp3
 
-#EXTINF:-1 tvg-id="The Russian Federation_15" tvg-name="Nashe Radio" tvg-logo="https://www.nashe.ru/favicons/apple-touch-icon.png" group-title="The Russian Federation",Nashe Radio
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://nashe1.hostingradio.ru/nashe-128.mp3
-
-#EXTINF:-1 tvg-id="The Russian Federation_16" tvg-name="Русский Рок - Russian Rock" tvg-logo="" group-title="The Russian Federation",Русский Рок - Russian Rock
+#EXTINF:-1 tvg-id="The Russian Federation_15" tvg-name="Русский Рок - Russian Rock" tvg-logo="" group-title="The Russian Federation",Русский Рок - Russian Rock
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://rock.volna.top/RusRock
+
+#EXTINF:-1 tvg-id="The Russian Federation_16" tvg-name="Nashe Radio" tvg-logo="https://www.nashe.ru/favicons/apple-touch-icon.png" group-title="The Russian Federation",Nashe Radio
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://nashe1.hostingradio.ru/nashe-128.mp3
 
 #EXTINF:-1 tvg-id="The Russian Federation_17" tvg-name="Радио Маяк (Radio Mayak)" tvg-logo="" group-title="The Russian Federation",Радио Маяк (Radio Mayak)
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -3406,13 +3406,13 @@ https://listen-msmn.sharp-stream.com/nme1.mp3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://media-ice.musicradio.com/LBCUKMP3Low
 
-#EXTINF:-1 tvg-id="The United Kingdom Of Great Britain And Northern Ireland_11" tvg-name="Heart 70s" tvg-logo="" group-title="The United Kingdom Of Great Britain And Northern Ireland",Heart 70s
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://media-ssl.musicradio.com/Heart70sMP3
-
-#EXTINF:-1 tvg-id="The United Kingdom Of Great Britain And Northern Ireland_12" tvg-name="Gold" tvg-logo="https://www.mygoldmusic.co.uk/assets_v4r/gold/img/favicon-196x196.png" group-title="The United Kingdom Of Great Britain And Northern Ireland",Gold
+#EXTINF:-1 tvg-id="The United Kingdom Of Great Britain And Northern Ireland_11" tvg-name="Gold" tvg-logo="https://www.mygoldmusic.co.uk/assets_v4r/gold/img/favicon-196x196.png" group-title="The United Kingdom Of Great Britain And Northern Ireland",Gold
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://media-ssl.musicradio.com/GoldMP3
+
+#EXTINF:-1 tvg-id="The United Kingdom Of Great Britain And Northern Ireland_12" tvg-name="Heart 70s" tvg-logo="" group-title="The United Kingdom Of Great Britain And Northern Ireland",Heart 70s
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://media-ssl.musicradio.com/Heart70sMP3
 
 #EXTINF:-1 tvg-id="The United Kingdom Of Great Britain And Northern Ireland_13" tvg-name="BBC World Service" tvg-logo="https://rmp.files.bbci.co.uk/rmp-shared-assets/1.4.0/img/network-logos/national/bbc_world_service_colour.svg" group-title="The United Kingdom Of Great Britain And Northern Ireland",BBC World Service
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
