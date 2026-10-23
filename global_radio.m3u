@@ -479,13 +479,13 @@ https://provisioning.streamtheworld.com/pls/CFRBAMAAC.m3u
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://cbcradiolive.akamaized.net/hls/live/2041036/ES_R1ETR/master.m3u8
 
-#EXTINF:-1 tvg-id="Canada_6" tvg-name="ICI Radio-Canada Première Montréal" tvg-logo="https://ici.radio-canada.ca/favicon.ico" group-title="Canada",ICI Radio-Canada Première Montréal
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://rcavliveaudio.akamaized.net/hls/live/2006635/P-2QMTL0_MTL/playlist.m3u8
-
-#EXTINF:-1 tvg-id="Canada_7" tvg-name="# RdMix Classic Rock 70s 80s 90s" tvg-logo="https://static.wixstatic.com/media/f361b3_1bad7e5fb9a54196b2ac2c2fe71d6e4f~mv2.jpg" group-title="Canada",# RdMix Classic Rock 70s 80s 90s
+#EXTINF:-1 tvg-id="Canada_6" tvg-name="# RdMix Classic Rock 70s 80s 90s" tvg-logo="https://static.wixstatic.com/media/f361b3_1bad7e5fb9a54196b2ac2c2fe71d6e4f~mv2.jpg" group-title="Canada",# RdMix Classic Rock 70s 80s 90s
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://cast1.torontocast.com:4610/stream
+
+#EXTINF:-1 tvg-id="Canada_7" tvg-name="ICI Radio-Canada Première Montréal" tvg-logo="https://ici.radio-canada.ca/favicon.ico" group-title="Canada",ICI Radio-Canada Première Montréal
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://rcavliveaudio.akamaized.net/hls/live/2006635/P-2QMTL0_MTL/playlist.m3u8
 
 #EXTINF:-1 tvg-id="Canada_8" tvg-name="Labgate - Progressive Rock" tvg-logo="" group-title="Canada",Labgate - Progressive Rock
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -2948,13 +2948,13 @@ http://strm112.1.fm/blues_mobile_mp3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://stream.srg-ssr.ch/m/rsc_de/mp3_128
 
-#EXTINF:-1 tvg-id="Switzerland_9" tvg-name="1.FM - Rock Classics Radio" tvg-logo="" group-title="Switzerland",1.FM - Rock Classics Radio
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://strm112.1.fm/rockclassics_mobile_mp3
-
-#EXTINF:-1 tvg-id="Switzerland_10" tvg-name="1.FM - Cafe Radio" tvg-logo="" group-title="Switzerland",1.FM - Cafe Radio
+#EXTINF:-1 tvg-id="Switzerland_9" tvg-name="1.FM - Cafe Radio" tvg-logo="" group-title="Switzerland",1.FM - Cafe Radio
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://strm112.1.fm/caferadio_mobile_mp3
+
+#EXTINF:-1 tvg-id="Switzerland_10" tvg-name="1.FM - Rock Classics Radio" tvg-logo="" group-title="Switzerland",1.FM - Rock Classics Radio
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://strm112.1.fm/rockclassics_mobile_mp3
 
 #EXTINF:-1 tvg-id="Switzerland_11" tvg-name="1.FM - Bombay Beats India Radio" tvg-logo="" group-title="Switzerland",1.FM - Bombay Beats India Radio
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
