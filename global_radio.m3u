@@ -985,13 +985,13 @@ http://direct.francemusique.fr/live/francemusiqueeasyclassique-hifi.mp3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://icecast.radiofrance.fr/francemusiquebaroque-hifi.aac
 
-#EXTINF:-1 tvg-id="France_42" tvg-name="Generations Rap FR Gold" tvg-logo="https://generations.fr/apple-touch-icon-120x120.png" group-title="France",Generations Rap FR Gold
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://gene-wr06.ice.infomaniak.ch/gene-wr06.mp3
-
-#EXTINF:-1 tvg-id="France_43" tvg-name="RMC Info Talk Sport" tvg-logo="https://rmc.bfmtv.com/android-icon-192x192.png" group-title="France",RMC Info Talk Sport
+#EXTINF:-1 tvg-id="France_42" tvg-name="RMC Info Talk Sport" tvg-logo="https://rmc.bfmtv.com/android-icon-192x192.png" group-title="France",RMC Info Talk Sport
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://audio.bfmtv.com/rmcradio_128.mp3?aw_0_1st.playerId=RMC_audio_web&aggregator=RMC_audio_web
+
+#EXTINF:-1 tvg-id="France_43" tvg-name="Generations Rap FR Gold" tvg-logo="https://generations.fr/apple-touch-icon-120x120.png" group-title="France",Generations Rap FR Gold
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://gene-wr06.ice.infomaniak.ch/gene-wr06.mp3
 
 #EXTINF:-1 tvg-id="France_44" tvg-name="Jazz Radio Electro Swing" tvg-logo="http://www.jazzradio.fr/apple-touch-icon-120x120.png" group-title="France",Jazz Radio Electro Swing
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -1965,13 +1965,13 @@ http://icestreaming.rai.it/5.mp3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://sportiva.inmystream.it/stream/sportiva
 
-#EXTINF:-1 tvg-id="Italy_39" tvg-name="Radio 105 - Zoo Radio" tvg-logo="" group-title="Italy",Radio 105 - Zoo Radio
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://icy.unitedradio.it/105Zoo.mp3
-
-#EXTINF:-1 tvg-id="Italy_40" tvg-name="ITALIA Italia 80" tvg-logo="" group-title="Italy",ITALIA Italia 80
+#EXTINF:-1 tvg-id="Italy_39" tvg-name="ITALIA Italia 80" tvg-logo="" group-title="Italy",ITALIA Italia 80
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://icy.unitedradio.it/um016.mp3
+
+#EXTINF:-1 tvg-id="Italy_40" tvg-name="Radio 105 - Zoo Radio" tvg-logo="" group-title="Italy",Radio 105 - Zoo Radio
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://icy.unitedradio.it/105Zoo.mp3
 
 #EXTINF:-1 tvg-id="" tvg-logo="" group-title="Jamaica",Jamaica
 #EXTGRP:Jamaica
@@ -2155,13 +2155,13 @@ https://playerservices.streamtheworld.com/api/livestream-redirect/XEPHAMAAC.aac
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://162.244.81.98:8140/listen
 
-#EXTINF:-1 tvg-id="Mexico_8" tvg-name="Amor Ciudad de México - 95.3 FM - XHSH-FM - Grupo ACIR - Ciudad de México" tvg-logo="https://i.iheart.com/v3/re/new_assets/5bce06169803f27603c24988?ops=fit(240%2C240)" group-title="Mexico",Amor Ciudad de México - 95.3 FM - XHSH-FM - Grupo ACIR - Ciudad de México
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://playerservices.streamtheworld.com/api/livestream-redirect/XHSHFMAAC.aac
-
-#EXTINF:-1 tvg-id="Mexico_9" tvg-name="La Ke Buena Ciudad de México - 92.9 FM - XEQ-FM - Radiópolis - Ciudad de México" tvg-logo="https://recursosweb.prisaradio.com/fotos/original/010002851440.jpg" group-title="Mexico",La Ke Buena Ciudad de México - 92.9 FM - XEQ-FM - Radiópolis - Ciudad de México
+#EXTINF:-1 tvg-id="Mexico_8" tvg-name="La Ke Buena Ciudad de México - 92.9 FM - XEQ-FM - Radiópolis - Ciudad de México" tvg-logo="https://recursosweb.prisaradio.com/fotos/original/010002851440.jpg" group-title="Mexico",La Ke Buena Ciudad de México - 92.9 FM - XEQ-FM - Radiópolis - Ciudad de México
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://playerservices.streamtheworld.com/api/livestream-redirect/KEBUENAAAC.aac
+
+#EXTINF:-1 tvg-id="Mexico_9" tvg-name="Amor Ciudad de México - 95.3 FM - XHSH-FM - Grupo ACIR - Ciudad de México" tvg-logo="https://i.iheart.com/v3/re/new_assets/5bce06169803f27603c24988?ops=fit(240%2C240)" group-title="Mexico",Amor Ciudad de México - 95.3 FM - XHSH-FM - Grupo ACIR - Ciudad de México
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://playerservices.streamtheworld.com/api/livestream-redirect/XHSHFMAAC.aac
 
 #EXTINF:-1 tvg-id="Mexico_10" tvg-name="Panda Show Radio - Online - El Panda Zambrano - Ciudad de México" tvg-logo="https://cdn-radiotime-logos.tunein.com/s96692d.png" group-title="Mexico",Panda Show Radio - Online - El Panda Zambrano - Ciudad de México
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -3200,13 +3200,13 @@ http://radio7server.streamr.ru:8040/radio7256.mp3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://nashe1.hostingradio.ru/ultra-192.mp3
 
-#EXTINF:-1 tvg-id="The Russian Federation_26" tvg-name="Радио Книга" tvg-logo="https://radiokniga.com/rk.ico" group-title="The Russian Federation",Радио Книга
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://bookradio.hostingradio.ru:8069/fm
-
-#EXTINF:-1 tvg-id="The Russian Federation_27" tvg-name="Anon.FM" tvg-logo="https://icecast.anon.fm/favicon.png" group-title="The Russian Federation",Anon.FM
+#EXTINF:-1 tvg-id="The Russian Federation_26" tvg-name="Anon.FM" tvg-logo="https://icecast.anon.fm/favicon.png" group-title="The Russian Federation",Anon.FM
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://icecast.anon.fm/radio
+
+#EXTINF:-1 tvg-id="The Russian Federation_27" tvg-name="Радио Книга" tvg-logo="https://radiokniga.com/rk.ico" group-title="The Russian Federation",Радио Книга
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://bookradio.hostingradio.ru:8069/fm
 
 #EXTINF:-1 tvg-id="The Russian Federation_28" tvg-name="Radio record - Main Channel" tvg-logo="https://www.radiorecord.ru/icons/apple-touch-icon.png" group-title="The Russian Federation",Radio record - Main Channel
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -3712,13 +3712,13 @@ https://ocb01.akacast.akamaistream.net/7/365/437903/v1/ibb.akacast.akamaistream.
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://tunein.cdnstream1.com/2868_96.mp3
 
-#EXTINF:-1 tvg-id="The United States Of America_49" tvg-name="SomaFM Lush (128k MP3)" tvg-logo="https://somafm.com/img3/lush-400.jpg" group-title="The United States Of America",SomaFM Lush (128k MP3)
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://somafm.com/lush.m3u
-
-#EXTINF:-1 tvg-id="The United States Of America_50" tvg-name="2000 FM - RnB & Hip-Hop" tvg-logo="" group-title="The United States Of America",2000 FM - RnB & Hip-Hop
+#EXTINF:-1 tvg-id="The United States Of America_49" tvg-name="2000 FM - RnB & Hip-Hop" tvg-logo="" group-title="The United States Of America",2000 FM - RnB & Hip-Hop
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://bigrradio.cdnstream1.com/5105_128
+
+#EXTINF:-1 tvg-id="The United States Of America_50" tvg-name="SomaFM Lush (128k MP3)" tvg-logo="https://somafm.com/img3/lush-400.jpg" group-title="The United States Of America",SomaFM Lush (128k MP3)
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://somafm.com/lush.m3u
 
 #EXTINF:-1 tvg-id="The United States Of America_51" tvg-name="181.FM - 80's Country" tvg-logo="http://www.181.fm/favicon.ico" group-title="The United States Of America",181.FM - 80's Country
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -3828,13 +3828,13 @@ https://www.181.fm/stream/pls/181-70s.m3u
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://pureplay.cdnstream1.com/6025_128.mp3?DIST=TuneIn&TGT=TuneIn&maxServers=2&gdpr=0&us_privacy=1YNY&partnertok=eyJhbGciOiJIUzI1NiIsImtpZCI6InR1bmVpbiIsInR5cCI6IkpXVCJ9.eyJ0cnVzdGVkX3BhcnRuZXIiOnRydWUsImlhdCI6MTYzMzk1NTI4MSwiaXNzIjoidGlzcnYifQ.cUMfsrk262BNjQXnfXkKBefQOqoRn2nweLrx5obNPhM
 
-#EXTINF:-1 tvg-id="The United States Of America_78" tvg-name="SomaFM Fluid (128k MP3)" tvg-logo="https://somafm.com/img3/fluid-400.jpg" group-title="The United States Of America",SomaFM Fluid (128k MP3)
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://somafm.com/fluid.m3u
-
-#EXTINF:-1 tvg-id="The United States Of America_79" tvg-name="MSNBC" tvg-logo="https://nodeassets.nbcnews.com/cdnassets/projects/ramen/favicon/msnbc/all-other-sizes-PNG.ico/favicon-96x96.png" group-title="The United States Of America",MSNBC
+#EXTINF:-1 tvg-id="The United States Of America_78" tvg-name="MSNBC" tvg-logo="https://nodeassets.nbcnews.com/cdnassets/projects/ramen/favicon/msnbc/all-other-sizes-PNG.ico/favicon-96x96.png" group-title="The United States Of America",MSNBC
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://tunein.cdnstream1.com/3511_96.mp3
+
+#EXTINF:-1 tvg-id="The United States Of America_79" tvg-name="SomaFM Fluid (128k MP3)" tvg-logo="https://somafm.com/img3/fluid-400.jpg" group-title="The United States Of America",SomaFM Fluid (128k MP3)
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://somafm.com/fluid.m3u
 
 #EXTINF:-1 tvg-id="The United States Of America_80" tvg-name="181.FM - 90's Country" tvg-logo="http://www.181.fm/favicon.ico" group-title="The United States Of America",181.FM - 90's Country
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
