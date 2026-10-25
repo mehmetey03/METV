@@ -1260,13 +1260,13 @@ http://stream.kissfm.de/kissfm/mp3-128/internetradio/
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://0n-chillout.radionetz.de/0n-chillout.aac
 
-#EXTINF:-1 tvg-id="Germany_55" tvg-name="NDR Info (Hamburg)" tvg-logo="https://www.ndr.de/apple-touch-icon-120x120.png" group-title="Germany",NDR Info (Hamburg)
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://www.ndr.de/resources/metadaten/audio/m3u/ndrinfo_hh.m3u
-
-#EXTINF:-1 tvg-id="Germany_56" tvg-name="Bayern 3" tvg-logo="https://api.ardmediathek.de/image-service/images/urn:ard:image:52fd25fc45de7c6a?w=512" group-title="Germany",Bayern 3
+#EXTINF:-1 tvg-id="Germany_55" tvg-name="Bayern 3" tvg-logo="https://api.ardmediathek.de/image-service/images/urn:ard:image:52fd25fc45de7c6a?w=512" group-title="Germany",Bayern 3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://dispatcher.rndfnk.com/br/br3/live/mp3/mid
+
+#EXTINF:-1 tvg-id="Germany_56" tvg-name="NDR Info (Hamburg)" tvg-logo="https://www.ndr.de/apple-touch-icon-120x120.png" group-title="Germany",NDR Info (Hamburg)
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://www.ndr.de/resources/metadaten/audio/m3u/ndrinfo_hh.m3u
 
 #EXTINF:-1 tvg-id="Germany_57" tvg-name="Antenne Bayern - Top 40" tvg-logo="http://www.antenne.de/logos/station-antenne-bayern/apple-touch-icon.png" group-title="Germany",Antenne Bayern - Top 40
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -1829,13 +1829,13 @@ http://icecast.unitedradio.it/Radio105.mp3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://icestreaming.rai.it/2.mp3
 
-#EXTINF:-1 tvg-id="Italy_5" tvg-name="Radio Stereocittà" tvg-logo="" group-title="Italy",Radio Stereocittà
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://onair11.xdevel.com:8134/;stream.mp3
-
-#EXTINF:-1 tvg-id="Italy_6" tvg-name="Radio Armisa" tvg-logo="https://armisa.it/assets/favicon/android-chrome-512x512.png" group-title="Italy",Radio Armisa
+#EXTINF:-1 tvg-id="Italy_5" tvg-name="Radio Armisa" tvg-logo="https://armisa.it/assets/favicon/android-chrome-512x512.png" group-title="Italy",Radio Armisa
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://onair.armisa.it/listen/armisa/radio.mp3
+
+#EXTINF:-1 tvg-id="Italy_6" tvg-name="Radio Stereocittà" tvg-logo="" group-title="Italy",Radio Stereocittà
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://onair11.xdevel.com:8134/;stream.mp3
 
 #EXTINF:-1 tvg-id="Italy_7" tvg-name="Rai Radio 3" tvg-logo="" group-title="Italy",Rai Radio 3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -2155,13 +2155,13 @@ https://playerservices.streamtheworld.com/api/livestream-redirect/XEPHAMAAC.aac
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://162.244.81.98:8140/listen
 
-#EXTINF:-1 tvg-id="Mexico_8" tvg-name="La Ke Buena Ciudad de México - 92.9 FM - XEQ-FM - Radiópolis - Ciudad de México" tvg-logo="https://recursosweb.prisaradio.com/fotos/original/010002851440.jpg" group-title="Mexico",La Ke Buena Ciudad de México - 92.9 FM - XEQ-FM - Radiópolis - Ciudad de México
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://playerservices.streamtheworld.com/api/livestream-redirect/KEBUENAAAC.aac
-
-#EXTINF:-1 tvg-id="Mexico_9" tvg-name="Amor Ciudad de México - 95.3 FM - XHSH-FM - Grupo ACIR - Ciudad de México" tvg-logo="https://i.iheart.com/v3/re/new_assets/5bce06169803f27603c24988?ops=fit(240%2C240)" group-title="Mexico",Amor Ciudad de México - 95.3 FM - XHSH-FM - Grupo ACIR - Ciudad de México
+#EXTINF:-1 tvg-id="Mexico_8" tvg-name="Amor Ciudad de México - 95.3 FM - XHSH-FM - Grupo ACIR - Ciudad de México" tvg-logo="https://i.iheart.com/v3/re/new_assets/5bce06169803f27603c24988?ops=fit(240%2C240)" group-title="Mexico",Amor Ciudad de México - 95.3 FM - XHSH-FM - Grupo ACIR - Ciudad de México
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://playerservices.streamtheworld.com/api/livestream-redirect/XHSHFMAAC.aac
+
+#EXTINF:-1 tvg-id="Mexico_9" tvg-name="La Ke Buena Ciudad de México - 92.9 FM - XEQ-FM - Radiópolis - Ciudad de México" tvg-logo="https://recursosweb.prisaradio.com/fotos/original/010002851440.jpg" group-title="Mexico",La Ke Buena Ciudad de México - 92.9 FM - XEQ-FM - Radiópolis - Ciudad de México
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://playerservices.streamtheworld.com/api/livestream-redirect/KEBUENAAAC.aac
 
 #EXTINF:-1 tvg-id="Mexico_10" tvg-name="Panda Show Radio - Online - El Panda Zambrano - Ciudad de México" tvg-logo="https://cdn-radiotime-logos.tunein.com/s96692d.png" group-title="Mexico",Panda Show Radio - Online - El Panda Zambrano - Ciudad de México
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -3196,13 +3196,13 @@ http://nashe.streamr.ru/nashe-128.mp3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://radio7server.streamr.ru:8040/radio7256.mp3
 
-#EXTINF:-1 tvg-id="The Russian Federation_25" tvg-name="Radio Ultra" tvg-logo="https://radioultra.ru/favicons/apple-touch-icon.png" group-title="The Russian Federation",Radio Ultra
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://nashe1.hostingradio.ru/ultra-192.mp3
-
-#EXTINF:-1 tvg-id="The Russian Federation_26" tvg-name="Anon.FM" tvg-logo="https://icecast.anon.fm/favicon.png" group-title="The Russian Federation",Anon.FM
+#EXTINF:-1 tvg-id="The Russian Federation_25" tvg-name="Anon.FM" tvg-logo="https://icecast.anon.fm/favicon.png" group-title="The Russian Federation",Anon.FM
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://icecast.anon.fm/radio
+
+#EXTINF:-1 tvg-id="The Russian Federation_26" tvg-name="Radio Ultra" tvg-logo="https://radioultra.ru/favicons/apple-touch-icon.png" group-title="The Russian Federation",Radio Ultra
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://nashe1.hostingradio.ru/ultra-192.mp3
 
 #EXTINF:-1 tvg-id="The Russian Federation_27" tvg-name="Радио Книга" tvg-logo="https://radiokniga.com/rk.ico" group-title="The Russian Federation",Радио Книга
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
