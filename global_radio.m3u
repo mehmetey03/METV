@@ -1164,13 +1164,13 @@ http://mp3.ffh.de/radioffh/hqlivestream.mp3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://stream.laut.fm/deutschrap
 
-#EXTINF:-1 tvg-id="Germany_31" tvg-name="Sunshine Live - Classics" tvg-logo="" group-title="Germany",Sunshine Live - Classics
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://stream.sunshine-live.de/classics/mp3-192/stream.sunshine-live.de/
-
-#EXTINF:-1 tvg-id="Germany_32" tvg-name="80s80s Radio" tvg-logo="https://upload.80s80s.de/production/static/1697296555757/icons/icon_512.ewwAEi8A30w.png" group-title="Germany",80s80s Radio
+#EXTINF:-1 tvg-id="Germany_31" tvg-name="80s80s Radio" tvg-logo="https://upload.80s80s.de/production/static/1697296555757/icons/icon_512.ewwAEi8A30w.png" group-title="Germany",80s80s Radio
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://streams.80s80s.de/web/mp3-192/play.m3u
+
+#EXTINF:-1 tvg-id="Germany_32" tvg-name="Sunshine Live - Classics" tvg-logo="" group-title="Germany",Sunshine Live - Classics
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://stream.sunshine-live.de/classics/mp3-192/stream.sunshine-live.de/
 
 #EXTINF:-1 tvg-id="Germany_33" tvg-name="Antenne Bayern - Classic Rock Live (MP3)" tvg-logo="http://www.antenne.de/logos/station-antenne-bayern/apple-touch-icon.png" group-title="Germany",Antenne Bayern - Classic Rock Live (MP3)
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -1256,13 +1256,13 @@ http://streams.radiobob.de/bob-alternative/mp3-192/streams.radiobob.de/
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://stream.kissfm.de/kissfm/mp3-128/internetradio/
 
-#EXTINF:-1 tvg-id="Germany_54" tvg-name="- 0 N - Chillout on Radio" tvg-logo="https://www.0nradio.com/logos/0n-chillout_600x600.jpg" group-title="Germany",- 0 N - Chillout on Radio
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://0n-chillout.radionetz.de/0n-chillout.aac
-
-#EXTINF:-1 tvg-id="Germany_55" tvg-name="Bayern 3" tvg-logo="https://api.ardmediathek.de/image-service/images/urn:ard:image:52fd25fc45de7c6a?w=512" group-title="Germany",Bayern 3
+#EXTINF:-1 tvg-id="Germany_54" tvg-name="Bayern 3" tvg-logo="https://api.ardmediathek.de/image-service/images/urn:ard:image:52fd25fc45de7c6a?w=512" group-title="Germany",Bayern 3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://dispatcher.rndfnk.com/br/br3/live/mp3/mid
+
+#EXTINF:-1 tvg-id="Germany_55" tvg-name="- 0 N - Chillout on Radio" tvg-logo="https://www.0nradio.com/logos/0n-chillout_600x600.jpg" group-title="Germany",- 0 N - Chillout on Radio
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://0n-chillout.radionetz.de/0n-chillout.aac
 
 #EXTINF:-1 tvg-id="Germany_56" tvg-name="NDR Info (Hamburg)" tvg-logo="https://www.ndr.de/apple-touch-icon-120x120.png" group-title="Germany",NDR Info (Hamburg)
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -1292,13 +1292,13 @@ https://www.ndr.de/resources/metadaten/audio_ssl/m3u/ndr2.m3u
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://stream.technolovers.fm/edm?ref=radiobrowser
 
-#EXTINF:-1 tvg-id="Germany_63" tvg-name="FluxFM" tvg-logo="https://www.fluxfm.de/assets/favicons/apple-icon-120x120.png" group-title="Germany",FluxFM
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://streams.fluxfm.de/live/mp3-320/audio/
-
-#EXTINF:-1 tvg-id="Germany_64" tvg-name="Antenne Bayern - Oldies but Goldies" tvg-logo="" group-title="Germany",Antenne Bayern - Oldies but Goldies
+#EXTINF:-1 tvg-id="Germany_63" tvg-name="Antenne Bayern - Oldies but Goldies" tvg-logo="" group-title="Germany",Antenne Bayern - Oldies but Goldies
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://mp3channels.webradio.antenne.de/oldies-but-goldies
+
+#EXTINF:-1 tvg-id="Germany_64" tvg-name="FluxFM" tvg-logo="https://www.fluxfm.de/assets/favicons/apple-icon-120x120.png" group-title="Germany",FluxFM
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://streams.fluxfm.de/live/mp3-320/audio/
 
 #EXTINF:-1 tvg-id="Germany_65" tvg-name="104.6 RTL" tvg-logo="http://www.104.6rtl.com/assets/icons/icon-152x152.png" group-title="Germany",104.6 RTL
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -1334,13 +1334,13 @@ http://netradio.live24.gr/realfm
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://cast.streams.ovh:2199/tunein/tranceathena.m3u
 
-#EXTINF:-1 tvg-id="Greece_4" tvg-name="Kiss 92.9" tvg-logo="https://www.kiss929.gr/sites/default/files/kiss.ico" group-title="Greece",Kiss 92.9
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://netradio.live24.gr/kissfmathens
-
-#EXTINF:-1 tvg-id="Greece_5" tvg-name="Sport FM 94.6" tvg-logo="http://www.sport-fm.gr/favicon.ico" group-title="Greece",Sport FM 94.6
+#EXTINF:-1 tvg-id="Greece_4" tvg-name="Sport FM 94.6" tvg-logo="http://www.sport-fm.gr/favicon.ico" group-title="Greece",Sport FM 94.6
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://netradio.live24.gr/sportfm7712
+
+#EXTINF:-1 tvg-id="Greece_5" tvg-name="Kiss 92.9" tvg-logo="https://www.kiss929.gr/sites/default/files/kiss.ico" group-title="Greece",Kiss 92.9
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://netradio.live24.gr/kissfmathens
 
 #EXTINF:-1 tvg-id="Greece_6" tvg-name="Skai 100.3" tvg-logo="" group-title="Greece",Skai 100.3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -1786,13 +1786,13 @@ https://stream.zeno.fm/9svfnobkrxrvv
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://stream.zeno.fm/v5kxmagseg0uv
 
-#EXTINF:-1 tvg-id="Islamic Republic Of Iran_15" tvg-name="hamsafar" tvg-logo="" group-title="Islamic Republic Of Iran",hamsafar
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://stream.radiojar.com/pyea7q9h5ehvv.m3u
-
-#EXTINF:-1 tvg-id="Islamic Republic Of Iran_16" tvg-name="Radio Faaz" tvg-logo="" group-title="Islamic Republic Of Iran",Radio Faaz
+#EXTINF:-1 tvg-id="Islamic Republic Of Iran_15" tvg-name="Radio Faaz" tvg-logo="" group-title="Islamic Republic Of Iran",Radio Faaz
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://free.rcast.net/230792
+
+#EXTINF:-1 tvg-id="Islamic Republic Of Iran_16" tvg-name="hamsafar" tvg-logo="" group-title="Islamic Republic Of Iran",hamsafar
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://stream.radiojar.com/pyea7q9h5ehvv.m3u
 
 #EXTINF:-1 tvg-id="Islamic Republic Of Iran_17" tvg-name=".al quran radio" tvg-logo="" group-title="Islamic Republic Of Iran",.al quran radio
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
