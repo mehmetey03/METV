@@ -1482,6 +1482,10 @@ http://stream.webthings.hu:8000/fm95-x-128.mp3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://adas.poptarisznya.hu:8200/live.mp3
 
+#EXTINF:-1 tvg-id="Hungary_17" tvg-name="Laza Rádió (OGG 320 Kbps)" tvg-logo="" group-title="Hungary",Laza Rádió (OGG 320 Kbps)
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://stream.lazaradio.com:8100/live.ogg
+
 #EXTINF:-1 tvg-id="" tvg-logo="" group-title="India",India
 #EXTGRP:India
 
@@ -1517,13 +1521,13 @@ http://stream.zeno.fm/8ty8szwpwfeuv.m3u
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://millenniumhits.out.airtime.pro:8000/millenniumhits_a
 
-#EXTINF:-1 tvg-id="India_8" tvg-name="Hits Of Lata Mangeshkar" tvg-logo="" group-title="India",Hits Of Lata Mangeshkar
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://stream.zeno.fm/g95zm67prfhvv.m3u
-
-#EXTINF:-1 tvg-id="India_9" tvg-name="Radio Mirchi Hindi" tvg-logo="https://onlineradiohub.com/wp-content/uploads/2023/05/radio-mirchi-hindi-fm.jpg" group-title="India",Radio Mirchi Hindi
+#EXTINF:-1 tvg-id="India_8" tvg-name="Radio Mirchi Hindi" tvg-logo="https://onlineradiohub.com/wp-content/uploads/2023/05/radio-mirchi-hindi-fm.jpg" group-title="India",Radio Mirchi Hindi
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://eu8.fastcast4u.com/proxy/clyedupq/stream
+
+#EXTINF:-1 tvg-id="India_9" tvg-name="Hits Of Lata Mangeshkar" tvg-logo="" group-title="India",Hits Of Lata Mangeshkar
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://stream.zeno.fm/g95zm67prfhvv.m3u
 
 #EXTINF:-1 tvg-id="India_10" tvg-name="MY CLUB REMIX" tvg-logo="http://zeno.fm/favicon.ico" group-title="India",MY CLUB REMIX
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -1633,15 +1637,11 @@ https://carol.epichosts.co.uk:8570/;
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://stream-143.zeno.fm/fdgs82xkzhhvv
 
-#EXTINF:-1 tvg-id="India_37" tvg-name="Tamil 80's Radio" tvg-logo="https://www.tamilradios.com/assets/img/radio-logos/tamil-80s-radio.jpg" group-title="India",Tamil 80's Radio
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://psrlive2.listenon.in/80?station=tamil80shitsradio
-
-#EXTINF:-1 tvg-id="India_38" tvg-name="TORi-Live-8000" tvg-logo="" group-title="India",TORi-Live-8000
+#EXTINF:-1 tvg-id="India_37" tvg-name="TORi-Live-8000" tvg-logo="" group-title="India",TORi-Live-8000
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://173.203.133.187:9700/;stream/1
 
-#EXTINF:-1 tvg-id="India_39" tvg-name="latamangeshkarradio" tvg-logo="https://radiosindia.com/images/latamangeshkarradio.jpg" group-title="India",latamangeshkarradio
+#EXTINF:-1 tvg-id="India_38" tvg-name="latamangeshkarradio" tvg-logo="https://radiosindia.com/images/latamangeshkarradio.jpg" group-title="India",latamangeshkarradio
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://stream.zeno.fm/87xam8pf7tzuv
 
@@ -1809,7 +1809,7 @@ https://stream.zeno.fm/v5kxmagseg0uv
 #EXTINF:-1 tvg-id="" tvg-logo="" group-title="Italy",Italy
 #EXTGRP:Italy
 
-#EXTINF:-1 tvg-id="Italy_0" tvg-name="Rai Radio 1" tvg-logo="" group-title="Italy",Rai Radio 1
+#EXTINF:-1 tvg-id="Italy_0" tvg-name="Rai Radio 1" tvg-logo="https://www.rai.it/cropgd/560x292/dl/img/2019/01/07/1280x720_1546854278675_conferenza%20radio1.jpg" group-title="Italy",Rai Radio 1
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://icestreaming.rai.it/1.mp3
 
@@ -2155,13 +2155,13 @@ https://playerservices.streamtheworld.com/api/livestream-redirect/XEPHAMAAC.aac
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://162.244.81.98:8140/listen
 
-#EXTINF:-1 tvg-id="Mexico_8" tvg-name="Amor Ciudad de México - 95.3 FM - XHSH-FM - Grupo ACIR - Ciudad de México" tvg-logo="https://i.iheart.com/v3/re/new_assets/5bce06169803f27603c24988?ops=fit(240%2C240)" group-title="Mexico",Amor Ciudad de México - 95.3 FM - XHSH-FM - Grupo ACIR - Ciudad de México
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://playerservices.streamtheworld.com/api/livestream-redirect/XHSHFMAAC.aac
-
-#EXTINF:-1 tvg-id="Mexico_9" tvg-name="La Ke Buena Ciudad de México - 92.9 FM - XEQ-FM - Radiópolis - Ciudad de México" tvg-logo="https://recursosweb.prisaradio.com/fotos/original/010002851440.jpg" group-title="Mexico",La Ke Buena Ciudad de México - 92.9 FM - XEQ-FM - Radiópolis - Ciudad de México
+#EXTINF:-1 tvg-id="Mexico_8" tvg-name="La Ke Buena Ciudad de México - 92.9 FM - XEQ-FM - Radiópolis - Ciudad de México" tvg-logo="https://recursosweb.prisaradio.com/fotos/original/010002851440.jpg" group-title="Mexico",La Ke Buena Ciudad de México - 92.9 FM - XEQ-FM - Radiópolis - Ciudad de México
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://playerservices.streamtheworld.com/api/livestream-redirect/KEBUENAAAC.aac
+
+#EXTINF:-1 tvg-id="Mexico_9" tvg-name="Amor Ciudad de México - 95.3 FM - XHSH-FM - Grupo ACIR - Ciudad de México" tvg-logo="https://i.iheart.com/v3/re/new_assets/5bce06169803f27603c24988?ops=fit(240%2C240)" group-title="Mexico",Amor Ciudad de México - 95.3 FM - XHSH-FM - Grupo ACIR - Ciudad de México
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://playerservices.streamtheworld.com/api/livestream-redirect/XHSHFMAAC.aac
 
 #EXTINF:-1 tvg-id="Mexico_10" tvg-name="Panda Show Radio - Online - El Panda Zambrano - Ciudad de México" tvg-logo="https://cdn-radiotime-logos.tunein.com/s96692d.png" group-title="Mexico",Panda Show Radio - Online - El Panda Zambrano - Ciudad de México
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -2402,13 +2402,13 @@ https://rs9-krk2-cyfronet.rmfstream.pl/RMFMAXXX48
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://31.192.216.7/90S
 
-#EXTINF:-1 tvg-id="Poland_11" tvg-name="RMF Dance" tvg-logo="http://www.rmfon.pl/assets/images/favicon/apple-touch-icon.png" group-title="Poland",RMF Dance
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://31.192.216.10/DANCE
-
-#EXTINF:-1 tvg-id="Poland_12" tvg-name="Radio 357" tvg-logo="https://radio357.pl/wp-content/uploads/2022/04/c5399c0d-1b8e-43d5-b23b-e5cef1857856.png" group-title="Poland",Radio 357
+#EXTINF:-1 tvg-id="Poland_11" tvg-name="Radio 357" tvg-logo="https://radio357.pl/wp-content/uploads/2022/04/c5399c0d-1b8e-43d5-b23b-e5cef1857856.png" group-title="Poland",Radio 357
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://n-11-21.dcs.redcdn.pl/sc/o2/radio357/live/radio357_pr.livx?preroll=0
+
+#EXTINF:-1 tvg-id="Poland_12" tvg-name="RMF Dance" tvg-logo="http://www.rmfon.pl/assets/images/favicon/apple-touch-icon.png" group-title="Poland",RMF Dance
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://31.192.216.10/DANCE
 
 #EXTINF:-1 tvg-id="Poland_13" tvg-name="Trojka" tvg-logo="http://moje.polskieradio.pl/favicon.ico" group-title="Poland",Trojka
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -3288,13 +3288,13 @@ http://icecast.vgtrk.cdnvideo.ru/vestifm_mp3_64kbps
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://jfm1.hostingradio.ru:14536/ijstream.mp3
 
-#EXTINF:-1 tvg-id="The Russian Federation_48" tvg-name="Звезда" tvg-logo="" group-title="The Russian Federation",Звезда
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://icecast-zvezda.mediacdn.ru/radio/zvezda/zvezda_128
-
-#EXTINF:-1 tvg-id="The Russian Federation_49" tvg-name="Радио дача" tvg-logo="null" group-title="The Russian Federation",Радио дача
+#EXTINF:-1 tvg-id="The Russian Federation_48" tvg-name="Радио дача" tvg-logo="null" group-title="The Russian Federation",Радио дача
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://listen13.vdfm.ru:8000/dacha
+
+#EXTINF:-1 tvg-id="The Russian Federation_49" tvg-name="Звезда" tvg-logo="" group-title="The Russian Federation",Звезда
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://icecast-zvezda.mediacdn.ru/radio/zvezda/zvezda_128
 
 #EXTINF:-1 tvg-id="The Russian Federation_50" tvg-name="Радио Родных Дорог" tvg-logo="" group-title="The Russian Federation",Радио Родных Дорог
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -4088,13 +4088,13 @@ https://online.kissfm.ua/KissFM_Ukr
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://online2.radiotrek.rv.ua:8000/AAC+_64.m3u
 
-#EXTINF:-1 tvg-id="Ukraine_17" tvg-name="Львівська хвиля (32 кбіт/с)" tvg-logo="" group-title="Ukraine",Львівська хвиля (32 кбіт/с)
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://onair.lviv.fm:8000/lviv32.fm
-
-#EXTINF:-1 tvg-id="Ukraine_18" tvg-name="Радіо НВ 96.0" tvg-logo="" group-title="Ukraine",Радіо НВ 96.0
+#EXTINF:-1 tvg-id="Ukraine_17" tvg-name="Радіо НВ 96.0" tvg-logo="" group-title="Ukraine",Радіо НВ 96.0
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://online-radio.nv.ua/radionv.mp3
+
+#EXTINF:-1 tvg-id="Ukraine_18" tvg-name="Львівська хвиля (32 кбіт/с)" tvg-logo="" group-title="Ukraine",Львівська хвиля (32 кбіт/с)
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://onair.lviv.fm:8000/lviv32.fm
 
 #EXTINF:-1 tvg-id="Ukraine_19" tvg-name="TRANCE IS STAR RADIO" tvg-logo="https://abs.twimg.com/favicons/twitter.2.ico" group-title="Ukraine",TRANCE IS STAR RADIO
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
