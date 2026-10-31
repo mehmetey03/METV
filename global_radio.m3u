@@ -1303,13 +1303,13 @@ https://stream.technolovers.fm/edm?ref=radiobrowser
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://mp3channels.webradio.antenne.de/oldies-but-goldies
 
-#EXTINF:-1 tvg-id="Germany_64" tvg-name="FluxFM" tvg-logo="https://www.fluxfm.de/assets/favicons/apple-icon-120x120.png" group-title="Germany",FluxFM
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://streams.fluxfm.de/live/mp3-320/audio/
-
-#EXTINF:-1 tvg-id="Germany_65" tvg-name="104.6 RTL" tvg-logo="http://www.104.6rtl.com/assets/icons/icon-152x152.png" group-title="Germany",104.6 RTL
+#EXTINF:-1 tvg-id="Germany_64" tvg-name="104.6 RTL" tvg-logo="http://www.104.6rtl.com/assets/icons/icon-152x152.png" group-title="Germany",104.6 RTL
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://stream.104.6rtl.com/rtl-live/mp3-192/radio-browser.info/
+
+#EXTINF:-1 tvg-id="Germany_65" tvg-name="FluxFM" tvg-logo="https://www.fluxfm.de/assets/favicons/apple-icon-120x120.png" group-title="Germany",FluxFM
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://streams.fluxfm.de/live/mp3-320/audio/
 
 #EXTINF:-1 tvg-id="Germany_66" tvg-name="TechnoBase.FM" tvg-logo="https://cdn.onlineradiobox.com/img/l/0/32040.v12.png" group-title="Germany",TechnoBase.FM
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -3643,13 +3643,13 @@ https://www.181.fm/stream/pls/181-beat.m3u
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://npr-ice.streamguys1.com/live.mp3
 
-#EXTINF:-1 tvg-id="The United States Of America_27" tvg-name="Cryosleep" tvg-logo="http://www.echoesofbluemars.org/images/favicon.ico" group-title="The United States Of America",Cryosleep
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://streams.echoesofbluemars.org:8000/cryosleep
-
-#EXTINF:-1 tvg-id="The United States Of America_28" tvg-name="LOVE RADIO Only Love Songs 70s80s90s - www.love.radio" tvg-logo="" group-title="The United States Of America",LOVE RADIO Only Love Songs 70s80s90s - www.love.radio
+#EXTINF:-1 tvg-id="The United States Of America_27" tvg-name="LOVE RADIO Only Love Songs 70s80s90s - www.love.radio" tvg-logo="" group-title="The United States Of America",LOVE RADIO Only Love Songs 70s80s90s - www.love.radio
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://shoutcast3.streamingmedia.it:3162/
+
+#EXTINF:-1 tvg-id="The United States Of America_28" tvg-name="Cryosleep" tvg-logo="http://www.echoesofbluemars.org/images/favicon.ico" group-title="The United States Of America",Cryosleep
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://streams.echoesofbluemars.org:8000/cryosleep
 
 #EXTINF:-1 tvg-id="The United States Of America_29" tvg-name="SomaFM Underground 80s (128k MP3)" tvg-logo="https://somafm.com/img3/u80s-400.png" group-title="The United States Of America",SomaFM Underground 80s (128k MP3)
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
