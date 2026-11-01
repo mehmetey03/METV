@@ -901,13 +901,13 @@ http://stream.chantefrance.com/Chante_France
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://ice.creacast.com/sudradio
 
-#EXTINF:-1 tvg-id="France_21" tvg-name="France Musique" tvg-logo="" group-title="France",France Musique
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://direct.francemusique.fr/live/francemusique-midfi.mp3
-
-#EXTINF:-1 tvg-id="France_22" tvg-name="BFM radio" tvg-logo="https://www.radio.fr/images/broadcasts/76/27/105095/3/c300.png" group-title="France",BFM radio
+#EXTINF:-1 tvg-id="France_21" tvg-name="BFM radio" tvg-logo="https://www.radio.fr/images/broadcasts/76/27/105095/3/c300.png" group-title="France",BFM radio
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://audio.bfmtv.com/bfmradio_128.mp3
+
+#EXTINF:-1 tvg-id="France_22" tvg-name="France Musique" tvg-logo="" group-title="France",France Musique
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://direct.francemusique.fr/live/francemusique-midfi.mp3
 
 #EXTINF:-1 tvg-id="France_23" tvg-name="Latina Salsa" tvg-logo="https://bocir-prod-bucket.s3.eu-west-1.amazonaws.com/radios/latina/images/favicon.ico" group-title="France",Latina Salsa
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -1235,13 +1235,13 @@ http://streams.radiobob.de/bob-metal/mp3-192/streams.radiobob.de/
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://stream.0nlineradio.com/soft-rock?ref=radiobrowser
 
-#EXTINF:-1 tvg-id="Germany_47" tvg-name="- 0 N - Indie on Radio" tvg-logo="https://www.0nradio.com/logos/0n-indie_600x600.jpg" group-title="Germany",- 0 N - Indie on Radio
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://0n-indie.radionetz.de/0n-indie.mp3
-
-#EXTINF:-1 tvg-id="Germany_48" tvg-name="WDR4" tvg-logo="https://www1.wdr.de/resources/img/favicon/apple-touch-icon.png" group-title="Germany",WDR4
+#EXTINF:-1 tvg-id="Germany_47" tvg-name="WDR4" tvg-logo="https://www1.wdr.de/resources/img/favicon/apple-touch-icon.png" group-title="Germany",WDR4
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://wdr-wdr4-live.icecast.wdr.de/wdr/wdr4/live/mp3/128/stream.mp3
+
+#EXTINF:-1 tvg-id="Germany_48" tvg-name="- 0 N - Indie on Radio" tvg-logo="https://www.0nradio.com/logos/0n-indie_600x600.jpg" group-title="Germany",- 0 N - Indie on Radio
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://0n-indie.radionetz.de/0n-indie.mp3
 
 #EXTINF:-1 tvg-id="Germany_49" tvg-name="MDR Klassik" tvg-logo="https://cdn.mdr.de/resources/global/img/mdrde/favicons/apple-icon-120x120.png" group-title="Germany",MDR Klassik
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -1664,11 +1664,15 @@ http://radio2bindia.out.airtime.pro:8000/radio2bindia_a
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://stream-143.zeno.fm/fdgs82xkzhhvv
 
-#EXTINF:-1 tvg-id="India_37" tvg-name="TORi-Live-8000" tvg-logo="" group-title="India",TORi-Live-8000
+#EXTINF:-1 tvg-id="India_37" tvg-name="Tamil 80's Radio" tvg-logo="https://www.tamilradios.com/assets/img/radio-logos/tamil-80s-radio.jpg" group-title="India",Tamil 80's Radio
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://psrlive2.listenon.in/80?station=tamil80shitsradio
+
+#EXTINF:-1 tvg-id="India_38" tvg-name="TORi-Live-8000" tvg-logo="" group-title="India",TORi-Live-8000
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://173.203.133.187:9700/;stream/1
 
-#EXTINF:-1 tvg-id="India_38" tvg-name="latamangeshkarradio" tvg-logo="https://radiosindia.com/images/latamangeshkarradio.jpg" group-title="India",latamangeshkarradio
+#EXTINF:-1 tvg-id="India_39" tvg-name="latamangeshkarradio" tvg-logo="https://radiosindia.com/images/latamangeshkarradio.jpg" group-title="India",latamangeshkarradio
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://stream.zeno.fm/87xam8pf7tzuv
 
@@ -2661,13 +2665,6 @@ http://zuicast.digitalag.ro:9420/romanticfm
 #EXTINF:-1 tvg-id="Romania_17" tvg-name="Radio Tequila Dance Romania" tvg-logo="https://cdn.onlineradiobox.com/img/l/0/87390.v8.png" group-title="Romania",Radio Tequila Dance Romania
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://dance.radiotequila.ro:7000/;stream.nsv
-
-#EXTINF:-1 tvg-id="" tvg-logo="" group-title="Rwanda",Rwanda
-#EXTGRP:Rwanda
-
-#EXTINF:-1 tvg-id="Rwanda_0" tvg-name="Radio 1" tvg-logo="" group-title="Rwanda",Radio 1
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://80.241.215.175:5000/;
 
 #EXTINF:-1 tvg-id="" tvg-logo="" group-title="Saudi Arabia",Saudi Arabia
 #EXTGRP:Saudi Arabia
@@ -3941,13 +3938,13 @@ http://streaming.knoozfm.net:8000/knoozfm
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://radio.mosaiquefm.net/mosatarab
 
-#EXTINF:-1 tvg-id="Tunisia_6" tvg-name="Radio Tunisie Sfax" tvg-logo="" group-title="Tunisia",Radio Tunisie Sfax
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://rtstream.tanitweb.com/sfax
-
-#EXTINF:-1 tvg-id="Tunisia_7" tvg-name="Diwan FM" tvg-logo="" group-title="Tunisia",Diwan FM
+#EXTINF:-1 tvg-id="Tunisia_6" tvg-name="Diwan FM" tvg-logo="" group-title="Tunisia",Diwan FM
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://streaming.diwanfm.net/stream
+
+#EXTINF:-1 tvg-id="Tunisia_7" tvg-name="Radio Tunisie Sfax" tvg-logo="" group-title="Tunisia",Radio Tunisie Sfax
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://rtstream.tanitweb.com/sfax
 
 #EXTINF:-1 tvg-id="Tunisia_8" tvg-name="Radio Tunisie Nationale" tvg-logo="" group-title="Tunisia",Radio Tunisie Nationale
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -3965,13 +3962,13 @@ http://rtstream.tanitweb.com/monastir
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://rtstream.tanitweb.com/kef
 
-#EXTINF:-1 tvg-id="Tunisia_12" tvg-name="RTCI" tvg-logo="" group-title="Tunisia",RTCI
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://rtstream.tanitweb.com/rtci
-
-#EXTINF:-1 tvg-id="Tunisia_13" tvg-name="Mosaique FM Gold" tvg-logo="" group-title="Tunisia",Mosaique FM Gold
+#EXTINF:-1 tvg-id="Tunisia_12" tvg-name="Mosaique FM Gold" tvg-logo="" group-title="Tunisia",Mosaique FM Gold
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://radio.mosaiquefm.net/mosagold
+
+#EXTINF:-1 tvg-id="Tunisia_13" tvg-name="RTCI" tvg-logo="" group-title="Tunisia",RTCI
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://rtstream.tanitweb.com/rtci
 
 #EXTINF:-1 tvg-id="Tunisia_14" tvg-name="تراتيل" tvg-logo="" group-title="Tunisia",تراتيل
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
