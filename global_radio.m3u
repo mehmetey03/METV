@@ -716,7 +716,7 @@ http://n12.radiojar.com/8s5u5tpdtwzuv?listening-from-radio-garden=1620219571863&
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://9090streaming.mobtada.com/9090FMEGYPT
 
-#EXTINF:-1 tvg-id="Egypt_2" tvg-name="إذاعة محمود خليل الحصري" tvg-logo="http://www.phantomsw.com/assets/img/apple-touch-icon.png" group-title="Egypt",إذاعة محمود خليل الحصري
+#EXTINF:-1 tvg-id="Egypt_2" tvg-name="إذاعة محمود خليل الحصري" tvg-logo="" group-title="Egypt",إذاعة محمود خليل الحصري
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://qurango.net/radio/mahmoud_khalil_alhussary_warsh
 
@@ -849,7 +849,7 @@ http://live02.rfi.fr/rfimonde-64.mp3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://live02.rfi.fr/rfiafrique-96k.mp3
 
-#EXTINF:-1 tvg-id="France_8" tvg-name="France Culture" tvg-logo="https://upload.wikimedia.org/wikipedia/fr/thumb/c/c9/France_Culture_-_2008.svg/1024px-France_Culture_-_2008.svg.png" group-title="France",France Culture
+#EXTINF:-1 tvg-id="France_8" tvg-name="France Culture" tvg-logo="https://www.radiofrance.fr/external/favicons/franceculture/favicon.png" group-title="France",France Culture
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://icecast.radiofrance.fr/franceculture-hifi.aac
 
@@ -1331,6 +1331,10 @@ http://mp3channels.webradio.rockantenne.de/punkrock.aac
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://stream.gayfm.de/
 
+#EXTINF:-1 tvg-id="Germany_71" tvg-name="electronic music club" tvg-logo="" group-title="Germany",electronic music club
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://stream.laut.fm/emc
+
 #EXTINF:-1 tvg-id="" tvg-logo="" group-title="Ghana",Ghana
 #EXTGRP:Ghana
 
@@ -1441,75 +1445,63 @@ http://stm2.rthk.hk/radio2
 #EXTINF:-1 tvg-id="" tvg-logo="" group-title="Hungary",Hungary
 #EXTGRP:Hungary
 
-#EXTINF:-1 tvg-id="Hungary_0" tvg-name="Dance Wave!" tvg-logo="https://dancewave.online/dw_logo.png" group-title="Hungary",Dance Wave!
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://dancewave.online/dance.mp3
-
-#EXTINF:-1 tvg-id="Hungary_1" tvg-name="Dance Wave Retro!" tvg-logo="https://dancewave.online/dwr_logo.png" group-title="Hungary",Dance Wave Retro!
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://dancewave.online/retrodance.mp3
-
-#EXTINF:-1 tvg-id="Hungary_2" tvg-name="Rádió 1 - Budapest" tvg-logo="" group-title="Hungary",Rádió 1 - Budapest
+#EXTINF:-1 tvg-id="Hungary_0" tvg-name="Rádió 1 - Budapest" tvg-logo="" group-title="Hungary",Rádió 1 - Budapest
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://icast.connectmedia.hu/5201/live.mp3
 
-#EXTINF:-1 tvg-id="Hungary_3" tvg-name="Kossuth Rádió" tvg-logo="" group-title="Hungary",Kossuth Rádió
+#EXTINF:-1 tvg-id="Hungary_1" tvg-name="Kossuth Rádió" tvg-logo="" group-title="Hungary",Kossuth Rádió
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://mr-stream.mediaconnect.hu/4734/mr1.aac
 
-#EXTINF:-1 tvg-id="Hungary_4" tvg-name="Mercy Rádió - Kabaré" tvg-logo="http://mercyradio.eu/favicon.ico" group-title="Hungary",Mercy Rádió - Kabaré
+#EXTINF:-1 tvg-id="Hungary_2" tvg-name="Mercy Rádió - Kabaré" tvg-logo="http://mercyradio.eu/favicon.ico" group-title="Hungary",Mercy Rádió - Kabaré
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://stream.mercyradio.eu/kabare.mp3
 
-#EXTINF:-1 tvg-id="Hungary_5" tvg-name="Petőfi Rádió" tvg-logo="" group-title="Hungary",Petőfi Rádió
+#EXTINF:-1 tvg-id="Hungary_3" tvg-name="Petőfi Rádió" tvg-logo="" group-title="Hungary",Petőfi Rádió
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://mr-stream.mediaconnect.hu/4737/mr2.aac
 
-#EXTINF:-1 tvg-id="Hungary_6" tvg-name="Oxygen The 80s Hits" tvg-logo="https://oxygenmusic.hu/logo192.png" group-title="Hungary",Oxygen The 80s Hits
+#EXTINF:-1 tvg-id="Hungary_4" tvg-name="Oxygen The 80s Hits" tvg-logo="https://oxygenmusic.hu/logo192.png" group-title="Hungary",Oxygen The 80s Hits
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://oxygenmusic.hu:8443/oxygenthe80shits
 
-#EXTINF:-1 tvg-id="Hungary_7" tvg-name="Retro Rádió" tvg-logo="https://retroradio.hu/wp-content/themes/retroradio/assets/dist/img/favicon/android-icon-192x192.png" group-title="Hungary",Retro Rádió
+#EXTINF:-1 tvg-id="Hungary_5" tvg-name="Retro Rádió" tvg-logo="https://retroradio.hu/wp-content/themes/retroradio/assets/dist/img/favicon/android-icon-192x192.png" group-title="Hungary",Retro Rádió
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://icast.connectmedia.hu/5001/live.mp3
 
-#EXTINF:-1 tvg-id="Hungary_8" tvg-name="MegaDance Rádió" tvg-logo="" group-title="Hungary",MegaDance Rádió
+#EXTINF:-1 tvg-id="Hungary_6" tvg-name="MegaDance Rádió" tvg-logo="" group-title="Hungary",MegaDance Rádió
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://megadanceradio.hopto.org:8000/livemega.mp3
 
-#EXTINF:-1 tvg-id="Hungary_9" tvg-name="Inforádió" tvg-logo="https://infostart.hu/images/apple-icon-120x120.png" group-title="Hungary",Inforádió
+#EXTINF:-1 tvg-id="Hungary_7" tvg-name="Inforádió" tvg-logo="https://infostart.hu/images/apple-icon-120x120.png" group-title="Hungary",Inforádió
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://stream.infostart.hu/lejatszo/index.html?sid=1
 
-#EXTINF:-1 tvg-id="Hungary_10" tvg-name="Sláger FM" tvg-logo="https://i.imgur.com/rku29tm.png" group-title="Hungary",Sláger FM
+#EXTINF:-1 tvg-id="Hungary_8" tvg-name="Sláger FM" tvg-logo="https://i.imgur.com/rku29tm.png" group-title="Hungary",Sláger FM
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://92.61.114.159:7812/slagerfm256.mp3
 
-#EXTINF:-1 tvg-id="Hungary_11" tvg-name="Dance Wave!" tvg-logo="https://dancewave.online/dw_logo.png" group-title="Hungary",Dance Wave!
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://dancewave.online/dance.ogg
-
-#EXTINF:-1 tvg-id="Hungary_12" tvg-name="Klubrádió 953" tvg-logo="https://www.klubradio.hu/static/frontend/imgs/KR-clean-logo.png" group-title="Hungary",Klubrádió 953
+#EXTINF:-1 tvg-id="Hungary_9" tvg-name="Klubrádió 953" tvg-logo="https://www.klubradio.hu/static/frontend/imgs/KR-clean-logo.png" group-title="Hungary",Klubrádió 953
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://a7.asurahosting.com:8160/radio.mp3
 
-#EXTINF:-1 tvg-id="Hungary_13" tvg-name="Oxygen Magyar Zene" tvg-logo="" group-title="Hungary",Oxygen Magyar Zene
+#EXTINF:-1 tvg-id="Hungary_10" tvg-name="Oxygen Magyar Zene" tvg-logo="" group-title="Hungary",Oxygen Magyar Zene
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://oxygenmusic.hu:8443/oxygenmagyarzene
 
-#EXTINF:-1 tvg-id="Hungary_14" tvg-name="Tilos Rádió" tvg-logo="http://tilos.hu/favicon.ico" group-title="Hungary",Tilos Rádió
+#EXTINF:-1 tvg-id="Hungary_11" tvg-name="Tilos Rádió" tvg-logo="http://tilos.hu/favicon.ico" group-title="Hungary",Tilos Rádió
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://stream.tilos.hu/tilos
 
-#EXTINF:-1 tvg-id="Hungary_15" tvg-name="Best FM" tvg-logo="" group-title="Hungary",Best FM
+#EXTINF:-1 tvg-id="Hungary_12" tvg-name="Best FM" tvg-logo="" group-title="Hungary",Best FM
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://stream.webthings.hu:8000/fm95-x-128.mp3
 
-#EXTINF:-1 tvg-id="Hungary_16" tvg-name="Poptarisznya" tvg-logo="" group-title="Hungary",Poptarisznya
+#EXTINF:-1 tvg-id="Hungary_13" tvg-name="Poptarisznya" tvg-logo="" group-title="Hungary",Poptarisznya
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://adas.poptarisznya.hu:8200/live.mp3
 
-#EXTINF:-1 tvg-id="Hungary_17" tvg-name="Laza Rádió (OGG 320 Kbps)" tvg-logo="" group-title="Hungary",Laza Rádió (OGG 320 Kbps)
+#EXTINF:-1 tvg-id="Hungary_14" tvg-name="Laza Rádió (OGG 320 Kbps)" tvg-logo="" group-title="Hungary",Laza Rádió (OGG 320 Kbps)
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://stream.lazaradio.com:8100/live.ogg
 
@@ -1742,10 +1734,6 @@ http://dreamsiteradiocp4.com:8046/stream
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://l3.itworkscdn.net/itwaudio/9012/stream
 
-#EXTINF:-1 tvg-id="Iraq_2" tvg-name="Waar Radio" tvg-logo="https://waarmedia.com/favicon.ico" group-title="Iraq",Waar Radio
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://streaming.radionomy.com/JamendoLounge
-
 #EXTINF:-1 tvg-id="" tvg-logo="" group-title="Islamic Republic Of Iran",Islamic Republic Of Iran
 #EXTGRP:Islamic Republic Of Iran
 
@@ -1852,7 +1840,7 @@ http://icestreaming.rai.it/2.mp3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://onair11.xdevel.com:8134/;stream.mp3
 
-#EXTINF:-1 tvg-id="Italy_7" tvg-name="Rai Radio 3" tvg-logo="" group-title="Italy",Rai Radio 3
+#EXTINF:-1 tvg-id="Italy_7" tvg-name="Rai Radio 3" tvg-logo="https://www.raicom.rai.it/wp-content/uploads/2021/12/RADIO3-1024x1024.jpg" group-title="Italy",Rai Radio 3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://icestreaming.rai.it/3.mp3
 
@@ -2289,11 +2277,7 @@ https://stream.live.vc.bbcmedia.co.uk/bbc_nepali_radio
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://stream.zenolive.com/wtuvp08xq1duv
 
-#EXTINF:-1 tvg-id="Nepal_4" tvg-name="Radio Nepal" tvg-logo="" group-title="Nepal",Radio Nepal
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://stream1.radionepal.gov.np/live/
-
-#EXTINF:-1 tvg-id="Nepal_5" tvg-name="Capital FM 92.4" tvg-logo="" group-title="Nepal",Capital FM 92.4
+#EXTINF:-1 tvg-id="Nepal_4" tvg-name="Capital FM 92.4" tvg-logo="" group-title="Nepal",Capital FM 92.4
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://streaming.softnep.net:8037/;
 
@@ -2516,6 +2500,10 @@ https://rs202-krk-cyfronet.rmfstream.pl/RMF24?aw_0_req.gdpr=false&aw_0_req.userC
 #EXTINF:-1 tvg-id="Poland_36" tvg-name="RMF24" tvg-logo="https://www.rmf24.pl/i/2022/favicon/apple-icon-120x120.png" group-title="Poland",RMF24
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://rmfstream1.interia.pl/rmf_24
+
+#EXTINF:-1 tvg-id="Poland_37" tvg-name="RMF Ballady" tvg-logo="http://www.rmfon.pl/assets/images/favicon/apple-touch-icon.png" group-title="Poland",RMF Ballady
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://195.150.20.7/NOSTALGIA
 
 #EXTINF:-1 tvg-id="" tvg-logo="" group-title="Portugal",Portugal
 #EXTGRP:Portugal
