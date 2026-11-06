@@ -1017,21 +1017,21 @@ http://icecast.radiofrance.fr/fipreggae-hifi.aac
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://direct.franceinfo.fr/live/franceinfo-lofi.mp3
 
-#EXTINF:-1 tvg-id="France_50" tvg-name="OUI FM" tvg-logo="https://bocir-prod-bucket.s3.amazonaws.com/radios/oui-fm/images/favicon.ico" group-title="France",OUI FM
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://ouifm.ice.infomaniak.ch/ouifm-high.mp3
-
-#EXTINF:-1 tvg-id="France_51" tvg-name="BFM Radio (128.mp3)" tvg-logo="https://www.bfmtv.com/android-icon-192x192.png" group-title="France",BFM Radio (128.mp3)
+#EXTINF:-1 tvg-id="France_50" tvg-name="BFM Radio (128.mp3)" tvg-logo="https://www.bfmtv.com/android-icon-192x192.png" group-title="France",BFM Radio (128.mp3)
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://audio.bfmtv.com/bfmradio_128.mp3
 
-#EXTINF:-1 tvg-id="France_52" tvg-name="Latina" tvg-logo="https://bocir-prod-bucket.s3.eu-west-1.amazonaws.com/radios/latina/images/favicon.ico" group-title="France",Latina
+#EXTINF:-1 tvg-id="France_51" tvg-name="OUI FM" tvg-logo="https://bocir-prod-bucket.s3.amazonaws.com/radios/oui-fm/images/favicon.ico" group-title="France",OUI FM
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://start-latina.ice.infomaniak.ch/start-latina-high.mp3
+https://ouifm.ice.infomaniak.ch/ouifm-high.mp3
 
-#EXTINF:-1 tvg-id="France_53" tvg-name="Europe 2" tvg-logo="https://www.europe2.fr/wp-content/themes/melty/europeradio/assets/images/favicons/favicon128.png" group-title="France",Europe 2
+#EXTINF:-1 tvg-id="France_52" tvg-name="Europe 2" tvg-logo="https://www.europe2.fr/wp-content/themes/melty/europeradio/assets/images/favicons/favicon128.png" group-title="France",Europe 2
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://europe2.lmn.fm/europe2.mp3
+
+#EXTINF:-1 tvg-id="France_53" tvg-name="Latina" tvg-logo="https://bocir-prod-bucket.s3.eu-west-1.amazonaws.com/radios/latina/images/favicon.ico" group-title="France",Latina
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://start-latina.ice.infomaniak.ch/start-latina-high.mp3
 
 #EXTINF:-1 tvg-id="France_54" tvg-name="Jazz Radio Piano Jazz" tvg-logo="https://www.jazzradio.fr/apple-touch-icon-120x120.png" group-title="France",Jazz Radio Piano Jazz
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -1127,13 +1127,13 @@ http://www.inforadio.de/live.m3u
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://st01.sslstream.dlf.de/dlf/01/128/mp3/stream.mp3?aggregator=web
 
-#EXTINF:-1 tvg-id="Germany_20" tvg-name="ROCK ANTENNE Classic Perlen" tvg-logo="http://www.rockantenne.de/logos/station-rock-antenne/apple-touch-icon.png" group-title="Germany",ROCK ANTENNE Classic Perlen
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://mp3channels.webradio.rockantenne.de/classic-perlen
-
-#EXTINF:-1 tvg-id="Germany_21" tvg-name="- 0 N - 70s on Radio" tvg-logo="https://www.0nradio.com/logos/0n-70s_600x600.jpg" group-title="Germany",- 0 N - 70s on Radio
+#EXTINF:-1 tvg-id="Germany_20" tvg-name="- 0 N - 70s on Radio" tvg-logo="https://www.0nradio.com/logos/0n-70s_600x600.jpg" group-title="Germany",- 0 N - 70s on Radio
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://0n-70s.radionetz.de/0n-70s.mp3
+
+#EXTINF:-1 tvg-id="Germany_21" tvg-name="ROCK ANTENNE Classic Perlen" tvg-logo="http://www.rockantenne.de/logos/station-rock-antenne/apple-touch-icon.png" group-title="Germany",ROCK ANTENNE Classic Perlen
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://mp3channels.webradio.rockantenne.de/classic-perlen
 
 #EXTINF:-1 tvg-id="Germany_22" tvg-name="Best Of Rock.FM Alternative Rock" tvg-logo="https://www.best-of-rock.fm/favicons/apple-touch-icon.png" group-title="Germany",Best Of Rock.FM Alternative Rock
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -1275,13 +1275,13 @@ https://0n-chillout.radionetz.de/0n-chillout.aac
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://www.ndr.de/resources/metadaten/audio/m3u/ndrinfo_hh.m3u
 
-#EXTINF:-1 tvg-id="Germany_57" tvg-name="Antenne Bayern - Top 40" tvg-logo="http://www.antenne.de/logos/station-antenne-bayern/apple-touch-icon.png" group-title="Germany",Antenne Bayern - Top 40
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://mp3channels.webradio.antenne.de/top-40
-
-#EXTINF:-1 tvg-id="Germany_58" tvg-name="RADIO BOB! Classic Rock" tvg-logo="" group-title="Germany",RADIO BOB! Classic Rock
+#EXTINF:-1 tvg-id="Germany_57" tvg-name="RADIO BOB! Classic Rock" tvg-logo="" group-title="Germany",RADIO BOB! Classic Rock
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://streams.radiobob.de/bob-classicrock/mp3-192/streams.radiobob.de/
+
+#EXTINF:-1 tvg-id="Germany_58" tvg-name="Antenne Bayern - Top 40" tvg-logo="http://www.antenne.de/logos/station-antenne-bayern/apple-touch-icon.png" group-title="Germany",Antenne Bayern - Top 40
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://mp3channels.webradio.antenne.de/top-40
 
 #EXTINF:-1 tvg-id="Germany_59" tvg-name="NDR Info (Schleswig-Holstein)" tvg-logo="http://www.ndr.de/favicon.ico" group-title="Germany",NDR Info (Schleswig-Holstein)
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -2011,13 +2011,13 @@ https://listen1.myradio24.com/5967
 #EXTINF:-1 tvg-id="" tvg-logo="" group-title="Latvia",Latvia
 #EXTGRP:Latvia
 
-#EXTINF:-1 tvg-id="Latvia_0" tvg-name="Ретро FM Рига (Retro FM)" tvg-logo="http://retrofm.lv/view/site/favicons/apple-touch-icon.png" group-title="Latvia",Ретро FM Рига (Retro FM)
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://live.retrofm.lv/retrofmlatvia
-
-#EXTINF:-1 tvg-id="Latvia_1" tvg-name="European Hit Radio - Dance" tvg-logo="" group-title="Latvia",European Hit Radio - Dance
+#EXTINF:-1 tvg-id="Latvia_0" tvg-name="European Hit Radio - Dance" tvg-logo="" group-title="Latvia",European Hit Radio - Dance
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://stream.europeanhitradio.com:8000/Stream_24.aac
+
+#EXTINF:-1 tvg-id="Latvia_1" tvg-name="Ретро FM Рига (Retro FM)" tvg-logo="http://retrofm.lv/view/site/favicons/apple-touch-icon.png" group-title="Latvia",Ретро FM Рига (Retro FM)
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://live.retrofm.lv/retrofmlatvia
 
 #EXTINF:-1 tvg-id="Latvia_2" tvg-name="Latvijas Radio 2" tvg-logo="http://lr2.lsm.lv/favicon/lr2-favicon-180x180.png" group-title="Latvia",Latvijas Radio 2
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -3292,13 +3292,13 @@ http://listen13.vdfm.ru:8000/dacha
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://icecast-zvezda.mediacdn.ru/radio/zvezda/zvezda_128
 
-#EXTINF:-1 tvg-id="The Russian Federation_50" tvg-name="Радио Родных Дорог" tvg-logo="" group-title="The Russian Federation",Радио Родных Дорог
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://stream1.radiord.ru:8000/live96.aac
-
-#EXTINF:-1 tvg-id="The Russian Federation_51" tvg-name="Соловьёв LIVE" tvg-logo="" group-title="The Russian Federation",Соловьёв LIVE
+#EXTINF:-1 tvg-id="The Russian Federation_50" tvg-name="Соловьёв LIVE" tvg-logo="" group-title="The Russian Federation",Соловьёв LIVE
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://solovievfm.hostingradio.ru/solovievfm128.aacp
+
+#EXTINF:-1 tvg-id="The Russian Federation_51" tvg-name="Радио Родных Дорог" tvg-logo="" group-title="The Russian Federation",Радио Родных Дорог
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://stream1.radiord.ru:8000/live96.aac
 
 #EXTINF:-1 tvg-id="The Russian Federation_52" tvg-name="HIT FM" tvg-logo="http://hitfm.ru/apple-icon.png?b1d3d31b1e6c8f8f" group-title="The Russian Federation",HIT FM
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -4020,13 +4020,13 @@ https://dc4.serverse.com/proxy/pearlfm/stream/1/
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://195.95.206.17/HitFM
 
-#EXTINF:-1 tvg-id="Ukraine_1" tvg-name="Kiss FM 106.5" tvg-logo="" group-title="Ukraine",Kiss FM 106.5
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://online.kissfm.ua/KissFM
-
-#EXTINF:-1 tvg-id="Ukraine_2" tvg-name="Люкс FМ 103.1" tvg-logo="https://lux.fm/favicons/apple-touch-icon.png" group-title="Ukraine",Люкс FМ 103.1
+#EXTINF:-1 tvg-id="Ukraine_1" tvg-name="Люкс FМ 103.1" tvg-logo="https://lux.fm/favicons/apple-touch-icon.png" group-title="Ukraine",Люкс FМ 103.1
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://icecastdc.luxnet.ua/lux_mp3_128
+
+#EXTINF:-1 tvg-id="Ukraine_2" tvg-name="Kiss FM 106.5" tvg-logo="" group-title="Ukraine",Kiss FM 106.5
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://online.kissfm.ua/KissFM
 
 #EXTINF:-1 tvg-id="Ukraine_3" tvg-name="Радио НВ" tvg-logo="https://d3e54v103j8qbb.cloudfront.net/static/designer_favicon.5ea478d03e.png" group-title="Ukraine",Радио НВ
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
