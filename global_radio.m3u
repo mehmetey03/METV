@@ -1037,13 +1037,6 @@ http://start-latina.ice.infomaniak.ch/start-latina-high.mp3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://jzr-piano.ice.infomaniak.ch/jzr-piano.mp3
 
-#EXTINF:-1 tvg-id="" tvg-logo="" group-title="Georgia",Georgia
-#EXTGRP:Georgia
-
-#EXTINF:-1 tvg-id="Georgia_0" tvg-name="Radio Amra" tvg-logo="" group-title="Georgia",Radio Amra
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://streamer.radio.co/s34b5469e0/listen
-
 #EXTINF:-1 tvg-id="" tvg-logo="" group-title="Germany",Germany
 #EXTGRP:Germany
 
@@ -1127,13 +1120,13 @@ http://www.inforadio.de/live.m3u
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://st01.sslstream.dlf.de/dlf/01/128/mp3/stream.mp3?aggregator=web
 
-#EXTINF:-1 tvg-id="Germany_20" tvg-name="- 0 N - 70s on Radio" tvg-logo="https://www.0nradio.com/logos/0n-70s_600x600.jpg" group-title="Germany",- 0 N - 70s on Radio
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://0n-70s.radionetz.de/0n-70s.mp3
-
-#EXTINF:-1 tvg-id="Germany_21" tvg-name="ROCK ANTENNE Classic Perlen" tvg-logo="http://www.rockantenne.de/logos/station-rock-antenne/apple-touch-icon.png" group-title="Germany",ROCK ANTENNE Classic Perlen
+#EXTINF:-1 tvg-id="Germany_20" tvg-name="ROCK ANTENNE Classic Perlen" tvg-logo="http://www.rockantenne.de/logos/station-rock-antenne/apple-touch-icon.png" group-title="Germany",ROCK ANTENNE Classic Perlen
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://mp3channels.webradio.rockantenne.de/classic-perlen
+
+#EXTINF:-1 tvg-id="Germany_21" tvg-name="- 0 N - 70s on Radio" tvg-logo="https://www.0nradio.com/logos/0n-70s_600x600.jpg" group-title="Germany",- 0 N - 70s on Radio
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://0n-70s.radionetz.de/0n-70s.mp3
 
 #EXTINF:-1 tvg-id="Germany_22" tvg-name="Best Of Rock.FM Alternative Rock" tvg-logo="https://www.best-of-rock.fm/favicons/apple-touch-icon.png" group-title="Germany",Best Of Rock.FM Alternative Rock
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -1330,6 +1323,10 @@ http://stream.laut.fm/acidjazz
 #EXTINF:-1 tvg-id="Germany_70" tvg-name="GAYFM" tvg-logo="http://www.gayfm.de/favicon.png" group-title="Germany",GAYFM
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://stream.gayfm.de/
+
+#EXTINF:-1 tvg-id="Germany_71" tvg-name="electronic music club" tvg-logo="" group-title="Germany",electronic music club
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://stream.laut.fm/emc
 
 #EXTINF:-1 tvg-id="" tvg-logo="" group-title="Ghana",Ghana
 #EXTGRP:Ghana
@@ -3744,13 +3741,13 @@ https://liveaudio.lamusica.com/MIA_WCMQ_icy
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://www.101smoothjazz.com/101-mellowmix.m3u
 
-#EXTINF:-1 tvg-id="The United States Of America_56" tvg-name="The Jazz Groove - East" tvg-logo="" group-title="The United States Of America",The Jazz Groove - East
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://east-mp3-128.streamthejazzgroove.com/stream
-
-#EXTINF:-1 tvg-id="The United States Of America_57" tvg-name="Fox News Radio" tvg-logo="https://static.foxnews.com/radio.foxnews.com/content/uploads/2017/10/default_logo-150x150.png" group-title="The United States Of America",Fox News Radio
+#EXTINF:-1 tvg-id="The United States Of America_56" tvg-name="Fox News Radio" tvg-logo="https://static.foxnews.com/radio.foxnews.com/content/uploads/2017/10/default_logo-150x150.png" group-title="The United States Of America",Fox News Radio
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://live.amperwave.net/direct/foxnewsradio-foxnewsradioaac-imc?source=fnr.web
+
+#EXTINF:-1 tvg-id="The United States Of America_57" tvg-name="The Jazz Groove - East" tvg-logo="" group-title="The United States Of America",The Jazz Groove - East
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://east-mp3-128.streamthejazzgroove.com/stream
 
 #EXTINF:-1 tvg-id="The United States Of America_58" tvg-name="98.1 KBEAR" tvg-logo="https://pwa.tunegenie.com/kyyaam/icon-192.png" group-title="The United States Of America",98.1 KBEAR
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -4020,13 +4017,13 @@ https://dc4.serverse.com/proxy/pearlfm/stream/1/
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://195.95.206.17/HitFM
 
-#EXTINF:-1 tvg-id="Ukraine_1" tvg-name="Люкс FМ 103.1" tvg-logo="https://lux.fm/favicons/apple-touch-icon.png" group-title="Ukraine",Люкс FМ 103.1
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://icecastdc.luxnet.ua/lux_mp3_128
-
-#EXTINF:-1 tvg-id="Ukraine_2" tvg-name="Kiss FM 106.5" tvg-logo="" group-title="Ukraine",Kiss FM 106.5
+#EXTINF:-1 tvg-id="Ukraine_1" tvg-name="Kiss FM 106.5" tvg-logo="" group-title="Ukraine",Kiss FM 106.5
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://online.kissfm.ua/KissFM
+
+#EXTINF:-1 tvg-id="Ukraine_2" tvg-name="Люкс FМ 103.1" tvg-logo="https://lux.fm/favicons/apple-touch-icon.png" group-title="Ukraine",Люкс FМ 103.1
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://icecastdc.luxnet.ua/lux_mp3_128
 
 #EXTINF:-1 tvg-id="Ukraine_3" tvg-name="Радио НВ" tvg-logo="https://d3e54v103j8qbb.cloudfront.net/static/designer_favicon.5ea478d03e.png" group-title="Ukraine",Радио НВ
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
