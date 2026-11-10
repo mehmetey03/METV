@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 #  AtomSporTV  –  Canlı Maç + TV Kanalları M3U
 # ─────────────────────────────────────────────
 START_URL    = "https://url24.link/AtomSporTV"
-MATCHES_URL  = "https://teletv3.top/load/matches.php"
+MATCHES_URL  = "https://teletv15.top/load/matches.php"
 LOGO_BASE    = "https://im.mackolik.com/img/logo/buyuk"
 OUTPUT_FILE  = "atom_mac.m3u"
 
