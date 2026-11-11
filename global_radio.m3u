@@ -3237,13 +3237,13 @@ https://icecast-radiovanya.cdnvideo.ru/radiovanya
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://dfm-disc90.hostingradio.ru/disc9096.aacp
 
-#EXTINF:-1 tvg-id="The Russian Federation_2" tvg-name="Радио Русские Песни" tvg-logo="" group-title="The Russian Federation",Радио Русские Песни
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://listen.rusongs.ru/ru-mp3-128
-
-#EXTINF:-1 tvg-id="The Russian Federation_3" tvg-name="DFM RUSSIAN DANCE" tvg-logo="https://dfm.ru/uploads/favicon.ico" group-title="The Russian Federation",DFM RUSSIAN DANCE
+#EXTINF:-1 tvg-id="The Russian Federation_2" tvg-name="DFM RUSSIAN DANCE" tvg-logo="https://dfm.ru/uploads/favicon.ico" group-title="The Russian Federation",DFM RUSSIAN DANCE
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://dfm-dfmrusdance.hostingradio.ru/dfmrusdance96.aacp?0.9987259013359274
+
+#EXTINF:-1 tvg-id="The Russian Federation_3" tvg-name="Радио Русские Песни" tvg-logo="" group-title="The Russian Federation",Радио Русские Песни
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://listen.rusongs.ru/ru-mp3-128
 
 #EXTINF:-1 tvg-id="The Russian Federation_4" tvg-name="Шансон Радио" tvg-logo="" group-title="The Russian Federation",Шансон Радио
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -4117,13 +4117,13 @@ https://online-news.radioplayer.ua/RadioNews
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://online.radioroks.ua/RadioROKS_HD
 
-#EXTINF:-1 tvg-id="Ukraine_16" tvg-name="Brokenbeats" tvg-logo="http://brokenbeats.net/favicon.ico" group-title="Ukraine",Brokenbeats
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://stream.brokenbeats.net/tune
-
-#EXTINF:-1 tvg-id="Ukraine_17" tvg-name="Закарпаття FM" tvg-logo="http://zakarpattyafm.com.ua/wp-content/themes/zakfm/ico.png" group-title="Ukraine",Закарпаття FM
+#EXTINF:-1 tvg-id="Ukraine_16" tvg-name="Закарпаття FM" tvg-logo="http://zakarpattyafm.com.ua/wp-content/themes/zakfm/ico.png" group-title="Ukraine",Закарпаття FM
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://195.234.148.51:8000/;
+
+#EXTINF:-1 tvg-id="Ukraine_17" tvg-name="Brokenbeats" tvg-logo="http://brokenbeats.net/favicon.ico" group-title="Ukraine",Brokenbeats
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://stream.brokenbeats.net/tune
 
 #EXTINF:-1 tvg-id="Ukraine_18" tvg-name="Lviv Wave Radio" tvg-logo="" group-title="Ukraine",Lviv Wave Radio
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
