@@ -940,6 +940,13 @@ https://stream.zeno.fm/72y045deqeruv
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://node-34.zeno.fm/hubm64kkr2zuv
 
+#EXTINF:-1 tvg-id="" tvg-logo="" group-title="Finland",Finland
+#EXTGRP:Finland
+
+#EXTINF:-1 tvg-id="Finland_0" tvg-name="Christmas FM Non-stop!" tvg-logo="https://zip.wf/chfm.jpg" group-title="Finland",Christmas FM Non-stop!
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://xmas-node1.zip.wf/live.aac
+
 #EXTINF:-1 tvg-id="" tvg-logo="" group-title="France",France
 #EXTGRP:France
 
@@ -1305,13 +1312,13 @@ https://0n-indie.radionetz.de/0n-indie.mp3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://dispatcher.rndfnk.com/br/br3/live/mp3/mid
 
-#EXTINF:-1 tvg-id="Germany_38" tvg-name="- 0 N - Smooth Jazz on Radio" tvg-logo="https://www.0nradio.com/logos/0n-smooth-jazz_600x600.jpg" group-title="Germany",- 0 N - Smooth Jazz on Radio
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://0n-smoothjazz.radionetz.de/0n-smoothjazz.aac
-
-#EXTINF:-1 tvg-id="Germany_39" tvg-name="RADIO BOB! BOBs Alternative Rock" tvg-logo="" group-title="Germany",RADIO BOB! BOBs Alternative Rock
+#EXTINF:-1 tvg-id="Germany_38" tvg-name="RADIO BOB! BOBs Alternative Rock" tvg-logo="" group-title="Germany",RADIO BOB! BOBs Alternative Rock
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://streams.radiobob.de/bob-alternative/mp3-192/streams.radiobob.de/
+
+#EXTINF:-1 tvg-id="Germany_39" tvg-name="- 0 N - Smooth Jazz on Radio" tvg-logo="https://www.0nradio.com/logos/0n-smooth-jazz_600x600.jpg" group-title="Germany",- 0 N - Smooth Jazz on Radio
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://0n-smoothjazz.radionetz.de/0n-smoothjazz.aac
 
 #EXTINF:-1 tvg-id="Germany_40" tvg-name="98.8 Kiss FM" tvg-logo="https://upload.kissfm.de/production/static/1699276434696/icons/icon_64.be8y2280000.png" group-title="Germany",98.8 Kiss FM
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -1624,13 +1631,13 @@ http://adas.poptarisznya.hu:8200/oldies.mp3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://mr-stream.mediaconnect.hu/4747/mr7.aac
 
-#EXTINF:-1 tvg-id="Hungary_14" tvg-name="Oxygen Classic Rock" tvg-logo="https://oxygenmusic.hu/logo192.png" group-title="Hungary",Oxygen Classic Rock
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://oxygenmusic.hu:8443/oxygenclassicrock
-
-#EXTINF:-1 tvg-id="Hungary_15" tvg-name="Bartók Rádió" tvg-logo="" group-title="Hungary",Bartók Rádió
+#EXTINF:-1 tvg-id="Hungary_14" tvg-name="Bartók Rádió" tvg-logo="" group-title="Hungary",Bartók Rádió
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://mr-stream.mediaconnect.hu/4742/mr3hq.mp3
+
+#EXTINF:-1 tvg-id="Hungary_15" tvg-name="Oxygen Classic Rock" tvg-logo="https://oxygenmusic.hu/logo192.png" group-title="Hungary",Oxygen Classic Rock
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://oxygenmusic.hu:8443/oxygenclassicrock
 
 #EXTINF:-1 tvg-id="Hungary_16" tvg-name="Danubius Rádió" tvg-logo="https://www.danubiusradio.hu/logo192.png" group-title="Hungary",Danubius Rádió
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -2074,13 +2081,13 @@ https://sr2.inmystream.info:8032/listen.m3u
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://icestreaming.rai.it/5.mp3
 
-#EXTINF:-1 tvg-id="Italy_30" tvg-name="Radio 105 - Zoo Radio" tvg-logo="" group-title="Italy",Radio 105 - Zoo Radio
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://icy.unitedradio.it/105Zoo.mp3
-
-#EXTINF:-1 tvg-id="Italy_31" tvg-name="ITALIA Italia 80" tvg-logo="" group-title="Italy",ITALIA Italia 80
+#EXTINF:-1 tvg-id="Italy_30" tvg-name="ITALIA Italia 80" tvg-logo="" group-title="Italy",ITALIA Italia 80
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://icy.unitedradio.it/um016.mp3
+
+#EXTINF:-1 tvg-id="Italy_31" tvg-name="Radio 105 - Zoo Radio" tvg-logo="" group-title="Italy",Radio 105 - Zoo Radio
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://icy.unitedradio.it/105Zoo.mp3
 
 #EXTINF:-1 tvg-id="Italy_32" tvg-name="MUSIC STAR Roger Waters - Pink Floyd" tvg-logo="" group-title="Italy",MUSIC STAR Roger Waters - Pink Floyd
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -2146,13 +2153,13 @@ https://lux-radio.com:8015/stream
 #EXTINF:-1 tvg-id="" tvg-logo="" group-title="Latvia",Latvia
 #EXTGRP:Latvia
 
-#EXTINF:-1 tvg-id="Latvia_0" tvg-name="European Hit Radio - Dance" tvg-logo="" group-title="Latvia",European Hit Radio - Dance
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://stream.europeanhitradio.com:8000/Stream_24.aac
-
-#EXTINF:-1 tvg-id="Latvia_1" tvg-name="Ретро FM Рига (Retro FM)" tvg-logo="http://retrofm.lv/view/site/favicons/apple-touch-icon.png" group-title="Latvia",Ретро FM Рига (Retro FM)
+#EXTINF:-1 tvg-id="Latvia_0" tvg-name="Ретро FM Рига (Retro FM)" tvg-logo="http://retrofm.lv/view/site/favicons/apple-touch-icon.png" group-title="Latvia",Ретро FM Рига (Retro FM)
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://live.retrofm.lv/retrofmlatvia
+
+#EXTINF:-1 tvg-id="Latvia_1" tvg-name="European Hit Radio - Dance" tvg-logo="" group-title="Latvia",European Hit Radio - Dance
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://stream.europeanhitradio.com:8000/Stream_24.aac
 
 #EXTINF:-1 tvg-id="Latvia_2" tvg-name="Latvijas Radio 2" tvg-logo="http://lr2.lsm.lv/favicon/lr2-favicon-180x180.png" group-title="Latvia",Latvijas Radio 2
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -4035,10 +4042,6 @@ https://radio.mosaiquefm.net/mosalive
 #EXTINF:-1 tvg-id="Tunisia_17" tvg-name="Mosaique FM DJ" tvg-logo="" group-title="Tunisia",Mosaique FM DJ
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://radio.mosaiquefm.net/mosadj
-
-#EXTINF:-1 tvg-id="Tunisia_18" tvg-name="Radio Misk" tvg-logo="https://www.misk.art/assets/img/logo_noir.png" group-title="Tunisia",Radio Misk
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://live.misk.art/stream
 
 #EXTINF:-1 tvg-id="" tvg-logo="" group-title="Uganda",Uganda
 #EXTGRP:Uganda
