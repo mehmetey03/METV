@@ -1142,13 +1142,13 @@ https://jazz-wr17.ice.infomaniak.ch/jazz-wr17-128.mp3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://direct.fipradio.fr/live/fip-webradio8.mp3
 
-#EXTINF:-1 tvg-id="France_48" tvg-name="Generations Reggae" tvg-logo="https://generations.fr/apple-touch-icon-120x120.png" group-title="France",Generations Reggae
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://generations-caraibes.ice.infomaniak.ch/generations-caraibes-high.mp3
-
-#EXTINF:-1 tvg-id="France_49" tvg-name="RTL" tvg-logo="https://duckduckgo.com/i/035a5e15d396c67a.png" group-title="France",RTL
+#EXTINF:-1 tvg-id="France_48" tvg-name="RTL" tvg-logo="https://duckduckgo.com/i/035a5e15d396c67a.png" group-title="France",RTL
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://live.m6radio.quortex.io/webM89Hc99XApzgfhXNX8ASN5/grouprtl/national/short/audio-64000/index.m3u8
+
+#EXTINF:-1 tvg-id="France_49" tvg-name="Generations Reggae" tvg-logo="https://generations.fr/apple-touch-icon-120x120.png" group-title="France",Generations Reggae
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://generations-caraibes.ice.infomaniak.ch/generations-caraibes-high.mp3
 
 #EXTINF:-1 tvg-id="France_50" tvg-name="Algorythme Drum & Bass" tvg-logo="https://www.algorythmeradio.com/assets/images/icon-algo.ico" group-title="France",Algorythme Drum & Bass
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -1328,13 +1328,13 @@ https://0n-smoothjazz.radionetz.de/0n-smoothjazz.aac
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://stream.kissfm.de/kissfm/mp3-128/internetradio/
 
-#EXTINF:-1 tvg-id="Germany_41" tvg-name="- 0 N - Chillout on Radio" tvg-logo="https://www.0nradio.com/logos/0n-chillout_600x600.jpg" group-title="Germany",- 0 N - Chillout on Radio
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://0n-chillout.radionetz.de/0n-chillout.aac
-
-#EXTINF:-1 tvg-id="Germany_42" tvg-name="NDR Info (Hamburg)" tvg-logo="https://www.ndr.de/apple-touch-icon-120x120.png" group-title="Germany",NDR Info (Hamburg)
+#EXTINF:-1 tvg-id="Germany_41" tvg-name="NDR Info (Hamburg)" tvg-logo="https://www.ndr.de/apple-touch-icon-120x120.png" group-title="Germany",NDR Info (Hamburg)
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://www.ndr.de/resources/metadaten/audio/m3u/ndrinfo_hh.m3u
+
+#EXTINF:-1 tvg-id="Germany_42" tvg-name="- 0 N - Chillout on Radio" tvg-logo="https://www.0nradio.com/logos/0n-chillout_600x600.jpg" group-title="Germany",- 0 N - Chillout on Radio
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://0n-chillout.radionetz.de/0n-chillout.aac
 
 #EXTINF:-1 tvg-id="Germany_43" tvg-name="RADIO BOB! Classic Rock" tvg-logo="" group-title="Germany",RADIO BOB! Classic Rock
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -1981,21 +1981,21 @@ http://icecast.unitedradio.it/Radio105.mp3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://icestreaming.rai.it/3.mp3
 
-#EXTINF:-1 tvg-id="Italy_5" tvg-name="Radio 80" tvg-logo="https://upload.wikimedia.org/wikipedia/it/1/1b/Radio80.jpg" group-title="Italy",Radio 80
+#EXTINF:-1 tvg-id="Italy_5" tvg-name="Radio Armisa" tvg-logo="https://armisa.it/assets/favicon/android-chrome-512x512.png" group-title="Italy",Radio Armisa
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://onair.armisa.it/listen/armisa/radio.mp3
+
+#EXTINF:-1 tvg-id="Italy_6" tvg-name="Radio 80" tvg-logo="https://upload.wikimedia.org/wikipedia/it/1/1b/Radio80.jpg" group-title="Italy",Radio 80
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://str01.fluidstream.net:7020/;stream.mp3
 
-#EXTINF:-1 tvg-id="Italy_6" tvg-name="Virgin Radio Rock '70" tvg-logo="" group-title="Italy",Virgin Radio Rock '70
+#EXTINF:-1 tvg-id="Italy_7" tvg-name="Virgin Radio Rock '70" tvg-logo="" group-title="Italy",Virgin Radio Rock '70
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://icy.unitedradio.it/VirginRock70.mp3
 
-#EXTINF:-1 tvg-id="Italy_7" tvg-name="Virgin Radio Rock '80" tvg-logo="" group-title="Italy",Virgin Radio Rock '80
+#EXTINF:-1 tvg-id="Italy_8" tvg-name="Virgin Radio Rock '80" tvg-logo="" group-title="Italy",Virgin Radio Rock '80
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://icy.unitedradio.it/VirginRock80.mp3
-
-#EXTINF:-1 tvg-id="Italy_8" tvg-name="Radio Armisa" tvg-logo="https://armisa.it/assets/favicon/android-chrome-512x512.png" group-title="Italy",Radio Armisa
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://onair.armisa.it/listen/armisa/radio.mp3
 
 #EXTINF:-1 tvg-id="Italy_9" tvg-name="Radio Studio Più - HQ" tvg-logo="https://studiopiu.net/offline/img/icona.png" group-title="Italy",Radio Studio Più - HQ
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -2566,13 +2566,13 @@ http://31.192.216.8/rmf_fm
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://stream3.polskieradio.pl:8906/;stream
 
-#EXTINF:-1 tvg-id="Poland_15" tvg-name="Radio Szczecin (128K MP3)" tvg-logo="http://radioszczecin.pl/assets/favicon/apple-touch-icon.png" group-title="Poland",Radio Szczecin (128K MP3)
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://stream4.nadaje.com:11986/prs
-
-#EXTINF:-1 tvg-id="Poland_16" tvg-name="Antyradio" tvg-logo="https://gfx.antyradio.pl/design/antyradio/src/images/favicon/favicon_180x180.png" group-title="Poland",Antyradio
+#EXTINF:-1 tvg-id="Poland_15" tvg-name="Antyradio" tvg-logo="https://gfx.antyradio.pl/design/antyradio/src/images/favicon/favicon_180x180.png" group-title="Poland",Antyradio
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://n-4-4.dcs.redcdn.pl/sc/o2/Eurozet/live/antyradio.livx
+
+#EXTINF:-1 tvg-id="Poland_16" tvg-name="Radio Szczecin (128K MP3)" tvg-logo="http://radioszczecin.pl/assets/favicon/apple-touch-icon.png" group-title="Poland",Radio Szczecin (128K MP3)
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://stream4.nadaje.com:11986/prs
 
 #EXTINF:-1 tvg-id="Poland_17" tvg-name="RMF 80s" tvg-logo="http://www.rmfon.pl/assets/images/favicon/apple-touch-icon.png" group-title="Poland",RMF 80s
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
