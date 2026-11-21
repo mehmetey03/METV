@@ -1264,13 +1264,13 @@ http://mp3channels.webradio.antenne.de/classic-rock-live
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://stream.laut.fm/total-instrumental
 
-#EXTINF:-1 tvg-id="Germany_25" tvg-name="__TRANCE__ by rautemusik (rm.fm)" tvg-logo="https://www.rm.fm/favicon.ico" group-title="Germany",__TRANCE__ by rautemusik (rm.fm)
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://trance-high.rautemusik.fm/?ref=radiobrowser
-
-#EXTINF:-1 tvg-id="Germany_26" tvg-name="MDR Aktuell" tvg-logo="https://cdn.mdr.de/resources/global/img/mdrde/favicons/apple-icon-120x120.png" group-title="Germany",MDR Aktuell
+#EXTINF:-1 tvg-id="Germany_25" tvg-name="MDR Aktuell" tvg-logo="https://cdn.mdr.de/resources/global/img/mdrde/favicons/apple-icon-120x120.png" group-title="Germany",MDR Aktuell
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://avw.mdr.de/streams/284340-0_mp3_high.m3u
+
+#EXTINF:-1 tvg-id="Germany_26" tvg-name="__TRANCE__ by rautemusik (rm.fm)" tvg-logo="https://www.rm.fm/favicon.ico" group-title="Germany",__TRANCE__ by rautemusik (rm.fm)
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://trance-high.rautemusik.fm/?ref=radiobrowser
 
 #EXTINF:-1 tvg-id="Germany_27" tvg-name="Hit Radio FFH - 80er" tvg-logo="" group-title="Germany",Hit Radio FFH - 80er
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -2685,13 +2685,13 @@ http://live.top80.fm:8086/
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://centova.radio.com.pt:9496/;
 
-#EXTINF:-1 tvg-id="Portugal_9" tvg-name="Deep in Radio" tvg-logo="" group-title="Portugal",Deep in Radio
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://s3.viastreaming.net:8525/
-
-#EXTINF:-1 tvg-id="Portugal_10" tvg-name="4Drive Jazz" tvg-logo="https://www.wix.com/favicon.ico" group-title="Portugal",4Drive Jazz
+#EXTINF:-1 tvg-id="Portugal_9" tvg-name="4Drive Jazz" tvg-logo="https://www.wix.com/favicon.ico" group-title="Portugal",4Drive Jazz
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://radio.streemlion.com:1150/stream
+
+#EXTINF:-1 tvg-id="Portugal_10" tvg-name="Deep in Radio" tvg-logo="" group-title="Portugal",Deep in Radio
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://s3.viastreaming.net:8525/
 
 #EXTINF:-1 tvg-id="Portugal_11" tvg-name="Rádio Nova Era" tvg-logo="http://www.radionovaera.pt/resources/img/favicon/apple-icon-120x120.png" group-title="Portugal",Rádio Nova Era
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -3108,13 +3108,13 @@ http://strm112.1.fm/rockclassics_mobile_mp3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://strm112.1.fm/bombaybeats_mobile_mp3
 
-#EXTINF:-1 tvg-id="Switzerland_7" tvg-name="1.FM - High Voltage Radio" tvg-logo="" group-title="Switzerland",1.FM - High Voltage Radio
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://strm112.1.fm/highvoltage_mobile_mp3
-
-#EXTINF:-1 tvg-id="Switzerland_8" tvg-name="1.FM - Deep Techno & Deep House" tvg-logo="" group-title="Switzerland",1.FM - Deep Techno & Deep House
+#EXTINF:-1 tvg-id="Switzerland_7" tvg-name="1.FM - Deep Techno & Deep House" tvg-logo="" group-title="Switzerland",1.FM - Deep Techno & Deep House
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://strm112.1.fm/deeptech_mobile_mp3
+
+#EXTINF:-1 tvg-id="Switzerland_8" tvg-name="1.FM - High Voltage Radio" tvg-logo="" group-title="Switzerland",1.FM - High Voltage Radio
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://strm112.1.fm/highvoltage_mobile_mp3
 
 #EXTINF:-1 tvg-id="Switzerland_9" tvg-name="1.FM - Alternative Rock X Hits Radio" tvg-logo="" group-title="Switzerland",1.FM - Alternative Rock X Hits Radio
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
