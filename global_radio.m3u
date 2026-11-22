@@ -1138,13 +1138,13 @@ http://213.251.190.165/pulstranceHD.mp3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://jazz-wr17.ice.infomaniak.ch/jazz-wr17-128.mp3
 
-#EXTINF:-1 tvg-id="France_47" tvg-name="FIP autour de l’électro" tvg-logo="http://www.fipradio.fr/dist/favicons/logo-120.png" group-title="France",FIP autour de l’électro
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://direct.fipradio.fr/live/fip-webradio8.mp3
-
-#EXTINF:-1 tvg-id="France_48" tvg-name="RTL" tvg-logo="https://duckduckgo.com/i/035a5e15d396c67a.png" group-title="France",RTL
+#EXTINF:-1 tvg-id="France_47" tvg-name="RTL" tvg-logo="https://duckduckgo.com/i/035a5e15d396c67a.png" group-title="France",RTL
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://live.m6radio.quortex.io/webM89Hc99XApzgfhXNX8ASN5/grouprtl/national/short/audio-64000/index.m3u8
+
+#EXTINF:-1 tvg-id="France_48" tvg-name="FIP autour de l’électro" tvg-logo="http://www.fipradio.fr/dist/favicons/logo-120.png" group-title="France",FIP autour de l’électro
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://direct.fipradio.fr/live/fip-webradio8.mp3
 
 #EXTINF:-1 tvg-id="France_49" tvg-name="Generations Reggae" tvg-logo="https://generations.fr/apple-touch-icon-120x120.png" group-title="France",Generations Reggae
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -1388,13 +1388,13 @@ http://www.ndr.de/resources/metadaten/audio/m3u/ndrinfo.m3u
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://stream.berliner-rundfunk.de/brf/mp3-128/internetradio/
 
-#EXTINF:-1 tvg-id="Germany_56" tvg-name="Sunshine Live - EDM" tvg-logo="" group-title="Germany",Sunshine Live - EDM
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://stream.sunshine-live.de/edm/mp3-192/stream.sunshine-live.de/
-
-#EXTINF:-1 tvg-id="Germany_57" tvg-name="deutschrap" tvg-logo="" group-title="Germany",deutschrap
+#EXTINF:-1 tvg-id="Germany_56" tvg-name="deutschrap" tvg-logo="" group-title="Germany",deutschrap
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://stream.laut.fm/deutschrap
+
+#EXTINF:-1 tvg-id="Germany_57" tvg-name="Sunshine Live - EDM" tvg-logo="" group-title="Germany",Sunshine Live - EDM
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://stream.sunshine-live.de/edm/mp3-192/stream.sunshine-live.de/
 
 #EXTINF:-1 tvg-id="Germany_58" tvg-name="Rock Antenne Heavy Metal" tvg-logo="https://cdn.onlineradiobox.com/img/l/1/34491.v5.png" group-title="Germany",Rock Antenne Heavy Metal
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -1416,13 +1416,13 @@ https://breakz-high.rautemusik.fm/?ref=radiobrowser-top100-djcharts
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://0n-2000s.radionetz.de/0n-2000s.mp3
 
-#EXTINF:-1 tvg-id="Germany_63" tvg-name="Sunshine Live - Festival" tvg-logo="" group-title="Germany",Sunshine Live - Festival
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://stream.sunshine-live.de/festival/mp3-192/stream.sunshine-live.de/
-
-#EXTINF:-1 tvg-id="Germany_64" tvg-name="Klassik Radio - Live" tvg-logo="https://klassikradio.de/img/ms-mediumtile.png" group-title="Germany",Klassik Radio - Live
+#EXTINF:-1 tvg-id="Germany_63" tvg-name="Klassik Radio - Live" tvg-logo="https://klassikradio.de/img/ms-mediumtile.png" group-title="Germany",Klassik Radio - Live
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://live.streams.klassikradio.de/klassikradio-deutschland/stream/mp3
+
+#EXTINF:-1 tvg-id="Germany_64" tvg-name="Sunshine Live - Festival" tvg-logo="" group-title="Germany",Sunshine Live - Festival
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://stream.sunshine-live.de/festival/mp3-192/stream.sunshine-live.de/
 
 #EXTINF:-1 tvg-id="Germany_65" tvg-name="Deutschlandfunk Kultur | DLF | MP3 128k" tvg-logo="https://www.deutschlandfunkkultur.de/static/img/deutschlandfunk_kultur/icons/apple-touch-icon-128x128.png" group-title="Germany",Deutschlandfunk Kultur | DLF | MP3 128k
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -1444,13 +1444,13 @@ http://streams.90s90s.de/eurodance/mp3-128/radiode/
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://stream.klassikradio.de/mozart/mp3-128/vtuner/
 
-#EXTINF:-1 tvg-id="Germany_70" tvg-name="Sunshine Live - House" tvg-logo="" group-title="Germany",Sunshine Live - House
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://stream.sunshine-live.de/house/mp3-192/stream.sunshine-live.de/
-
-#EXTINF:-1 tvg-id="Germany_71" tvg-name="- 0 N - 60s on Radio" tvg-logo="https://www.0nradio.com/logos/0n-60s_600x600.jpg" group-title="Germany",- 0 N - 60s on Radio
+#EXTINF:-1 tvg-id="Germany_70" tvg-name="- 0 N - 60s on Radio" tvg-logo="https://www.0nradio.com/logos/0n-60s_600x600.jpg" group-title="Germany",- 0 N - 60s on Radio
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://0n-60s.radionetz.de/0n-60s.mp3
+
+#EXTINF:-1 tvg-id="Germany_71" tvg-name="Sunshine Live - House" tvg-logo="" group-title="Germany",Sunshine Live - House
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://stream.sunshine-live.de/house/mp3-192/stream.sunshine-live.de/
 
 #EXTINF:-1 tvg-id="Germany_72" tvg-name="KLASSIK 1" tvg-logo="https://www.klassik1.de/favicon.png" group-title="Germany",KLASSIK 1
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -3108,13 +3108,13 @@ http://strm112.1.fm/rockclassics_mobile_mp3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://strm112.1.fm/bombaybeats_mobile_mp3
 
-#EXTINF:-1 tvg-id="Switzerland_7" tvg-name="1.FM - Deep Techno & Deep House" tvg-logo="" group-title="Switzerland",1.FM - Deep Techno & Deep House
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://strm112.1.fm/deeptech_mobile_mp3
-
-#EXTINF:-1 tvg-id="Switzerland_8" tvg-name="1.FM - High Voltage Radio" tvg-logo="" group-title="Switzerland",1.FM - High Voltage Radio
+#EXTINF:-1 tvg-id="Switzerland_7" tvg-name="1.FM - High Voltage Radio" tvg-logo="" group-title="Switzerland",1.FM - High Voltage Radio
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://strm112.1.fm/highvoltage_mobile_mp3
+
+#EXTINF:-1 tvg-id="Switzerland_8" tvg-name="1.FM - Deep Techno & Deep House" tvg-logo="" group-title="Switzerland",1.FM - Deep Techno & Deep House
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://strm112.1.fm/deeptech_mobile_mp3
 
 #EXTINF:-1 tvg-id="Switzerland_9" tvg-name="1.FM - Alternative Rock X Hits Radio" tvg-logo="" group-title="Switzerland",1.FM - Alternative Rock X Hits Radio
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -3285,13 +3285,13 @@ http://nashe1.hostingradio.ru/nashe-128.mp3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://icecast.vgtrk.cdnvideo.ru/mayakfm_mp3_192kbps
 
-#EXTINF:-1 tvg-id="The Russian Federation_12" tvg-name="Радио Шансон - Radio Shanson" tvg-logo="" group-title="The Russian Federation",Радио Шансон - Radio Shanson
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://chanson.hostingradio.ru:8041/chanson256.mp3
-
-#EXTINF:-1 tvg-id="The Russian Federation_13" tvg-name="Anon.FM" tvg-logo="https://icecast.anon.fm/favicon.png" group-title="The Russian Federation",Anon.FM
+#EXTINF:-1 tvg-id="The Russian Federation_12" tvg-name="Anon.FM" tvg-logo="https://icecast.anon.fm/favicon.png" group-title="The Russian Federation",Anon.FM
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://icecast.anon.fm/radio
+
+#EXTINF:-1 tvg-id="The Russian Federation_13" tvg-name="Радио Шансон - Radio Shanson" tvg-logo="" group-title="The Russian Federation",Радио Шансон - Radio Shanson
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://chanson.hostingradio.ru:8041/chanson256.mp3
 
 #EXTINF:-1 tvg-id="The Russian Federation_14" tvg-name="Ретро ФМ" tvg-logo="" group-title="The Russian Federation",Ретро ФМ
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
