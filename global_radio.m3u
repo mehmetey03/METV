@@ -1328,13 +1328,13 @@ https://0n-smoothjazz.radionetz.de/0n-smoothjazz.aac
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://stream.kissfm.de/kissfm/mp3-128/internetradio/
 
-#EXTINF:-1 tvg-id="Germany_41" tvg-name="- 0 N - Chillout on Radio" tvg-logo="https://www.0nradio.com/logos/0n-chillout_600x600.jpg" group-title="Germany",- 0 N - Chillout on Radio
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://0n-chillout.radionetz.de/0n-chillout.aac
-
-#EXTINF:-1 tvg-id="Germany_42" tvg-name="NDR Info (Hamburg)" tvg-logo="https://www.ndr.de/apple-touch-icon-120x120.png" group-title="Germany",NDR Info (Hamburg)
+#EXTINF:-1 tvg-id="Germany_41" tvg-name="NDR Info (Hamburg)" tvg-logo="https://www.ndr.de/apple-touch-icon-120x120.png" group-title="Germany",NDR Info (Hamburg)
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://www.ndr.de/resources/metadaten/audio/m3u/ndrinfo_hh.m3u
+
+#EXTINF:-1 tvg-id="Germany_42" tvg-name="- 0 N - Chillout on Radio" tvg-logo="https://www.0nradio.com/logos/0n-chillout_600x600.jpg" group-title="Germany",- 0 N - Chillout on Radio
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://0n-chillout.radionetz.de/0n-chillout.aac
 
 #EXTINF:-1 tvg-id="Germany_43" tvg-name="RADIO BOB! Classic Rock" tvg-logo="" group-title="Germany",RADIO BOB! Classic Rock
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -1348,13 +1348,13 @@ http://mp3channels.webradio.antenne.de/top-40
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://www.ndr.de/resources/metadaten/audio/m3u/ndrinfo_sh.m3u
 
-#EXTINF:-1 tvg-id="Germany_46" tvg-name="Radio Paloma" tvg-logo="https://schlager.radio/wp-content/uploads/2020/11/cropped-radio-paloma-fav-180x180.png" group-title="Germany",Radio Paloma
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://icepool.silvacast.com/RADIOPALOMA.mp3
-
-#EXTINF:-1 tvg-id="Germany_47" tvg-name="NDR 2" tvg-logo="https://www.ndr.de//apple-touch-icon-57x57.png" group-title="Germany",NDR 2
+#EXTINF:-1 tvg-id="Germany_46" tvg-name="NDR 2" tvg-logo="https://www.ndr.de//apple-touch-icon-57x57.png" group-title="Germany",NDR 2
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://www.ndr.de/resources/metadaten/audio_ssl/m3u/ndr2.m3u
+
+#EXTINF:-1 tvg-id="Germany_47" tvg-name="Radio Paloma" tvg-logo="https://schlager.radio/wp-content/uploads/2020/11/cropped-radio-paloma-fav-180x180.png" group-title="Germany",Radio Paloma
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://icepool.silvacast.com/RADIOPALOMA.mp3
 
 #EXTINF:-1 tvg-id="Germany_48" tvg-name="TechnoBase.FM" tvg-logo="https://cdn.onlineradiobox.com/img/l/0/32040.v12.png" group-title="Germany",TechnoBase.FM
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -1619,13 +1619,13 @@ https://a7.asurahosting.com:8160/radio.mp3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://oxygenmusic.hu:8443/oxygenmagyarzene
 
-#EXTINF:-1 tvg-id="Hungary_10" tvg-name="Poptarisznya" tvg-logo="" group-title="Hungary",Poptarisznya
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://adas.poptarisznya.hu:8200/live.mp3
-
-#EXTINF:-1 tvg-id="Hungary_11" tvg-name="Laza Rádió (OGG 320 Kbps)" tvg-logo="" group-title="Hungary",Laza Rádió (OGG 320 Kbps)
+#EXTINF:-1 tvg-id="Hungary_10" tvg-name="Laza Rádió (OGG 320 Kbps)" tvg-logo="" group-title="Hungary",Laza Rádió (OGG 320 Kbps)
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://stream.lazaradio.com:8100/live.ogg
+
+#EXTINF:-1 tvg-id="Hungary_11" tvg-name="Poptarisznya" tvg-logo="" group-title="Hungary",Poptarisznya
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://adas.poptarisznya.hu:8200/live.mp3
 
 #EXTINF:-1 tvg-id="Hungary_12" tvg-name="Poptarisznya Oldies" tvg-logo="" group-title="Hungary",Poptarisznya Oldies
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -3385,13 +3385,13 @@ https://tntradio.hostingradio.ru:8027/hhr128.mp3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://79.120.39.202:9125/
 
-#EXTINF:-1 tvg-id="The Russian Federation_37" tvg-name="Юмор ФМ" tvg-logo="" group-title="The Russian Federation",Юмор ФМ
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://fed.fmplay.ru:8000/humor-32.aac
-
-#EXTINF:-1 tvg-id="The Russian Federation_38" tvg-name="Питер FM - Санкт-Петербург 100.9 МГц" tvg-logo="" group-title="The Russian Federation",Питер FM - Санкт-Петербург 100.9 МГц
+#EXTINF:-1 tvg-id="The Russian Federation_37" tvg-name="Питер FM - Санкт-Петербург 100.9 МГц" tvg-logo="" group-title="The Russian Federation",Питер FM - Санкт-Петербург 100.9 МГц
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://icecast-piterfm.cdnvideo.ru/piterfm
+
+#EXTINF:-1 tvg-id="The Russian Federation_38" tvg-name="Юмор ФМ" tvg-logo="" group-title="The Russian Federation",Юмор ФМ
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://fed.fmplay.ru:8000/humor-32.aac
 
 #EXTINF:-1 tvg-id="The Russian Federation_39" tvg-name="Enigmatic 3 - Magnetic Chillout" tvg-logo="" group-title="The Russian Federation",Enigmatic 3 - Magnetic Chillout
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -3479,13 +3479,13 @@ https://media-ssl.musicradio.com/Heart80sMP3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://listen-msmn.sharp-stream.com/nme1.mp3
 
-#EXTINF:-1 tvg-id="The United Kingdom Of Great Britain And Northern Ireland_5" tvg-name="LBC London (National stream)" tvg-logo="http://lbc.co.uk/assets_v4r/lbc/img/favicon-196x196.png" group-title="The United Kingdom Of Great Britain And Northern Ireland",LBC London (National stream)
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://media-ice.musicradio.com/LBCUKMP3Low
-
-#EXTINF:-1 tvg-id="The United Kingdom Of Great Britain And Northern Ireland_6" tvg-name="Gold" tvg-logo="https://www.mygoldmusic.co.uk/assets_v4r/gold/img/favicon-196x196.png" group-title="The United Kingdom Of Great Britain And Northern Ireland",Gold
+#EXTINF:-1 tvg-id="The United Kingdom Of Great Britain And Northern Ireland_5" tvg-name="Gold" tvg-logo="https://www.mygoldmusic.co.uk/assets_v4r/gold/img/favicon-196x196.png" group-title="The United Kingdom Of Great Britain And Northern Ireland",Gold
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://media-ssl.musicradio.com/GoldMP3
+
+#EXTINF:-1 tvg-id="The United Kingdom Of Great Britain And Northern Ireland_6" tvg-name="LBC London (National stream)" tvg-logo="http://lbc.co.uk/assets_v4r/lbc/img/favicon-196x196.png" group-title="The United Kingdom Of Great Britain And Northern Ireland",LBC London (National stream)
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://media-ice.musicradio.com/LBCUKMP3Low
 
 #EXTINF:-1 tvg-id="The United Kingdom Of Great Britain And Northern Ireland_7" tvg-name="BBC World Service" tvg-logo="https://rmp.files.bbci.co.uk/rmp-shared-assets/1.4.0/img/network-logos/national/bbc_world_service_colour.svg" group-title="The United Kingdom Of Great Britain And Northern Ireland",BBC World Service
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -3793,13 +3793,13 @@ https://kathy.torontocast.com:2800/;
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://stream.radioparadise.com/mellow-320
 
-#EXTINF:-1 tvg-id="The United States Of America_44" tvg-name="SomaFM Metal Detector (128k AAC)" tvg-logo="https://somafm.com/img3/metal-400.png" group-title="The United States Of America",SomaFM Metal Detector (128k AAC)
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://somafm.com/metal130.m3u
-
-#EXTINF:-1 tvg-id="The United States Of America_45" tvg-name="181.FM - True Blues" tvg-logo="http://www.181.fm/favicon.ico" group-title="The United States Of America",181.FM - True Blues
+#EXTINF:-1 tvg-id="The United States Of America_44" tvg-name="181.FM - True Blues" tvg-logo="http://www.181.fm/favicon.ico" group-title="The United States Of America",181.FM - True Blues
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://www.181.fm/stream/pls/181-blues.m3u
+
+#EXTINF:-1 tvg-id="The United States Of America_45" tvg-name="SomaFM Metal Detector (128k AAC)" tvg-logo="https://somafm.com/img3/metal-400.png" group-title="The United States Of America",SomaFM Metal Detector (128k AAC)
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://somafm.com/metal130.m3u
 
 #EXTINF:-1 tvg-id="The United States Of America_46" tvg-name="SMOOTH JAZZ 24/7" tvg-logo="" group-title="The United States Of America",SMOOTH JAZZ 24/7
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
