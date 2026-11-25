@@ -1252,13 +1252,13 @@ http://streams.80s80s.de/web/mp3-192/play.m3u
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://mp3.ffh.de/radioffh/hqlivestream.mp3
 
-#EXTINF:-1 tvg-id="Germany_22" tvg-name="Sunshine Live - Classics" tvg-logo="" group-title="Germany",Sunshine Live - Classics
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://stream.sunshine-live.de/classics/mp3-192/stream.sunshine-live.de/
-
-#EXTINF:-1 tvg-id="Germany_23" tvg-name="Antenne Bayern - Classic Rock Live (MP3)" tvg-logo="http://www.antenne.de/logos/station-antenne-bayern/apple-touch-icon.png" group-title="Germany",Antenne Bayern - Classic Rock Live (MP3)
+#EXTINF:-1 tvg-id="Germany_22" tvg-name="Antenne Bayern - Classic Rock Live (MP3)" tvg-logo="http://www.antenne.de/logos/station-antenne-bayern/apple-touch-icon.png" group-title="Germany",Antenne Bayern - Classic Rock Live (MP3)
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://mp3channels.webradio.antenne.de/classic-rock-live
+
+#EXTINF:-1 tvg-id="Germany_23" tvg-name="Sunshine Live - Classics" tvg-logo="" group-title="Germany",Sunshine Live - Classics
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://stream.sunshine-live.de/classics/mp3-192/stream.sunshine-live.de/
 
 #EXTINF:-1 tvg-id="Germany_24" tvg-name="Total instrumental" tvg-logo="" group-title="Germany",Total instrumental
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -1308,13 +1308,13 @@ http://stream02.iloveradio.de/iloveradio13.mp3?hadpreroll
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://streams.radiobob.de/bob-metal/mp3-192/streams.radiobob.de/
 
-#EXTINF:-1 tvg-id="Germany_36" tvg-name="- 0 N - Indie on Radio" tvg-logo="https://www.0nradio.com/logos/0n-indie_600x600.jpg" group-title="Germany",- 0 N - Indie on Radio
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://0n-indie.radionetz.de/0n-indie.mp3
-
-#EXTINF:-1 tvg-id="Germany_37" tvg-name="Bayern 3" tvg-logo="https://api.ardmediathek.de/image-service/images/urn:ard:image:52fd25fc45de7c6a?w=512" group-title="Germany",Bayern 3
+#EXTINF:-1 tvg-id="Germany_36" tvg-name="Bayern 3" tvg-logo="https://api.ardmediathek.de/image-service/images/urn:ard:image:52fd25fc45de7c6a?w=512" group-title="Germany",Bayern 3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://dispatcher.rndfnk.com/br/br3/live/mp3/mid
+
+#EXTINF:-1 tvg-id="Germany_37" tvg-name="- 0 N - Indie on Radio" tvg-logo="https://www.0nradio.com/logos/0n-indie_600x600.jpg" group-title="Germany",- 0 N - Indie on Radio
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://0n-indie.radionetz.de/0n-indie.mp3
 
 #EXTINF:-1 tvg-id="Germany_38" tvg-name="RADIO BOB! BOBs Alternative Rock" tvg-logo="" group-title="Germany",RADIO BOB! BOBs Alternative Rock
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -1328,13 +1328,13 @@ https://0n-smoothjazz.radionetz.de/0n-smoothjazz.aac
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://stream.kissfm.de/kissfm/mp3-128/internetradio/
 
-#EXTINF:-1 tvg-id="Germany_41" tvg-name="- 0 N - Chillout on Radio" tvg-logo="https://www.0nradio.com/logos/0n-chillout_600x600.jpg" group-title="Germany",- 0 N - Chillout on Radio
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://0n-chillout.radionetz.de/0n-chillout.aac
-
-#EXTINF:-1 tvg-id="Germany_42" tvg-name="RADIO BOB! Classic Rock" tvg-logo="" group-title="Germany",RADIO BOB! Classic Rock
+#EXTINF:-1 tvg-id="Germany_41" tvg-name="RADIO BOB! Classic Rock" tvg-logo="" group-title="Germany",RADIO BOB! Classic Rock
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://streams.radiobob.de/bob-classicrock/mp3-192/streams.radiobob.de/
+
+#EXTINF:-1 tvg-id="Germany_42" tvg-name="- 0 N - Chillout on Radio" tvg-logo="https://www.0nradio.com/logos/0n-chillout_600x600.jpg" group-title="Germany",- 0 N - Chillout on Radio
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://0n-chillout.radionetz.de/0n-chillout.aac
 
 #EXTINF:-1 tvg-id="Germany_43" tvg-name="NDR Info (Hamburg)" tvg-logo="https://www.ndr.de/apple-touch-icon-120x120.png" group-title="Germany",NDR Info (Hamburg)
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -3531,13 +3531,13 @@ http://media-ice.musicradio.com/HeartLondon
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://media-ice.musicradio.com/LBC1152.m3u
 
-#EXTINF:-1 tvg-id="The United Kingdom Of Great Britain And Northern Ireland_18" tvg-name="Classic FM UK" tvg-logo="" group-title="The United Kingdom Of Great Britain And Northern Ireland",Classic FM UK
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://media-the.musicradio.com/ClassicFM
-
-#EXTINF:-1 tvg-id="The United Kingdom Of Great Britain And Northern Ireland_19" tvg-name="Heart UK" tvg-logo="" group-title="The United Kingdom Of Great Britain And Northern Ireland",Heart UK
+#EXTINF:-1 tvg-id="The United Kingdom Of Great Britain And Northern Ireland_18" tvg-name="Heart UK" tvg-logo="" group-title="The United Kingdom Of Great Britain And Northern Ireland",Heart UK
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://media-ice.musicradio.com/HeartUKMP3
+
+#EXTINF:-1 tvg-id="The United Kingdom Of Great Britain And Northern Ireland_19" tvg-name="Classic FM UK" tvg-logo="" group-title="The United Kingdom Of Great Britain And Northern Ireland",Classic FM UK
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://media-the.musicradio.com/ClassicFM
 
 #EXTINF:-1 tvg-id="The United Kingdom Of Great Britain And Northern Ireland_20" tvg-name="BBC Afrique Radio" tvg-logo="https://static.files.bbci.co.uk/ws/simorgh-assets/public/afrique/images/icons/icon-128x128.png" group-title="The United Kingdom Of Great Britain And Northern Ireland",BBC Afrique Radio
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
