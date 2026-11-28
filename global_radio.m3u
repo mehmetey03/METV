@@ -1240,13 +1240,13 @@ http://streams.br.de/b5aktuell_2.m3u
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://wdr-wdr2-rheinland.icecast.wdr.de/wdr/wdr2/rheinland/mp3/128/stream.mp3
 
-#EXTINF:-1 tvg-id="Germany_19" tvg-name="Reggae Radio Rastamusic.com" tvg-logo="https://static.wixstatic.com/media/a09246_33fe4aef6e5f4f17b605a8d8645ff015%7emv2.png/v1/fill/w_32%2ch_32%2clg_1%2cusm_0.66_1.00_0.01/a09246_33fe4aef6e5f4f17b605a8d8645ff015%7emv2.png" group-title="Germany",Reggae Radio Rastamusic.com
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://ais.rastamusic.com/rastamusic.mp3.m3u
-
-#EXTINF:-1 tvg-id="Germany_20" tvg-name="80s80s Radio" tvg-logo="https://upload.80s80s.de/production/static/1697296555757/icons/icon_512.ewwAEi8A30w.png" group-title="Germany",80s80s Radio
+#EXTINF:-1 tvg-id="Germany_19" tvg-name="80s80s Radio" tvg-logo="https://upload.80s80s.de/production/static/1697296555757/icons/icon_512.ewwAEi8A30w.png" group-title="Germany",80s80s Radio
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://streams.80s80s.de/web/mp3-192/play.m3u
+
+#EXTINF:-1 tvg-id="Germany_20" tvg-name="Reggae Radio Rastamusic.com" tvg-logo="https://static.wixstatic.com/media/a09246_33fe4aef6e5f4f17b605a8d8645ff015%7emv2.png/v1/fill/w_32%2ch_32%2clg_1%2cusm_0.66_1.00_0.01/a09246_33fe4aef6e5f4f17b605a8d8645ff015%7emv2.png" group-title="Germany",Reggae Radio Rastamusic.com
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://ais.rastamusic.com/rastamusic.mp3.m3u
 
 #EXTINF:-1 tvg-id="Germany_21" tvg-name="Hit Radio FFH" tvg-logo="https://www.ffh.de/android-icon.png" group-title="Germany",Hit Radio FFH
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -1264,13 +1264,13 @@ http://stream.sunshine-live.de/classics/mp3-192/stream.sunshine-live.de/
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://stream.laut.fm/total-instrumental
 
-#EXTINF:-1 tvg-id="Germany_25" tvg-name="__TRANCE__ by rautemusik (rm.fm)" tvg-logo="https://www.rm.fm/favicon.ico" group-title="Germany",__TRANCE__ by rautemusik (rm.fm)
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://trance-high.rautemusik.fm/?ref=radiobrowser
-
-#EXTINF:-1 tvg-id="Germany_26" tvg-name="MDR Aktuell" tvg-logo="https://cdn.mdr.de/resources/global/img/mdrde/favicons/apple-icon-120x120.png" group-title="Germany",MDR Aktuell
+#EXTINF:-1 tvg-id="Germany_25" tvg-name="MDR Aktuell" tvg-logo="https://cdn.mdr.de/resources/global/img/mdrde/favicons/apple-icon-120x120.png" group-title="Germany",MDR Aktuell
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://avw.mdr.de/streams/284340-0_mp3_high.m3u
+
+#EXTINF:-1 tvg-id="Germany_26" tvg-name="__TRANCE__ by rautemusik (rm.fm)" tvg-logo="https://www.rm.fm/favicon.ico" group-title="Germany",__TRANCE__ by rautemusik (rm.fm)
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://trance-high.rautemusik.fm/?ref=radiobrowser
 
 #EXTINF:-1 tvg-id="Germany_27" tvg-name="Hit Radio FFH - 80er" tvg-logo="" group-title="Germany",Hit Radio FFH - 80er
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -1300,13 +1300,13 @@ http://stream.sunshine-live.de/lounge/mp3-192/stream.sunshine-live.de/
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://stream02.iloveradio.de/iloveradio13.mp3?hadpreroll
 
-#EXTINF:-1 tvg-id="Germany_34" tvg-name="Technolovers DEEP HOUSE" tvg-logo="" group-title="Germany",Technolovers DEEP HOUSE
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://stream.technolovers.fm/deep-house?ref=radiobrowser
-
-#EXTINF:-1 tvg-id="Germany_35" tvg-name="RADIO BOB! BOBs Metal" tvg-logo="" group-title="Germany",RADIO BOB! BOBs Metal
+#EXTINF:-1 tvg-id="Germany_34" tvg-name="RADIO BOB! BOBs Metal" tvg-logo="" group-title="Germany",RADIO BOB! BOBs Metal
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://streams.radiobob.de/bob-metal/mp3-192/streams.radiobob.de/
+
+#EXTINF:-1 tvg-id="Germany_35" tvg-name="Technolovers DEEP HOUSE" tvg-logo="" group-title="Germany",Technolovers DEEP HOUSE
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://stream.technolovers.fm/deep-house?ref=radiobrowser
 
 #EXTINF:-1 tvg-id="Germany_36" tvg-name="Bayern 3" tvg-logo="https://api.ardmediathek.de/image-service/images/urn:ard:image:52fd25fc45de7c6a?w=512" group-title="Germany",Bayern 3
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -1328,13 +1328,13 @@ https://0n-smoothjazz.radionetz.de/0n-smoothjazz.aac
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://stream.kissfm.de/kissfm/mp3-128/internetradio/
 
-#EXTINF:-1 tvg-id="Germany_41" tvg-name="- 0 N - Chillout on Radio" tvg-logo="https://www.0nradio.com/logos/0n-chillout_600x600.jpg" group-title="Germany",- 0 N - Chillout on Radio
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-https://0n-chillout.radionetz.de/0n-chillout.aac
-
-#EXTINF:-1 tvg-id="Germany_42" tvg-name="RADIO BOB! Classic Rock" tvg-logo="" group-title="Germany",RADIO BOB! Classic Rock
+#EXTINF:-1 tvg-id="Germany_41" tvg-name="RADIO BOB! Classic Rock" tvg-logo="" group-title="Germany",RADIO BOB! Classic Rock
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://streams.radiobob.de/bob-classicrock/mp3-192/streams.radiobob.de/
+
+#EXTINF:-1 tvg-id="Germany_42" tvg-name="- 0 N - Chillout on Radio" tvg-logo="https://www.0nradio.com/logos/0n-chillout_600x600.jpg" group-title="Germany",- 0 N - Chillout on Radio
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://0n-chillout.radionetz.de/0n-chillout.aac
 
 #EXTINF:-1 tvg-id="Germany_43" tvg-name="NDR Info (Hamburg)" tvg-logo="https://www.ndr.de/apple-touch-icon-120x120.png" group-title="Germany",NDR Info (Hamburg)
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -1344,13 +1344,13 @@ http://www.ndr.de/resources/metadaten/audio/m3u/ndrinfo_hh.m3u
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://mp3channels.webradio.antenne.de/top-40
 
-#EXTINF:-1 tvg-id="Germany_45" tvg-name="NDR Info (Schleswig-Holstein)" tvg-logo="http://www.ndr.de/favicon.ico" group-title="Germany",NDR Info (Schleswig-Holstein)
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://www.ndr.de/resources/metadaten/audio/m3u/ndrinfo_sh.m3u
-
-#EXTINF:-1 tvg-id="Germany_46" tvg-name="NDR 2" tvg-logo="https://www.ndr.de//apple-touch-icon-57x57.png" group-title="Germany",NDR 2
+#EXTINF:-1 tvg-id="Germany_45" tvg-name="NDR 2" tvg-logo="https://www.ndr.de//apple-touch-icon-57x57.png" group-title="Germany",NDR 2
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://www.ndr.de/resources/metadaten/audio_ssl/m3u/ndr2.m3u
+
+#EXTINF:-1 tvg-id="Germany_46" tvg-name="NDR Info (Schleswig-Holstein)" tvg-logo="http://www.ndr.de/favicon.ico" group-title="Germany",NDR Info (Schleswig-Holstein)
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+http://www.ndr.de/resources/metadaten/audio/m3u/ndrinfo_sh.m3u
 
 #EXTINF:-1 tvg-id="Germany_47" tvg-name="Radio Paloma" tvg-logo="https://schlager.radio/wp-content/uploads/2020/11/cropped-radio-paloma-fav-180x180.png" group-title="Germany",Radio Paloma
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -1488,6 +1488,10 @@ http://streams.bigfm.de/bigfm-deutschrap-128-aac
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://streams.80s80s.de/dm/mp3-192/streams.80s80s.de/
 
+#EXTINF:-1 tvg-id="Germany_81" tvg-name="Absolut Relax" tvg-logo="https://cms.antenne-deutschland.de/api/media/file/relax-1.png?v=1769085004853" group-title="Germany",Absolut Relax
+#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+https://absolut-relax.live-sm.absolutradio.de/absolut-relax/stream/aacp?maxvbr=3
+
 #EXTINF:-1 tvg-id="" tvg-logo="" group-title="Greece",Greece
 #EXTGRP:Greece
 
@@ -1511,35 +1515,31 @@ https://smooth.vanillaradio.com:8032/live.m3u
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://netradio.live24.gr/galaxy9292
 
-#EXTINF:-1 tvg-id="Greece_5" tvg-name="Laikos FM" tvg-logo="https://www.laikos.gr/templates/bt_medical/favicon.ico" group-title="Greece",Laikos FM
-#EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-http://netradio.live24.gr/laikos876
-
-#EXTINF:-1 tvg-id="Greece_6" tvg-name="Off Radio - Athens" tvg-logo="https://www.offradio.gr/wp-content/uploads/2020/09/cropped-site-icon-180x180.png" group-title="Greece",Off Radio - Athens
+#EXTINF:-1 tvg-id="Greece_5" tvg-name="Off Radio - Athens" tvg-logo="https://www.offradio.gr/wp-content/uploads/2020/09/cropped-site-icon-180x180.png" group-title="Greece",Off Radio - Athens
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 https://s3.yesstreaming.net:2199/tunein/offradio.m3u
 
-#EXTINF:-1 tvg-id="Greece_7" tvg-name="Love Radio 97.5" tvg-logo="" group-title="Greece",Love Radio 97.5
+#EXTINF:-1 tvg-id="Greece_6" tvg-name="Love Radio 97.5" tvg-logo="" group-title="Greece",Love Radio 97.5
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://netradio.live24.gr/loveradio-1000
 
-#EXTINF:-1 tvg-id="Greece_8" tvg-name="ERA Deftero Programma" tvg-logo="https://www.ertecho.com/wp-content/uploads/2023/08/cropped-ertecho-favicon-180x180.png" group-title="Greece",ERA Deftero Programma
+#EXTINF:-1 tvg-id="Greece_7" tvg-name="ERA Deftero Programma" tvg-logo="https://www.ertecho.com/wp-content/uploads/2023/08/cropped-ertecho-favicon-180x180.png" group-title="Greece",ERA Deftero Programma
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://radiostreaming.ert.gr/ert-deftero
 
-#EXTINF:-1 tvg-id="Greece_9" tvg-name="Play radio" tvg-logo="" group-title="Greece",Play radio
+#EXTINF:-1 tvg-id="Greece_8" tvg-name="Play radio" tvg-logo="" group-title="Greece",Play radio
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://eco.onestreaming.com:8222/
 
-#EXTINF:-1 tvg-id="Greece_10" tvg-name="Stone Radio" tvg-logo="http://cdn-radiotime-logos.tunein.com/s236876q.png" group-title="Greece",Stone Radio
+#EXTINF:-1 tvg-id="Greece_9" tvg-name="Stone Radio" tvg-logo="http://cdn-radiotime-logos.tunein.com/s236876q.png" group-title="Greece",Stone Radio
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://eu4.fastcast4u.com:5248/;stream.mp3
 
-#EXTINF:-1 tvg-id="Greece_11" tvg-name="Best 92.6" tvg-logo="" group-title="Greece",Best 92.6
+#EXTINF:-1 tvg-id="Greece_10" tvg-name="Best 92.6" tvg-logo="" group-title="Greece",Best 92.6
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://best.live24.gr/best1222
 
-#EXTINF:-1 tvg-id="Greece_12" tvg-name="ERA Proto Programma" tvg-logo="https://www.ertecho.com/wp-content/uploads/2023/08/cropped-ertecho-favicon-180x180.png" group-title="Greece",ERA Proto Programma
+#EXTINF:-1 tvg-id="Greece_11" tvg-name="ERA Proto Programma" tvg-logo="https://www.ertecho.com/wp-content/uploads/2023/08/cropped-ertecho-favicon-180x180.png" group-title="Greece",ERA Proto Programma
 #EXTVLCOPT:http-user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 http://radiostreaming.ert.gr/ert-proto
 
